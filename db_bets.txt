@@ -1,0 +1,24 @@
+   ticket_id   |    date    |                    description                     |     bet_type     | status  | amount |  to_win  
+---------------+------------+----------------------------------------------------+------------------+---------+--------+----------
+ 906320708-1   | 10/25/2025 | FOOTBALL - NFL - New England Patriots v Cleveland  | Same Game Parlay | Pending |   6.33 |    41.15
+ 905965992-1   | 10/24/2025 | Parlay (12 Teams)                                  | Parlay           | Pending |  10.00 | 22063.99
+ 905966117-1   | 10/24/2025 | Parlay (12 Teams)                                  | Parlay           | Pending |  10.00 |   544.70
+ 905966240-1   | 10/24/2025 | Parlay (12 Teams)                                  | Parlay           | Pending |  10.00 | 24917.43
+ 905966488-1   | 10/24/2025 | Parlay (12 Teams)                                  | Parlay           | Pending |  10.00 | 24489.42
+ 905966563-1   | 10/24/2025 | Parlay (12 Teams)                                  | Parlay           | Pending |  15.00 | 37377.61
+ 905768987-100 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    12.19
+ 905768987-101 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    11.91
+ 905768987-102 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    12.30
+ 905768987-103 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    11.86
+ 905768987-104 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    12.02
+ 905768987-105 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    12.42
+ 905768987-106 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    11.97
+ 905768987-107 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    12.14
+ 905768987-108 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    11.70
+ 905768987-109 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    12.09
+ 905768987-110 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    11.63
+ 905768987-111 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    12.01
+ 905768987-112 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    11.58
+ 905768987-113 | 10/23/2025 | Parlay (4 Teams)                                   | Parlay           | Pending |   1.00 |    11.74
+(20 rows)
+

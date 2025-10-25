@@ -29,9 +29,7 @@
         <div class="col-sm-6 col-lg-3">
           <div class="card">
             <div class="card-body">
-              <div class="d-flex align-items-center">
-                <div class="subheader">Total Profit</div>
-              </div>
+              <div class="subheader">Total Profit/Loss</div>
               <div class="h1 mb-3">
                 <span class="{% if summary.total_profit >= 0 %}text-success{% else %}text-danger{% endif %}">
                   ${{ "%.2f"|format(summary.total_profit) }}
@@ -43,181 +41,325 @@
         <div class="col-sm-6 col-lg-3">
           <div class="card">
             <div class="card-body">
-              <div class="d-flex align-items-center">
-                <div class="subheader">Total Games</div>
-              </div>
-              <div class="h1 mb-3">{{ summary.total_games }}</div>
+              <div class="subheader">Total Wagered</div>
+              <div class="h1 mb-3">${{ "%.2f"|format(summary.total_amount) }}</div>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-3">
           <div class="card">
             <div class="card-body">
-              <div class="d-flex align-items-center">
-                <div class="subheader">Win Rate</div>
-              </div>
-              <div class="h1 mb-3">{{ "%.1f"|format(summary.win_rate * 100) }}%</div>
+              <div class="subheader">Pending Bets</div>
+              <div class="h1 mb-3">{{ summary.pending_count }} <span class="text-muted">(${{ "%.2f"|format(summary.pending_amount) }})</span></div>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-3">
           <div class="card">
             <div class="card-body">
-              <div class="d-flex align-items-center">
-                <div class="subheader">Weeks Tracked</div>
-              </div>
-              <div class="h1 mb-3">{{ summary.weeks|length }}</div>
+              <div class="subheader">Potential Win</div>
+              <div class="h1 mb-3 text-success">${{ "%.2f"|format(summary.potential_win) }}</div>
             </div>
           </div>
         </div>
       </div>
       {% endif %}
 
-      <!-- BetOnline Integration -->
+      <!-- Paste Bets Interface -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="ti ti-clipboard icon me-2"></i>
+                Paste Your Bets from BetOnline
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="alert alert-info">
+                <h4 class="alert-title">📋 How to Add Your Bets:</h4>
+                <p class="mb-2"><strong>BetOnline blocks API access, so just copy/paste your bet data:</strong></p>
+                <ol class="mb-0">
+                  <li>Go to BetOnline → My Account → Bet History</li>
+                  <li>Select and copy the entire bet table (Ctrl+A, Ctrl+C)</li>
+                  <li>Paste it in the box below</li>
+                  <li>Click "Load Bets"</li>
+                </ol>
+                <p class="mt-2 mb-0"><small class="text-muted">For parlays, separate legs with | (pipe). Example: <code>Cowboys +3.5 | Patriots ML | Over 45.5</code></small></p>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label">Paste your bet data here:</label>
+                <textarea class="form-control font-monospace" id="betDataInput" rows="10" placeholder="Paste your BetOnline bet table data here...
+
+Format (one bet per line):
+TicketID | Date | Description | Type | Status | Amount | ToWin
+
+For parlays with multiple legs:
+TicketID | Date | Team1 +3.5 | Team2 ML | Over 45.5 | Parlay | Pending | 10.00 | 50.00"></textarea>
+              </div>
+              
+              <button class="btn btn-primary btn-lg" onclick="loadBets()">
+                <i class="ti ti-upload icon me-2"></i>
+                Load Bets
+              </button>
+              
+              <button class="btn btn-ghost-secondary ms-2" onclick="clearBets()">
+                <i class="ti ti-trash icon me-2"></i>
+                Clear All
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bets Table -->
+      {% if bets %}
       <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <i class="ti ti-download icon me-2"></i>
-                Fetch Bets from BetOnline
+                <i class="ti ti-list icon me-2"></i>
+                Your Bets ({{ bets|length }})
               </h3>
+              <div class="card-actions">
+                <div class="input-group input-group-flat">
+                  <input type="text" class="form-control" id="searchInput" placeholder="Search bets..." onkeyup="filterTable()">
+                  <span class="input-group-text">
+                    <i class="ti ti-search icon"></i>
+                  </span>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label class="form-label">Upload Your Bet Data</label>
-                    <div class="card">
-                      <div class="card-body">
-                        <h4 class="card-title">Safest Option: Upload CSV</h4>
-                        <p class="text-muted">Export your bets from BetOnline and upload here:</p>
-                        
-                        <div class="mb-3">
-                          <label class="form-label">Choose CSV File</label>
-                          <input type="file" class="form-control" id="csvFile" accept=".csv" onchange="handleFileUpload()">
-                        </div>
-                        
-                        <div class="form-hint">
-                          <strong>How to get CSV:</strong><br>
-                          1. Log into BetOnline normally<br>
-                          2. Go to Bet History<br>
-                          3. Look for "Export" or "Download" button<br>
-                          4. Save as CSV and upload here
-                        </div>
-                      </div>
-                    </div>
+            <div class="card-body p-0">
+              <!-- Filters -->
+              <div class="p-3 border-bottom">
+                <div class="row g-2">
+                  <div class="col-md-3">
+                    <select class="form-select" id="filterType" onchange="filterTable()">
+                      <option value="">All Types</option>
+                      <option value="Spread">Spread</option>
+                      <option value="Parlay">Parlay</option>
+                      <option value="Same Game Parlay">Same Game Parlay</option>
+                      <option value="Live">Live</option>
+                    </select>
                   </div>
-                  
-                  <div class="mb-3">
-                    <label class="form-label">Manual Entry</label>
-                    <div class="card">
-                      <div class="card-body">
-                        <h4 class="card-title">Enter Your Bets Manually</h4>
-                        <p class="text-muted">Add your bets one by one:</p>
-                        
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label class="form-label">Date</label>
-                              <input type="date" class="form-control" id="betDate">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label class="form-label">Game</label>
-                              <input type="text" class="form-control" id="betGame" placeholder="e.g., KC vs BUF">
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div class="row">
-                          <div class="col-md-4">
-                            <div class="mb-3">
-                              <label class="form-label">Bet Type</label>
-                              <select class="form-control" id="betType">
-                                <option>Spread</option>
-                                <option>Total</option>
-                                <option>Moneyline</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="mb-3">
-                              <label class="form-label">Amount</label>
-                              <input type="number" class="form-control" id="betAmount" placeholder="100">
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="mb-3">
-                              <label class="form-label">Result</label>
-                              <select class="form-control" id="betResult">
-                                <option>Win</option>
-                                <option>Loss</option>
-                                <option>Push</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <button class="btn btn-primary" onclick="addBet()">
-                          <i class="ti ti-plus icon me-2"></i>
-                          Add Bet
-                        </button>
-                      </div>
-                    </div>
+                  <div class="col-md-3">
+                    <select class="form-select" id="filterStatus" onchange="filterTable()">
+                      <option value="">All Status</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Won">Won</option>
+                      <option value="Lost">Lost</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="date" class="form-control" id="filterDateFrom" onchange="filterTable()" placeholder="From Date">
+                  </div>
+                  <div class="col-md-3">
+                    <input type="date" class="form-control" id="filterDateTo" onchange="filterTable()" placeholder="To Date">
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="alert alert-info">
-                    <h4 class="alert-title">📋 DETAILED STEP-BY-STEP INSTRUCTIONS:</h4>
-                    <div class="mb-3">
-                      <strong>STEP 1:</strong> Open BetOnline in a new tab
-                      <br><small class="text-muted">Go to betonline.ag and log in normally</small>
-                    </div>
-                    
-                    <div class="mb-3">
-                      <strong>STEP 2:</strong> Open Developer Tools
-                      <br><small class="text-muted">Press F12 (or right-click → Inspect)</small>
-                    </div>
-                    
-                    <div class="mb-3">
-                      <strong>STEP 3:</strong> Go to Network tab
-                      <br><small class="text-muted">Click "Network" in DevTools</small>
-                    </div>
-                    
-                    <div class="mb-3">
-                      <strong>STEP 4:</strong> Visit your Bet History
-                      <br><small class="text-muted">Click "My Account" → "Bet History" on BetOnline</small>
-                    </div>
-                    
-                    <div class="mb-3">
-                      <strong>STEP 5:</strong> Look for ANY request
-                      <br><small class="text-muted">You'll see requests like "betonline.ag", "api", or random URLs</small>
-                    </div>
-                    
-                    <div class="mb-3">
-                      <strong>STEP 6:</strong> Click on ANY request
-                      <br><small class="text-muted">Click on any request in the Network list (doesn't matter which one)</small>
-                    </div>
-                    
-                    <div class="mb-3">
-                      <strong>STEP 7:</strong> Copy Request Headers
-                      <br><small class="text-muted">Scroll down to "Request Headers" section and copy ALL the headers</small>
-                    </div>
-                    
-                    <div class="mb-3">
-                      <strong>STEP 8:</strong> Format as JSON
-                      <br><small class="text-muted">Convert to JSON format like the example above</small>
-                    </div>
-                    
-                    <div class="alert alert-success mt-3">
-                      <strong>💡 TIP:</strong> If you don't see any requests, refresh the BetOnline page while DevTools is open!
-                    </div>
-                    
-                    <div class="alert alert-warning mt-3">
-                      <strong>⚠️ IMPORTANT:</strong> Make sure you're logged into BetOnline when you copy the headers!
-                    </div>
+              </div>
+              
+              <!-- Table -->
+              <div class="table-responsive">
+                <style>
+                  #betsTable tbody tr:hover {
+                    background-color: var(--tblr-hover-bg);
+                    transform: scale(1.001);
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+                  }
+                </style>
+                <table class="table table-vcenter card-table table-striped" id="betsTable">
+                  <thead>
+                    <tr>
+                      <th class="w-1">Ticket #</th>
+                      <th>Date</th>
+                      <th>Description</th>
+                      <th>Type</th>
+                      <th>Status</th>
+                      <th class="text-end">Amount</th>
+                      <th class="text-end">To Win</th>
+                      <th class="text-end">Profit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for bet in bets %}
+                    <tr data-type="{{ bet.type }}" data-status="{{ bet.status }}" data-date="{{ bet.date }}" 
+                        style="cursor: pointer;" 
+                        onclick='showBetDetails({{ bet|tojson }})'>
+                      <td class="text-muted">
+                        <small class="font-monospace">{{ bet.ticket_id }}</small>
+                      </td>
+                      <td>{{ bet.date }}</td>
+                      <td>
+                        <div class="text-truncate" style="max-width: 400px;" title="{{ bet.description }}">
+                          {{ bet.description }}
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge bg-blue-lt">{{ bet.type }}</span>
+                      </td>
+                      <td>
+                        {% if bet.status == 'Pending' %}
+                          <span class="badge bg-yellow-lt">Pending</span>
+                        {% elif bet.status == 'Won' %}
+                          <span class="badge bg-success-lt">Won</span>
+                        {% elif bet.status == 'Lost' %}
+                          <span class="badge bg-danger-lt">Lost</span>
+                        {% else %}
+                          <span class="badge bg-secondary-lt">{{ bet.status }}</span>
+                        {% endif %}
+                      </td>
+                      <td class="text-end">${{ "%.2f"|format(bet.amount) }}</td>
+                      <td class="text-end">
+                        {% if bet.to_win > 0 %}
+                          <span class="text-success">${{ "%.2f"|format(bet.to_win) }}</span>
+                        {% else %}
+                          <span class="text-muted">-</span>
+                        {% endif %}
+                      </td>
+                      <td class="text-end">
+                        {% if bet.profit > 0 %}
+                          <span class="text-success fw-bold">+${{ "%.2f"|format(bet.profit) }}</span>
+                        {% elif bet.profit < 0 %}
+                          <span class="text-danger fw-bold">-${{ "%.2f"|format(bet.profit|abs) }}</span>
+                        {% else %}
+                          <span class="text-muted">-</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body text-center py-5">
+              <div class="empty">
+                <div class="empty-icon">
+                  <i class="ti ti-clipboard-off icon" style="font-size: 4rem;"></i>
+                </div>
+                <p class="empty-title">No bets loaded yet</p>
+                <p class="empty-subtitle text-muted">
+                  Paste your bet data above to get started
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+<!-- Bet Details Modal -->
+<div class="modal modal-blur fade" id="betDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="ti ti-ticket icon me-2"></i>
+          Bet Details
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label text-muted">Ticket Number</label>
+              <div class="h3 font-monospace" id="modalTicketId"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label text-muted">Date</label>
+              <div class="h3" id="modalDate"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label text-muted">Bet Details</label>
+          <div class="card">
+            <div class="card-body">
+              <div id="modalDescription"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label class="form-label text-muted">Type</label>
+              <div id="modalType"></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label class="form-label text-muted">Status</label>
+              <div id="modalStatus"></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label class="form-label text-muted">Odds</label>
+              <div class="h3" id="modalOdds">-</div>
+            </div>
+          </div>
+        </div>
+        
+        <hr>
+        
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card bg-blue-lt">
+              <div class="card-body text-center">
+                <div class="text-muted mb-1">Amount Wagered</div>
+                <div class="h2 mb-0" id="modalAmount"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-success-lt">
+              <div class="card-body text-center">
+                <div class="text-muted mb-1">To Win</div>
+                <div class="h2 mb-0" id="modalToWin"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card" id="modalProfitCard">
+              <div class="card-body text-center">
+                <div class="text-muted mb-1">Profit/Loss</div>
+                <div class="h2 mb-0" id="modalProfit"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="card bg-muted-lt">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="text-muted mb-1">Return on Investment</div>
+                    <div class="h3 mb-0" id="modalROI"></div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="text-muted mb-1">Potential ROI</div>
+                    <div class="h3 mb-0" id="modalPotentialROI"></div>
                   </div>
                 </div>
               </div>
@@ -225,320 +367,313 @@
           </div>
         </div>
       </div>
-
-      <!-- Weekly P&L Chart -->
-      {% if summary and summary.weeks %}
-      <div class="row mt-4">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Weekly P&L</h3>
-            </div>
-            <div class="card-body">
-              <div id="weeklyChart" style="height: 300px;"></div>
-            </div>
-          </div>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
-      {% endif %}
-
-      <!-- Recent Bets Table -->
-      {% if ledger_df is not none and not ledger_df.empty %}
-      <div class="row mt-4">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Recent Bets</h3>
-            </div>
-            <div class="table-responsive">
-              <table class="table table-vcenter card-table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Game</th>
-                    <th>Market</th>
-                    <th>Line</th>
-                    <th>Odds</th>
-                    <th>Stake</th>
-                    <th>Result</th>
-                    <th>Profit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for _, bet in ledger_df.head(20).iterrows() %}
-                  <tr>
-                    <td>{{ bet.placed_utc[:10] if bet.placed_utc else '-' }}</td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="text-muted">{{ bet.away }}</span>
-                        <span class="mx-2">@</span>
-                        <span class="text-muted">{{ bet.home }}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <span class="badge bg-blue-lt">{{ bet.market }}</span>
-                    </td>
-                    <td>{{ bet.line if bet.line else '-' }}</td>
-                    <td>{{ bet.odds_american if bet.odds_american else '-' }}</td>
-                    <td>${{ "%.2f"|format(bet.stake) }}</td>
-                    <td>
-                      {% if bet.result %}
-                        <span class="badge {% if bet.profit > 0 %}bg-success{% elif bet.profit < 0 %}bg-danger{% else %}bg-secondary{% endif %}">
-                          {{ bet.result }}
-                        </span>
-                      {% else %}
-                        <span class="badge bg-yellow-lt">Pending</span>
-                      {% endif %}
-                    </td>
-                    <td>
-                      <span class="{% if bet.profit > 0 %}text-success{% elif bet.profit < 0 %}text-danger{% endif %}">
-                        ${{ "%.2f"|format(bet.profit) }}
-                      </span>
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endif %}
-
-      <!-- No Data State -->
-      {% if ledger_df is none or ledger_df.empty %}
-      <div class="row mt-4">
-        <div class="col-12">
-          <div class="empty">
-            <div class="empty-icon">
-              <i class="ti ti-coins icon"></i>
-            </div>
-            <p class="empty-title">No bet data found</p>
-            <p class="empty-subtitle text-muted">
-              Fetch your bets from BetOnline to start tracking your performance
-            </p>
-          </div>
-        </div>
-      </div>
-      {% endif %}
-
-    </div>
-  </div>
-</div>
-
-<!-- Toast for notifications -->
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <i class="ti ti-bell icon me-2"></i>
-      <strong class="me-auto">NFL Edge</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-    <div class="toast-body" id="toastBody">
-      <!-- Toast message will be inserted here -->
     </div>
   </div>
 </div>
 
 <script>
-// Chart.js for weekly P&L
-{% if summary and summary.weeks %}
-document.addEventListener('DOMContentLoaded', function() {
-  const ctx = document.getElementById('weeklyChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: {{ summary.weeks | tojson }},
-      datasets: [{
-        label: 'Weekly Profit',
-        data: {{ summary.profits | tojson }},
-        backgroundColor: function(context) {
-          const value = context.parsed.y;
-          return value >= 0 ? 'rgba(40, 167, 69, 0.8)' : 'rgba(220, 53, 69, 0.8)';
-        },
-        borderColor: function(context) {
-          const value = context.parsed.y;
-          return value >= 0 ? 'rgba(40, 167, 69, 1)' : 'rgba(220, 53, 69, 1)';
-        },
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: function(value) {
-              return '$' + value.toFixed(2);
-            }
-          }
+// Parse bet description into structured HTML
+function parseDescription(description, betType) {
+  // Check if it's a parlay with multiple legs (contains pipe separator)
+  if (description.includes(' | ')) {
+    // Split by " | " to get individual legs
+    const legs = description.split(' | ').map(leg => leg.trim()).filter(leg => leg.length > 0);
+    
+    if (legs.length > 1) {
+      let html = '<div class="list-group list-group-flush">';
+      legs.forEach((leg, index) => {
+        // Extract odds if present (e.g., "+3½ -118" or "over 46 -110")
+        const oddsMatch = leg.match(/([-+]\d+(?:½)?)\s+([-+]\d+)/);
+        let displayLeg = leg;
+        let odds = '';
+        
+        if (oddsMatch) {
+          odds = `<span class="badge bg-success-lt ms-2">${oddsMatch[2]}</span>`;
         }
-      },
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              return 'Week ' + context.label + ': $' + context.parsed.y.toFixed(2);
-            }
-          }
-        }
-      }
+        
+        html += `
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="badge bg-blue text-white">${index + 1}</span>
+              </div>
+              <div class="col">
+                <div class="d-flex align-items-center justify-content-between">
+                  <span><strong>${displayLeg}</strong></span>
+                  ${odds}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      html += '</div>';
+      
+      // Add summary
+      html += `<div class="mt-3"><span class="badge bg-blue-lt">${legs.length} legs</span> in this ${betType}</div>`;
+      
+      return html;
     }
-  });
-});
-{% endif %}
-
-// Handle CSV file upload
-function handleFileUpload() {
-  const file = document.getElementById('csvFile').files[0];
-  if (!file) return;
+  }
   
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const csv = e.target.result;
-    uploadCSV(csv);
-  };
-  reader.readAsText(file);
+  // Single bet or simple description - just display it
+  return `<p class="mb-0">${description}</p>`;
 }
 
-function uploadCSV(csvData) {
-  fetch('/api/bets/upload-csv', {
+// Show bet details in modal
+function showBetDetails(bet) {
+  // Populate modal fields
+  document.getElementById('modalTicketId').textContent = bet.ticket_id;
+  document.getElementById('modalDate').textContent = bet.date;
+  
+  // Parse and display description
+  const descEl = document.getElementById('modalDescription');
+  
+  // Special handling for Round Robin bets with sub_bets
+  if (bet.type === 'Round Robin' && bet.sub_bets && bet.sub_bets.length > 0) {
+    let html = '<div class="alert alert-info mb-3">';
+    html += '<i class="ti ti-info-circle icon me-2"></i>';
+    html += `This Round Robin contains <strong>${bet.sub_bets.length} combinations</strong>`;
+    html += '</div>';
+    
+    html += '<div class="list-group list-group-flush">';
+    bet.sub_bets.forEach((subBet, index) => {
+      const statusClass = subBet.status === 'Won' ? 'success' : (subBet.status === 'Lost' ? 'danger' : 'warning');
+      html += `
+        <div class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <span class="badge bg-${statusClass} text-white">#${index + 1}</span>
+            </div>
+            <div class="col">
+              <div class="mb-1"><small class="text-muted">${subBet.ticket_id}</small></div>
+              <div class="text-truncate" style="max-width: 500px;" title="${subBet.description}">
+                ${subBet.description}
+              </div>
+            </div>
+            <div class="col-auto text-end">
+              <div class="text-muted small">Stake: $${parseFloat(subBet.amount).toFixed(2)}</div>
+              <div class="text-success small">Win: $${parseFloat(subBet.to_win).toFixed(2)}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    html += '</div>';
+    
+    descEl.innerHTML = html;
+  } else {
+    // Regular bet - parse description normally
+    descEl.innerHTML = parseDescription(bet.description, bet.type);
+  }
+  
+  // Type badge
+  document.getElementById('modalType').innerHTML = `<span class="badge bg-blue-lt">${bet.type}</span>`;
+  
+  // Status badge
+  let statusBadge = '';
+  if (bet.status === 'Pending') {
+    statusBadge = '<span class="badge bg-yellow-lt">Pending</span>';
+  } else if (bet.status === 'Won') {
+    statusBadge = '<span class="badge bg-success-lt">Won</span>';
+  } else if (bet.status === 'Lost') {
+    statusBadge = '<span class="badge bg-danger-lt">Lost</span>';
+  } else {
+    statusBadge = `<span class="badge bg-secondary-lt">${bet.status}</span>`;
+  }
+  document.getElementById('modalStatus').innerHTML = statusBadge;
+  
+  // Financial details
+  document.getElementById('modalAmount').textContent = '$' + bet.amount.toFixed(2);
+  document.getElementById('modalToWin').textContent = bet.to_win > 0 ? '$' + bet.to_win.toFixed(2) : '-';
+  
+  // Profit/Loss with color
+  const profitCard = document.getElementById('modalProfitCard');
+  const profitEl = document.getElementById('modalProfit');
+  if (bet.profit > 0) {
+    profitCard.className = 'card bg-success-lt';
+    profitEl.innerHTML = '<span class="text-success">+$' + bet.profit.toFixed(2) + '</span>';
+  } else if (bet.profit < 0) {
+    profitCard.className = 'card bg-danger-lt';
+    profitEl.innerHTML = '<span class="text-danger">-$' + Math.abs(bet.profit).toFixed(2) + '</span>';
+  } else {
+    profitCard.className = 'card bg-muted-lt';
+    profitEl.textContent = '-';
+  }
+  
+  // Calculate ROI
+  const roi = bet.amount > 0 ? (bet.profit / bet.amount * 100) : 0;
+  const potentialRoi = bet.amount > 0 && bet.to_win > 0 ? (bet.to_win / bet.amount * 100) : 0;
+  
+  const roiEl = document.getElementById('modalROI');
+  if (bet.status === 'Won') {
+    roiEl.innerHTML = '<span class="text-success">+' + roi.toFixed(1) + '%</span>';
+  } else if (bet.status === 'Lost') {
+    roiEl.innerHTML = '<span class="text-danger">' + roi.toFixed(1) + '%</span>';
+  } else {
+    roiEl.textContent = '-';
+  }
+  
+  const potentialRoiEl = document.getElementById('modalPotentialROI');
+  if (bet.status === 'Pending' && bet.to_win > 0) {
+    potentialRoiEl.innerHTML = '<span class="text-success">+' + potentialRoi.toFixed(1) + '%</span>';
+  } else {
+    potentialRoiEl.textContent = '-';
+  }
+  
+  // Calculate and display odds (if we can extract from description)
+  const oddsMatch = bet.description.match(/[-+]\d+/);
+  if (oddsMatch) {
+    document.getElementById('modalOdds').textContent = oddsMatch[0];
+  } else {
+    document.getElementById('modalOdds').textContent = '-';
+  }
+  
+  // Show modal using Bootstrap
+  const modal = new bootstrap.Modal(document.getElementById('betDetailsModal'));
+  modal.show();
+}
+
+// Filter table function
+function filterTable() {
+  const searchInput = document.getElementById('searchInput').value.toLowerCase();
+  const filterType = document.getElementById('filterType').value;
+  const filterStatus = document.getElementById('filterStatus').value;
+  const filterDateFrom = document.getElementById('filterDateFrom').value;
+  const filterDateTo = document.getElementById('filterDateTo').value;
+  
+  const table = document.getElementById('betsTable');
+  const rows = table.getElementsByTagName('tr');
+  
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+    const type = row.getAttribute('data-type');
+    const status = row.getAttribute('data-status');
+    const date = row.getAttribute('data-date');
+    const text = row.textContent.toLowerCase();
+    
+    let show = true;
+    
+    // Search filter
+    if (searchInput && !text.includes(searchInput)) {
+      show = false;
+    }
+    
+    // Type filter
+    if (filterType && type !== filterType) {
+      show = false;
+    }
+    
+    // Status filter
+    if (filterStatus && status !== filterStatus) {
+      show = false;
+    }
+    
+    // Date range filter
+    if (filterDateFrom && date < filterDateFrom) {
+      show = false;
+    }
+    if (filterDateTo && date > filterDateTo) {
+      show = false;
+    }
+    
+    row.style.display = show ? '' : 'none';
+  }
+}
+
+// Auto-fetch from cURL command
+function autoFetchFromCurl() {
+  const input = document.getElementById('betDataInput').value.trim();
+  
+  if (!input) {
+    alert('Please paste your cURL command first');
+    return;
+  }
+  
+  if (!input.startsWith('curl ')) {
+    alert('❌ Please paste the ENTIRE cURL command (should start with "curl")');
+    return;
+  }
+  
+  const btn = event.target.closest('button');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<i class="ti ti-loader icon me-2"></i>Fetching ALL your bets...';
+  btn.disabled = true;
+  
+  // Send cURL to server to fetch all bets
+  fetch('/api/bets/fetch-from-curl', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ csv: csvData })
+    body: JSON.stringify({ curl: input })
   })
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-      showToast(data.message, 'success');
-      setTimeout(() => window.location.reload(), 1500);
+      alert('✅ ' + data.message);
+      window.location.reload();
     } else {
-      showToast(data.message, 'danger');
+      alert('❌ Error: ' + data.message);
     }
   })
   .catch(error => {
-    showToast('Upload failed: ' + error.message, 'danger');
-  });
-}
-
-// Add bet manually
-function addBet() {
-  const bet = {
-    date: document.getElementById('betDate').value,
-    game: document.getElementById('betGame').value,
-    type: document.getElementById('betType').value,
-    amount: parseFloat(document.getElementById('betAmount').value),
-    result: document.getElementById('betResult').value
-  };
-  
-  if (!bet.date || !bet.game || !bet.amount) {
-    showToast('Please fill in all fields', 'warning');
-    return;
-  }
-  
-  fetch('/api/bets/add-manual', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(bet)
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      showToast('Bet added!', 'success');
-      // Clear form
-      document.getElementById('betDate').value = '';
-      document.getElementById('betGame').value = '';
-      document.getElementById('betAmount').value = '';
-      setTimeout(() => window.location.reload(), 1000);
-    } else {
-      showToast(data.message, 'danger');
-    }
-  })
-  .catch(error => {
-    showToast('Failed to add bet: ' + error.message, 'danger');
-  });
-}
-
-// Fetch bets function
-function fetchBets() {
-  const headersText = document.getElementById('headersInput').value.trim();
-  
-  if (!headersText) {
-    showToast('Please enter BetOnline headers', 'warning');
-    return;
-  }
-  
-  let headers;
-  try {
-    headers = JSON.parse(headersText);
-  } catch (e) {
-    showToast('Invalid JSON format for headers', 'danger');
-    return;
-  }
-  
-  // Show loading state
-  const button = event.target;
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="ti ti-loader-2 icon me-2"></i>Fetching...';
-  button.disabled = true;
-  
-  fetch('/api/bets/fetch', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ headers: headers })
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      showToast(data.message, 'success');
-      // Reload page to show new data
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
-    } else {
-      showToast(data.message, 'danger');
-    }
-  })
-  .catch(error => {
-    showToast('Error fetching bets: ' + error.message, 'danger');
+    alert('❌ Network error: ' + error.message);
   })
   .finally(() => {
-    button.innerHTML = originalText;
-    button.disabled = false;
+    btn.innerHTML = originalText;
+    btn.disabled = false;
   });
 }
 
-// Toast notification function
-function showToast(message, type = 'info') {
-  const toastBody = document.getElementById('toastBody');
-  const toast = document.getElementById('toast');
+// Auto-fetch bets from BetOnline
+function autoFetchBets() {
+  const btn = event.target.closest('button');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<i class="ti ti-loader icon me-2"></i>Fetching...';
+  btn.disabled = true;
   
-  toastBody.textContent = message;
-  
-  // Remove existing type classes
-  toast.classList.remove('bg-success', 'bg-danger', 'bg-warning', 'bg-info');
-  
-  // Add appropriate type class
-  if (type === 'success') toast.classList.add('bg-success');
-  else if (type === 'danger') toast.classList.add('bg-danger');
-  else if (type === 'warning') toast.classList.add('bg-warning');
-  else toast.classList.add('bg-info');
-  
-  // Show toast
-  const bsToast = new bootstrap.Toast(toast);
-  bsToast.show();
+  fetch('/api/bets/auto-fetch', {
+    method: 'POST'
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert('✅ ' + data.message);
+      window.location.reload();
+    } else {
+      alert('❌ ' + data.message);
+      if (data.need_setup) {
+        alert('Run this command first:\n\npython3 setup_betonline_auto_fetch.py');
+      }
+    }
+  })
+  .catch(error => {
+    alert('❌ Network error: ' + error.message);
+  })
+  .finally(() => {
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+  });
+}
+
+// Clear all bets
+function clearBets() {
+  if (confirm('Are you sure you want to clear all bets?')) {
+    fetch('/api/bets/clear', {
+      method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('✅ All bets cleared');
+        window.location.reload();
+      }
+    });
+  }
 }
 </script>
-
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 {% endblock %}

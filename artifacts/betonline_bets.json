@@ -1,0 +1,3188 @@
+{
+  "bets": [
+    {
+      "ticket_id": "906320708-1",
+      "date": "10/25/2025",
+      "description": "Mobile - FOOTBALL - NFL - New England Patriots v Cleveland Browns | Total points - Over 40.5 (Game) | Money line - Patriots (Game) | Player TDs - Kayshon Boutte Score anytime (Game) | Player stats - Drake Maye over 199.5 Passing yds (Game)",
+      "type": "Same Game Parlay",
+      "status": "Pending",
+      "amount": 6.33,
+      "to_win": 41.15
+    },
+    {
+      "ticket_id": "905966563-1",
+      "date": "10/24/2025",
+      "description": "Desktop - FOOTBALL - 270 Carolina Panthers +7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -110 for GAME | Desktop - FOOTBALL - 275 Tampa Bay Buccaneers -3\u00bd -112 for GAME | Desktop - FOOTBALL - 280 | Desktop - FOOTBALL - 264 Houston Texans -2\u00bd -110 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers -3 -105 for GAME | Desktop - FOOTBALL - 283 Washington Commanders +12\u00bd -113 for GAME | Desktop - FOOTBALL - 277 Tennessee Titans +14\u00bd -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 15.0,
+      "to_win": 544.7
+    },
+    {
+      "ticket_id": "905965992-1",
+      "date": "10/24/2025",
+      "description": "Desktop - FOOTBALL - 270 Carolina Panthers +7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 New York Jets/Cincinnati Bengals under 44\u00bd -110 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -110 for GAME | Desktop - FOOTBALL - 275 Tampa Bay Buccaneers -3\u00bd -112 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 264 Houston Texans -2\u00bd -110 for GAME | Desktop - FOOTBALL - 278 Indianapolis Colts -14\u00bd -110 for GAME | Desktop - FOOTBALL - 283 Washington Commanders +12\u00bd -113 for GAME | Desktop - FOOTBALL - 282 Pittsburgh Steelers +3 -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 10.0,
+      "to_win": 250.0
+    },
+    {
+      "ticket_id": "905769430-1",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - NFL - New England Patriots v Cleveland Browns | Total points - Over 40.5 (Game) | Money line - Patriots (Game) | Player stats - Drake Maye 1+ Passing TDs thrown (Game) | Player stats - Drake Maye over 199.5 Passing yds (Game)",
+      "type": "Same Game Parlay",
+      "status": "Pending",
+      "amount": 50.0,
+      "to_win": 100.0
+    },
+    {
+      "ticket_id": "905769168-1",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME",
+      "type": "Spread",
+      "status": "Pending",
+      "amount": 100.0,
+      "to_win": 95.24
+    },
+    {
+      "ticket_id": "905768987-210",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.74
+    },
+    {
+      "ticket_id": "905768987-209",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.89
+    },
+    {
+      "ticket_id": "905768987-208",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.69
+    },
+    {
+      "ticket_id": "905768987-207",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.92
+    },
+    {
+      "ticket_id": "905768987-206",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.83
+    },
+    {
+      "ticket_id": "905768987-205",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.63
+    },
+    {
+      "ticket_id": "905768987-204",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.86
+    },
+    {
+      "ticket_id": "905768987-203",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.77
+    },
+    {
+      "ticket_id": "905768987-202",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 6.0
+    },
+    {
+      "ticket_id": "905768987-201",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-200",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 6.04
+    },
+    {
+      "ticket_id": "905768987-199",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.84
+    },
+    {
+      "ticket_id": "905768987-198",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 6.07
+    },
+    {
+      "ticket_id": "905768987-197",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.98
+    },
+    {
+      "ticket_id": "905768987-196",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 6.22
+    },
+    {
+      "ticket_id": "905768987-195",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 6.01
+    },
+    {
+      "ticket_id": "905768987-194",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.92
+    },
+    {
+      "ticket_id": "905768987-193",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 6.16
+    },
+    {
+      "ticket_id": "905768987-192",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.95
+    },
+    {
+      "ticket_id": "905768987-191",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 6.1
+    },
+    {
+      "ticket_id": "905768987-190",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.67
+    },
+    {
+      "ticket_id": "905768987-189",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.47
+    },
+    {
+      "ticket_id": "905768987-187",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.61
+    },
+    {
+      "ticket_id": "905768987-188",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.69
+    },
+    {
+      "ticket_id": "905768987-186",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.83
+    },
+    {
+      "ticket_id": "905768987-185",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.63
+    },
+    {
+      "ticket_id": "905768987-184",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.55
+    },
+    {
+      "ticket_id": "905768987-183",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.78
+    },
+    {
+      "ticket_id": "905768987-182",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.58
+    },
+    {
+      "ticket_id": "905768987-181",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.72
+    },
+    {
+      "ticket_id": "905768987-180",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.76
+    },
+    {
+      "ticket_id": "905768987-179",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.99
+    },
+    {
+      "ticket_id": "905768987-178",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.78
+    },
+    {
+      "ticket_id": "905768987-177",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.93
+    },
+    {
+      "ticket_id": "905768987-176",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.87
+    },
+    {
+      "ticket_id": "905768987-175",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.74
+    },
+    {
+      "ticket_id": "905768987-174",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.55
+    },
+    {
+      "ticket_id": "905768987-173",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.77
+    },
+    {
+      "ticket_id": "905768987-172",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.69
+    },
+    {
+      "ticket_id": "905768987-170",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.71
+    },
+    {
+      "ticket_id": "905768987-171",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.92
+    },
+    {
+      "ticket_id": "905768987-169",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.63
+    },
+    {
+      "ticket_id": "905768987-168",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.86
+    },
+    {
+      "ticket_id": "905768987-167",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.66
+    },
+    {
+      "ticket_id": "905768987-166",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-165",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.84
+    },
+    {
+      "ticket_id": "905768987-164",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 6.07
+    },
+    {
+      "ticket_id": "905768987-163",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.87
+    },
+    {
+      "ticket_id": "905768987-162",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 6.01
+    },
+    {
+      "ticket_id": "905768987-160",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.47
+    },
+    {
+      "ticket_id": "905768987-161",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.95
+    },
+    {
+      "ticket_id": "905768987-159",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.69
+    },
+    {
+      "ticket_id": "905768987-158",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.5
+    },
+    {
+      "ticket_id": "905768987-157",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.63
+    },
+    {
+      "ticket_id": "905768987-156",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.58
+    },
+    {
+      "ticket_id": "905768987-155",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.78
+    },
+    {
+      "ticket_id": "905768987-153",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.69
+    },
+    {
+      "ticket_id": "905768987-154",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.8
+    },
+    {
+      "ticket_id": "905768987-152",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.96
+    },
+    {
+      "ticket_id": "905768987-151",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.58
+    },
+    {
+      "ticket_id": "905768987-150",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.01
+    },
+    {
+      "ticket_id": "905768987-148",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.36
+    },
+    {
+      "ticket_id": "905768987-149",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.09
+    },
+    {
+      "ticket_id": "905768987-147",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.97
+    },
+    {
+      "ticket_id": "905768987-146",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.42
+    },
+    {
+      "ticket_id": "905768987-144",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.86
+    },
+    {
+      "ticket_id": "905768987-145",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.25
+    },
+    {
+      "ticket_id": "905768987-143",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.3
+    },
+    {
+      "ticket_id": "905768987-142",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.13
+    },
+    {
+      "ticket_id": "905768987-141",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.58
+    },
+    {
+      "ticket_id": "905768987-140",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.19
+    },
+    {
+      "ticket_id": "905768987-139",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.38
+    },
+    {
+      "ticket_id": "905768987-137",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.28
+    },
+    {
+      "ticket_id": "905768987-138",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.65
+    },
+    {
+      "ticket_id": "905768987-136",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.7
+    },
+    {
+      "ticket_id": "905768987-135",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.54
+    },
+    {
+      "ticket_id": "905768987-133",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.59
+    },
+    {
+      "ticket_id": "905768987-134",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.17
+    },
+    {
+      "ticket_id": "905768987-132",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.43
+    },
+    {
+      "ticket_id": "905768987-131",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.85
+    },
+    {
+      "ticket_id": "905768987-130",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.48
+    },
+    {
+      "ticket_id": "905768987-129",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.93
+    },
+    {
+      "ticket_id": "905768987-128",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.55
+    },
+    {
+      "ticket_id": "905768987-127",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.98
+    },
+    {
+      "ticket_id": "905768987-125",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.26
+    },
+    {
+      "ticket_id": "905768987-126",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.82
+    },
+    {
+      "ticket_id": "905768987-123",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.71
+    },
+    {
+      "ticket_id": "905768987-124",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.87
+    },
+    {
+      "ticket_id": "905768987-122",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.15
+    },
+    {
+      "ticket_id": "905768987-121",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.76
+    },
+    {
+      "ticket_id": "905768987-120",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.03
+    },
+    {
+      "ticket_id": "905768987-119",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.53
+    },
+    {
+      "ticket_id": "905768987-117",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.42
+    },
+    {
+      "ticket_id": "905768987-118",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.8
+    },
+    {
+      "ticket_id": "905768987-116",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.85
+    },
+    {
+      "ticket_id": "905768987-115",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.69
+    },
+    {
+      "ticket_id": "905768987-114",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.32
+    },
+    {
+      "ticket_id": "905768987-113",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.74
+    },
+    {
+      "ticket_id": "905768987-112",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.58
+    },
+    {
+      "ticket_id": "905768987-111",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.01
+    },
+    {
+      "ticket_id": "905768987-110",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.63
+    },
+    {
+      "ticket_id": "905768987-109",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.09
+    },
+    {
+      "ticket_id": "905768987-107",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.14
+    },
+    {
+      "ticket_id": "905768987-108",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.7
+    },
+    {
+      "ticket_id": "905768987-106",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.97
+    },
+    {
+      "ticket_id": "905768987-104",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.02
+    },
+    {
+      "ticket_id": "905768987-105",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.42
+    },
+    {
+      "ticket_id": "905768987-103",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.86
+    },
+    {
+      "ticket_id": "905768987-102",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.3
+    },
+    {
+      "ticket_id": "905768987-101",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.91
+    },
+    {
+      "ticket_id": "905768987-100",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 12.19
+    },
+    {
+      "ticket_id": "905768987-99",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.38
+    },
+    {
+      "ticket_id": "905768987-97",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.43
+    },
+    {
+      "ticket_id": "905768987-98",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.02
+    },
+    {
+      "ticket_id": "905768987-96",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.28
+    },
+    {
+      "ticket_id": "905768987-95",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.7
+    },
+    {
+      "ticket_id": "905768987-94",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.32
+    },
+    {
+      "ticket_id": "905768987-93",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.17
+    },
+    {
+      "ticket_id": "905768987-92",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.59
+    },
+    {
+      "ticket_id": "905768987-90",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.48
+    },
+    {
+      "ticket_id": "905768987-91",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.22
+    },
+    {
+      "ticket_id": "905768987-89",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.55
+    },
+    {
+      "ticket_id": "905768987-88",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.98
+    },
+    {
+      "ticket_id": "905768987-86",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.87
+    },
+    {
+      "ticket_id": "905768987-87",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.6
+    },
+    {
+      "ticket_id": "905768987-85",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 265 Chicago Bears +6\u00bd -115 for GAME | Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 11.76
+    },
+    {
+      "ticket_id": "905768987-84",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 23.22
+    },
+    {
+      "ticket_id": "905768987-83",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 23.98
+    },
+    {
+      "ticket_id": "905768987-82",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 23.77
+    },
+    {
+      "ticket_id": "905768987-81",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 24.29
+    },
+    {
+      "ticket_id": "905768987-79",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 24.39
+    },
+    {
+      "ticket_id": "905768987-80",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 23.55
+    },
+    {
+      "ticket_id": "905768987-78",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 22.64
+    },
+    {
+      "ticket_id": "905768987-77",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 22.44
+    },
+    {
+      "ticket_id": "905768987-75",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 22.23
+    },
+    {
+      "ticket_id": "905768987-76",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 22.93
+    },
+    {
+      "ticket_id": "905768987-74",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 267 Miami | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 23.03
+    },
+    {
+      "ticket_id": "905768987-73",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 23.17
+    },
+    {
+      "ticket_id": "905768987-71",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 22.96
+    },
+    {
+      "ticket_id": "905768987-72",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME | Desktop - FOOTBALL - 270 Carolina Panthers +7\u00bd -116 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 23.69
+    },
+    {
+      "ticket_id": "905768987-70",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - 279 | Desktop - FOOTBALL - 274 New England Patriots -7 -105 for GAME | Desktop - FOOTBALL - 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 for GAME | Desktop - FOOTBALL - 271 New York Giants +7\u00bd -115 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -6\u00bd -108 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 23.79
+    },
+    {
+      "ticket_id": "905966117-1",
+      "date": "10/24/2025",
+      "description": "Desktop - FOOTBALL - 269 Buffalo Bills -380 for GAME | Desktop - FOOTBALL - 272 Philadelphia Eagles -365 for GAME | Desktop - FOOTBALL - 268 Atlanta Falcons -410 for GAME | Desktop - FOOTBALL - 262 Cincinnati Bengals -300 for GAME | Desktop - FOOTBALL - 274 New England Patriots -355 for GAME | Desktop - FOOTBALL - 266 Baltimore Ravens -290 for GAME | Desktop - FOOTBALL - 275 Tampa Bay Buccaneers -210 for GAME | Desktop - FOOTBALL - 280 | Desktop - FOOTBALL - 264 Houston Texans -136 for GAME | Desktop - FOOTBALL - 278 Indianapolis Colts -1400 for GAME | Desktop - FOOTBALL - 284 Kansas City Chiefs -775 for GAME | Desktop - FOOTBALL - 282 Pittsburgh Steelers +145 for GAME",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 10.0,
+      "to_win": 544.7
+    },
+    {
+      "ticket_id": "905769902-1",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - NFL - New England Patriots v Cleveland Browns | Total points - Over 40.5 (Game) | Player TDs - Kayshon Boutte Score anytime (Game) | Player TDs - R. Stevenson Score anytime (Game) | Player stats - Drake Maye over 174.5 Passing yds (Game) | Spread - Patriots -7.5 (Game)",
+      "type": "Same Game Parlay",
+      "status": "Pending",
+      "amount": 25.0,
+      "to_win": 250.0
+    },
+    {
+      "ticket_id": "905768987-69",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-68",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-67",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-66",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-65",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-64",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-63",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-62",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-61",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-60",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-59",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-58",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-57",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-56",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-55",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-54",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-53",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-52",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-51",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-50",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-49",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-48",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-47",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-46",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-45",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-44",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-43",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-42",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-41",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-40",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-39",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-38",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-37",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-36",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-35",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-34",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-33",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-32",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-31",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-30",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-29",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-28",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-27",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-26",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-25",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-24",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-23",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-22",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-21",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-20",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-19",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-18",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-17",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-16",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-15",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-14",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-13",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-12",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-11",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-10",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-9",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-8",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-7",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-6",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-5",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-4",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-3",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-2",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-1",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987-0",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--1",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--2",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--3",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--4",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--5",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--6",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--7",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--8",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--9",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--10",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--11",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--12",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--13",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--14",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--15",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--16",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--17",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--18",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--19",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--20",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--21",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--22",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--23",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--24",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--25",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--26",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--27",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--28",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--29",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--30",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--31",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--32",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--33",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--34",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--35",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--36",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--37",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--38",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--39",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--40",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--41",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--42",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--43",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--44",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--45",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--46",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--47",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--48",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--49",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--50",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--51",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--52",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--53",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--54",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--55",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--56",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--57",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--58",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--59",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--60",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--61",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--62",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--63",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--64",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--65",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--66",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--67",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--68",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--69",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--70",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--71",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--72",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--73",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--74",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--75",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--76",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--77",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--78",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--79",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--80",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--81",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--82",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--83",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--84",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--85",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--86",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--87",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--88",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--89",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--90",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--91",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--92",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--93",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--94",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--95",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--96",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--97",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--98",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--99",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--100",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--101",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--102",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--103",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--104",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--105",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--106",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--107",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--108",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--109",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--110",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--111",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--112",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--113",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--114",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--115",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--116",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--117",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--118",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--119",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--120",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--121",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--122",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--123",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--124",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--125",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--126",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--127",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--128",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--129",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--130",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--131",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--132",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--133",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    },
+    {
+      "ticket_id": "905768987--134",
+      "date": "10/23/2025",
+      "description": "Desktop - FOOTBALL - Parlay (3 Teams) | Multiple team selections",
+      "type": "Parlay",
+      "status": "Pending",
+      "amount": 1.0,
+      "to_win": 5.8
+    }
+  ],
+  "summary": {
+    "total_bets": 352,
+    "pending": 352,
+    "won": 0,
+    "lost": 0,
+    "total_risked": "$561.33",
+    "total_to_win": "$4508.91",
+    "total_profit": 0,
+    "total_amount": 561.3299999999999,
+    "pending_amount": 561.3299999999999,
+    "potential_win": 4508.910000000037,
+    "won_count": 0,
+    "lost_count": 0,
+    "pending_count": 352,
+    "win_rate": 0
+  }
+}

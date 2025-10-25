@@ -9,3 +9,4 @@ streamlit==1.37.1
 matplotlib>=3.7.0
 scipy>=1.11.0
 flask>=3.0.0
+psycopg2-binary>=2.9.0

@@ -8,12 +8,14 @@ internal endpoints using session cookies and headers.
 from __future__ import annotations
 import time
 import json
+import shlex
+import re
 from typing import Dict, Any, List, Optional
 import requests
 import pandas as pd
 from pathlib import Path
 
-BETONLINE_BASE = "https://www.betonline.ag"
+BETONLINE_BASE = "https://api.betonline.ag/report/api/report"
 
 # Minimal schema we normalize to
 LEDGER_COLUMNS = [
@@ -23,6 +25,56 @@ LEDGER_COLUMNS = [
     "settlement", "result", "profit"
 ]
 
+
+def parse_curl_to_headers(curl_cmd: str) -> Dict[str, str]:
+    """
+    Parse 'Copy as cURL (bash)' from Chrome/Firefox DevTools.
+    Extracts headers and cookies for BetOnline API calls.
+    """
+    if not curl_cmd.strip().startswith("curl "):
+        raise ValueError("This doesn't look like a cURL command. Use DevTools → Copy as cURL (bash).")
+
+    # Tokenize safely
+    tokens = shlex.split(curl_cmd)
+    headers: Dict[str, str] = {}
+    url = None
+    method = "GET"
+
+    it = iter(range(len(tokens)))
+    for i in it:
+        t = tokens[i]
+        if t in ["-X", "--request"] and i+1 < len(tokens):
+            method = tokens[i+1].upper()
+            next(it, None)
+        elif t in ["-H", "--header"] and i+1 < len(tokens):
+            hv = tokens[i+1]
+            next(it, None)
+            if ":" in hv:
+                k, v = hv.split(":", 1)
+                headers[k.strip()] = v.strip()
+        elif not t.startswith("-") and (t.startswith("http://") or t.startswith("https://")):
+            url = t
+
+    if not url:
+        # Some Chrome exports put the URL at the end without a flag; try regex fallback
+        m = re.search(r"(https?://[^\s\"']+)", curl_cmd)
+        url = m.group(1) if m else None
+
+    # Normalize common keys
+    if "user-agent" in headers and "User-Agent" not in headers:
+        headers["User-Agent"] = headers.pop("user-agent")
+    if "cookie" in headers and "Cookie" not in headers:
+        headers["Cookie"] = headers.pop("cookie")
+    
+    # Drop headers that can break replay
+    for bad in ["Content-Length", "content-length"]:
+        headers.pop(bad, None)
+    
+    # Ensure we have authorization
+    if not any(k.lower() == "authorization" for k in headers.keys()):
+        raise ValueError("No Authorization header found in cURL. Make sure you copied the full request.")
+
+    return {"__url__": url or "", "__method__": method, **headers}
 
 def _headers_from_config(headers_dict: Dict[str, Any]) -> Dict[str, str]:
     """Convert headers dict to requests format"""
@@ -41,14 +93,14 @@ def _headers_from_config(headers_dict: Dict[str, Any]) -> Dict[str, str]:
     return hdrs
 
 
-def _get_json(path: str, headers: Dict[str, str], params: Dict[str, Any] = None) -> Any:
-    """Make authenticated request to BetOnline endpoint"""
+def _post_json(path: str, headers: Dict[str, str], data: Dict[str, Any] = None) -> Any:
+    """Make authenticated POST request to BetOnline endpoint"""
     url = f"{BETONLINE_BASE}/{path.lstrip('/')}"
-    r = requests.get(url, headers=headers, params=params, timeout=30)
+    r = requests.post(url, headers=headers, json=data, timeout=30)
     
     if r.status_code == 429:
         time.sleep(1.5)
-        r = requests.get(url, headers=headers, params=params, timeout=30)
+        r = requests.post(url, headers=headers, json=data, timeout=30)
     
     r.raise_for_status()
     return r.json()
@@ -59,22 +111,50 @@ def fetch_all_bets(headers: Dict[str, str]) -> Dict[str, Any]:
     Fetch all bet data from BetOnline endpoints
     
     Returns:
-        Dict with keys: pending, graded, history
+        Dict with keys: pending, graded, history, debug
         Each value is the raw JSON array from BetOnline
     """
+    import datetime
     data = {}
-    endpoints = {
-        "pending": "report/get-pending-wagers",
-        "graded": "report/get-graded-wagers", 
-        "history": "report/get-bet-history",
+    
+    # Date range for last 30 days
+    end_date = datetime.datetime.now()
+    start_date = end_date - datetime.timedelta(days=30)
+    
+    # Request body format from BetOnline
+    request_body = {
+        "Id": None,
+        "EndDate": end_date.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+        "StartDate": start_date.strftime("%Y-%m-%dT00:00:00.000Z"),
+        "Status": None,
+        "Product": None,
+        "WagerType": None,
+        "FreePlayFlag": None,
+        "StartPosition": 0,
+        "TotalPerPage": 100,
+        "IsDailyFigureReport": False
     }
     
-    for key, ep in endpoints.items():
+    # Try the actual BetOnline API endpoints from their config
+    endpoint_variations = [
+        # Actual endpoints from BetOnline's API config (POST with body)
+        ("pending", "get-pending-wagers", request_body),
+        ("graded", "get-graded-wagers", request_body), 
+        ("history", "get-bet-history", request_body),
+    ]
+    
+    debug_info = []
+    
+    for key, ep, body in endpoint_variations:
         try:
-            data[key] = _get_json(ep, headers=headers)
+            result = _post_json(ep, headers=headers, data=body)
+            data[key] = result
+            debug_info.append(f"✅ {key} ({ep}): {len(result) if isinstance(result, list) else 'dict'} items")
         except Exception as e:
             data[key] = {"error": str(e)}
+            debug_info.append(f"❌ {key} ({ep}): {str(e)[:100]}")
     
+    data["debug"] = debug_info
     return data
 
 

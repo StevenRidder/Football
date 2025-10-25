@@ -13,7 +13,7 @@ from nfl_edge.predictions_api import fetch_all_predictions
 from nfl_edge.accuracy_tracker import create_tracker
 from nfl_edge.bets.betonline_client import (
     fetch_all_bets, normalize_to_ledger, save_ledger, 
-    load_ledger, get_weekly_summary, _headers_from_config
+    load_ledger, get_weekly_summary, _headers_from_config, parse_curl_to_headers
 )
 
 app = Flask(__name__)
@@ -478,51 +478,483 @@ def accuracy():
 
 @app.route('/bets')
 def bets():
-    """My Bets tracking page"""
-    # Load existing ledger if available
-    ledger_df = load_ledger("artifacts/bets.parquet")
-    summary = get_weekly_summary(ledger_df) if ledger_df is not None else None
+    """My Bets Dashboard - Database Version"""
+    from nfl_edge.bets.db import BettingDB
+    
+    db = BettingDB()
+    
+    try:
+        # Get all bets (will show pending and settled)
+        conn = db.connect()
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT 
+                    b.*,
+                    COALESCE(
+                        (SELECT COUNT(*) FROM bets b2 WHERE b2.round_robin_parent = b.ticket_id),
+                        0
+                    ) as round_robin_count
+                FROM bets b
+                WHERE is_round_robin = FALSE OR round_robin_parent IS NULL
+                ORDER BY date DESC, ticket_id
+            """)
+            all_bets = cur.fetchall()
+        
+        # Format for template
+        bets_data = []
+        for bet in all_bets:
+            bet_dict = dict(bet)
+            # Convert date to string for template
+            bet_dict['date'] = bet_dict['date'].strftime('%m/%d/%Y') if bet_dict['date'] else ''
+            # Rename bet_type to type for template compatibility
+            bet_dict['type'] = bet_dict.pop('bet_type')
+            
+            # Add sub_bets if it's a round robin parent
+            if bet_dict.get('round_robin_count', 0) > 0:
+                with conn.cursor() as cur:
+                    cur.execute("""
+                        SELECT * FROM bets 
+                        WHERE round_robin_parent = %s 
+                        ORDER BY ticket_id
+                    """, (bet_dict['ticket_id'],))
+                    sub_bets = cur.fetchall()
+                bet_dict['sub_bets'] = [dict(sb) for sb in sub_bets]
+            
+            bets_data.append(bet_dict)
+        
+        # Get summary
+        summary = db.get_performance_summary()
+        summary_data = {
+            'total_bets': summary['total_bets'],
+            'pending': summary['pending_count'],
+            'won': summary['won_count'],
+            'lost': summary['lost_count'],
+            'total_risked': f"${summary['total_wagered']:.2f}",
+            'total_to_win': f"${summary['pending_to_win']:.2f}",
+            'total_profit': summary['total_profit'],
+            'total_amount': summary['total_wagered'],
+            'pending_amount': summary['pending_amount'],
+            'potential_win': summary['pending_to_win'],
+            'won_count': summary['won_count'],
+            'lost_count': summary['lost_count'],
+            'pending_count': summary['pending_count'],
+            'win_rate': summary['win_rate']
+        }
+        
+    finally:
+        db.close()
     
     return render_template('bets.html', 
-                         ledger_df=ledger_df,
-                         summary=summary)
+                         bets=bets_data,
+                         summary=summary_data)
 
-@app.route('/api/bets/fetch', methods=['POST'])
-def api_fetch_bets():
-    """API endpoint to fetch bets from BetOnline"""
+@app.route('/performance')
+def performance():
+    """Betting Performance Analytics - Database Version"""
+    from nfl_edge.bets.db import BettingDB
+    
+    db = BettingDB()
+    
     try:
-        headers_data = request.json.get('headers', {})
-        headers = _headers_from_config(headers_data)
+        # Get overall stats
+        summary = db.get_performance_summary()
         
-        # Fetch raw data
-        raw_data = fetch_all_bets(headers)
+        stats = {
+            'total_profit': summary['total_profit'],
+            'total_wagered': summary['total_wagered'],
+            'roi': summary['roi'],
+            'win_rate': summary['win_rate'],
+            'total_bets': summary['total_bets'],
+            'won_count': summary['won_count'],
+            'lost_count': summary['lost_count'],
+            'pending_count': summary['pending_count'],
+            'pending_amount': summary['pending_amount']
+        }
         
-        # Normalize to ledger
-        ledger_df = normalize_to_ledger(raw_data)
+        # Performance by bet type
+        by_type_list = db.get_performance_by_type()
+        by_type = {}
+        for bt in by_type_list:
+            by_type[bt['bet_type']] = {
+                'count': bt['total_bets'],
+                'wagered': bt['total_wagered'],
+                'won': bt['won_count'],
+                'lost': bt['lost_count'],
+                'profit': bt['total_profit'],
+                'win_rate': bt['win_rate_percentage'],
+                'roi': bt['roi_percentage']
+            }
         
-        if ledger_df.empty:
+        # Weekly P/L (from database)
+        conn = db.connect()
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT 
+                    TO_CHAR(date, 'MM/DD') as week_key,
+                    SUM(profit) as profit
+                FROM bets
+                WHERE status IN ('Won', 'Lost')
+                AND (is_round_robin = FALSE OR round_robin_parent IS NULL)
+                GROUP BY week_key
+                ORDER BY MIN(date)
+            """)
+            weekly_data = cur.fetchall()
+        
+        weekly_pl = {
+            'weeks': [w['week_key'] for w in weekly_data],
+            'values': [float(w['profit']) for w in weekly_data]
+        }
+        
+        # Bet type distribution
+        type_distribution = {
+            'labels': list(by_type.keys()),
+            'values': [by_type[k]['count'] for k in by_type.keys()]
+        }
+        
+        # Recent settled bets
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT * FROM bets 
+                WHERE status IN ('Won', 'Lost')
+                AND (is_round_robin = FALSE OR round_robin_parent IS NULL)
+                ORDER BY date DESC, updated_at DESC
+                LIMIT 10
+            """)
+            recent_bets = cur.fetchall()
+        
+        # Format recent bets for template
+        recent_settled = []
+        for bet in recent_bets:
+            bet_dict = dict(bet)
+            bet_dict['date'] = bet_dict['date'].strftime('%m/%d/%Y') if bet_dict['date'] else ''
+            bet_dict['type'] = bet_dict.pop('bet_type')
+            recent_settled.append(bet_dict)
+        
+    finally:
+        db.close()
+    
+    return render_template('performance.html',
+                         stats=stats,
+                         by_type=by_type,
+                         weekly_pl=weekly_pl,
+                         type_distribution=type_distribution,
+                         recent_settled=recent_settled)
+
+@app.route('/api/bets/paste', methods=['POST'])
+def api_paste_bets():
+    """API endpoint to parse pasted bet data"""
+    try:
+        data = request.json or {}
+        bet_data = data.get('data', '').strip()
+        
+        if not bet_data:
             return jsonify({
                 'success': False,
-                'message': 'No bets found. Check headers or try again while logged in.'
+                'message': 'No data provided'
             })
         
-        # Save to file
-        save_ledger(ledger_df, "artifacts/bets.parquet")
+        # Parse the pasted data
+        bets = []
+        lines = [line.strip() for line in bet_data.split('\n') if line.strip()]
         
-        # Generate summary
-        summary = get_weekly_summary(ledger_df)
+        for line in lines:
+            parts = line.split('|')
+            if len(parts) >= 6:
+                try:
+                    ticket = parts[0].strip()
+                    date = parts[1].strip()
+                    
+                    # For parlays with multiple legs, everything between date and the last 4 fields is description
+                    # Last 4 fields are: Type, Status, Amount, ToWin
+                    # So we need to join all middle parts as description
+                    bet_type = parts[-4].strip()
+                    status = parts[-3].strip()
+                    amount = float(parts[-2].strip())
+                    to_win = float(parts[-1].strip()) if len(parts) > 6 else 0.0
+                    
+                    # Description is everything between date and type
+                    description_parts = parts[2:-4]
+                    description = ' | '.join(description_parts).strip()
+                    
+                    # Calculate profit based on status
+                    if status == 'Won':
+                        profit = to_win
+                    elif status == 'Lost':
+                        profit = -amount
+                    else:  # Pending
+                        profit = 0.0
+                    
+                    bets.append({
+                        'ticket_id': ticket,
+                        'date': date,
+                        'description': description,
+                        'type': bet_type,
+                        'status': status,
+                        'amount': amount,
+                        'to_win': to_win,
+                        'profit': profit
+                    })
+                except Exception as e:
+                    print(f"Error parsing line: {line} - {e}")
+                    continue
+        
+        if not bets:
+            return jsonify({
+                'success': False,
+                'message': 'Could not parse any bets from the data'
+            })
+        
+        # Calculate summary
+        total_amount = sum(b['amount'] for b in bets)
+        total_profit = sum(b['profit'] for b in bets)
+        pending_amount = sum(b['amount'] for b in bets if b['status'] == 'Pending')
+        potential_win = sum(b['to_win'] for b in bets if b['status'] == 'Pending')
+        
+        won_bets = [b for b in bets if b['status'] == 'Won']
+        lost_bets = [b for b in bets if b['status'] == 'Lost']
+        pending_bets = [b for b in bets if b['status'] == 'Pending']
+        
+        summary = {
+            'total_bets': len(bets),
+            'total_amount': total_amount,
+            'total_profit': total_profit,
+            'pending_amount': pending_amount,
+            'potential_win': potential_win,
+            'won_count': len(won_bets),
+            'lost_count': len(lost_bets),
+            'pending_count': len(pending_bets),
+            'win_rate': (len(won_bets) / (len(won_bets) + len(lost_bets)) * 100) if (len(won_bets) + len(lost_bets)) > 0 else 0
+        }
+        
+        # Save to JSON
+        import json
+        from datetime import datetime
+        output = {
+            'timestamp': datetime.now().isoformat(),
+            'summary': summary,
+            'bets': bets
+        }
+        
+        Path('artifacts').mkdir(exist_ok=True)
+        with open('artifacts/betonline_bets.json', 'w') as f:
+            json.dump(output, f, indent=2)
         
         return jsonify({
             'success': True,
-            'message': f'Saved {len(ledger_df)} bets',
-            'summary': summary,
-            'recent_bets': ledger_df.head(10).to_dict('records')
+            'message': f'Loaded {len(bets)} bets',
+            'count': len(bets),
+            'summary': summary
         })
         
     except Exception as e:
         return jsonify({
             'success': False,
+            'message': f'Parse failed: {str(e)}'
+        })
+
+@app.route('/api/bets/fetch-from-curl', methods=['POST'])
+def api_fetch_from_curl():
+    """API endpoint to fetch all bets using a cURL command"""
+    try:
+        from nfl_edge.bets.betonline_client import parse_curl_to_headers, fetch_all_bets, normalize_to_ledger
+        
+        data = request.json or {}
+        curl_cmd = data.get('curl', '').strip()
+        
+        if not curl_cmd:
+            return jsonify({
+                'success': False,
+                'message': 'No cURL command provided'
+            })
+        
+        # Parse cURL to get headers
+        parsed = parse_curl_to_headers(curl_cmd)
+        headers = {k: v for k, v in parsed.items() if not k.startswith("__")}
+        
+        # Debug: Log what headers we extracted
+        print(f"🔑 Extracted headers: {list(headers.keys())}")
+        print(f"🔐 Has Authorization: {'authorization' in [k.lower() for k in headers.keys()]}")
+        
+        # Fetch all bets from BetOnline
+        raw_data = fetch_all_bets(headers)
+        
+        # Debug: Show what we got back
+        debug_info = raw_data.get('debug', [])
+        debug_msg = '\n'.join(debug_info)
+        
+        ledger_df = normalize_to_ledger(raw_data)
+        
+        if ledger_df.empty:
+            return jsonify({
+                'success': False,
+                'message': f'No bets found from BetOnline API.\n\nDebug Info:\n{debug_msg}\n\nRaw keys: {list(raw_data.keys())}'
+            })
+        
+        # Convert to web format
+        bets = []
+        for _, row in ledger_df.iterrows():
+            desc_parts = []
+            if row['market']:
+                desc_parts.append(row['market'])
+            if row['submarket']:
+                desc_parts.append(row['submarket'])
+            if row['line']:
+                desc_parts.append(f"Line: {row['line']}")
+            if row['odds_american']:
+                desc_parts.append(f"Odds: {row['odds_american']}")
+            
+            description = ' | '.join(desc_parts) if desc_parts else 'No description'
+            
+            if row['settlement'] == 'Pending':
+                status = 'Pending'
+            elif row['result'] == 'Win':
+                status = 'Won'
+            elif row['result'] == 'Loss':
+                status = 'Lost'
+            else:
+                status = row['settlement']
+            
+            if status == 'Won':
+                profit = row['profit']
+            elif status == 'Lost':
+                profit = -row['stake']
+            else:
+                profit = 0.0
+            
+            bets.append({
+                'ticket_id': str(row['ticket_id']),
+                'date': row['placed_utc'][:10] if row['placed_utc'] else '',
+                'description': description,
+                'type': row['market'] or 'Unknown',
+                'status': status,
+                'amount': float(row['stake']),
+                'to_win': float(row['profit']) if row['profit'] else 0.0,
+                'profit': float(profit)
+            })
+        
+        # Calculate summary
+        total_amount = sum(b['amount'] for b in bets)
+        total_profit = sum(b['profit'] for b in bets)
+        pending_amount = sum(b['amount'] for b in bets if b['status'] == 'Pending')
+        potential_win = sum(b['to_win'] for b in bets if b['status'] == 'Pending')
+        
+        won_bets = [b for b in bets if b['status'] == 'Won']
+        lost_bets = [b for b in bets if b['status'] == 'Lost']
+        pending_bets = [b for b in bets if b['status'] == 'Pending']
+        
+        summary = {
+            'total_bets': len(bets),
+            'total_amount': total_amount,
+            'total_profit': total_profit,
+            'pending_amount': pending_amount,
+            'potential_win': potential_win,
+            'won_count': len(won_bets),
+            'lost_count': len(lost_bets),
+            'pending_count': len(pending_bets),
+            'win_rate': (len(won_bets) / (len(won_bets) + len(lost_bets)) * 100) if (len(won_bets) + len(lost_bets)) > 0 else 0
+        }
+        
+        # Save to JSON
+        import json
+        from datetime import datetime
+        output = {
+            'timestamp': datetime.now().isoformat(),
+            'summary': summary,
+            'bets': bets
+        }
+        
+        Path('artifacts').mkdir(exist_ok=True)
+        with open('artifacts/betonline_bets.json', 'w') as f:
+            json.dump(output, f, indent=2)
+        
+        return jsonify({
+            'success': True,
+            'message': f'Fetched {len(bets)} bets from BetOnline!'
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Failed to fetch bets: {str(e)}'
+        })
+
+@app.route('/api/bets/auto-fetch', methods=['POST'])
+def api_auto_fetch_bets():
+    """API endpoint to auto-fetch bets from BetOnline using saved session"""
+    try:
+        import subprocess
+        
+        # Check if session exists
+        session_file = Path('artifacts/betonline_session.json')
+        if not session_file.exists():
+            return jsonify({
+                'success': False,
+                'message': 'No saved session found. Run setup first.',
+                'need_setup': True
+            })
+        
+        # Run the auto-fetch script
+        result = subprocess.run(
+            ['python3', 'auto_fetch_bets.py'],
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
+        
+        if result.returncode == 0:
+            # Load the fetched data to get count
+            bet_file = Path('artifacts/betonline_bets.json')
+            if bet_file.exists():
+                with open(bet_file, 'r') as f:
+                    data = json.load(f)
+                    bet_count = len(data.get('bets', []))
+                    
+                return jsonify({
+                    'success': True,
+                    'message': f'Fetched {bet_count} bets from BetOnline!'
+                })
+            else:
+                return jsonify({
+                    'success': False,
+                    'message': 'Fetch completed but no bets file created'
+                })
+        else:
+            error_msg = result.stderr or result.stdout or 'Unknown error'
+            return jsonify({
+                'success': False,
+                'message': f'Fetch failed: {error_msg[:200]}',
+                'need_setup': 'session' in error_msg.lower() or 'expired' in error_msg.lower()
+            })
+        
+    except subprocess.TimeoutExpired:
+        return jsonify({
+            'success': False,
+            'message': 'Fetch timed out. Try again.'
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
             'message': f'Fetch failed: {str(e)}'
+        })
+
+@app.route('/api/bets/clear', methods=['POST'])
+def api_clear_bets():
+    """API endpoint to clear all bets"""
+    try:
+        # Remove the JSON file
+        bet_file = Path('artifacts/betonline_bets.json')
+        if bet_file.exists():
+            bet_file.unlink()
+        
+        return jsonify({
+            'success': True,
+            'message': 'All bets cleared'
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Clear failed: {str(e)}'
         })
 
 
