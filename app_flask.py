@@ -182,14 +182,13 @@ def game_detail(away, home):
     
     game_data = game.iloc[0].to_dict()
     
-    # Fetch detailed team stats - use ESPN API (more accurate than NFLverse)
+    # Fetch detailed team stats - HYBRID: ESPN scores + NFLverse stats
     try:
-        # Fetch from ESPN's official API
-        print("Fetching game data from ESPN API...")
+        print("Fetching hybrid data: ESPN (scores) + NFLverse (stats)...")
         
-        # Get all 2025 season games from ESPN
+        # 1. Get accurate scores from ESPN
         espn_games = []
-        for week in range(1, 18):  # Fetch all weeks
+        for week in range(1, 18):
             try:
                 espn_url = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
                 params = {'seasontype': 2, 'week': week, 'year': 2025}
@@ -203,7 +202,6 @@ def game_detail(away, home):
                         for comp in event.get('competitions', []):
                             competitors = comp.get('competitors', [])
                             if len(competitors) == 2:
-                                # Parse teams and scores
                                 home_team = next((c for c in competitors if c.get('homeAway') == 'home'), None)
                                 away_team = next((c for c in competitors if c.get('homeAway') == 'away'), None)
                                 
@@ -220,88 +218,133 @@ def game_detail(away, home):
                 print(f"ESPN fetch error week {week}: {e}")
                 continue
         
-        print(f"Fetched {len(espn_games)} games from ESPN")
+        print(f"✅ ESPN: Fetched {len(espn_games)} games (accurate scores)")
+        df_espn = pd.DataFrame(espn_games)
         
-        # Convert to DataFrame for easier processing
-        df_season = pd.DataFrame(espn_games)
+        # 2. Get detailed stats from NFLverse
+        nflverse_url = "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2025.csv"
+        response = requests.get(nflverse_url, timeout=30)
+        df_nflverse = pd.read_csv(io.BytesIO(response.content))
         
-        if df_season.empty:
+        print(f"✅ NFLverse: Fetched {len(df_nflverse)} team-week records (detailed stats)")
+        
+        # Filter to 2025 season
+        df_nflverse = df_nflverse[df_nflverse['season'] == 2025].copy()
+        
+        if df_espn.empty:
             raise Exception("No ESPN data available")
         
-        # Get stats for both teams (filter where team played as either home or away)
-        away_games = []
-        for _, game in df_season.iterrows():
-            if game['away_team'] == away:
-                away_games.append({
-                    'week': game['week'],
-                    'opponent': game['home_team'],
-                    'points_scored': game['away_score'],
-                    'points_allowed': game['home_score'],
-                    'result': 'W' if game['away_score'] > game['home_score'] else ('L' if game['away_score'] < game['home_score'] else 'T')
-                })
-            elif game['home_team'] == away:
-                away_games.append({
-                    'week': game['week'],
-                    'opponent': game['away_team'],
-                    'points_scored': game['home_score'],
-                    'points_allowed': game['away_score'],
-                    'result': 'W' if game['home_score'] > game['away_score'] else ('L' if game['home_score'] < game['away_score'] else 'T')
-                })
+        # 3. Merge ESPN scores with NFLverse stats
+        # Create a function to merge data for a specific team
+        def get_team_games(team_code):
+            games = []
+            for _, espn_game in df_espn.iterrows():
+                week = espn_game['week']
+                
+                # Check if team played in this game
+                if espn_game['away_team'] == team_code:
+                    is_home = False
+                    opponent = espn_game['home_team']
+                    pts_scored = espn_game['away_score']
+                    pts_allowed = espn_game['home_score']
+                elif espn_game['home_team'] == team_code:
+                    is_home = True
+                    opponent = espn_game['away_team']
+                    pts_scored = espn_game['home_score']
+                    pts_allowed = espn_game['away_score']
+                else:
+                    continue
+                
+                # Get detailed stats from NFLverse for this team/week
+                nfl_stats = df_nflverse[(df_nflverse['team'] == team_code) & (df_nflverse['week'] == week)]
+                
+                if not nfl_stats.empty:
+                    stats_row = nfl_stats.iloc[0]
+                    games.append({
+                        'week': week,
+                        'opponent': opponent,
+                        'points_scored': pts_scored,  # ESPN (accurate)
+                        'points_allowed': pts_allowed,  # ESPN (accurate)
+                        'result': 'W' if pts_scored > pts_allowed else ('L' if pts_scored < pts_allowed else 'T'),
+                        # NFLverse detailed stats
+                        'passing_epa': stats_row.get('passing_epa', 0),
+                        'rushing_epa': stats_row.get('rushing_epa', 0),
+                        'passing_yards': stats_row.get('passing_yards', 0),
+                        'rushing_yards': stats_row.get('rushing_yards', 0),
+                        'passing_tds': stats_row.get('passing_tds', 0),
+                        'rushing_tds': stats_row.get('rushing_tds', 0),
+                        'turnovers': stats_row.get('passing_interceptions', 0) + stats_row.get('rushing_fumbles_lost', 0),
+                        'sacks_taken': stats_row.get('sacks_suffered', 0),
+                    })
+                else:
+                    # ESPN data only (no NFLverse stats available)
+                    games.append({
+                        'week': week,
+                        'opponent': opponent,
+                        'points_scored': pts_scored,
+                        'points_allowed': pts_allowed,
+                        'result': 'W' if pts_scored > pts_allowed else ('L' if pts_scored < pts_allowed else 'T'),
+                        'passing_epa': 0,
+                        'rushing_epa': 0,
+                        'passing_yards': 0,
+                        'rushing_yards': 0,
+                        'passing_tds': 0,
+                        'rushing_tds': 0,
+                        'turnovers': 0,
+                        'sacks_taken': 0,
+                    })
+            
+            return pd.DataFrame(games).sort_values('week', ascending=False) if games else pd.DataFrame()
         
-        home_games = []
-        for _, game in df_season.iterrows():
-            if game['away_team'] == home:
-                home_games.append({
-                    'week': game['week'],
-                    'opponent': game['home_team'],
-                    'points_scored': game['away_score'],
-                    'points_allowed': game['home_score'],
-                    'result': 'W' if game['away_score'] > game['home_score'] else ('L' if game['away_score'] < game['home_score'] else 'T')
-                })
-            elif game['home_team'] == home:
-                home_games.append({
-                    'week': game['week'],
-                    'opponent': game['away_team'],
-                    'points_scored': game['home_score'],
-                    'points_allowed': game['away_score'],
-                    'result': 'W' if game['home_score'] > game['away_score'] else ('L' if game['home_score'] < game['away_score'] else 'T')
-                })
+        away_stats = get_team_games(away)
+        home_stats = get_team_games(home)
         
-        away_stats = pd.DataFrame(away_games).sort_values('week', ascending=False) if away_games else pd.DataFrame()
-        home_stats = pd.DataFrame(home_games).sort_values('week', ascending=False) if home_games else pd.DataFrame()
-        
-        # Calculate season averages for away team
+        # Calculate season averages for away team (ESPN + NFLverse hybrid)
         away_season = {
             'team': away,
             'games': len(away_stats),
+            # ESPN data (accurate scores)
             'ppg': away_stats['points_scored'].mean() if len(away_stats) > 0 else 0,
             'pa_pg': away_stats['points_allowed'].mean() if len(away_stats) > 0 else 0,
-            'off_epa': 0,  # ESPN doesn't provide EPA in basic scoreboard
+            # NFLverse data (advanced analytics)
+            'off_epa': (away_stats['passing_epa'].mean() + away_stats['rushing_epa'].mean()) if len(away_stats) > 0 else 0,
+            'pass_epa': away_stats['passing_epa'].mean() if len(away_stats) > 0 else 0,
+            'rush_epa': away_stats['rushing_epa'].mean() if len(away_stats) > 0 else 0,
+            'passing_yards': away_stats['passing_yards'].mean() if len(away_stats) > 0 else 0,
+            'rushing_yards': away_stats['rushing_yards'].mean() if len(away_stats) > 0 else 0,
+            'turnovers': away_stats['turnovers'].sum() if len(away_stats) > 0 else 0,
+            'sacks_taken': away_stats['sacks_taken'].sum() if len(away_stats) > 0 else 0,
+            # Defensive stats (would need opponent data for full picture)
             'def_epa': 0,
-            'pass_epa': 0,
-            'rush_epa': 0,
             'def_pass_epa': 0,
             'def_rush_epa': 0,
-            'turnovers': 0,  # Would need detailed stats
             'takeaways': 0,
+            # Last 5 games
             'last_5_ppg': away_stats.head(5)['points_scored'].mean() if len(away_stats) >= 5 else (away_stats['points_scored'].mean() if len(away_stats) > 0 else 0),
             'last_5_pa': away_stats.head(5)['points_allowed'].mean() if len(away_stats) >= 5 else (away_stats['points_allowed'].mean() if len(away_stats) > 0 else 0),
         }
         
-        # Calculate season averages for home team
+        # Calculate season averages for home team (ESPN + NFLverse hybrid)
         home_season = {
             'team': home,
             'games': len(home_stats),
+            # ESPN data (accurate scores)
             'ppg': home_stats['points_scored'].mean() if len(home_stats) > 0 else 0,
             'pa_pg': home_stats['points_allowed'].mean() if len(home_stats) > 0 else 0,
-            'off_epa': 0,
+            # NFLverse data (advanced analytics)
+            'off_epa': (home_stats['passing_epa'].mean() + home_stats['rushing_epa'].mean()) if len(home_stats) > 0 else 0,
+            'pass_epa': home_stats['passing_epa'].mean() if len(home_stats) > 0 else 0,
+            'rush_epa': home_stats['rushing_epa'].mean() if len(home_stats) > 0 else 0,
+            'passing_yards': home_stats['passing_yards'].mean() if len(home_stats) > 0 else 0,
+            'rushing_yards': home_stats['rushing_yards'].mean() if len(home_stats) > 0 else 0,
+            'turnovers': home_stats['turnovers'].sum() if len(home_stats) > 0 else 0,
+            'sacks_taken': home_stats['sacks_taken'].sum() if len(home_stats) > 0 else 0,
+            # Defensive stats
             'def_epa': 0,
-            'pass_epa': 0,
-            'rush_epa': 0,
             'def_pass_epa': 0,
             'def_rush_epa': 0,
-            'turnovers': 0,
             'takeaways': 0,
+            # Last 5 games
             'last_5_ppg': home_stats.head(5)['points_scored'].mean() if len(home_stats) >= 5 else (home_stats['points_scored'].mean() if len(home_stats) > 0 else 0),
             'last_5_pa': home_stats.head(5)['points_allowed'].mean() if len(home_stats) >= 5 else (home_stats['points_allowed'].mean() if len(home_stats) > 0 else 0),
         }

@@ -176,10 +176,25 @@
                 <td class="text-center">{{ "%.2f"|format(away_season.get('def_rush_epa', 0)) }}</td>
                 <td class="text-center">{{ "%.2f"|format(home_season.get('def_rush_epa', 0)) }}</td>
               </tr>
+              <tr class="table-info">
+                <td><strong>Passing Yards/Game</strong></td>
+                <td class="text-center">{{ "%.1f"|format(away_season.get('passing_yards', 0)) }}</td>
+                <td class="text-center">{{ "%.1f"|format(home_season.get('passing_yards', 0)) }}</td>
+              </tr>
+              <tr class="table-info">
+                <td><strong>Rushing Yards/Game</strong></td>
+                <td class="text-center">{{ "%.1f"|format(away_season.get('rushing_yards', 0)) }}</td>
+                <td class="text-center">{{ "%.1f"|format(home_season.get('rushing_yards', 0)) }}</td>
+              </tr>
               <tr class="table-warning">
                 <td><strong>Turnovers (Total)</strong></td>
-                <td class="text-center">{{ away_season.get('turnovers', 0) }}</td>
-                <td class="text-center">{{ home_season.get('turnovers', 0) }}</td>
+                <td class="text-center">{{ away_season.get('turnovers', 0)|int }}</td>
+                <td class="text-center">{{ home_season.get('turnovers', 0)|int }}</td>
+              </tr>
+              <tr class="table-danger">
+                <td><strong>Sacks Taken (Total)</strong></td>
+                <td class="text-center">{{ away_season.get('sacks_taken', 0)|int }}</td>
+                <td class="text-center">{{ home_season.get('sacks_taken', 0)|int }}</td>
               </tr>
               <tr class="table-success">
                 <td><strong>Takeaways (Total)</strong></td>
@@ -213,7 +228,7 @@
         <div class="card-subtitle">
           <small class="text-muted">
             <i class="ti ti-database icon"></i>
-            Source: ESPN API (Official NFL Data)
+            Hybrid Data: ESPN (scores) + NFLverse (stats)
           </small>
         </div>
       </div>
@@ -264,7 +279,7 @@
         <div class="card-subtitle">
           <small class="text-muted">
             <i class="ti ti-database icon"></i>
-            Source: ESPN API (Official NFL Data)
+            Hybrid Data: ESPN (scores) + NFLverse (stats)
           </small>
         </div>
       </div>
