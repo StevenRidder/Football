@@ -6,6 +6,8 @@ from flask import Flask, render_template, jsonify, request
 from pathlib import Path
 import pandas as pd
 from datetime import date
+import requests
+import io
 from nfl_edge.data_ingest import fetch_teamweeks_live
 
 app = Flask(__name__)
@@ -180,62 +182,121 @@ def game_detail(away, home):
     
     game_data = game.iloc[0].to_dict()
     
-    # Fetch detailed team stats
+    # Fetch detailed team stats - use RAW nflverse data for all stats
     try:
-        df_teamweeks = fetch_teamweeks_live(season=2025)
+        # Fetch raw nflverse data directly
+        url = f"https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2025.csv"
+        response = requests.get(url, timeout=30)
+        df_raw = pd.read_csv(io.BytesIO(response.content))
         
-        # Filter to current season only
-        df_season = df_teamweeks[df_teamweeks['season'] == 2025].copy()
+        print(f"Raw nflverse columns available: {len(df_raw.columns)} columns")
         
-        # Get season-to-date stats for both teams
+        # Filter to current season
+        df_season = df_raw[df_raw['season'] == 2025].copy()
+        
+        # Calculate points (same logic as data_ingest.py)
+        td_cols = ['passing_tds', 'rushing_tds', 'receiving_tds', 'def_tds', 'special_teams_tds']
+        for c in td_cols:
+            if c not in df_season.columns:
+                df_season[c] = 0
+        
+        df_season['points_scored'] = (
+            6 * (df_season['passing_tds'] + df_season['rushing_tds'] + df_season['receiving_tds'] + 
+                 df_season.get('def_tds', 0) + df_season.get('special_teams_tds', 0)) +
+            3 * df_season.get('fg_made', 0) +
+            1 * df_season.get('pat_made', 0) +
+            2 * (df_season.get('def_safeties', 0) + df_season.get('passing_2pt_conversions', 0) + 
+                 df_season.get('rushing_2pt_conversions', 0) + df_season.get('receiving_2pt_conversions', 0))
+        )
+        
+        # Get stats for both teams
         away_stats = df_season[df_season['team'] == away].sort_values('week', ascending=False)
         home_stats = df_season[df_season['team'] == home].sort_values('week', ascending=False)
         
-        # Calculate season averages
+        # Calculate season averages for away team
         away_season = {
             'team': away,
             'games': len(away_stats),
             'ppg': away_stats['points_scored'].mean() if len(away_stats) > 0 else 0,
-            'pa_pg': away_stats['points_allowed'].mean() if len(away_stats) > 0 else 0,
-            'off_epa': away_stats['passing_epa'].mean() + away_stats['rushing_epa'].mean() if len(away_stats) > 0 else 0,
-            'def_epa': away_stats['def_passing_epa'].mean() + away_stats['def_rushing_epa'].mean() if len(away_stats) > 0 else 0,
+            'pa_pg': 0,  # Will calculate from opponent data
+            'off_epa': (away_stats['passing_epa'].mean() + away_stats['rushing_epa'].mean()) if len(away_stats) > 0 else 0,
+            'def_epa': 0,  # Placeholder
             'pass_epa': away_stats['passing_epa'].mean() if len(away_stats) > 0 else 0,
             'rush_epa': away_stats['rushing_epa'].mean() if len(away_stats) > 0 else 0,
-            'def_pass_epa': away_stats['def_passing_epa'].mean() if len(away_stats) > 0 else 0,
-            'def_rush_epa': away_stats['def_rushing_epa'].mean() if len(away_stats) > 0 else 0,
-            'turnovers': away_stats['turnovers'].sum() if len(away_stats) > 0 else 0,
-            'takeaways': away_stats['def_interceptions'].sum() + away_stats['def_fumbles_recovered'].sum() if len(away_stats) > 0 else 0,
-            'last_5_ppg': away_stats.head(5)['points_scored'].mean() if len(away_stats) >= 5 else away_stats['points_scored'].mean(),
-            'last_5_pa': away_stats.head(5)['points_allowed'].mean() if len(away_stats) >= 5 else away_stats['points_allowed'].mean(),
+            'def_pass_epa': 0,  # Placeholder
+            'def_rush_epa': 0,  # Placeholder
+            'turnovers': (away_stats.get('passing_interceptions', 0).sum() + 
+                         away_stats.get('rushing_fumbles_lost', 0).sum()) if len(away_stats) > 0 else 0,
+            'takeaways': (away_stats.get('def_interceptions', 0).sum() + 
+                         away_stats.get('fumble_recovery_opp', 0).sum()) if len(away_stats) > 0 else 0,
+            'last_5_ppg': away_stats.head(5)['points_scored'].mean() if len(away_stats) >= 5 else (away_stats['points_scored'].mean() if len(away_stats) > 0 else 0),
+            'last_5_pa': 0,  # Will calculate
         }
         
+        # Calculate season averages for home team
         home_season = {
             'team': home,
             'games': len(home_stats),
             'ppg': home_stats['points_scored'].mean() if len(home_stats) > 0 else 0,
-            'pa_pg': home_stats['points_allowed'].mean() if len(home_stats) > 0 else 0,
-            'off_epa': home_stats['passing_epa'].mean() + home_stats['rushing_epa'].mean() if len(home_stats) > 0 else 0,
-            'def_epa': home_stats['def_passing_epa'].mean() + home_stats['def_rushing_epa'].mean() if len(home_stats) > 0 else 0,
+            'pa_pg': 0,
+            'off_epa': (home_stats['passing_epa'].mean() + home_stats['rushing_epa'].mean()) if len(home_stats) > 0 else 0,
+            'def_epa': 0,
             'pass_epa': home_stats['passing_epa'].mean() if len(home_stats) > 0 else 0,
             'rush_epa': home_stats['rushing_epa'].mean() if len(home_stats) > 0 else 0,
-            'def_pass_epa': home_stats['def_passing_epa'].mean() if len(home_stats) > 0 else 0,
-            'def_rush_epa': home_stats['def_rushing_epa'].mean() if len(home_stats) > 0 else 0,
-            'turnovers': home_stats['turnovers'].sum() if len(home_stats) > 0 else 0,
-            'takeaways': home_stats['def_interceptions'].sum() + home_stats['def_fumbles_recovered'].sum() if len(home_stats) > 0 else 0,
-            'last_5_ppg': home_stats.head(5)['points_scored'].mean() if len(home_stats) >= 5 else home_stats['points_scored'].mean(),
-            'last_5_pa': home_stats.head(5)['points_allowed'].mean() if len(home_stats) >= 5 else home_stats['points_allowed'].mean(),
+            'def_pass_epa': 0,
+            'def_rush_epa': 0,
+            'turnovers': (home_stats.get('passing_interceptions', 0).sum() + 
+                         home_stats.get('rushing_fumbles_lost', 0).sum()) if len(home_stats) > 0 else 0,
+            'takeaways': (home_stats.get('def_interceptions', 0).sum() + 
+                         home_stats.get('fumble_recovery_opp', 0).sum()) if len(home_stats) > 0 else 0,
+            'last_5_ppg': home_stats.head(5)['points_scored'].mean() if len(home_stats) >= 5 else (home_stats['points_scored'].mean() if len(home_stats) > 0 else 0),
+            'last_5_pa': 0,
         }
         
+        # Calculate points allowed (opponent's points scored against them)
+        for team_stats, team_dict in [(away_stats, away_season), (home_stats, home_season)]:
+            if len(team_stats) > 0:
+                opponent_points = []
+                last_5_opp_points = []
+                for idx, (_, game) in enumerate(team_stats.iterrows()):
+                    opp = game.get('opponent_team', '')
+                    opp_game = df_season[(df_season['team'] == opp) & (df_season['week'] == game['week'])]
+                    if not opp_game.empty:
+                        opp_pts = opp_game.iloc[0]['points_scored']
+                        opponent_points.append(opp_pts)
+                        if idx < 5:
+                            last_5_opp_points.append(opp_pts)
+                
+                if opponent_points:
+                    team_dict['pa_pg'] = sum(opponent_points) / len(opponent_points)
+                    team_dict['last_5_pa'] = sum(last_5_opp_points) / len(last_5_opp_points) if last_5_opp_points else team_dict['pa_pg']
+        
         # Get last 3 games for recent form
-        if len(away_stats) >= 3:
-            away_recent = away_stats.head(3)[['week', 'points_scored', 'points_allowed', 'opponent_team']].rename(columns={'opponent_team': 'opponent'}).to_dict('records')
-        else:
-            away_recent = []
-            
-        if len(home_stats) >= 3:
-            home_recent = home_stats.head(3)[['week', 'points_scored', 'points_allowed', 'opponent_team']].rename(columns={'opponent_team': 'opponent'}).to_dict('records')
-        else:
-            home_recent = []
+        away_recent = []
+        if len(away_stats) >= 1:
+            for _, game in away_stats.head(3).iterrows():
+                opp = game.get('opponent_team', 'UNK')
+                opp_game = df_season[(df_season['team'] == opp) & (df_season['week'] == game['week'])]
+                opp_pts = opp_game.iloc[0]['points_scored'] if not opp_game.empty else 0
+                away_recent.append({
+                    'week': int(game['week']),
+                    'points_scored': int(game['points_scored']),
+                    'points_allowed': int(opp_pts),
+                    'opponent': opp
+                })
+        
+        home_recent = []
+        if len(home_stats) >= 1:
+            for _, game in home_stats.head(3).iterrows():
+                opp = game.get('opponent_team', 'UNK')
+                opp_game = df_season[(df_season['team'] == opp) & (df_season['week'] == game['week'])]
+                opp_pts = opp_game.iloc[0]['points_scored'] if not opp_game.empty else 0
+                home_recent.append({
+                    'week': int(game['week']),
+                    'points_scored': int(game['points_scored']),
+                    'points_allowed': int(opp_pts),
+                    'opponent': opp
+                })
         
     except Exception as e:
         print(f"Error fetching team stats: {e}")
@@ -244,99 +305,55 @@ def game_detail(away, home):
         away_recent = []
         home_recent = []
     
-    # Fetch external predictions from real sources
+    # Fetch sportsbook consensus from TheOddsAPI
     external_predictions = {}
     
-    # ESPN FPI - Use actual data
     try:
-        import requests
-        # ESPN FPI endpoint (public data)
-        espn_url = f"https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams"
-        response = requests.get(espn_url, timeout=5)
-        if response.status_code == 200:
-            espn_data = response.json()
-            # Parse ESPN data for matchup predictions
-            # This is a simplified version - real implementation would need proper parsing
-            external_predictions['espn'] = {
-                'away_win': round(100 - game_data.get('Home win %', 50), 1),
-                'home_win': round(game_data.get('Home win %', 50), 1),
-                'spread': f"{home} {game_data.get('Spread used (home-)', 0):+.1f}",
-                'total': round(game_data.get('Total used', 0), 1)
-            }
-    except Exception as e:
-        print(f"ESPN API error: {e}")
-        external_predictions['espn'] = None
-    
-    # 538 NFL Predictions (they have public data)
-    try:
-        # 538 has NFL ELO ratings and predictions
-        fivethirtyeight_url = "https://projects.fivethirtyeight.com/nfl-api/nfl_elo_latest.csv"
-        response = requests.get(fivethirtyeight_url, timeout=5)
-        if response.status_code == 200:
-            import io
-            df_538 = pd.read_csv(io.StringIO(response.text))
-            # Filter for this matchup
-            matchup_538 = df_538[
-                ((df_538['team1'] == away) & (df_538['team2'] == home)) |
-                ((df_538['team1'] == home) & (df_538['team2'] == away))
-            ]
-            if not matchup_538.empty:
-                game_538 = matchup_538.iloc[-1]  # Most recent
-                if game_538['team1'] == away:
-                    away_prob = game_538.get('elo_prob1', 0.5) * 100
-                else:
-                    away_prob = game_538.get('elo_prob2', 0.5) * 100
-                
-                external_predictions['fivethirtyeight'] = {
-                    'away_win': round(away_prob, 1),
-                    'home_win': round(100 - away_prob, 1),
-                    'spread': f"{home} {-1 * (away_prob - 50) / 3:+.1f}",  # Rough conversion
-                    'total': round(game_data.get('Total used', 0), 1)
-                }
-            else:
-                external_predictions['fivethirtyeight'] = None
-    except Exception as e:
-        print(f"FiveThirtyEight API error: {e}")
-        external_predictions['fivethirtyeight'] = None
-    
-    # The Action Network / Consensus Lines
-    try:
-        # Use TheOddsAPI for consensus data (you already have the key)
         import os
         api_key = os.environ.get('ODDS_API_KEY', '')
         if api_key:
-            odds_url = f"https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds"
+            odds_url = "https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds"
             params = {
                 'apiKey': api_key,
                 'regions': 'us',
                 'markets': 'spreads,totals',
                 'oddsFormat': 'american'
             }
-            response = requests.get(odds_url, params=params, timeout=5)
+            response = requests.get(odds_url, params=params, timeout=10)
             if response.status_code == 200:
                 odds_data = response.json()
+                print(f"Fetched odds for {len(odds_data)} games")
+                
                 # Find this specific game
                 for game_odds in odds_data:
-                    if away in game_odds.get('away_team', '') and home in game_odds.get('home_team', ''):
+                    away_team = game_odds.get('away_team', '')
+                    home_team = game_odds.get('home_team', '')
+                    
+                    # Match team names (allow partial matches)
+                    if away in away_team or home in home_team:
+                        print(f"Found match: {away_team} @ {home_team}")
+                        
                         # Calculate consensus from multiple bookmakers
                         spreads = []
                         totals = []
+                        
                         for bookmaker in game_odds.get('bookmakers', []):
                             for market in bookmaker.get('markets', []):
                                 if market['key'] == 'spreads':
                                     for outcome in market['outcomes']:
-                                        if outcome['name'] == home:
+                                        if home in outcome.get('name', ''):
                                             spreads.append(outcome.get('point', 0))
                                 elif market['key'] == 'totals':
-                                    totals.append(market['outcomes'][0].get('point', 0))
+                                    if market.get('outcomes'):
+                                        totals.append(market['outcomes'][0].get('point', 0))
                         
                         if spreads and totals:
                             avg_spread = sum(spreads) / len(spreads)
                             avg_total = sum(totals) / len(totals)
                             
-                            # Estimate win probability from spread
-                            home_win_prob = 50 + (avg_spread * 3)  # Rough conversion
-                            home_win_prob = max(0, min(100, home_win_prob))
+                            # Estimate win probability from spread (spread * 3 ≈ win prob offset)
+                            home_win_prob = 50 + (avg_spread * 3)
+                            home_win_prob = max(10, min(90, home_win_prob))
                             
                             external_predictions['consensus'] = {
                                 'away_win': round(100 - home_win_prob, 1),
@@ -345,9 +362,14 @@ def game_detail(away, home):
                                 'total': round(avg_total, 1),
                                 'source': f'{len(spreads)} sportsbooks'
                             }
+                            print(f"Consensus: {external_predictions['consensus']}")
                         break
+        else:
+            print("No ODDS_API_KEY found")
     except Exception as e:
         print(f"Odds API error: {e}")
+        import traceback
+        traceback.print_exc()
         external_predictions['consensus'] = None
     
     return render_template('game_detail.html',

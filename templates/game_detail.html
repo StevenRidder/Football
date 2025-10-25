@@ -299,7 +299,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">🌐 Predictions from Other Sites</h3>
+        <h3 class="card-title">🌐 Your Model vs Vegas Consensus</h3>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -322,30 +322,6 @@
                 <td class="text-end">{{ "%.1f"|format(game.get('Total used', 0)) }}</td>
               </tr>
               
-              {% if external_predictions.get('espn') %}
-              <tr>
-                <td>
-                  <span class="badge badge-outline text-danger">ESPN</span>
-                </td>
-                <td class="text-end">{{ external_predictions.espn.away_win }}%</td>
-                <td class="text-end">{{ external_predictions.espn.home_win }}%</td>
-                <td>{{ external_predictions.espn.spread }}</td>
-                <td class="text-end">{{ external_predictions.espn.total }}</td>
-              </tr>
-              {% endif %}
-              
-              {% if external_predictions.get('fivethirtyeight') %}
-              <tr>
-                <td>
-                  <span class="badge badge-outline text-info">FiveThirtyEight</span>
-                </td>
-                <td class="text-end">{{ external_predictions.fivethirtyeight.away_win }}%</td>
-                <td class="text-end">{{ external_predictions.fivethirtyeight.home_win }}%</td>
-                <td>{{ external_predictions.fivethirtyeight.spread }}</td>
-                <td class="text-end">{{ external_predictions.fivethirtyeight.total }}</td>
-              </tr>
-              {% endif %}
-              
               {% if external_predictions.get('consensus') %}
               <tr>
                 <td>
@@ -359,11 +335,11 @@
               </tr>
               {% endif %}
               
-              {% if not external_predictions.get('espn') and not external_predictions.get('fivethirtyeight') and not external_predictions.get('consensus') %}
+              {% if not external_predictions.get('consensus') %}
               <tr>
                 <td colspan="5" class="text-center text-muted">
                   <i class="ti ti-info-circle icon"></i>
-                  External predictions temporarily unavailable
+                  Sportsbook consensus unavailable for this game
                 </td>
               </tr>
               {% endif %}
@@ -372,7 +348,7 @@
         </div>
         <div class="text-muted small mt-2">
           <i class="ti ti-info-circle icon"></i>
-          External predictions are fetched live from: ESPN, FiveThirtyEight ELO, and Sportsbook Consensus (via TheOddsAPI)
+          Sportsbook consensus is calculated from live odds via TheOddsAPI. Compare your model's edge vs Vegas lines.
         </div>
       </div>
     </div>
