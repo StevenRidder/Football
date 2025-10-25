@@ -10,6 +10,7 @@ import requests
 import io
 from nfl_edge.data_ingest import fetch_teamweeks_live
 from nfl_edge.predictions_api import fetch_all_predictions
+from nfl_edge.accuracy_tracker import create_tracker
 
 app = Flask(__name__)
 
@@ -456,6 +457,37 @@ def game_detail(away, home):
                          away_recent=away_recent,
                          home_recent=home_recent,
                          external_predictions=external_predictions)
+
+@app.route('/accuracy')
+def accuracy():
+    """Model accuracy tracking page"""
+    tracker = create_tracker()
+    
+    # Get accuracy report for 2025 season
+    report = tracker.get_accuracy_report(season=2025, min_games=1)
+    
+    return render_template('accuracy.html', report=report, season=2025)
+
+@app.route('/api/record-prediction', methods=['POST'])
+def record_prediction():
+    """API endpoint to record predictions (for future use)"""
+    try:
+        tracker = create_tracker()
+        data = request.json
+        
+        tracker.record_prediction(
+            week=data['week'],
+            season=data['season'],
+            away=data['away'],
+            home=data['home'],
+            your_model=data.get('your_model'),
+            fivethirtyeight=data.get('fivethirtyeight'),
+            vegas=data.get('vegas')
+        )
+        
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
 
 if __name__ == '__main__':
     app.run(debug=True, port=9876)
