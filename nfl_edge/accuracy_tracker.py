@@ -292,6 +292,52 @@ class AccuracyTracker:
             'matched': len(matched),
             'predictions': matched
         }
+    
+    def get_game_breakdown(self, season: int, min_games: int = 1) -> list:
+        """Get game-by-game breakdown for display"""
+        predictions = self._load_predictions(season)
+        results = self._load_results(season)
+        
+        matched = self._match_predictions_with_results(predictions, results)
+        
+        breakdown = []
+        for item in matched:
+            pred = item
+            result = item.get('result', {})
+            
+            # Get your model's prediction
+            your_model = pred.get('your_model', {})
+            home_win_prob = your_model.get('home_win_prob', 50)
+            
+            # Determine predicted winner
+            predicted_winner = pred['home'] if home_win_prob > 50 else pred['away']
+            predicted_margin = abs(your_model.get('spread', 0))
+            
+            # Determine actual winner
+            away_score = result.get('away_score', 0)
+            home_score = result.get('home_score', 0)
+            actual_winner = pred['home'] if home_score > away_score else pred['away']
+            
+            # Check if prediction was correct
+            correct = (predicted_winner == actual_winner)
+            
+            breakdown.append({
+                'week': pred['week'],
+                'away': pred['away'],
+                'home': pred['home'],
+                'predicted_winner': predicted_winner,
+                'predicted_margin': predicted_margin,
+                'confidence': round(max(home_win_prob, 100 - home_win_prob), 1),
+                'actual_winner': actual_winner,
+                'away_score': away_score,
+                'home_score': home_score,
+                'correct': correct
+            })
+        
+        # Sort by week
+        breakdown.sort(key=lambda x: x['week'])
+        
+        return breakdown
 
 
 def create_tracker():

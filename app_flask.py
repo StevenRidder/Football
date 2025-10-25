@@ -466,6 +466,10 @@ def accuracy():
     # Get accuracy report for 2025 season
     report = tracker.get_accuracy_report(season=2025, min_games=1)
     
+    # Get game-by-game breakdown
+    game_breakdown = tracker.get_game_breakdown(season=2025, min_games=1)
+    report['game_breakdown'] = game_breakdown
+    
     return render_template('accuracy.html', report=report, season=2025)
 
 @app.route('/api/record-prediction', methods=['POST'])

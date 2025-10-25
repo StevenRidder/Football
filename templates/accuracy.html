@@ -194,6 +194,79 @@
       </div>
     </div>
     
+    <!-- Game-by-Game Breakdown -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📋 Game-by-Game Breakdown</h3>
+            <div class="card-subtitle">
+              <small class="text-muted">See which games your model predicted correctly</small>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-vcenter table-hover">
+                <thead>
+                  <tr>
+                    <th>Week</th>
+                    <th>Matchup</th>
+                    <th>Your Prediction</th>
+                    <th>Confidence</th>
+                    <th>Actual Result</th>
+                    <th class="text-center">Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if report.game_breakdown %}
+                    {% for game in report.game_breakdown %}
+                    <tr class="{% if game.correct %}table-success{% else %}table-danger{% endif %}">
+                      <td>Week {{ game.week }}</td>
+                      <td><strong>{{ game.away }} @ {{ game.home }}</strong></td>
+                      <td>
+                        {% if game.predicted_winner == game.away %}
+                          {{ game.away }} by {{ game.predicted_margin|abs|round(1) }}
+                        {% else %}
+                          {{ game.home }} by {{ game.predicted_margin|abs|round(1) }}
+                        {% endif %}
+                      </td>
+                      <td>{{ game.confidence }}%</td>
+                      <td>
+                        {% if game.actual_winner == game.away %}
+                          <strong>{{ game.away }}</strong> {{ game.away_score }}-{{ game.home_score }}
+                        {% else %}
+                          <strong>{{ game.home }}</strong> {{ game.home_score }}-{{ game.away_score }}
+                        {% endif %}
+                      </td>
+                      <td class="text-center">
+                        {% if game.correct %}
+                          <span class="badge bg-success">✓ Correct</span>
+                        {% else %}
+                          <span class="badge bg-danger">✗ Wrong</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  {% else %}
+                    <tr>
+                      <td colspan="6" class="text-center text-muted">
+                        <div class="empty">
+                          <p class="empty-title">No game-by-game data available yet</p>
+                          <p class="empty-subtitle">
+                            Game breakdown will appear here once predictions and results are recorded
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                  {% endif %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <!-- What's Next -->
     <div class="row">
       <div class="col-12">
