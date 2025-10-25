@@ -182,55 +182,110 @@ def game_detail(away, home):
     
     game_data = game.iloc[0].to_dict()
     
-    # Fetch detailed team stats - use RAW nflverse data for all stats
+    # Fetch detailed team stats - use ESPN API (more accurate than NFLverse)
     try:
-        # Fetch raw nflverse data directly
-        url = f"https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2025.csv"
-        response = requests.get(url, timeout=30)
-        df_raw = pd.read_csv(io.BytesIO(response.content))
+        # Fetch from ESPN's official API
+        print("Fetching game data from ESPN API...")
         
-        print(f"Raw nflverse columns available: {len(df_raw.columns)} columns")
+        # Get all 2025 season games from ESPN
+        espn_games = []
+        for week in range(1, 18):  # Fetch all weeks
+            try:
+                espn_url = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+                params = {'seasontype': 2, 'week': week, 'year': 2025}
+                response = requests.get(espn_url, params=params, timeout=5)
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    events = data.get('events', [])
+                    
+                    for event in events:
+                        for comp in event.get('competitions', []):
+                            competitors = comp.get('competitors', [])
+                            if len(competitors) == 2:
+                                # Parse teams and scores
+                                home_team = next((c for c in competitors if c.get('homeAway') == 'home'), None)
+                                away_team = next((c for c in competitors if c.get('homeAway') == 'away'), None)
+                                
+                                if home_team and away_team:
+                                    espn_games.append({
+                                        'week': week,
+                                        'home_team': home_team['team']['abbreviation'],
+                                        'away_team': away_team['team']['abbreviation'],
+                                        'home_score': int(home_team.get('score', 0)),
+                                        'away_score': int(away_team.get('score', 0)),
+                                        'completed': comp.get('status', {}).get('type', {}).get('completed', False)
+                                    })
+            except Exception as e:
+                print(f"ESPN fetch error week {week}: {e}")
+                continue
         
-        # Filter to current season
-        df_season = df_raw[df_raw['season'] == 2025].copy()
+        print(f"Fetched {len(espn_games)} games from ESPN")
         
-        # Calculate points (same logic as data_ingest.py)
-        td_cols = ['passing_tds', 'rushing_tds', 'receiving_tds', 'def_tds', 'special_teams_tds']
-        for c in td_cols:
-            if c not in df_season.columns:
-                df_season[c] = 0
+        # Convert to DataFrame for easier processing
+        df_season = pd.DataFrame(espn_games)
         
-        df_season['points_scored'] = (
-            6 * (df_season['passing_tds'] + df_season['rushing_tds'] + df_season['receiving_tds'] + 
-                 df_season.get('def_tds', 0) + df_season.get('special_teams_tds', 0)) +
-            3 * df_season.get('fg_made', 0) +
-            1 * df_season.get('pat_made', 0) +
-            2 * (df_season.get('def_safeties', 0) + df_season.get('passing_2pt_conversions', 0) + 
-                 df_season.get('rushing_2pt_conversions', 0) + df_season.get('receiving_2pt_conversions', 0))
-        )
+        if df_season.empty:
+            raise Exception("No ESPN data available")
         
-        # Get stats for both teams
-        away_stats = df_season[df_season['team'] == away].sort_values('week', ascending=False)
-        home_stats = df_season[df_season['team'] == home].sort_values('week', ascending=False)
+        # Get stats for both teams (filter where team played as either home or away)
+        away_games = []
+        for _, game in df_season.iterrows():
+            if game['away_team'] == away:
+                away_games.append({
+                    'week': game['week'],
+                    'opponent': game['home_team'],
+                    'points_scored': game['away_score'],
+                    'points_allowed': game['home_score'],
+                    'result': 'W' if game['away_score'] > game['home_score'] else ('L' if game['away_score'] < game['home_score'] else 'T')
+                })
+            elif game['home_team'] == away:
+                away_games.append({
+                    'week': game['week'],
+                    'opponent': game['away_team'],
+                    'points_scored': game['home_score'],
+                    'points_allowed': game['away_score'],
+                    'result': 'W' if game['home_score'] > game['away_score'] else ('L' if game['home_score'] < game['away_score'] else 'T')
+                })
+        
+        home_games = []
+        for _, game in df_season.iterrows():
+            if game['away_team'] == home:
+                home_games.append({
+                    'week': game['week'],
+                    'opponent': game['home_team'],
+                    'points_scored': game['away_score'],
+                    'points_allowed': game['home_score'],
+                    'result': 'W' if game['away_score'] > game['home_score'] else ('L' if game['away_score'] < game['home_score'] else 'T')
+                })
+            elif game['home_team'] == home:
+                home_games.append({
+                    'week': game['week'],
+                    'opponent': game['away_team'],
+                    'points_scored': game['home_score'],
+                    'points_allowed': game['away_score'],
+                    'result': 'W' if game['home_score'] > game['away_score'] else ('L' if game['home_score'] < game['away_score'] else 'T')
+                })
+        
+        away_stats = pd.DataFrame(away_games).sort_values('week', ascending=False) if away_games else pd.DataFrame()
+        home_stats = pd.DataFrame(home_games).sort_values('week', ascending=False) if home_games else pd.DataFrame()
         
         # Calculate season averages for away team
         away_season = {
             'team': away,
             'games': len(away_stats),
             'ppg': away_stats['points_scored'].mean() if len(away_stats) > 0 else 0,
-            'pa_pg': 0,  # Will calculate from opponent data
-            'off_epa': (away_stats['passing_epa'].mean() + away_stats['rushing_epa'].mean()) if len(away_stats) > 0 else 0,
-            'def_epa': 0,  # Placeholder
-            'pass_epa': away_stats['passing_epa'].mean() if len(away_stats) > 0 else 0,
-            'rush_epa': away_stats['rushing_epa'].mean() if len(away_stats) > 0 else 0,
-            'def_pass_epa': 0,  # Placeholder
-            'def_rush_epa': 0,  # Placeholder
-            'turnovers': (away_stats.get('passing_interceptions', 0).sum() + 
-                         away_stats.get('rushing_fumbles_lost', 0).sum()) if len(away_stats) > 0 else 0,
-            'takeaways': (away_stats.get('def_interceptions', 0).sum() + 
-                         away_stats.get('fumble_recovery_opp', 0).sum()) if len(away_stats) > 0 else 0,
+            'pa_pg': away_stats['points_allowed'].mean() if len(away_stats) > 0 else 0,
+            'off_epa': 0,  # ESPN doesn't provide EPA in basic scoreboard
+            'def_epa': 0,
+            'pass_epa': 0,
+            'rush_epa': 0,
+            'def_pass_epa': 0,
+            'def_rush_epa': 0,
+            'turnovers': 0,  # Would need detailed stats
+            'takeaways': 0,
             'last_5_ppg': away_stats.head(5)['points_scored'].mean() if len(away_stats) >= 5 else (away_stats['points_scored'].mean() if len(away_stats) > 0 else 0),
-            'last_5_pa': 0,  # Will calculate
+            'last_5_pa': away_stats.head(5)['points_allowed'].mean() if len(away_stats) >= 5 else (away_stats['points_allowed'].mean() if len(away_stats) > 0 else 0),
         }
         
         # Calculate season averages for home team
@@ -238,71 +293,22 @@ def game_detail(away, home):
             'team': home,
             'games': len(home_stats),
             'ppg': home_stats['points_scored'].mean() if len(home_stats) > 0 else 0,
-            'pa_pg': 0,
-            'off_epa': (home_stats['passing_epa'].mean() + home_stats['rushing_epa'].mean()) if len(home_stats) > 0 else 0,
+            'pa_pg': home_stats['points_allowed'].mean() if len(home_stats) > 0 else 0,
+            'off_epa': 0,
             'def_epa': 0,
-            'pass_epa': home_stats['passing_epa'].mean() if len(home_stats) > 0 else 0,
-            'rush_epa': home_stats['rushing_epa'].mean() if len(home_stats) > 0 else 0,
+            'pass_epa': 0,
+            'rush_epa': 0,
             'def_pass_epa': 0,
             'def_rush_epa': 0,
-            'turnovers': (home_stats.get('passing_interceptions', 0).sum() + 
-                         home_stats.get('rushing_fumbles_lost', 0).sum()) if len(home_stats) > 0 else 0,
-            'takeaways': (home_stats.get('def_interceptions', 0).sum() + 
-                         home_stats.get('fumble_recovery_opp', 0).sum()) if len(home_stats) > 0 else 0,
+            'turnovers': 0,
+            'takeaways': 0,
             'last_5_ppg': home_stats.head(5)['points_scored'].mean() if len(home_stats) >= 5 else (home_stats['points_scored'].mean() if len(home_stats) > 0 else 0),
-            'last_5_pa': 0,
+            'last_5_pa': home_stats.head(5)['points_allowed'].mean() if len(home_stats) >= 5 else (home_stats['points_allowed'].mean() if len(home_stats) > 0 else 0),
         }
         
-        # Calculate points allowed (opponent's points scored against them)
-        for team_stats, team_dict in [(away_stats, away_season), (home_stats, home_season)]:
-            if len(team_stats) > 0:
-                opponent_points = []
-                last_5_opp_points = []
-                for idx, (_, game) in enumerate(team_stats.iterrows()):
-                    opp = game.get('opponent_team', '')
-                    opp_game = df_season[(df_season['team'] == opp) & (df_season['week'] == game['week'])]
-                    if not opp_game.empty:
-                        opp_pts = opp_game.iloc[0]['points_scored']
-                        opponent_points.append(opp_pts)
-                        if idx < 5:
-                            last_5_opp_points.append(opp_pts)
-                
-                if opponent_points:
-                    team_dict['pa_pg'] = sum(opponent_points) / len(opponent_points)
-                    team_dict['last_5_pa'] = sum(last_5_opp_points) / len(last_5_opp_points) if last_5_opp_points else team_dict['pa_pg']
-        
-        # Get ALL games for the season (sorted newest to oldest)
-        away_recent = []
-        if len(away_stats) >= 1:
-            for _, game in away_stats.iterrows():  # Show ALL games, not just 3
-                opp = game.get('opponent_team', 'UNK')
-                opp_game = df_season[(df_season['team'] == opp) & (df_season['week'] == game['week'])]
-                opp_pts = opp_game.iloc[0]['points_scored'] if not opp_game.empty else 0
-                pts = int(game['points_scored'])
-                opp_pts = int(opp_pts)
-                away_recent.append({
-                    'week': int(game['week']),
-                    'points_scored': pts,
-                    'points_allowed': opp_pts,
-                    'opponent': opp,
-                    'result': 'W' if pts > opp_pts else ('L' if pts < opp_pts else 'T')
-                })
-        
-        home_recent = []
-        if len(home_stats) >= 1:
-            for _, game in home_stats.iterrows():  # Show ALL games, not just 3
-                opp = game.get('opponent_team', 'UNK')
-                opp_game = df_season[(df_season['team'] == opp) & (df_season['week'] == game['week'])]
-                opp_pts = opp_game.iloc[0]['points_scored'] if not opp_game.empty else 0
-                pts = int(game['points_scored'])
-                opp_pts = int(opp_pts)
-                home_recent.append({
-                    'week': int(game['week']),
-                    'points_scored': pts,
-                    'points_allowed': opp_pts,
-                    'opponent': opp,
-                    'result': 'W' if pts > opp_pts else ('L' if pts < opp_pts else 'T')
-                })
+        # Recent games are already formatted correctly from the DataFrame
+        away_recent = away_stats.to_dict('records') if not away_stats.empty else []
+        home_recent = home_stats.to_dict('records') if not home_stats.empty else []
         
     except Exception as e:
         print(f"Error fetching team stats: {e}")
