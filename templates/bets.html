@@ -87,36 +87,34 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label class="form-label">BetOnline Headers</label>
-                    <textarea class="form-control" id="headersInput" rows="6" placeholder='{
-  "cookie": "your_session_cookie_here",
-  "user-agent": "Mozilla/5.0...",
-  "origin": "https://www.betonline.ag",
-  "referer": "https://www.betonline.ag/sports/my-account"
-}'></textarea>
-                    <div class="form-hint">
-                      <strong>Quick Setup:</strong> Follow the detailed steps on the right →
-                    </div>
-                    
-                    <div class="mt-3">
-                      <button class="btn btn-outline-secondary btn-sm" onclick="showExample()">
-                        <i class="ti ti-eye icon me-1"></i>
-                        Show Example Headers
-                      </button>
-                    </div>
-                    
-                    <div id="exampleHeaders" class="mt-3" style="display: none;">
-                      <div class="alert alert-light">
-                        <h6>Example of what your headers should look like:</h6>
-                        <pre class="mb-0"><code>{
-  "cookie": "sessionid=abc123; csrftoken=xyz789; userid=456",
-  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-  "origin": "https://www.betonline.ag",
-  "referer": "https://www.betonline.ag/sports/my-account",
-  "accept": "application/json, text/plain, */*",
-  "accept-language": "en-US,en;q=0.9"
-}</code></pre>
-                        <small class="text-muted">Copy ALL headers from DevTools, not just these examples</small>
+                    <label class="form-label">Simple Login</label>
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">Just Enter Your Credentials</h4>
+                        <p class="text-muted">No bullshit - just works:</p>
+                        
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label class="form-label">Email</label>
+                              <input type="email" class="form-control" id="emailInput" placeholder="your@email.com">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label class="form-label">Password</label>
+                              <input type="password" class="form-control" id="passwordInput" placeholder="Your password">
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="simpleLogin()">
+                          <i class="ti ti-login icon me-2"></i>
+                          Login & Get My Bets
+                        </button>
+                        <div class="form-hint mt-2">
+                          <small>This will log in and fetch your bet data automatically</small>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -349,18 +347,52 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 {% endif %}
 
-// Show/hide example headers
-function showExample() {
-  const exampleDiv = document.getElementById('exampleHeaders');
-  const button = event.target;
+// Simple login function
+function simpleLogin() {
+  const email = document.getElementById('emailInput').value.trim();
+  const password = document.getElementById('passwordInput').value.trim();
   
-  if (exampleDiv.style.display === 'none') {
-    exampleDiv.style.display = 'block';
-    button.innerHTML = '<i class="ti ti-eye-off icon me-1"></i>Hide Example';
-  } else {
-    exampleDiv.style.display = 'none';
-    button.innerHTML = '<i class="ti ti-eye icon me-1"></i>Show Example Headers';
+  if (!email || !password) {
+    showToast('Please enter both email and password', 'warning');
+    return;
   }
+  
+  const button = event.target;
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="ti ti-loader-2 icon me-2"></i>Logging in...';
+  button.disabled = true;
+  
+  fetch('/api/bets/simple-login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      showToast(data.message, 'success');
+      // Clear password field for security
+      document.getElementById('passwordInput').value = '';
+      // Reload page to show new data
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+    } else {
+      showToast(data.message, 'danger');
+    }
+  })
+  .catch(error => {
+    showToast('Login failed: ' + error.message, 'danger');
+  })
+  .finally(() => {
+    button.innerHTML = originalText;
+    button.disabled = false;
+  });
 }
 
 // Fetch bets function

@@ -526,7 +526,67 @@ def api_fetch_bets():
         })
 
 
-@app.route('/api/bets/summary')
+@app.route('/api/bets/simple-login', methods=['POST'])
+def api_simple_login():
+    """Simple login and fetch bets"""
+    try:
+        data = request.json
+        email = data.get('email', '').strip()
+        password = data.get('password', '').strip()
+        
+        if not email or not password:
+            return jsonify({
+                'success': False,
+                'message': 'Email and password required'
+            })
+        
+        # Import and run the simple scraper
+        import subprocess
+        import sys
+        
+        # Create a temporary script with credentials
+        script_content = f'''
+import sys
+sys.path.append(".")
+from simple_bet_scraper import run_bet_scraper
+
+EMAIL = "{email}"
+PASSWORD = "{password}"
+
+success, message = run_bet_scraper(EMAIL, PASSWORD)
+print(f"SUCCESS:{success}")
+print(f"MESSAGE:{message}")
+'''
+        
+        # Write temp script
+        with open('temp_scraper.py', 'w') as f:
+            f.write(script_content)
+        
+        # Run it
+        result = subprocess.run([sys.executable, 'temp_scraper.py'], 
+                              capture_output=True, text=True, timeout=60)
+        
+        # Clean up
+        os.remove('temp_scraper.py')
+        
+        # Parse output
+        output = result.stdout
+        if "SUCCESS:True" in output:
+            return jsonify({
+                'success': True,
+                'message': 'Bets fetched successfully! Check the My Bets page.'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'message': 'Failed to fetch bets. Check credentials or try again.'
+            })
+            
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Error: {str(e)}'
+        })
 def api_bets_summary():
     """API endpoint for bet summary data"""
     ledger_df = load_ledger("artifacts/bets.parquet")
