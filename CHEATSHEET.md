@@ -96,6 +96,8 @@ tail -f dashboard.log
 - Refresh browser after running `run_week.py`
 - Use `./stop_dashboard.sh` to clean up both dashboards
 - API available at `/api/games`, `/api/best-bets`, `/api/aii`
+- **External predictions**: Vegas works automatically, 538 data not publicly available yet
+- **If predictions don't show**: Kill all Flask (`pkill -f app_flask.py`) and restart
 
 ---
 
