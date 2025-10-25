@@ -163,6 +163,24 @@ def fetch_fivethirtyeight_predictions(away: str, home: str) -> Optional[Dict]:
         return None
 
 
+def _get_full_team_name(abbr: str) -> str:
+    """Map team abbreviation to full name for external APIs"""
+    mapping = {
+        'ARI': 'Arizona Cardinals', 'ATL': 'Atlanta Falcons', 'BAL': 'Baltimore Ravens',
+        'BUF': 'Buffalo Bills', 'CAR': 'Carolina Panthers', 'CHI': 'Chicago Bears',
+        'CIN': 'Cincinnati Bengals', 'CLE': 'Cleveland Browns', 'DAL': 'Dallas Cowboys',
+        'DEN': 'Denver Broncos', 'DET': 'Detroit Lions', 'GB': 'Green Bay Packers',
+        'HOU': 'Houston Texans', 'IND': 'Indianapolis Colts', 'JAX': 'Jacksonville Jaguars',
+        'KC': 'Kansas City Chiefs', 'LAC': 'Los Angeles Chargers', 'LA': 'Los Angeles Rams',
+        'LAR': 'Los Angeles Rams', 'LV': 'Las Vegas Raiders', 'MIA': 'Miami Dolphins',
+        'MIN': 'Minnesota Vikings', 'NE': 'New England Patriots', 'NO': 'New Orleans Saints',
+        'NYG': 'New York Giants', 'NYJ': 'New York Jets', 'PHI': 'Philadelphia Eagles',
+        'PIT': 'Pittsburgh Steelers', 'SEA': 'Seattle Seahawks', 'SF': 'San Francisco 49ers',
+        'TB': 'Tampa Bay Buccaneers', 'TEN': 'Tennessee Titans', 'WAS': 'Washington Commanders'
+    }
+    return mapping.get(abbr, abbr)
+
+
 def calculate_vegas_implied_probability(away: str, home: str) -> Optional[Dict]:
     """
     Calculate implied win probabilities from Vegas moneyline odds
@@ -179,6 +197,10 @@ def calculate_vegas_implied_probability(away: str, home: str) -> Optional[Dict]:
         api_key = os.environ.get('ODDS_API_KEY', '')
         if not api_key:
             return None
+        
+        # Convert abbreviations to full names
+        away_full = _get_full_team_name(away)
+        home_full = _get_full_team_name(home)
         
         # Fetch current odds
         url = "https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds"
@@ -198,8 +220,8 @@ def calculate_vegas_implied_probability(away: str, home: str) -> Optional[Dict]:
                 away_team = game.get('away_team', '')
                 home_team = game.get('home_team', '')
                 
-                # Match teams (flexible matching)
-                if away in away_team and home in home_team:
+                # Match teams using full names
+                if away_full == away_team and home_full == home_team:
                     bookmakers = game.get('bookmakers', [])
                     
                     if not bookmakers:
@@ -213,9 +235,9 @@ def calculate_vegas_implied_probability(away: str, home: str) -> Optional[Dict]:
                         for market in bookmaker.get('markets', []):
                             if market['key'] == 'h2h':
                                 for outcome in market['outcomes']:
-                                    if away in outcome['name']:
+                                    if outcome['name'] == away_full:
                                         away_odds_list.append(outcome.get('price', 0))
-                                    elif home in outcome['name']:
+                                    elif outcome['name'] == home_full:
                                         home_odds_list.append(outcome.get('price', 0))
                     
                     if away_odds_list and home_odds_list:
