@@ -209,7 +209,13 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">{{ away }} - Last 3 Games</h3>
+        <h3 class="card-title">{{ away }} - All 2025 Games</h3>
+        <div class="card-subtitle">
+          <small class="text-muted">
+            <i class="ti ti-database icon"></i>
+            Source: NFLverse (github.com/nflverse/nflverse-data)
+          </small>
+        </div>
       </div>
       <div class="card-body">
         {% if away_recent %}
@@ -227,15 +233,17 @@
             <tbody>
               {% for game in away_recent %}
               <tr>
-                <td>Week {{ game.week }}</td>
+                <td><strong>Week {{ game.week }}</strong></td>
                 <td>vs {{ game.opponent }}</td>
                 <td class="text-end"><strong>{{ game.points_scored|int }}</strong></td>
                 <td class="text-end">{{ game.points_allowed|int }}</td>
                 <td>
-                  {% if game.points_scored > game.points_allowed %}
+                  {% if game.result == 'W' %}
                   <span class="badge bg-success">W</span>
-                  {% else %}
+                  {% elif game.result == 'L' %}
                   <span class="badge bg-danger">L</span>
+                  {% else %}
+                  <span class="badge bg-secondary">T</span>
                   {% endif %}
                 </td>
               </tr>
@@ -244,7 +252,7 @@
           </table>
         </div>
         {% else %}
-        <p class="text-muted">No recent games data available</p>
+        <p class="text-muted">No game data available</p>
         {% endif %}
       </div>
     </div>
@@ -252,7 +260,13 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">{{ home }} - Last 3 Games</h3>
+        <h3 class="card-title">{{ home }} - All 2025 Games</h3>
+        <div class="card-subtitle">
+          <small class="text-muted">
+            <i class="ti ti-database icon"></i>
+            Source: NFLverse (github.com/nflverse/nflverse-data)
+          </small>
+        </div>
       </div>
       <div class="card-body">
         {% if home_recent %}
@@ -270,15 +284,17 @@
             <tbody>
               {% for game in home_recent %}
               <tr>
-                <td>Week {{ game.week }}</td>
+                <td><strong>Week {{ game.week }}</strong></td>
                 <td>vs {{ game.opponent }}</td>
                 <td class="text-end"><strong>{{ game.points_scored|int }}</strong></td>
                 <td class="text-end">{{ game.points_allowed|int }}</td>
                 <td>
-                  {% if game.points_scored > game.points_allowed %}
+                  {% if game.result == 'W' %}
                   <span class="badge bg-success">W</span>
-                  {% else %}
+                  {% elif game.result == 'L' %}
                   <span class="badge bg-danger">L</span>
+                  {% else %}
+                  <span class="badge bg-secondary">T</span>
                   {% endif %}
                 </td>
               </tr>
@@ -287,7 +303,7 @@
           </table>
         </div>
         {% else %}
-        <p class="text-muted">No recent games data available</p>
+        <p class="text-muted">No game data available</p>
         {% endif %}
       </div>
     </div>

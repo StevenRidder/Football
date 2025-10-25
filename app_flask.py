@@ -271,31 +271,37 @@ def game_detail(away, home):
                     team_dict['pa_pg'] = sum(opponent_points) / len(opponent_points)
                     team_dict['last_5_pa'] = sum(last_5_opp_points) / len(last_5_opp_points) if last_5_opp_points else team_dict['pa_pg']
         
-        # Get last 3 games for recent form
+        # Get ALL games for the season (sorted newest to oldest)
         away_recent = []
         if len(away_stats) >= 1:
-            for _, game in away_stats.head(3).iterrows():
+            for _, game in away_stats.iterrows():  # Show ALL games, not just 3
                 opp = game.get('opponent_team', 'UNK')
                 opp_game = df_season[(df_season['team'] == opp) & (df_season['week'] == game['week'])]
                 opp_pts = opp_game.iloc[0]['points_scored'] if not opp_game.empty else 0
+                pts = int(game['points_scored'])
+                opp_pts = int(opp_pts)
                 away_recent.append({
                     'week': int(game['week']),
-                    'points_scored': int(game['points_scored']),
-                    'points_allowed': int(opp_pts),
-                    'opponent': opp
+                    'points_scored': pts,
+                    'points_allowed': opp_pts,
+                    'opponent': opp,
+                    'result': 'W' if pts > opp_pts else ('L' if pts < opp_pts else 'T')
                 })
         
         home_recent = []
         if len(home_stats) >= 1:
-            for _, game in home_stats.head(3).iterrows():
+            for _, game in home_stats.iterrows():  # Show ALL games, not just 3
                 opp = game.get('opponent_team', 'UNK')
                 opp_game = df_season[(df_season['team'] == opp) & (df_season['week'] == game['week'])]
                 opp_pts = opp_game.iloc[0]['points_scored'] if not opp_game.empty else 0
+                pts = int(game['points_scored'])
+                opp_pts = int(opp_pts)
                 home_recent.append({
                     'week': int(game['week']),
-                    'points_scored': int(game['points_scored']),
-                    'points_allowed': int(opp_pts),
-                    'opponent': opp
+                    'points_scored': pts,
+                    'points_allowed': opp_pts,
+                    'opponent': opp,
+                    'result': 'W' if pts > opp_pts else ('L' if pts < opp_pts else 'T')
                 })
         
     except Exception as e:
