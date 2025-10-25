@@ -325,61 +325,148 @@
   </div>
 </div>
 
-<!-- External Predictions -->
+<!-- Prediction Model Comparison -->
 <div class="row mb-3">
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">🌐 Your Model vs Vegas Consensus</h3>
+        <h3 class="card-title">🤖 Model Comparison: Your Edge vs Industry</h3>
+        <div class="card-subtitle">
+          <small class="text-muted">Compare predictions from multiple sources - FREE APIs integrated</small>
+        </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-vcenter">
             <thead>
               <tr>
-                <th>Source</th>
+                <th>Prediction Source</th>
                 <th class="text-end">{{ away }} Win %</th>
                 <th class="text-end">{{ home }} Win %</th>
-                <th>Predicted Spread</th>
-                <th class="text-end">Predicted Total</th>
+                <th>Spread</th>
+                <th class="text-end">Total</th>
+                <th class="text-center">Confidence</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><strong>Your Model</strong></td>
-                <td class="text-end">{{ "%.1f"|format(100 - game.get('Home win %', 50)) }}%</td>
-                <td class="text-end">{{ "%.1f"|format(game.get('Home win %', 50)) }}%</td>
-                <td>{{ home }} {{ "%+.1f"|format(game.get('Spread used (home-)', 0)) }}</td>
-                <td class="text-end">{{ "%.1f"|format(game.get('Total used', 0)) }}</td>
-              </tr>
-              
-              {% if external_predictions.get('consensus') %}
-              <tr>
+              <!-- Your Model -->
+              {% if external_predictions.get('your_model') %}
+              <tr class="table-primary">
                 <td>
-                  <span class="badge badge-outline text-success">Sportsbook Consensus</span>
-                  <small class="text-muted d-block">{{ external_predictions.consensus.source }}</small>
+                  <strong>🔥 Your Model</strong>
+                  <small class="text-muted d-block">{{ external_predictions.your_model.source }}</small>
                 </td>
-                <td class="text-end">{{ external_predictions.consensus.away_win }}%</td>
-                <td class="text-end">{{ external_predictions.consensus.home_win }}%</td>
-                <td>{{ external_predictions.consensus.spread }}</td>
-                <td class="text-end">{{ external_predictions.consensus.total }}</td>
+                <td class="text-end"><strong>{{ external_predictions.your_model.away_win }}%</strong></td>
+                <td class="text-end"><strong>{{ external_predictions.your_model.home_win }}%</strong></td>
+                <td>{{ external_predictions.your_model.spread }}</td>
+                <td class="text-end">{{ external_predictions.your_model.total }}</td>
+                <td class="text-center">
+                  <span class="badge bg-success">High</span>
+                </td>
               </tr>
               {% endif %}
               
-              {% if not external_predictions.get('consensus') %}
+              <!-- FiveThirtyEight -->
+              {% if external_predictions.get('fivethirtyeight') %}
               <tr>
-                <td colspan="5" class="text-center text-muted">
+                <td>
+                  <span class="badge badge-outline text-info">📊 FiveThirtyEight</span>
+                  <small class="text-muted d-block">{{ external_predictions.fivethirtyeight.source }}</small>
+                </td>
+                <td class="text-end">{{ external_predictions.fivethirtyeight.away_win }}%</td>
+                <td class="text-end">{{ external_predictions.fivethirtyeight.home_win }}%</td>
+                <td class="text-muted">{{ external_predictions.fivethirtyeight.spread }}</td>
+                <td class="text-end text-muted">{{ external_predictions.fivethirtyeight.total }}</td>
+                <td class="text-center">
+                  {% if external_predictions.fivethirtyeight.confidence == 'High' %}
+                  <span class="badge bg-success">High</span>
+                  {% else %}
+                  <span class="badge bg-warning">Medium</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endif %}
+              
+              <!-- Vegas Consensus -->
+              {% if external_predictions.get('vegas') %}
+              <tr>
+                <td>
+                  <span class="badge badge-outline text-success">💰 Vegas Consensus</span>
+                  <small class="text-muted d-block">{{ external_predictions.vegas.source }}</small>
+                </td>
+                <td class="text-end">{{ external_predictions.vegas.away_win }}%</td>
+                <td class="text-end">{{ external_predictions.vegas.home_win }}%</td>
+                <td>{{ external_predictions.vegas.spread }}</td>
+                <td class="text-end">{{ external_predictions.vegas.total }}</td>
+                <td class="text-center">
+                  <span class="badge bg-success">High</span>
+                </td>
+              </tr>
+              {% endif %}
+              
+              {% if not external_predictions.get('fivethirtyeight') and not external_predictions.get('vegas') %}
+              <tr>
+                <td colspan="6" class="text-center text-muted">
                   <i class="ti ti-info-circle icon"></i>
-                  Sportsbook consensus unavailable for this game
+                  External predictions temporarily unavailable - showing your model only
                 </td>
               </tr>
               {% endif %}
             </tbody>
           </table>
         </div>
-        <div class="text-muted small mt-2">
-          <i class="ti ti-info-circle icon"></i>
-          Sportsbook consensus is calculated from live odds via TheOddsAPI. Compare your model's edge vs Vegas lines.
+        
+        <!-- Model Comparison Insights -->
+        <div class="mt-3">
+          <h4 class="text-muted">💡 Comparison Insights</h4>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="text-muted small">Your Edge vs 538</div>
+                  {% if external_predictions.get('fivethirtyeight') %}
+                  <div class="h3 mb-0">
+                    {{ "%.1f"|format(external_predictions.your_model.home_win - external_predictions.fivethirtyeight.home_win) }}% pts
+                  </div>
+                  {% else %}
+                  <div class="text-muted">N/A</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="text-muted small">Your Edge vs Vegas</div>
+                  {% if external_predictions.get('vegas') %}
+                  <div class="h3 mb-0">
+                    {{ "%.1f"|format(external_predictions.your_model.home_win - external_predictions.vegas.home_win) }}% pts
+                  </div>
+                  {% else %}
+                  <div class="text-muted">N/A</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-sm">
+                <div class="card-body">
+                  <div class="text-muted small">Consensus Confidence</div>
+                  {% if external_predictions.get('fivethirtyeight') and external_predictions.get('vegas') %}
+                  {% set avg_home = (external_predictions.fivethirtyeight.home_win + external_predictions.vegas.home_win) / 2 %}
+                  <div class="h3 mb-0">{{ "%.1f"|format(avg_home) }}%</div>
+                  {% else %}
+                  <div class="text-muted">N/A</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-muted small mt-3">
+          <i class="ti ti-database icon"></i>
+          <strong>Data Sources:</strong> Your Model (NFLverse + ESPN), FiveThirtyEight (ELO), Vegas (TheOddsAPI consensus)
         </div>
       </div>
     </div>

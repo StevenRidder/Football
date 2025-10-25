@@ -9,6 +9,7 @@ from datetime import date
 import requests
 import io
 from nfl_edge.data_ingest import fetch_teamweeks_live
+from nfl_edge.predictions_api import fetch_all_predictions
 
 app = Flask(__name__)
 
@@ -368,9 +369,47 @@ def game_detail(away, home):
         away_recent = []
         home_recent = []
     
-    # Fetch sportsbook consensus from TheOddsAPI
-    external_predictions = {}
+    # Fetch predictions from multiple sources (ESPN, 538, Vegas)
+    print(f"Fetching predictions for {away} @ {home}...")
+    all_predictions = fetch_all_predictions(away, home)
     
+    # Format for template
+    external_predictions = {
+        'your_model': {
+            'away_win': round(100 - game_data.get('Home win %', 50), 1),
+            'home_win': round(game_data.get('Home win %', 50), 1),
+            'spread': f"{home} {game_data.get('Spread used (home-)', 0):+.1f}",
+            'total': round(game_data.get('Total used', 0), 1),
+            'source': 'Your Model (Ridge + Monte Carlo)'
+        }
+    }
+    
+    # Add 538 if available
+    if all_predictions.get('fivethirtyeight'):
+        pred = all_predictions['fivethirtyeight']
+        external_predictions['fivethirtyeight'] = {
+            'away_win': pred.get('away_win_prob', 50),
+            'home_win': pred.get('home_win_prob', 50),
+            'spread': 'N/A',
+            'total': 'N/A',
+            'source': pred.get('source', '538 ELO'),
+            'confidence': pred.get('confidence', 'Medium')
+        }
+    
+    # Add Vegas consensus if available
+    if all_predictions.get('vegas'):
+        pred = all_predictions['vegas']
+        external_predictions['vegas'] = {
+            'away_win': pred.get('away_win_prob', 50),
+            'home_win': pred.get('home_win_prob', 50),
+            'spread': 'N/A',
+            'total': 'N/A',
+            'source': pred.get('source', 'Vegas Consensus'),
+            'moneyline': f"{pred.get('avg_away_ml', 0):+d} / {pred.get('avg_home_ml', 0):+d}",
+            'confidence': 'High'
+        }
+    
+    # Also get sportsbook lines for spread/total
     try:
         import os
         api_key = os.environ.get('ODDS_API_KEY', '')
@@ -385,18 +424,9 @@ def game_detail(away, home):
             response = requests.get(odds_url, params=params, timeout=10)
             if response.status_code == 200:
                 odds_data = response.json()
-                print(f"Fetched odds for {len(odds_data)} games")
                 
-                # Find this specific game
                 for game_odds in odds_data:
-                    away_team = game_odds.get('away_team', '')
-                    home_team = game_odds.get('home_team', '')
-                    
-                    # Match team names (allow partial matches)
-                    if away in away_team or home in home_team:
-                        print(f"Found match: {away_team} @ {home_team}")
-                        
-                        # Calculate consensus from multiple bookmakers
+                    if away in game_odds.get('away_team', '') and home in game_odds.get('home_team', ''):
                         spreads = []
                         totals = []
                         
@@ -410,30 +440,12 @@ def game_detail(away, home):
                                     if market.get('outcomes'):
                                         totals.append(market['outcomes'][0].get('point', 0))
                         
-                        if spreads and totals:
-                            avg_spread = sum(spreads) / len(spreads)
-                            avg_total = sum(totals) / len(totals)
-                            
-                            # Estimate win probability from spread (spread * 3 ≈ win prob offset)
-                            home_win_prob = 50 + (avg_spread * 3)
-                            home_win_prob = max(10, min(90, home_win_prob))
-                            
-                            external_predictions['consensus'] = {
-                                'away_win': round(100 - home_win_prob, 1),
-                                'home_win': round(home_win_prob, 1),
-                                'spread': f"{home} {avg_spread:+.1f}",
-                                'total': round(avg_total, 1),
-                                'source': f'{len(spreads)} sportsbooks'
-                            }
-                            print(f"Consensus: {external_predictions['consensus']}")
+                        if spreads and totals and 'vegas' in external_predictions:
+                            external_predictions['vegas']['spread'] = f"{home} {sum(spreads)/len(spreads):+.1f}"
+                            external_predictions['vegas']['total'] = round(sum(totals)/len(totals), 1)
                         break
-        else:
-            print("No ODDS_API_KEY found")
     except Exception as e:
-        print(f"Odds API error: {e}")
-        import traceback
-        traceback.print_exc()
-        external_predictions['consensus'] = None
+        print(f"Error fetching spreads/totals: {e}")
     
     return render_template('game_detail.html',
                          away=away,
