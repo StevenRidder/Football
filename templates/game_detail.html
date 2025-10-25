@@ -406,9 +406,13 @@
               
               {% if not external_predictions.get('fivethirtyeight') and not external_predictions.get('vegas') %}
               <tr>
-                <td colspan="6" class="text-center text-muted">
-                  <i class="ti ti-info-circle icon"></i>
-                  External predictions temporarily unavailable - showing your model only
+                <td colspan="6" class="text-center">
+                  <div class="empty">
+                    <p class="empty-title">External predictions loading</p>
+                    <p class="empty-subtitle text-muted">
+                      FiveThirtyEight and Vegas predictions will appear here when available
+                    </p>
+                  </div>
                 </td>
               </tr>
               {% endif %}

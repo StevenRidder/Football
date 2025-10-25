@@ -372,6 +372,12 @@ def game_detail(away, home):
     
     # Fetch predictions from multiple sources (ESPN, 538, Vegas)
     print(f"Fetching predictions for {away} @ {home}...")
+    
+    # Ensure ODDS_API_KEY is set for Vegas predictions
+    import os
+    if not os.environ.get('ODDS_API_KEY'):
+        print("⚠️ ODDS_API_KEY not set - Vegas predictions will be unavailable")
+    
     all_predictions = fetch_all_predictions(away, home)
     
     # Format for template

@@ -86,14 +86,33 @@ def fetch_fivethirtyeight_predictions(away: str, home: str) -> Optional[Dict]:
     """
     try:
         # FiveThirtyEight publishes their predictions as CSV
+        # Note: 2025 season data may not be available yet in their public API
         url = "https://projects.fivethirtyeight.com/nfl-api/nfl_elo_latest.csv"
         response = requests.get(url, timeout=10)
         
-        if response.status_code == 200:
-            df = pd.read_csv(io.StringIO(response.text))
-            
-            # Filter for current season (2025)
-            df_2025 = df[df['season'] == 2025]
+        if response.status_code != 200:
+            return None
+        
+        try:
+            # Try parsing - 538's CSV can have malformed lines
+            df = pd.read_csv(io.StringIO(response.text), 
+                           on_bad_lines='skip',
+                           encoding='utf-8')
+        except Exception as parse_error:
+            # CSV parsing failed completely
+            return None
+        
+        # Check if we have the required columns
+        required_cols = ['season', 'team1', 'team2']
+        if not all(col in df.columns for col in required_cols):
+            return None
+        
+        # Filter for current season (2025)
+        df_2025 = df[df['season'] == 2025]
+        
+        if df_2025.empty:
+            # 2025 season not available yet
+            return None
             
             # FiveThirtyEight uses full team names, need to map
             team_mapping = {
