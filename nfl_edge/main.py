@@ -100,6 +100,43 @@ def run_week():
     bets.write_text(betting_card)
     
     print(f"Wrote {proj}\nWrote {clv}\nWrote {dbg}\nWrote {bets}")
+    
+    # Auto-record predictions for accuracy tracking
+    try:
+        from nfl_edge.accuracy_tracker import create_tracker
+        tracker = create_tracker()
+        
+        # Determine current week and season
+        import datetime
+        current_week = dt.isocalendar()[1] - 35  # Approximate NFL week
+        current_season = dt.year
+        
+        print(f"\n📊 Recording predictions for accuracy tracking (Week {current_week})...")
+        
+        for _, row in df_out.iterrows():
+            # Record prediction
+            tracker.record_prediction(
+                week=current_week,
+                season=current_season,
+                away=row['away'],
+                home=row['home'],
+                your_model={
+                    'away_win_prob': 100 - row['Home win %'],
+                    'home_win_prob': row['Home win %'],
+                    'spread': row['Model spread home-'],
+                    'total': row['Model total']
+                },
+                fivethirtyeight=None,
+                vegas=None
+            )
+        
+        print(f"✅ Recorded {len(df_out)} predictions for Week {current_week}")
+        print(f"   These will be compared to actual results after games complete")
+        print(f"   Visit http://localhost:9876/accuracy to track performance")
+        
+    except Exception as e:
+        print(f"⚠️ Could not auto-record predictions: {e}")
+        print("   Predictions saved to CSV but not tracked for accuracy")
     print("\n" + betting_card)
     
     return proj, clv, dbg, bets
