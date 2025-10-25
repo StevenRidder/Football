@@ -525,6 +525,7 @@ def api_fetch_bets():
             'message': f'Fetch failed: {str(e)}'
         })
 
+
 @app.route('/api/bets/summary')
 def api_bets_summary():
     """API endpoint for bet summary data"""

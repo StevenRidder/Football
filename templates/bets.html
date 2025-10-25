@@ -87,17 +87,19 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label class="form-label">Request Headers (JSON)</label>
-                    <textarea class="form-control" id="headersInput" rows="8" placeholder='{
+                    <label class="form-label">BetOnline Headers</label>
+                    <textarea class="form-control" id="headersInput" rows="6" placeholder='{
   "cookie": "your_session_cookie_here",
   "user-agent": "Mozilla/5.0...",
   "origin": "https://www.betonline.ag",
   "referer": "https://www.betonline.ag/sports/my-account"
 }'></textarea>
                     <div class="form-hint">
-                      Paste your BetOnline request headers from DevTools → Network → Headers
+                      <strong>Quick Setup:</strong> Log into BetOnline → F12 → Network → Copy Request Headers
                     </div>
                   </div>
+                  
+                  
                   <button class="btn btn-primary" onclick="fetchBets()">
                     <i class="ti ti-download icon me-2"></i>
                     Fetch Bets Now
@@ -285,6 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 {% endif %}
+
 
 // Fetch bets function
 function fetchBets() {
