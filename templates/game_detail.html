@@ -330,9 +330,12 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">🤖 Model Comparison: Your Edge vs Industry</h3>
+        <h3 class="card-title">🤖 Prediction Comparison: Your Model vs The Market</h3>
         <div class="card-subtitle">
-          <small class="text-muted">Compare predictions from multiple sources - FREE APIs integrated</small>
+          <small class="text-muted">
+            <strong>Your Model:</strong> Ridge regression + Monte Carlo simulation (20k trials)<br>
+            <strong>Vegas Consensus:</strong> Average of 9 professional sportsbooks (what the market thinks)
+          </small>
         </div>
       </div>
       <div class="card-body">
@@ -393,11 +396,12 @@
                 <td>
                   <span class="badge badge-outline text-success">💰 Vegas Consensus</span>
                   <small class="text-muted d-block">{{ external_predictions.vegas.source }}</small>
+                  <small class="text-muted d-block"><em>What professional bookmakers think (implied from moneyline odds)</em></small>
                 </td>
                 <td class="text-end">{{ external_predictions.vegas.away_win }}%</td>
                 <td class="text-end">{{ external_predictions.vegas.home_win }}%</td>
-                <td>{{ external_predictions.vegas.spread }}</td>
-                <td class="text-end">{{ external_predictions.vegas.total }}</td>
+                <td><span class="text-muted">Implied from ML</span></td>
+                <td class="text-end"><span class="text-muted">Implied from ML</span></td>
                 <td class="text-center">
                   <span class="badge bg-success">High</span>
                 </td>
@@ -470,7 +474,10 @@
         
         <div class="text-muted small mt-3">
           <i class="ti ti-database icon"></i>
-          <strong>Data Sources:</strong> Your Model (NFLverse + ESPN), FiveThirtyEight (ELO), Vegas (TheOddsAPI consensus)
+          <strong>Live Data Sources:</strong><br>
+          • Your Model: NFLverse stats + ESPN scores + Ridge regression + Monte Carlo<br>
+          • Vegas Consensus: TheOddsAPI (average of 9 professional sportsbooks)<br>
+          • <span class="text-muted">ESPN/CBS/NFL.com expert picks would require web scraping (not yet implemented)</span>
         </div>
       </div>
     </div>
