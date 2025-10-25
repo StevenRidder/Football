@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics Index{% endblock %}
+{% block page_title %}Analytics Intensity Index{% endblock %}
+{% block page_subtitle %}Independent model measuring team analytics adoption{% endblock %}
+
+{% block content %}
+<div class="row mb-3">
+  <div class="col-12">
+    <div class="card card-borderless bg-primary-lt">
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h3 class="card-title mb-1">🧠 What is AII?</h3>
+            <p class="text-muted mb-0">
+              Analytics Intensity Index measures how analytically advanced each team is based on:
+              <strong>4th down decisions</strong>, <strong>motion usage</strong>, 
+              <strong>injury management</strong>, and <strong>analytics adoption tier</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Stats cards -->
+<div class="row row-deck row-cards mb-3">
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="subheader">Total Teams</div>
+        </div>
+        <div class="h1 mb-3">{{ total_teams }}</div>
+        <div class="d-flex mb-2">
+          <div>NFL teams analyzed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="subheader">Most Analytical</div>
+        </div>
+        <div class="h1 mb-3" id="top-team">-</div>
+        <div class="d-flex mb-2">
+          <div>Highest AII score</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="subheader">Least Analytical</div>
+        </div>
+        <div class="h1 mb-3" id="bottom-team">-</div>
+        <div class="d-flex mb-2">
+          <div>Lowest AII score</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AII Rankings -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">📊 Team Rankings</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-vcenter table-hover card-table" id="aii-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th class="text-end">AII Score</th>
+                <th class="text-end">Projected Wins</th>
+                <th>Analytics Tier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="5" class="text-center text-muted">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Load AII data
+fetch('/api/aii')
+  .then(response => response.json())
+  .then(data => {
+    const tbody = document.querySelector('#aii-table tbody');
+    tbody.innerHTML = '';
+    
+    if (data.error) {
+      tbody.innerHTML = `<tr><td colspan="5" class="text-center text-warning">${data.error}</td></tr>`;
+      return;
+    }
+    
+    // Update stats cards
+    if (data.length > 0) {
+      document.getElementById('top-team').textContent = data[0].team;
+      document.getElementById('bottom-team').textContent = data[data.length - 1].team;
+    }
+    
+    // Populate table
+    data.forEach((team, index) => {
+      const row = document.createElement('tr');
+      
+      // Tier badge color
+      let tierBadge = 'badge-secondary';
+      if (team.analytics_tier === 5) tierBadge = 'badge-success';
+      else if (team.analytics_tier === 4) tierBadge = 'badge-info';
+      else if (team.analytics_tier === 2) tierBadge = 'badge-warning';
+      else if (team.analytics_tier === 1) tierBadge = 'badge-danger';
+      
+      // AII color based on score
+      let aiiClass = 'text-muted';
+      if (team.aii_score > 0.7) aiiClass = 'text-success';
+      else if (team.aii_score > 0.5) aiiClass = 'text-info';
+      else if (team.aii_score < 0.3) aiiClass = 'text-danger';
+      
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td><strong>${team.team}</strong></td>
+        <td class="text-end ${aiiClass}"><strong>${team.aii_score.toFixed(3)}</strong></td>
+        <td class="text-end">${team.projected_wins.toFixed(1)}</td>
+        <td><span class="badge ${tierBadge}">Tier ${team.analytics_tier}</span></td>
+      `;
+      tbody.appendChild(row);
+    });
+  })
+  .catch(error => {
+    console.error('Error loading AII data:', error);
+    document.querySelector('#aii-table tbody').innerHTML = 
+      '<tr><td colspan="5" class="text-center text-danger">Error loading data</td></tr>';
+  });
+</script>
+{% endblock %}
+

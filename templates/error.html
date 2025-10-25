@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Error{% endblock %}
+{% block page_title %}Error{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card card-borderless bg-danger-lt">
+      <div class="card-body text-center py-5">
+        <div class="empty">
+          <div class="empty-icon">
+            <i class="ti ti-alert-triangle icon" style="font-size: 3rem;"></i>
+          </div>
+          <p class="empty-title h3">{{ message }}</p>
+          <p class="empty-subtitle text-muted">
+            Make sure you've run the prediction scripts before viewing the dashboard.
+          </p>
+          <div class="empty-action">
+            <a href="/" class="btn btn-primary">
+              <i class="ti ti-arrow-left icon"></i>
+              Back to dashboard
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+
+team_sd: 8.0
+n_sims: 20000
+home_field_pts: 1.5
+recent_weight: 0.67
+
+# Calibration (user adjusted based on Week 7 results)
+score_calibration_factor: 0.69  # Conservative but realistic predictions
+
+# Betting parameters
+bankroll: 10000.0        # Starting bankroll
+min_ev: 0.02             # Minimum 2% EV to recommend a bet
+kelly_fraction: 0.25     # Use quarter Kelly (25% of full Kelly)

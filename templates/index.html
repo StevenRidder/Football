@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% block title %}All Games{% endblock %}
+{% block page_title %}Week 8 Predictions{% endblock %}
+{% block page_subtitle %}All games with betting intelligence{% endblock %}
+
+{% block content %}
+<!-- Stats cards -->
+<div class="row row-deck row-cards mb-3">
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="subheader">Total Games</div>
+        </div>
+        <div class="h1 mb-3" id="stat-total-games">{{ total_games }}</div>
+        <div class="d-flex mb-2">
+          <div>Games analyzed this week</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="subheader">Recommended Plays</div>
+        </div>
+        <div class="h1 mb-3" id="stat-rec-plays">{{ rec_plays }}</div>
+        <div class="d-flex mb-2">
+          <div>Bets with positive EV</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="subheader">Average Edge</div>
+        </div>
+        <div class="h1 mb-3" id="stat-avg-edge">{{ "%.1f"|format(avg_edge) }}%</div>
+        <div class="d-flex mb-2">
+          <div>Expected value vs market</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="subheader">Total Stake</div>
+        </div>
+        <div class="h1 mb-3" id="stat-total-stake">${{ "%.0f"|format(total_stake) }}</div>
+        <div class="d-flex mb-2">
+          <div>Recommended total exposure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Best Bets -->
+<div class="row mb-3">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">💰 Best Bets</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-vcenter card-table" id="best-bets-table">
+            <thead>
+              <tr>
+                <th>Game</th>
+                <th>Type</th>
+                <th>Recommendation</th>
+                <th class="text-end">EV</th>
+                <th class="text-end">Stake</th>
+                <th class="text-end">Win %</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="6" class="text-center text-muted">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- All Games -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">📊 All Games</h3>
+        <div class="ms-auto">
+          <span class="text-muted small">
+            <i class="ti ti-click icon"></i>
+            Click any game for detailed stats
+          </span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-vcenter table-hover card-table" id="all-games-table">
+            <thead>
+              <tr>
+                <th>Away</th>
+                <th>Home</th>
+                <th>Predicted Score</th>
+                <th>Best Bet</th>
+                <th class="text-end">Spread</th>
+                <th>Spread Rec</th>
+                <th class="text-end">Total</th>
+                <th>Total Rec</th>
+                <th class="text-end">Home Win %</th>
+                <th class="text-end">EV Spread</th>
+                <th class="text-end">EV Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="11" class="text-center text-muted">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Load best bets
+fetch('/api/best-bets')
+  .then(response => response.json())
+  .then(data => {
+    const tbody = document.querySelector('#best-bets-table tbody');
+    tbody.innerHTML = '';
+    
+    if (data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted">No recommended bets this week</td></tr>';
+      return;
+    }
+    
+    data.forEach(bet => {
+      const row = document.createElement('tr');
+      
+      // Badge color based on EV
+      let badgeClass = 'badge-success';
+      if (bet.ev > 50) badgeClass = 'badge-danger';
+      else if (bet.ev > 30) badgeClass = 'badge-warning';
+      
+      row.innerHTML = `
+        <td><strong>${bet.game}</strong></td>
+        <td><span class="badge badge-outline text-primary">${bet.type}</span></td>
+        <td>${bet.recommendation}</td>
+        <td class="text-end"><span class="badge ${badgeClass}">+${bet.ev.toFixed(1)}%</span></td>
+        <td class="text-end"><strong>$${bet.stake.toFixed(0)}</strong></td>
+        <td class="text-end">${bet.probability.toFixed(1)}%</td>
+      `;
+      tbody.appendChild(row);
+    });
+  })
+  .catch(error => {
+    console.error('Error loading best bets:', error);
+    document.querySelector('#best-bets-table tbody').innerHTML = 
+      '<tr><td colspan="6" class="text-center text-danger">Error loading data</td></tr>';
+  });
+
+// Load all games
+fetch('/api/games')
+  .then(response => response.json())
+  .then(data => {
+    const tbody = document.querySelector('#all-games-table tbody');
+    tbody.innerHTML = '';
+    
+    data.forEach(game => {
+      const row = document.createElement('tr');
+      row.style.cursor = 'pointer';
+      
+      // Add click handler to go to detail page
+      row.addEventListener('click', () => {
+        window.location.href = `/game/${game.away}/${game.home}`;
+      });
+      
+      // Add hover effect
+      row.addEventListener('mouseenter', () => {
+        row.classList.add('table-active');
+      });
+      row.addEventListener('mouseleave', () => {
+        row.classList.remove('table-active');
+      });
+      
+      // Format spread with +/- sign
+      const spreadFormatted = game.spread > 0 ? `+${game.spread.toFixed(1)}` : game.spread.toFixed(1);
+      
+      row.innerHTML = `
+        <td><strong>${game.away}</strong></td>
+        <td><strong>${game.home}</strong></td>
+        <td>${game.exp_score}</td>
+        <td><span class="badge badge-outline">${game.best_bet.substring(0, 40)}</span></td>
+        <td class="text-end">${spreadFormatted}</td>
+        <td><small>${game.rec_spread.substring(0, 30)}</small></td>
+        <td class="text-end">${game.total.toFixed(1)}</td>
+        <td><small>${game.rec_total.substring(0, 30)}</small></td>
+        <td class="text-end">${game.home_win_pct.toFixed(1)}%</td>
+        <td class="text-end ${game.ev_spread > 2 ? 'text-success' : 'text-muted'}">${game.ev_spread > 0 ? '+' : ''}${game.ev_spread.toFixed(1)}%</td>
+        <td class="text-end ${game.ev_total > 2 ? 'text-success' : 'text-muted'}">${game.ev_total > 0 ? '+' : ''}${game.ev_total.toFixed(1)}%</td>
+      `;
+      tbody.appendChild(row);
+    });
+  })
+  .catch(error => {
+    console.error('Error loading games:', error);
+    document.querySelector('#all-games-table tbody').innerHTML = 
+      '<tr><td colspan="11" class="text-center text-danger">Error loading data</td></tr>';
+  });
+</script>
+{% endblock %}
+

@@ -1,0 +1,110 @@
+================================================================================
+NFL WEEKLY BETTING CARD - Ranked by Expected Value
+================================================================================
+
+Found 25 plays with EV ≥ 2%
+
+Total recommended stake: $54,121
+
+
+1. DAL@DEN - SPREAD
+   BET DAL +3.5 @ 25.0% (EV: +73.5%, Prob: 90.9%)
+   Stake: $2,500
+
+2. CHI@BAL - SPREAD
+   BET CHI +6.5 @ 25.0% (EV: +63.8%, Prob: 85.8%)
+   Stake: $2,500
+
+3. MIA@ATL - SPREAD
+   BET MIA +7.5 @ 25.0% (EV: +59.8%, Prob: 83.7%)
+   Stake: $2,500
+
+4. DAL@DEN - TOTAL
+   BET OVER 50.5 @ 25.0% (EV: +56.5%, Prob: 82.0%)
+   Stake: $2,500
+
+5. WAS@KC - TOTAL
+   BET OVER 47.5 @ 25.0% (EV: +51.2%, Prob: 79.2%)
+   Stake: $2,500
+
+6. TEN@IND - TOTAL
+   BET UNDER 47.5 @ 25.0% (EV: +39.9%, Prob: 73.3%)
+   Stake: $2,500
+
+7. TEN@IND - SPREAD
+   BET IND -14.0 @ 25.0% (EV: +39.2%, Prob: 72.9%)
+   Stake: $2,500
+
+8. MIA@ATL - TOTAL
+   BET UNDER 44.5 @ 25.0% (EV: +38.2%, Prob: 72.4%)
+   Stake: $2,500
+
+9. GB@PIT - TOTAL
+   BET OVER 45.5 @ 25.0% (EV: +38.0%, Prob: 72.3%)
+   Stake: $2,500
+
+10. GB@PIT - SPREAD
+   BET PIT +3.0 @ 25.0% (EV: +36.9%, Prob: 71.7%)
+   Stake: $2,500
+
+11. NYJ@CIN - TOTAL
+   BET UNDER 44.5 @ 25.0% (EV: +36.9%, Prob: 71.7%)
+   Stake: $2,500
+
+12. CLE@NE - SPREAD
+   BET NE -7.0 @ 25.0% (EV: +35.9%, Prob: 71.2%)
+   Stake: $2,500
+
+13. NYG@PHI - SPREAD
+   BET NYG +7.5 @ 25.0% (EV: +33.3%, Prob: 69.8%)
+   Stake: $2,500
+
+14. WAS@KC - SPREAD
+   BET WAS +12.5 @ 25.0% (EV: +30.4%, Prob: 68.3%)
+   Stake: $2,500
+
+15. BUF@CAR - SPREAD
+   BET CAR +7.5 @ 25.0% (EV: +25.4%, Prob: 65.7%)
+   Stake: $2,500
+
+16. CHI@BAL - TOTAL
+   BET UNDER 47.5 @ 25.0% (EV: +25.0%, Prob: 65.5%)
+   Stake: $2,500
+
+17. NYG@PHI - TOTAL
+   BET OVER 44.0 @ 25.0% (EV: +24.9%, Prob: 65.4%)
+   Stake: $2,500
+
+18. MIN@LAC - SPREAD
+   BET MIN +3.0 @ 25.0% (EV: +23.1%, Prob: 64.5%)
+   Stake: $2,500
+
+19. TB@NO - TOTAL
+   BET UNDER 46.5 @ 21.7% (EV: +19.7%, Prob: 62.7%)
+   Stake: $2,167
+
+20. TB@NO - SPREAD
+   BET TB -4.0 @ 20.0% (EV: +18.2%, Prob: 61.9%)
+   Stake: $1,999
+
+21. SF@HOU - SPREAD
+   BET HOU -1.5 @ 16.0% (EV: +14.5%, Prob: 60.0%)
+   Stake: $1,600
+
+22. SF@HOU - TOTAL
+   BET OVER 41.5 @ 10.7% (EV: +9.8%, Prob: 57.5%)
+   Stake: $1,075
+
+23. MIN@LAC - TOTAL
+   BET OVER 44.5 @ 10.5% (EV: +9.6%, Prob: 57.4%)
+   Stake: $1,054
+
+24. BUF@CAR - TOTAL
+   BET OVER 47.5 @ 8.6% (EV: +7.9%, Prob: 56.5%)
+   Stake: $865
+
+25. NYJ@CIN - SPREAD
+   BET CIN -6.5 @ 3.6% (EV: +3.3%, Prob: 54.1%)
+   Stake: $361
+
+================================================================================

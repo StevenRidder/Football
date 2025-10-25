@@ -1,0 +1,75 @@
+================================================================================
+BACKTEST RESULTS REPORT
+================================================================================
+
+Games Analyzed: 93
+
+────────────────────────────────────────────────────────────────────────────────
+TOTAL POINTS PREDICTION
+────────────────────────────────────────────────────────────────────────────────
+  MAE (Mean Absolute Error):  30.19 points
+  RMSE (Root Mean Squared):   35.86 points
+  Bias (Model - Actual):      -29.13 points
+  ⚠️  Systematic bias detected
+
+────────────────────────────────────────────────────────────────────────────────
+MARGIN/SPREAD PREDICTION
+────────────────────────────────────────────────────────────────────────────────
+  MAE:                        13.58 points
+  RMSE:                       18.35 points
+  Bias:                       -1.05 points
+  Spread Accuracy:            61.3%
+  ✅ PROFITABLE (+8.9% above breakeven)
+
+────────────────────────────────────────────────────────────────────────────────
+PROBABILITY CALIBRATION
+────────────────────────────────────────────────────────────────────────────────
+  Brier Score:                0.2368
+  (Lower is better, perfect = 0.000)
+  ⚠️  Moderate calibration
+
+────────────────────────────────────────────────────────────────────────────────
+GAME-BY-GAME RESULTS (Sample)
+────────────────────────────────────────────────────────────────────────────────
+  Week 1: ARI@NO
+    Predicted: 18.4-11.4 (Total: 29.8)
+    Actual:    32-13 (Total: 45)
+    Error:     Total -15.2, Margin +12.0
+  Week 1: ATL@TB
+    Predicted: 16.2-27.7 (Total: 43.9)
+    Actual:    26-41 (Total: 67)
+    Error:     Total -23.1, Margin -3.5
+  Week 1: BAL@BUF
+    Predicted: 26.3-22.7 (Total: 49.0)
+    Actual:    52-53 (Total: 105)
+    Error:     Total -56.0, Margin -4.5
+  Week 1: CAR@JAX
+    Predicted: 19.7-15.1 (Total: 34.8)
+    Actual:    16-32 (Total: 48)
+    Error:     Total -13.2, Margin -20.6
+  Week 1: CHI@MIN
+    Predicted: 11.1-19.2 (Total: 30.3)
+    Actual:    30-41 (Total: 71)
+    Error:     Total -40.7, Margin -2.9
+  Week 1: CIN@CLE
+    Predicted: 23.3-7.4 (Total: 30.6)
+    Actual:    23-22 (Total: 45)
+    Error:     Total -14.4, Margin -14.9
+  Week 1: DAL@PHI
+    Predicted: 14.7-22.6 (Total: 37.3)
+    Actual:    20-24 (Total: 44)
+    Error:     Total -6.7, Margin +3.9
+  Week 1: DEN@TEN
+    Predicted: 24.4-16.7 (Total: 41.1)
+    Actual:    26-12 (Total: 38)
+    Error:     Total +3.1, Margin +6.3
+  Week 1: DET@GB
+    Predicted: 28.3-19.3 (Total: 47.6)
+    Actual:    19-39 (Total: 58)
+    Error:     Total -10.4, Margin -28.9
+  Week 1: HOU@LA
+    Predicted: 12.5-13.9 (Total: 26.3)
+    Actual:    9-20 (Total: 29)
+    Error:     Total -2.7, Margin -9.6
+
+================================================================================

@@ -1,0 +1,35 @@
+
+team,stadium,lat,lon,is_dome,altitude_m
+ARI,State Farm Stadium,33.5276,-112.2626,1,335
+ATL,Mercedes-Benz Stadium,33.7554,-84.4008,1,320
+BAL,M&T Bank Stadium,39.2779,-76.6229,0,10
+BUF,Highmark Stadium,42.7738,-78.7868,0,220
+CAR,Bank of America Stadium,35.2251,-80.8526,0,229
+CHI,Soldier Field,41.8623,-87.6167,0,180
+CIN,Paycor Stadium,39.0954,-84.5161,0,152
+CLE,Cleveland Browns Stadium,41.5061,-81.6995,0,184
+DAL,AT&T Stadium,32.7473,-97.0945,1,195
+DEN,Empower Field at Mile High,39.7439,-105.0201,0,1609
+DET,Ford Field,42.3400,-83.0456,1,180
+GB,Lambeau Field,44.5013,-88.0622,0,191
+HOU,NRG Stadium,29.6847,-95.4107,1,12
+IND,Lucas Oil Stadium,39.7601,-86.1639,1,218
+JAX,TIAA Bank Field,30.3239,-81.6373,0,3
+KC,GEHA Field at Arrowhead,39.0490,-94.4839,0,315
+LA,SoFi Stadium,33.9535,-118.3391,1,38
+LAC,SoFi Stadium,33.9535,-118.3391,1,38
+LAR,SoFi Stadium,33.9535,-118.3391,1,38
+LV,Allegiant Stadium,36.0909,-115.1830,1,664
+MIA,Hard Rock Stadium,25.9580,-80.2389,0,2
+MIN,U.S. Bank Stadium,44.9738,-93.2578,1,255
+NE,Gillette Stadium,42.0910,-71.2643,0,116
+NO,Caesars Superdome,29.9509,-90.0810,1,1
+NYG,MetLife Stadium,40.8135,-74.0745,0,4
+NYJ,MetLife Stadium,40.8135,-74.0745,0,4
+PHI,Lincoln Financial Field,39.9007,-75.1675,0,10
+PIT,Acrisure Stadium,40.4468,-80.0158,0,226
+SEA,Lumen Field,47.5952,-122.3316,0,6
+SF,Levi's Stadium,37.4030,-121.9700,0,13
+TB,Raymond James Stadium,27.9759,-82.5033,0,7
+TEN,Nissan Stadium,36.1665,-86.7713,0,139
+WAS,Commanders Field,38.9077,-76.8663,0,15
