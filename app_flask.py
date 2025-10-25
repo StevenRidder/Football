@@ -526,66 +526,102 @@ def api_fetch_bets():
         })
 
 
-@app.route('/api/bets/simple-login', methods=['POST'])
-def api_simple_login():
-    """Simple login and fetch bets"""
+@app.route('/api/bets/upload-csv', methods=['POST'])
+def api_upload_csv():
+    """Upload CSV file with bet data"""
     try:
         data = request.json
-        email = data.get('email', '').strip()
-        password = data.get('password', '').strip()
+        csv_data = data.get('csv', '')
         
-        if not email or not password:
+        if not csv_data:
             return jsonify({
                 'success': False,
-                'message': 'Email and password required'
+                'message': 'No CSV data provided'
             })
         
-        # Import and run the simple scraper
-        import subprocess
-        import sys
+        # Parse CSV
+        import io
+        df = pd.read_csv(io.StringIO(csv_data))
         
-        # Create a temporary script with credentials
-        script_content = f'''
-import sys
-sys.path.append(".")
-from simple_bet_scraper import run_bet_scraper
-
-EMAIL = "{email}"
-PASSWORD = "{password}"
-
-success, message = run_bet_scraper(EMAIL, PASSWORD)
-print(f"SUCCESS:{success}")
-print(f"MESSAGE:{message}")
-'''
+        # Convert to our format
+        bets = []
+        for _, row in df.iterrows():
+            bet = {
+                'date': str(row.get('Date', '')),
+                'game': str(row.get('Game', '')),
+                'type': str(row.get('Type', '')),
+                'amount': float(row.get('Amount', 0)),
+                'result': str(row.get('Result', '')),
+                'profit': float(row.get('Profit', 0))
+            }
+            bets.append(bet)
         
-        # Write temp script
-        with open('temp_scraper.py', 'w') as f:
-            f.write(script_content)
+        # Save to file
+        bet_data = {
+            'timestamp': datetime.now().isoformat(),
+            'total_bets': len(bets),
+            'bets': bets
+        }
         
-        # Run it
-        result = subprocess.run([sys.executable, 'temp_scraper.py'], 
-                              capture_output=True, text=True, timeout=60)
+        with open('artifacts/bets.json', 'w') as f:
+            json.dump(bet_data, f, indent=2)
         
-        # Clean up
-        os.remove('temp_scraper.py')
+        return jsonify({
+            'success': True,
+            'message': f'Uploaded {len(bets)} bets successfully!'
+        })
         
-        # Parse output
-        output = result.stdout
-        if "SUCCESS:True" in output:
-            return jsonify({
-                'success': True,
-                'message': 'Bets fetched successfully! Check the My Bets page.'
-            })
-        else:
-            return jsonify({
-                'success': False,
-                'message': 'Failed to fetch bets. Check credentials or try again.'
-            })
-            
     except Exception as e:
         return jsonify({
             'success': False,
-            'message': f'Error: {str(e)}'
+            'message': f'CSV upload failed: {str(e)}'
+        })
+
+@app.route('/api/bets/add-manual', methods=['POST'])
+def api_add_manual():
+    """Add a bet manually"""
+    try:
+        data = request.json
+        
+        # Load existing bets
+        bets = []
+        if Path('artifacts/bets.json').exists():
+            with open('artifacts/bets.json', 'r') as f:
+                bet_data = json.load(f)
+                bets = bet_data.get('bets', [])
+        
+        # Add new bet
+        new_bet = {
+            'date': data.get('date', ''),
+            'game': data.get('game', ''),
+            'type': data.get('type', ''),
+            'amount': float(data.get('amount', 0)),
+            'result': data.get('result', ''),
+            'profit': float(data.get('amount', 0)) if data.get('result') == 'Win' else -float(data.get('amount', 0)) if data.get('result') == 'Loss' else 0
+        }
+        
+        bets.append(new_bet)
+        
+        # Save updated bets
+        bet_data = {
+            'timestamp': datetime.now().isoformat(),
+            'total_bets': len(bets),
+            'bets': bets
+        }
+        
+        Path('artifacts').mkdir(exist_ok=True)
+        with open('artifacts/bets.json', 'w') as f:
+            json.dump(bet_data, f, indent=2)
+        
+        return jsonify({
+            'success': True,
+            'message': 'Bet added successfully!'
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Failed to add bet: {str(e)}'
         })
 def api_bets_summary():
     """API endpoint for bet summary data"""

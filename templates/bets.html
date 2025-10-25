@@ -87,43 +87,86 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label class="form-label">Simple Login</label>
+                    <label class="form-label">Upload Your Bet Data</label>
                     <div class="card">
                       <div class="card-body">
-                        <h4 class="card-title">Just Enter Your Credentials</h4>
-                        <p class="text-muted">No bullshit - just works:</p>
+                        <h4 class="card-title">Safest Option: Upload CSV</h4>
+                        <p class="text-muted">Export your bets from BetOnline and upload here:</p>
                         
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label class="form-label">Email</label>
-                              <input type="email" class="form-control" id="emailInput" placeholder="your@email.com">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label class="form-label">Password</label>
-                              <input type="password" class="form-control" id="passwordInput" placeholder="Your password">
-                            </div>
-                          </div>
+                        <div class="mb-3">
+                          <label class="form-label">Choose CSV File</label>
+                          <input type="file" class="form-control" id="csvFile" accept=".csv" onchange="handleFileUpload()">
                         </div>
                         
-                        <button class="btn btn-primary" onclick="simpleLogin()">
-                          <i class="ti ti-login icon me-2"></i>
-                          Login & Get My Bets
-                        </button>
-                        <div class="form-hint mt-2">
-                          <small>This will log in and fetch your bet data automatically</small>
+                        <div class="form-hint">
+                          <strong>How to get CSV:</strong><br>
+                          1. Log into BetOnline normally<br>
+                          2. Go to Bet History<br>
+                          3. Look for "Export" or "Download" button<br>
+                          4. Save as CSV and upload here
                         </div>
                       </div>
                     </div>
                   </div>
                   
-                  
-                  <button class="btn btn-primary" onclick="fetchBets()">
-                    <i class="ti ti-download icon me-2"></i>
-                    Fetch Bets Now
-                  </button>
+                  <div class="mb-3">
+                    <label class="form-label">Manual Entry</label>
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title">Enter Your Bets Manually</h4>
+                        <p class="text-muted">Add your bets one by one:</p>
+                        
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label class="form-label">Date</label>
+                              <input type="date" class="form-control" id="betDate">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label class="form-label">Game</label>
+                              <input type="text" class="form-control" id="betGame" placeholder="e.g., KC vs BUF">
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="form-label">Bet Type</label>
+                              <select class="form-control" id="betType">
+                                <option>Spread</option>
+                                <option>Total</option>
+                                <option>Moneyline</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="form-label">Amount</label>
+                              <input type="number" class="form-control" id="betAmount" placeholder="100">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="form-label">Result</label>
+                              <select class="form-control" id="betResult">
+                                <option>Win</option>
+                                <option>Loss</option>
+                                <option>Push</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="addBet()">
+                          <i class="ti ti-plus icon me-2"></i>
+                          Add Bet
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="alert alert-info">
@@ -347,51 +390,78 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 {% endif %}
 
-// Simple login function
-function simpleLogin() {
-  const email = document.getElementById('emailInput').value.trim();
-  const password = document.getElementById('passwordInput').value.trim();
+// Handle CSV file upload
+function handleFileUpload() {
+  const file = document.getElementById('csvFile').files[0];
+  if (!file) return;
   
-  if (!email || !password) {
-    showToast('Please enter both email and password', 'warning');
-    return;
-  }
-  
-  const button = event.target;
-  const originalText = button.innerHTML;
-  button.innerHTML = '<i class="ti ti-loader-2 icon me-2"></i>Logging in...';
-  button.disabled = true;
-  
-  fetch('/api/bets/simple-login', {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const csv = e.target.result;
+    uploadCSV(csv);
+  };
+  reader.readAsText(file);
+}
+
+function uploadCSV(csvData) {
+  fetch('/api/bets/upload-csv', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      email: email,
-      password: password
-    })
+    body: JSON.stringify({ csv: csvData })
   })
   .then(response => response.json())
   .then(data => {
     if (data.success) {
       showToast(data.message, 'success');
-      // Clear password field for security
-      document.getElementById('passwordInput').value = '';
-      // Reload page to show new data
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
+      setTimeout(() => window.location.reload(), 1500);
     } else {
       showToast(data.message, 'danger');
     }
   })
   .catch(error => {
-    showToast('Login failed: ' + error.message, 'danger');
+    showToast('Upload failed: ' + error.message, 'danger');
+  });
+}
+
+// Add bet manually
+function addBet() {
+  const bet = {
+    date: document.getElementById('betDate').value,
+    game: document.getElementById('betGame').value,
+    type: document.getElementById('betType').value,
+    amount: parseFloat(document.getElementById('betAmount').value),
+    result: document.getElementById('betResult').value
+  };
+  
+  if (!bet.date || !bet.game || !bet.amount) {
+    showToast('Please fill in all fields', 'warning');
+    return;
+  }
+  
+  fetch('/api/bets/add-manual', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(bet)
   })
-  .finally(() => {
-    button.innerHTML = originalText;
-    button.disabled = false;
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      showToast('Bet added!', 'success');
+      // Clear form
+      document.getElementById('betDate').value = '';
+      document.getElementById('betGame').value = '';
+      document.getElementById('betAmount').value = '';
+      setTimeout(() => window.location.reload(), 1000);
+    } else {
+      showToast(data.message, 'danger');
+    }
+  })
+  .catch(error => {
+    showToast('Failed to add bet: ' + error.message, 'danger');
   });
 }
 
