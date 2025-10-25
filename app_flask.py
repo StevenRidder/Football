@@ -241,6 +241,10 @@ def game_detail(away, home):
             for _, espn_game in df_espn.iterrows():
                 week = espn_game['week']
                 
+                # CRITICAL FIX: Only include COMPLETED games (skip future scheduled games)
+                if not espn_game.get('completed', False):
+                    continue
+                
                 # Check if team played in this game
                 if espn_game['away_team'] == team_code:
                     is_home = False
@@ -253,6 +257,10 @@ def game_detail(away, home):
                     pts_scored = espn_game['home_score']
                     pts_allowed = espn_game['away_score']
                 else:
+                    continue
+                
+                # Skip if scores are 0-0 (likely incomplete data)
+                if pts_scored == 0 and pts_allowed == 0:
                     continue
                 
                 # Get detailed stats from NFLverse for this team/week
