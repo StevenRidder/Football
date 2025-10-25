@@ -1,0 +1,365 @@
+{% extends "base.html" %}
+
+{% block title %}My Bets{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-header d-print-none">
+    <div class="container-xl">
+      <div class="row g-2 align-items-center">
+        <div class="col">
+          <h2 class="page-title">
+            <i class="ti ti-coins icon me-2"></i>
+            My Bets
+          </h2>
+          <div class="text-muted mt-1">
+            Track your betting performance and P&L
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body">
+    <div class="container-xl">
+      
+      <!-- Summary Cards -->
+      {% if summary %}
+      <div class="row row-deck row-cards mb-4">
+        <div class="col-sm-6 col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="subheader">Total Profit</div>
+              </div>
+              <div class="h1 mb-3">
+                <span class="{% if summary.total_profit >= 0 %}text-success{% else %}text-danger{% endif %}">
+                  ${{ "%.2f"|format(summary.total_profit) }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="subheader">Total Games</div>
+              </div>
+              <div class="h1 mb-3">{{ summary.total_games }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="subheader">Win Rate</div>
+              </div>
+              <div class="h1 mb-3">{{ "%.1f"|format(summary.win_rate * 100) }}%</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="subheader">Weeks Tracked</div>
+              </div>
+              <div class="h1 mb-3">{{ summary.weeks|length }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- BetOnline Integration -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="ti ti-download icon me-2"></i>
+                Fetch Bets from BetOnline
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Request Headers (JSON)</label>
+                    <textarea class="form-control" id="headersInput" rows="8" placeholder='{
+  "cookie": "your_session_cookie_here",
+  "user-agent": "Mozilla/5.0...",
+  "origin": "https://www.betonline.ag",
+  "referer": "https://www.betonline.ag/sports/my-account"
+}'></textarea>
+                    <div class="form-hint">
+                      Paste your BetOnline request headers from DevTools → Network → Headers
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" onclick="fetchBets()">
+                    <i class="ti ti-download icon me-2"></i>
+                    Fetch Bets Now
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <div class="alert alert-info">
+                    <h4 class="alert-title">How to get headers:</h4>
+                    <ol class="mb-0">
+                      <li>Log in to BetOnline in your browser</li>
+                      <li>Open DevTools (F12) → Network tab</li>
+                      <li>Visit your Bet History page</li>
+                      <li>Click on any XHR request (e.g., <code>get-bet-history</code>)</li>
+                      <li>Copy the Request Headers section</li>
+                      <li>Paste above and click "Fetch Bets Now"</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weekly P&L Chart -->
+      {% if summary and summary.weeks %}
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Weekly P&L</h3>
+            </div>
+            <div class="card-body">
+              <div id="weeklyChart" style="height: 300px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Recent Bets Table -->
+      {% if ledger_df is not none and not ledger_df.empty %}
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Recent Bets</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-vcenter card-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Game</th>
+                    <th>Market</th>
+                    <th>Line</th>
+                    <th>Odds</th>
+                    <th>Stake</th>
+                    <th>Result</th>
+                    <th>Profit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for _, bet in ledger_df.head(20).iterrows() %}
+                  <tr>
+                    <td>{{ bet.placed_utc[:10] if bet.placed_utc else '-' }}</td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="text-muted">{{ bet.away }}</span>
+                        <span class="mx-2">@</span>
+                        <span class="text-muted">{{ bet.home }}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="badge bg-blue-lt">{{ bet.market }}</span>
+                    </td>
+                    <td>{{ bet.line if bet.line else '-' }}</td>
+                    <td>{{ bet.odds_american if bet.odds_american else '-' }}</td>
+                    <td>${{ "%.2f"|format(bet.stake) }}</td>
+                    <td>
+                      {% if bet.result %}
+                        <span class="badge {% if bet.profit > 0 %}bg-success{% elif bet.profit < 0 %}bg-danger{% else %}bg-secondary{% endif %}">
+                          {{ bet.result }}
+                        </span>
+                      {% else %}
+                        <span class="badge bg-yellow-lt">Pending</span>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <span class="{% if bet.profit > 0 %}text-success{% elif bet.profit < 0 %}text-danger{% endif %}">
+                        ${{ "%.2f"|format(bet.profit) }}
+                      </span>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- No Data State -->
+      {% if ledger_df is none or ledger_df.empty %}
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="empty">
+            <div class="empty-icon">
+              <i class="ti ti-coins icon"></i>
+            </div>
+            <p class="empty-title">No bet data found</p>
+            <p class="empty-subtitle text-muted">
+              Fetch your bets from BetOnline to start tracking your performance
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+<!-- Toast for notifications -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i class="ti ti-bell icon me-2"></i>
+      <strong class="me-auto">NFL Edge</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" id="toastBody">
+      <!-- Toast message will be inserted here -->
+    </div>
+  </div>
+</div>
+
+<script>
+// Chart.js for weekly P&L
+{% if summary and summary.weeks %}
+document.addEventListener('DOMContentLoaded', function() {
+  const ctx = document.getElementById('weeklyChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: {{ summary.weeks | tojson }},
+      datasets: [{
+        label: 'Weekly Profit',
+        data: {{ summary.profits | tojson }},
+        backgroundColor: function(context) {
+          const value = context.parsed.y;
+          return value >= 0 ? 'rgba(40, 167, 69, 0.8)' : 'rgba(220, 53, 69, 0.8)';
+        },
+        borderColor: function(context) {
+          const value = context.parsed.y;
+          return value >= 0 ? 'rgba(40, 167, 69, 1)' : 'rgba(220, 53, 69, 1)';
+        },
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+              return '$' + value.toFixed(2);
+            }
+          }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return 'Week ' + context.label + ': $' + context.parsed.y.toFixed(2);
+            }
+          }
+        }
+      }
+    }
+  });
+});
+{% endif %}
+
+// Fetch bets function
+function fetchBets() {
+  const headersText = document.getElementById('headersInput').value.trim();
+  
+  if (!headersText) {
+    showToast('Please enter BetOnline headers', 'warning');
+    return;
+  }
+  
+  let headers;
+  try {
+    headers = JSON.parse(headersText);
+  } catch (e) {
+    showToast('Invalid JSON format for headers', 'danger');
+    return;
+  }
+  
+  // Show loading state
+  const button = event.target;
+  const originalText = button.innerHTML;
+  button.innerHTML = '<i class="ti ti-loader-2 icon me-2"></i>Fetching...';
+  button.disabled = true;
+  
+  fetch('/api/bets/fetch', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ headers: headers })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      showToast(data.message, 'success');
+      // Reload page to show new data
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+    } else {
+      showToast(data.message, 'danger');
+    }
+  })
+  .catch(error => {
+    showToast('Error fetching bets: ' + error.message, 'danger');
+  })
+  .finally(() => {
+    button.innerHTML = originalText;
+    button.disabled = false;
+  });
+}
+
+// Toast notification function
+function showToast(message, type = 'info') {
+  const toastBody = document.getElementById('toastBody');
+  const toast = document.getElementById('toast');
+  
+  toastBody.textContent = message;
+  
+  // Remove existing type classes
+  toast.classList.remove('bg-success', 'bg-danger', 'bg-warning', 'bg-info');
+  
+  // Add appropriate type class
+  if (type === 'success') toast.classList.add('bg-success');
+  else if (type === 'danger') toast.classList.add('bg-danger');
+  else if (type === 'warning') toast.classList.add('bg-warning');
+  else toast.classList.add('bg-info');
+  
+  // Show toast
+  const bsToast = new bootstrap.Toast(toast);
+  bsToast.show();
+}
+</script>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% endblock %}

@@ -11,6 +11,10 @@ import io
 from nfl_edge.data_ingest import fetch_teamweeks_live
 from nfl_edge.predictions_api import fetch_all_predictions
 from nfl_edge.accuracy_tracker import create_tracker
+from nfl_edge.bets.betonline_client import (
+    fetch_all_bets, normalize_to_ledger, save_ledger, 
+    load_ledger, get_weekly_summary, _headers_from_config
+)
 
 app = Flask(__name__)
 
@@ -471,6 +475,72 @@ def accuracy():
     report['game_breakdown'] = game_breakdown
     
     return render_template('accuracy.html', report=report, season=2025)
+
+@app.route('/bets')
+def bets():
+    """My Bets tracking page"""
+    # Load existing ledger if available
+    ledger_df = load_ledger("artifacts/bets.parquet")
+    summary = get_weekly_summary(ledger_df) if ledger_df is not None else None
+    
+    return render_template('bets.html', 
+                         ledger_df=ledger_df,
+                         summary=summary)
+
+@app.route('/api/bets/fetch', methods=['POST'])
+def api_fetch_bets():
+    """API endpoint to fetch bets from BetOnline"""
+    try:
+        headers_data = request.json.get('headers', {})
+        headers = _headers_from_config(headers_data)
+        
+        # Fetch raw data
+        raw_data = fetch_all_bets(headers)
+        
+        # Normalize to ledger
+        ledger_df = normalize_to_ledger(raw_data)
+        
+        if ledger_df.empty:
+            return jsonify({
+                'success': False,
+                'message': 'No bets found. Check headers or try again while logged in.'
+            })
+        
+        # Save to file
+        save_ledger(ledger_df, "artifacts/bets.parquet")
+        
+        # Generate summary
+        summary = get_weekly_summary(ledger_df)
+        
+        return jsonify({
+            'success': True,
+            'message': f'Saved {len(ledger_df)} bets',
+            'summary': summary,
+            'recent_bets': ledger_df.head(10).to_dict('records')
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Fetch failed: {str(e)}'
+        })
+
+@app.route('/api/bets/summary')
+def api_bets_summary():
+    """API endpoint for bet summary data"""
+    ledger_df = load_ledger("artifacts/bets.parquet")
+    
+    if ledger_df is None:
+        return jsonify({
+            'success': False,
+            'message': 'No bet data found'
+        })
+    
+    summary = get_weekly_summary(ledger_df)
+    return jsonify({
+        'success': True,
+        'summary': summary
+    })
 
 @app.route('/api/record-prediction', methods=['POST'])
 def record_prediction():
