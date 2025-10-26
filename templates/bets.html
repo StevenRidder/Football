@@ -855,8 +855,12 @@ async function showBetDetails(bet) {
     document.getElementById('modalOdds').textContent = '-';
   }
   
-  // Show modal using Bootstrap
-  const modal = new bootstrap.Modal(document.getElementById('betDetailsModal'));
+  // Show modal using Bootstrap - reuse existing instance or create new one
+  const modalElement = document.getElementById('betDetailsModal');
+  let modal = bootstrap.Modal.getInstance(modalElement);
+  if (!modal) {
+    modal = new bootstrap.Modal(modalElement);
+  }
   modal.show();
 }
 
@@ -1417,6 +1421,19 @@ document.addEventListener('DOMContentLoaded', function() {
       row.setAttribute('data-ticket', ticketCell.textContent.trim());
     }
   });
+  
+  // Clean up modal backdrop when modal is hidden
+  const modalElement = document.getElementById('betDetailsModal');
+  if (modalElement) {
+    modalElement.addEventListener('hidden.bs.modal', function() {
+      // Remove any lingering backdrops
+      document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+      // Restore body scroll
+      document.body.classList.remove('modal-open');
+      document.body.style.removeProperty('overflow');
+      document.body.style.removeProperty('padding-right');
+    });
+  }
   
   // Update immediately
   updateLiveBetStatus();
