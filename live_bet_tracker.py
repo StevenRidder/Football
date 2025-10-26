@@ -8,6 +8,7 @@ import requests
 import time
 from datetime import datetime
 from nfl_edge.bets.db import BettingDB
+from player_stats_tracker import PlayerStatsTracker
 
 class LiveBetTracker:
     """Track live game status and determine bet status"""
@@ -24,6 +25,7 @@ class LiveBetTracker:
     def __init__(self):
         self.db = BettingDB()
         self.live_games = {}
+        self.player_tracker = PlayerStatsTracker()
     
     def get_pending_bets(self):
         """Get all pending bets from database"""
@@ -194,13 +196,28 @@ class LiveBetTracker:
         
         bet_type = bet.get('bet_type', '').lower()
         description = bet.get('description', '').lower()
+        full_description = bet.get('description', '')
         team = bet.get('team', '')
         
         home_score = game['home_score']
         away_score = game['away_score']
         
+        # Check for player props (passing yards, TDs, etc.)
+        # But skip parlays - they're handled by the frontend leg-by-leg
+        if 'parlay' not in bet_type:
+            if any(keyword in description for keyword in ['passing', 'rushing', 'receiving', 'reception']):
+                # This might be a single player prop bet
+                game_id = game.get('id')
+                if game_id:
+                    prop_status = self.player_tracker.check_prop_bet(game_id, full_description)
+                    if prop_status:
+                        return prop_status
+        
         # Handle totals (over/under) - don't need team match
-        if 'total' in bet_type or 'over' in description or 'under' in description:
+        # But skip if it's a player prop (has "passing", "rushing", etc.)
+        is_player_prop = any(keyword in description for keyword in ['passing', 'rushing', 'receiving', 'player stats'])
+        
+        if not is_player_prop and ('total' in bet_type or ('over' in description or 'under' in description)):
             total = float(bet.get('line', 0))
             current_total = home_score + away_score
             

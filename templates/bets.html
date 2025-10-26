@@ -442,7 +442,8 @@ function parseParlayLegs(description) {
   }
   
   // Handle format 3: Line-by-line format with pipes
-  if (description.includes('FOOTBALL - NFL -')) {
+  // Return FULL leg descriptions so getLegLiveStatus can properly detect player props
+  if (description.includes('FOOTBALL - NFL -') || description.includes('Money line -') || description.includes('Player stats -')) {
     const legs = [];
     const parts = description.split(' | ');
     
@@ -450,28 +451,9 @@ function parseParlayLegs(description) {
       // Skip the game header
       if (part.includes('FOOTBALL - NFL -')) continue;
       
-      // Extract meaningful leg info
-      if (part.includes('Money line -')) {
-        const teamMatch = part.match(/Money line - (\w+)/i);
-        if (teamMatch) legs.push(`${teamMatch[1]} ML`);
-      } else if (part.includes('Player stats -')) {
-        const propMatch = part.match(/Player stats - (.+?) (over|under|[\d+]+) (.+?) \(Game\)/i);
-        if (propMatch) {
-          const player = propMatch[1].split(' ').map(w => w[0]).join('');
-          legs.push(`${player} ${propMatch[2]} ${propMatch[3]}`);
-        }
-      } else if (part.includes('Player TDs -')) {
-        const tdMatch = part.match(/Player TDs - (.+?) Score anytime/i);
-        if (tdMatch) {
-          const player = tdMatch[1].split(' ').map(w => w[0]).join('');
-          legs.push(`${player} TD`);
-        }
-      } else if (part.includes('Spread -')) {
-        const spreadMatch = part.match(/Spread - (\w+) ([-+]\d+(?:\.\d+)?)/i);
-        if (spreadMatch) legs.push(`${spreadMatch[1]} ${spreadMatch[2]}`);
-      } else if (part.includes('Total points -')) {
-        const totalMatch = part.match(/Total points - (Over|Under) ([\d.]+)/i);
-        if (totalMatch) legs.push(`${totalMatch[1]} ${totalMatch[2]}`);
+      // Keep the FULL description for each leg so getLegLiveStatus can parse it
+      if (part.includes('Money line -') || part.includes('Player stats -') || part.includes('Spread -') || part.includes('Total points -')) {
+        legs.push(part.trim());
       }
     }
     
@@ -482,7 +464,79 @@ function parseParlayLegs(description) {
 }
 
 // Get live status for a parlay leg
-function getLegLiveStatus(leg, liveGames) {
+async function getLegLiveStatus(leg, liveGames) {
+  // Check if it's a player prop
+  // Format: "Player stats - Daniel Jones 2+ Passing TDs thrown (Game)"
+  if (leg.includes('Player stats -') || leg.includes('player stats -')) {
+    // For player props, we need to call the backend API
+    // Try each live game until we find one that has stats for this prop
+    for (const game of liveGames) {
+      if (game && game.id) {
+        try {
+          const response = await fetch(`/api/check-player-prop?game_id=${game.id}&prop=${encodeURIComponent(leg)}`);
+          const data = await response.json();
+          
+          // If we got a status (not null), this is the right game
+          if (data.status) {
+            return {
+              status: data.status,
+              game: game
+            };
+          }
+        } catch (error) {
+          console.error('Error checking player prop:', error);
+        }
+      }
+    }
+    
+    // No game found with this player
+    return {
+      status: 'neutral',
+      game: null
+    };
+  }
+  
+  // Check if it's a moneyline
+  // Format: "Money line - Colts (Game)"
+  const mlMatch = leg.match(/Money line - (\w+)/i);
+  if (mlMatch) {
+    const teamName = mlMatch[1].trim();
+    
+    // Find matching game
+    for (const game of liveGames) {
+      if (game.home_team.includes(teamName) || game.away_team.includes(teamName) ||
+          game.home_abbr === teamName || game.away_abbr === teamName) {
+        const isHome = game.home_team.includes(teamName) || game.home_abbr === teamName;
+        
+        let status;
+        if (isHome) {
+          if (game.home_score > game.away_score) {
+            status = 'winning';
+          } else if (game.home_score < game.away_score) {
+            status = 'losing';
+          } else {
+            status = 'neutral';
+          }
+        } else {
+          if (game.away_score > game.home_score) {
+            status = 'winning';
+          } else if (game.away_score < game.home_score) {
+            status = 'losing';
+          } else {
+            status = 'neutral';
+          }
+        }
+        
+        return {
+          status: status,
+          game: game
+        };
+      }
+    }
+    
+    return null;
+  }
+  
   // Check if it's a total (over/under)
   // Format: "Green Bay Packers/Pittsburgh Steelers over 46"
   const totalMatch = leg.match(/(.+?)\/(.*?)\s+(over|under)\s+([\d.]+)/i);
@@ -672,8 +726,10 @@ async function showBetDetails(bet) {
       
       let html = '<div class="list-group list-group-flush">';
       
-      legs.forEach((leg, index) => {
-        const legStatus = getLegLiveStatus(leg, liveData);
+      // Use for...of instead of forEach so we can await
+      for (let index = 0; index < legs.length; index++) {
+        const leg = legs[index];
+        const legStatus = await getLegLiveStatus(leg, liveData);
         let listItemClass = '';
         let badgeClass = 'bg-secondary';
         let statusIcon = '⚪';
@@ -718,7 +774,7 @@ async function showBetDetails(bet) {
             </div>
           </div>
         `;
-      });
+      }
       
       html += '</div>';
       html += `<div class="mt-3"><span class="badge bg-blue-lt">${legs.length} legs</span> in this ${bet.type}</div>`;

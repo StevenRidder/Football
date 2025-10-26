@@ -1496,6 +1496,28 @@ def live_bet_status():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/check-player-prop')
+def check_player_prop():
+    """Check status of a player prop bet"""
+    try:
+        game_id = request.args.get('game_id')
+        prop_description = request.args.get('prop')
+        
+        if not game_id or not prop_description:
+            return jsonify({'error': 'Missing game_id or prop parameter'}), 400
+        
+        from player_stats_tracker import PlayerStatsTracker
+        tracker = PlayerStatsTracker()
+        
+        status = tracker.check_prop_bet(game_id, prop_description)
+        
+        return jsonify({
+            'status': status,
+            'color': 'success' if status == 'winning' else 'danger' if status == 'losing' else 'warning' if status == 'neutral' else None
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/live-games')
 def live_games():
     """Get all live games with scores and recommended bet status"""
@@ -1623,6 +1645,7 @@ def live_games():
                 best_status = spread_status or total_status
             
             result.append({
+                'id': game.get('id'),  # Add game ID for player prop lookups
                 'away_team': game['away_team'],
                 'home_team': game['home_team'],
                 'away_abbr': away_abbr,  # Add abbreviations for easy matching
