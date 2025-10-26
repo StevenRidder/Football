@@ -675,5 +675,102 @@ function clearBets() {
     });
   }
 }
+
+// Live bet status tracking
+let liveStatusInterval = null;
+
+function updateLiveBetStatus() {
+  fetch('/api/live-bet-status')
+    .then(response => response.json())
+    .then(data => {
+      // Update each bet row with live status
+      Object.entries(data).forEach(([ticketNumber, betStatus]) => {
+        const row = document.querySelector(`tr[data-ticket="${ticketNumber}"]`);
+        if (row) {
+          // Use Tabler's official color classes
+          const colorClass = `text-${betStatus.color}`;
+          
+          // Update row background using Tabler's table-* classes
+          row.classList.remove('table-success', 'table-danger', 'table-warning');
+          if (betStatus.color === 'success') {
+            row.classList.add('table-success');
+          } else if (betStatus.color === 'danger') {
+            row.classList.add('table-danger');
+          } else if (betStatus.color === 'warning') {
+            row.classList.add('table-warning');
+          }
+          
+          // Add live indicator badge using Tabler badge component
+          const statusCell = row.querySelector('td:nth-child(5)');
+          if (statusCell && !statusCell.querySelector('.badge-live')) {
+            const badge = document.createElement('span');
+            badge.className = `badge badge-live bg-${betStatus.color} badge-pulse ms-2`;
+            badge.textContent = 'LIVE';
+            badge.title = `${betStatus.game.away_team} ${betStatus.game.away_score} @ ${betStatus.game.home_team} ${betStatus.game.home_score}`;
+            statusCell.appendChild(badge);
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching live status:', error);
+    });
+}
+
+// Start live tracking on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Add data-ticket attribute to rows for easier lookup
+  document.querySelectorAll('#betsTable tbody tr').forEach(row => {
+    const ticketCell = row.querySelector('td:first-child small');
+    if (ticketCell) {
+      row.setAttribute('data-ticket', ticketCell.textContent.trim());
+    }
+  });
+  
+  // Update immediately
+  updateLiveBetStatus();
+  
+  // Then update every 30 seconds
+  liveStatusInterval = setInterval(updateLiveBetStatus, 30000);
+});
+
+// Clean up interval when leaving page
+window.addEventListener('beforeunload', function() {
+  if (liveStatusInterval) {
+    clearInterval(liveStatusInterval);
+  }
+});
 </script>
+
+<!-- Add Tabler badge pulse animation using official CSS custom properties -->
+<style>
+@keyframes badge-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.badge-pulse {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+/* Use Tabler's table row hover states */
+#betsTable tbody tr.table-success {
+  --tblr-table-bg: var(--tblr-success-lt);
+  --tblr-table-hover-bg: var(--tblr-success);
+}
+
+#betsTable tbody tr.table-danger {
+  --tblr-table-bg: var(--tblr-danger-lt);
+  --tblr-table-hover-bg: var(--tblr-danger);
+}
+
+#betsTable tbody tr.table-warning {
+  --tblr-table-bg: var(--tblr-warning-lt);
+  --tblr-table-hover-bg: var(--tblr-warning);
+}
+</style>
 {% endblock %}

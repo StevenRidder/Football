@@ -15,6 +15,7 @@ from nfl_edge.bets.betonline_client import (
     fetch_all_bets, normalize_to_ledger, save_ledger, 
     load_ledger, get_weekly_summary, _headers_from_config, parse_curl_to_headers
 )
+from live_bet_tracker import LiveBetTracker
 
 app = Flask(__name__)
 
@@ -524,21 +525,36 @@ def bets():
         
         # Get summary
         summary = db.get_performance_summary()
+        
+        # Handle empty summary
+        if summary is None:
+            summary = {
+                'total_bets': 0,
+                'pending_count': 0,
+                'won_count': 0,
+                'lost_count': 0,
+                'total_wagered': 0,
+                'pending_to_win': 0,
+                'total_profit': 0,
+                'pending_amount': 0,
+                'win_rate': 0
+            }
+        
         summary_data = {
-            'total_bets': summary['total_bets'],
-            'pending': summary['pending_count'],
-            'won': summary['won_count'],
-            'lost': summary['lost_count'],
-            'total_risked': f"${summary['total_wagered']:.2f}",
-            'total_to_win': f"${summary['pending_to_win']:.2f}",
-            'total_profit': summary['total_profit'],
-            'total_amount': summary['total_wagered'],
-            'pending_amount': summary['pending_amount'],
-            'potential_win': summary['pending_to_win'],
-            'won_count': summary['won_count'],
-            'lost_count': summary['lost_count'],
-            'pending_count': summary['pending_count'],
-            'win_rate': summary['win_rate']
+            'total_bets': summary.get('total_bets') or 0,
+            'pending': summary.get('pending_count') or 0,
+            'won': summary.get('won_count') or 0,
+            'lost': summary.get('lost_count') or 0,
+            'total_risked': f"${summary.get('total_wagered') or 0:.2f}",
+            'total_to_win': f"${summary.get('pending_to_win') or 0:.2f}",
+            'total_profit': summary.get('total_profit') or 0,
+            'total_amount': summary.get('total_wagered') or 0,
+            'pending_amount': summary.get('pending_amount') or 0,
+            'potential_win': summary.get('pending_to_win') or 0,
+            'won_count': summary.get('won_count') or 0,
+            'lost_count': summary.get('lost_count') or 0,
+            'pending_count': summary.get('pending_count') or 0,
+            'win_rate': float(summary.get('win_rate') or 0)
         }
         
     finally:
@@ -1091,6 +1107,156 @@ def record_prediction():
         return jsonify({'success': True})
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 400
+
+@app.route('/api/live-bet-status')
+def live_bet_status():
+    """Get live status for all pending bets"""
+    try:
+        tracker = LiveBetTracker()
+        statuses = tracker.update_all_bets()
+        
+        # Format for frontend
+        result = {}
+        for bet_status in statuses:
+            if bet_status['live_status']:
+                result[bet_status['ticket_number']] = {
+                    'status': bet_status['live_status'],
+                    'color': tracker.get_status_color(bet_status['live_status']),
+                    'game': bet_status['game_info']
+                }
+        
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/live-games')
+def live_games():
+    """Get all live games with scores and recommended bet status"""
+    try:
+        # Team name to abbreviation mapping
+        TEAM_MAP = {
+            'Arizona Cardinals': 'ARI', 'Atlanta Falcons': 'ATL', 'Baltimore Ravens': 'BAL',
+            'Buffalo Bills': 'BUF', 'Carolina Panthers': 'CAR', 'Chicago Bears': 'CHI',
+            'Cincinnati Bengals': 'CIN', 'Cleveland Browns': 'CLE', 'Dallas Cowboys': 'DAL',
+            'Denver Broncos': 'DEN', 'Detroit Lions': 'DET', 'Green Bay Packers': 'GB',
+            'Houston Texans': 'HOU', 'Indianapolis Colts': 'IND', 'Jacksonville Jaguars': 'JAX',
+            'Kansas City Chiefs': 'KC', 'Las Vegas Raiders': 'LV', 'Los Angeles Chargers': 'LAC',
+            'Los Angeles Rams': 'LAR', 'Miami Dolphins': 'MIA', 'Minnesota Vikings': 'MIN',
+            'New England Patriots': 'NE', 'New Orleans Saints': 'NO', 'New York Giants': 'NYG',
+            'New York Jets': 'NYJ', 'Philadelphia Eagles': 'PHI', 'Pittsburgh Steelers': 'PIT',
+            'San Francisco 49ers': 'SF', 'Seattle Seahawks': 'SEA', 'Tampa Bay Buccaneers': 'TB',
+            'Tennessee Titans': 'TEN', 'Washington Commanders': 'WAS'
+        }
+        
+        tracker = LiveBetTracker()
+        
+        # Get all live games from ESPN
+        all_live_games = []
+        for sport in ['NFL']:  # Can add more sports later
+            games = tracker.get_live_games(sport)
+            all_live_games.extend(games)
+        
+        # Load predictions to match recommendations
+        df = load_latest_predictions()
+        
+        result = []
+        for game in all_live_games:
+            # Convert full names to abbreviations
+            away_abbr = TEAM_MAP.get(game['away_team'], game['away_team'])
+            home_abbr = TEAM_MAP.get(game['home_team'], game['home_team'])
+            
+            # Try to find this game in predictions
+            game_row = None
+            if df is not None:
+                # Match by team abbreviations
+                for _, row in df.iterrows():
+                    if (away_abbr == row.get('away', '') and 
+                        home_abbr == row.get('home', '')):
+                        game_row = row
+                        break
+            
+            # Determine if recommended bets are winning
+            spread_status = None
+            total_status = None
+            
+            if game_row is not None:
+                # Check spread recommendation
+                rec_spread = game_row.get('Rec_spread', game_row.get('rec_spread', ''))
+                if 'BET' in str(rec_spread):
+                    # Parse which team and line
+                    if away_abbr in str(rec_spread) or 'away' in str(rec_spread).lower():
+                        # Recommended away team
+                        score_diff = game['away_score'] - game['home_score']
+                        # Extract line from recommendation (e.g., "+3.5")
+                        import re
+                        line_match = re.search(r'([+-]?\d+\.?\d*)', rec_spread)
+                        if line_match:
+                            line = float(line_match.group(1))
+                            if score_diff + line > 0:
+                                spread_status = 'winning'
+                            elif score_diff + line < 0:
+                                spread_status = 'losing'
+                            else:
+                                spread_status = 'neutral'
+                    elif home_abbr in str(rec_spread) or 'home' in str(rec_spread).lower():
+                        # Recommended home team
+                        score_diff = game['home_score'] - game['away_score']
+                        import re
+                        line_match = re.search(r'([+-]?\d+\.?\d*)', rec_spread)
+                        if line_match:
+                            line = float(line_match.group(1))
+                            if score_diff + line > 0:
+                                spread_status = 'winning'
+                            elif score_diff + line < 0:
+                                spread_status = 'losing'
+                            else:
+                                spread_status = 'neutral'
+                
+                # Check total recommendation
+                rec_total = game_row.get('Rec_total', game_row.get('rec_total', ''))
+                if 'OVER' in str(rec_total):
+                    total_score = game['away_score'] + game['home_score']
+                    import re
+                    line_match = re.search(r'(\d+\.?\d*)', rec_total)
+                    if line_match:
+                        total_line = float(line_match.group(1))
+                        if total_score > total_line:
+                            total_status = 'winning'
+                        elif total_score < total_line:
+                            total_status = 'losing'
+                        else:
+                            total_status = 'neutral'
+                elif 'UNDER' in str(rec_total):
+                    total_score = game['away_score'] + game['home_score']
+                    import re
+                    line_match = re.search(r'(\d+\.?\d*)', rec_total)
+                    if line_match:
+                        total_line = float(line_match.group(1))
+                        if total_score < total_line:
+                            total_status = 'winning'
+                        elif total_score > total_line:
+                            total_status = 'losing'
+                        else:
+                            total_status = 'neutral'
+            
+            result.append({
+                'away_team': game['away_team'],
+                'home_team': game['home_team'],
+                'away_abbr': away_abbr,  # Add abbreviations for easy matching
+                'home_abbr': home_abbr,
+                'away_score': game['away_score'],
+                'home_score': game['home_score'],
+                'period': game['period'],
+                'clock': game.get('clock', ''),
+                'status': game['status'],
+                'spread_status': spread_status,
+                'total_status': total_status,
+                'best_status': spread_status or total_status  # Use whichever has a status
+            })
+        
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=9876)

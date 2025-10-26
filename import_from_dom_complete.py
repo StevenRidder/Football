@@ -1,160 +1,147 @@
 #!/usr/bin/env python3
 """
-Import ALL bets from the DOM extracted file
+Import complete bet data from the BetOnline DOM extraction into the database.
 """
 import re
-from datetime import datetime
+import sys
+sys.path.insert(0, '/Users/steveridder/Git/Football')
+
 from nfl_edge.bets.db import BettingDB
 
-def extract_all_bets_from_dom():
-    """Extract all bets from the DOM file"""
-    with open('extracted_bets_raw.txt', 'r') as f:
-        content = f.read()
+def parse_bets_from_text(text):
+    """Parse bet data from the extracted text."""
+    lines = text.split('\n')
+    bets = []
     
-    # Pattern: ticket_id date ... Pending ... $amount
-    pattern = r'(\d{9,10}-\d+)\s+(\d{2}/\d{2}/\d{4})[^$]*?Pending[^$]*?\$(\d+\.\d{2})'
-    matches = re.findall(pattern, content)
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        
+        # Look for ticket numbers
+        if re.match(r'^\d{9}-\d+$', line):
+            ticket_id = line
+            
+            # Next lines: date, description, type, status, amount, to_win
+            if i + 6 < len(lines):
+                date = lines[i + 1].strip()
+                description = lines[i + 2].strip()
+                bet_type = lines[i + 3].strip()
+                status = lines[i + 4].strip()
+                amount_line = lines[i + 5].strip()
+                to_win_line = lines[i + 6].strip()
+                
+                # Only add if status is valid
+                if status in ['Pending', 'Won', 'Lost', 'Cancelled']:
+                    # Parse amount
+                    amount_str = amount_line.replace('$', '').replace(',', '')
+                    try:
+                        amount = float(amount_str)
+                    except:
+                        amount = 0.0
+                    
+                    # Parse to_win
+                    to_win_str = to_win_line.replace('$', '').replace(',', '').replace('-', '0')
+                    try:
+                        to_win = float(to_win_str)
+                    except:
+                        to_win = 0.0
+                    
+                    bets.append({
+                        'ticket_id': ticket_id,
+                        'date': date,
+                        'description': description,
+                        'type': bet_type,
+                        'status': status,
+                        'amount': amount,
+                        'to_win': to_win
+                    })
+                    i += 7
+                    continue
+        i += 1
     
-    # Deduplicate by ticket_id (each bet appears multiple times in DOM)
-    bets_dict = {}
-    for ticket_id, date_str, amount_str in matches:
-        if ticket_id not in bets_dict:
-            bets_dict[ticket_id] = {
-                'ticket_id': ticket_id,
-                'date': date_str,
-                'amount': float(amount_str),
-                'status': 'Pending'
-            }
-    
-    # Also get Won/Lost bets
-    pattern_won = r'(\d{9,10}-\d+)\s+(\d{2}/\d{2}/\d{4})[^$]*?Won[^$]*?\$(\d+\.\d{2})'
-    matches_won = re.findall(pattern_won, content)
-    for ticket_id, date_str, amount_str in matches_won:
-        if ticket_id not in bets_dict:
-            bets_dict[ticket_id] = {
-                'ticket_id': ticket_id,
-                'date': date_str,
-                'amount': float(amount_str),
-                'status': 'Won'
-            }
-    
-    pattern_lost = r'(\d{9,10}-\d+)\s+(\d{2}/\d{2}/\d{4})[^$]*?Lost[^$]*?\$(\d+\.\d{2})'
-    matches_lost = re.findall(pattern_lost, content)
-    for ticket_id, date_str, amount_str in matches_lost:
-        if ticket_id not in bets_dict:
-            bets_dict[ticket_id] = {
-                'ticket_id': ticket_id,
-                'date': date_str,
-                'amount': float(amount_str),
-                'status': 'Lost'
-            }
-    
-    return list(bets_dict.values())
+    return bets
 
 def main():
-    print("📊 Importing ALL bets from DOM file...")
+    # Read the extracted data
+    with open('/Users/steveridder/Git/Football/extracted_bets_complete.txt', 'r') as f:
+        text = f.read()
     
-    bets = extract_all_bets_from_dom()
-    print(f"✅ Found {len(bets)} unique bets in DOM file")
+    # Parse bets
+    all_bets = parse_bets_from_text(text)
+    print(f"Parsed {len(all_bets)} total bets")
+    
+    # Deduplicate by ticket_id
+    unique_bets = {}
+    for bet in all_bets:
+        if bet['ticket_id'] not in unique_bets:
+            unique_bets[bet['ticket_id']] = bet
+    
+    print(f"Found {len(unique_bets)} unique bets")
     
     # Calculate totals
-    pending_total = sum(b['amount'] for b in bets if b['status'] == 'Pending')
-    total_wagered = sum(b['amount'] for b in bets)
+    pending_total = sum(bet['amount'] for bet in unique_bets.values() if bet['status'] == 'Pending')
+    pending_count = sum(1 for bet in unique_bets.values() if bet['status'] == 'Pending')
     
-    print(f"\n📈 From DOM file:")
-    print(f"   Total bets: {len(bets)}")
-    print(f"   Pending: ${pending_total:.2f}")
-    print(f"   Total wagered: ${total_wagered:.2f}")
+    print(f"Pending: {pending_count} bets, ${pending_total:.2f}")
     
-    print(f"\n⚠️  NOTE: You expect $561.33 pending")
-    print(f"   DOM file only has: ${pending_total:.2f}")
-    print(f"   Missing: ${561.33 - pending_total:.2f}")
-    print(f"\n   The DOM snapshot is incomplete!")
-    print(f"   You need to scroll down on BetOnline to load ALL bets,")
-    print(f"   then re-run the browser extraction script.")
-    
-    # Ask if user wants to import what we have
-    print(f"\n❓ Import the {len(bets)} bets we DO have? (y/n)")
-    response = input().strip().lower()
-    
-    if response != 'y':
-        print("❌ Import cancelled")
-        return
-    
-    # Initialize database
+    # Connect to database
     db = BettingDB()
-    print("\n🔧 Clearing existing data...")
-    conn = db.connect()
-    with conn.cursor() as cur:
-        cur.execute("DELETE FROM parlay_legs")
-        cur.execute("DELETE FROM bets")
-    conn.commit()
-    print("✅ Database cleared")
+    db.connect()
     
-    # Import bets
-    print(f"\n📥 Importing {len(bets)} bets...")
-    imported = 0
+    # Clear existing data
+    print("\nClearing existing database data...")
+    cursor = db.conn.cursor()
+    cursor.execute("DELETE FROM parlay_legs")
+    cursor.execute("DELETE FROM bets")
+    db.conn.commit()
+    cursor.close()
     
-    for bet in bets:
-        try:
-            # Parse date
-            date_obj = datetime.strptime(bet['date'], '%m/%d/%Y').date()
-            
-            # Determine bet type
-            ticket_id = bet['ticket_id']
-            if '-' in ticket_id and ticket_id.split('-')[0] == '905768987':
-                bet_type = 'Parlay'
-                description = f"Parlay (Round Robin)"
-            elif bet['amount'] >= 10:
-                bet_type = 'Parlay'
-                description = f"Parlay"
-            else:
-                bet_type = 'Parlay'
-                description = f"Parlay"
-            
-            # Calculate profit
-            if bet['status'] == 'Won':
-                profit = bet['amount']  # Simplified
-            elif bet['status'] == 'Lost':
-                profit = -bet['amount']
-            else:
-                profit = 0
-            
-            bet_data = {
-                'ticket_id': ticket_id,
-                'date': date_obj,
-                'description': description,
-                'type': bet_type,
-                'status': bet['status'],
-                'amount': bet['amount'],
-                'to_win': 0,  # Not in DOM
-                'profit': profit,
-                'is_round_robin': False,
-                'round_robin_parent': None
-            }
-            
-            db.insert_bet(bet_data)
-            imported += 1
-            
-        except Exception as e:
-            print(f"⚠️  Error importing {bet['ticket_id']}: {e}")
-            continue
+    # Insert bets
+    print("Inserting bets into database...")
+    for bet in unique_bets.values():
+        # Calculate profit
+        profit = 0
+        if bet['status'] == 'Won':
+            profit = bet['to_win']
+        elif bet['status'] == 'Lost':
+            profit = -bet['amount']
+        
+        db.insert_bet({
+            'ticket_id': bet['ticket_id'],
+            'date': bet['date'],
+            'description': bet['description'],
+            'type': bet['type'],
+            'status': bet['status'],
+            'amount': bet['amount'],
+            'to_win': bet['to_win'],
+            'profit': profit
+        })
+    
+    print(f"\n✓ Successfully imported {len(unique_bets)} bets")
+    
+    # Verify
+    cursor = db.conn.cursor()
+    cursor.execute("""
+        SELECT 
+            COUNT(*),
+            SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END),
+            SUM(CASE WHEN status = 'Pending' THEN amount ELSE 0 END)
+        FROM bets
+    """)
+    result = cursor.fetchone()
+    cursor.close()
+    
+    print(f"\nDatabase verification:")
+    if result:
+        print(f"  Result: {result}")
+        print(f"  Result length: {len(result)}")
+        if len(result) >= 3:
+            total_bets, pending_count, pending_total = result
+            print(f"  Total bets: {total_bets}")
+            print(f"  Pending bets: {pending_count}")
+            print(f"  Pending total: ${float(pending_total or 0):.2f}")
     
     db.close()
-    
-    print(f"\n✅ Import complete!")
-    print(f"   📝 Imported {imported} bets")
-    
-    # Show summary
-    db2 = BettingDB()
-    summary = db2.get_performance_summary()
-    db2.close()
-    
-    print(f"\n📈 Database Summary:")
-    print(f"   Total Bets: {summary['total_bets']}")
-    print(f"   Total Wagered: ${summary['total_wagered']:.2f}")
-    print(f"   Pending: {summary['pending_count']} (${summary['pending_amount']:.2f})")
 
 if __name__ == '__main__':
     main()
-

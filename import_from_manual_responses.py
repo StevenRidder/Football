@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Extract bet data from Chrome HAR (HTTP Archive) file
+Import bets from manually copied Network tab responses
 """
 
 import json
@@ -12,42 +12,57 @@ sys.path.insert(0, str(Path(__file__).parent))
 from nfl_edge.bets.db import BettingDB
 
 
-def extract_bets_from_har(har_file: str):
-    """Extract all bet-history responses from HAR file"""
+def parse_responses_file(file_path: str):
+    """Parse file with multiple JSON responses separated by ---RESPONSE---"""
     
-    print(f"📖 Reading HAR file: {har_file}...")
-    with open(har_file, 'r') as f:
-        har_data = json.load(f)
+    print(f"📖 Reading responses from: {file_path}...")
+    with open(file_path, 'r') as f:
+        content = f.read()
     
+    # Split by separator or try to parse as single JSON or multiple JSONs
     all_bets = []
     
-    # Find all get-bet-history responses
-    for entry in har_data['log']['entries']:
-        url = entry['request']['url']
-        
-        if 'get-bet-history' in url:
-            try:
-                response_content = entry['response']['content']
-                if 'text' in response_content:
-                    response_data = json.loads(response_content['text'])
-                    
-                    if 'Data' in response_data and response_data['Data']:
-                        bets = response_data['Data']
-                        all_bets.extend(bets)
-                        print(f"  ✓ Found {len(bets)} bets (TotalRows: {response_data.get('TotalRows', '?')})")
-            except Exception as e:
-                print(f"  ⚠️  Failed to parse response: {e}")
+    # Try splitting by separator first
+    if '---RESPONSE---' in content:
+        parts = content.split('---RESPONSE---')
+    else:
+        # Try to split by }{ pattern (multiple JSON objects concatenated)
+        parts = content.split('}{')
+        parts = [
+            (parts[0] if i == 0 else '{' + parts[i]) + ('}' if i < len(parts) - 1 else '')
+            for i in range(len(parts))
+        ]
+    
+    print(f"Found {len(parts)} response parts\n")
+    
+    for i, part in enumerate(parts, 1):
+        part = part.strip()
+        if not part:
+            continue
+            
+        try:
+            data = json.loads(part)
+            
+            if 'Data' in data and data['Data']:
+                bets = data['Data']
+                all_bets.extend(bets)
+                print(f"  ✓ Response {i}: {len(bets)} bets (TotalRows: {data.get('TotalRows', '?')})")
+            else:
+                print(f"  ⚠️  Response {i}: No Data field")
+                
+        except json.JSONDecodeError as e:
+            print(f"  ❌ Response {i}: Failed to parse JSON: {e}")
     
     # Deduplicate
     unique_bets = {}
     for bet in all_bets:
-        key = f"{bet['TicketNumber']}-{bet.get('PlacedDate', bet.get('Date', ''))}"
+        key = f"{bet['TicketNumber']}-{bet.get('Date', bet.get('PlacedDate', ''))}"
         if key not in unique_bets:
             unique_bets[key] = bet
     
     bets = list(unique_bets.values())
     
-    print(f"\n✅ Extracted {len(bets)} unique bets")
+    print(f"\n✅ Extracted {len(bets)} unique bets from {len(all_bets)} total")
     
     return bets
 
@@ -148,25 +163,29 @@ def import_bets(bets):
 
 
 if __name__ == '__main__':
-    har_file = '/Users/steveridder/Downloads/www.betonline.ag.har'
+    file_path = '/Users/steveridder/Downloads/all_responses.txt'
     
-    if not Path(har_file).exists():
-        print(f"❌ HAR file not found: {har_file}")
-        print("\nTo create a HAR file:")
-        print("1. Open BetOnline bet history page")
-        print("2. Open DevTools (F12) → Network tab")
-        print("3. Scroll/filter to load ALL bet data")
-        print("4. Right-click in Network tab → 'Save all as HAR with content'")
-        print("5. Save to ~/Downloads/www.betonline.ag.har")
+    if not Path(file_path).exists():
+        print(f"❌ File not found: {file_path}")
+        print("\nTo create this file:")
+        print("1. Go to BetOnline bet history")
+        print("2. Open DevTools → Network tab")
+        print("3. Clear network log")
+        print("4. Scroll to load bets")
+        print("5. Find ALL 'get-bet-history' requests")
+        print("6. For EACH request:")
+        print("   - Click it")
+        print("   - Go to Response tab")
+        print("   - Right-click → Copy value")
+        print("   - Paste into text file")
+        print("   - Add '---RESPONSE---' between each")
+        print("7. Save as ~/Downloads/all_responses.txt")
         sys.exit(1)
     
-    bets = extract_bets_from_har(har_file)
+    bets = parse_responses_file(file_path)
     
     if bets:
         import_bets(bets)
     else:
-        print("❌ No bets found in HAR file!")
-        print("Make sure you:")
-        print("1. Loaded the bet history page fully")
-        print("2. Scrolled to load all pages")
-        print("3. Captured the network traffic WHILE loading")
+        print("❌ No bets found!")
+

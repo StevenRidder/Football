@@ -1,0 +1,227 @@
+My Promotions
+Refer a Friend
+Bet History
+Transactions
+Payments
+Security Central
+10/20/2025 to 10/26/2025
+Last Week's Figures
+Monday	Tuesday	Wednesday	Thursday	Friday	Saturday	Sunday	Total
+-16.64	0	0	-129.24	0	0	0	-145.88
+Note:
+Daily Figures are updated in EST (Eastern Standard Time).
+Daily Figures include Sports, Live Betting, Racebook, Esports and Casino Transactions.
+To see details of your Casino and Esports Transactions please go to Transactions.
+Reset Filters
+Date Range   
+Wager Type
+SportsBook
+    Spread
+    Spread FB
+    Money Line
+    Money Line FB
+    Total
+    Total FB
+    Team Total
+    Team Total FB
+    Parlay
+    If Bet
+    Teaser
+    Future/Prop
+    Action Reverse
+    Same Game Parlay
+    Live Parlay
+Live Betting
+Racebook
+Player Props
+Status
+Pending
+Won
+Lost
+Cancelled
+7 days15 days30 days
+From:
+To:
+Ticket #
+Date
+Description
+Type
+Status
+Amount
+To Win
+ 906320708-1
+10/25/2025
+FOOTBALL - NFL - New England Patriots v Cleveland Browns | Total points - Over 40.5 (Game) | Money line - Patriots (Game) | Player TDs - Kayshon Boutte Score anytime (Game) | Player stats - Drake Maye over 199.5 Passing yds (Game)
+Same Game Parlay
+Pending
+$6.33
+$41.15
+ 905966563-1
+10/24/2025
+Parlay (12 Teams)
+Parlay
+Pending
+$15.00
+$37,377.61
+ 905966488-1
+10/24/2025
+Parlay (12 Teams)
+Parlay
+Pending
+$10.00
+$24,489.42
+ 905966240-1
+10/24/2025
+Parlay (12 Teams)
+Parlay
+Pending
+$10.00
+$24,917.43
+ 905966117-1
+10/24/2025
+Parlay (12 Teams)
+Parlay
+Pending
+$10.00
+$544.70
+ 905965992-1
+10/24/2025
+Parlay (12 Teams)
+Parlay
+Pending
+$10.00
+$22,063.99
+ 905836715-1
+10/23/2025
+VIKINGS at CHARGERS - Race To 15 Points (OT Included) - VIKINGS
+Live
+Lost
+$10.00
+-
+ 905836714-1
+10/23/2025
+VIKINGS at CHARGERS - VIKINGS - Team Total - OVER 17.5
+Live
+Lost
+$10.00
+-
+ 905836713-1
+10/23/2025
+VIKINGS at CHARGERS - CHARGERS - Team Total - UNDER 23.5
+Live
+Lost
+$10.00
+-
+ 905836544-1
+10/23/2025
+VIKINGS at CHARGERS - Total - OVER 41.5
+Live
+Won
+$20.00
+$16.67
+ 905836398-1
+10/23/2025
+VIKINGS at CHARGERS - Moneyline - VIKINGS
+Live
+Lost
+$50.00
+-
+ 905769902-1
+10/23/2025
+FOOTBALL - NFL - New England Patriots v Cleveland Browns | Total points - Over 40.5 (Game) | Player TDs - Kayshon Boutte Score anytime (Game) | Player TDs - R. Stevenson Score anytime (Game) | Player stats - Drake Maye over 174.5 Passing yds (Game) | Spread - Patriots -7.5 (Game)
+Same Game Parlay
+Pending
+$25.00
+$250.00
+ 905769430-1
+10/23/2025
+FOOTBALL - NFL - New England Patriots v Cleveland Browns | Total points - Over 40.5 (Game) | Money line - Patriots (Game) | Player stats - Drake Maye 1+ Passing TDs thrown (Game) | Player stats - Drake Maye over 199.5 Passing yds (Game)
+Same Game Parlay
+Pending
+$50.00
+$100.00
+ 905769168-1
+10/23/2025
+FOOTBALL - 274 New England Patriots -7 -105
+Spread
+Pending
+$100.00
+$95.24
+ 905768987-210
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$5.74
+ 905768987-209
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$5.89
+ 905768987-208
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$5.69
+ 905768987-207
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$5.92
+ 905768987-206
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$5.83
+ 905768987-205
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$5.63
+ 905768987-204
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$5.86
+ 905768987-203
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$5.77
+ 905768987-202
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$6.00
+ 905768987-201
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$5.80
+ 905768987-200
+10/23/2025
+Parlay (3 Teams)
+Parlay
+Pending
+$1.00
+$6.04
+

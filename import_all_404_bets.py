@@ -1,59 +1,28 @@
 #!/usr/bin/env python3
 """
-Extract bet data from Chrome HAR (HTTP Archive) file
+Import ALL 404 bets from the complete JSON export
 """
 
 import json
 import sys
-from pathlib import Path
+from datetime import datetime
 from dateutil import parser as date_parser
+from pathlib import Path
 
+# Add nfl_edge to path
 sys.path.insert(0, str(Path(__file__).parent))
+
 from nfl_edge.bets.db import BettingDB
 
 
-def extract_bets_from_har(har_file: str):
-    """Extract all bet-history responses from HAR file"""
+def import_bets(json_file: str):
+    """Import all bets from JSON file"""
     
-    print(f"📖 Reading HAR file: {har_file}...")
-    with open(har_file, 'r') as f:
-        har_data = json.load(f)
+    print(f"📖 Reading {json_file}...")
+    with open(json_file, 'r') as f:
+        bets = json.load(f)
     
-    all_bets = []
-    
-    # Find all get-bet-history responses
-    for entry in har_data['log']['entries']:
-        url = entry['request']['url']
-        
-        if 'get-bet-history' in url:
-            try:
-                response_content = entry['response']['content']
-                if 'text' in response_content:
-                    response_data = json.loads(response_content['text'])
-                    
-                    if 'Data' in response_data and response_data['Data']:
-                        bets = response_data['Data']
-                        all_bets.extend(bets)
-                        print(f"  ✓ Found {len(bets)} bets (TotalRows: {response_data.get('TotalRows', '?')})")
-            except Exception as e:
-                print(f"  ⚠️  Failed to parse response: {e}")
-    
-    # Deduplicate
-    unique_bets = {}
-    for bet in all_bets:
-        key = f"{bet['TicketNumber']}-{bet.get('PlacedDate', bet.get('Date', ''))}"
-        if key not in unique_bets:
-            unique_bets[key] = bet
-    
-    bets = list(unique_bets.values())
-    
-    print(f"\n✅ Extracted {len(bets)} unique bets")
-    
-    return bets
-
-
-def import_bets(bets):
-    """Import bets to database"""
+    print(f"✅ Loaded {len(bets)} bets from file")
     
     # Calculate expected totals
     pending_bets = [b for b in bets if b['WagerStatus'] == 'Pending']
@@ -113,7 +82,7 @@ def import_bets(bets):
         except Exception as e:
             error_msg = f"Ticket {bet.get('TicketNumber')}: {e}"
             errors.append(error_msg)
-            if len(errors) <= 5:
+            if len(errors) <= 5:  # Only print first 5 errors
                 print(f"  ❌ {error_msg}")
     
     db.conn.commit()
@@ -148,25 +117,22 @@ def import_bets(bets):
 
 
 if __name__ == '__main__':
-    har_file = '/Users/steveridder/Downloads/www.betonline.ag.har'
+    # Look for the JSON file
+    json_file = '/Users/steveridder/Downloads/all_400_bets_complete.json'
     
-    if not Path(har_file).exists():
-        print(f"❌ HAR file not found: {har_file}")
-        print("\nTo create a HAR file:")
-        print("1. Open BetOnline bet history page")
-        print("2. Open DevTools (F12) → Network tab")
-        print("3. Scroll/filter to load ALL bet data")
-        print("4. Right-click in Network tab → 'Save all as HAR with content'")
-        print("5. Save to ~/Downloads/www.betonline.ag.har")
+    if not Path(json_file).exists():
+        # Try alternate name
+        json_file = '/Users/steveridder/Downloads/all_404_bets_complete.json'
+    
+    if not Path(json_file).exists():
+        print(f"❌ File not found: {json_file}")
+        print("\nPlease:")
+        print("1. Go to https://sports.betonline.ag/my-account/bet-history")
+        print("2. Open DevTools (F12) → Console tab")
+        print("3. Copy/paste the contents of complete_bet_fetch.js")
+        print("4. Wait for it to download all_400_bets_complete.json")
+        print("5. Then run this script again")
         sys.exit(1)
     
-    bets = extract_bets_from_har(har_file)
-    
-    if bets:
-        import_bets(bets)
-    else:
-        print("❌ No bets found in HAR file!")
-        print("Make sure you:")
-        print("1. Loaded the bet history page fully")
-        print("2. Scrolled to load all pages")
-        print("3. Captured the network traffic WHILE loading")
+    import_bets(json_file)
+

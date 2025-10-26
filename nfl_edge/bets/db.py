@@ -61,7 +61,7 @@ class BettingDB:
                 'ticket_id': bet['ticket_id'],
                 'date': bet['date'],
                 'description': bet.get('description', ''),
-                'bet_type': bet['type'],
+                'bet_type': bet.get('bet_type', bet.get('type', 'Unknown')),
                 'status': bet['status'],
                 'amount': bet['amount'],
                 'to_win': bet.get('to_win', 0),

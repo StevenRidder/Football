@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "BetOnline Data Fetcher",
+  "version": "1.0",
+  "description": "Fetch all bet data from BetOnline bypassing CORS",
+  "permissions": [
+    "webRequest",
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://*.betonline.ag/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.betonline.ag/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["https://*.betonline.ag/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
+

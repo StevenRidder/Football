@@ -224,6 +224,164 @@ fetch('/api/games')
     document.querySelector('#all-games-table tbody').innerHTML = 
       '<tr><td colspan="11" class="text-center text-danger">Error loading data</td></tr>';
   });
+
+// Live game status tracking - colors ALL games based on live scores
+let liveStatusInterval = null;
+
+function updateLiveGameStatus() {
+  fetch('/api/live-games')
+    .then(response => response.json())
+    .then(liveGames => {
+      // Update all-games table with live scores and colors
+      const allGamesRows = document.querySelectorAll('#all-games-table tbody tr');
+      
+      allGamesRows.forEach(row => {
+        const awayTeam = row.querySelector('td:first-child')?.textContent.trim();
+        const homeTeam = row.querySelector('td:nth-child(2)')?.textContent.trim();
+        
+        // Find matching live game using abbreviations
+        const liveGame = liveGames.find(g => 
+          g.away_abbr === awayTeam && g.home_abbr === homeTeam
+        );
+        
+        if (liveGame) {
+          // Remove old colors
+          row.classList.remove('table-success', 'table-danger', 'table-warning', 'table-info');
+          
+          // Color based on recommendation status
+          if (liveGame.best_status === 'winning') {
+            row.classList.add('table-success');
+          } else if (liveGame.best_status === 'losing') {
+            row.classList.add('table-danger');
+          } else if (liveGame.best_status === 'neutral') {
+            row.classList.add('table-warning');
+          } else {
+            row.classList.add('table-info'); // Game is live but no clear status
+          }
+          
+          // Add LIVE badge with current score
+          const scoreCell = row.querySelector('td:nth-child(3)');
+          if (scoreCell) {
+            // Remove old badge if exists
+            const oldBadge = scoreCell.querySelector('.badge-live');
+            if (oldBadge) oldBadge.remove();
+            
+            const badge = document.createElement('span');
+            badge.className = 'badge badge-live bg-info badge-pulse ms-2';
+            badge.textContent = 'LIVE';
+            badge.title = `${liveGame.away_team} ${liveGame.away_score} @ ${liveGame.home_team} ${liveGame.home_score} - ${liveGame.status}`;
+            scoreCell.appendChild(badge);
+            
+            // Update score display
+            const currentScore = ` (${liveGame.away_score}-${liveGame.home_score})`;
+            if (!scoreCell.textContent.includes(currentScore)) {
+              const textNode = scoreCell.childNodes[0];
+              if (textNode) {
+                textNode.textContent = textNode.textContent.split('(')[0].trim() + currentScore;
+              }
+            }
+          }
+        }
+      });
+      
+      // Update best bets table too
+      const bestBetsRows = document.querySelectorAll('#best-bets-table tbody tr');
+      bestBetsRows.forEach(row => {
+        const gameText = row.querySelector('td:first-child')?.textContent.trim();
+        
+        // Find matching live game using abbreviations (gameText is like "MIN @ LAC")
+        const liveGame = liveGames.find(g => 
+          gameText.includes(g.away_abbr) && gameText.includes(g.home_abbr)
+        );
+        
+        if (liveGame) {
+          // Remove old colors
+          row.classList.remove('table-success', 'table-danger', 'table-warning');
+          
+          // Color based on recommendation status
+          if (liveGame.best_status === 'winning') {
+            row.classList.add('table-success');
+          } else if (liveGame.best_status === 'losing') {
+            row.classList.add('table-danger');
+          } else if (liveGame.best_status === 'neutral') {
+            row.classList.add('table-warning');
+          }
+          
+          // Add LIVE badge
+          const gameCell = row.querySelector('td:first-child');
+          if (gameCell && !gameCell.querySelector('.badge-live')) {
+            const badge = document.createElement('span');
+            badge.className = 'badge badge-live bg-info badge-pulse ms-2';
+            badge.textContent = 'LIVE';
+            badge.title = `${liveGame.away_team} ${liveGame.away_score} @ ${liveGame.home_team} ${liveGame.home_score}`;
+            gameCell.appendChild(badge);
+          }
+        }
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching live games:', error);
+    });
+}
+
+// Start live tracking on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Wait for tables to be populated first
+  setTimeout(() => {
+    // Update immediately
+    updateLiveGameStatus();
+    
+    // Then update every 30 seconds
+    liveStatusInterval = setInterval(updateLiveGameStatus, 30000);
+  }, 2000); // Wait 2 seconds for initial data load
+});
+
+// Clean up interval when leaving page
+window.addEventListener('beforeunload', function() {
+  if (liveStatusInterval) {
+    clearInterval(liveStatusInterval);
+  }
+});
 </script>
+
+<!-- Add Tabler badge pulse animation using official CSS custom properties -->
+<style>
+@keyframes badge-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.badge-pulse {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+/* Use Tabler's table row hover states */
+#best-bets-table tbody tr.table-success,
+#all-games-table tbody tr.table-success {
+  --tblr-table-bg: var(--tblr-success-lt);
+  --tblr-table-hover-bg: var(--tblr-success);
+}
+
+#best-bets-table tbody tr.table-danger,
+#all-games-table tbody tr.table-danger {
+  --tblr-table-bg: var(--tblr-danger-lt);
+  --tblr-table-hover-bg: var(--tblr-danger);
+}
+
+#best-bets-table tbody tr.table-warning,
+#all-games-table tbody tr.table-warning {
+  --tblr-table-bg: var(--tblr-warning-lt);
+  --tblr-table-hover-bg: var(--tblr-warning);
+}
+
+#all-games-table tbody tr.table-info {
+  --tblr-table-bg: var(--tblr-info-lt);
+  --tblr-table-hover-bg: var(--tblr-info);
+}
+</style>
 {% endblock %}
 
