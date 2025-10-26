@@ -96,6 +96,17 @@ def _headers_from_config(headers_dict: Dict[str, Any]) -> Dict[str, str]:
 def _post_json(path: str, headers: Dict[str, str], data: Dict[str, Any] = None) -> Any:
     """Make authenticated POST request to BetOnline endpoint"""
     url = f"{BETONLINE_BASE}/{path.lstrip('/')}"
+    
+    # Update time headers to current time if they exist
+    import datetime
+    now = datetime.datetime.now(datetime.timezone.utc)
+    if 'actual-time' in headers:
+        headers['actual-time'] = str(int(now.timestamp() * 1000))
+    if 'iso-time' in headers:
+        headers['iso-time'] = now.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z'
+    if 'utc-time' in headers:
+        headers['utc-time'] = now.strftime('%a, %d %b %Y %H:%M:%S GMT')
+    
     r = requests.post(url, headers=headers, json=data, timeout=30)
     
     if r.status_code == 429:
