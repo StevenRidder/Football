@@ -124,6 +124,10 @@ TicketID | Date | Team1 +3.5 | Team2 ML | Over 45.5 | Parlay | Pending | 10.00 |
                 Your Bets ({{ bets|length }})
               </h3>
               <div class="card-actions">
+                <button class="btn btn-primary me-2" onclick="autoGradeAllBets()" id="autoGradeBtn">
+                  <i class="ti ti-robot icon"></i>
+                  Auto-Grade All Bets
+                </button>
                 <div class="input-group input-group-flat">
                   <input type="text" class="form-control" id="searchInput" placeholder="Search bets..." onkeyup="filterTable()">
                   <span class="input-group-text">
@@ -368,13 +372,82 @@ TicketID | Date | Team1 +3.5 | Team2 ML | Over 45.5 | Parlay | Pending | 10.00 |
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <div class="d-flex justify-content-between w-100">
+          <div>
+            <button type="button" class="btn btn-success" onclick="updateBetStatus('Won')">
+              <i class="ti ti-check icon"></i> Mark as Won
+            </button>
+            <button type="button" class="btn btn-danger" onclick="updateBetStatus('Lost')">
+              <i class="ti ti-x icon"></i> Mark as Lost
+            </button>
+            <button type="button" class="btn btn-warning" onclick="updateBetStatus('Pending')">
+              <i class="ti ti-clock icon"></i> Mark as Pending
+            </button>
+          </div>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+// Store current bet being viewed
+let currentBetTicketId = null;
+
+// Parse parlay legs from description
+function parseParlayLegs(description) {
+  // Extract legs from description like "12-team parlay: CAR +7, NYG +7.5, MIA +7.5, ..."
+  const match = description.match(/parlay:\s*(.+)/i);
+  if (!match) return [];
+  
+  const legsStr = match[1];
+  return legsStr.split(',').map(leg => leg.trim());
+}
+
+// Get live status for a parlay leg
+function getLegLiveStatus(leg, liveGames) {
+  // Parse leg like "CAR +7" or "MIA +7.5"
+  const legMatch = leg.match(/([A-Z]+)\s+([-+]\d+(?:\.\d+)?)/);
+  if (!legMatch) return null;
+  
+  const teamAbbr = legMatch[1];
+  const spread = parseFloat(legMatch[2]);
+  
+  // Find matching live game
+  for (const game of liveGames) {
+    if (game.away_abbr === teamAbbr || game.home_abbr === teamAbbr) {
+      // Determine if this leg is winning
+      let scoreDiff;
+      if (game.away_abbr === teamAbbr) {
+        // Betting on away team
+        scoreDiff = game.away_score - game.home_score;
+      } else {
+        // Betting on home team
+        scoreDiff = game.home_score - game.away_score;
+      }
+      
+      const effectiveDiff = scoreDiff + spread;
+      
+      let status;
+      if (effectiveDiff > 0) {
+        status = 'winning';
+      } else if (effectiveDiff < 0) {
+        status = 'losing';
+      } else {
+        status = 'neutral';
+      }
+      
+      return {
+        status: status,
+        game: game
+      };
+    }
+  }
+  
+  return null; // Game not live yet
+}
+
 // Parse bet description into structured HTML
 function parseDescription(description, betType) {
   // Check if it's a parlay with multiple legs (contains pipe separator)
@@ -424,7 +497,10 @@ function parseDescription(description, betType) {
 }
 
 // Show bet details in modal
-function showBetDetails(bet) {
+async function showBetDetails(bet) {
+  // Store current bet ticket ID for status updates
+  currentBetTicketId = bet.ticket_id;
+  
   // Populate modal fields
   document.getElementById('modalTicketId').textContent = bet.ticket_id;
   document.getElementById('modalDate').textContent = bet.date;
@@ -465,6 +541,68 @@ function showBetDetails(bet) {
     html += '</div>';
     
     descEl.innerHTML = html;
+  } else if (bet.type.toLowerCase().includes('parlay') && bet.status === 'Pending') {
+    // For parlays, fetch live data and show each leg with colors
+    descEl.innerHTML = '<div class="text-center"><div class="spinner-border spinner-border-sm" role="status"></div> Loading live data...</div>';
+    
+    try {
+      const liveData = await fetch('/api/live-games').then(r => r.json());
+      const legs = parseParlayLegs(bet.description);
+      
+      let html = '<div class="list-group list-group-flush">';
+      
+      legs.forEach((leg, index) => {
+        const legStatus = getLegLiveStatus(leg, liveData);
+        let statusClass = 'secondary';
+        let statusIcon = '⚪';
+        let statusText = 'Not Started';
+        let scoreText = '';
+        
+        if (legStatus) {
+          if (legStatus.status === 'winning') {
+            statusClass = 'success';
+            statusIcon = '🟢';
+            statusText = 'WINNING';
+          } else if (legStatus.status === 'losing') {
+            statusClass = 'danger';
+            statusIcon = '🔴';
+            statusText = 'LOSING';
+          } else if (legStatus.status === 'neutral') {
+            statusClass = 'warning';
+            statusIcon = '🟡';
+            statusText = 'PUSH';
+          }
+          
+          if (legStatus.game) {
+            scoreText = `<small class="text-muted ms-2">${legStatus.game.away_score}-${legStatus.game.home_score}</small>`;
+          }
+        }
+        
+        html += `
+          <div class="list-group-item bg-${statusClass}-lt">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="badge bg-blue text-white">${index + 1}</span>
+              </div>
+              <div class="col">
+                <div class="d-flex align-items-center justify-content-between">
+                  <span><strong>${leg}</strong> ${scoreText}</span>
+                  <span class="badge bg-${statusClass}">${statusIcon} ${statusText}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += '</div>';
+      html += `<div class="mt-3"><span class="badge bg-blue-lt">${legs.length} legs</span> in this ${bet.type}</div>`;
+      
+      descEl.innerHTML = html;
+    } catch (error) {
+      console.error('Error fetching live data:', error);
+      descEl.innerHTML = parseDescription(bet.description, bet.type);
+    }
   } else {
     // Regular bet - parse description normally
     descEl.innerHTML = parseDescription(bet.description, bet.type);
@@ -487,26 +625,30 @@ function showBetDetails(bet) {
   document.getElementById('modalStatus').innerHTML = statusBadge;
   
   // Financial details
-  document.getElementById('modalAmount').textContent = '$' + bet.amount.toFixed(2);
-  document.getElementById('modalToWin').textContent = bet.to_win > 0 ? '$' + bet.to_win.toFixed(2) : '-';
+  const amount = parseFloat(bet.amount) || 0;
+  const toWin = parseFloat(bet.to_win) || 0;
+  document.getElementById('modalAmount').textContent = '$' + amount.toFixed(2);
+  document.getElementById('modalToWin').textContent = toWin > 0 ? '$' + toWin.toFixed(2) : '-';
   
   // Profit/Loss with color
   const profitCard = document.getElementById('modalProfitCard');
   const profitEl = document.getElementById('modalProfit');
-  if (bet.profit > 0) {
+  const profit = parseFloat(bet.profit) || 0;
+  
+  if (profit > 0) {
     profitCard.className = 'card bg-success-lt';
-    profitEl.innerHTML = '<span class="text-success">+$' + bet.profit.toFixed(2) + '</span>';
-  } else if (bet.profit < 0) {
+    profitEl.innerHTML = '<span class="text-success">+$' + profit.toFixed(2) + '</span>';
+  } else if (profit < 0) {
     profitCard.className = 'card bg-danger-lt';
-    profitEl.innerHTML = '<span class="text-danger">-$' + Math.abs(bet.profit).toFixed(2) + '</span>';
+    profitEl.innerHTML = '<span class="text-danger">-$' + Math.abs(profit).toFixed(2) + '</span>';
   } else {
     profitCard.className = 'card bg-muted-lt';
     profitEl.textContent = '-';
   }
   
   // Calculate ROI
-  const roi = bet.amount > 0 ? (bet.profit / bet.amount * 100) : 0;
-  const potentialRoi = bet.amount > 0 && bet.to_win > 0 ? (bet.to_win / bet.amount * 100) : 0;
+  const roi = amount > 0 ? (profit / amount * 100) : 0;
+  const potentialRoi = amount > 0 && toWin > 0 ? (toWin / amount * 100) : 0;
   
   const roiEl = document.getElementById('modalROI');
   if (bet.status === 'Won') {
@@ -535,6 +677,85 @@ function showBetDetails(bet) {
   // Show modal using Bootstrap
   const modal = new bootstrap.Modal(document.getElementById('betDetailsModal'));
   modal.show();
+}
+
+// Update bet status (Won/Lost/Pending)
+async function updateBetStatus(newStatus) {
+  if (!currentBetTicketId) {
+    alert('Error: No bet selected');
+    return;
+  }
+  
+  try {
+    const response = await fetch('/api/bets/update-status', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ticket_id: currentBetTicketId,
+        status: newStatus
+      })
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      // Close modal
+      const modal = bootstrap.Modal.getInstance(document.getElementById('betDetailsModal'));
+      modal.hide();
+      
+      // Reload page to show updated status
+      location.reload();
+    } else {
+      alert('Error updating bet: ' + result.message);
+    }
+  } catch (error) {
+    console.error('Error updating bet status:', error);
+    alert('Failed to update bet status');
+  }
+}
+
+// Auto-grade all pending bets based on live scores
+async function autoGradeAllBets() {
+  const btn = document.getElementById('autoGradeBtn');
+  const originalText = btn.innerHTML;
+  
+  if (!confirm('Auto-grade all pending bets based on live scores?\n\nThis will mark completed games as Won/Lost automatically.')) {
+    return;
+  }
+  
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Grading...';
+  
+  try {
+    const response = await fetch('/api/bets/auto-grade', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      alert(`✅ Auto-grading complete!\n\n` +
+            `Graded: ${result.graded} bets\n` +
+            `Won: ${result.won}\n` +
+            `Lost: ${result.lost}\n` +
+            `Still Pending: ${result.still_pending}`);
+      location.reload();
+    } else {
+      alert('Error: ' + result.message);
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+  } catch (error) {
+    console.error('Error auto-grading bets:', error);
+    alert('Failed to auto-grade bets');
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
 }
 
 // Filter table function
@@ -658,6 +879,211 @@ function autoFetchBets() {
     btn.innerHTML = originalText;
     btn.disabled = false;
   });
+}
+
+// Load bets from pasted BetOnline data
+function loadBets() {
+  const input = document.getElementById('betDataInput').value.trim();
+  
+  if (!input) {
+    alert('Please paste your bet data first');
+    return;
+  }
+  
+  // Parse BetOnline format
+  const bets = parseBetOnlineData(input);
+  
+  if (bets.length === 0) {
+    alert('❌ Could not parse any bets. Make sure you copied the bet data correctly.');
+    return;
+  }
+  
+  // Send to server
+  fetch('/api/bets/load', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ bets: bets })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert(`✅ ${data.message}`);
+      window.location.reload();
+    } else {
+      alert('❌ Error: ' + data.message);
+    }
+  })
+  .catch(error => {
+    alert('❌ Network error: ' + error.message);
+  });
+}
+
+// Parse table format (copied from BetOnline bet history table)
+function parseTableFormat(text) {
+  const bets = [];
+  
+  // Split by lines and remove header rows
+  const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  
+  // Remove header lines
+  const dataLines = lines.filter(l => 
+    !l.includes('Ticket #') && 
+    !l.includes('Date') && 
+    !l.includes('Description') && 
+    !l.includes('Type') && 
+    !l.includes('Status') && 
+    !l.includes('Amount') && 
+    !l.includes('To Win')
+  );
+  
+  // Parse bets (each bet is 7 lines: ticket, date, description, type, status, amount, to_win)
+  for (let i = 0; i < dataLines.length; i += 7) {
+    if (i + 6 >= dataLines.length) break;
+    
+    const ticketId = dataLines[i].trim();
+    const date = dataLines[i + 1].trim();
+    const description = dataLines[i + 2].trim();
+    const betType = dataLines[i + 3].trim();
+    const status = dataLines[i + 4].trim();
+    const amountStr = dataLines[i + 5].replace(/\$/g, '').replace(/,/g, '').trim();
+    const toWinStr = dataLines[i + 6].replace(/\$/g, '').replace(/,/g, '').trim();
+    
+    const amount = parseFloat(amountStr) || 0;
+    const toWin = parseFloat(toWinStr) || 0;
+    
+    // Format description based on bet type
+    let formattedDesc = description;
+    
+    if (betType.toLowerCase().includes('parlay') && !betType.toLowerCase().includes('same game')) {
+      // Try to parse regular parlay legs from description
+      formattedDesc = description; // Keep as-is for now, will be parsed when clicked
+    } else if (description.includes('FOOTBALL -') && description.includes('|')) {
+      // Same Game Parlay or detailed bet - keep full description
+      formattedDesc = description;
+    } else if (description.match(/FOOTBALL - \d+/)) {
+      // Simple bet like "FOOTBALL - 278 Indianapolis Colts -15 -110"
+      // Try to extract team and line
+      const match = description.match(/FOOTBALL - \d+\s+(.+?)\s+([-+]?\d+(?:\.5)?)\s+[-+]?\d+/);
+      if (match) {
+        const team = match[1].trim();
+        const line = match[2];
+        formattedDesc = `${team} ${line}`;
+      }
+    }
+    
+    bets.push({
+      ticket_id: ticketId,
+      date: date,
+      description: formattedDesc,
+      bet_type: betType,
+      status: status,
+      amount: amount,
+      to_win: toWin
+    });
+  }
+  
+  return bets;
+}
+
+// Parse BetOnline pasted data
+function parseBetOnlineData(text) {
+  const bets = [];
+  
+  // Check if it's table format (has "Ticket #" header)
+  if (text.includes('Ticket #') && text.includes('Date') && text.includes('Description')) {
+    return parseTableFormat(text);
+  }
+  
+  // Otherwise, parse detailed format
+  // Try to extract ticket number
+  const ticketMatch = text.match(/Ticket Number:\s*(\S+)/);
+  if (!ticketMatch) {
+    return bets;
+  }
+  
+  const ticketNumber = ticketMatch[1];
+  
+  // Extract date
+  const dateMatch = text.match(/Accepted Date:\s*(\d{2}\/\d{2}\/\d{2})/);
+  const date = dateMatch ? dateMatch[1] : new Date().toLocaleDateString('en-US');
+  
+  // Extract type
+  const typeMatch = text.match(/Type:\s*(\w+)/);
+  const betType = typeMatch ? typeMatch[1] : 'Unknown';
+  
+  // Extract amount
+  const amountMatch = text.match(/Amount:\s*\$?([\d,]+\.?\d*)/);
+  const amount = amountMatch ? parseFloat(amountMatch[1].replace(/,/g, '')) : 0;
+  
+  // Extract to win
+  const toWinMatch = text.match(/To win:\s*\$?([\d,]+\.?\d*)/);
+  const toWin = toWinMatch ? parseFloat(toWinMatch[1].replace(/,/g, '')) : 0;
+  
+  // Extract status
+  const statusMatch = text.match(/Status:\s*(\w+)/);
+  const status = statusMatch ? statusMatch[1] : 'Pending';
+  
+  // Team name to abbreviation mapping
+  const teamMap = {
+    'Arizona Cardinals': 'ARI', 'Atlanta Falcons': 'ATL', 'Baltimore Ravens': 'BAL',
+    'Buffalo Bills': 'BUF', 'Carolina Panthers': 'CAR', 'Chicago Bears': 'CHI',
+    'Cincinnati Bengals': 'CIN', 'Cleveland Browns': 'CLE', 'Dallas Cowboys': 'DAL',
+    'Denver Broncos': 'DEN', 'Detroit Lions': 'DET', 'Green Bay Packers': 'GB',
+    'Houston Texans': 'HOU', 'Indianapolis Colts': 'IND', 'Jacksonville Jaguars': 'JAX',
+    'Kansas City Chiefs': 'KC', 'Las Vegas Raiders': 'LV', 'Los Angeles Chargers': 'LAC',
+    'Los Angeles Rams': 'LAR', 'Miami Dolphins': 'MIA', 'Minnesota Vikings': 'MIN',
+    'New England Patriots': 'NE', 'New Orleans Saints': 'NO', 'New York Giants': 'NYG',
+    'New York Jets': 'NYJ', 'Philadelphia Eagles': 'PHI', 'Pittsburgh Steelers': 'PIT',
+    'San Francisco 49ers': 'SF', 'Seattle Seahawks': 'SEA', 'Tampa Bay Buccaneers': 'TB',
+    'Tennessee Titans': 'TEN', 'Washington Commanders': 'WAS'
+  };
+  
+  // Extract description (all the legs for parlays)
+  let description = '';
+  const descMatch = text.match(/Description:\s*(.+)/s);
+  if (descMatch) {
+    const rawDesc = descMatch[1];
+    
+    // For parlays, extract team names and spreads
+    if (betType.toLowerCase().includes('parlay')) {
+      const legs = [];
+      
+      // Match patterns like "270 Carolina Panthers +7 -105" or "Parlay | 270 Carolina Panthers +7 -105"
+      // The format is: [number] [Team Name] [spread] [odds] For Game
+      const legMatches = rawDesc.matchAll(/\|\s*\d+\s+([A-Za-z\s]+?)\s+([-+]\d+(?:½)?)\s+[-+]?\d+\s+For\s+Game/gi);
+      
+      for (const match of legMatches) {
+        const team = match[1].trim();
+        let spread = match[2].replace('½', '.5'); // Convert ½ to .5
+        
+        // Get proper abbreviation
+        const teamAbbr = teamMap[team] || team.split(' ').map(w => w[0]).join('');
+        legs.push(`${teamAbbr} ${spread}`);
+      }
+      
+      if (legs.length > 0) {
+        description = `${legs.length}-team parlay: ${legs.join(', ')}`;
+      } else {
+        description = rawDesc.substring(0, 200);
+      }
+    } else {
+      description = rawDesc.substring(0, 200);
+    }
+  }
+  
+  bets.push({
+    ticket_id: ticketNumber,
+    date: date,
+    description: description,
+    bet_type: betType,
+    status: status,
+    amount: amount,
+    to_win: toWin
+  });
+  
+  return bets;
 }
 
 // Clear all bets

@@ -89,6 +89,21 @@ class LiveBetTracker:
     
     def _parse_game(self, event, competition, status):
         """Parse game data from ESPN response"""
+        # Team name to abbreviation mapping
+        TEAM_MAP = {
+            'Arizona Cardinals': 'ARI', 'Atlanta Falcons': 'ATL', 'Baltimore Ravens': 'BAL',
+            'Buffalo Bills': 'BUF', 'Carolina Panthers': 'CAR', 'Chicago Bears': 'CHI',
+            'Cincinnati Bengals': 'CIN', 'Cleveland Browns': 'CLE', 'Dallas Cowboys': 'DAL',
+            'Denver Broncos': 'DEN', 'Detroit Lions': 'DET', 'Green Bay Packers': 'GB',
+            'Houston Texans': 'HOU', 'Indianapolis Colts': 'IND', 'Jacksonville Jaguars': 'JAX',
+            'Kansas City Chiefs': 'KC', 'Las Vegas Raiders': 'LV', 'Los Angeles Chargers': 'LAC',
+            'Los Angeles Rams': 'LAR', 'Miami Dolphins': 'MIA', 'Minnesota Vikings': 'MIN',
+            'New England Patriots': 'NE', 'New Orleans Saints': 'NO', 'New York Giants': 'NYG',
+            'New York Jets': 'NYJ', 'Philadelphia Eagles': 'PHI', 'Pittsburgh Steelers': 'PIT',
+            'San Francisco 49ers': 'SF', 'Seattle Seahawks': 'SEA', 'Tampa Bay Buccaneers': 'TB',
+            'Tennessee Titans': 'TEN', 'Washington Commanders': 'WAS'
+        }
+        
         competitors = competition.get('competitors', [])
         if len(competitors) < 2:
             return None
@@ -96,14 +111,19 @@ class LiveBetTracker:
         home = competitors[0] if competitors[0].get('homeAway') == 'home' else competitors[1]
         away = competitors[1] if competitors[0].get('homeAway') == 'home' else competitors[0]
         
+        home_team_name = home.get('team', {}).get('displayName')
+        away_team_name = away.get('team', {}).get('displayName')
+        
         return {
             'id': event.get('id'),
             'name': event.get('name'),
-            'home_team': home.get('team', {}).get('displayName'),
-            'away_team': away.get('team', {}).get('displayName'),
+            'home_team': home_team_name,
+            'away_team': away_team_name,
+            'home_abbr': TEAM_MAP.get(home_team_name, home_team_name),
+            'away_abbr': TEAM_MAP.get(away_team_name, away_team_name),
             'home_score': int(home.get('score', 0)),
             'away_score': int(away.get('score', 0)),
-            'status': status.get('type', {}).get('state'),  # 'in' or 'post'
+            'status': status.get('type', {}).get('shortDetail', ''),
             'period': status.get('period', 0),
             'clock': status.get('displayClock', ''),
             'is_live': status.get('type', {}).get('state') == 'in',

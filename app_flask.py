@@ -953,6 +953,286 @@ def api_auto_fetch_bets():
             'message': f'Fetch failed: {str(e)}'
         })
 
+@app.route('/api/bets/load', methods=['POST'])
+def api_load_bets():
+    """API endpoint to load bets from pasted data (upsert: update if exists, insert if new)"""
+    try:
+        data = request.get_json()
+        bets = data.get('bets', [])
+        
+        if not bets:
+            return jsonify({
+                'success': False,
+                'message': 'No bets provided'
+            })
+        
+        # Add/update bets in database
+        from nfl_edge.bets.db import BettingDB
+        db = BettingDB()
+        conn = db.connect()
+        
+        inserted = 0
+        updated = 0
+        
+        for bet in bets:
+            try:
+                ticket_id = bet.get('ticket_id')
+                
+                # Check if bet already exists
+                with conn.cursor() as cur:
+                    cur.execute('SELECT * FROM bets WHERE ticket_id = %s', (ticket_id,))
+                    existing = cur.fetchone()
+                    
+                    if existing:
+                        # Update existing bet (only if new description is more detailed)
+                        existing_desc = existing.get('description', '')
+                        new_desc = bet.get('description', '')
+                        
+                        # Update if new description is longer (more detailed)
+                        if len(new_desc) > len(existing_desc):
+                            cur.execute('''
+                                UPDATE bets 
+                                SET description = %s, 
+                                    date = %s,
+                                    type = %s,
+                                    amount = %s,
+                                    to_win = %s,
+                                    status = %s
+                                WHERE ticket_id = %s
+                            ''', (
+                                new_desc,
+                                bet.get('date'),
+                                bet.get('bet_type'),
+                                bet.get('amount'),
+                                bet.get('to_win'),
+                                bet.get('status', 'Pending'),
+                                ticket_id
+                            ))
+                            updated += 1
+                    else:
+                        # Insert new bet
+                        db.insert_bet(bet)
+                        inserted += 1
+                        
+            except Exception as e:
+                print(f"Error upserting bet {bet.get('ticket_id')}: {e}")
+        
+        conn.commit()
+        db.close()
+        
+        message = f'Loaded {inserted} new bet(s)'
+        if updated > 0:
+            message += f', updated {updated} existing bet(s) with more details'
+        
+        return jsonify({
+            'success': True,
+            'inserted': inserted,
+            'updated': updated,
+            'message': message
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Load failed: {str(e)}'
+        })
+
+@app.route('/api/bets/update-status', methods=['POST'])
+def api_update_bet_status():
+    """API endpoint to update bet status (Won/Lost/Pending)"""
+    try:
+        data = request.get_json()
+        ticket_id = data.get('ticket_id')
+        new_status = data.get('status')
+        
+        if not ticket_id or not new_status:
+            return jsonify({
+                'success': False,
+                'message': 'Missing ticket_id or status'
+            })
+        
+        if new_status not in ['Won', 'Lost', 'Pending']:
+            return jsonify({
+                'success': False,
+                'message': 'Invalid status. Must be Won, Lost, or Pending'
+            })
+        
+        from nfl_edge.bets.db import BettingDB
+        db = BettingDB()
+        conn = db.connect()
+        
+        with conn.cursor() as cur:
+            # Update bet status
+            cur.execute(
+                'UPDATE bets SET status = %s WHERE ticket_id = %s',
+                (new_status, ticket_id)
+            )
+            
+            # If marking as Won or Lost, calculate profit
+            if new_status in ['Won', 'Lost']:
+                cur.execute(
+                    'SELECT amount, to_win FROM bets WHERE ticket_id = %s',
+                    (ticket_id,)
+                )
+                bet = cur.fetchone()
+                
+                if bet:
+                    amount = float(bet['amount']) if bet['amount'] else 0
+                    to_win = float(bet['to_win']) if bet['to_win'] else 0
+                    
+                    if new_status == 'Won':
+                        profit = to_win
+                    else:  # Lost
+                        profit = -amount
+                    
+                    cur.execute(
+                        'UPDATE bets SET profit = %s WHERE ticket_id = %s',
+                        (profit, ticket_id)
+                    )
+        
+        conn.commit()
+        db.close()
+        
+        return jsonify({
+            'success': True,
+            'message': f'Bet {ticket_id} marked as {new_status}'
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Update failed: {str(e)}'
+        })
+
+@app.route('/api/bets/auto-grade', methods=['POST'])
+def api_auto_grade_bets():
+    """Auto-grade all pending bets based on completed games"""
+    try:
+        from nfl_edge.bets.db import BettingDB
+        from live_bet_tracker import LiveBetTracker
+        
+        db = BettingDB()
+        tracker = LiveBetTracker()
+        conn = db.connect()
+        
+        # Get all pending bets
+        with conn.cursor() as cur:
+            cur.execute('SELECT * FROM bets WHERE status = %s', ('Pending',))
+            pending_bets = cur.fetchall()
+        
+        graded = 0
+        won_count = 0
+        lost_count = 0
+        still_pending = 0
+        
+        for bet in pending_bets:
+            bet_dict = dict(bet)
+            description = bet_dict.get('description', '')
+            
+            # Only auto-grade parlays for now
+            if 'parlay' not in description.lower():
+                still_pending += 1
+                continue
+            
+            # Parse parlay legs
+            import re
+            match = re.search(r'parlay:\s*(.+)', description, re.IGNORECASE)
+            if not match:
+                still_pending += 1
+                continue
+            
+            legs_str = match.group(1)
+            legs = [leg.strip() for leg in legs_str.split(',')]
+            
+            # Get live games
+            all_live_games = []
+            for sport in ['NFL']:
+                games = tracker.get_live_games(sport)
+                all_live_games.extend(games)
+            
+            # Check each leg
+            all_legs_completed = True
+            any_leg_lost = False
+            
+            for leg in legs:
+                # Parse leg like "CAR +7" or "MIA +7.5"
+                leg_match = re.match(r'([A-Z]+)\s+([-+]\d+(?:\.\d+)?)', leg)
+                if not leg_match:
+                    all_legs_completed = False
+                    continue
+                
+                team_abbr = leg_match.group(1)
+                spread = float(leg_match.group(2))
+                
+                # Find matching game
+                game_found = False
+                for game in all_live_games:
+                    if game['away_abbr'] == team_abbr or game['home_abbr'] == team_abbr:
+                        game_found = True
+                        
+                        # Check if game is completed (status contains "Final")
+                        if 'final' not in game['status'].lower():
+                            all_legs_completed = False
+                            break
+                        
+                        # Determine if leg won or lost
+                        if game['away_abbr'] == team_abbr:
+                            score_diff = game['away_score'] - game['home_score']
+                        else:
+                            score_diff = game['home_score'] - game['away_score']
+                        
+                        effective_diff = score_diff + spread
+                        
+                        if effective_diff < 0:
+                            any_leg_lost = True
+                            break
+                        elif effective_diff == 0:
+                            # Push - for now treat as loss (you can change this)
+                            any_leg_lost = True
+                            break
+                
+                if not game_found:
+                    all_legs_completed = False
+                    break
+            
+            # Grade the bet if all legs are completed
+            if all_legs_completed:
+                new_status = 'Lost' if any_leg_lost else 'Won'
+                amount = float(bet_dict['amount']) if bet_dict['amount'] else 0
+                to_win = float(bet_dict['to_win']) if bet_dict['to_win'] else 0
+                profit = to_win if new_status == 'Won' else -amount
+                
+                with conn.cursor() as cur:
+                    cur.execute(
+                        'UPDATE bets SET status = %s, profit = %s WHERE ticket_id = %s',
+                        (new_status, profit, bet_dict['ticket_id'])
+                    )
+                
+                graded += 1
+                if new_status == 'Won':
+                    won_count += 1
+                else:
+                    lost_count += 1
+            else:
+                still_pending += 1
+        
+        conn.commit()
+        db.close()
+        
+        return jsonify({
+            'success': True,
+            'graded': graded,
+            'won': won_count,
+            'lost': lost_count,
+            'still_pending': still_pending
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Auto-grade failed: {str(e)}'
+        })
+
 @app.route('/api/bets/clear', methods=['POST'])
 def api_clear_bets():
     """API endpoint to clear all bets"""
