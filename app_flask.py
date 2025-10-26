@@ -960,7 +960,13 @@ def api_load_bets():
         data = request.get_json()
         bets = data.get('bets', [])
         
+        print(f"=== API LOAD BETS CALLED ===")
+        print(f"Received {len(bets)} bets")
+        for bet in bets:
+            print(f"  Bet: {bet.get('ticket_id')} - desc length: {len(bet.get('description', ''))}")
+        
         if not bets:
+            print("No bets in request!")
             return jsonify({
                 'success': False,
                 'message': 'No bets provided'
@@ -988,13 +994,16 @@ def api_load_bets():
                         existing_desc = existing.get('description', '')
                         new_desc = bet.get('description', '')
                         
+                        print(f"Bet {ticket_id} exists. Existing desc length: {len(existing_desc)}, New desc length: {len(new_desc)}")
+                        
                         # Update if new description is longer (more detailed)
                         if len(new_desc) > len(existing_desc):
+                            print(f"Updating bet {ticket_id} with longer description")
                             cur.execute('''
                                 UPDATE bets 
                                 SET description = %s, 
                                     date = %s,
-                                    type = %s,
+                                    bet_type = %s,
                                     amount = %s,
                                     to_win = %s,
                                     status = %s
@@ -1009,13 +1018,18 @@ def api_load_bets():
                                 ticket_id
                             ))
                             updated += 1
+                        else:
+                            print(f"Skipping bet {ticket_id} - new description not longer")
                     else:
                         # Insert new bet
+                        print(f"Inserting new bet {ticket_id}")
                         db.insert_bet(bet)
                         inserted += 1
                         
             except Exception as e:
                 print(f"Error upserting bet {bet.get('ticket_id')}: {e}")
+                import traceback
+                traceback.print_exc()
         
         conn.commit()
         db.close()
@@ -1110,6 +1124,7 @@ def api_auto_grade_bets():
     try:
         from nfl_edge.bets.db import BettingDB
         from live_bet_tracker import LiveBetTracker
+        import re
         
         db = BettingDB()
         tracker = LiveBetTracker()
@@ -1125,96 +1140,166 @@ def api_auto_grade_bets():
         lost_count = 0
         still_pending = 0
         
+        # Get all games (live and final)
+        all_games = []
+        for sport in ['NFL']:
+            games = tracker.get_live_games(sport)
+            all_games.extend(games)
+        
+        import sys
+        print(f"\n=== AUTO-GRADER START ===", file=sys.stderr, flush=True)
+        print(f"Pending bets: {len(pending_bets)}", file=sys.stderr, flush=True)
+        print(f"Games found: {len(all_games)}", file=sys.stderr, flush=True)
+        final_games = [g for g in all_games if 'final' in g.get('status', '').lower()]
+        print(f"Final games: {len(final_games)}", file=sys.stderr, flush=True)
+        print(f"=========================\n", file=sys.stderr, flush=True)
+        
         for bet in pending_bets:
             bet_dict = dict(bet)
             description = bet_dict.get('description', '')
+            bet_type = bet_dict.get('bet_type', '').lower()
             
-            # Only auto-grade parlays for now
-            if 'parlay' not in description.lower():
+            import sys
+            print(f"Processing bet {bet_dict['ticket_id']}: type={bet_type}", file=sys.stderr, flush=True)
+            
+            # Skip non-parlay bets
+            if 'parlay' not in bet_type and 'teaser' not in bet_type:
+                print(f"  Skipping - not a parlay/teaser", file=sys.stderr, flush=True)
                 still_pending += 1
                 continue
             
-            # Parse parlay legs
-            import re
-            match = re.search(r'parlay:\s*(.+)', description, re.IGNORECASE)
-            if not match:
-                still_pending += 1
-                continue
+            # Check if description has detailed leg format with status (Won/Lost/Pending)
+            # Format: "Team +X | Status" or just "Team +X"
+            has_leg_status = '| Won' in description or '| Lost' in description or '| Pending' in description
             
-            legs_str = match.group(1)
-            legs = [leg.strip() for leg in legs_str.split(',')]
-            
-            # Get live games
-            all_live_games = []
-            for sport in ['NFL']:
-                games = tracker.get_live_games(sport)
-                all_live_games.extend(games)
-            
-            # Check each leg
-            all_legs_completed = True
-            any_leg_lost = False
-            
-            for leg in legs:
-                # Parse leg like "CAR +7" or "MIA +7.5"
-                leg_match = re.match(r'([A-Z]+)\s+([-+]\d+(?:\.\d+)?)', leg)
-                if not leg_match:
-                    all_legs_completed = False
+            if has_leg_status:
+                print(f"  Has leg status - parsing detailed format", file=sys.stderr, flush=True)
+                # Parse detailed format with leg statuses
+                # Example: "Minnesota Vikings +9 +100 For Game | 10/23/2025 | 08:15:00 PM (EST) | Lost"
+                legs = description.split('Football - NFL -')[1:]  # Split by game separator
+                
+                any_leg_lost = False
+                all_legs_final = True
+                
+                for leg in legs:
+                    # Extract status from end of leg
+                    if '| Lost' in leg:
+                        any_leg_lost = True
+                        print(f"    Found lost leg", file=sys.stderr, flush=True)
+                    elif '| Pending' in leg:
+                        all_legs_final = False
+                        print(f"    Found pending leg", file=sys.stderr, flush=True)
+                
+                # Grade the bet
+                if any_leg_lost:
+                    # As soon as one leg is lost, entire parlay is lost
+                    new_status = 'Lost'
+                    print(f"  GRADING AS LOST (has lost leg)", file=sys.stderr, flush=True)
+                elif all_legs_final:
+                    # All legs are final and none lost = Won
+                    new_status = 'Won'
+                    print(f"  GRADING AS WON (all legs final)", file=sys.stderr, flush=True)
+                else:
+                    # Still has pending legs
+                    print(f"  Still has pending legs", file=sys.stderr, flush=True)
+                    still_pending += 1
                     continue
                 
-                team_abbr = leg_match.group(1)
-                spread = float(leg_match.group(2))
-                
-                # Find matching game
-                game_found = False
-                for game in all_live_games:
-                    if game['away_abbr'] == team_abbr or game['home_abbr'] == team_abbr:
-                        game_found = True
-                        
-                        # Check if game is completed (status contains "Final")
-                        if 'final' not in game['status'].lower():
-                            all_legs_completed = False
-                            break
-                        
-                        # Determine if leg won or lost
-                        if game['away_abbr'] == team_abbr:
-                            score_diff = game['away_score'] - game['home_score']
-                        else:
-                            score_diff = game['home_score'] - game['away_score']
-                        
-                        effective_diff = score_diff + spread
-                        
-                        if effective_diff < 0:
-                            any_leg_lost = True
-                            break
-                        elif effective_diff == 0:
-                            # Push - for now treat as loss (you can change this)
-                            any_leg_lost = True
-                            break
-                
-                if not game_found:
-                    all_legs_completed = False
-                    break
-            
-            # Grade the bet if all legs are completed
-            if all_legs_completed:
-                new_status = 'Lost' if any_leg_lost else 'Won'
-                amount = float(bet_dict['amount']) if bet_dict['amount'] else 0
-                to_win = float(bet_dict['to_win']) if bet_dict['to_win'] else 0
-                profit = to_win if new_status == 'Won' else -amount
-                
-                with conn.cursor() as cur:
-                    cur.execute(
-                        'UPDATE bets SET status = %s, profit = %s WHERE ticket_id = %s',
-                        (new_status, profit, bet_dict['ticket_id'])
-                    )
-                
-                graded += 1
-                if new_status == 'Won':
-                    won_count += 1
-                else:
-                    lost_count += 1
             else:
-                still_pending += 1
+                print(f"  Parsing simple format", file=sys.stderr, flush=True)
+                # Parse simple format: "12-team parlay: CAR +7, NYG +7.5, ..."
+                match = re.search(r'parlay:\s*(.+)', description, re.IGNORECASE)
+                if not match:
+                    print(f"  No parlay match found in description", file=sys.stderr, flush=True)
+                    still_pending += 1
+                    continue
+                
+                legs_str = match.group(1)
+                legs = [leg.strip() for leg in legs_str.split(',')]
+                print(f"  Found {len(legs)} legs", file=sys.stderr, flush=True)
+                
+                all_legs_completed = True
+                any_leg_lost = False
+                
+                for leg in legs:
+                    # Parse leg like "CAR +7" or "MIA +7.5"
+                    leg_match = re.match(r'([A-Z]+)\s+([-+]?\d+(?:\.\d+)?)', leg)
+                    if not leg_match:
+                        all_legs_completed = False
+                        continue
+                    
+                    team_abbr = leg_match.group(1)
+                    spread = float(leg_match.group(2))
+                    
+                    # Find matching game
+                    game_found = False
+                    for game in all_games:
+                        if game.get('away_abbr') == team_abbr or game.get('home_abbr') == team_abbr:
+                            game_found = True
+                            
+                            # Check if game is completed (status contains "Final")
+                            if 'final' not in game.get('status', '').lower():
+                                all_legs_completed = False
+                                # Don't break - keep checking other legs for losses
+                                continue
+                            
+                            # Determine if leg won or lost
+                            if game.get('away_abbr') == team_abbr:
+                                score_diff = game['away_score'] - game['home_score']
+                            else:
+                                score_diff = game['home_score'] - game['away_score']
+                            
+                            effective_diff = score_diff + spread
+                            
+                            if effective_diff < 0:
+                                any_leg_lost = True
+                                print(f"    Leg {team_abbr} {spread:+.1f} LOST (effective={effective_diff:+.1f})", file=sys.stderr, flush=True)
+                                # IMMEDIATELY mark parlay as lost - don't wait for other games
+                                break
+                            elif effective_diff == 0:
+                                # Push - treat as loss for parlays
+                                any_leg_lost = True
+                                print(f"    Leg {team_abbr} {spread:+.1f} PUSH (treating as LOST)", file=sys.stderr, flush=True)
+                                break
+                            break
+                    
+                    if not game_found:
+                        all_legs_completed = False
+                        # Don't break - keep checking other legs for losses
+                    
+                    # If we found a lost leg, immediately grade as lost
+                    if any_leg_lost:
+                        break
+                
+                # Grade the bet if ANY leg is lost OR all legs are completed
+                if any_leg_lost:
+                    new_status = 'Lost'
+                    print(f"  GRADING AS LOST (at least one leg lost)", file=sys.stderr, flush=True)
+                elif all_legs_completed:
+                    new_status = 'Won'
+                    print(f"  GRADING AS WON (all legs completed and won)", file=sys.stderr, flush=True)
+                else:
+                    # Still has pending legs and no losses yet
+                    print(f"  Still pending (no losses yet, but games in progress)", file=sys.stderr, flush=True)
+                    still_pending += 1
+                    continue
+            
+            # Update bet status
+            amount = float(bet_dict['amount']) if bet_dict['amount'] else 0
+            to_win = float(bet_dict['to_win']) if bet_dict['to_win'] else 0
+            profit = to_win if new_status == 'Won' else -amount
+            
+            with conn.cursor() as cur:
+                cur.execute(
+                    'UPDATE bets SET status = %s, profit = %s WHERE ticket_id = %s',
+                    (new_status, profit, bet_dict['ticket_id'])
+                )
+            
+            graded += 1
+            if new_status == 'Won':
+                won_count += 1
+            else:
+                lost_count += 1
         
         conn.commit()
         db.close()
@@ -1228,6 +1313,8 @@ def api_auto_grade_bets():
         })
         
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return jsonify({
             'success': False,
             'message': f'Auto-grade failed: {str(e)}'
@@ -1458,8 +1545,15 @@ def live_games():
             # Determine if recommended bets are winning
             spread_status = None
             total_status = None
+            best_bet_type = None  # Track which type of bet is the "best"
             
             if game_row is not None:
+                # Determine the best bet type from the best_bet column
+                best_bet = game_row.get('best_bet', game_row.get('Best_bet', ''))
+                if 'SPREAD' in str(best_bet).upper():
+                    best_bet_type = 'spread'
+                elif 'TOTAL' in str(best_bet).upper() or 'OVER' in str(best_bet).upper() or 'UNDER' in str(best_bet).upper():
+                    best_bet_type = 'total'
                 # Check spread recommendation
                 rec_spread = game_row.get('Rec_spread', game_row.get('rec_spread', ''))
                 if 'BET' in str(rec_spread):
@@ -1519,6 +1613,15 @@ def live_games():
                         else:
                             total_status = 'neutral'
             
+            # Determine best_status based on which bet type is recommended
+            if best_bet_type == 'total':
+                best_status = total_status or spread_status
+            elif best_bet_type == 'spread':
+                best_status = spread_status or total_status
+            else:
+                # If we can't determine, use whichever has a status
+                best_status = spread_status or total_status
+            
             result.append({
                 'away_team': game['away_team'],
                 'home_team': game['home_team'],
@@ -1531,7 +1634,7 @@ def live_games():
                 'status': game['status'],
                 'spread_status': spread_status,
                 'total_status': total_status,
-                'best_status': spread_status or total_status  # Use whichever has a status
+                'best_status': best_status
             })
         
         return jsonify(result)

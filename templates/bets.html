@@ -65,54 +65,6 @@
       </div>
       {% endif %}
 
-      <!-- Paste Bets Interface -->
-      <div class="row mb-4">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">
-                <i class="ti ti-clipboard icon me-2"></i>
-                Paste Your Bets from BetOnline
-              </h3>
-            </div>
-            <div class="card-body">
-              <div class="alert alert-info">
-                <h4 class="alert-title">📋 How to Add Your Bets:</h4>
-                <p class="mb-2"><strong>BetOnline blocks API access, so just copy/paste your bet data:</strong></p>
-                <ol class="mb-0">
-                  <li>Go to BetOnline → My Account → Bet History</li>
-                  <li>Select and copy the entire bet table (Ctrl+A, Ctrl+C)</li>
-                  <li>Paste it in the box below</li>
-                  <li>Click "Load Bets"</li>
-                </ol>
-                <p class="mt-2 mb-0"><small class="text-muted">For parlays, separate legs with | (pipe). Example: <code>Cowboys +3.5 | Patriots ML | Over 45.5</code></small></p>
-              </div>
-              
-              <div class="mb-3">
-                <label class="form-label">Paste your bet data here:</label>
-                <textarea class="form-control font-monospace" id="betDataInput" rows="10" placeholder="Paste your BetOnline bet table data here...
-
-Format (one bet per line):
-TicketID | Date | Description | Type | Status | Amount | ToWin
-
-For parlays with multiple legs:
-TicketID | Date | Team1 +3.5 | Team2 ML | Over 45.5 | Parlay | Pending | 10.00 | 50.00"></textarea>
-              </div>
-              
-              <button class="btn btn-primary btn-lg" onclick="loadBets()">
-                <i class="ti ti-upload icon me-2"></i>
-                Load Bets
-              </button>
-              
-              <button class="btn btn-ghost-secondary ms-2" onclick="clearBets()">
-                <i class="ti ti-trash icon me-2"></i>
-                Clear All
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Bets Table -->
       {% if bets %}
       <div class="row">
@@ -262,6 +214,54 @@ TicketID | Date | Team1 +3.5 | Team2 ML | Over 45.5 | Parlay | Pending | 10.00 |
       </div>
       {% endif %}
 
+      <!-- Paste Bets Interface -->
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="ti ti-clipboard icon me-2"></i>
+                Paste Your Bets from BetOnline
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="alert alert-info">
+                <h4 class="alert-title">📋 How to Add Your Bets:</h4>
+                <p class="mb-2"><strong>BetOnline blocks API access, so just copy/paste your bet data:</strong></p>
+                <ol class="mb-0">
+                  <li>Go to BetOnline → My Account → Bet History</li>
+                  <li>Select and copy the entire bet table (Ctrl+A, Ctrl+C)</li>
+                  <li>Paste it in the box below</li>
+                  <li>Click "Load Bets"</li>
+                </ol>
+                <p class="mt-2 mb-0"><small class="text-muted">For parlays, separate legs with | (pipe). Example: <code>Cowboys +3.5 | Patriots ML | Over 45.5</code></small></p>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label">Paste your bet data here:</label>
+                <textarea class="form-control font-monospace" id="betDataInput" rows="10" placeholder="Paste your BetOnline bet table data here...
+
+Format (one bet per line):
+TicketID | Date | Description | Type | Status | Amount | ToWin
+
+For parlays with multiple legs:
+TicketID | Date | Team1 +3.5 | Team2 ML | Over 45.5 | Parlay | Pending | 10.00 | 50.00"></textarea>
+              </div>
+              
+              <button class="btn btn-primary btn-lg" onclick="loadBets()">
+                <i class="ti ti-upload icon me-2"></i>
+                Load Bets
+              </button>
+              
+              <button class="btn btn-ghost-secondary ms-2" onclick="clearBets()">
+                <i class="ti ti-trash icon me-2"></i>
+                Clear All
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -397,29 +397,150 @@ let currentBetTicketId = null;
 
 // Parse parlay legs from description
 function parseParlayLegs(description) {
-  // Extract legs from description like "12-team parlay: CAR +7, NYG +7.5, MIA +7.5, ..."
-  const match = description.match(/parlay:\s*(.+)/i);
-  if (!match) return [];
+  // Handle format 1: "12-team parlay: CAR +7, NYG +7.5, MIA +7.5, ..."
+  const shortMatch = description.match(/parlay:\s*(.+)/i);
+  if (shortMatch) {
+    const legsStr = shortMatch[1];
+    // Check if it uses pipe separator or comma separator
+    if (legsStr.includes(' | ')) {
+      return legsStr.split(' | ').map(leg => leg.trim());
+    } else {
+      return legsStr.split(',').map(leg => leg.trim());
+    }
+  }
   
-  const legsStr = match[1];
-  return legsStr.split(',').map(leg => leg.trim());
+  // Handle format 2: Raw BetOnline format with pipes
+  // "FOOTBALL - NFL - ... | Money line - Colts (Game) | Player stats - Daniel Jones over 211.5 Passing yds (Game)"
+  // OR concatenated format: "...PendingFootball - NFL - Dallas Cowboys vs Denver Broncos - Parlay | 279 Dallas Cowboys +3½..."
+  if (description.includes('Football - NFL -')) {
+    const legs = [];
+    
+    // Split by "Football - NFL -" to get individual games
+    const games = description.split(/Football - NFL -/i).filter(g => g.trim().length > 0);
+    
+    for (const game of games) {
+      // Each game contains: "Team1 vs Team2 - Parlay | number Team +spread odds For Game | date | time | status"
+      // Extract the bet line (the part with the number, team, spread, odds)
+      const betMatch = game.match(/\|\s*\d+\s+(.+?)\s+([-+]\d+(?:½)?|over|under)\s+([\d.]+)?\s*[-+]?\d+\s+For\s+Game/i);
+      if (betMatch) {
+        const teamOrTotal = betMatch[1].trim();
+        const lineType = betMatch[2];
+        const lineValue = betMatch[3];
+        
+        // Check if it's a total (over/under)
+        if (lineType.toLowerCase() === 'over' || lineType.toLowerCase() === 'under') {
+          // It's a total: "Green Bay Packers/Pittsburgh Steelers over 46"
+          legs.push(`${teamOrTotal.replace(/\//g, '/')} ${lineType} ${lineValue}`);
+        } else {
+          // It's a spread: "Dallas Cowboys +3½"
+          legs.push(`${teamOrTotal} ${lineType.replace('½', '.5')}`);
+        }
+      }
+    }
+    
+    return legs;
+  }
+  
+  // Handle format 3: Line-by-line format with pipes
+  if (description.includes('FOOTBALL - NFL -')) {
+    const legs = [];
+    const parts = description.split(' | ');
+    
+    for (const part of parts) {
+      // Skip the game header
+      if (part.includes('FOOTBALL - NFL -')) continue;
+      
+      // Extract meaningful leg info
+      if (part.includes('Money line -')) {
+        const teamMatch = part.match(/Money line - (\w+)/i);
+        if (teamMatch) legs.push(`${teamMatch[1]} ML`);
+      } else if (part.includes('Player stats -')) {
+        const propMatch = part.match(/Player stats - (.+?) (over|under|[\d+]+) (.+?) \(Game\)/i);
+        if (propMatch) {
+          const player = propMatch[1].split(' ').map(w => w[0]).join('');
+          legs.push(`${player} ${propMatch[2]} ${propMatch[3]}`);
+        }
+      } else if (part.includes('Player TDs -')) {
+        const tdMatch = part.match(/Player TDs - (.+?) Score anytime/i);
+        if (tdMatch) {
+          const player = tdMatch[1].split(' ').map(w => w[0]).join('');
+          legs.push(`${player} TD`);
+        }
+      } else if (part.includes('Spread -')) {
+        const spreadMatch = part.match(/Spread - (\w+) ([-+]\d+(?:\.\d+)?)/i);
+        if (spreadMatch) legs.push(`${spreadMatch[1]} ${spreadMatch[2]}`);
+      } else if (part.includes('Total points -')) {
+        const totalMatch = part.match(/Total points - (Over|Under) ([\d.]+)/i);
+        if (totalMatch) legs.push(`${totalMatch[1]} ${totalMatch[2]}`);
+      }
+    }
+    
+    return legs;
+  }
+  
+  return [];
 }
 
 // Get live status for a parlay leg
 function getLegLiveStatus(leg, liveGames) {
-  // Parse leg like "CAR +7" or "MIA +7.5"
-  const legMatch = leg.match(/([A-Z]+)\s+([-+]\d+(?:\.\d+)?)/);
-  if (!legMatch) return null;
+  // Check if it's a total (over/under)
+  // Format: "Green Bay Packers/Pittsburgh Steelers over 46"
+  const totalMatch = leg.match(/(.+?)\/(.*?)\s+(over|under)\s+([\d.]+)/i);
+  if (totalMatch) {
+    const team1 = totalMatch[1].trim();
+    const team2 = totalMatch[2].trim();
+    const overUnder = totalMatch[3].toLowerCase();
+    const line = parseFloat(totalMatch[4]);
+    
+    // Find matching game by team names
+    for (const game of liveGames) {
+      if ((game.home_team.includes(team1) || game.away_team.includes(team1)) &&
+          (game.home_team.includes(team2) || game.away_team.includes(team2))) {
+        const currentTotal = game.home_score + game.away_score;
+        
+        let status;
+        if (overUnder === 'over') {
+          if (currentTotal > line) {
+            status = 'winning';
+          } else if (currentTotal < line * 0.8) {
+            status = 'losing';
+          } else {
+            status = 'neutral';
+          }
+        } else { // under
+          if (currentTotal < line) {
+            status = 'winning';
+          } else if (currentTotal > line * 0.8) {
+            status = 'losing';
+          } else {
+            status = 'neutral';
+          }
+        }
+        
+        return {
+          status: status,
+          game: game
+        };
+      }
+    }
+    
+    return null; // Game not live yet
+  }
   
-  const teamAbbr = legMatch[1];
-  const spread = parseFloat(legMatch[2]);
+  // Parse spread leg like "CAR +7" or "MIA +7.5" or "Dallas Cowboys +3.5"
+  const spreadMatch = leg.match(/(.+?)\s+([-+]\d+(?:\.\d+)?)/);
+  if (!spreadMatch) return null;
   
-  // Find matching live game
+  const teamName = spreadMatch[1].trim();
+  const spread = parseFloat(spreadMatch[2]);
+  
+  // Find matching live game by team name or abbreviation
   for (const game of liveGames) {
-    if (game.away_abbr === teamAbbr || game.home_abbr === teamAbbr) {
+    if (game.away_abbr === teamName || game.home_abbr === teamName ||
+        game.away_team.includes(teamName) || game.home_team.includes(teamName)) {
       // Determine if this leg is winning
       let scoreDiff;
-      if (game.away_abbr === teamAbbr) {
+      if (game.away_abbr === teamName || game.away_team.includes(teamName)) {
         // Betting on away team
         scoreDiff = game.away_score - game.home_score;
       } else {
@@ -553,22 +674,26 @@ async function showBetDetails(bet) {
       
       legs.forEach((leg, index) => {
         const legStatus = getLegLiveStatus(leg, liveData);
-        let statusClass = 'secondary';
+        let listItemClass = '';
+        let badgeClass = 'bg-secondary';
         let statusIcon = '⚪';
         let statusText = 'Not Started';
         let scoreText = '';
         
         if (legStatus) {
           if (legStatus.status === 'winning') {
-            statusClass = 'success';
+            listItemClass = 'list-group-item-success';
+            badgeClass = 'bg-success';
             statusIcon = '🟢';
             statusText = 'WINNING';
           } else if (legStatus.status === 'losing') {
-            statusClass = 'danger';
+            listItemClass = 'list-group-item-danger';
+            badgeClass = 'bg-danger';
             statusIcon = '🔴';
             statusText = 'LOSING';
           } else if (legStatus.status === 'neutral') {
-            statusClass = 'warning';
+            listItemClass = 'list-group-item-warning';
+            badgeClass = 'bg-warning';
             statusIcon = '🟡';
             statusText = 'PUSH';
           }
@@ -579,7 +704,7 @@ async function showBetDetails(bet) {
         }
         
         html += `
-          <div class="list-group-item bg-${statusClass}-lt">
+          <div class="list-group-item ${listItemClass}">
             <div class="row align-items-center">
               <div class="col-auto">
                 <span class="badge bg-blue text-white">${index + 1}</span>
@@ -587,7 +712,7 @@ async function showBetDetails(bet) {
               <div class="col">
                 <div class="d-flex align-items-center justify-content-between">
                   <span><strong>${leg}</strong> ${scoreText}</span>
-                  <span class="badge bg-${statusClass}">${statusIcon} ${statusText}</span>
+                  <span class="badge ${badgeClass} text-white">${statusIcon} ${statusText}</span>
                 </div>
               </div>
             </div>
@@ -1000,30 +1125,36 @@ function parseBetOnlineData(text) {
   // Try to extract ticket number
   const ticketMatch = text.match(/Ticket Number:\s*(\S+)/);
   if (!ticketMatch) {
+    console.log('❌ No ticket number found');
     return bets;
   }
   
   const ticketNumber = ticketMatch[1];
+  console.log('✓ Ticket:', ticketNumber);
   
   // Extract date
   const dateMatch = text.match(/Accepted Date:\s*(\d{2}\/\d{2}\/\d{2})/);
   const date = dateMatch ? dateMatch[1] : new Date().toLocaleDateString('en-US');
   
-  // Extract type
-  const typeMatch = text.match(/Type:\s*(\w+)/);
-  const betType = typeMatch ? typeMatch[1] : 'Unknown';
+  // Extract type (handle multi-word types like "Same Game Parlay")
+  const typeMatch = text.match(/Type:\s*(.+?)(?:\n|$)/);
+  const betType = typeMatch ? typeMatch[1].trim() : 'Unknown';
+  console.log('✓ Type:', betType);
   
   // Extract amount
   const amountMatch = text.match(/Amount:\s*\$?([\d,]+\.?\d*)/);
   const amount = amountMatch ? parseFloat(amountMatch[1].replace(/,/g, '')) : 0;
+  console.log('✓ Amount:', amount);
   
   // Extract to win
   const toWinMatch = text.match(/To win:\s*\$?([\d,]+\.?\d*)/);
   const toWin = toWinMatch ? parseFloat(toWinMatch[1].replace(/,/g, '')) : 0;
+  console.log('✓ To Win:', toWin);
   
   // Extract status
   const statusMatch = text.match(/Status:\s*(\w+)/);
   const status = statusMatch ? statusMatch[1] : 'Pending';
+  console.log('✓ Status:', status);
   
   // Team name to abbreviation mapping
   const teamMap = {
@@ -1043,37 +1174,112 @@ function parseBetOnlineData(text) {
   // Extract description (all the legs for parlays)
   let description = '';
   const descMatch = text.match(/Description:\s*(.+)/s);
+  console.log('Description match:', descMatch ? 'YES' : 'NO');
   if (descMatch) {
     const rawDesc = descMatch[1];
+    console.log('Raw description length:', rawDesc.length);
     
-    // For parlays, extract team names and spreads
+    // For parlays, extract legs
     if (betType.toLowerCase().includes('parlay')) {
+      console.log('Parsing as parlay...');
       const legs = [];
       
-      // Match patterns like "270 Carolina Panthers +7 -105" or "Parlay | 270 Carolina Panthers +7 -105"
-      // The format is: [number] [Team Name] [spread] [odds] For Game
-      const legMatches = rawDesc.matchAll(/\|\s*\d+\s+([A-Za-z\s]+?)\s+([-+]\d+(?:½)?)\s+[-+]?\d+\s+For\s+Game/gi);
-      
-      for (const match of legMatches) {
+      // Try format 1: "270 Carolina Panthers +7 -105 For Game" or "281 Green Bay Packers/Pittsburgh Steelers over 46 -110 For Game"
+      // Match spreads: "| 279 Dallas Cowboys +3½ -118 For Game"
+      const spreadMatches = rawDesc.matchAll(/\|\s*\d+\s+([A-Za-z\s]+?)\s+([-+]\d+(?:½)?)\s+[-+]?\d+\s+For\s+Game/gi);
+      for (const match of spreadMatches) {
         const team = match[1].trim();
-        let spread = match[2].replace('½', '.5'); // Convert ½ to .5
-        
-        // Get proper abbreviation
+        let spread = match[2].replace('½', '.5');
         const teamAbbr = teamMap[team] || team.split(' ').map(w => w[0]).join('');
         legs.push(`${teamAbbr} ${spread}`);
       }
       
+      // Match totals: "| 281 Green Bay Packers/Pittsburgh Steelers over 46 -110 For Game"
+      const totalMatches = rawDesc.matchAll(/\|\s*\d+\s+([A-Za-z\s]+?)\/([A-Za-z\s]+?)\s+(over|under)\s+([\d.]+)\s+[-+]?\d+\s+For\s+Game/gi);
+      for (const match of totalMatches) {
+        const team1 = match[1].trim();
+        const team2 = match[2].trim();
+        const overUnder = match[3];
+        const line = match[4];
+        const abbr1 = teamMap[team1] || team1.split(' ').map(w => w[0]).join('');
+        const abbr2 = teamMap[team2] || team2.split(' ').map(w => w[0]).join('');
+        legs.push(`${abbr1}/${abbr2} ${overUnder} ${line}`);
+      }
+      
+      // Try format 2: "Money line - Colts (Game)" or "Player stats - Daniel Jones over 211.5 Passing yds (Game)"
+      if (legs.length === 0) {
+        console.log('Trying format 2 (line-by-line)...');
+        // Extract each line that looks like a bet leg
+        const lines = rawDesc.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+        console.log('Found', lines.length, 'lines');
+        
+        for (const line of lines) {
+          console.log('  Processing line:', line);
+          // Skip the game header line
+          if (line.includes('FOOTBALL - NFL -')) continue;
+          
+          // Match "Money line - Colts (Game)"
+          if (line.match(/Money line - (\w+)/i)) {
+            const teamMatch = line.match(/Money line - (\w+)/i);
+            if (teamMatch) {
+              legs.push(`${teamMatch[1]} ML`);
+            }
+          }
+          // Match "Player stats - Daniel Jones over 211.5 Passing yds (Game)"
+          else if (line.match(/Player stats - (.+?) (over|under|[\d+]+) (.+?) \(Game\)/i)) {
+            const propMatch = line.match(/Player stats - (.+?) (over|under|[\d+]+) (.+?) \(Game\)/i);
+            if (propMatch) {
+              const player = propMatch[1].split(' ').map(w => w[0]).join(''); // Initials
+              const type = propMatch[2];
+              const stat = propMatch[3];
+              legs.push(`${player} ${type} ${stat}`);
+            }
+          }
+          // Match "Player TDs - Kayshon Boutte Score anytime (Game)"
+          else if (line.match(/Player TDs - (.+?) Score anytime/i)) {
+            const tdMatch = line.match(/Player TDs - (.+?) Score anytime/i);
+            if (tdMatch) {
+              const player = tdMatch[1].split(' ').map(w => w[0]).join('');
+              legs.push(`${player} TD`);
+            }
+          }
+          // Match "Spread - Patriots -7.5 (Game)"
+          else if (line.match(/Spread - (\w+) ([-+]\d+(?:\.\d+)?)/i)) {
+            const spreadMatch = line.match(/Spread - (\w+) ([-+]\d+(?:\.\d+)?)/i);
+            if (spreadMatch) {
+              legs.push(`${spreadMatch[1]} ${spreadMatch[2]}`);
+            }
+          }
+          // Match "Total points - Over 40.5 (Game)"
+          else if (line.match(/Total points - (Over|Under) ([\d.]+)/i)) {
+            const totalMatch = line.match(/Total points - (Over|Under) ([\d.]+)/i);
+            if (totalMatch) {
+              legs.push(`${totalMatch[1]} ${totalMatch[2]}`);
+            }
+          }
+        }
+      }
+      
       if (legs.length > 0) {
-        description = `${legs.length}-team parlay: ${legs.join(', ')}`;
+        // Use the FULL raw description if it has leg statuses (Won/Lost/Pending)
+        // Otherwise use the shortened format
+        if (rawDesc.includes('| Won') || rawDesc.includes('| Lost') || rawDesc.includes('| Pending')) {
+          description = rawDesc;
+          console.log('✓ Using full raw description with leg statuses');
+        } else {
+          description = `${legs.length}-leg ${betType}: ${legs.join(' | ')}`;
+          console.log('✓ Final description:', description);
+        }
       } else {
         description = rawDesc.substring(0, 200);
+        console.log('⚠️ No legs parsed, using raw description');
       }
     } else {
       description = rawDesc.substring(0, 200);
     }
   }
   
-  bets.push({
+  const bet = {
     ticket_id: ticketNumber,
     date: date,
     description: description,
@@ -1081,7 +1287,10 @@ function parseBetOnlineData(text) {
     status: status,
     amount: amount,
     to_win: toWin
-  });
+  };
+  
+  console.log('✓ Parsed bet:', bet);
+  bets.push(bet);
   
   return bets;
 }

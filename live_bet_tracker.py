@@ -32,33 +32,88 @@ class LiveBetTracker:
         bets = []
         for bet in pending:
             bet_dict = dict(bet)
+            description = bet_dict.get('description', '')
             bets.append({
-                'ticket_number': bet_dict.get('ticket_number'),
-                'description': bet_dict.get('description', ''),
-                'bet_type': bet_dict.get('type', ''),
+                'ticket_number': bet_dict.get('ticket_id'),  # Changed from ticket_number to ticket_id
+                'description': description,
+                'bet_type': bet_dict.get('bet_type', ''),  # Changed from type to bet_type
                 'date': bet_dict.get('date'),
                 'amount': bet_dict.get('amount', 0),
                 'to_win': bet_dict.get('to_win', 0),
-                'team': self._extract_team(bet_dict.get('description', '')),
-                'line': self._extract_line(bet_dict.get('description', ''))
+                'team': self._extract_team(description),
+                'teams': self._extract_teams(description),  # All teams involved (for totals)
+                'line': self._extract_line(description)
             })
         
         return bets
     
-    def _extract_team(self, description):
-        """Extract team name from bet description"""
-        # Simple extraction - improve based on actual format
+    def _extract_teams(self, description):
+        """Extract team names from bet description (returns list of teams)"""
+        import re
+        
+        # For totals: "Green Bay Packers/Pittsburgh Steelers over 46"
+        if '/' in description and ('over' in description.lower() or 'under' in description.lower()):
+            match = re.search(r'([A-Za-z\s]+)/([A-Za-z\s]+)\s+(over|under)', description, re.IGNORECASE)
+            if match:
+                team1 = match.group(1).strip()
+                team2 = match.group(2).strip()
+                return [team1, team2]
+        
+        # Try format: "Team1 @ Team2"
         if ' @ ' in description:
             parts = description.split(' @ ')
-            return parts[0].strip() if len(parts) > 0 else ''
-        return ''
+            if len(parts) >= 2:
+                return [parts[0].strip(), parts[1].split()[0].strip()]
+        
+        # Try format: "FOOTBALL - 279 Dallas Cowboys +3½ -118"
+        # Remove the number prefix first
+        desc_clean = re.sub(r'FOOTBALL\s*-\s*\d+\s+', '', description)
+        
+        # Try format: "Indianapolis Colts -15" or "New England Patriots +7" or "Dallas Cowboys +3½"
+        # Look for team name followed by +/- and number
+        match = re.search(r'([A-Za-z\s]+?)\s+([+-]\d+(?:½)?)', desc_clean)
+        if match:
+            team = match.group(1).strip()
+            # Remove any trailing numbers
+            team = re.sub(r'\d+$', '', team).strip()
+            return [team]
+        
+        # Try format: "FOOTBALL - NFL - Team1 v Team2"
+        if ' v ' in description or ' vs ' in description:
+            parts = re.split(r'\s+v\s+|\s+vs\s+', description)
+            if len(parts) >= 2:
+                # Extract just the team names, removing "FOOTBALL - NFL -" prefix
+                team = parts[0].split(' - ')[-1].strip()
+                return [team]
+        
+        return []
+    
+    def _extract_team(self, description):
+        """Extract primary team name (for backward compatibility)"""
+        teams = self._extract_teams(description)
+        return teams[0] if teams else ''
     
     def _extract_line(self, description):
         """Extract line/spread from bet description"""
-        # Look for numbers with +/- signs
+        # Look for numbers with +/- signs (but not the bet number at the start)
         import re
-        match = re.search(r'([+-]?\d+\.?\d*)', description)
-        return float(match.group(1)) if match else 0.0
+        
+        # Remove "FOOTBALL - 279" style prefixes
+        desc_clean = re.sub(r'FOOTBALL\s*-\s*\d+\s+', '', description)
+        
+        # For totals: "over 46" or "under 47.5"
+        if 'over' in description.lower() or 'under' in description.lower():
+            match = re.search(r'(over|under)\s+(\d+(?:\.5)?)', description, re.IGNORECASE)
+            if match:
+                return float(match.group(2))
+        
+        # Look for spread like "+3½" or "-7"
+        match = re.search(r'([+-]\d+(?:½|\.5)?)', desc_clean)
+        if match:
+            line_str = match.group(1).replace('½', '.5')
+            return float(line_str)
+        
+        return 0.0
     
     def get_live_games(self, sport='NFL'):
         """Fetch live games from ESPN API"""
@@ -138,8 +193,31 @@ class LiveBetTracker:
             return None
         
         bet_type = bet.get('bet_type', '').lower()
+        description = bet.get('description', '').lower()
         team = bet.get('team', '')
         
+        home_score = game['home_score']
+        away_score = game['away_score']
+        
+        # Handle totals (over/under) - don't need team match
+        if 'total' in bet_type or 'over' in description or 'under' in description:
+            total = float(bet.get('line', 0))
+            current_total = home_score + away_score
+            
+            if 'over' in description:
+                if current_total > total:
+                    return 'winning'
+                elif current_total < total * 0.8:  # Likely to stay under
+                    return 'losing'
+            else:  # under
+                if current_total < total:
+                    return 'winning'
+                elif current_total > total * 0.8:  # Likely to go over
+                    return 'losing'
+            
+            return 'neutral'
+        
+        # For spread/moneyline, we need team match
         # Determine which team the bet is on
         is_home = team == game['home_team']
         is_away = team == game['away_team']
@@ -147,24 +225,24 @@ class LiveBetTracker:
         if not (is_home or is_away):
             return None
         
-        home_score = game['home_score']
-        away_score = game['away_score']
-        
         # Handle different bet types
         if 'spread' in bet_type or 'point spread' in bet_type:
             spread = float(bet.get('line', 0))
             
             if is_home:
-                current_diff = home_score - away_score
-                if current_diff > spread:
+                # For home team: add spread to their score
+                # e.g., IND -15: if IND wins by more than 15, they cover
+                effective_diff = (home_score - away_score) + spread
+                if effective_diff > 0:
                     return 'winning'
-                elif current_diff < spread:
+                elif effective_diff < 0:
                     return 'losing'
             else:  # away team
-                current_diff = away_score - home_score
-                if current_diff > abs(spread):
+                # For away team: add spread to their score
+                effective_diff = (away_score - home_score) + spread
+                if effective_diff > 0:
                     return 'winning'
-                elif current_diff < abs(spread):
+                elif effective_diff < 0:
                     return 'losing'
         
         elif 'moneyline' in bet_type or 'ml' in bet_type:
@@ -177,21 +255,6 @@ class LiveBetTracker:
                 if away_score > home_score:
                     return 'winning'
                 elif away_score < home_score:
-                    return 'losing'
-        
-        elif 'over' in bet_type or 'under' in bet_type:
-            total = float(bet.get('line', 0))
-            current_total = home_score + away_score
-            
-            if 'over' in bet_type:
-                if current_total > total:
-                    return 'winning'
-                elif current_total < total * 0.8:  # Likely to stay under
-                    return 'losing'
-            else:  # under
-                if current_total < total:
-                    return 'winning'
-                elif current_total > total * 0.8:  # Likely to go over
                     return 'losing'
         
         return 'neutral'
@@ -216,8 +279,19 @@ class LiveBetTracker:
             
             # Try to match bet to a live game
             for game in all_games:
-                if (bet.get('team') in [game['home_team'], game['away_team']] or
-                    bet.get('opponent') in [game['home_team'], game['away_team']]):
+                bet_teams = bet.get('teams', [])
+                game_teams = [game['home_team'], game['away_team']]
+                
+                # For totals, check if any of the bet's teams match the game
+                # For spread/ML, check if the primary team matches
+                if bet_teams:
+                    # Check if any bet team is in the game
+                    if any(team in game_teams for team in bet_teams):
+                        matched_game = game
+                        status = self.get_bet_status(bet, game)
+                        break
+                elif bet.get('team') in game_teams:
+                    # Fallback to single team match
                     matched_game = game
                     status = self.get_bet_status(bet, game)
                     break
