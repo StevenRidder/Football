@@ -11,8 +11,6 @@ Usage:
 
 import argparse
 from nfl_edge.accuracy_tracker import create_tracker
-from nfl_edge.data_ingest import fetch_teamweeks_live
-import pandas as pd
 import datetime
 
 
@@ -111,11 +109,11 @@ def update_results(week: int = None, season: int = 2025):
             print(f"❌ Error recording {game['away']} @ {game['home']}: {e}")
     
     print(f"\n{'='*70}")
-    print(f"SUMMARY")
+    print("SUMMARY")
     print(f"{'='*70}")
     print(f"Games found: {len(games)}")
     print(f"Results recorded: {recorded}")
-    print(f"\n✅ Results updated! Visit http://localhost:9876/accuracy to see accuracy")
+    print("\n✅ Results updated! Visit http://localhost:9876/accuracy to see accuracy")
     
     # Show quick accuracy summary
     try:

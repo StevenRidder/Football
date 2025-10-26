@@ -1,5 +1,5 @@
 
-import numpy as np, pandas as pd
+import pandas as pd
 from sklearn.linear_model import Ridge
 
 def fit_expected_points_model(history: pd.DataFrame):

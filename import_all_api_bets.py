@@ -5,7 +5,6 @@ This script parses the JSON responses you provided and imports all 404 bets.
 """
 
 import json
-import sys
 from datetime import datetime
 from nfl_edge.bets.db import BettingDB
 
@@ -134,7 +133,7 @@ def main():
     print("=" * 70)
     print(f"\nTotal bets: {imported_count}")
     print(f"Pending amount: ${pending_total:.2f}")
-    print(f"Expected: $561.33")
+    print("Expected: $561.33")
     print(f"Difference: ${561.33 - pending_total:.2f}")
     
     if abs(pending_total - 561.33) < 0.01:

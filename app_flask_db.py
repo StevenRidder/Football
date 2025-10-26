@@ -5,7 +5,6 @@ Replace the /bets and /performance routes in app_flask.py with these
 
 from flask import render_template
 from nfl_edge.bets.db import BettingDB
-from collections import defaultdict
 
 def setup_db_routes(app):
     """Setup database-backed routes for betting"""

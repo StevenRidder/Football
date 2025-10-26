@@ -137,13 +137,13 @@ with open('artifacts/betonline_bets.json', 'w') as f:
     json.dump(output, f, indent=2)
 
 print(f"\n✅ Successfully loaded {len(unique_bets)} bets!")
-print(f"📊 Summary:")
+print("📊 Summary:")
 print(f"   Pending: {total_pending}")
 print(f"   Won: {total_won}")
 print(f"   Lost: {total_lost}")
 print(f"   Total Risked: ${total_risked:.2f}")
 print(f"   Total To Win: ${total_to_win:.2f}")
-print(f"\n💾 Saved to artifacts/betonline_bets.json")
+print("\n💾 Saved to artifacts/betonline_bets.json")
 
 # Show first 5 bets
 print("\n📋 First 5 bets:")

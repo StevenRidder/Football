@@ -85,7 +85,7 @@ def fetch_all_bets():
                     all_bets[bet_id] = bet
         
         print(f"\n{'='*70}")
-        print(f"EXTRACTION COMPLETE!")
+        print("EXTRACTION COMPLETE!")
         print(f"{'='*70}")
         print(f"Total API responses captured: {len(all_responses)}")
         print(f"Total unique bets: {len(all_bets)}")
@@ -96,7 +96,7 @@ def fetch_all_bets():
         
         print(f"Pending bets: {len(pending_bets)}")
         print(f"Pending total: ${pending_total:.2f}")
-        print(f"Target: $561.33")
+        print("Target: $561.33")
         
         if abs(pending_total - 561.33) < 0.01:
             print("\n✅ PERFECT MATCH!")

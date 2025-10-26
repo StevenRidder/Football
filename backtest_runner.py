@@ -7,7 +7,6 @@ import pandas as pd
 import numpy as np
 import yaml
 from pathlib import Path
-from typing import List, Tuple
 
 from nfl_edge.data_ingest import NFLVERSE_TEAM_BASE, _read_url_csv, _num
 from nfl_edge.features import build_features, join_matchups
@@ -345,9 +344,9 @@ def generate_backtest_report(results: pd.DataFrame) -> str:
     lines.append(f"  Bias (Model - Actual):      {metrics['total_bias']:+.2f} points")
     
     if abs(metrics['total_bias']) < 3:
-        lines.append(f"  ✅ Well calibrated (bias < 3 pts)")
+        lines.append("  ✅ Well calibrated (bias < 3 pts)")
     else:
-        lines.append(f"  ⚠️  Systematic bias detected")
+        lines.append("  ⚠️  Systematic bias detected")
     
     lines.append("\n" + "─" * 80)
     lines.append("MARGIN/SPREAD PREDICTION")
@@ -369,14 +368,14 @@ def generate_backtest_report(results: pd.DataFrame) -> str:
     lines.append("PROBABILITY CALIBRATION")
     lines.append("─" * 80)
     lines.append(f"  Brier Score:                {metrics['brier_score']:.4f}")
-    lines.append(f"  (Lower is better, perfect = 0.000)")
+    lines.append("  (Lower is better, perfect = 0.000)")
     
     if metrics['brier_score'] < 0.15:
-        lines.append(f"  ✅ Well calibrated probabilities")
+        lines.append("  ✅ Well calibrated probabilities")
     elif metrics['brier_score'] < 0.25:
-        lines.append(f"  ⚠️  Moderate calibration")
+        lines.append("  ⚠️  Moderate calibration")
     else:
-        lines.append(f"  ❌ Poor calibration")
+        lines.append("  ❌ Poor calibration")
     
     lines.append("\n" + "─" * 80)
     lines.append("GAME-BY-GAME RESULTS (Sample)")
@@ -411,8 +410,8 @@ if __name__ == "__main__":
         Path("artifacts/backtest_report.txt").write_text(report)
         
         print("\n" + report)
-        print(f"\n📁 Saved: artifacts/backtest_results.csv")
-        print(f"📁 Saved: artifacts/backtest_report.txt")
+        print("\n📁 Saved: artifacts/backtest_results.csv")
+        print("📁 Saved: artifacts/backtest_report.txt")
     else:
         print("\n❌ Backtest failed - no results generated")
 

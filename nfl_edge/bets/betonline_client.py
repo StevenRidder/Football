@@ -7,7 +7,6 @@ internal endpoints using session cookies and headers.
 
 from __future__ import annotations
 import time
-import json
 import shlex
 import re
 from typing import Dict, Any, List, Optional

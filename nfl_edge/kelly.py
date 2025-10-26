@@ -5,7 +5,6 @@ Converts model probabilities into actionable bet recommendations.
 
 import numpy as np
 import pandas as pd
-from typing import Dict, Tuple
 
 
 def american_to_decimal(american_odds: float) -> float:

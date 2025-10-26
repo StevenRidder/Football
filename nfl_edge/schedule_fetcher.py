@@ -2,8 +2,6 @@
 Automatically fetch upcoming NFL schedule instead of hardcoded lists.
 """
 
-import pandas as pd
-from datetime import datetime, timedelta
 from typing import List, Tuple
 from nfl_edge.data_ingest import NFLVERSE_TEAM_BASE, _read_url_csv
 

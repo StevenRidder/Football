@@ -4,7 +4,6 @@ Separate from game prediction model - measures team analytics adoption and effic
 """
 
 import pandas as pd
-import numpy as np
 from scipy import stats
 
 # Analytics tier ratings (1-5, based on coaching staff, front office, 4th down behavior)

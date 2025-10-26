@@ -6,13 +6,10 @@ Measures accuracy, calibration, and hypothetical P&L.
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from typing import Tuple, Dict
+from typing import Dict
 import yaml
 
 from nfl_edge.data_ingest import _read_url_csv, NFLVERSE_TEAM_BASE
-from nfl_edge.features import build_features, join_matchups, apply_weather_and_injuries
-from nfl_edge.model import fit_expected_points_model, predict_expected_points
-from nfl_edge.data_ingest import fetch_injury_index
 
 
 def fetch_historical_games(season: int, weeks: list = None) -> pd.DataFrame:
@@ -116,7 +113,6 @@ def backtest_week(season: int, week: int,
     df = df[(df['season_type'] == 'REG') & (df['week'] <= train_through_week)].copy()
     
     # Convert to teamweeks format (same as data_ingest.py)
-    from nfl_edge.data_ingest import fetch_teamweeks_live
     # We'll reuse the same transformation logic
     # For now, simplified version:
     
@@ -239,23 +235,23 @@ def generate_backtest_report(results: pd.DataFrame,
     lines.append("BACKTEST REPORT")
     lines.append("=" * 80)
     lines.append(f"\nGames Analyzed: {metrics['n_games']}")
-    lines.append(f"\nTOTAL PREDICTIONS:")
+    lines.append("\nTOTAL PREDICTIONS:")
     lines.append(f"  Mean Error:  {metrics['mean_total_error']:+.1f} points")
     lines.append(f"  MAE:         {metrics['mae_total']:.1f} points")
     lines.append(f"  RMSE:        {metrics['rmse_total']:.1f} points")
     
-    lines.append(f"\nMARGIN PREDICTIONS:")
+    lines.append("\nMARGIN PREDICTIONS:")
     lines.append(f"  Mean Error:  {metrics['mean_margin_error']:+.1f} points")
     lines.append(f"  MAE:         {metrics['mae_margin']:.1f} points")
     lines.append(f"  RMSE:        {metrics['rmse_margin']:.1f} points")
     
     if 'spread_accuracy' in metrics:
         lines.append(f"\nSPREAD ACCURACY: {metrics['spread_accuracy']*100:.1f}%")
-        lines.append(f"  (Need >52.4% to beat -110 juice)")
+        lines.append("  (Need >52.4% to beat -110 juice)")
     
     if 'over_accuracy' in metrics:
         lines.append(f"\nOVER/UNDER ACCURACY: {metrics['over_accuracy']*100:.1f}%")
-        lines.append(f"  (Need >52.4% to beat -110 juice)")
+        lines.append("  (Need >52.4% to beat -110 juice)")
     
     lines.append("\n" + "=" * 80)
     

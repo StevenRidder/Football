@@ -131,7 +131,7 @@ def main():
     result = cursor.fetchone()
     cursor.close()
     
-    print(f"\nDatabase verification:")
+    print("\nDatabase verification:")
     if result:
         print(f"  Result: {result}")
         print(f"  Result length: {len(result)}")

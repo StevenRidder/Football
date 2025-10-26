@@ -3,8 +3,6 @@
 Import ALL 404 bets from the week 8.txt file
 """
 import json
-import re
-from datetime import datetime
 from dateutil import parser as date_parser
 from nfl_edge.bets.db import BettingDB
 

@@ -5,15 +5,14 @@ Flask application serving NFL predictions with official Tabler UI
 from flask import Flask, render_template, jsonify, request
 from pathlib import Path
 import pandas as pd
-from datetime import date
+from datetime import datetime
 import requests
 import io
-from nfl_edge.data_ingest import fetch_teamweeks_live
+import json
 from nfl_edge.predictions_api import fetch_all_predictions
 from nfl_edge.accuracy_tracker import create_tracker
 from nfl_edge.bets.betonline_client import (
-    fetch_all_bets, normalize_to_ledger, save_ledger, 
-    load_ledger, get_weekly_summary, _headers_from_config, parse_curl_to_headers
+    load_ledger, get_weekly_summary
 )
 from live_bet_tracker import LiveBetTracker
 
@@ -159,17 +158,6 @@ def api_aii():
     
     return jsonify(teams)
 
-@app.route('/analytics')
-def analytics():
-    """Analytics Intensity Index page"""
-    df = load_latest_aii()
-    
-    if df is None:
-        return render_template('error.html',
-                             message="No AII data found. Run python3 run_analytics.py first.")
-    
-    return render_template('analytics.html',
-                         total_teams=len(df))
 
 @app.route('/game/<away>/<home>')
 def game_detail(away, home):
@@ -960,7 +948,7 @@ def api_load_bets():
         data = request.get_json()
         bets = data.get('bets', [])
         
-        print(f"=== API LOAD BETS CALLED ===")
+        print("=== API LOAD BETS CALLED ===")
         print(f"Received {len(bets)} bets")
         for bet in bets:
             print(f"  Bet: {bet.get('ticket_id')} - desc length: {len(bet.get('description', ''))}")
@@ -1147,12 +1135,12 @@ def api_auto_grade_bets():
             all_games.extend(games)
         
         import sys
-        print(f"\n=== AUTO-GRADER START ===", file=sys.stderr, flush=True)
+        print("\n=== AUTO-GRADER START ===", file=sys.stderr, flush=True)
         print(f"Pending bets: {len(pending_bets)}", file=sys.stderr, flush=True)
         print(f"Games found: {len(all_games)}", file=sys.stderr, flush=True)
         final_games = [g for g in all_games if 'final' in g.get('status', '').lower()]
         print(f"Final games: {len(final_games)}", file=sys.stderr, flush=True)
-        print(f"=========================\n", file=sys.stderr, flush=True)
+        print("=========================\n", file=sys.stderr, flush=True)
         
         for bet in pending_bets:
             bet_dict = dict(bet)
@@ -1164,7 +1152,7 @@ def api_auto_grade_bets():
             
             # Skip non-parlay bets
             if 'parlay' not in bet_type and 'teaser' not in bet_type:
-                print(f"  Skipping - not a parlay/teaser", file=sys.stderr, flush=True)
+                print("  Skipping - not a parlay/teaser", file=sys.stderr, flush=True)
                 still_pending += 1
                 continue
             
@@ -1173,7 +1161,7 @@ def api_auto_grade_bets():
             has_leg_status = '| Won' in description or '| Lost' in description or '| Pending' in description
             
             if has_leg_status:
-                print(f"  Has leg status - parsing detailed format", file=sys.stderr, flush=True)
+                print("  Has leg status - parsing detailed format", file=sys.stderr, flush=True)
                 # Parse detailed format with leg statuses
                 # Example: "Minnesota Vikings +9 +100 For Game | 10/23/2025 | 08:15:00 PM (EST) | Lost"
                 legs = description.split('Football - NFL -')[1:]  # Split by game separator
@@ -1185,32 +1173,32 @@ def api_auto_grade_bets():
                     # Extract status from end of leg
                     if '| Lost' in leg:
                         any_leg_lost = True
-                        print(f"    Found lost leg", file=sys.stderr, flush=True)
+                        print("    Found lost leg", file=sys.stderr, flush=True)
                     elif '| Pending' in leg:
                         all_legs_final = False
-                        print(f"    Found pending leg", file=sys.stderr, flush=True)
+                        print("    Found pending leg", file=sys.stderr, flush=True)
                 
                 # Grade the bet
                 if any_leg_lost:
                     # As soon as one leg is lost, entire parlay is lost
                     new_status = 'Lost'
-                    print(f"  GRADING AS LOST (has lost leg)", file=sys.stderr, flush=True)
+                    print("  GRADING AS LOST (has lost leg)", file=sys.stderr, flush=True)
                 elif all_legs_final:
                     # All legs are final and none lost = Won
                     new_status = 'Won'
-                    print(f"  GRADING AS WON (all legs final)", file=sys.stderr, flush=True)
+                    print("  GRADING AS WON (all legs final)", file=sys.stderr, flush=True)
                 else:
                     # Still has pending legs
-                    print(f"  Still has pending legs", file=sys.stderr, flush=True)
+                    print("  Still has pending legs", file=sys.stderr, flush=True)
                     still_pending += 1
                     continue
                 
             else:
-                print(f"  Parsing simple format", file=sys.stderr, flush=True)
+                print("  Parsing simple format", file=sys.stderr, flush=True)
                 # Parse simple format: "12-team parlay: CAR +7, NYG +7.5, ..."
                 match = re.search(r'parlay:\s*(.+)', description, re.IGNORECASE)
                 if not match:
-                    print(f"  No parlay match found in description", file=sys.stderr, flush=True)
+                    print("  No parlay match found in description", file=sys.stderr, flush=True)
                     still_pending += 1
                     continue
                 
@@ -1274,13 +1262,13 @@ def api_auto_grade_bets():
                 # Grade the bet if ANY leg is lost OR all legs are completed
                 if any_leg_lost:
                     new_status = 'Lost'
-                    print(f"  GRADING AS LOST (at least one leg lost)", file=sys.stderr, flush=True)
+                    print("  GRADING AS LOST (at least one leg lost)", file=sys.stderr, flush=True)
                 elif all_legs_completed:
                     new_status = 'Won'
-                    print(f"  GRADING AS WON (all legs completed and won)", file=sys.stderr, flush=True)
+                    print("  GRADING AS WON (all legs completed and won)", file=sys.stderr, flush=True)
                 else:
                     # Still has pending legs and no losses yet
-                    print(f"  Still pending (no losses yet, but games in progress)", file=sys.stderr, flush=True)
+                    print("  Still pending (no losses yet, but games in progress)", file=sys.stderr, flush=True)
                     still_pending += 1
                     continue
             
@@ -1517,6 +1505,44 @@ def check_player_prop():
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/api/update-model-performance', methods=['POST'])
+def api_update_model_performance():
+    """Trigger model performance update"""
+    try:
+        import subprocess
+        
+        # Run the update script
+        result = subprocess.run(
+            ['python3', 'update_model_performance.py'],
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        
+        if result.returncode == 0:
+            return jsonify({
+                'success': True,
+                'message': 'Model performance updated successfully!',
+                'output': result.stdout
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'message': 'Error updating model performance',
+                'error': result.stderr
+            }), 500
+            
+    except subprocess.TimeoutExpired:
+        return jsonify({
+            'success': False,
+            'message': 'Update timed out'
+        }), 500
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': str(e)
+        }), 500
 
 @app.route('/api/live-games')
 def live_games():

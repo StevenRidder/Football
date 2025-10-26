@@ -4,7 +4,6 @@ Migrate betting data from JSON to PostgreSQL database
 """
 import json
 import sys
-from pathlib import Path
 from datetime import datetime
 from nfl_edge.bets.db import BettingDB
 
@@ -198,7 +197,7 @@ def migrate_json_to_db(json_file='artifacts/betonline_bets.json', db_url=None):
     
     db.close()
     
-    print(f"\n✅ Migration complete!")
+    print("\n✅ Migration complete!")
     print(f"   📝 Inserted {inserted_count} standalone bets")
     print(f"   🎯 Created {round_robin_count} round robin parent bets")
     print(f"   📊 Total: {inserted_count + round_robin_count} bets in database")
@@ -208,7 +207,7 @@ def migrate_json_to_db(json_file='artifacts/betonline_bets.json', db_url=None):
     summary = db2.get_performance_summary()
     db2.close()
     
-    print(f"\n📈 Summary:")
+    print("\n📈 Summary:")
     print(f"   Total Bets: {summary['total_bets']}")
     print(f"   Total Wagered: ${summary['total_wagered']:.2f}")
     print(f"   Pending: {summary['pending_count']} (${summary['pending_amount']:.2f})")

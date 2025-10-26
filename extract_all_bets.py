@@ -83,7 +83,7 @@ with sync_playwright() as p:
     with open('extracted_bets_raw_new.json', 'w') as f:
         json.dump(bets_data, f, indent=2)
     
-    print(f"💾 Saved raw data to extracted_bets_raw_new.json")
+    print("💾 Saved raw data to extracted_bets_raw_new.json")
     
     print("\n📊 Now parsing the data...")
     

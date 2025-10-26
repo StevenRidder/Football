@@ -5,7 +5,6 @@ Analyzes why predictions went wrong and suggests model improvements.
 Creates a "Model v2" with improvements, backtests it, and compares to base model.
 """
 
-import pandas as pd
 import numpy as np
 from typing import Dict, List, Tuple
 import json
@@ -219,7 +218,7 @@ class ModelErrorAnalyzer:
         report.append("=" * 80)
         report.append("")
         
-        report.append(f"Total Predictions: 13")
+        report.append("Total Predictions: 13")
         report.append(f"Errors: {len(errors)}")
         report.append(f"Accuracy: {(13 - len(errors)) / 13 * 100:.1f}%")
         report.append("")

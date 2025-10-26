@@ -5,7 +5,6 @@ Import ALL 404 bets from the complete JSON export
 
 import json
 import sys
-from datetime import datetime
 from dateutil import parser as date_parser
 from pathlib import Path
 

@@ -24,7 +24,7 @@ def run_analytics():
     output_path = Path("artifacts") / f"aii_{dt}.csv"
     aii_df.to_csv(output_path, index=False)
     
-    print(f"\n✅ AII analysis complete")
+    print("\n✅ AII analysis complete")
     print(f"📁 Saved to: {output_path}")
     
     # Display top 10

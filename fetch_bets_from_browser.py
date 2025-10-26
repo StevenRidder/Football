@@ -17,7 +17,6 @@ import json
 import re
 import os
 import sys
-import time
 from playwright.sync_api import sync_playwright
 
 def extract_bets_from_page(page):
@@ -193,15 +192,15 @@ def main():
         
         print("\n" + "=" * 50)
         print("✅ Successfully loaded bets!")
-        print(f"📊 Summary:")
+        print("📊 Summary:")
         print(f"   Total Bets: {summary['total_bets']}")
         print(f"   Pending: {summary['pending']}")
         print(f"   Won: {summary['won']}")
         print(f"   Lost: {summary['lost']}")
         print(f"   Total Risked: {summary['total_risked']}")
         print(f"   Total To Win: {summary['total_to_win']}")
-        print(f"\n💾 Saved to artifacts/betonline_bets.json")
-        print(f"🌐 View at: http://localhost:9876/bets")
+        print("\n💾 Saved to artifacts/betonline_bets.json")
+        print("🌐 View at: http://localhost:9876/bets")
         
         # Close browser
         browser.close()

@@ -4,7 +4,6 @@ Compares recent actual game totals to what the model would predict.
 """
 
 import pandas as pd
-import numpy as np
 from nfl_edge.data_ingest import fetch_teamweeks_live
 
 print("=" * 80)
@@ -62,7 +61,7 @@ elif current_model_avg < season_avg - 10:
     print(f"\n❌ MODEL IS TOO LOW by {season_avg - current_model_avg:.1f} points!")
     print("   This would recommend UNDER (but we're not seeing that).")
 else:
-    print(f"\n✅ Model is reasonably calibrated (within 10 points)")
+    print("\n✅ Model is reasonably calibrated (within 10 points)")
 
 print("\n" + "=" * 80)
 print("POSSIBLE FIXES:")

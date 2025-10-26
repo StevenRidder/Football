@@ -13,7 +13,6 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import pandas as pd
 import requests
-import io
 from nfl_edge.accuracy_tracker import create_tracker
 from nfl_edge.predictions_api import fetch_all_predictions
 
@@ -72,7 +71,7 @@ def fetch_historical_games(season=2025, start_week=1, end_week=7):
 def load_model_predictions(season=2025):
     """Load predictions from artifacts directory"""
     print(f"\n{'='*80}")
-    print(f"Loading model predictions from artifacts")
+    print("Loading model predictions from artifacts")
     print(f"{'='*80}\n")
     
     artifacts_dir = Path('artifacts')
@@ -109,7 +108,7 @@ def load_model_predictions(season=2025):
 def backfill_data(games, model_predictions):
     """Record historical predictions and results"""
     print(f"\n{'='*80}")
-    print(f"Backfilling accuracy tracker")
+    print("Backfilling accuracy tracker")
     print(f"{'='*80}\n")
     
     tracker = create_tracker()
@@ -185,12 +184,12 @@ def backfill_data(games, model_predictions):
             print(f"  Week {week}: {away} @ {home} - Error recording result: {e}")
     
     print(f"\n{'='*80}")
-    print(f"BACKFILL SUMMARY")
+    print("BACKFILL SUMMARY")
     print(f"{'='*80}")
     print(f"  Predictions recorded: {recorded_predictions}")
     print(f"  Results recorded: {recorded_results}")
     print(f"  Skipped (no prediction): {skipped}")
-    print(f"\n✅ Backfill complete!")
+    print("\n✅ Backfill complete!")
 
 
 def main():

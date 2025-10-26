@@ -111,7 +111,7 @@ try:
         }, f, indent=2)
     
     print(f"\nParsed {len(parsed_bets)} bets successfully!")
-    print(f"Saved to artifacts/betonline_bets_extracted.json")
+    print("Saved to artifacts/betonline_bets_extracted.json")
     
     # Show first 5 bets
     print("\nFirst 5 bets:")

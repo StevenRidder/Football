@@ -119,7 +119,7 @@ def main():
         all_bets = fetch_all_bets_paginated(headers, days_back=365, page_size=1000)
         
         print()
-        print(f"📊 SUMMARY:")
+        print("📊 SUMMARY:")
         print(f"   Total bets fetched: {len(all_bets)}")
         
         # Calculate totals

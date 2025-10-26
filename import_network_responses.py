@@ -134,7 +134,7 @@ def main():
     
     # Show summary
     stats = db.get_bet_summary()
-    print(f"\n📊 DATABASE SUMMARY:")
+    print("\n📊 DATABASE SUMMARY:")
     print(f"   Total bets: {stats['total_bets']}")
     print(f"   Pending: {stats['pending_bets']}")
     print(f"   Total stake: ${stats['total_stake']:.2f}")

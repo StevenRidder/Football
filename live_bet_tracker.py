@@ -6,7 +6,6 @@ Uses ESPN API for live scores (no auth required)
 
 import requests
 import time
-from datetime import datetime
 from nfl_edge.bets.db import BettingDB
 from player_stats_tracker import PlayerStatsTracker
 

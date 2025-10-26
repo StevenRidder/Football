@@ -12,6 +12,14 @@
         </h2>
         <div class="text-muted mt-1">Compare prediction accuracy across all models - 2025 Season</div>
       </div>
+      <div class="col-auto ms-auto">
+        <div class="btn-list">
+          <button class="btn btn-primary" onclick="updateModelPerformance()">
+            <i class="ti ti-refresh icon"></i>
+            Update Model Stats
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -342,5 +350,34 @@
     
   </div>
 </div>
+
+<script>
+// Model performance update function
+async function updateModelPerformance() {
+  const btn = event.target;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Updating...';
+  
+  try {
+    const response = await fetch('/api/update-model-performance', { method: 'POST' });
+    const data = await response.json();
+    
+    if (data.success) {
+      alert('✅ ' + data.message);
+      location.reload();
+    } else {
+      alert('❌ ' + data.message);
+      btn.disabled = false;
+      btn.innerHTML = 'Update Model Stats';
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('❌ Error updating model performance');
+    btn.disabled = false;
+    btn.innerHTML = 'Update Model Stats';
+  }
+}
+</script>
+
 {% endblock %}
 

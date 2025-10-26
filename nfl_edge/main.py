@@ -1,5 +1,5 @@
 
-import yaml, numpy as np, pandas as pd
+import yaml, numpy as np
 from pathlib import Path
 from datetime import date
 try:
@@ -107,7 +107,6 @@ def run_week():
         tracker = create_tracker()
         
         # Determine current week and season
-        import datetime
         current_week = dt.isocalendar()[1] - 35  # Approximate NFL week
         current_season = dt.year
         
@@ -131,8 +130,8 @@ def run_week():
             )
         
         print(f"✅ Recorded {len(df_out)} predictions for Week {current_week}")
-        print(f"   These will be compared to actual results after games complete")
-        print(f"   Visit http://localhost:9876/accuracy to track performance")
+        print("   These will be compared to actual results after games complete")
+        print("   Visit http://localhost:9876/accuracy to track performance")
         
     except Exception as e:
         print(f"⚠️ Could not auto-record predictions: {e}")

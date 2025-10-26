@@ -151,7 +151,7 @@ def main():
     # Calculate summary
     summary = calculate_summary(bets)
     
-    print(f"\n📊 Summary:")
+    print("\n📊 Summary:")
     print(f"   Total bets: {summary['total_bets']}")
     print(f"   Pending: {summary['pending']} (${summary['pending_amount']:.2f})")
     print(f"   Won: {summary['won']} (+${sum(b['to_win'] for b in bets if b['status']=='Won'):.2f})")
@@ -161,7 +161,7 @@ def main():
     # Compare with old data
     if old_bets:
         old_summary = calculate_summary(old_bets)
-        print(f"\n📈 Changes since last update:")
+        print("\n📈 Changes since last update:")
         print(f"   New bets: +{summary['total_bets'] - old_summary['total_bets']}")
         print(f"   Status changes: {abs(summary['pending'] - old_summary['pending'])} bets settled")
         print(f"   P/L change: ${summary['total_profit'] - old_summary['total_profit']:.2f}")
@@ -176,8 +176,8 @@ def main():
     with open('artifacts/betonline_bets.json', 'w') as f:
         json.dump(output, f, indent=2)
     
-    print(f"\n✅ Saved to artifacts/betonline_bets.json")
-    print(f"🔄 Refresh http://localhost:9876/bets to see updates!")
+    print("\n✅ Saved to artifacts/betonline_bets.json")
+    print("🔄 Refresh http://localhost:9876/bets to see updates!")
 
 if __name__ == '__main__':
     main()

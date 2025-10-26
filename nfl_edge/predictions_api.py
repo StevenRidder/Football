@@ -6,7 +6,7 @@ import os
 import requests
 import pandas as pd
 import io
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 
 
 def fetch_espn_fpi_predictions(away: str, home: str) -> Optional[Dict]:
@@ -98,7 +98,7 @@ def fetch_fivethirtyeight_predictions(away: str, home: str) -> Optional[Dict]:
             df = pd.read_csv(io.StringIO(response.text), 
                            on_bad_lines='skip',
                            encoding='utf-8')
-        except Exception as parse_error:
+        except Exception:
             # CSV parsing failed completely
             return None
         

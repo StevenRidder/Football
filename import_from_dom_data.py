@@ -119,7 +119,7 @@ def main():
         return
     
     # Show sample
-    print(f"\n📝 Sample bets:")
+    print("\n📝 Sample bets:")
     for bet in bets[:3]:
         print(f"  {bet['ticket_id']}: {bet['type']} - ${bet['amount']:.2f} → ${bet['to_win']:.2f}")
     
@@ -177,7 +177,7 @@ def main():
     
     db.close()
     
-    print(f"\n✅ Import complete!")
+    print("\n✅ Import complete!")
     print(f"   📝 Imported {imported} bets")
     
     # Show summary
@@ -185,7 +185,7 @@ def main():
     summary = db2.get_performance_summary()
     db2.close()
     
-    print(f"\n📈 Summary:")
+    print("\n📈 Summary:")
     print(f"   Total Bets: {summary['total_bets']}")
     print(f"   Total Wagered: ${summary['total_wagered']:.2f}")
     print(f"   Pending: {summary['pending_count']} (${summary['pending_amount']:.2f})")

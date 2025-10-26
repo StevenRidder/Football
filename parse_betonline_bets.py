@@ -94,7 +94,7 @@ def main():
     print(f"   Total Profit: ${total_profit:.2f}")
     print(f"   Pending: {len(pending_bets)} bets (${pending_amount:.2f})")
     print(f"   Potential Win: ${potential_win:.2f}")
-    print(f"\n✅ Saved to artifacts/betonline_bets.json")
+    print("\n✅ Saved to artifacts/betonline_bets.json")
 
 if __name__ == "__main__":
     main()

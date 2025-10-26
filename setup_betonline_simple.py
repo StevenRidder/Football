@@ -6,7 +6,6 @@ Much easier than the full cURL command!
 
 import json
 from pathlib import Path
-from nfl_edge.bets.betonline_client import fetch_all_bets, normalize_to_ledger, save_ledger
 
 def simple_setup():
     print("=" * 80)
@@ -80,7 +79,7 @@ def simple_setup():
         # Try to get any data
         try:
             data = response.json()
-            print(f"✅ Got response from BetOnline!")
+            print("✅ Got response from BetOnline!")
             
             # Save the working headers
             config_dir = Path("artifacts")

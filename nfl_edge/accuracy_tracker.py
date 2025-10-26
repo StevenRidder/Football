@@ -3,7 +3,6 @@ NFL Prediction Accuracy Tracker
 Records predictions and actual results to measure model performance
 """
 import json
-import pandas as pd
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional
