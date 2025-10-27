@@ -88,13 +88,33 @@ def kelly_fraction(model_prob: float, american_odds: float = -110,
     return capped_kelly
 
 
+def calculate_confidence_level(predicted_margin: float) -> tuple:
+    """
+    Calculate confidence level based on predicted margin
+    Returns (confidence_level, confidence_pct)
+    
+    Based on historical analysis:
+    - 7-14 pts: 64% accuracy (HIGH confidence)
+    - 5-7 or 14-17 pts: 54% accuracy (MEDIUM confidence)  
+    - <5 or >17 pts: 46% accuracy (LOW confidence)
+    """
+    abs_margin = abs(predicted_margin)
+    
+    if 7 <= abs_margin <= 14:
+        return ("HIGH", 64)
+    elif (5 <= abs_margin < 7) or (14 < abs_margin <= 17):
+        return ("MEDIUM", 54)
+    else:
+        return ("LOW", 46)
+
+
 def add_betting_columns(df: pd.DataFrame, 
                        bankroll: float = 10000.0,
                        vig: int = -110,
                        min_ev: float = 0.02,
                        kelly_fraction_cap: float = 0.25) -> pd.DataFrame:
     """
-    Add EV, Kelly sizing, and bet recommendations to projections.
+    Add EV, Kelly sizing, confidence levels, and bet recommendations to projections.
     
     Args:
         df: Projections dataframe with probabilities
@@ -205,6 +225,19 @@ def add_betting_columns(df: pd.DataFrame,
             best_bets.append("NO PLAY")
     
     df["Best_bet"] = best_bets
+    
+    # Add confidence levels based on predicted margin
+    confidence_levels = []
+    confidence_pcts = []
+    
+    for _, r in df.iterrows():
+        predicted_margin = abs(r["Model spread home-"])
+        conf_level, conf_pct = calculate_confidence_level(predicted_margin)
+        confidence_levels.append(conf_level)
+        confidence_pcts.append(conf_pct)
+    
+    df["confidence_level"] = confidence_levels
+    df["confidence_pct"] = confidence_pcts
     
     return df
 

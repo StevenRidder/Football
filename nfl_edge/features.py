@@ -30,11 +30,41 @@ def join_matchups(feats: pd.DataFrame, sched):
             "home_PF": h["PF_BLEND"],     "away_PA": a["PA_BLEND"],})
     return pd.DataFrame(rows)
 
-def apply_weather_and_injuries(matches: pd.DataFrame, weather_df: pd.DataFrame, injuries_df: pd.DataFrame):
+def apply_weather_and_injuries(matches: pd.DataFrame, weather_df: pd.DataFrame, injuries_df: pd.DataFrame, situational_df: pd.DataFrame = None):
     out = matches.merge(weather_df, on=["away","home"], how="inner")
     inj = injuries_df.set_index("team")["injury_index"] if not injuries_df.empty else {}
     out["away_injury"] = out["away"].map(inj).fillna(0.0); out["home_injury"] = out["home"].map(inj).fillna(0.0)
+    
+    # Merge situational features if provided
+    if situational_df is not None and not situational_df.empty:
+        out = out.merge(situational_df, on=["away", "home"], how="left")
+        # Fill missing values
+        for col in ['away_travel_miles', 'home_travel_miles', 'timezone_diff', 'is_divisional', 'is_conference', 'week_in_season', 'away_rest_days', 'home_rest_days']:
+            if col in out.columns:
+                out[col] = out[col].fillna(0.0 if 'miles' in col or 'timezone' in col or 'rest' in col else 0)
+    
     wind_penalty = np.clip((out["wind_kph"] - 25)/20, 0, 0.15)
-    out["home_PF_adj"] = out["home_PF"] * (1 - wind_penalty*(1 - out["is_dome"])) - 0.8*out["home_injury"]
-    out["away_PF_adj"] = out["away_PF"] * (1 - wind_penalty*(1 - out["is_dome"])) - 0.8*out["away_injury"]
+    
+    # Enhanced adjustments with travel and rest penalties
+    travel_penalty_away = 0.0
+    rest_penalty_away = 0.0
+    rest_penalty_home = 0.0
+    divisional_chaos = 0.0
+    
+    if 'away_travel_miles' in out.columns:
+        # Long travel (>1500 miles) = -0.5 points
+        travel_penalty_away = np.clip((out["away_travel_miles"] - 1500) / 2000, 0, 0.5)
+    
+    if 'away_rest_days' in out.columns:
+        # Short rest (<6 days) = -1.5 points
+        rest_penalty_away = np.where(out["away_rest_days"] < 6, 1.5, 0.0)
+    
+    if 'home_rest_days' in out.columns:
+        rest_penalty_home = np.where(out["home_rest_days"] < 6, 1.5, 0.0)
+    
+    # Removed divisional_chaos - it made predictions worse
+    
+    out["home_PF_adj"] = out["home_PF"] * (1 - wind_penalty*(1 - out["is_dome"])) - 0.8*out["home_injury"] - rest_penalty_home
+    out["away_PF_adj"] = out["away_PF"] * (1 - wind_penalty*(1 - out["is_dome"])) - 0.8*out["away_injury"] - travel_penalty_away - rest_penalty_away
+    
     return out

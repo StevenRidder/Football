@@ -149,20 +149,23 @@ class PlayerStatsTracker:
         current_value = stats.get(stat_type, 0)
         
         # Determine if winning/losing
+        # Only consider it "neutral/push" if very close to the line (within 10%)
+        margin = threshold * 0.1
+        
         if over_under == 'over':
             if current_value > threshold:
                 return 'winning'
-            elif current_value < threshold * 0.7:  # Unlikely to hit
-                return 'losing'
+            elif current_value >= threshold - margin:
+                return 'neutral'  # Close to the line, could go either way
             else:
-                return 'neutral'
+                return 'losing'  # Not close to hitting it
         else:  # under
             if current_value < threshold:
                 return 'winning'
-            elif current_value > threshold:
-                return 'losing'
+            elif current_value <= threshold + margin:
+                return 'neutral'  # Close to the line
             else:
-                return 'neutral'
+                return 'losing'  # Already over the threshold
     
     def _parse_prop_description(self, description: str) -> Optional[Dict]:
         """

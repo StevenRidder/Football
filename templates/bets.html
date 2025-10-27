@@ -142,9 +142,12 @@
                   </thead>
                   <tbody>
                     {% for bet in bets %}
-                    <tr data-type="{{ bet.type }}" data-status="{{ bet.status }}" data-date="{{ bet.date }}" 
-                        style="cursor: pointer;" 
-                        onclick='showBetDetails({{ bet|tojson }})'>
+                    <tr class="bet-row" 
+                        data-type="{{ bet.type }}" 
+                        data-status="{{ bet.status }}" 
+                        data-date="{{ bet.date }}"
+                        data-bet="{{ bet|tojson|forceescape }}"
+                        style="cursor: pointer;">
                       <td class="text-muted">
                         <small class="font-monospace">{{ bet.ticket_id }}</small>
                       </td>
@@ -464,36 +467,46 @@ function parseParlayLegs(description) {
 }
 
 // Get live status for a parlay leg
-async function getLegLiveStatus(leg, liveGames) {
+async function getLegLiveStatus(leg, liveGames, betDescription) {
+  // Extract game info from bet description to find the right game quickly
+  // Format: "FOOTBALL - NFL - Pittsburgh Steelers v Green Bay Packers"
+  let targetGame = null;
+  
+  if (betDescription) {
+    const gameMatch = betDescription.match(/FOOTBALL - NFL - (.+?) v (.+?)(?:\||$)/i);
+    if (gameMatch) {
+      const team1 = gameMatch[1].trim();
+      const team2 = gameMatch[2].trim();
+      
+      // Find the matching game
+      targetGame = liveGames.find(g => 
+        (g.home_team.includes(team1) || g.away_team.includes(team1)) &&
+        (g.home_team.includes(team2) || g.away_team.includes(team2))
+      );
+    }
+  }
+  
   // Check if it's a player prop
   // Format: "Player stats - Daniel Jones 2+ Passing TDs thrown (Game)"
   if (leg.includes('Player stats -') || leg.includes('player stats -')) {
-    // For player props, we need to call the backend API
-    // Try each live game until we find one that has stats for this prop
-    for (const game of liveGames) {
-      if (game && game.id) {
-        try {
-          const response = await fetch(`/api/check-player-prop?game_id=${game.id}&prop=${encodeURIComponent(leg)}`);
-          const data = await response.json();
-          
-          // If we got a status (not null), this is the right game
-          if (data.status) {
-            return {
-              status: data.status,
-              game: game
-            };
-          }
-        } catch (error) {
-          console.error('Error checking player prop:', error);
-        }
+    // If we found the target game, only check that one
+    if (targetGame && targetGame.id) {
+      try {
+        const response = await fetch(`/api/check-player-prop?game_id=${targetGame.id}&prop=${encodeURIComponent(leg)}`);
+        const data = await response.json();
+        
+        return {
+          status: data.status || 'neutral',
+          game: targetGame
+        };
+      } catch (error) {
+        console.error('Error checking player prop:', error);
+        return { status: 'neutral', game: targetGame };
       }
     }
     
-    // No game found with this player
-    return {
-      status: 'neutral',
-      game: null
-    };
+    // Fallback: no target game found
+    return { status: 'neutral', game: null };
   }
   
   // Check if it's a moneyline
@@ -626,9 +639,26 @@ async function getLegLiveStatus(leg, liveGames) {
 // Parse bet description into structured HTML
 function parseDescription(description, betType) {
   // Check if it's a parlay with multiple legs (contains pipe separator)
+  // BUT: Don't treat single bets with metadata pipes as parlays
+  // Single bet format: "... | 281 Team -145 For Game | 10/26/2025 | 08:20:00 PM (EST) | Pending"
+  // Parlay format: "Leg 1 description | Leg 2 description | Leg 3 description"
+  
   if (description.includes(' | ')) {
-    // Split by " | " to get individual legs
-    const legs = description.split(' | ').map(leg => leg.trim()).filter(leg => leg.length > 0);
+    // Split by " | " to get parts
+    const parts = description.split(' | ').map(leg => leg.trim()).filter(leg => leg.length > 0);
+    
+    // Filter out date/time/status metadata parts AND game headers
+    const legs = parts.filter(part => {
+      // Skip if it's a date (MM/DD/YYYY)
+      if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(part)) return false;
+      // Skip if it's a time (HH:MM:SS AM/PM)
+      if (/^\d{1,2}:\d{2}:\d{2}\s+(AM|PM)\s+\([A-Z]{3}\)$/.test(part)) return false;
+      // Skip if it's just a status
+      if (/^(Pending|Won|Lost)$/i.test(part)) return false;
+      // Skip if it's a game header (starts with "Football - NFL -")
+      if (/^Football - NFL -/i.test(part)) return false;
+      return true;
+    });
     
     if (legs.length > 1) {
       let html = '<div class="list-group list-group-flush">';
@@ -729,7 +759,7 @@ async function showBetDetails(bet) {
       // Use for...of instead of forEach so we can await
       for (let index = 0; index < legs.length; index++) {
         const leg = legs[index];
-        const legStatus = await getLegLiveStatus(leg, liveData);
+        const legStatus = await getLegLiveStatus(leg, liveData, bet.description);
         let listItemClass = '';
         let badgeClass = 'bg-secondary';
         let statusIcon = '⚪';
@@ -1182,19 +1212,46 @@ function parseBetOnlineData(text) {
   }
   
   // Otherwise, parse detailed format
-  // Try to extract ticket number
-  const ticketMatch = text.match(/Ticket Number:\s*(\S+)/);
-  if (!ticketMatch) {
+  // Try to extract ticket number (handle both "Ticket Number: XXX" and "XXX" on first line)
+  let ticketMatch = text.match(/Ticket Number:\s*(\S+)/);
+  let ticketNumber;
+  
+  if (ticketMatch) {
+    ticketNumber = ticketMatch[1];
+  } else {
+    // Try first line format: "906833943-1" followed by date on next line
+    const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+    if (lines.length >= 2 && lines[0].match(/^\d{9}-\d+$/) && lines[1].match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+      ticketNumber = lines[0];
+      console.log('✓ Ticket from first line:', ticketNumber);
+    }
+  }
+  
+  if (!ticketNumber) {
     console.log('❌ No ticket number found');
     return bets;
   }
   
-  const ticketNumber = ticketMatch[1];
   console.log('✓ Ticket:', ticketNumber);
   
-  // Extract date
-  const dateMatch = text.match(/Accepted Date:\s*(\d{2}\/\d{2}\/\d{2})/);
-  const date = dateMatch ? dateMatch[1] : new Date().toLocaleDateString('en-US');
+  // Extract date (handle both "Accepted Date: XX/XX/XX" and "XX/XX/XXXX" on second line)
+  let dateMatch = text.match(/Accepted Date:\s*(\d{2}\/\d{2}\/\d{2})/);
+  let date;
+  
+  if (dateMatch) {
+    date = dateMatch[1];
+  } else {
+    // Try second line format
+    const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+    if (lines.length >= 2 && lines[1].match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+      // Convert MM/DD/YYYY to MM/DD/YY
+      const fullDate = lines[1];
+      const parts = fullDate.split('/');
+      date = `${parts[0]}/${parts[1]}/${parts[2].slice(2)}`;
+    } else {
+      date = new Date().toLocaleDateString('en-US');
+    }
+  }
   
   // Extract type (handle multi-word types like "Same Game Parlay")
   const typeMatch = text.match(/Type:\s*(.+?)(?:\n|$)/);
@@ -1321,11 +1378,13 @@ function parseBetOnlineData(text) {
       }
       
       if (legs.length > 0) {
-        // Use the FULL raw description if it has leg statuses (Won/Lost/Pending)
-        // Otherwise use the shortened format
-        if (rawDesc.includes('| Won') || rawDesc.includes('| Lost') || rawDesc.includes('| Pending')) {
+        // ALWAYS use the FULL raw description for detailed formats
+        // This ensures updates work (backend checks if new desc is longer)
+        if (rawDesc.includes('Money line -') || rawDesc.includes('Player stats -') || 
+            rawDesc.includes('Total points -') || rawDesc.includes('Spread -') ||
+            rawDesc.includes('| Won') || rawDesc.includes('| Lost') || rawDesc.includes('| Pending')) {
           description = rawDesc;
-          console.log('✓ Using full raw description with leg statuses');
+          console.log('✓ Using full raw description (detailed format)');
         } else {
           description = `${legs.length}-leg ${betType}: ${legs.join(' | ')}`;
           console.log('✓ Final description:', description);
@@ -1414,8 +1473,21 @@ function updateLiveBetStatus() {
 
 // Start live tracking on page load
 document.addEventListener('DOMContentLoaded', function() {
-  // Add data-ticket attribute to rows for easier lookup
-  document.querySelectorAll('#betsTable tbody tr').forEach(row => {
+  // Add click handlers to bet rows
+  document.querySelectorAll('.bet-row').forEach(row => {
+    row.addEventListener('click', function() {
+      const betData = this.getAttribute('data-bet');
+      if (betData) {
+        try {
+          const bet = JSON.parse(betData);
+          showBetDetails(bet);
+        } catch (e) {
+          console.error('Error parsing bet data:', e);
+        }
+      }
+    });
+    
+    // Also add data-ticket attribute for easier lookup
     const ticketCell = row.querySelector('td:first-child small');
     if (ticketCell) {
       row.setAttribute('data-ticket', ticketCell.textContent.trim());

@@ -46,7 +46,17 @@
                       <i class="ti ti-home icon"></i>
                     </span>
                     <span class="nav-link-title">
-                      All Games
+                      Predictions
+                    </span>
+                  </a>
+                </li>
+                <li class="nav-item {% if request.path == '/bets' %}active{% endif %}">
+                  <a class="nav-link" href="/bets">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                      <i class="ti ti-coins icon"></i>
+                    </span>
+                    <span class="nav-link-title">
+                      My Bets
                     </span>
                   </a>
                 </li>
@@ -70,16 +80,6 @@
                     </span>
                   </a>
                 </li>
-                <li class="nav-item {% if request.path == '/bets' %}active{% endif %}">
-              <a class="nav-link" href="/bets">
-                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                  <i class="ti ti-coins icon"></i>
-                </span>
-                <span class="nav-link-title">
-                  My Bets
-                </span>
-              </a>
-            </li>
               </ul>
             </div>
           </div>

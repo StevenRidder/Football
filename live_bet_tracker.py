@@ -188,9 +188,15 @@ class LiveBetTracker:
     def get_bet_status(self, bet, game):
         """
         Determine if bet is winning, losing, or neutral
-        Returns: 'winning', 'losing', 'neutral', or None (not live)
+        Returns: 'winning', 'losing', 'neutral', or None (game not started)
         """
-        if not game or not game['is_live']:
+        if not game:
+            return None
+        
+        # Allow both live and final games (for auto-grading)
+        # Only return None if game hasn't started yet
+        game_status = game.get('status', '').lower()
+        if not game['is_live'] and 'final' not in game_status:
             return None
         
         bet_type = bet.get('bet_type', '').lower()
@@ -261,7 +267,7 @@ class LiveBetTracker:
                 elif effective_diff < 0:
                     return 'losing'
         
-        elif 'moneyline' in bet_type or 'ml' in bet_type:
+        elif 'moneyline' in bet_type or 'ml' in bet_type or 'money line' in bet_type:
             if is_home:
                 if home_score > away_score:
                     return 'winning'

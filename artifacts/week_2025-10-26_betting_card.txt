@@ -1,0 +1,74 @@
+================================================================================
+NFL WEEKLY BETTING CARD - Ranked by Expected Value
+================================================================================
+
+Found 16 plays with EV ≥ 2%
+
+Total recommended stake: $37,945
+
+
+1. TEN@IND - SPREAD
+   BET IND +25.4 @ 25.0% (EV: +90.9%, Prob: 100.0%)
+   Stake: $2,500
+
+2. CLE@NE - SPREAD
+   BET NE +14.4 @ 25.0% (EV: +90.0%, Prob: 99.5%)
+   Stake: $2,500
+
+3. NYJ@CIN - SPREAD
+   BET CIN +11.9 @ 25.0% (EV: +87.9%, Prob: 98.4%)
+   Stake: $2,500
+
+4. SF@HOU - SPREAD
+   BET HOU +9.8 @ 25.0% (EV: +83.3%, Prob: 96.0%)
+   Stake: $2,500
+
+5. TB@NO - SPREAD
+   BET TB +9.7 @ 25.0% (EV: +82.7%, Prob: 95.7%)
+   Stake: $2,500
+
+6. WAS@KC - SPREAD
+   BET KC +8.9 @ 25.0% (EV: +80.4%, Prob: 94.5%)
+   Stake: $2,500
+
+7. MIA@ATL - SPREAD
+   BET MIA +7.0 @ 25.0% (EV: +70.1%, Prob: 89.1%)
+   Stake: $2,500
+
+8. MIN@LAC - TOTAL
+   BET OVER 44.5 @ 25.0% (EV: +63.8%, Prob: 85.8%)
+   Stake: $2,500
+
+9. NYG@PHI - SPREAD
+   BET PHI +5.2 @ 25.0% (EV: +57.5%, Prob: 82.5%)
+   Stake: $2,500
+
+10. DAL@DEN - SPREAD
+   BET DAL +4.1 @ 25.0% (EV: +47.0%, Prob: 77.0%)
+   Stake: $2,500
+
+11. CHI@BAL - SPREAD
+   BET CHI +6.5 @ 25.0% (EV: +46.4%, Prob: 76.7%)
+   Stake: $2,500
+
+12. CHI@BAL - TOTAL
+   BET UNDER 47.5 @ 25.0% (EV: +45.7%, Prob: 76.3%)
+   Stake: $2,500
+
+13. BUF@CAR - TOTAL
+   BET OVER 47.5 @ 25.0% (EV: +45.1%, Prob: 76.0%)
+   Stake: $2,500
+
+14. GB@PIT - SPREAD
+   BET PIT +3.9 @ 25.0% (EV: +43.9%, Prob: 75.4%)
+   Stake: $2,500
+
+15. MIN@LAC - SPREAD
+   BET LAC -3.0 @ 25.0% (EV: +39.2%, Prob: 72.9%)
+   Stake: $2,500
+
+16. BUF@CAR - SPREAD
+   BET CAR +7.5 @ 4.5% (EV: +4.0%, Prob: 54.5%)
+   Stake: $445
+
+================================================================================

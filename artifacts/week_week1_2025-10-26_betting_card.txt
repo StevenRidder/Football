@@ -1,0 +1,70 @@
+================================================================================
+NFL WEEKLY BETTING CARD - Ranked by Expected Value
+================================================================================
+
+Found 15 plays with EV ≥ 2%
+
+Total recommended stake: $36,936
+
+
+1. TEN@DEN - SPREAD
+   BET DEN +19.9 @ 25.0% (EV: +90.9%, Prob: 100.0%)
+   Stake: $2,500
+
+2. LV@NE - SPREAD
+   BET NE +17.4 @ 25.0% (EV: +90.7%, Prob: 99.9%)
+   Stake: $2,500
+
+3. MIA@IND - SPREAD
+   BET IND +12.3 @ 25.0% (EV: +87.9%, Prob: 98.4%)
+   Stake: $2,500
+
+4. BAL@BUF - SPREAD
+   BET BUF +11.6 @ 25.0% (EV: +86.9%, Prob: 97.9%)
+   Stake: $2,500
+
+5. CIN@CLE - SPREAD
+   BET CIN +11.2 @ 25.0% (EV: +86.7%, Prob: 97.8%)
+   Stake: $2,500
+
+6. SF@SEA - SPREAD
+   BET SEA +10.2 @ 25.0% (EV: +83.8%, Prob: 96.3%)
+   Stake: $2,500
+
+7. ARI@NO - SPREAD
+   BET ARI +7.5 @ 25.0% (EV: +73.5%, Prob: 90.9%)
+   Stake: $2,500
+
+8. PIT@NYJ - SPREAD
+   BET PIT +6.7 @ 25.0% (EV: +68.4%, Prob: 88.2%)
+   Stake: $2,500
+
+9. TB@ATL - SPREAD
+   BET TB +6.6 @ 25.0% (EV: +67.4%, Prob: 87.7%)
+   Stake: $2,500
+
+10. HOU@LA - SPREAD
+   BET LA +5.2 @ 25.0% (EV: +56.2%, Prob: 81.8%)
+   Stake: $2,500
+
+11. DAL@PHI - SPREAD
+   BET DAL +4.7 @ 25.0% (EV: +52.3%, Prob: 79.8%)
+   Stake: $2,500
+
+12. DET@GB - SPREAD
+   BET DET +4.5 @ 25.0% (EV: +50.6%, Prob: 78.9%)
+   Stake: $2,500
+
+13. KC@LAC - SPREAD
+   BET KC +4.3 @ 25.0% (EV: +48.1%, Prob: 77.6%)
+   Stake: $2,500
+
+14. NYG@WAS - SPREAD
+   BET WAS +2.6 @ 25.0% (EV: +30.2%, Prob: 68.2%)
+   Stake: $2,500
+
+15. MIN@CHI - SPREAD
+   BET CHI +1.7 @ 19.4% (EV: +17.6%, Prob: 61.6%)
+   Stake: $1,936
+
+================================================================================

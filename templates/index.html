@@ -5,6 +5,31 @@
 {% block page_subtitle %}All games with betting intelligence{% endblock %}
 
 {% block content %}
+<!-- Prediction Controls -->
+<div class="row mb-3">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h3 class="card-title mb-1">Prediction Controls</h3>
+            <p class="text-muted mb-0">Generate new predictions or view historical data</p>
+          </div>
+          <div class="btn-list">
+            <select class="form-select" id="predictionHistorySelect" style="width: 250px;">
+              <option value="">Current Week</option>
+            </select>
+            <button class="btn btn-primary" onclick="generatePredictions()" id="generateBtn">
+              <i class="ti ti-refresh icon"></i>
+              Generate Next Week
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Stats cards -->
 <div class="row row-deck row-cards mb-3">
   <div class="col-sm-6 col-lg-3">
@@ -203,11 +228,19 @@ fetch('/api/games')
       // Format spread with +/- sign
       const spreadFormatted = game.spread > 0 ? `+${game.spread.toFixed(1)}` : game.spread.toFixed(1);
       
+      // Confidence badge color
+      const confidenceClass = game.confidence_level === 'HIGH' ? 'bg-success' : 
+                             game.confidence_level === 'MEDIUM' ? 'bg-warning' : 'bg-danger';
+      const confidenceBadge = `<span class="badge ${confidenceClass}">${game.confidence_level} (${game.confidence_pct}%)</span>`;
+      
       row.innerHTML = `
         <td><strong>${game.away}</strong></td>
         <td><strong>${game.home}</strong></td>
         <td>${game.exp_score}</td>
-        <td><span class="badge badge-outline">${game.best_bet.substring(0, 40)}</span></td>
+        <td>
+          ${confidenceBadge}
+          <span class="badge badge-outline">${game.best_bet.substring(0, 40)}</span>
+        </td>
         <td class="text-end">${spreadFormatted}</td>
         <td><small>${game.rec_spread.substring(0, 30)}</small></td>
         <td class="text-end">${game.total.toFixed(1)}</td>
@@ -341,6 +374,122 @@ window.addEventListener('beforeunload', function() {
   if (liveStatusInterval) {
     clearInterval(liveStatusInterval);
   }
+});
+
+// Load prediction history on page load
+async function loadPredictionHistory() {
+  try {
+    const response = await fetch('/api/predictions/history');
+    const data = await response.json();
+    
+    if (data.success && data.predictions) {
+      const select = document.getElementById('predictionHistorySelect');
+      
+      // Add historical predictions to dropdown
+      data.predictions.forEach(pred => {
+        const option = document.createElement('option');
+        option.value = pred.filename;
+        option.textContent = pred.date;
+        select.appendChild(option);
+      });
+      
+      // Handle selection change
+      select.addEventListener('change', async function() {
+        if (this.value) {
+          await loadHistoricalPredictions(this.value);
+        } else {
+          // Reload current page
+          window.location.reload();
+        }
+      });
+    }
+  } catch (error) {
+    console.error('Error loading prediction history:', error);
+  }
+}
+
+async function loadHistoricalPredictions(filename) {
+  try {
+    const response = await fetch(`/api/predictions/${filename}`);
+    const data = await response.json();
+    
+    if (data.success) {
+      // Update page title
+      document.querySelector('.page-title').textContent = `Predictions - ${data.date}`;
+      
+      // Update tables with historical data
+      updateTablesWithPredictions(data.predictions);
+    }
+  } catch (error) {
+    console.error('Error loading historical predictions:', error);
+    alert('Failed to load historical predictions');
+  }
+}
+
+function updateTablesWithPredictions(predictions) {
+  // Update best bets table
+  const bestBetsTable = document.getElementById('best-bets-table').querySelector('tbody');
+  bestBetsTable.innerHTML = '';
+  
+  // Update all games table  
+  const allGamesTable = document.getElementById('all-games-table').querySelector('tbody');
+  allGamesTable.innerHTML = '';
+  
+  predictions.forEach(pred => {
+    // Add to all games table
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${pred.away} @ ${pred.home}</td>
+      <td>${pred.exp_score}</td>
+      <td class="text-end">${pred.model_spread.toFixed(1)}</td>
+      <td class="text-end">${pred.spread_used.toFixed(1)}</td>
+      <td class="text-end">${pred.home_cover_pct.toFixed(1)}%</td>
+      <td class="text-end">${pred.over_pct.toFixed(1)}%</td>
+      <td><span class="badge">${pred.best_bet || '-'}</span></td>
+      <td class="text-end">${pred.kelly_pct ? pred.kelly_pct.toFixed(1) + '%' : '-'}</td>
+      <td class="text-end">${pred.ev ? (pred.ev * 100).toFixed(1) + '%' : '-'}</td>
+    `;
+    allGamesTable.appendChild(row);
+    
+    // Add to best bets if has positive EV
+    if (pred.ev && pred.ev > 0) {
+      const bestRow = row.cloneNode(true);
+      bestBetsTable.appendChild(bestRow);
+    }
+  });
+}
+
+async function generatePredictions() {
+  const btn = document.getElementById('generateBtn');
+  const originalText = btn.innerHTML;
+  
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Generating...';
+  
+  try {
+    const response = await fetch('/api/generate-predictions', {
+      method: 'POST'
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      alert(`✅ ${data.message}\n\nFile: ${data.file}\n\nReloading page...`);
+      window.location.reload();
+    } else {
+      alert(`❌ ${data.message}\n\n${data.error || ''}`);
+    }
+  } catch (error) {
+    alert(`❌ Error: ${error.message}`);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
+}
+
+// Load history on page load
+document.addEventListener('DOMContentLoaded', function() {
+  loadPredictionHistory();
 });
 </script>
 

@@ -1,0 +1,70 @@
+================================================================================
+NFL WEEKLY BETTING CARD - Ranked by Expected Value
+================================================================================
+
+Found 15 plays with EV ≥ 2%
+
+Total recommended stake: $33,372
+
+
+1. IND@TEN - SPREAD
+   BET IND +22.8 @ 25.0% (EV: +90.9%, Prob: 100.0%)
+   Stake: $2,500
+
+2. NO@SEA - SPREAD
+   BET SEA +17.0 @ 25.0% (EV: +90.7%, Prob: 99.9%)
+   Stake: $2,500
+
+3. LV@WAS - SPREAD
+   BET WAS +13.1 @ 25.0% (EV: +89.2%, Prob: 99.1%)
+   Stake: $2,500
+
+4. DAL@CHI - SPREAD
+   BET DAL +12.3 @ 25.0% (EV: +88.0%, Prob: 98.5%)
+   Stake: $2,500
+
+5. DET@BAL - SPREAD
+   BET DET +12.1 @ 25.0% (EV: +87.9%, Prob: 98.4%)
+   Stake: $2,500
+
+6. CIN@MIN - SPREAD
+   BET CIN +9.3 @ 25.0% (EV: +81.4%, Prob: 95.0%)
+   Stake: $2,500
+
+7. GB@CLE - SPREAD
+   BET GB +7.9 @ 25.0% (EV: +75.3%, Prob: 91.8%)
+   Stake: $2,500
+
+8. HOU@JAX - SPREAD
+   BET HOU +7.3 @ 25.0% (EV: +72.2%, Prob: 90.2%)
+   Stake: $2,500
+
+9. KC@NYG - SPREAD
+   BET KC +7.0 @ 25.0% (EV: +70.9%, Prob: 89.5%)
+   Stake: $2,500
+
+10. NYJ@TB - SPREAD
+   BET TB +5.8 @ 25.0% (EV: +62.5%, Prob: 85.1%)
+   Stake: $2,500
+
+11. ATL@CAR - SPREAD
+   BET CAR +4.6 @ 25.0% (EV: +51.8%, Prob: 79.5%)
+   Stake: $2,500
+
+12. MIA@BUF - SPREAD
+   BET BUF +3.7 @ 25.0% (EV: +41.5%, Prob: 74.1%)
+   Stake: $2,500
+
+13. ARI@SF - SPREAD
+   BET ARI +1.8 @ 20.6% (EV: +18.7%, Prob: 62.2%)
+   Stake: $2,062
+
+14. DEN@LAC - SPREAD
+   BET DEN +0.9 @ 8.2% (EV: +7.5%, Prob: 56.3%)
+   Stake: $823
+
+15. LA@PHI - SPREAD
+   BET LA +0.7 @ 4.9% (EV: +4.4%, Prob: 54.7%)
+   Stake: $487
+
+================================================================================

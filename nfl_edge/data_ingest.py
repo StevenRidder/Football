@@ -98,6 +98,13 @@ def fetch_teamweeks_live(season: int = 2025) -> pd.DataFrame:
     joined_pts = df.merge(opp_pts_df, on=["season", "week", "opponent"], how="left", validate="m:1")
     points_allowed = _num(joined_pts["opp_points"])
 
+    # Calculate success rates using EPA as proxy
+    # Success = positive EPA on the play
+    # For offense: use their EPA
+    # For defense: use opponent's EPA (lower is better for defense)
+    off_success_rate = off_epa_per_play.clip(0, 1)  # Normalize to 0-1 range
+    def_success_rate = (-def_epa_per_play).clip(0, 1)  # Negative EPA is good for defense
+    
     out = pd.DataFrame({
         "season": df["season"].astype(int, errors="ignore"),
         "week": df["week"].astype(int, errors="ignore"),
@@ -105,8 +112,8 @@ def fetch_teamweeks_live(season: int = 2025) -> pd.DataFrame:
         "opponent": df["opponent"].astype(str),
         "off_epa_per_play": off_epa_per_play,
         "def_epa_per_play": def_epa_per_play,
-        "off_success_rate": pd.Series([float("nan")] * len(df)),
-        "def_success_rate": pd.Series([float("nan")] * len(df)),
+        "off_success_rate": off_success_rate,
+        "def_success_rate": def_success_rate,
         "points": points,
         "points_allowed": points_allowed,
         "plays": plays,
@@ -128,7 +135,8 @@ ODDS_API_URL = "https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds
 def fetch_market_lines_live() -> Dict[Tuple[str, str], Dict[str, float]]:
     key = os.getenv("ODDS_API_KEY")
     if not key:
-        raise RuntimeError("ODDS_API_KEY not set.")
+        print("⚠️  ODDS_API_KEY not set. Will use model predictions as fallback for lines.")
+        return {}
 
     attempts = [
         {"regions": "us,us2,uk,eu", "markets": "spreads,totals"},
@@ -276,10 +284,9 @@ def fetch_market_lines_live() -> Dict[Tuple[str, str], Dict[str, float]]:
             size = p.stat().st_size if p.exists() else 0
         except Exception:
             pass
-        raise RuntimeError(
-            f"Parsed 0 lines from Odds API ({last_status}). "
-            f"See artifacts/odds_parse_log.txt for per-event reasons and inspect artifacts/odds_raw.json (bytes={size})."
-        )
+        print(f"⚠️  Parsed 0 lines from Odds API ({last_status}). Will use model predictions as fallback for lines.")
+        print(f"    See artifacts/odds_parse_log.txt for details (bytes={size}).")
+        return {}
     return parsed
 
 
@@ -337,8 +344,64 @@ def fetch_weather_for_matchups(stadiums_csv="data/stadiums.csv", matchups=None, 
 # INJURIES (placeholder)
 # ---------------------------------------------------------------------
 
-def fetch_injury_index(matchups=None):
-    rows = []
-    for away, home in (matchups or []):
-        rows += [{"team": away, "injury_index": 0.0}, {"team": home, "injury_index": 0.0}]
-    return pd.DataFrame(rows).drop_duplicates("team")
+def fetch_injury_index(matchups=None, season=2025):
+    """
+    Fetch injury data from nflverse and calculate weighted injury index.
+    
+    Injury weights by position:
+    - QB: 10.0 (most critical)
+    - RB/WR/CB: 3.0 (skill positions)
+    - TE/OL/DL/LB/S: 2.0 (other starters)
+    """
+    try:
+        # Fetch injury data from nflverse
+        url = f"https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_{season}.csv"
+        injuries_df = _read_url_csv(url)
+        
+        # Position weights
+        position_weights = {
+            'QB': 10.0,
+            'RB': 3.0, 'WR': 3.0, 'CB': 3.0,
+            'TE': 2.0, 'OL': 2.0, 'G': 2.0, 'T': 2.0, 'C': 2.0,
+            'DL': 2.0, 'DE': 2.0, 'DT': 2.0, 'NT': 2.0,
+            'LB': 2.0, 'ILB': 2.0, 'OLB': 2.0,
+            'S': 2.0, 'SS': 2.0, 'FS': 2.0,
+            'K': 0.5, 'P': 0.5
+        }
+        
+        # Calculate injury index per team
+        injury_index = {}
+        for team in injuries_df['team'].unique():
+            team_injuries = injuries_df[injuries_df['team'] == team]
+            
+            # Sum weighted injuries (Out or Doubtful only)
+            total_impact = 0.0
+            for _, inj in team_injuries.iterrows():
+                status = inj.get('report_status', '').upper()
+                position = inj.get('position', 'UNKNOWN')
+                
+                if status in ['OUT', 'DOUBTFUL']:
+                    weight = position_weights.get(position, 1.0)
+                    total_impact += weight
+                elif status == 'QUESTIONABLE':
+                    weight = position_weights.get(position, 1.0)
+                    total_impact += weight * 0.5  # 50% impact for questionable
+            
+            injury_index[team] = total_impact
+        
+        # Build result dataframe
+        rows = []
+        for away, home in (matchups or []):
+            rows.append({"team": away, "injury_index": injury_index.get(away, 0.0)})
+            rows.append({"team": home, "injury_index": injury_index.get(home, 0.0)})
+        
+        return pd.DataFrame(rows).drop_duplicates("team")
+        
+    except Exception as e:
+        print(f"⚠️ Could not fetch injury data: {e}")
+        print("   Using placeholder injury index (0.0 for all teams)")
+        # Fallback to placeholder
+        rows = []
+        for away, home in (matchups or []):
+            rows += [{"team": away, "injury_index": 0.0}, {"team": home, "injury_index": 0.0}]
+        return pd.DataFrame(rows).drop_duplicates("team")

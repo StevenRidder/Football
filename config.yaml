@@ -2,10 +2,10 @@
 team_sd: 8.0
 n_sims: 20000
 home_field_pts: 1.5
-recent_weight: 0.67
+recent_weight: 0.67  # Reverted from 0.80 - higher weight made predictions worse
 
-# Calibration (user adjusted based on Week 7 results)
-score_calibration_factor: 0.69  # Conservative but realistic predictions
+# Calibration (dynamic - adjust based on conditions)
+score_calibration_factor: 0.85  # Balanced between 0.69 (too low) and 0.95 (too high)
 
 # Betting parameters
 bankroll: 10000.0        # Starting bankroll

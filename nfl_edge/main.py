@@ -12,7 +12,15 @@ from nfl_edge.features import build_features, join_matchups, apply_weather_and_i
 from nfl_edge.model import fit_expected_points_model, predict_expected_points
 from nfl_edge.simulate import monte_carlo
 from nfl_edge.kelly import add_betting_columns, generate_betting_card
-def run_week():
+from nfl_edge.situational_features import add_all_situational_features
+def run_week(week_number=None, matchups=None):
+    """
+    Run predictions for a specific week.
+    
+    Args:
+        week_number: Optional week number (1-18). If None, uses current week.
+        matchups: Optional list of (away, home) tuples. If None, uses THIS_WEEK.
+    """
     cfg = yaml.safe_load(open("config.yaml"))
     teamweeks = fetch_teamweeks_live()
     lines = fetch_market_lines_live()
@@ -25,11 +33,16 @@ def run_week():
     }
     lines.update(manual_lines)
     
+    # Use provided matchups or default to THIS_WEEK
+    games = matchups if matchups is not None else THIS_WEEK
+    current_week = week_number if week_number is not None else 1
+    
     feats = build_features(teamweeks, recent_weight=cfg["recent_weight"])
-    base = join_matchups(feats, THIS_WEEK)
-    weather = fetch_weather_for_matchups(matchups=THIS_WEEK)
-    injuries = fetch_injury_index(matchups=THIS_WEEK)
-    matches = apply_weather_and_injuries(base, weather, injuries)
+    base = join_matchups(feats, games)
+    weather = fetch_weather_for_matchups(matchups=games)
+    injuries = fetch_injury_index(matchups=games)
+    situational = add_all_situational_features(games, current_week=current_week)
+    matches = apply_weather_and_injuries(base, weather, injuries, situational)
     models = fit_expected_points_model(matches)
     calibration = cfg.get("score_calibration_factor", 1.0)
     muA, muH = predict_expected_points(models, matches, cfg["home_field_pts"], calibration)
@@ -78,16 +91,18 @@ def run_week():
     
     Path("artifacts").mkdir(exist_ok=True)
     dt = date.today().isoformat()
-    proj = Path("artifacts")/f"week_{dt}_projections.csv"
-    clv  = Path("artifacts")/f"week_{dt}_model_line_vs_market.csv"
-    dbg  = Path("artifacts")/f"week_{dt}_debug_sample.csv"
-    bets = Path("artifacts")/f"week_{dt}_betting_card.txt"
+    week_suffix = f"week{current_week}_" if week_number is not None else ""
+    proj = Path("artifacts")/f"predictions_2025_{week_suffix}{dt}.csv"
+    clv  = Path("artifacts")/f"week_{week_suffix}{dt}_model_line_vs_market.csv"
+    dbg  = Path("artifacts")/f"week_{week_suffix}{dt}_debug_sample.csv"
+    bets = Path("artifacts")/f"week_{week_suffix}{dt}_betting_card.txt"
     
-    # Enhanced projections with betting columns
+    # Enhanced projections with betting columns and confidence levels
     df_out = df[["away","home","Exp score (away-home)","Model spread home-","Spread used (home-)","Edge_pts",
                  "Model total","Total used","Edge_total_pts","Home win %","Home cover %","Over %",
                  "EV_spread","EV_total","Kelly_spread_pct","Kelly_total_pct",
-                 "Stake_spread","Stake_total","Rec_spread","Rec_total","Best_bet"]]
+                 "Stake_spread","Stake_total","Rec_spread","Rec_total","Best_bet",
+                 "confidence_level","confidence_pct"]]
     df_out.to_csv(proj, index=False)
     
     df[[ "away","home","away_OFF_EPA","home_DEF_EPA","home_OFF_EPA","away_DEF_EPA",

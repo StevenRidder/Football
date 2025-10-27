@@ -22,11 +22,20 @@ app = Flask(__name__)
 def load_latest_predictions():
     """Load most recent week's predictions"""
     artifacts = Path("artifacts")
-    csvs = sorted(artifacts.glob("week_*_projections.csv"))
+    # First try new format (predictions_2025_*.csv), then fall back to old format
+    csvs = sorted(artifacts.glob("predictions_2025_*.csv"))
+    if not csvs:
+        csvs = sorted(artifacts.glob("week_*_projections.csv"))
     if not csvs:
         return None
     
-    df = pd.read_csv(csvs[-1])
+    # Get the most recent file that doesn't have "week" in the name (current week)
+    # Files with "week1", "week2" etc are historical backfills
+    current_week_files = [f for f in csvs if '_week' not in f.name]
+    if current_week_files:
+        df = pd.read_csv(current_week_files[-1])
+    else:
+        df = pd.read_csv(csvs[-1])
     return df
 
 def load_latest_aii():
@@ -89,7 +98,9 @@ def api_games():
             'stake_total': row.get('Stake_total', 0),
             'rec_spread': row.get('Rec_spread', 'NO PLAY'),
             'rec_total': row.get('Rec_total', 'NO PLAY'),
-            'best_bet': row.get('Best_bet', 'NO PLAY')
+            'best_bet': row.get('Best_bet', 'NO PLAY'),
+            'confidence_level': row.get('confidence_level', 'MEDIUM'),
+            'confidence_pct': row.get('confidence_pct', 50)
         }
         games.append(game)
     
@@ -1123,6 +1134,9 @@ def api_auto_grade_bets():
             cur.execute('SELECT * FROM bets WHERE status = %s', ('Pending',))
             pending_bets = cur.fetchall()
         
+        with open('/tmp/autograde_start.log', 'a') as f:
+            f.write(f"Found {len(pending_bets)} pending bets\n")
+        
         graded = 0
         won_count = 0
         lost_count = 0
@@ -1134,143 +1148,337 @@ def api_auto_grade_bets():
             games = tracker.get_live_games(sport)
             all_games.extend(games)
         
-        import sys
-        print("\n=== AUTO-GRADER START ===", file=sys.stderr, flush=True)
-        print(f"Pending bets: {len(pending_bets)}", file=sys.stderr, flush=True)
-        print(f"Games found: {len(all_games)}", file=sys.stderr, flush=True)
+        # Get final games only
         final_games = [g for g in all_games if 'final' in g.get('status', '').lower()]
-        print(f"Final games: {len(final_games)}", file=sys.stderr, flush=True)
-        print("=========================\n", file=sys.stderr, flush=True)
         
         for bet in pending_bets:
             bet_dict = dict(bet)
             description = bet_dict.get('description', '')
             bet_type = bet_dict.get('bet_type', '').lower()
             
-            import sys
-            print(f"Processing bet {bet_dict['ticket_id']}: type={bet_type}", file=sys.stderr, flush=True)
+            # DEBUG
+            with open('/tmp/all_bets_debug.log', 'a') as f:
+                f.write(f"\nProcessing bet: {bet_dict['ticket_id']}\n")
+                f.write(f"  Type: {bet_type}\n")
             
-            # Skip non-parlay bets
-            if 'parlay' not in bet_type and 'teaser' not in bet_type:
-                print("  Skipping - not a parlay/teaser", file=sys.stderr, flush=True)
-                still_pending += 1
-                continue
+            # Handle parlays and single bets differently
+            is_parlay = 'parlay' in bet_type or 'teaser' in bet_type
             
-            # Check if description has detailed leg format with status (Won/Lost/Pending)
-            # Format: "Team +X | Status" or just "Team +X"
-            has_leg_status = '| Won' in description or '| Lost' in description or '| Pending' in description
+            with open('/tmp/all_bets_debug.log', 'a') as f:
+                f.write(f"  is_parlay: {is_parlay}\n")
             
-            if has_leg_status:
-                print("  Has leg status - parsing detailed format", file=sys.stderr, flush=True)
-                # Parse detailed format with leg statuses
-                # Example: "Minnesota Vikings +9 +100 For Game | 10/23/2025 | 08:15:00 PM (EST) | Lost"
-                legs = description.split('Football - NFL -')[1:]  # Split by game separator
+            new_status = None
+            
+            # === PARLAY GRADING ===
+            if is_parlay:
+                # DEBUG
+                with open('/tmp/parlay_debug.log', 'a') as f:
+                    f.write(f"\nProcessing parlay: {bet_dict['ticket_id']}\n")
+                    f.write(f"  Type: {bet_type}\n")
+                    f.write(f"  Description: {description[:100]}...\n")
                 
-                any_leg_lost = False
-                all_legs_final = True
+                # Check if description has detailed leg format with status (Won/Lost/Pending)
+                # Format: "Team +X | Status" or just "Team +X"
+                has_leg_status = '| Won' in description or '| Lost' in description or '| Pending' in description
                 
-                for leg in legs:
-                    # Extract status from end of leg
-                    if '| Lost' in leg:
-                        any_leg_lost = True
-                        print("    Found lost leg", file=sys.stderr, flush=True)
-                    elif '| Pending' in leg:
-                        all_legs_final = False
-                        print("    Found pending leg", file=sys.stderr, flush=True)
+                with open('/tmp/parlay_debug.log', 'a') as f:
+                    f.write(f"  has_leg_status: {has_leg_status}\n")
                 
-                # Grade the bet
-                if any_leg_lost:
-                    # As soon as one leg is lost, entire parlay is lost
-                    new_status = 'Lost'
-                    print("  GRADING AS LOST (has lost leg)", file=sys.stderr, flush=True)
-                elif all_legs_final:
-                    # All legs are final and none lost = Won
-                    new_status = 'Won'
-                    print("  GRADING AS WON (all legs final)", file=sys.stderr, flush=True)
-                else:
-                    # Still has pending legs
-                    print("  Still has pending legs", file=sys.stderr, flush=True)
-                    still_pending += 1
-                    continue
-                
-            else:
-                print("  Parsing simple format", file=sys.stderr, flush=True)
-                # Parse simple format: "12-team parlay: CAR +7, NYG +7.5, ..."
-                match = re.search(r'parlay:\s*(.+)', description, re.IGNORECASE)
-                if not match:
-                    print("  No parlay match found in description", file=sys.stderr, flush=True)
-                    still_pending += 1
-                    continue
-                
-                legs_str = match.group(1)
-                legs = [leg.strip() for leg in legs_str.split(',')]
-                print(f"  Found {len(legs)} legs", file=sys.stderr, flush=True)
-                
-                all_legs_completed = True
-                any_leg_lost = False
-                
-                for leg in legs:
-                    # Parse leg like "CAR +7" or "MIA +7.5"
-                    leg_match = re.match(r'([A-Z]+)\s+([-+]?\d+(?:\.\d+)?)', leg)
-                    if not leg_match:
-                        all_legs_completed = False
+                if has_leg_status:
+                    # Parse detailed format - but RE-EVALUATE legs against current games
+                    # Don't trust stale statuses in description!
+                    # Example: "Minnesota Vikings +9 +100 For Game | 10/23/2025 | 08:15:00 PM (EST) | Lost"
+                    legs = description.split('Football - NFL -')[1:]  # Split by game separator
+                    
+                    any_leg_lost = False
+                    all_legs_final = True
+                    
+                    for leg in legs:
+                        # Extract bet details from leg (ignore old status)
+                        # Parse spread/total from leg description
+                        spread_match = re.search(r'([+-]\d+(?:½|\.5)?)', leg)
+                        total_match = re.search(r'(over|under)\s+(\d+(?:\.5)?)', leg, re.IGNORECASE)
+                        
+                        # Try to find the game this leg is for
+                        leg_game = None
+                        for game in all_games:
+                            game_teams = [game.get('home_team', ''), game.get('away_team', '')]
+                            if any(team in leg for team in game_teams):
+                                leg_game = game
+                                break
+                        
+                        if not leg_game:
+                            # Can't find game - keep pending
+                            all_legs_final = False
+                            continue
+                        
+                        # Check if this game is final
+                        if 'final' not in leg_game.get('status', '').lower():
+                            all_legs_final = False
+                            continue
+                        
+                        # Determine if leg won or lost based on actual game result
+                        if spread_match:
+                            # Spread bet
+                            spread = float(spread_match.group(1).replace('½', '.5'))
+                            # Determine which team
+                            is_home = leg_game['home_team'] in leg
+                            if is_home:
+                                effective_diff = (leg_game['home_score'] - leg_game['away_score']) + spread
+                            else:
+                                effective_diff = (leg_game['away_score'] - leg_game['home_score']) + spread
+                            
+                            if effective_diff <= 0:
+                                any_leg_lost = True
+                                break
+                        elif total_match:
+                            # Total bet
+                            total_line = float(total_match.group(2))
+                            actual_total = leg_game['home_score'] + leg_game['away_score']
+                            is_over = 'over' in total_match.group(1).lower()
+                            
+                            if is_over and actual_total <= total_line:
+                                any_leg_lost = True
+                                break
+                            elif not is_over and actual_total >= total_line:
+                                any_leg_lost = True
+                                break
+                    
+                    # Grade the bet
+                    if any_leg_lost:
+                        new_status = 'Lost'
+                    elif all_legs_final:
+                        new_status = 'Won'
+                    else:
+                        # Still has pending legs
+                        still_pending += 1
                         continue
                     
-                    team_abbr = leg_match.group(1)
-                    spread = float(leg_match.group(2))
-                    
-                    # Find matching game
-                    game_found = False
-                    for game in all_games:
-                        if game.get('away_abbr') == team_abbr or game.get('home_abbr') == team_abbr:
-                            game_found = True
+                else:
+                    # Check if it's a Same Game Parlay with pipe-separated legs
+                    if '|' in description and ('same game parlay' in bet_type or 'same game' in description.lower()):
+                        # DEBUG
+                        with open('/tmp/sgp_debug.log', 'a') as f:
+                            f.write(f"Processing SGP: {bet_dict['ticket_id']}\n")
+                        
+                        # Parse SGP format: "Team1 v Team2 | Leg1 | Leg2 | Leg3"
+                        parts = description.split('|')
+                        if len(parts) < 2:
+                            with open('/tmp/sgp_debug.log', 'a') as f:
+                                f.write(f"  Not enough parts: {len(parts)}\n")
+                            still_pending += 1
+                            continue
+                        
+                        # Extract game info from first part
+                        game_part = parts[0]
+                        leg_parts = parts[1:]
+                        
+                        # Find the game
+                        sgp_game = None
+                        for game in all_games:
+                            game_teams = [game.get('home_team', ''), game.get('away_team', '')]
+                            if any(team in game_part for team in game_teams):
+                                sgp_game = game
+                                break
+                        
+                        if not sgp_game:
+                            with open('/tmp/sgp_debug.log', 'a') as f:
+                                f.write(f"  Game not found\n")
+                            still_pending += 1
+                            continue
+                        
+                        with open('/tmp/sgp_debug.log', 'a') as f:
+                            f.write(f"  Found game: {sgp_game['away_team']} @ {sgp_game['home_team']}\n")
+                            f.write(f"  Status: {sgp_game.get('status')}\n")
+                        
+                        # Check if game is final
+                        if 'final' not in sgp_game.get('status', '').lower():
+                            with open('/tmp/sgp_debug.log', 'a') as f:
+                                f.write(f"  Game not final yet\n")
+                            still_pending += 1
+                            continue
+                        
+                        # Grade all legs including player props
+                        any_leg_lost = False
+                        all_legs_graded = True
+                        
+                        for leg in leg_parts:
+                            leg_lower = leg.lower()
                             
-                            # Check if game is completed (status contains "Final")
-                            if 'final' not in game.get('status', '').lower():
+                            # Check for player props FIRST (before checking for over/under)
+                            if 'player' in leg_lower:
+                                game_id = sgp_game.get('id')
+                                if game_id:
+                                    prop_status = tracker.player_tracker.check_prop_bet(game_id, leg)
+                                    if prop_status == 'losing':
+                                        any_leg_lost = True
+                                        break
+                                    elif prop_status is None or prop_status == 'neutral':
+                                        # Can't determine yet
+                                        all_legs_graded = False
+                                        break
+                                    # If 'winning', continue to next leg
+                                else:
+                                    all_legs_graded = False
+                                    break
+                            
+                            # Check for moneyline
+                            elif 'money line' in leg_lower or 'moneyline' in leg_lower:
+                                is_home = sgp_game['home_team'] in leg
+                                is_away = sgp_game['away_team'] in leg
+                                if is_home and sgp_game['home_score'] <= sgp_game['away_score']:
+                                    any_leg_lost = True
+                                    break
+                                elif is_away and sgp_game['away_score'] <= sgp_game['home_score']:
+                                    any_leg_lost = True
+                                    break
+                            
+                            # Check for total
+                            elif 'total points' in leg_lower or ('over' in leg_lower or 'under' in leg_lower):
+                                total_match = re.search(r'(over|under)\s+(\d+(?:\.5)?)', leg, re.IGNORECASE)
+                                if total_match:
+                                    total_line = float(total_match.group(2))
+                                    actual_total = sgp_game['home_score'] + sgp_game['away_score']
+                                    is_over = 'over' in total_match.group(1).lower()
+                                    
+                                    if is_over and actual_total <= total_line:
+                                        any_leg_lost = True
+                                        break
+                                    elif not is_over and actual_total >= total_line:
+                                        any_leg_lost = True
+                                        break
+                        
+                        # Grade the SGP
+                        with open('/tmp/sgp_debug.log', 'a') as f:
+                            f.write(f"  any_leg_lost: {any_leg_lost}\n")
+                            f.write(f"  all_legs_graded: {all_legs_graded}\n")
+                        
+                        if any_leg_lost:
+                            new_status = 'Lost'
+                            with open('/tmp/sgp_debug.log', 'a') as f:
+                                f.write(f"  Result: Lost\n")
+                        elif all_legs_graded:
+                            new_status = 'Won'
+                            with open('/tmp/sgp_debug.log', 'a') as f:
+                                f.write(f"  Result: Won\n")
+                        else:
+                            # Some legs can't be graded yet
+                            with open('/tmp/sgp_debug.log', 'a') as f:
+                                f.write(f"  Result: Still Pending\n")
+                            still_pending += 1
+                            continue
+                    
+                    # Parse simple format: "12-team parlay: CAR +7, NYG +7.5, ..."
+                    else:
+                        match = re.search(r'parlay:\s*(.+)', description, re.IGNORECASE)
+                        if not match:
+                            still_pending += 1
+                            continue
+                        
+                        legs_str = match.group(1)
+                        legs = [leg.strip() for leg in legs_str.split(',')]
+                        
+                        all_legs_completed = True
+                        any_leg_lost = False
+                        
+                        for leg in legs:
+                            # Parse leg like "CAR +7" or "MIA +7.5"
+                            leg_match = re.match(r'([A-Z]+)\s+([-+]?\d+(?:\.\d+)?)', leg)
+                            if not leg_match:
                                 all_legs_completed = False
-                                # Don't break - keep checking other legs for losses
                                 continue
                             
-                            # Determine if leg won or lost
-                            if game.get('away_abbr') == team_abbr:
-                                score_diff = game['away_score'] - game['home_score']
-                            else:
-                                score_diff = game['home_score'] - game['away_score']
+                            team_abbr = leg_match.group(1)
+                            spread = float(leg_match.group(2))
                             
-                            effective_diff = score_diff + spread
+                            # Find matching game
+                            game_found = False
+                            for game in all_games:
+                                if game.get('away_abbr') == team_abbr or game.get('home_abbr') == team_abbr:
+                                    game_found = True
+                                    
+                                    # Check if game is completed (status contains "Final")
+                                    if 'final' not in game.get('status', '').lower():
+                                        all_legs_completed = False
+                                        # Don't break - keep checking other legs for losses
+                                        continue
+                                    
+                                    # Determine if leg won or lost
+                                    if game.get('away_abbr') == team_abbr:
+                                        score_diff = game['away_score'] - game['home_score']
+                                    else:
+                                        score_diff = game['home_score'] - game['away_score']
+                                    
+                                    effective_diff = score_diff + spread
+                                    
+                                    if effective_diff < 0:
+                                        any_leg_lost = True
+                                        # IMMEDIATELY mark parlay as lost - don't wait for other games
+                                        break
+                                    elif effective_diff == 0:
+                                        # Push - treat as loss for parlays
+                                        any_leg_lost = True
+                                        break
+                                    break
                             
-                            if effective_diff < 0:
-                                any_leg_lost = True
-                                print(f"    Leg {team_abbr} {spread:+.1f} LOST (effective={effective_diff:+.1f})", file=sys.stderr, flush=True)
-                                # IMMEDIATELY mark parlay as lost - don't wait for other games
+                            if not game_found:
+                                all_legs_completed = False
+                                # Don't break - keep checking other legs for losses
+                            
+                            # If we found a lost leg, immediately grade as lost
+                            if any_leg_lost:
                                 break
-                            elif effective_diff == 0:
-                                # Push - treat as loss for parlays
-                                any_leg_lost = True
-                                print(f"    Leg {team_abbr} {spread:+.1f} PUSH (treating as LOST)", file=sys.stderr, flush=True)
-                                break
-                            break
-                    
-                    if not game_found:
-                        all_legs_completed = False
-                        # Don't break - keep checking other legs for losses
-                    
-                    # If we found a lost leg, immediately grade as lost
-                    if any_leg_lost:
+                        
+                        # Grade the bet if ANY leg is lost OR all legs are completed
+                        if any_leg_lost:
+                            new_status = 'Lost'
+                        elif all_legs_completed:
+                            new_status = 'Won'
+                        else:
+                            # Still has pending legs and no losses yet
+                            still_pending += 1
+                            continue
+            
+            # === SINGLE BET GRADING ===
+            else:
+                # Grade single bets (spread, total, moneyline)
+                
+                # Use LiveBetTracker to get bet status
+                bet_data = {
+                    'ticket_number': bet_dict['ticket_id'],
+                    'description': description,
+                    'bet_type': bet_type,
+                    'team': tracker._extract_team(description),
+                    'line': tracker._extract_line(description)
+                }
+                
+                # Find matching game
+                matched_game = None
+                for game in final_games:
+                    teams = [game.get('home_team', ''), game.get('away_team', '')]
+                    if any(bet_data['team'] in team for team in teams):
+                        matched_game = game
                         break
                 
-                # Grade the bet if ANY leg is lost OR all legs are completed
-                if any_leg_lost:
-                    new_status = 'Lost'
-                    print("  GRADING AS LOST (at least one leg lost)", file=sys.stderr, flush=True)
-                elif all_legs_completed:
-                    new_status = 'Won'
-                    print("  GRADING AS WON (all legs completed and won)", file=sys.stderr, flush=True)
-                else:
-                    # Still has pending legs and no losses yet
-                    print("  Still pending (no losses yet, but games in progress)", file=sys.stderr, flush=True)
+                if not matched_game:
                     still_pending += 1
                     continue
+                
+                # Check bet result
+                status = tracker.get_bet_status(bet_data, matched_game)
+                
+                if status == 'winning':
+                    new_status = 'Won'
+                elif status == 'losing':
+                    new_status = 'Lost'
+                else:
+                    still_pending += 1
+                    continue
+            
+            # Update bet status if we have a decision
+            if not new_status:
+                still_pending += 1
+                continue
             
             # Update bet status
             amount = float(bet_dict['amount']) if bet_dict['amount'] else 0
@@ -1543,6 +1751,120 @@ def api_update_model_performance():
             'success': False,
             'message': str(e)
         }), 500
+
+@app.route('/api/generate-predictions', methods=['POST'])
+def api_generate_predictions():
+    """Generate predictions for next week"""
+    try:
+        import subprocess
+        from pathlib import Path
+        
+        # Run the prediction script
+        result = subprocess.run(
+            ['python3', '-c', 'from nfl_edge.main import run_week; run_week()'],
+            cwd='/Users/steveridder/Git/Football',
+            capture_output=True,
+            text=True,
+            timeout=300
+        )
+        
+        if result.returncode == 0:
+            # Find the latest prediction file
+            artifacts_dir = Path('/Users/steveridder/Git/Football/artifacts')
+            csv_files = sorted(artifacts_dir.glob('predictions_*.csv'), reverse=True)
+            
+            if csv_files:
+                latest_file = csv_files[0]
+                return jsonify({
+                    'success': True,
+                    'message': f'Predictions generated successfully',
+                    'file': latest_file.name,
+                    'output': result.stdout
+                })
+        
+        return jsonify({
+            'success': False,
+            'message': 'Prediction generation failed',
+            'error': result.stderr
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Generation failed: {str(e)}'
+        })
+
+@app.route('/api/predictions/history', methods=['GET'])
+def api_predictions_history():
+    """Get list of historical prediction files"""
+    try:
+        from pathlib import Path
+        
+        artifacts_dir = Path('/Users/steveridder/Git/Football/artifacts')
+        csv_files = sorted(artifacts_dir.glob('predictions_*.csv'), reverse=True)
+        
+        history = []
+        for csv_file in csv_files:
+            # Extract date from filename (predictions_YYYY-MM-DD.csv)
+            date_str = csv_file.stem.replace('predictions_', '')
+            history.append({
+                'date': date_str,
+                'filename': csv_file.name
+            })
+        
+        return jsonify({
+            'success': True,
+            'predictions': history
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Failed to load history: {str(e)}'
+        })
+
+@app.route('/api/predictions/<filename>', methods=['GET'])
+def api_get_prediction_file(filename):
+    """Get a specific prediction file"""
+    try:
+        from pathlib import Path
+        import pandas as pd
+        
+        # Security: only allow predictions_*.csv files
+        if not filename.startswith('predictions_') or not filename.endswith('.csv'):
+            return jsonify({'success': False, 'message': 'Invalid filename'}), 400
+        
+        file_path = Path('/Users/steveridder/Git/Football/artifacts') / filename
+        
+        if not file_path.exists():
+            return jsonify({'success': False, 'message': 'File not found'}), 404
+        
+        df = pd.read_csv(file_path)
+        
+        # Convert to JSON format similar to main page
+        predictions = []
+        for _, row in df.iterrows():
+            predictions.append({
+                'away': row['away'],
+                'home': row['home'],
+                'exp_score': row.get('Exp score (away-home)', ''),
+                'model_spread': row.get('Model spread home-', 0),
+                'spread_used': row.get('Spread used (home-)', 0),
+                'home_cover_pct': row.get('Home cover %', 0),
+                'over_pct': row.get('Over %', 0),
+                'best_bet': row.get('best_bet', ''),
+                'kelly_pct': row.get('kelly_pct', 0),
+                'ev': row.get('ev', 0)
+            })
+        
+        return jsonify({
+            'success': True,
+            'predictions': predictions,
+            'date': filename.replace('predictions_', '').replace('.csv', '')
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Failed to load predictions: {str(e)}'
+        })
 
 @app.route('/api/live-games')
 def live_games():
