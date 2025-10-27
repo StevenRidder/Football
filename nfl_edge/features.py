@@ -4,7 +4,7 @@ import pandas as pd, numpy as np
 def build_features(teamweeks: pd.DataFrame, recent_weight: float = 0.67) -> pd.DataFrame:
     df = teamweeks.sort_values(["team","week"]).copy()
     g = df.groupby("team", as_index=False)
-    for col in ["off_epa_per_play","def_epa_per_play","off_success_rate","def_success_rate","points","points_allowed"]:
+    for col in ["off_epa_per_play","def_epa_per_play","off_success_rate","def_success_rate","points","points_allowed","turnover_diff"]:
         if col not in df.columns: raise RuntimeError(f"Missing required column: {col}")
         df[f"{col}_season"] = g[col].transform(lambda s: s.expanding().mean())
         df[f"{col}_last4"]  = g[col].transform(lambda s: s.rolling(4, min_periods=1).mean())
@@ -13,7 +13,16 @@ def build_features(teamweeks: pd.DataFrame, recent_weight: float = 0.67) -> pd.D
     out["OFF_EPA"] = blend("off_epa_per_play"); out["DEF_EPA"] = blend("def_epa_per_play")
     out["OFF_SR"]  = blend("off_success_rate");  out["DEF_SR"]  = blend("def_success_rate")
     out["PF_BLEND"] = blend("points");           out["PA_BLEND"] = blend("points_allowed")
-    return out[["team","OFF_EPA","DEF_EPA","OFF_SR","DEF_SR","PF_BLEND","PA_BLEND"]]
+    out["TO_DIFF"] = blend("turnover_diff")
+    
+    # Apply regression to mean: cap extreme EPA values at ±0.10 to prevent overestimation
+    # This prevents teams with outlier 2024 seasons from being overestimated in 2025
+    # 0.10 is ~1.5 standard deviations from the mean, catching true outliers like DAL
+    EPA_CAP = 0.10
+    out["OFF_EPA"] = out["OFF_EPA"].clip(-EPA_CAP, EPA_CAP)
+    out["DEF_EPA"] = out["DEF_EPA"].clip(-EPA_CAP, EPA_CAP)
+    
+    return out[["team","OFF_EPA","DEF_EPA","OFF_SR","DEF_SR","PF_BLEND","PA_BLEND","TO_DIFF"]]
 
 def join_matchups(feats: pd.DataFrame, sched):
     f = feats.set_index("team"); rows = []
@@ -27,7 +36,8 @@ def join_matchups(feats: pd.DataFrame, sched):
             "away_OFF_SR": a["OFF_SR"],   "home_DEF_SR": h["DEF_SR"],
             "home_OFF_SR": h["OFF_SR"],   "away_DEF_SR": a["DEF_SR"],
             "away_PF": a["PF_BLEND"],     "home_PA": h["PA_BLEND"],
-            "home_PF": h["PF_BLEND"],     "away_PA": a["PA_BLEND"],})
+            "home_PF": h["PF_BLEND"],     "away_PA": a["PA_BLEND"],
+            "away_TO_DIFF": a["TO_DIFF"], "home_TO_DIFF": h["TO_DIFF"],})
     return pd.DataFrame(rows)
 
 def apply_weather_and_injuries(matches: pd.DataFrame, weather_df: pd.DataFrame, injuries_df: pd.DataFrame, situational_df: pd.DataFrame = None):

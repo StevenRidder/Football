@@ -1,17 +1,21 @@
 
-# Week 8 schedule - Live from Odds API (13 games with betting lines)
+# Week 9 schedule - Live from Odds API (14 games)
 THIS_WEEK = [
-    ("MIN", "LAC"),
-    ("MIA", "ATL"),
-    ("CHI", "BAL"),
-    ("BUF", "CAR"),
-    ("NYJ", "CIN"),
-    ("CLE", "NE"),
-    ("SF", "HOU"),
-    ("NYG", "PHI"),
-    ("TB", "NO"),
-    ("DAL", "DEN"),
-    ("TEN", "IND"),
-    ("GB", "PIT"),
-    ("WAS", "KC"),
+    ("BAL", "MIA"),
+    ("ATL", "NE"),
+    ("CAR", "GB"),
+    ("CHI", "CIN"),
+    ("DEN", "HOU"),
+    ("MIN", "DET"),
+    ("IND", "PIT"),
+    ("LAC", "TEN"),
+    ("SF", "NYG"),
+    ("JAX", "LV"),
+    ("NO", "LA"),
+    ("KC", "BUF"),
+    ("SEA", "WAS"),
+    ("ARI", "DAL"),
 ]
+
+CURRENT_WEEK = 9
+CURRENT_SEASON = 2025

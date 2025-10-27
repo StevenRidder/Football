@@ -18,6 +18,12 @@ def fit_expected_points_model(history: pd.DataFrame, use_xgboost: bool = True):
               "home_OFF_EPA","away_DEF_EPA","home_OFF_SR","away_DEF_SR",
               "away_PF_adj","home_PA","home_PF_adj","away_PA"]
     
+    # Add turnover differential (critical feature)
+    turnover_cols = ["away_TO_DIFF", "home_TO_DIFF"]
+    for col in turnover_cols:
+        if col in history.columns:
+            X_cols.append(col)
+    
     # Add situational features if available
     situational_cols = ["away_travel_miles", "timezone_diff", "is_divisional", 
                        "is_conference", "away_injury", "home_injury"]

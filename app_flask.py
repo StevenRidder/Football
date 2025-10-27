@@ -56,6 +56,15 @@ def index():
         return render_template('error.html', 
                              message="No predictions found. Run python3 run_week.py first.")
     
+    # Get current week from schedules.py
+    try:
+        from schedules import CURRENT_WEEK, CURRENT_SEASON
+        current_week = CURRENT_WEEK
+        current_season = CURRENT_SEASON
+    except ImportError:
+        current_week = 8
+        current_season = 2025
+    
     # Calculate summary stats
     total_games = len(df)
     avg_edge = df['EV_spread'].mean() * 100 if 'EV_spread' in df.columns else 0
@@ -67,6 +76,8 @@ def index():
         rec_plays = len(df[df['Rec_spread'] != 'NO PLAY'])
     
     return render_template('index.html',
+                         current_week=current_week,
+                         current_season=current_season,
                          total_games=total_games,
                          avg_edge=avg_edge,
                          total_stake=total_stake,
@@ -87,8 +98,12 @@ def api_games():
             'away': row['away'],
             'home': row['home'],
             'exp_score': row.get('Exp score (away-home)', 'N/A'),
-            'spread': row.get('Spread used (home-)', 0),
-            'total': row.get('Total used', 0),
+            'market_spread': row.get('Spread used (home-)', 0),
+            'model_spread': row.get('Model spread home-', 0),
+            'market_total': row.get('Total used', 0),
+            'model_total': row.get('Model total', 0),
+            'spread': row.get('Spread used (home-)', 0),  # Keep for backward compatibility
+            'total': row.get('Total used', 0),  # Keep for backward compatibility
             'home_win_pct': row.get('Home win %', 0),
             'home_cover_pct': row.get('Home cover %', 0),
             'over_pct': row.get('Over %', 0),

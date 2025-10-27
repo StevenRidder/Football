@@ -2,10 +2,10 @@
 team_sd: 8.0
 n_sims: 20000
 home_field_pts: 1.5
-recent_weight: 0.67  # Reverted from 0.80 - higher weight made predictions worse
+recent_weight: 0.95  # Increased to 0.95 to adapt faster to 2025 reality (v3 model)
 
 # Calibration (dynamic - adjust based on conditions)
-score_calibration_factor: 0.85  # Balanced between 0.69 (too low) and 0.95 (too high)
+score_calibration_factor: 0.68  # Back to 0.68 - was more accurate for totals
 
 # Betting parameters
 bankroll: 10000.0        # Starting bankroll

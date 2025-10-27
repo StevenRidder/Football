@@ -1,0 +1,2762 @@
+{
+  "team": {
+    "id": "6",
+    "uid": "s:20~l:28~t:6",
+    "slug": "dallas-cowboys",
+    "location": "Dallas",
+    "name": "Cowboys",
+    "nickname": "Cowboys",
+    "abbreviation": "DAL",
+    "displayName": "Dallas Cowboys",
+    "shortDisplayName": "Cowboys",
+    "color": "002a5c",
+    "alternateColor": "b0b7bc",
+    "isActive": true,
+    "logos": [
+      {
+        "href": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+        "width": 500,
+        "height": 500,
+        "alt": "",
+        "rel": [
+          "full",
+          "default"
+        ],
+        "lastUpdated": "2024-06-25T18:47Z"
+      },
+      {
+        "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/dal.png",
+        "width": 500,
+        "height": 500,
+        "alt": "",
+        "rel": [
+          "full",
+          "dark"
+        ],
+        "lastUpdated": "2024-06-25T18:59Z"
+      },
+      {
+        "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/dal.png",
+        "width": 500,
+        "height": 500,
+        "alt": "",
+        "rel": [
+          "full",
+          "scoreboard"
+        ],
+        "lastUpdated": "2024-06-25T18:48Z"
+      },
+      {
+        "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/scoreboard/dal.png",
+        "width": 500,
+        "height": 500,
+        "alt": "",
+        "rel": [
+          "full",
+          "scoreboard",
+          "dark"
+        ],
+        "lastUpdated": "2024-06-25T18:59Z"
+      },
+      {
+        "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/primary_logo_on_white_color.png",
+        "width": 4096,
+        "height": 4096,
+        "alt": "",
+        "rel": [
+          "full",
+          "primary_logo_on_white_color"
+        ],
+        "lastUpdated": "2024-12-03T20:49Z"
+      },
+      {
+        "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/primary_logo_on_black_color.png",
+        "width": 4096,
+        "height": 4096,
+        "alt": "",
+        "rel": [
+          "full",
+          "primary_logo_on_black_color"
+        ],
+        "lastUpdated": "2024-12-03T20:49Z"
+      },
+      {
+        "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/primary_logo_on_primary_color.png",
+        "width": 4096,
+        "height": 4096,
+        "alt": "",
+        "rel": [
+          "full",
+          "primary_logo_on_primary_color"
+        ],
+        "lastUpdated": "2024-12-03T20:49Z"
+      },
+      {
+        "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/primary_logo_on_secondary_color.png",
+        "width": 4096,
+        "height": 4096,
+        "alt": "",
+        "rel": [
+          "full",
+          "primary_logo_on_secondary_color"
+        ],
+        "lastUpdated": "2024-12-03T20:49Z"
+      },
+      {
+        "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/secondary_logo_on_white_color.png",
+        "width": 4096,
+        "height": 4096,
+        "alt": "",
+        "rel": [
+          "full",
+          "secondary_logo_on_white_color"
+        ],
+        "lastUpdated": "2024-12-03T20:49Z"
+      },
+      {
+        "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/secondary_logo_on_black_color.png",
+        "width": 4096,
+        "height": 4096,
+        "alt": "",
+        "rel": [
+          "full",
+          "secondary_logo_on_black_color"
+        ],
+        "lastUpdated": "2024-12-03T20:49Z"
+      },
+      {
+        "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/secondary_logo_on_primary_color.png",
+        "width": 4096,
+        "height": 4096,
+        "alt": "",
+        "rel": [
+          "full",
+          "secondary_logo_on_primary_color"
+        ],
+        "lastUpdated": "2024-12-03T20:49Z"
+      },
+      {
+        "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/secondary_logo_on_secondary_color.png",
+        "width": 4096,
+        "height": 4096,
+        "alt": "",
+        "rel": [
+          "full",
+          "secondary_logo_on_secondary_color"
+        ],
+        "lastUpdated": "2024-12-03T20:49Z"
+      }
+    ],
+    "record": {
+      "items": [
+        {
+          "type": "total",
+          "summary": "3-4-1",
+          "stats": [
+            {
+              "name": "OTLosses",
+              "value": 0.0
+            },
+            {
+              "name": "OTWins",
+              "value": 1.0
+            },
+            {
+              "name": "avgPointsAgainst",
+              "value": 31.25
+            },
+            {
+              "name": "avgPointsFor",
+              "value": 30.75
+            },
+            {
+              "name": "differential",
+              "value": -4.0
+            },
+            {
+              "name": "divisionWinPercent",
+              "value": 0.6666667
+            },
+            {
+              "name": "gamesBehind",
+              "value": 0.0
+            },
+            {
+              "name": "gamesPlayed",
+              "value": 8.0
+            },
+            {
+              "name": "leagueWinPercent",
+              "value": 0.41666666
+            },
+            {
+              "name": "losses",
+              "value": 4.0
+            },
+            {
+              "name": "playoffSeed",
+              "value": 10.0
+            },
+            {
+              "name": "pointDifferential",
+              "value": -4.0
+            },
+            {
+              "name": "points",
+              "value": -0.5
+            },
+            {
+              "name": "pointsAgainst",
+              "value": 250.0
+            },
+            {
+              "name": "pointsFor",
+              "value": 246.0
+            },
+            {
+              "name": "streak",
+              "value": -1.0
+            },
+            {
+              "name": "ties",
+              "value": 1.0
+            },
+            {
+              "name": "winPercent",
+              "value": 0.4375
+            },
+            {
+              "name": "wins",
+              "value": 3.0
+            },
+            {
+              "name": "divisionLosses",
+              "value": 1.0
+            },
+            {
+              "name": "divisionRecord",
+              "value": 0.0
+            },
+            {
+              "name": "divisionTies",
+              "value": 0.0
+            },
+            {
+              "name": "divisionWins",
+              "value": 2.0
+            }
+          ]
+        },
+        {
+          "description": "Home Record",
+          "type": "home",
+          "summary": "2-0-1",
+          "stats": [
+            {
+              "name": "wins",
+              "value": 2.0
+            },
+            {
+              "name": "losses",
+              "value": 0.0
+            },
+            {
+              "name": "ties",
+              "value": 1.0
+            },
+            {
+              "name": "winPercent",
+              "value": 0.8333333134651184
+            },
+            {
+              "name": "OTLosses",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "description": "Away Record",
+          "type": "road",
+          "summary": "1-4",
+          "stats": [
+            {
+              "name": "wins",
+              "value": 1.0
+            },
+            {
+              "name": "losses",
+              "value": 4.0
+            },
+            {
+              "name": "ties",
+              "value": 0.0
+            },
+            {
+              "name": "winPercent",
+              "value": 0.20000000298023224
+            },
+            {
+              "name": "OTLosses",
+              "value": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    "groups": {
+      "id": "1",
+      "parent": {
+        "id": "7"
+      },
+      "isConference": false
+    },
+    "links": [
+      {
+        "language": "en-US",
+        "rel": [
+          "clubhouse",
+          "desktop",
+          "team"
+        ],
+        "href": "https://www.espn.com/nfl/team/_/name/dal/dallas-cowboys",
+        "text": "Clubhouse",
+        "shortText": "Clubhouse",
+        "isExternal": false,
+        "isPremium": false
+      },
+      {
+        "language": "en-US",
+        "rel": [
+          "roster",
+          "desktop",
+          "team"
+        ],
+        "href": "https://www.espn.com/nfl/team/roster/_/name/dal/dallas-cowboys",
+        "text": "Roster",
+        "shortText": "Roster",
+        "isExternal": false,
+        "isPremium": false
+      },
+      {
+        "language": "en-US",
+        "rel": [
+          "stats",
+          "desktop",
+          "team"
+        ],
+        "href": "https://www.espn.com/nfl/team/stats/_/name/dal/dallas-cowboys",
+        "text": "Statistics",
+        "shortText": "Statistics",
+        "isExternal": false,
+        "isPremium": false
+      },
+      {
+        "language": "en-US",
+        "rel": [
+          "schedule",
+          "desktop",
+          "team"
+        ],
+        "href": "https://www.espn.com/nfl/team/schedule/_/name/dal",
+        "text": "Schedule",
+        "shortText": "Schedule",
+        "isExternal": false,
+        "isPremium": false
+      },
+      {
+        "language": "en-US",
+        "rel": [
+          "photos",
+          "desktop",
+          "team"
+        ],
+        "href": "https://www.espn.com/nfl/team/photos/_/name/dal",
+        "text": "photos",
+        "shortText": "photos",
+        "isExternal": false,
+        "isPremium": false
+      },
+      {
+        "language": "en-US",
+        "rel": [
+          "tickets",
+          "desktop",
+          "team"
+        ],
+        "href": "https://www.vividseats.com/dallas-cowboys-tickets--sports-nfl-football/performer/214?wsUser=717",
+        "text": "Tickets",
+        "shortText": "Tickets",
+        "isExternal": true,
+        "isPremium": false
+      },
+      {
+        "language": "en-US",
+        "rel": [
+          "draftpicks",
+          "desktop",
+          "team"
+        ],
+        "href": "https://www.espn.com/nfl/draft/teams/_/name/dal/dallas-cowboys",
+        "text": "Draft Picks",
+        "shortText": "Draft Picks",
+        "isExternal": false,
+        "isPremium": true
+      },
+      {
+        "language": "en-US",
+        "rel": [
+          "transactions",
+          "desktop",
+          "team"
+        ],
+        "href": "https://www.espn.com/nfl/team/transactions/_/name/dal",
+        "text": "Transactions",
+        "shortText": "Transactions",
+        "isExternal": false,
+        "isPremium": false
+      },
+      {
+        "language": "en-US",
+        "rel": [
+          "injuries",
+          "desktop",
+          "team"
+        ],
+        "href": "https://www.espn.com/nfl/team/injuries/_/name/dal",
+        "text": "Injuries",
+        "shortText": "Injuries",
+        "isExternal": false,
+        "isPremium": false
+      },
+      {
+        "language": "en-US",
+        "rel": [
+          "depthchart",
+          "desktop",
+          "team"
+        ],
+        "href": "https://www.espn.com/nfl/team/depth/_/name/dal",
+        "text": "Depth Chart",
+        "shortText": "Depth Chart",
+        "isExternal": false,
+        "isPremium": false
+      }
+    ],
+    "franchise": {
+      "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/nfl/franchises/6?lang=en&region=us",
+      "id": "6",
+      "uid": "s:20~l:28~f:6",
+      "slug": "dallas-cowboys",
+      "location": "Dallas",
+      "name": "Cowboys",
+      "nickname": "Cowboys",
+      "abbreviation": "DAL",
+      "displayName": "Dallas Cowboys",
+      "shortDisplayName": "Cowboys",
+      "color": "002a5c",
+      "isActive": true,
+      "venue": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/nfl/venues/3687?lang=en&region=us",
+        "id": "3687",
+        "guid": "a6d02626-ee51-3e35-98f1-2b05c0b9b2b3",
+        "fullName": "AT&T Stadium",
+        "address": {
+          "city": "Arlington",
+          "state": "TX",
+          "zipCode": "76011",
+          "country": "USA"
+        },
+        "grass": false,
+        "indoor": true,
+        "images": [
+          {
+            "href": "https://a.espncdn.com/i/venues/nfl/day/3687.jpg",
+            "width": 2000,
+            "height": 1125,
+            "alt": "",
+            "rel": [
+              "full",
+              "day"
+            ]
+          },
+          {
+            "href": "https://a.espncdn.com/i/venues/nfl/day/interior/3687.jpg",
+            "width": 2000,
+            "height": 1125,
+            "alt": "",
+            "rel": [
+              "full",
+              "day",
+              "interior"
+            ]
+          }
+        ]
+      },
+      "team": {
+        "$ref": "http://sports.core.api.espn.pvt/v2/sports/football/leagues/nfl/seasons/2025/teams/6?lang=en&region=us"
+      }
+    },
+    "nextEvent": [
+      {
+        "id": "401772762",
+        "date": "2025-10-26T20:25Z",
+        "name": "Dallas Cowboys at Denver Broncos",
+        "shortName": "DAL @ DEN",
+        "season": {
+          "year": 2025,
+          "displayName": "2025"
+        },
+        "seasonType": {
+          "id": "2",
+          "type": 2,
+          "name": "Regular Season",
+          "abbreviation": "reg"
+        },
+        "week": {
+          "number": 8,
+          "text": "Week 8"
+        },
+        "timeValid": true,
+        "competitions": [
+          {
+            "id": "401772762",
+            "date": "2025-10-26T20:25Z",
+            "attendance": 75877,
+            "type": {
+              "id": "1",
+              "text": "Standard",
+              "abbreviation": "STD",
+              "slug": "standard",
+              "type": "standard"
+            },
+            "timeValid": true,
+            "neutralSite": false,
+            "boxscoreAvailable": true,
+            "ticketsAvailable": false,
+            "venue": {
+              "fullName": "Empower Field at Mile High",
+              "address": {
+                "city": "Denver",
+                "state": "CO",
+                "zipCode": "80204",
+                "country": "USA"
+              }
+            },
+            "competitors": [
+              {
+                "id": "7",
+                "type": "team",
+                "order": 0,
+                "homeAway": "home",
+                "winner": true,
+                "team": {
+                  "id": "7",
+                  "location": "Denver",
+                  "nickname": "Broncos",
+                  "abbreviation": "DEN",
+                  "displayName": "Denver Broncos",
+                  "shortDisplayName": "Broncos",
+                  "logos": [
+                    {
+                      "href": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+                      "width": 500,
+                      "height": 500,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "default"
+                      ],
+                      "lastUpdated": "2024-06-25T18:48Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/den.png",
+                      "width": 500,
+                      "height": 500,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "dark"
+                      ],
+                      "lastUpdated": "2024-06-25T18:59Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/den.png",
+                      "width": 500,
+                      "height": 500,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "scoreboard"
+                      ],
+                      "lastUpdated": "2024-06-25T18:48Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/scoreboard/den.png",
+                      "width": 500,
+                      "height": 500,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "scoreboard",
+                        "dark"
+                      ],
+                      "lastUpdated": "2024-06-25T18:59Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/51042145-e3c1-0694-ae0d-f720342ff8fc/logos/primary_logo_on_white_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "primary_logo_on_white_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:48Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/51042145-e3c1-0694-ae0d-f720342ff8fc/logos/primary_logo_on_black_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "primary_logo_on_black_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:48Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/51042145-e3c1-0694-ae0d-f720342ff8fc/logos/primary_logo_on_primary_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "primary_logo_on_primary_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:48Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/51042145-e3c1-0694-ae0d-f720342ff8fc/logos/primary_logo_on_secondary_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "primary_logo_on_secondary_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:48Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/51042145-e3c1-0694-ae0d-f720342ff8fc/logos/secondary_logo_on_white_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "secondary_logo_on_white_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:48Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/51042145-e3c1-0694-ae0d-f720342ff8fc/logos/secondary_logo_on_black_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "secondary_logo_on_black_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:48Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/51042145-e3c1-0694-ae0d-f720342ff8fc/logos/secondary_logo_on_primary_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "secondary_logo_on_primary_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:48Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/51042145-e3c1-0694-ae0d-f720342ff8fc/logos/secondary_logo_on_secondary_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "secondary_logo_on_secondary_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:48Z"
+                    }
+                  ],
+                  "links": [
+                    {
+                      "rel": [
+                        "clubhouse",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/_/name/den/denver-broncos",
+                      "text": "Clubhouse"
+                    },
+                    {
+                      "rel": [
+                        "roster",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/roster/_/name/den/denver-broncos",
+                      "text": "Roster"
+                    },
+                    {
+                      "rel": [
+                        "stats",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/stats/_/name/den/denver-broncos",
+                      "text": "Statistics"
+                    },
+                    {
+                      "rel": [
+                        "schedule",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/schedule/_/name/den",
+                      "text": "Schedule"
+                    },
+                    {
+                      "rel": [
+                        "photos",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/photos/_/name/den",
+                      "text": "photos"
+                    },
+                    {
+                      "rel": [
+                        "tickets",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.vividseats.com/denver-broncos-tickets--sports-nfl-football/performer/234?wsUser=717",
+                      "text": "Tickets"
+                    },
+                    {
+                      "rel": [
+                        "draftpicks",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/draft/teams/_/name/den/denver-broncos",
+                      "text": "Draft Picks"
+                    },
+                    {
+                      "rel": [
+                        "transactions",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/transactions/_/name/den",
+                      "text": "Transactions"
+                    },
+                    {
+                      "rel": [
+                        "injuries",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/injuries/_/name/den",
+                      "text": "Injuries"
+                    },
+                    {
+                      "rel": [
+                        "depthchart",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/depth/_/name/den",
+                      "text": "Depth Chart"
+                    }
+                  ]
+                },
+                "score": {
+                  "value": 44.0,
+                  "displayValue": "44"
+                },
+                "record": [
+                  {
+                    "id": "369",
+                    "abbreviation": "Game",
+                    "displayName": "Record Year To Date",
+                    "shortDisplayName": "YTD",
+                    "description": "Overall Record",
+                    "type": "total",
+                    "displayValue": "6-2"
+                  },
+                  {
+                    "id": "13",
+                    "displayName": "Home",
+                    "shortDisplayName": "HOME",
+                    "description": "Home Record",
+                    "type": "home",
+                    "displayValue": "4-0"
+                  },
+                  {
+                    "id": "14",
+                    "displayName": "Road",
+                    "shortDisplayName": "AWAY",
+                    "description": "Away Record",
+                    "type": "road",
+                    "displayValue": "2-2"
+                  }
+                ]
+              },
+              {
+                "id": "6",
+                "type": "team",
+                "order": 1,
+                "homeAway": "away",
+                "winner": false,
+                "team": {
+                  "id": "6",
+                  "location": "Dallas",
+                  "nickname": "Cowboys",
+                  "abbreviation": "DAL",
+                  "displayName": "Dallas Cowboys",
+                  "shortDisplayName": "Cowboys",
+                  "logos": [
+                    {
+                      "href": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+                      "width": 500,
+                      "height": 500,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "default"
+                      ],
+                      "lastUpdated": "2024-06-25T18:47Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/dal.png",
+                      "width": 500,
+                      "height": 500,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "dark"
+                      ],
+                      "lastUpdated": "2024-06-25T18:59Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/dal.png",
+                      "width": 500,
+                      "height": 500,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "scoreboard"
+                      ],
+                      "lastUpdated": "2024-06-25T18:48Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/scoreboard/dal.png",
+                      "width": 500,
+                      "height": 500,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "scoreboard",
+                        "dark"
+                      ],
+                      "lastUpdated": "2024-06-25T18:59Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/primary_logo_on_white_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "primary_logo_on_white_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:49Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/primary_logo_on_black_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "primary_logo_on_black_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:49Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/primary_logo_on_primary_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "primary_logo_on_primary_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:49Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/primary_logo_on_secondary_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "primary_logo_on_secondary_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:49Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/secondary_logo_on_white_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "secondary_logo_on_white_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:49Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/secondary_logo_on_black_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "secondary_logo_on_black_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:49Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/secondary_logo_on_primary_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "secondary_logo_on_primary_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:49Z"
+                    },
+                    {
+                      "href": "https://a.espncdn.com/guid/b0fc8fb7-9dbe-e574-9008-6f0ee7c6b234/logos/secondary_logo_on_secondary_color.png",
+                      "width": 4096,
+                      "height": 4096,
+                      "alt": "",
+                      "rel": [
+                        "full",
+                        "secondary_logo_on_secondary_color"
+                      ],
+                      "lastUpdated": "2024-12-03T20:49Z"
+                    }
+                  ],
+                  "links": [
+                    {
+                      "rel": [
+                        "clubhouse",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/_/name/dal/dallas-cowboys",
+                      "text": "Clubhouse"
+                    },
+                    {
+                      "rel": [
+                        "roster",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/roster/_/name/dal/dallas-cowboys",
+                      "text": "Roster"
+                    },
+                    {
+                      "rel": [
+                        "stats",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/stats/_/name/dal/dallas-cowboys",
+                      "text": "Statistics"
+                    },
+                    {
+                      "rel": [
+                        "schedule",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/schedule/_/name/dal",
+                      "text": "Schedule"
+                    },
+                    {
+                      "rel": [
+                        "photos",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/photos/_/name/dal",
+                      "text": "photos"
+                    },
+                    {
+                      "rel": [
+                        "tickets",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.vividseats.com/dallas-cowboys-tickets--sports-nfl-football/performer/214?wsUser=717",
+                      "text": "Tickets"
+                    },
+                    {
+                      "rel": [
+                        "draftpicks",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/draft/teams/_/name/dal/dallas-cowboys",
+                      "text": "Draft Picks"
+                    },
+                    {
+                      "rel": [
+                        "transactions",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/transactions/_/name/dal",
+                      "text": "Transactions"
+                    },
+                    {
+                      "rel": [
+                        "injuries",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/injuries/_/name/dal",
+                      "text": "Injuries"
+                    },
+                    {
+                      "rel": [
+                        "depthchart",
+                        "desktop",
+                        "team"
+                      ],
+                      "href": "https://www.espn.com/nfl/team/depth/_/name/dal",
+                      "text": "Depth Chart"
+                    }
+                  ]
+                },
+                "score": {
+                  "value": 24.0,
+                  "displayValue": "24"
+                },
+                "leaders": [
+                  {
+                    "name": "passingLeader",
+                    "displayName": "Passing Leader",
+                    "abbreviation": "PYDS",
+                    "leaders": [
+                      {
+                        "displayValue": "19/31, 188 YDS, 2 INT",
+                        "value": 188.0,
+                        "athlete": {
+                          "id": "2577417",
+                          "lastName": "Prescott",
+                          "displayName": "Dak Prescott",
+                          "shortName": "D. Prescott",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/2577417/dak-prescott"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "rushingLeader",
+                    "displayName": "Rushing Leader",
+                    "abbreviation": "RYDS",
+                    "leaders": [
+                      {
+                        "displayValue": "13 CAR, 41 YDS, 2 TD",
+                        "value": 41.0,
+                        "athlete": {
+                          "id": "4361579",
+                          "lastName": "Williams",
+                          "displayName": "Javonte Williams",
+                          "shortName": "J. Williams",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4361579/javonte-williams"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "receivingLeader",
+                    "displayName": "Receiving Leader",
+                    "abbreviation": "RECYDS",
+                    "leaders": [
+                      {
+                        "displayValue": "7 REC, 78 YDS",
+                        "value": 78.0,
+                        "athlete": {
+                          "id": "4426354",
+                          "lastName": "Pickens",
+                          "displayName": "George Pickens",
+                          "shortName": "G. Pickens",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4426354/george-pickens"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "passingYards",
+                    "displayName": "Passing Yards",
+                    "abbreviation": "YDS",
+                    "leaders": [
+                      {
+                        "displayValue": "188",
+                        "value": 188.0,
+                        "athlete": {
+                          "id": "2577417",
+                          "lastName": "Prescott",
+                          "displayName": "Dak Prescott",
+                          "shortName": "D. Prescott",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/2577417/dak-prescott"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "rushingYards",
+                    "displayName": "Rushing Yards",
+                    "abbreviation": "YDS",
+                    "leaders": [
+                      {
+                        "displayValue": "41",
+                        "value": 41.0,
+                        "athlete": {
+                          "id": "4361579",
+                          "lastName": "Williams",
+                          "displayName": "Javonte Williams",
+                          "shortName": "J. Williams",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4361579/javonte-williams"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "receivingYards",
+                    "displayName": "Receiving Yards",
+                    "abbreviation": "YDS",
+                    "leaders": [
+                      {
+                        "displayValue": "78",
+                        "value": 78.0,
+                        "athlete": {
+                          "id": "4426354",
+                          "lastName": "Pickens",
+                          "displayName": "George Pickens",
+                          "shortName": "G. Pickens",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4426354/george-pickens"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4426354/george-pickens"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "totalTackles",
+                    "displayName": "Tackles",
+                    "abbreviation": "TOT",
+                    "leaders": [
+                      {
+                        "displayValue": "7",
+                        "value": 7.0,
+                        "athlete": {
+                          "id": "4241394",
+                          "lastName": "Murray Jr.",
+                          "displayName": "Kenneth Murray Jr.",
+                          "shortName": "K. Murray Jr.",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4241394/kenneth-murray-jr"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4241394/kenneth-murray-jr"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4241394/kenneth-murray-jr"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4241394/kenneth-murray-jr"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4241394/kenneth-murray-jr"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4241394/kenneth-murray-jr"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4241394/kenneth-murray-jr"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "sacks",
+                    "displayName": "Sacks",
+                    "abbreviation": "SACK"
+                  },
+                  {
+                    "name": "interceptions",
+                    "displayName": "Interceptions",
+                    "abbreviation": "INT",
+                    "leaders": [
+                      {
+                        "displayValue": "1",
+                        "value": 1.0,
+                        "athlete": {
+                          "id": "4426513",
+                          "lastName": "Bridges",
+                          "displayName": "Trikweze Bridges",
+                          "shortName": "T. Bridges",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4426513/trikweze-bridges"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4426513/trikweze-bridges"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4426513/trikweze-bridges"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4426513/trikweze-bridges"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4426513/trikweze-bridges"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4426513/trikweze-bridges"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4426513/trikweze-bridges"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "puntReturns",
+                    "displayName": "Punt Returns",
+                    "abbreviation": "PR"
+                  },
+                  {
+                    "name": "kickReturns",
+                    "displayName": "Kick Returns",
+                    "abbreviation": "KR",
+                    "leaders": [
+                      {
+                        "displayValue": "3",
+                        "value": 3.0,
+                        "athlete": {
+                          "id": "3676833",
+                          "lastName": "Turpin",
+                          "displayName": "KaVontae Turpin",
+                          "shortName": "K. Turpin",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/3676833/kavontae-turpin"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/3676833/kavontae-turpin"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/3676833/kavontae-turpin"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/3676833/kavontae-turpin"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/3676833/kavontae-turpin"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/3676833/kavontae-turpin"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/3676833/kavontae-turpin"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "punts",
+                    "displayName": "Punts",
+                    "abbreviation": "P",
+                    "leaders": [
+                      {
+                        "displayValue": "5",
+                        "value": 5.0,
+                        "athlete": {
+                          "id": "14950",
+                          "lastName": "Anger",
+                          "displayName": "Bryan Anger",
+                          "shortName": "B. Anger",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/14950/bryan-anger"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/14950/bryan-anger"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/14950/bryan-anger"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/14950/bryan-anger"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/14950/bryan-anger"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/14950/bryan-anger"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/14950/bryan-anger"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "totalKickingPoints",
+                    "displayName": "Kicking Points",
+                    "abbreviation": "TP",
+                    "leaders": [
+                      {
+                        "displayValue": "6",
+                        "value": 6.0,
+                        "athlete": {
+                          "id": "3953687",
+                          "lastName": "Aubrey",
+                          "displayName": "Brandon Aubrey",
+                          "shortName": "B. Aubrey",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/3953687/brandon-aubrey"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/3953687/brandon-aubrey"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/3953687/brandon-aubrey"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/3953687/brandon-aubrey"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/3953687/brandon-aubrey"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/3953687/brandon-aubrey"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/3953687/brandon-aubrey"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "fumbles",
+                    "displayName": "Fumbles",
+                    "abbreviation": "F",
+                    "leaders": [
+                      {
+                        "displayValue": "1",
+                        "value": 1.0,
+                        "athlete": {
+                          "id": "4685279",
+                          "lastName": "Blue",
+                          "displayName": "Jaydon Blue",
+                          "shortName": "J. Blue",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4685279/jaydon-blue"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4685279/jaydon-blue"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4685279/jaydon-blue"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4685279/jaydon-blue"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4685279/jaydon-blue"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4685279/jaydon-blue"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4685279/jaydon-blue"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "fumblesLost",
+                    "displayName": "Fumbles Lost",
+                    "abbreviation": "FL"
+                  },
+                  {
+                    "name": "fumblesRecovered",
+                    "displayName": "Fumbles Recovered",
+                    "abbreviation": "CMP",
+                    "leaders": [
+                      {
+                        "displayValue": "1",
+                        "value": 1.0,
+                        "athlete": {
+                          "id": "4241087",
+                          "lastName": "Hoffman",
+                          "displayName": "Brock Hoffman",
+                          "shortName": "B. Hoffman",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4241087/brock-hoffman"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4241087/brock-hoffman"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4241087/brock-hoffman"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4241087/brock-hoffman"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4241087/brock-hoffman"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4241087/brock-hoffman"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4241087/brock-hoffman"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "espnRating",
+                    "displayName": "ESPN Rating Leader",
+                    "abbreviation": "ESPNRating",
+                    "leaders": [
+                      {
+                        "displayValue": "13 CAR, 41 YDS, 2 TD",
+                        "value": 16.899999618530273,
+                        "athlete": {
+                          "id": "4361579",
+                          "lastName": "Williams",
+                          "displayName": "Javonte Williams",
+                          "shortName": "J. Williams",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4361579/javonte-williams"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "passingTouchdowns",
+                    "displayName": "Passing Touchdowns",
+                    "abbreviation": "TD",
+                    "leaders": [
+                      {
+                        "displayValue": "1",
+                        "value": 1.0,
+                        "athlete": {
+                          "id": "4360698",
+                          "lastName": "Milton III",
+                          "displayName": "Joe Milton III",
+                          "shortName": "J. Milton III",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4360698/joe-milton-iii"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4360698/joe-milton-iii"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4360698/joe-milton-iii"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4360698/joe-milton-iii"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4360698/joe-milton-iii"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4360698/joe-milton-iii"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4360698/joe-milton-iii"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "quarterbackRating",
+                    "displayName": "Quarterback Rating",
+                    "abbreviation": "RAT",
+                    "leaders": [
+                      {
+                        "displayValue": "51.5",
+                        "value": 51.5,
+                        "athlete": {
+                          "id": "2577417",
+                          "lastName": "Prescott",
+                          "displayName": "Dak Prescott",
+                          "shortName": "D. Prescott",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/2577417/dak-prescott"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/2577417/dak-prescott"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "rushingTouchdowns",
+                    "displayName": "Rushing Touchdowns",
+                    "abbreviation": "TD",
+                    "leaders": [
+                      {
+                        "displayValue": "2",
+                        "value": 2.0,
+                        "athlete": {
+                          "id": "4361579",
+                          "lastName": "Williams",
+                          "displayName": "Javonte Williams",
+                          "shortName": "J. Williams",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4361579/javonte-williams"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4361579/javonte-williams"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "receptions",
+                    "displayName": "Receptions",
+                    "abbreviation": "REC",
+                    "leaders": [
+                      {
+                        "displayValue": "7",
+                        "value": 7.0,
+                        "athlete": {
+                          "id": "4241389",
+                          "lastName": "Lamb",
+                          "displayName": "CeeDee Lamb",
+                          "shortName": "C. Lamb",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4241389/ceedee-lamb"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4241389/ceedee-lamb"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4241389/ceedee-lamb"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4241389/ceedee-lamb"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4241389/ceedee-lamb"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4241389/ceedee-lamb"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4241389/ceedee-lamb"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "receivingTouchdowns",
+                    "displayName": "Receiving Touchdowns",
+                    "abbreviation": "TD",
+                    "leaders": [
+                      {
+                        "displayValue": "1",
+                        "value": 1.0,
+                        "athlete": {
+                          "id": "4249417",
+                          "lastName": "Tolbert",
+                          "displayName": "Jalen Tolbert",
+                          "shortName": "J. Tolbert",
+                          "links": [
+                            {
+                              "rel": [
+                                "playercard",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4249417/jalen-tolbert"
+                            },
+                            {
+                              "rel": [
+                                "stats",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/stats/_/id/4249417/jalen-tolbert"
+                            },
+                            {
+                              "rel": [
+                                "splits",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/splits/_/id/4249417/jalen-tolbert"
+                            },
+                            {
+                              "rel": [
+                                "gamelog",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/gamelog/_/id/4249417/jalen-tolbert"
+                            },
+                            {
+                              "rel": [
+                                "news",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/news/_/id/4249417/jalen-tolbert"
+                            },
+                            {
+                              "rel": [
+                                "bio",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/bio/_/id/4249417/jalen-tolbert"
+                            },
+                            {
+                              "rel": [
+                                "overview",
+                                "desktop",
+                                "athlete"
+                              ],
+                              "href": "https://www.espn.com/nfl/player/_/id/4249417/jalen-tolbert"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "record": [
+                  {
+                    "id": "369",
+                    "abbreviation": "Game",
+                    "displayName": "Record Year To Date",
+                    "shortDisplayName": "YTD",
+                    "description": "Overall Record",
+                    "type": "total",
+                    "displayValue": "3-4-1"
+                  },
+                  {
+                    "id": "13",
+                    "displayName": "Home",
+                    "shortDisplayName": "HOME",
+                    "description": "Home Record",
+                    "type": "home",
+                    "displayValue": "2-0-1"
+                  },
+                  {
+                    "id": "14",
+                    "displayName": "Road",
+                    "shortDisplayName": "AWAY",
+                    "description": "Away Record",
+                    "type": "road",
+                    "displayValue": "1-4"
+                  }
+                ]
+              }
+            ],
+            "notes": [],
+            "broadcasts": [
+              {
+                "type": {
+                  "id": "1",
+                  "shortName": "TV"
+                },
+                "market": {
+                  "id": "1",
+                  "type": "National"
+                },
+                "media": {
+                  "shortName": "CBS"
+                },
+                "lang": "en",
+                "region": "us",
+                "partnered": false
+              }
+            ],
+            "status": {
+              "clock": 0.0,
+              "displayClock": "0:00",
+              "period": 4,
+              "type": {
+                "id": "3",
+                "name": "STATUS_FINAL",
+                "state": "post",
+                "completed": true,
+                "description": "Final",
+                "detail": "Final",
+                "shortDetail": "Final"
+              },
+              "isTBDFlex": false
+            }
+          }
+        ],
+        "links": [
+          {
+            "language": "en-US",
+            "rel": [
+              "summary",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/game/_/gameId/401772762/cowboys-broncos",
+            "text": "Gamecast",
+            "shortText": "Summary",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "summary",
+              "sportscenter",
+              "app",
+              "event"
+            ],
+            "href": "sportscenter://x-callback-url/showGame?sportName=football&leagueAbbrev=nfl&gameId=401772762",
+            "text": "Gamecast",
+            "shortText": "Summary",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "now",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/game/_/gameId/401772762",
+            "text": "Now",
+            "shortText": "Now",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "teamstats",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/matchup?gameId=401772762",
+            "text": "Team Stats",
+            "shortText": "Team Stats",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "boxscore",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/boxscore/_/gameId/401772762",
+            "text": "Box Score",
+            "shortText": "Box Score",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "boxscore",
+              "sportscenter",
+              "app",
+              "event"
+            ],
+            "href": "sportscenter://x-callback-url/showGame?sportName=football&leagueAbbrev=nfl&gameId=401772762",
+            "text": "Box Score",
+            "shortText": "Box Score",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "gamecast",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/game/_/gameId/401772762",
+            "text": "Gamecast",
+            "shortText": "Gamecast",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "gamecast",
+              "mobile",
+              "event"
+            ],
+            "href": "http://m.espn.com/nfl/gamecast?gameId=401772762&action=summary",
+            "text": "Gamecast",
+            "shortText": "Gamecast",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "gamecast",
+              "sportscenter",
+              "app",
+              "event"
+            ],
+            "href": "sportscenter://x-callback-url/showGame?sportName=football&leagueAbbrev=nfl&gameId=401772762",
+            "text": "Gamecast",
+            "shortText": "Gamecast",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "recap",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/recap?gameId=401772762",
+            "text": "Recap",
+            "shortText": "Recap",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "pbp",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/playbyplay/_/gameId/401772762",
+            "text": "Play-by-Play",
+            "shortText": "Play-by-Play",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "videos",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/video?gameId=401772762",
+            "text": "Videos",
+            "shortText": "Videos",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "odds",
+              "desktop",
+              "event"
+            ],
+            "href": "https://www.espn.com/nfl/odds/_/gameId/401772762",
+            "text": "Odds",
+            "shortText": "Odds",
+            "isExternal": false,
+            "isPremium": false
+          },
+          {
+            "language": "en-US",
+            "rel": [
+              "odds",
+              "mobile",
+              "event"
+            ],
+            "href": "https://m.espn.com/nfl/odds/_/gameId/401772762",
+            "text": "Odds",
+            "shortText": "Odds",
+            "isExternal": false,
+            "isPremium": false
+          }
+        ]
+      }
+    ],
+    "standingSummary": "2nd in NFC East"
+  }
+}

@@ -44,6 +44,24 @@ def fetch_teamweeks_live(season: int = 2025) -> pd.DataFrame:
     # Canonicalize
     df = df.rename(columns={"opponent_team": "opponent"})
 
+    # Turnovers (giveaways and takeaways)
+    # Giveaways = turnovers lost by offense
+    df["giveaways"] = (
+        _num(df.get("passing_interceptions", 0)) +
+        _num(df.get("sack_fumbles_lost", 0)) +
+        _num(df.get("rushing_fumbles_lost", 0)) +
+        _num(df.get("receiving_fumbles_lost", 0))
+    )
+    
+    # Takeaways = turnovers forced by defense
+    df["takeaways"] = (
+        _num(df.get("def_interceptions", 0)) +
+        _num(df.get("fumble_recovery_opp", 0))
+    )
+    
+    # Turnover differential (positive = good)
+    df["turnover_diff"] = df["takeaways"] - df["giveaways"]
+    
     # Offensive volume
     for col in ["attempts", "carries", "sacks_suffered"]:
         if col not in df.columns:
@@ -119,6 +137,9 @@ def fetch_teamweeks_live(season: int = 2025) -> pd.DataFrame:
         "plays": plays,
         "pass_attempts": attempts,
         "rush_attempts": carries,
+        "giveaways": df["giveaways"],
+        "takeaways": df["takeaways"],
+        "turnover_diff": df["turnover_diff"],
     })
 
     if out[["off_epa_per_play", "def_epa_per_play"]].isna().any().any():
@@ -149,6 +170,7 @@ def fetch_market_lines_live() -> Dict[Tuple[str, str], Dict[str, float]]:
     # Canonical names and common variants
     code = {
         "Pittsburgh Steelers":"PIT","Cincinnati Bengals":"CIN",
+        "Baltimore Ravens":"BAL",
         "Los Angeles Rams":"LA","LA Rams":"LA",
         "Jacksonville Jaguars":"JAX","Jacksonville":"JAX",
         "Las Vegas Raiders":"LV","LV Raiders":"LV","Oakland Raiders":"LV",
@@ -171,6 +193,7 @@ def fetch_market_lines_live() -> Dict[Tuple[str, str], Dict[str, float]]:
         "Detroit Lions":"DET",
         "Houston Texans":"HOU",
         "Seattle Seahawks":"SEA",
+        "Buffalo Bills":"BUF",
     }
 
     def norm(name: str) -> Optional[str]:

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}All Games{% endblock %}
-{% block page_title %}Week 8 Predictions{% endblock %}
+{% block page_title %}Week {{ current_week }} Predictions{% endblock %}
 {% block page_subtitle %}All games with betting intelligence{% endblock %}
 
 {% block content %}
@@ -140,9 +140,11 @@
                 <th>Home</th>
                 <th>Predicted Score</th>
                 <th>Best Bet</th>
-                <th class="text-end">Spread</th>
+                <th class="text-end">Market Spread</th>
+                <th class="text-end">Model Spread</th>
                 <th>Spread Rec</th>
-                <th class="text-end">Total</th>
+                <th class="text-end">Market Total</th>
+                <th class="text-end">Model Total</th>
                 <th>Total Rec</th>
                 <th class="text-end">Home Win %</th>
                 <th class="text-end">EV Spread</th>
@@ -151,10 +153,16 @@
             </thead>
             <tbody>
               <tr>
-                <td colspan="11" class="text-center text-muted">Loading...</td>
+                <td colspan="13" class="text-center text-muted">Loading...</td>
               </tr>
             </tbody>
           </table>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            <span class="text-info">●</span> Real market data from Odds API &nbsp;&nbsp;
+            <span class="text-warning">●</span> Model fallback (market data unavailable) - marked with *
+          </small>
         </div>
       </div>
     </div>
@@ -226,7 +234,15 @@ fetch('/api/games')
       });
       
       // Format spread with +/- sign
-      const spreadFormatted = game.spread > 0 ? `+${game.spread.toFixed(1)}` : game.spread.toFixed(1);
+      const marketSpreadFormatted = game.market_spread > 0 ? `+${game.market_spread.toFixed(1)}` : game.market_spread.toFixed(1);
+      const modelSpreadFormatted = game.model_spread > 0 ? `+${game.model_spread.toFixed(1)}` : game.model_spread.toFixed(1);
+      
+      // Check if market data is real or model fallback (if they match exactly, it's likely a fallback)
+      const isSpreadFallback = Math.abs(game.market_spread - game.model_spread) < 0.1;
+      const isTotalFallback = Math.abs(game.market_total - game.model_total) < 0.1;
+      
+      const marketSpreadClass = isSpreadFallback ? 'text-warning' : 'text-info';
+      const marketTotalClass = isTotalFallback ? 'text-warning' : 'text-info';
       
       // Confidence badge color
       const confidenceClass = game.confidence_level === 'HIGH' ? 'bg-success' : 
@@ -241,9 +257,11 @@ fetch('/api/games')
           ${confidenceBadge}
           <span class="badge badge-outline">${game.best_bet.substring(0, 40)}</span>
         </td>
-        <td class="text-end">${spreadFormatted}</td>
+        <td class="text-end ${marketSpreadClass}">${marketSpreadFormatted}${isSpreadFallback ? '*' : ''}</td>
+        <td class="text-end">${modelSpreadFormatted}</td>
         <td><small>${game.rec_spread.substring(0, 30)}</small></td>
-        <td class="text-end">${game.total.toFixed(1)}</td>
+        <td class="text-end ${marketTotalClass}">${game.market_total.toFixed(1)}${isTotalFallback ? '*' : ''}</td>
+        <td class="text-end">${game.model_total.toFixed(1)}</td>
         <td><small>${game.rec_total.substring(0, 30)}</small></td>
         <td class="text-end">${game.home_win_pct.toFixed(1)}%</td>
         <td class="text-end ${game.ev_spread > 2 ? 'text-success' : 'text-muted'}">${game.ev_spread > 0 ? '+' : ''}${game.ev_spread.toFixed(1)}%</td>
