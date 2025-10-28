@@ -9,14 +9,38 @@ from datetime import datetime
 import requests
 import io
 import json
+import ast
 from nfl_edge.predictions_api import fetch_all_predictions
 from nfl_edge.accuracy_tracker import create_tracker
 from nfl_edge.bets.betonline_client import (
     load_ledger, get_weekly_summary
 )
 from live_bet_tracker import LiveBetTracker
+from edge_hunt.integrate_signals import enrich_predictions_with_signals
 
 app = Flask(__name__)
+
+def _parse_signals(signals_data):
+    """Safely parse edge_hunt_signals from CSV."""
+    # Check for None first
+    if signals_data is None or signals_data == '':
+        return []
+    # Check for NaN (scalar check only)
+    try:
+        if pd.isna(signals_data):
+            return []
+    except (ValueError, TypeError):
+        pass  # Not a scalar, continue
+    # Check if already a list
+    if isinstance(signals_data, list):
+        return signals_data
+    # Try to parse string
+    if isinstance(signals_data, str):
+        try:
+            return ast.literal_eval(signals_data)
+        except (ValueError, SyntaxError):
+            return []
+    return []
 
 # Load latest predictions
 def load_latest_predictions():
@@ -85,11 +109,35 @@ def index():
 
 @app.route('/api/games')
 def api_games():
-    """API endpoint for game data"""
+    """API endpoint for game data with Edge Hunt signals"""
     df = load_latest_predictions()
     
     if df is None:
+        print("❌ No predictions data found")
         return jsonify({'error': 'No data'}), 404
+    
+    print(f"✅ Loaded {len(df)} games for API")
+    
+    # Get current week
+    try:
+        from schedules import CURRENT_WEEK, CURRENT_SEASON
+        current_week = CURRENT_WEEK
+        current_season = CURRENT_SEASON
+    except ImportError:
+        current_week = 9
+        current_season = 2025
+    
+    # Enrich with Edge Hunt signals (only if not already enriched)
+    if 'adjusted_spread' not in df.columns or 'all_injuries' not in df.columns:
+        try:
+            df = enrich_predictions_with_signals(df, week=current_week, season=current_season)
+        except Exception as e:
+            print(f"⚠️ Could not enrich with Edge Hunt signals: {e}")
+            # Add empty signal columns if enrichment fails
+            df['has_edge_hunt_signal'] = False
+            df['edge_hunt_signals'] = [[] for _ in range(len(df))]
+    else:
+        print("✅ Using pre-enriched predictions data")
     
     # Convert to dict for JSON
     games = []
@@ -115,7 +163,21 @@ def api_games():
             'rec_total': row.get('Rec_total', 'NO PLAY'),
             'best_bet': row.get('Best_bet', 'NO PLAY'),
             'confidence_level': row.get('confidence_level', 'MEDIUM'),
-            'confidence_pct': row.get('confidence_pct', 50)
+            'confidence_pct': row.get('confidence_pct', 50),
+            # Edge Hunt signals - parse Python repr string if needed
+            'has_edge_hunt_signal': row.get('has_edge_hunt_signal', False),
+            'edge_hunt_signals': _parse_signals(row.get('edge_hunt_signals', '[]')),
+            # Injury data (ALL injuries for this game) - parse JSON string
+            'all_injuries': json.loads(row.get('all_injuries', '[]')) if isinstance(row.get('all_injuries'), str) else row.get('all_injuries', []),
+            'away_injury_impact': row.get('away_injury_impact', 0.0),
+            'home_injury_impact': row.get('home_injury_impact', 0.0),
+            # Market-implied and adjusted scores
+            'market_implied_away': row.get('market_implied_away', 0),
+            'market_implied_home': row.get('market_implied_home', 0),
+            'adjusted_away': row.get('adjusted_away', 0),
+            'adjusted_home': row.get('adjusted_home', 0),
+            'adjusted_spread': row.get('adjusted_spread', 0),
+            'adjusted_total': row.get('adjusted_total', 0)
         }
         games.append(game)
     
@@ -123,45 +185,50 @@ def api_games():
 
 @app.route('/api/best-bets')
 def api_best_bets():
-    """API endpoint for best betting opportunities"""
+    """API endpoint for best betting opportunities (ADJUSTED vs MARKET)"""
     df = load_latest_predictions()
     
     if df is None:
         return jsonify({'error': 'No data'}), 404
     
-    # Filter to only recommended plays
-    if 'EV_spread' in df.columns and 'EV_total' in df.columns:
-        df['max_ev'] = df[['EV_spread', 'EV_total']].max(axis=1)
-        best = df[df['max_ev'] > 0.02].sort_values('max_ev', ascending=False)
-    else:
-        best = df
+    # Filter to only games with actual recommendations (not SKIP or NO PLAY)
+    best = df[
+        ((df.get('Rec_spread', 'SKIP') != 'SKIP') & (df.get('Rec_spread', 'NO PLAY') != 'NO PLAY')) |
+        ((df.get('Rec_total', 'SKIP') != 'SKIP') & (df.get('Rec_total', 'NO PLAY') != 'NO PLAY'))
+    ].copy()
+    
+    # Sort by edge (spread_edge_pts and total_edge_pts)
+    if 'spread_edge_pts' in best.columns and 'total_edge_pts' in best.columns:
+        best['max_edge'] = best[['spread_edge_pts', 'total_edge_pts']].abs().max(axis=1)
+        best = best.sort_values('max_edge', ascending=False)
     
     bets = []
     for _, row in best.iterrows():
-        # Determine which bet is better
-        ev_spread = row.get('EV_spread', 0)
-        ev_total = row.get('EV_total', 0)
+        # Determine which bet is better based on edge
+        spread_edge = abs(row.get('spread_edge_pts', 0))
+        total_edge = abs(row.get('total_edge_pts', 0))
+        rec_spread = row.get('Rec_spread', 'SKIP')
+        rec_total = row.get('Rec_total', 'SKIP')
         
-        if ev_spread > ev_total:
-            bet = {
+        # Add spread bet if recommended
+        if rec_spread not in ['SKIP', 'NO PLAY']:
+            bets.append({
                 'game': f"{row['away']} @ {row['home']}",
                 'type': 'SPREAD',
-                'recommendation': row.get('Rec_spread', 'NO PLAY'),
-                'ev': ev_spread * 100,
-                'stake': row.get('Stake_spread', 0),
-                'probability': row.get('Home cover %', 0)
-            }
-        else:
-            bet = {
+                'recommendation': rec_spread,
+                'edge_pts': spread_edge,
+                'stake': 100.0,  # Fixed $100 per bet
+            })
+        
+        # Add total bet if recommended
+        if rec_total not in ['SKIP', 'NO PLAY']:
+            bets.append({
                 'game': f"{row['away']} @ {row['home']}",
                 'type': 'TOTAL',
-                'recommendation': row.get('Rec_total', 'NO PLAY'),
-                'ev': ev_total * 100,
-                'stake': row.get('Stake_total', 0),
-                'probability': row.get('Over %', 0)
-            }
-        
-        bets.append(bet)
+                'recommendation': rec_total,
+                'edge_pts': total_edge,
+                'stake': 100.0,  # Fixed $100 per bet
+            })
     
     return jsonify(bets)
 
@@ -183,6 +250,12 @@ def api_aii():
         })
     
     return jsonify(teams)
+
+
+@app.route('/betting-guide')
+def betting_guide():
+    """Betting guide page"""
+    return render_template('betting_guide.html')
 
 
 @app.route('/game/<away>/<home>')

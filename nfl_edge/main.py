@@ -14,7 +14,9 @@ from nfl_edge.model import fit_expected_points_model, predict_expected_points
 from nfl_edge.simulate import monte_carlo
 from nfl_edge.kelly import add_betting_columns, generate_betting_card
 from nfl_edge.situational_features import add_all_situational_features
-def run_week(week_number=None, matchups=None):
+from nfl_edge.xgb_integration import add_xgb_predictions
+
+def run_week(week_number=None, matchups=None, use_xgb=True):
     """
     Run predictions for a specific week.
     
@@ -83,6 +85,14 @@ def run_week(week_number=None, matchups=None):
     
     df = add_betting_columns(df, bankroll=bankroll, min_ev=min_ev, kelly_fraction_cap=kelly_cap)
     
+    # Add XGBoost predictions if enabled
+    if use_xgb:
+        try:
+            df = add_xgb_predictions(df, season=2025)
+        except Exception as e:
+            print(f"⚠️  XGBoost predictions failed: {e}")
+            print("   Continuing with current model only")
+    
     # Generate betting card report
     betting_card = generate_betting_card(df, min_ev=min_ev)
     
@@ -95,11 +105,19 @@ def run_week(week_number=None, matchups=None):
     bets = Path("artifacts")/f"week_{week_suffix}{dt}_betting_card.txt"
     
     # Enhanced projections with betting columns and confidence levels
-    df_out = df[["away","home","Exp score (away-home)","Model spread home-","Spread used (home-)","Edge_pts",
+    base_cols = ["away","home","Exp score (away-home)","Model spread home-","Spread used (home-)","Edge_pts",
                  "Model total","Total used","Edge_total_pts","Home win %","Home cover %","Over %",
                  "EV_spread","EV_total","Kelly_spread_pct","Kelly_total_pct",
                  "Stake_spread","Stake_total","Rec_spread","Rec_total","Best_bet",
-                 "confidence_level","confidence_pct"]]
+                 "confidence_level","confidence_pct"]
+    
+    # Add XGBoost columns if they exist
+    xgb_cols = ['xgb_margin', 'xgb_total', 'xgb_spread_rec', 'xgb_total_rec', 'xgb_confidence']
+    for col in xgb_cols:
+        if col in df.columns:
+            base_cols.append(col)
+    
+    df_out = df[base_cols]
     df_out.to_csv(proj, index=False)
     
     df[[ "away","home","away_OFF_EPA","home_DEF_EPA","home_OFF_EPA","away_DEF_EPA",

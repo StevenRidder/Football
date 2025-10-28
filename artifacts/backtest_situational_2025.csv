@@ -1,0 +1,4 @@
+week,game,type,bet,open_line,close_line,edge_pts,clv,won,factors
+2,LAC @ LV,total,UNDER 46.5,46.5,46.5,2.5,0.0,True,"LAC away dominance (2-1) → +1.0 pts, LV home struggles (1-3) → -1.5 pts"
+3,DET @ BAL,total,OVER 53.5,53.5,53.5,2.0,0.0,True,"DET away dominance (3-1) → +1.0 pts, BAL home dominance (3-0) → +1.0 pts"
+4,NYJ @ MIA,total,UNDER 45.5,45.5,44.5,4.0,1.0,False,"Medium distance travel (1085 miles) → -0.5 pts to NYJ, MIA home struggles (0-3) → -1.5 pts"

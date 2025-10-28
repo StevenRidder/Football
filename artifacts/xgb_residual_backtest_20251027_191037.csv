@@ -1,0 +1,5 @@
+week,game,bet_type,side,line,edge,result,profit,actual_total,predicted_total
+5,KC@JAX,total,under,45.5,1.5,LOSS,-110.0,59,44.0
+6,BUF@ATL,total,under,49.5,1.5,WIN,90.9,38,48.0
+7,TB@DET,total,under,53.5,1.5,WIN,90.9,33,52.0
+7,HOU@SEA,total,under,41.5,1.5,LOSS,-110.0,46,40.0

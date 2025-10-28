@@ -153,30 +153,27 @@
               <tr>
                 <th>Away</th>
                 <th>Home</th>
-                <th>Predicted Score</th>
-                <th>Best Bet</th>
+                <th>Scores (Market → Adjusted)</th>
+                <th>Signals & Best Bet</th>
                 <th class="text-end">Market Spread</th>
-                <th class="text-end">Model Spread</th>
+                <th class="text-end">Adjusted Spread</th>
                 <th>Spread Rec</th>
                 <th class="text-end">Market Total</th>
-                <th class="text-end">Model Total</th>
+                <th class="text-end">Adjusted Total</th>
                 <th>Total Rec</th>
-                <th class="text-end">Home Win %</th>
-                <th class="text-end">EV Spread</th>
-                <th class="text-end">EV Total</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colspan="13" class="text-center text-muted">Loading...</td>
+                <td colspan="10" class="text-center text-muted">Loading...</td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="card-footer">
           <small class="text-muted">
-            <span class="text-info">●</span> Real market data from Odds API &nbsp;&nbsp;
-            <span class="text-warning">●</span> Model fallback (market data unavailable) - marked with *
+            <span class="text-info">●</span> Market lines from Odds API &nbsp;&nbsp;
+            <span class="text-primary">●</span> Adjusted lines show our edge (when different from market)
           </small>
         </div>
       </div>
@@ -202,18 +199,18 @@ fetch('/api/best-bets')
     data.forEach(bet => {
       const row = document.createElement('tr');
       
-      // Badge color based on EV
+      // Badge color based on edge points
       let badgeClass = 'badge-success';
-      if (bet.ev > 50) badgeClass = 'badge-danger';
-      else if (bet.ev > 30) badgeClass = 'badge-warning';
+      if (bet.edge_pts > 5) badgeClass = 'badge-danger';
+      else if (bet.edge_pts > 3) badgeClass = 'badge-warning';
       
       row.innerHTML = `
         <td><strong>${bet.game}</strong></td>
         <td><span class="badge badge-outline text-primary">${bet.type}</span></td>
         <td>${bet.recommendation}</td>
-        <td class="text-end"><span class="badge ${badgeClass}">+${bet.ev.toFixed(1)}%</span></td>
+        <td class="text-end"><span class="badge ${badgeClass}">${bet.edge_pts.toFixed(1)} pts</span></td>
         <td class="text-end"><strong>$${bet.stake.toFixed(0)}</strong></td>
-        <td class="text-end">${bet.probability.toFixed(1)}%</td>
+        <td class="text-end">-</td>
       `;
       tbody.appendChild(row);
     });
@@ -250,45 +247,82 @@ fetch('/api/games')
       
       // Format spread with +/- sign
       const marketSpreadFormatted = game.market_spread > 0 ? `+${game.market_spread.toFixed(1)}` : game.market_spread.toFixed(1);
-      const modelSpreadFormatted = game.model_spread > 0 ? `+${game.model_spread.toFixed(1)}` : game.model_spread.toFixed(1);
+      const adjustedSpreadFormatted = game.adjusted_spread > 0 ? `+${game.adjusted_spread.toFixed(1)}` : game.adjusted_spread.toFixed(1);
       
-      // Check if market data is real or model fallback (if they match exactly, it's likely a fallback)
-      const isSpreadFallback = Math.abs(game.market_spread - game.model_spread) < 0.1;
-      const isTotalFallback = Math.abs(game.market_total - game.model_total) < 0.1;
+      // Check if adjusted differs from market (has edge)
+      const hasSpreadEdge = Math.abs(game.adjusted_spread - game.market_spread) >= 0.5;
+      const hasTotalEdge = Math.abs(game.adjusted_total - game.market_total) >= 0.5;
       
-      const marketSpreadClass = isSpreadFallback ? 'text-warning' : 'text-info';
-      const marketTotalClass = isTotalFallback ? 'text-warning' : 'text-info';
+      const adjustedSpreadClass = hasSpreadEdge ? 'text-primary fw-bold' : 'text-muted';
+      const adjustedTotalClass = hasTotalEdge ? 'text-primary fw-bold' : 'text-muted';
       
-      // Confidence badge color
-      const confidenceClass = game.confidence_level === 'HIGH' ? 'bg-success' : 
-                             game.confidence_level === 'MEDIUM' ? 'bg-warning' : 'bg-danger';
-      const confidenceBadge = `<span class="badge ${confidenceClass}">${game.confidence_level} (${game.confidence_pct}%)</span>`;
+      // Edge Hunt signals
+      let edgeHuntBadges = '';
+      if (game.has_edge_hunt_signal && game.edge_hunt_signals && game.edge_hunt_signals.length > 0) {
+        game.edge_hunt_signals.forEach(signal => {
+          const badgeClass = signal.badge_color === 'danger' ? 'bg-danger' :
+                            signal.badge_color === 'warning' ? 'bg-warning' :
+                            signal.badge_color === 'info' ? 'bg-info' : 'bg-primary';
+          
+          // Create tooltip with explanation
+          const tooltip = signal.explanation.replace(/"/g, '&quot;');
+          const details = signal.details.join('<br>').replace(/"/g, '&quot;');
+          
+          edgeHuntBadges += `<span class="badge ${badgeClass} ms-1" 
+                                   data-bs-toggle="tooltip" 
+                                   data-bs-html="true"
+                                   data-bs-placement="top"
+                                   title="<strong>${signal.icon} ${signal.badge}</strong><br><br>${tooltip}<br><br><small>${details}</small>">
+                               ${signal.icon} ${signal.badge} (+${signal.edge_pts.toFixed(1)})
+                             </span>`;
+        });
+      }
+      
+      // Format scores - Market → Adjusted (if different)
+      // Show one decimal place to match spread precision
+      const marketImpliedScore = `${game.market_implied_away.toFixed(1)}-${game.market_implied_home.toFixed(1)}`;
+      const adjustedScore = `${game.adjusted_away.toFixed(1)}-${game.adjusted_home.toFixed(1)}`;
+      const hasScoreAdjustment = Math.abs(game.adjusted_away - game.market_implied_away) >= 0.1 || Math.abs(game.adjusted_home - game.market_implied_home) >= 0.1;
+      
+      // Show Market and Adjusted scores
+      const scoreDisplay = `
+        <div class="small">
+          <div><strong>Market:</strong> <span class="text-info">${marketImpliedScore}</span></div>
+          ${hasScoreAdjustment ? `<div><strong>Adjusted:</strong> <span class="text-primary fw-bold">${adjustedScore}</span></div>` : ''}
+        </div>
+      `;
+      
+      // Best bet display
+      const bestBetDisplay = game.rec_spread !== 'SKIP' || game.rec_total !== 'SKIP' ?
+        `<span class="badge bg-success">${game.rec_spread !== 'SKIP' ? game.rec_spread.substring(0, 30) : game.rec_total.substring(0, 30)}</span>` :
+        `<span class="badge badge-outline text-muted">NO PLAY</span>`;
       
       row.innerHTML = `
         <td><strong>${game.away}</strong></td>
         <td><strong>${game.home}</strong></td>
-        <td>${game.exp_score}</td>
+        <td>${scoreDisplay}</td>
         <td>
-          ${confidenceBadge}
-          <span class="badge badge-outline">${game.best_bet.substring(0, 40)}</span>
+          ${edgeHuntBadges}
+          ${bestBetDisplay}
         </td>
-        <td class="text-end ${marketSpreadClass}">${marketSpreadFormatted}${isSpreadFallback ? '*' : ''}</td>
-        <td class="text-end">${modelSpreadFormatted}</td>
+        <td class="text-end text-info">${marketSpreadFormatted}</td>
+        <td class="text-end ${adjustedSpreadClass}">${adjustedSpreadFormatted}</td>
         <td><small>${game.rec_spread.substring(0, 30)}</small></td>
-        <td class="text-end ${marketTotalClass}">${game.market_total.toFixed(1)}${isTotalFallback ? '*' : ''}</td>
-        <td class="text-end">${game.model_total.toFixed(1)}</td>
+        <td class="text-end text-info">${game.market_total.toFixed(1)}</td>
+        <td class="text-end ${adjustedTotalClass}">${game.adjusted_total.toFixed(1)}</td>
         <td><small>${game.rec_total.substring(0, 30)}</small></td>
-        <td class="text-end">${game.home_win_pct.toFixed(1)}%</td>
-        <td class="text-end ${game.ev_spread > 2 ? 'text-success' : 'text-muted'}">${game.ev_spread > 0 ? '+' : ''}${game.ev_spread.toFixed(1)}%</td>
-        <td class="text-end ${game.ev_total > 2 ? 'text-success' : 'text-muted'}">${game.ev_total > 0 ? '+' : ''}${game.ev_total.toFixed(1)}%</td>
       `;
       tbody.appendChild(row);
     });
+    
+    // Initialize Bootstrap tooltips for Edge Hunt signals
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
   })
   .catch(error => {
     console.error('Error loading games:', error);
     document.querySelector('#all-games-table tbody').innerHTML = 
-      '<tr><td colspan="11" class="text-center text-danger">Error loading data</td></tr>';
+      '<tr><td colspan="10" class="text-center text-danger">Error loading data</td></tr>';
   });
 
 // Live game status tracking - colors ALL games based on live scores

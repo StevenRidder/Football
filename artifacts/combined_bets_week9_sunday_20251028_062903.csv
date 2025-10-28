@@ -1,0 +1,6 @@
+week,pass,game,away,home,bet_type,collected_at_utc,kickoff_utc,open_line,adj_line,bet_side,stake,edge_pts,weather_adj,injury_adj,close_line,actual_result,clv_points,result,profit
+9,sunday,BAL@MIA,BAL,MIA,total,2025-10-28T16:28:00.364866+00:00,2025-11-02T18:00:00+00:00,48.68028259277344,45.7,under,5.0,2.9802825927734347,-2.9802825927734347,0.0,,,,,
+9,sunday,CAR@GB,CAR,GB,total,2025-10-28T16:28:13.018149+00:00,2025-11-02T18:00:00+00:00,44.0,41.0,under,5.0,3.0,-3.0,0.0,,,,,
+9,sunday,ATL@NE,ATL,NE,total,2025-10-28T16:28:23.267012+00:00,2025-11-02T18:00:00+00:00,45.0,42.0,under,5.0,3.0,-3.0,0.0,,,,,
+9,sunday,SF@NYG,SF,NYG,total,2025-10-28T16:28:27.661971+00:00,2025-11-02T18:00:00+00:00,48.5,45.5,under,5.0,3.0,-3.0,0.0,,,,,
+9,sunday,SEA@WAS,SEA,WAS,total,2025-10-28T16:28:58.885187+00:00,2025-11-02T18:00:00+00:00,45.5,42.5,under,5.0,3.0,-3.0,0.0,,,,,
