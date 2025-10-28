@@ -6,6 +6,7 @@ from psycopg2.extras import RealDictCursor
 from pathlib import Path
 import os
 from typing import List, Dict, Any, Optional
+from .leg_parser import ParlayLegParser
 
 class BettingDB:
     def __init__(self, db_url: Optional[str] = None):
@@ -36,7 +37,7 @@ class BettingDB:
         conn.commit()
     
     def insert_bet(self, bet: Dict[str, Any]) -> int:
-        """Insert a single bet and return its ID"""
+        """Insert a single bet and return its ID. Automatically parses and persists parlay legs."""
         conn = self.connect()
         with conn.cursor() as cur:
             cur.execute("""
@@ -71,6 +72,15 @@ class BettingDB:
             })
             bet_id = cur.fetchone()['id']
         conn.commit()
+        
+        # Auto-parse and persist parlay legs
+        bet_type = bet.get('bet_type', bet.get('type', ''))
+        description = bet.get('description', '')
+        if 'parlay' in bet_type.lower() and description:
+            legs = ParlayLegParser.parse_legs(description, bet_type)
+            if legs:
+                self.insert_parlay_legs(bet_id, legs)
+        
         return bet_id
     
     def insert_parlay_legs(self, bet_id: int, legs: List[Dict[str, Any]]):

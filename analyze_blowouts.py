@@ -24,7 +24,7 @@ for threshold in thresholds:
     non_blowouts = graded[abs(graded['actual_margin']) <= threshold].copy()
     blowouts = graded[abs(graded['actual_margin']) > threshold].copy()
     
-    print(f"\n📊 Game Breakdown:")
+    print("\n📊 Game Breakdown:")
     print(f"   Total games: {len(graded)}")
     print(f"   Non-blowouts (≤{threshold}): {len(non_blowouts)} ({len(non_blowouts)/len(graded)*100:.1f}%)")
     print(f"   Blowouts (>{threshold}): {len(blowouts)} ({len(blowouts)/len(graded)*100:.1f}%)")
@@ -38,7 +38,7 @@ for threshold in thresholds:
         spread_bets = non_blowouts[non_blowouts['spread_bet_correct'].notna()]
         spread_bet_acc = spread_bets['spread_bet_correct'].mean() * 100 if not spread_bets.empty else 0
         
-        print(f"\n✅ Non-Blowout Performance:")
+        print("\n✅ Non-Blowout Performance:")
         print(f"   Winner accuracy: {winner_acc:.1f}%")
         print(f"   Avg spread error: {avg_spread_err:.2f} points")
         print(f"   Avg total error: {avg_total_err:.2f} points")
@@ -50,13 +50,13 @@ for threshold in thresholds:
         blowout_winner_acc = blowouts['winner_correct'].mean() * 100
         blowout_spread_err = blowouts['spread_error'].mean()
         
-        print(f"\n❌ Blowout Performance:")
+        print("\n❌ Blowout Performance:")
         print(f"   Winner accuracy: {blowout_winner_acc:.1f}%")
         print(f"   Avg spread error: {blowout_spread_err:.2f} points")
         print(f"   Model completely missed: {(blowouts['winner_correct'] == False).sum()} games")
         
         # Show the worst blowout misses
-        print(f"\n   Worst blowout predictions:")
+        print("\n   Worst blowout predictions:")
         worst = blowouts.nlargest(5, 'spread_error')[['away', 'home', 'pred_score', 'actual_score', 'spread_error', 'week']]
         for _, row in worst.iterrows():
             print(f"      Week {row['week']}: {row['away']}@{row['home']}: Pred {row['pred_score']}, Actual {row['actual_score']} (off by {row['spread_error']:.1f})")
@@ -72,7 +72,7 @@ all_spread_err = graded['spread_error'].mean()
 all_spread_bets = graded[graded['spread_bet_correct'].notna()]
 all_bet_acc = all_spread_bets['spread_bet_correct'].mean() * 100
 
-print(f"\n📈 All Games (baseline):")
+print("\n📈 All Games (baseline):")
 print(f"   Winner accuracy: {all_winner_acc:.1f}%")
 print(f"   Avg spread error: {all_spread_err:.2f} points")
 print(f"   Bet accuracy: {all_bet_acc:.1f}%")
@@ -84,14 +84,14 @@ nb21_spread_err = non_blowouts_21['spread_error'].mean()
 nb21_spread_bets = non_blowouts_21[non_blowouts_21['spread_bet_correct'].notna()]
 nb21_bet_acc = nb21_spread_bets['spread_bet_correct'].mean() * 100
 
-print(f"\n📈 Excluding 21+ point blowouts:")
+print("\n📈 Excluding 21+ point blowouts:")
 print(f"   Winner accuracy: {nb21_winner_acc:.1f}% (Δ {nb21_winner_acc - all_winner_acc:+.1f}%)")
 print(f"   Avg spread error: {nb21_spread_err:.2f} points (Δ {nb21_spread_err - all_spread_err:+.2f})")
 print(f"   Bet accuracy: {nb21_bet_acc:.1f}% (Δ {nb21_bet_acc - all_bet_acc:+.1f}%)")
 
 # Calculate profitability
-print(f"\n💰 Profitability Analysis (assuming -110 odds):")
-print(f"   Break-even accuracy needed: 52.4%")
+print("\n💰 Profitability Analysis (assuming -110 odds):")
+print("   Break-even accuracy needed: 52.4%")
 print(f"   All games bet accuracy: {all_bet_acc:.1f}% → {'LOSING' if all_bet_acc < 52.4 else 'WINNING'}")
 print(f"   Without blowouts: {nb21_bet_acc:.1f}% → {'LOSING' if nb21_bet_acc < 52.4 else 'WINNING'}")
 
@@ -110,25 +110,25 @@ print(f"   Total blowouts: {len(blowouts_21)}")
 print(f"   Model predicted winner correctly: {blowouts_21['winner_correct'].sum()} / {len(blowouts_21)} ({blowouts_21['winner_correct'].mean()*100:.1f}%)")
 print(f"   Model predicted close game: {(abs(blowouts_21['model_spread']) < 10).sum()} / {len(blowouts_21)} ({(abs(blowouts_21['model_spread']) < 10).mean()*100:.1f}%)")
 
-print(f"\n🎯 Key Insights:")
+print("\n🎯 Key Insights:")
 print(f"   1. Model got the WINNER right in {blowouts_21['winner_correct'].mean()*100:.1f}% of blowouts")
 print(f"   2. But it predicted a CLOSE GAME in {(abs(blowouts_21['model_spread']) < 10).mean()*100:.1f}% of them")
-print(f"   3. This means: Model knows WHO will win, but not BY HOW MUCH")
+print("   3. This means: Model knows WHO will win, but not BY HOW MUCH")
 
-print(f"\n📚 Research on Blowout Prediction:")
-print(f"   • Vegas (professional oddsmakers): ~15-20% of games are blowouts (21+ points)")
-print(f"   • Even Vegas rarely predicts spreads > 14 points (too risky)")
-print(f"   • Blowouts often caused by:")
-print(f"     - Backup QB starting (injury during week)")
-print(f"     - Team 'giving up' / tanking")
-print(f"     - Extreme weather (snow, wind)")
-print(f"     - Emotional factors (revenge games, playoffs)")
-print(f"   • These factors are VERY hard to model in advance")
+print("\n📚 Research on Blowout Prediction:")
+print("   • Vegas (professional oddsmakers): ~15-20% of games are blowouts (21+ points)")
+print("   • Even Vegas rarely predicts spreads > 14 points (too risky)")
+print("   • Blowouts often caused by:")
+print("     - Backup QB starting (injury during week)")
+print("     - Team 'giving up' / tanking")
+print("     - Extreme weather (snow, wind)")
+print("     - Emotional factors (revenge games, playoffs)")
+print("   • These factors are VERY hard to model in advance")
 
-print(f"\n💡 Recommendation:")
-print(f"   • Focus on games with predicted spread < 10 points")
-print(f"   • Avoid betting when model predicts blowout (>14 spread)")
-print(f"   • Model performs MUCH better on competitive games")
+print("\n💡 Recommendation:")
+print("   • Focus on games with predicted spread < 10 points")
+print("   • Avoid betting when model predicts blowout (>14 spread)")
+print("   • Model performs MUCH better on competitive games")
 
 print(f"\n{'='*80}")
 

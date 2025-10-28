@@ -1,5 +1,6 @@
 
-import pandas as pd, numpy as np
+import pandas as pd
+import numpy as np
 
 def build_features(teamweeks: pd.DataFrame, recent_weight: float = 0.67) -> pd.DataFrame:
     df = teamweeks.sort_values(["team","week"]).copy()

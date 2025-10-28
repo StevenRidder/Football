@@ -5,7 +5,6 @@ vs what NEW model would have predicted (0.95 calibration + fixes)
 vs actual results
 """
 
-import pandas as pd
 import numpy as np
 
 # Week 8 predictions from OLD model (Oct 23, with 0.69 calibration)
@@ -166,11 +165,11 @@ print(f"MAE Total: {total_improvement:+.1f}% ({old_mae_total:.2f} → {new_mae_t
 print(f"Winner Accuracy: {winner_improvement:+.1f} pct pts ({old_winner_acc:.1%} → {new_winner_acc:.1%})")
 
 if spread_improvement > 0 and winner_improvement > 0:
-    print(f"\n✅ NEW model is BETTER on all metrics!")
+    print("\n✅ NEW model is BETTER on all metrics!")
 elif spread_improvement > 0 or winner_improvement > 0:
-    print(f"\n⚠️ NEW model is MIXED (better on some metrics)")
+    print("\n⚠️ NEW model is MIXED (better on some metrics)")
 else:
-    print(f"\n❌ NEW model performed worse (may need more tuning)")
+    print("\n❌ NEW model performed worse (may need more tuning)")
 
 print("\n💡 NOTE: This comparison only adjusts for calibration (0.69→0.95).")
 print("   NEW model also has:")

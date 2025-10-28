@@ -3,7 +3,6 @@
 Week-over-week improvement analysis
 """
 import pandas as pd
-import numpy as np
 
 # Load the summary data
 summary = pd.read_csv("artifacts/historical_summary_weeks_1-7.csv")
@@ -78,7 +77,7 @@ spread_slope = p_spread.convert().coef[1]
 p_bet = Polynomial.fit(weeks, bet_acc, 1)
 bet_slope = p_bet.convert().coef[1]
 
-print(f"\n📈 Linear Trends (per week):")
+print("\n📈 Linear Trends (per week):")
 print(f"   Winner Accuracy: {winner_slope:+.2f}% per week {'✅ IMPROVING' if winner_slope > 0 else '🔴 DECLINING'}")
 print(f"   Spread Error: {spread_slope:+.2f} pts per week {'✅ IMPROVING' if spread_slope < 0 else '🔴 DECLINING'}")
 print(f"   Bet Accuracy: {bet_slope:+.2f}% per week {'✅ IMPROVING' if bet_slope > 0 else '🔴 DECLINING'}")
@@ -88,7 +87,7 @@ week_8_winner = p_winner(8)
 week_8_spread = p_spread(8)
 week_8_bet = p_bet(8)
 
-print(f"\n🔮 Projected Week 8 Performance (based on trend):")
+print("\n🔮 Projected Week 8 Performance (based on trend):")
 print(f"   Winner Accuracy: {week_8_winner:.1f}%")
 print(f"   Spread Error: {week_8_spread:.2f} points")
 print(f"   Bet Accuracy: {week_8_bet:.1f}%")
@@ -99,7 +98,7 @@ else:
     print(f"   ⚠️  Still below break-even ({week_8_bet:.1f}% < 52.4%)")
 
 # Best and worst weeks
-print(f"\n" + "="*80)
+print("\n" + "="*80)
 print("BEST & WORST WEEKS")
 print("="*80)
 
@@ -122,7 +121,7 @@ print(f"\n🏆 Best Spread Error: Week {int(best_spread_week['week'])} ({best_sp
 print(f"😞 Worst Spread Error: Week {int(worst_spread_week['week'])} ({worst_spread_week['avg_spread_error']:.2f} pts)")
 
 # Overall improvement
-print(f"\n" + "="*80)
+print("\n" + "="*80)
 print("OVERALL IMPROVEMENT (Week 1 → Week 7)")
 print("="*80)
 
@@ -133,12 +132,12 @@ winner_improvement = week7['winner_accuracy'] - week1['winner_accuracy']
 spread_improvement = week7['avg_spread_error'] - week1['avg_spread_error']
 bet_improvement = week7['spread_bet_accuracy'] - week1['spread_bet_accuracy']
 
-print(f"\n📊 Total Change:")
+print("\n📊 Total Change:")
 print(f"   Winner Accuracy: {week1['winner_accuracy']:.1f}% → {week7['winner_accuracy']:.1f}% ({winner_improvement:+.1f}%)")
 print(f"   Spread Error: {week1['avg_spread_error']:.2f} → {week7['avg_spread_error']:.2f} ({spread_improvement:+.2f} pts)")
 print(f"   Bet Accuracy: {week1['spread_bet_accuracy']:.1f}% → {week7['spread_bet_accuracy']:.1f}% ({bet_improvement:+.1f}%)")
 
-print(f"\n💡 Key Insights:")
+print("\n💡 Key Insights:")
 if winner_improvement > 0:
     print(f"   ✅ Winner accuracy improved by {winner_improvement:.1f}% over 7 weeks")
 else:
@@ -155,7 +154,7 @@ else:
     print(f"   🔴 Bet accuracy declined by {abs(bet_improvement):.1f}% over 7 weeks")
 
 # Volatility analysis
-print(f"\n" + "="*80)
+print("\n" + "="*80)
 print("CONSISTENCY ANALYSIS")
 print("="*80)
 
@@ -163,7 +162,7 @@ winner_std = summary['winner_accuracy'].std()
 spread_std = summary['avg_spread_error'].std()
 bet_std = summary['spread_bet_accuracy'].std()
 
-print(f"\n📊 Week-to-Week Volatility (Standard Deviation):")
+print("\n📊 Week-to-Week Volatility (Standard Deviation):")
 print(f"   Winner Accuracy: ±{winner_std:.1f}%")
 print(f"   Spread Error: ±{spread_std:.2f} points")
 print(f"   Bet Accuracy: ±{bet_std:.1f}%")

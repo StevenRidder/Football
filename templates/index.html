@@ -10,19 +10,34 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <h3 class="card-title mb-1">Prediction Controls</h3>
-            <p class="text-muted mb-0">Generate new predictions or view historical data</p>
+        <div class="row g-3 align-items-end">
+          <div class="col-md-3">
+            <label class="form-label">Calibration Factor</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="calibrationInput" 
+                     min="0.1" max="1.5" step="0.01" value="0.54">
+              <button class="btn btn-primary" onclick="updateCalibration()">
+                <i class="ti ti-check icon"></i>
+              </button>
+            </div>
+            <small class="form-hint">Current: <span id="currentCalibration">0.54</span></small>
           </div>
-          <div class="btn-list">
-            <select class="form-select" id="predictionHistorySelect" style="width: 250px;">
+          <div class="col-md-3">
+            <select class="form-select" id="predictionHistorySelect">
               <option value="">Current Week</option>
             </select>
-            <button class="btn btn-primary" onclick="generatePredictions()" id="generateBtn">
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-success w-100" onclick="generatePredictions()" id="generateBtn">
               <i class="ti ti-refresh icon"></i>
               Generate Next Week
             </button>
+          </div>
+          <div class="col-md-3">
+            <div class="text-muted small">
+              <strong>Model:</strong> XGBoost + EPA<br>
+              <strong>Accuracy:</strong> 18.7% improved
+            </div>
           </div>
         </div>
       </div>
@@ -477,6 +492,64 @@ function updateTablesWithPredictions(predictions) {
   });
 }
 
+async function updateCalibration() {
+  const input = document.getElementById('calibrationInput');
+  const newCalibration = parseFloat(input.value);
+  
+  if (newCalibration < 0.1 || newCalibration > 1.5) {
+    alert('Calibration must be between 0.1 and 1.5');
+    return;
+  }
+  
+  if (!confirm(`Update calibration to ${newCalibration} and regenerate predictions?`)) {
+    return;
+  }
+  
+  const btn = input.nextElementSibling;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+  
+  try {
+    const response = await fetch('/api/config/calibration', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        calibration: newCalibration,
+        regenerate: true
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      document.getElementById('currentCalibration').textContent = newCalibration.toFixed(2);
+      alert(`✅ ${data.message}\n\nReloading page...`);
+      window.location.reload();
+    } else {
+      alert(`❌ ${data.message}`);
+    }
+  } catch (error) {
+    alert(`❌ Error: ${error.message}`);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="ti ti-check icon"></i>';
+  }
+}
+
+async function loadCurrentCalibration() {
+  try {
+    const response = await fetch('/api/config/calibration');
+    const data = await response.json();
+    
+    if (data.success) {
+      document.getElementById('calibrationInput').value = data.calibration;
+      document.getElementById('currentCalibration').textContent = data.calibration.toFixed(2);
+    }
+  } catch (error) {
+    console.error('Failed to load calibration:', error);
+  }
+}
+
 async function generatePredictions() {
   const btn = document.getElementById('generateBtn');
   const originalText = btn.innerHTML;
@@ -505,8 +578,9 @@ async function generatePredictions() {
   }
 }
 
-// Load history on page load
+// Load history and calibration on page load
 document.addEventListener('DOMContentLoaded', function() {
+  loadCurrentCalibration();
   loadPredictionHistory();
 });
 </script>

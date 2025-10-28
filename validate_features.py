@@ -15,11 +15,9 @@ Usage:
 """
 
 import pandas as pd
-import numpy as np
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict
 import argparse
-from scipy import stats
 
 class FeatureValidator:
     def __init__(self):

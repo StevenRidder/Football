@@ -1,165 +1,291 @@
-# ESPN API - All Available Data
+# Comprehensive ESPN API Data Available for Betting Analysis
 
-## What We Currently Use ✅
+## 🌤️ WEATHER DATA (✅ Available!)
+**Found in:** `gameInfo.weather`
 
-1. **Team Performance Stats** (from nflverse)
-   - Offensive EPA per play
-   - Defensive EPA per play
-   - Offensive Success Rate
-   - Defensive Success Rate
-   - Points For/Against
-   - Turnover Differential
+```json
+{
+  "temperature": 55,
+  "highTemperature": 55,
+  "lowTemperature": 55,
+  "conditionId": "7",
+  "gust": 7,
+  "precipitation": 3
+}
+```
 
-2. **Weather Data** (from Open-Meteo)
-   - Wind speed (in kph)
-   - Temperature
-   - Precipitation
-   - Indoor/Dome flag
+**What we can show:**
+- Temperature (°F)
+- Wind gust speed (mph)
+- Precipitation chance (%)
+- Condition ID (need to map to descriptions like "Cloudy", "Clear", etc.)
 
-3. **Injury Data** (from nflverse)
-   - Injury index by position
-   - Out/Doubtful/Questionable status
+**Betting Impact:**
+- High winds affect passing games
+- Rain/snow affects ball handling
+- Cold weather favors running games
+- Dome games = no weather impact
 
-4. **Situational Features**
-   - Rest days
-   - Travel distance
-   - Timezone changes
-   - Divisional/Conference flags
+---
 
-5. **Market Lines** (from Odds API)
-   - Spread
-   - Total (over/under)
+## 🏟️ VENUE DATA (✅ Available!)
+**Found in:** `gameInfo.venue`
 
-## What ESPN Provides (NOT Currently Used)
+**Available:**
+- Stadium name
+- Location (city, state, zip)
+- **Grass vs Turf** (`grass: true/false`)
+- Stadium images
 
-### Game-Level Data
-- **Attendance** - actual crowd size
-- **Venue Details** - grass vs turf, indoor/outdoor
-- **Weather** (more detailed than Open-Meteo):
-  - Temperature (current, high, low)
-  - Condition ID (cloudy, rainy, etc.)
-  - Wind gust speed
-  - Precipitation percentage
-- **Broadcasts** - which networks are showing the game
-- **Game Time** - exact kickoff time
+**Betting Impact:**
+- Grass vs turf affects injury risk
+- Some teams perform better on specific surfaces
+- Can calculate travel distance from locations
 
-### Team-Level Data
-- **Injuries** (real-time):
-  - Player name
-  - Position
-  - Status (Out, Doubtful, Questionable, Probable)
-  - Details (knee, ankle, etc.)
-- **Team Records**:
-  - Overall record
-  - Home/Away splits
-  - Division record
-  - Conference record
-  - Last 5 games
-- **Standings** - current playoff position
+---
 
-### Advanced Game Data (from Game Detail API)
-- **Win Probability** - ESPN's live win probability model
-- **Predictor** - ESPN's pre-game predictions
-- **Against the Spread (ATS)** - historical ATS records
-- **Last Five Games** - recent performance trends
-- **Leaders** - top performers (passing, rushing, receiving)
-- **Boxscore** - detailed game statistics
-- **News** - recent team news articles
+## 📊 ADDITIONAL DATA SECTIONS AVAILABLE
 
-### Odds/Betting Data
-- **Multiple Sportsbooks** - consensus lines
-- **Moneyline** - win probability implied by odds
-- **Point Spread** - with odds for each side
-- **Total** - with over/under odds
-- **Featured Bets** - popular prop bets
+### 1. **lastFiveGames** (🆕 Not yet implemented)
+Recent form for both teams - last 5 game results
 
-## What We DON'T Have Access To
+**Betting Impact:**
+- Momentum indicators
+- Recent performance trends
+- Identify hot/cold teams
 
-### Officiating Data ❌
-- **Referee Crews** - Not available in ESPN API
-- **Historical Crew Stats** - Would need to scrape from other sources
-- **Penalty Tendencies** - Not publicly available
+---
 
-### Advanced Metrics ❌
-- **Player Tracking Data** - NFL Next Gen Stats (requires paid access)
-- **Coaching Tendencies** - Not quantified anywhere
-- **Play-by-Play Sequences** - Available but not in real-time
-- **Snap Counts** - Not in ESPN API
+### 2. **againstTheSpread** (🆕 Not yet implemented)
+Historical ATS (Against The Spread) performance
 
-### Betting Market Inefficiencies ❌
-- **Sharp vs Public Money** - Requires paid betting data services
-- **Line Movement** - Would need to track over time
-- **Steam Moves** - Requires real-time monitoring
+**Betting Impact:**
+- Which teams consistently cover
+- Which teams consistently fail to cover
+- Historical edge indicators
 
-## Should We Add More Data?
+---
 
-### High Value, Easy to Add ✅
-1. **ESPN Weather** (instead of Open-Meteo)
-   - More accurate for game-time conditions
-   - Includes precipitation percentage
-   - **Recommendation: YES, switch to ESPN weather**
+### 3. **winprobability** (🆕 Not yet implemented)
+ESPN's win probability model
 
-2. **Home/Away Splits**
-   - Some teams perform much better at home
-   - Easy to calculate from existing data
-   - **Recommendation: YES, add home/away performance splits**
+**Betting Impact:**
+- Compare to our model
+- Identify value bets
+- Market sentiment
 
-3. **Last 5 Games Trend**
-   - Momentum matters (hot/cold streaks)
-   - ESPN provides this directly
-   - **Recommendation: YES, add recent form indicator**
+---
 
-### Medium Value, Medium Effort 🤔
-4. **Grass vs Turf**
-   - Some teams/players perform differently on turf
-   - Available in venue data
-   - **Recommendation: MAYBE, if we see evidence it matters**
+### 4. **predictor** (🆕 Not yet implemented)
+ESPN's game predictor
 
-5. **Prime Time Games**
-   - Some teams underperform in prime time
-   - Easy to detect from broadcast data
-   - **Recommendation: MAYBE, could be a small edge**
+**Betting Impact:**
+- Another data point for comparison
+- Public perception
+- Identify contrarian opportunities
 
-6. **Altitude**
-   - Denver games are known to be different
-   - Would need to add stadium elevation data
-   - **Recommendation: MAYBE, but only affects 1-2 teams**
+---
 
-### Low Value or Too Complex ❌
-7. **Referee Crews**
-   - Not available in ESPN API
-   - Would need to scrape from other sources
-   - Historical impact is debatable
-   - **Recommendation: NO, too much work for uncertain value**
+### 5. **standings** (🆕 Not yet implemented)
+Current division/conference standings
 
-8. **Player Tracking Data**
-   - Requires paid NFL Next Gen Stats access
-   - Very expensive
-   - **Recommendation: NO, not worth the cost**
+**Betting Impact:**
+- Playoff implications
+- Motivation factors
+- Strength of schedule
 
-9. **Sharp Money Tracking**
-   - Requires paid betting data services
-   - Would make model dependent on external data
-   - **Recommendation: NO, keep model independent**
+---
 
-## Final Recommendations
+### 6. **news** (🆕 Not yet implemented)
+Recent news articles about the game
 
-### Add These (High ROI):
-1. ✅ Switch to ESPN weather API (more accurate)
-2. ✅ Add home/away performance splits
-3. ✅ Add "last 5 games" momentum indicator
+**Betting Impact:**
+- Breaking news (injuries, lineup changes)
+- Narrative context
+- Public sentiment
 
-### Skip These (Low ROI or Too Complex):
-1. ❌ Referee crews (not available, uncertain value)
-2. ❌ Player tracking data (too expensive)
-3. ❌ Sharp money tracking (makes model dependent)
-4. ❌ Grass vs turf (minimal impact)
+---
 
-### Current Model is Already Using:
-- ✅ Injuries (from nflverse)
-- ✅ Weather (from Open-Meteo, could upgrade to ESPN)
-- ✅ Rest days, travel, divisional games
-- ✅ EPA, success rate, turnover differential
+### 7. **boxscore** (✅ Partially implemented)
+Detailed game statistics
 
-**Bottom Line:** We're already using most of the valuable data. The biggest gains would come from better model calibration (which we just did with recency weight and EPA caps) rather than adding more data sources.
+**Available when game is live/final:**
+- Team statistics (rushing yards, passing yards, turnovers, etc.)
+- Player statistics
+- Scoring summary
+- Drive summaries
 
+**Betting Impact:**
+- Live bet adjustments
+- In-game trends
+- Player performance tracking
+
+---
+
+## 🔧 DATA WE CAN CALCULATE
+
+### 1. **Rest Days** (Not yet implemented)
+From team schedules - days between games
+
+**How to get:**
+- Fetch team schedule from: `/teams/{team_id}/schedule`
+- Calculate days between games
+
+**Betting Impact:**
+- Short rest (Thursday games) = fatigue
+- Long rest (bye week) = advantage
+- Travel + short rest = double disadvantage
+
+---
+
+### 2. **Travel Distance** (Not yet implemented)
+Calculate miles traveled from venue locations
+
+**How to get:**
+- Use venue city/state
+- Calculate distance using coordinates
+- Account for timezone changes
+
+**Betting Impact:**
+- Long travel (>1500 miles) = disadvantage
+- East coast → West coast = 3-hour time change
+- West coast → East coast (early games) = disadvantage
+
+---
+
+### 3. **Home Field Advantage** (Not yet implemented)
+Calculate from historical home/away records
+
+**How to get:**
+- Compare home vs away win rates
+- Factor in venue (dome, outdoor, altitude)
+- Consider fan base strength
+
+**Betting Impact:**
+- Some teams have huge home field advantage
+- Dome teams traveling to outdoor cold weather
+- Altitude advantage (Denver)
+
+---
+
+### 4. **Divisional Game Flag** (✅ Already implemented in model)
+Whether teams are in same division
+
+**Betting Impact:**
+- Divisional games are typically closer
+- Teams know each other well
+- More physical games
+
+---
+
+### 5. **Conference Game Flag** (✅ Already implemented in model)
+Whether teams are in same conference
+
+**Betting Impact:**
+- Conference games matter for playoff seeding
+- Higher motivation
+
+---
+
+## 📋 RECOMMENDED ADDITIONS TO GAME DETAIL PAGE
+
+### Priority 1: High Impact, Easy to Implement
+1. ✅ **Weather** (temperature, wind, precipitation)
+2. ✅ **Grass vs Turf**
+3. 🆕 **Rest Days** (calculate from schedules)
+4. 🆕 **Travel Distance** (calculate from venues)
+5. 🆕 **Last 5 Games** (recent form)
+
+### Priority 2: Medium Impact, Medium Effort
+6. 🆕 **Against The Spread Record** (historical ATS)
+7. 🆕 **ESPN Win Probability** (compare to our model)
+8. 🆕 **Standings** (division rank, playoff picture)
+9. 🆕 **News Feed** (breaking news, injuries)
+
+### Priority 3: Nice to Have
+10. 🆕 **Head-to-Head History** (last 5 meetings)
+11. 🆕 **Home Field Advantage Stats**
+12. 🆕 **Detailed Box Score** (for live/final games)
+13. 🆕 **Play-by-Play** (for live games)
+
+---
+
+## 🎯 IMPLEMENTATION PLAN
+
+### Phase 1: Weather & Venue Enhancements (15 min)
+**Add to game detail page:**
+- Weather card with temperature, wind, precipitation
+- Grass vs Turf indicator
+- Weather impact assessment (High/Medium/Low)
+
+### Phase 2: Rest & Travel (30 min)
+**Calculate and display:**
+- Days of rest for each team
+- Travel distance
+- Timezone change indicator
+- Combined fatigue score
+
+### Phase 3: Recent Form (30 min)
+**Add "Last 5 Games" section:**
+- Win/loss record
+- Points scored/allowed trends
+- Momentum indicator (hot/cold)
+
+### Phase 4: Advanced Metrics (45 min)
+**Add comprehensive betting context:**
+- Against The Spread record
+- ESPN's win probability
+- Divisional standings
+- News feed
+
+---
+
+## 💡 BETTING INSIGHTS WE CAN PROVIDE
+
+With this data, we can create:
+
+### 1. **Weather Impact Score**
+```
+High Wind (>15 mph) + Outdoor = "Favor UNDER, Favor Run-Heavy Teams"
+Cold (<32°F) + Snow = "Favor UNDER, Favor Home Team"
+Dome Game = "No weather impact"
+```
+
+### 2. **Fatigue Score**
+```
+Short Rest (3-4 days) + Long Travel (>1500 mi) = "High Fatigue Risk"
+Bye Week + Home Game = "Well Rested Advantage"
+```
+
+### 3. **Surface Mismatch**
+```
+Dome Team → Outdoor Grass in Cold = "Disadvantage"
+Turf Team → Grass = "Slight Disadvantage"
+```
+
+### 4. **Momentum Indicator**
+```
+Last 5 Games: 4-1 + Winning Streak = "Hot Team"
+Last 5 Games: 1-4 + Losing Streak = "Cold Team"
+```
+
+### 5. **Value Bet Identifier**
+```
+Our Model: Team A -7
+ESPN Model: Team A -3
+Market: Team A -5
+→ "Potential value on Team B +5"
+```
+
+---
+
+## 🚀 NEXT STEPS
+
+**Would you like me to:**
+
+1. **Add Weather & Venue data** to the game detail page (15 min)
+2. **Calculate Rest & Travel** metrics (30 min)
+3. **Add Last 5 Games** recent form section (30 min)
+4. **Build all of the above** in one comprehensive update (1 hour)
+
+Let me know which you'd prefer!

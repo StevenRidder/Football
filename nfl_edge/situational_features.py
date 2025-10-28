@@ -8,8 +8,6 @@ Situational features for NFL predictions:
 """
 
 import pandas as pd
-import numpy as np
-from datetime import datetime, timedelta
 from math import radians, cos, sin, asin, sqrt
 
 

@@ -3,7 +3,6 @@
 Analyze what makes betting accuracy good vs bad
 """
 import pandas as pd
-import numpy as np
 
 # Load detailed results
 graded = pd.read_csv("artifacts/historical_grading_weeks_1-7.csv")
@@ -16,7 +15,7 @@ print("="*80)
 winning_bets = graded[graded['spread_bet_correct'] == True].copy()
 losing_bets = graded[graded['spread_bet_correct'] == False].copy()
 
-print(f"\n📊 Overall Betting Record:")
+print("\n📊 Overall Betting Record:")
 print(f"   Winning bets: {len(winning_bets)} ({len(winning_bets)/len(graded)*100:.1f}%)")
 print(f"   Losing bets: {len(losing_bets)} ({len(losing_bets)/len(graded)*100:.1f}%)")
 
@@ -25,12 +24,12 @@ print(f"\n{'='*80}")
 print("WINNING BETS vs LOSING BETS: Key Differences")
 print(f"{'='*80}")
 
-print(f"\n📈 Spread Error:")
+print("\n📈 Spread Error:")
 print(f"   Winning bets avg error: {winning_bets['spread_error'].mean():.2f} points")
 print(f"   Losing bets avg error: {losing_bets['spread_error'].mean():.2f} points")
 print(f"   Difference: {losing_bets['spread_error'].mean() - winning_bets['spread_error'].mean():.2f} points")
 
-print(f"\n🎯 Model Confidence (predicted margin):")
+print("\n🎯 Model Confidence (predicted margin):")
 winning_bets['pred_margin'] = winning_bets.apply(
     lambda r: abs(float(r['pred_score'].split('-')[0]) - float(r['pred_score'].split('-')[1])), axis=1
 )
@@ -41,7 +40,7 @@ losing_bets['pred_margin'] = losing_bets.apply(
 print(f"   Winning bets avg predicted margin: {winning_bets['pred_margin'].mean():.2f} points")
 print(f"   Losing bets avg predicted margin: {losing_bets['pred_margin'].mean():.2f} points")
 
-print(f"\n🏆 Winner Prediction:")
+print("\n🏆 Winner Prediction:")
 print(f"   Winning bets - got winner right: {winning_bets['winner_correct'].sum()}/{len(winning_bets)} ({winning_bets['winner_correct'].mean()*100:.1f}%)")
 print(f"   Losing bets - got winner right: {losing_bets['winner_correct'].sum()}/{len(losing_bets)} ({losing_bets['winner_correct'].mean()*100:.1f}%)")
 
@@ -62,7 +61,7 @@ margin_buckets = [
     (14, 100, "Blowout (14+ pts)")
 ]
 
-print(f"\n📊 Bet Accuracy by Predicted Margin:")
+print("\n📊 Bet Accuracy by Predicted Margin:")
 for min_m, max_m, label in margin_buckets:
     bucket = graded[(graded['pred_margin'] >= min_m) & (graded['pred_margin'] < max_m)]
     if len(bucket) > 0:
@@ -76,7 +75,7 @@ print(f"{'='*80}")
 
 graded['actual_margin_abs'] = graded['actual_margin'].abs()
 
-print(f"\n📊 Bet Accuracy by Actual Margin:")
+print("\n📊 Bet Accuracy by Actual Margin:")
 for min_m, max_m, label in margin_buckets:
     bucket = graded[(graded['actual_margin_abs'] >= min_m) & (graded['actual_margin_abs'] < max_m)]
     if len(bucket) > 0:
@@ -95,7 +94,7 @@ error_buckets = [
     (15, 100, "Inaccurate (15+ pts error)")
 ]
 
-print(f"\n📊 Bet Accuracy by Spread Error:")
+print("\n📊 Bet Accuracy by Spread Error:")
 for min_e, max_e, label in error_buckets:
     bucket = graded[(graded['spread_error'] >= min_e) & (graded['spread_error'] < max_e)]
     if len(bucket) > 0:
@@ -107,32 +106,32 @@ print(f"\n{'='*80}")
 print("OPTIMAL BETTING STRATEGY")
 print(f"{'='*80}")
 
-print(f"\n🎯 Strategy 1: Only bet on close games (predicted margin < 7 pts)")
+print("\n🎯 Strategy 1: Only bet on close games (predicted margin < 7 pts)")
 close_games = graded[graded['pred_margin'] < 7]
 close_bet_acc = close_games['spread_bet_correct'].mean() * 100
 print(f"   Bet accuracy: {close_bet_acc:.1f}% ({len(close_games)} bets)")
 print(f"   Result: {'✅ PROFITABLE' if close_bet_acc >= 52.4 else '🔴 UNPROFITABLE'}")
 
-print(f"\n🎯 Strategy 2: Only bet on moderate confidence (7-14 pts margin)")
+print("\n🎯 Strategy 2: Only bet on moderate confidence (7-14 pts margin)")
 moderate_games = graded[(graded['pred_margin'] >= 7) & (graded['pred_margin'] < 14)]
 moderate_bet_acc = moderate_games['spread_bet_correct'].mean() * 100
 print(f"   Bet accuracy: {moderate_bet_acc:.1f}% ({len(moderate_games)} bets)")
 print(f"   Result: {'✅ PROFITABLE' if moderate_bet_acc >= 52.4 else '🔴 UNPROFITABLE'}")
 
-print(f"\n🎯 Strategy 3: Avoid blowouts (predicted margin > 14 pts)")
+print("\n🎯 Strategy 3: Avoid blowouts (predicted margin > 14 pts)")
 no_blowouts = graded[graded['pred_margin'] <= 14]
 no_blowout_acc = no_blowouts['spread_bet_correct'].mean() * 100
 print(f"   Bet accuracy: {no_blowout_acc:.1f}% ({len(no_blowouts)} bets)")
 print(f"   Result: {'✅ PROFITABLE' if no_blowout_acc >= 52.4 else '🔴 UNPROFITABLE'}")
 
-print(f"\n🎯 Strategy 4: Only bet when model is confident (spread error < 10 pts historically)")
+print("\n🎯 Strategy 4: Only bet when model is confident (spread error < 10 pts historically)")
 # This would require knowing error in advance, so use predicted margin as proxy
 confident_games = graded[(graded['pred_margin'] >= 5) & (graded['pred_margin'] <= 12)]
 confident_acc = confident_games['spread_bet_correct'].mean() * 100
 print(f"   Bet accuracy: {confident_acc:.1f}% ({len(confident_games)} bets)")
 print(f"   Result: {'✅ PROFITABLE' if confident_acc >= 52.4 else '🔴 UNPROFITABLE'}")
 
-print(f"\n🎯 Strategy 5: Bet on good weeks only (skip weeks 4-5)")
+print("\n🎯 Strategy 5: Bet on good weeks only (skip weeks 4-5)")
 good_weeks = graded[~graded['week'].isin([4, 5])]
 good_week_acc = good_weeks['spread_bet_correct'].mean() * 100
 print(f"   Bet accuracy: {good_week_acc:.1f}% ({len(good_weeks)} bets)")
@@ -146,12 +145,12 @@ print(f"{'='*80}")
 week1_3 = graded[graded['week'].isin([1, 3])]
 other_weeks = graded[~graded['week'].isin([1, 3])]
 
-print(f"\nWeek 1 & 3 characteristics:")
+print("\nWeek 1 & 3 characteristics:")
 print(f"   Avg predicted margin: {week1_3['pred_margin'].mean():.2f} pts")
 print(f"   Avg spread error: {week1_3['spread_error'].mean():.2f} pts")
 print(f"   Winner accuracy: {week1_3['winner_correct'].mean()*100:.1f}%")
 
-print(f"\nOther weeks characteristics:")
+print("\nOther weeks characteristics:")
 print(f"   Avg predicted margin: {other_weeks['pred_margin'].mean():.2f} pts")
 print(f"   Avg spread error: {other_weeks['spread_error'].mean():.2f} pts")
 print(f"   Winner accuracy: {other_weeks['winner_correct'].mean()*100:.1f}%")
@@ -218,7 +217,7 @@ print(f"{'='*80}")
 
 optimal = graded[(graded['pred_margin'] >= 5) & (graded['pred_margin'] <= 14)]
 optimal_acc = optimal['spread_bet_correct'].mean() * 100
-print(f"\nBet only on games with 5-14 point predicted margin:")
+print("\nBet only on games with 5-14 point predicted margin:")
 print(f"   Bet accuracy: {optimal_acc:.1f}% ({len(optimal)}/{len(graded)} games)")
 print(f"   Result: {'✅ PROFITABLE!' if optimal_acc >= 52.4 else '🔴 Still need work'}")
 print(f"   Improvement: {optimal_acc - 51.9:+.1f}% vs betting all games")

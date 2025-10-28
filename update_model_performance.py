@@ -4,7 +4,7 @@ Auto-update model performance by fetching final scores and comparing to predicti
 Run this daily after games complete.
 """
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 import pandas as pd
 from nfl_edge.accuracy_tracker import AccuracyTracker
@@ -13,7 +13,7 @@ import requests
 def fetch_espn_scores(week, season=2025):
     """Fetch final scores from ESPN API"""
     try:
-        url = f"https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+        url = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
         params = {
             'dates': season,
             'seasontype': 2,  # Regular season
@@ -80,7 +80,17 @@ def update_performance(week=None, season=2025):
     
     # Load predictions from artifacts
     artifacts = Path("artifacts")
-    csvs = sorted(artifacts.glob("week_*_projections.csv"))
+    
+    # Try to find predictions for the specific week
+    week_file = artifacts / f"predictions_2025_week{week}_*.csv"
+    csvs = sorted(artifacts.glob(f"predictions_2025_week{week}_*.csv"))
+    
+    # If no week-specific file, try generic pattern
+    if not csvs:
+        csvs = sorted(artifacts.glob("predictions_2025_*.csv"))
+        # Filter to get the one without "week" in name (current week)
+        csvs = [f for f in csvs if '_week' not in f.name]
+    
     if not csvs:
         print("❌ No prediction files found in artifacts/")
         return False

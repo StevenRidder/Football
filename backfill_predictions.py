@@ -12,9 +12,8 @@ from nfl_edge.data_ingest import fetch_teamweeks_live, fetch_market_lines_live, 
 from nfl_edge.features import build_features, join_matchups, apply_weather_and_injuries
 from nfl_edge.model import fit_expected_points_model, predict_expected_points
 from nfl_edge.simulate import monte_carlo
-from nfl_edge.kelly import add_betting_columns, generate_betting_card
+from nfl_edge.kelly import add_betting_columns
 from nfl_edge.situational_features import add_all_situational_features
-from nfl_edge.schedule_fetcher import get_upcoming_matchups
 import requests
 
 
@@ -73,7 +72,7 @@ def generate_predictions_for_week(week: int, season: int = 2025):
     # For later weeks, use current 2025 data
     if week <= 4:
         # Use 2024 season data (weeks 10-18 for recency)
-        print(f"Using 2024 season data for training (weeks 10-18)")
+        print("Using 2024 season data for training (weeks 10-18)")
         url = "https://github.com/nflverse/nflverse-data/releases/download/pbp/stats_team_week_2024.csv"
         import pandas as pd
         teamweeks = pd.read_csv(url)
@@ -191,7 +190,7 @@ def main():
         combined.to_csv("artifacts/predictions_weeks_1-7_combined.csv", index=False)
         print(f"\n{'='*60}")
         print(f"✅ Generated predictions for {len(all_predictions)} weeks")
-        print(f"💾 Combined file: artifacts/predictions_weeks_1-7_combined.csv")
+        print("💾 Combined file: artifacts/predictions_weeks_1-7_combined.csv")
         print(f"{'='*60}")
         
         # Summary statistics

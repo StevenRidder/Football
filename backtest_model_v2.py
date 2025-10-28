@@ -5,14 +5,12 @@ Backtest Model v2 on historical weeks 1-7 and compare to v1.
 
 import pandas as pd
 import requests
-import io
 from pathlib import Path
 import sys
 
 # Import the backfill script logic
 sys.path.insert(0, str(Path(__file__).parent))
 
-from nfl_edge.main import run_week
 
 # Team abbreviation mapping
 TEAM_MAP = {

@@ -1,13 +1,8 @@
-
 team_sd: 8.0
 n_sims: 20000
 home_field_pts: 1.5
-recent_weight: 0.95  # Increased to 0.95 to adapt faster to 2025 reality (v3 model)
-
-# Calibration (dynamic - adjust based on conditions)
-score_calibration_factor: 0.68  # Back to 0.68 - was more accurate for totals
-
-# Betting parameters
-bankroll: 10000.0        # Starting bankroll
-min_ev: 0.02             # Minimum 2% EV to recommend a bet
-kelly_fraction: 0.25     # Use quarter Kelly (25% of full Kelly)
+recent_weight: 0.88
+score_calibration_factor: 0.66
+bankroll: 10000.0
+min_ev: 0.02
+kelly_fraction: 0.25

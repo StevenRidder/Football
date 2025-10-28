@@ -13,7 +13,6 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 import yaml
-from datetime import datetime
 
 from nfl_edge.data_ingest import fetch_teamweeks_live, fetch_weather_for_matchups, fetch_injury_index
 from nfl_edge.features import build_features, join_matchups, apply_weather_and_injuries
@@ -191,7 +190,7 @@ def backtest_season(season, weeks, cfg, weight=1.0):
         # Get actual scores
         actuals = get_actual_scores(season, week)
         if len(actuals) == 0:
-            print(f"  ⚠️ No actual scores found")
+            print("  ⚠️ No actual scores found")
             continue
         
         # Run OLD model
@@ -295,27 +294,27 @@ def main():
         old_weighted_acc = (old_2024['winner_accuracy'] * old_2024['weight'] + old_2025['winner_accuracy'] * old_2025['weight']) / total_weight
         new_weighted_acc = (new_2024['winner_accuracy'] * new_2024['weight'] + new_2025['winner_accuracy'] * new_2025['weight']) / total_weight
         
-        print(f"\nOLD Model (Weighted):")
+        print("\nOLD Model (Weighted):")
         print(f"  MAE Spread: {old_weighted_mae:.2f} points")
         print(f"  Winner Accuracy: {old_weighted_acc:.1%}")
         
-        print(f"\nNEW Model (Weighted):")
+        print("\nNEW Model (Weighted):")
         print(f"  MAE Spread: {new_weighted_mae:.2f} points")
         print(f"  Winner Accuracy: {new_weighted_acc:.1%}")
         
         mae_improvement = ((old_weighted_mae - new_weighted_mae) / old_weighted_mae) * 100
         acc_improvement = (new_weighted_acc - old_weighted_acc) * 100
         
-        print(f"\n🎯 IMPROVEMENT:")
+        print("\n🎯 IMPROVEMENT:")
         print(f"  MAE Spread: {mae_improvement:+.1f}% (lower is better)")
         print(f"  Winner Accuracy: {acc_improvement:+.1f} percentage points")
         
         if mae_improvement > 0 and acc_improvement > 0:
-            print(f"\n✅ NEW model is BETTER on both metrics!")
+            print("\n✅ NEW model is BETTER on both metrics!")
         elif mae_improvement > 0 or acc_improvement > 0:
-            print(f"\n⚠️ NEW model is MIXED (better on some metrics)")
+            print("\n⚠️ NEW model is MIXED (better on some metrics)")
         else:
-            print(f"\n❌ NEW model is WORSE (needs more tuning)")
+            print("\n❌ NEW model is WORSE (needs more tuning)")
         
         # Save results
         results_df = pd.DataFrame([
@@ -329,7 +328,7 @@ def main():
         
         Path("artifacts").mkdir(exist_ok=True)
         results_df.to_csv("artifacts/backtest_results.csv", index=False)
-        print(f"\n💾 Results saved to artifacts/backtest_results.csv")
+        print("\n💾 Results saved to artifacts/backtest_results.csv")
 
 
 if __name__ == "__main__":

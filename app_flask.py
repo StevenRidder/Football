@@ -203,8 +203,74 @@ def game_detail(away, home):
     
     game_data = game.iloc[0].to_dict()
     
-    # Fetch detailed team stats - HYBRID: ESPN scores + NFLverse stats
+    # Fetch comprehensive ESPN data
+    print(f"Loading game {away} @ {home}...", flush=True)
     try:
+        from espn_data_fetcher import ESPNDataFetcher
+        espn_data = ESPNDataFetcher.fetch_comprehensive_game_data(away, home)
+        game_data['espn_data'] = espn_data
+        print(f"✓ ESPN data loaded for {away} @ {home}", flush=True)
+    except Exception as e:
+        print(f"⚠️ Could not fetch ESPN data: {e}", flush=True)
+        game_data['espn_data'] = {
+            'away': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
+            'home': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
+            'game_summary': {}
+        }
+    
+    # Build team stats from ESPN data if available
+    espn = game_data.get('espn_data', {})
+    away_splits = espn.get('away', {}).get('splits', {})
+    home_splits = espn.get('home', {}).get('splits', {})
+    
+    game_data['team_stats'] = {
+        'away': {
+            'team': away,
+            'games': away_splits.get('overall', {}).get('games', 0),
+            'ppg': away_splits.get('overall', {}).get('ppg', 0),
+            'pa_pg': away_splits.get('overall', {}).get('papg', 0),
+            'off_epa': 0,
+            'def_epa': 0,
+            'pass_epa': 0,
+            'rush_epa': 0,
+            'def_pass_epa': 0,
+            'def_rush_epa': 0,
+            'passing_yards': 0,
+            'rushing_yards': 0,
+            'turnovers': 0,
+            'sacks_taken': 0,
+            'takeaways': 0,
+            'last_5_ppg': 0,
+            'last_5_pa': 0,
+        },
+        'home': {
+            'team': home,
+            'games': home_splits.get('overall', {}).get('games', 0),
+            'ppg': home_splits.get('overall', {}).get('ppg', 0),
+            'pa_pg': home_splits.get('overall', {}).get('papg', 0),
+            'off_epa': 0,
+            'def_epa': 0,
+            'pass_epa': 0,
+            'rush_epa': 0,
+            'def_pass_epa': 0,
+            'def_rush_epa': 0,
+            'passing_yards': 0,
+            'rushing_yards': 0,
+            'turnovers': 0,
+            'sacks_taken': 0,
+            'takeaways': 0,
+            'last_5_ppg': 0,
+            'last_5_pa': 0,
+        }
+    }
+    
+    # Get recent games from ESPN
+    away_recent = espn.get('away', {}).get('last_five', [])
+    home_recent = espn.get('home', {}).get('last_five', [])
+    
+    """
+    # DISABLED CODE - was making 17 ESPN API calls on every page load
+    if False:  # Disabled for performance
         print("Fetching hybrid data: ESPN (scores) + NFLverse (stats)...")
         
         # 1. Get accurate scores from ESPN
@@ -273,7 +339,6 @@ def game_detail(away, home):
                     pts_scored = espn_game['away_score']
                     pts_allowed = espn_game['home_score']
                 elif espn_game['home_team'] == team_code:
-                    is_home = True
                     opponent = espn_game['away_team']
                     pts_scored = espn_game['home_score']
                     pts_allowed = espn_game['away_score']
@@ -388,10 +453,13 @@ def game_detail(away, home):
         home_season = {'team': home, 'games': 0}
         away_recent = []
         home_recent = []
+    """
     
     # Fetch predictions from multiple sources (ESPN, 538, Vegas)
-    print(f"Fetching predictions for {away} @ {home}...")
-    all_predictions = fetch_all_predictions(away, home)
+    # Temporarily disabled - was causing timeouts
+    # print(f"Fetching predictions for {away} @ {home}...")
+    # all_predictions = fetch_all_predictions(away, home)
+    all_predictions = {}
     
     # Format for template
     external_predictions = {
@@ -471,8 +539,8 @@ def game_detail(away, home):
                          away=away,
                          home=home,
                          game=game_data,
-                         away_season=away_season,
-                         home_season=home_season,
+                         away_season=game_data['team_stats']['away'],
+                         home_season=game_data['team_stats']['home'],
                          away_recent=away_recent,
                          home_recent=home_recent,
                          external_predictions=external_predictions)
@@ -577,6 +645,20 @@ def bets():
     return render_template('bets.html', 
                          bets=bets_data,
                          summary=summary_data)
+
+@app.route('/line-movements')
+def line_movements():
+    """Line movement tracking page"""
+    from line_tracker import LineTracker
+    from schedules import CURRENT_WEEK, CURRENT_SEASON
+    
+    tracker = LineTracker()
+    movements = tracker.get_week_movements(CURRENT_SEASON, CURRENT_WEEK)
+    
+    return render_template('line_movements.html', 
+                         movements=movements,
+                         week=CURRENT_WEEK,
+                         season=CURRENT_SEASON)
 
 @app.route('/performance')
 def performance():
@@ -1298,7 +1380,7 @@ def api_auto_grade_bets():
                         
                         if not sgp_game:
                             with open('/tmp/sgp_debug.log', 'a') as f:
-                                f.write(f"  Game not found\n")
+                                f.write("  Game not found\n")
                             still_pending += 1
                             continue
                         
@@ -1309,7 +1391,7 @@ def api_auto_grade_bets():
                         # Check if game is final
                         if 'final' not in sgp_game.get('status', '').lower():
                             with open('/tmp/sgp_debug.log', 'a') as f:
-                                f.write(f"  Game not final yet\n")
+                                f.write("  Game not final yet\n")
                             still_pending += 1
                             continue
                         
@@ -1371,15 +1453,15 @@ def api_auto_grade_bets():
                         if any_leg_lost:
                             new_status = 'Lost'
                             with open('/tmp/sgp_debug.log', 'a') as f:
-                                f.write(f"  Result: Lost\n")
+                                f.write("  Result: Lost\n")
                         elif all_legs_graded:
                             new_status = 'Won'
                             with open('/tmp/sgp_debug.log', 'a') as f:
-                                f.write(f"  Result: Won\n")
+                                f.write("  Result: Won\n")
                         else:
                             # Some legs can't be graded yet
                             with open('/tmp/sgp_debug.log', 'a') as f:
-                                f.write(f"  Result: Still Pending\n")
+                                f.write("  Result: Still Pending\n")
                             still_pending += 1
                             continue
                     
@@ -1707,6 +1789,54 @@ def live_bet_status():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/bet-legs/<ticket_id>')
+def api_bet_legs(ticket_id):
+    """Get parlay legs with live status for a bet (backend calculates status)"""
+    try:
+        from nfl_edge.bets.db import BettingDB
+        
+        db = BettingDB()
+        bet = db.get_bet_with_legs(ticket_id)
+        db.close()
+        
+        if not bet:
+            return jsonify({'success': False, 'message': 'Bet not found'}), 404
+        
+        if not bet.get('legs'):
+            return jsonify({'success': True, 'legs': []})
+        
+        # Get live games for status calculation
+        tracker = LiveBetTracker()
+        live_games = tracker.get_live_games()
+        
+        # Calculate live status for each leg
+        legs_with_status = []
+        for leg in bet['legs']:
+            leg_dict = dict(leg)
+            
+            # Calculate live status on backend
+            status = tracker.get_leg_live_status(
+                leg['description'],
+                leg.get('team'),
+                leg.get('line'),
+                live_games,
+                bet['description']  # Full bet description for context
+            )
+            
+            leg_dict['live_status'] = status
+            leg_dict['color'] = tracker.get_status_color(status) if status else 'white'
+            legs_with_status.append(leg_dict)
+        
+        return jsonify({
+            'success': True,
+            'ticket_id': ticket_id,
+            'bet_type': bet['bet_type'],
+            'legs': legs_with_status
+        })
+        
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
 @app.route('/api/check-player-prop')
 def check_player_prop():
     """Check status of a player prop bet"""
@@ -1767,6 +1897,88 @@ def api_update_model_performance():
             'message': str(e)
         }), 500
 
+@app.route('/api/config/calibration', methods=['GET'])
+def api_get_calibration():
+    """Get current calibration factor from config.yaml"""
+    try:
+        import yaml
+        from pathlib import Path
+        
+        config_path = Path('/Users/steveridder/Git/Football/config.yaml')
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+        
+        calibration = config.get('score_calibration_factor', 0.54)
+        recent_weight = config.get('recent_weight', 0.85)
+        
+        return jsonify({
+            'success': True,
+            'calibration': calibration,
+            'recent_weight': recent_weight
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': str(e)
+        }), 500
+
+@app.route('/api/config/calibration', methods=['POST'])
+def api_set_calibration():
+    """Update calibration factor in config.yaml and optionally regenerate predictions"""
+    try:
+        import yaml
+        from pathlib import Path
+        
+        data = request.json
+        new_calibration = float(data.get('calibration'))
+        regenerate = data.get('regenerate', True)
+        
+        if not (0.1 <= new_calibration <= 1.5):
+            return jsonify({
+                'success': False,
+                'message': 'Calibration must be between 0.1 and 1.5'
+            }), 400
+        
+        # Update config.yaml
+        config_path = Path('/Users/steveridder/Git/Football/config.yaml')
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+        
+        old_calibration = config.get('score_calibration_factor', 0.54)
+        config['score_calibration_factor'] = new_calibration
+        
+        with open(config_path, 'w') as f:
+            yaml.dump(config, f, default_flow_style=False, sort_keys=False)
+        
+        message = f'Calibration updated from {old_calibration} to {new_calibration}'
+        
+        # Optionally regenerate predictions
+        if regenerate:
+            import subprocess
+            result = subprocess.run(
+                ['python3', '-c', 'from nfl_edge.main import run_week; run_week()'],
+                cwd='/Users/steveridder/Git/Football',
+                capture_output=True,
+                text=True,
+                timeout=300
+            )
+            if result.returncode == 0:
+                message += '. Predictions regenerated!'
+            else:
+                message += f'. Warning: Regeneration had issues: {result.stderr[:200]}'
+        
+        return jsonify({
+            'success': True,
+            'message': message,
+            'old_calibration': old_calibration,
+            'new_calibration': new_calibration
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'Failed to update calibration: {str(e)}'
+        }), 500
+
 @app.route('/api/generate-predictions', methods=['POST'])
 def api_generate_predictions():
     """Generate predictions for next week"""
@@ -1792,7 +2004,7 @@ def api_generate_predictions():
                 latest_file = csv_files[0]
                 return jsonify({
                     'success': True,
-                    'message': f'Predictions generated successfully',
+                    'message': 'Predictions generated successfully',
                     'file': latest_file.name,
                     'output': result.stdout
                 })
@@ -1813,18 +2025,27 @@ def api_predictions_history():
     """Get list of historical prediction files"""
     try:
         from pathlib import Path
+        import re
         
         artifacts_dir = Path('/Users/steveridder/Git/Football/artifacts')
-        csv_files = sorted(artifacts_dir.glob('predictions_*.csv'), reverse=True)
+        
+        # Get only weekly prediction files (predictions_2025_weekN_*.csv)
+        csv_files = sorted(artifacts_dir.glob('predictions_2025_week*.csv'), reverse=True)
         
         history = []
         for csv_file in csv_files:
-            # Extract date from filename (predictions_YYYY-MM-DD.csv)
-            date_str = csv_file.stem.replace('predictions_', '')
-            history.append({
-                'date': date_str,
-                'filename': csv_file.name
-            })
+            # Extract week number from filename
+            match = re.search(r'week(\d+)', csv_file.name)
+            if match:
+                week_num = match.group(1)
+                history.append({
+                    'date': f'Week {week_num}',
+                    'filename': csv_file.name,
+                    'week': int(week_num)
+                })
+        
+        # Sort by week number descending
+        history.sort(key=lambda x: x['week'], reverse=True)
         
         return jsonify({
             'success': True,

@@ -1,5 +1,6 @@
 
-import yaml, numpy as np
+import yaml
+import numpy as np
 from pathlib import Path
 from datetime import date
 try:
@@ -25,13 +26,9 @@ def run_week(week_number=None, matchups=None):
     teamweeks = fetch_teamweeks_live()
     lines = fetch_market_lines_live()
     
-    # Manual line overrides to match user's casino
-    manual_lines = {
-        ("CHI", "BAL"): {"spread_home": -6.5, "total": 47.5},
-        ("BUF", "CAR"): {"spread_home": +7.5, "total": 47.5},
-        ("MIN", "LAC"): {"spread_home": -3.0, "total": 44.5},  # User's casino: MIN +3
-    }
-    lines.update(manual_lines)
+    # Manual line overrides (if needed)
+    # manual_lines = {}
+    # lines.update(manual_lines)
     
     # Use provided matchups or default to THIS_WEEK
     games = matchups if matchups is not None else THIS_WEEK
@@ -68,7 +65,7 @@ def run_week(week_number=None, matchups=None):
     spread = np.array(spread, dtype=float); total = np.array(total, dtype=float)
     out = monte_carlo(muA, muH, team_sd=cfg["team_sd"], n_sims=cfg["n_sims"], spread_home=spread, total_line=total)
     df = matches.copy()
-    df["Exp score (away-home)"] = [f"{a:.1f}-{h:.1f}" for a,h in zip(muA, muH)]
+    df["Exp score (away-home)"] = [f"{round(a)}-{round(h)}" for a,h in zip(muA, muH)]
     df["Model spread home-"] = out["model_spread_home"]
     df["Model total"] = out["model_total"]
     df["Spread used (home-)"] = out["spread_used"]

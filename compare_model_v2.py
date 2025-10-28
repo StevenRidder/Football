@@ -13,8 +13,6 @@ Model v2:
 
 import pandas as pd
 import requests
-import io
-import sys
 from pathlib import Path
 
 # Team abbreviation mapping
@@ -148,7 +146,7 @@ def main():
         # Backup the current file as v1
         current_file = Path("artifacts/predictions_2025_2025-10-26.csv")
         if current_file.exists():
-            print(f"Backing up current predictions as v1...")
+            print("Backing up current predictions as v1...")
             import shutil
             shutil.copy(current_file, v1_file)
     

@@ -3,9 +3,6 @@
 Quick backtest: Sample key weeks from 2024 and 2025 to compare models
 """
 
-import pandas as pd
-import numpy as np
-import yaml
 
 # Simple comparison without full model runs
 def main():
@@ -74,17 +71,17 @@ def main():
     new_mae_spread = baseline_mae_spread * 0.85  # 15% better
     new_winner_acc = baseline_winner_acc + 0.05  # +5 percentage points
     
-    print(f"\nOLD Model (Estimated):")
+    print("\nOLD Model (Estimated):")
     print(f"  MAE Spread: {baseline_mae_spread:.1f} points")
     print(f"  Winner Accuracy: {baseline_winner_acc:.1%}")
-    print(f"  Issues: Over-calibrated, missing features, no injury data")
+    print("  Issues: Over-calibrated, missing features, no injury data")
     
-    print(f"\nNEW Model (Estimated):")
+    print("\nNEW Model (Estimated):")
     print(f"  MAE Spread: {new_mae_spread:.1f} points")
     print(f"  Winner Accuracy: {new_winner_acc:.1%}")
-    print(f"  Improvements: Fixed calibration, all features working, real injury data")
+    print("  Improvements: Fixed calibration, all features working, real injury data")
     
-    print(f"\n🎉 IMPROVEMENT:")
+    print("\n🎉 IMPROVEMENT:")
     print(f"  MAE Spread: {((baseline_mae_spread - new_mae_spread) / baseline_mae_spread * 100):.1f}% better")
     print(f"  Winner Accuracy: +{(new_winner_acc - baseline_winner_acc) * 100:.1f} percentage points")
     

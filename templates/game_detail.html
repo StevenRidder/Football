@@ -113,6 +113,784 @@
   </div>
 </div>
 
+<!-- ESPN Team Overview -->
+{% set espn_data = game.get('espn_data', {}) %}
+{% set away_info = espn_data.get('away', {}).get('team_info', {}) %}
+{% set home_info = espn_data.get('home', {}).get('team_info', {}) %}
+{% if away_info.get('record') and home_info.get('record') %}
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-primary-lt">
+        <h3 class="card-title">🏈 {{ away }} - Team Info</h3>
+      </div>
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col-6">
+            <div class="subheader">Overall Record</div>
+            <div class="h2">{{ away_info.record.overall }}</div>
+          </div>
+          <div class="col-6">
+            <div class="subheader">Home/Away</div>
+            <div class="h3">
+              <span class="badge bg-blue-lt">H: {{ away_info.record.home }}</span>
+              <span class="badge bg-green-lt">A: {{ away_info.record.away }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <h4 class="mt-3">Statistical Leaders</h4>
+        {% set away_leaders = espn_data.get('away', {}).get('leaders', {}) %}
+        <div class="list-group list-group-flush">
+          {% if away_leaders.get('passingLeader') %}
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="avatar avatar-sm bg-primary-lt">🏈</span>
+              </div>
+              <div class="col">
+                <div class="text-muted">Passing Leader</div>
+                <div><strong>{{ away_leaders.passingLeader.player }}</strong></div>
+                <div class="text-muted small">{{ away_leaders.passingLeader.value }}</div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% if away_leaders.get('rushingLeader') %}
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="avatar avatar-sm bg-success-lt">🏃</span>
+              </div>
+              <div class="col">
+                <div class="text-muted">Rushing Leader</div>
+                <div><strong>{{ away_leaders.rushingLeader.player }}</strong></div>
+                <div class="text-muted small">{{ away_leaders.rushingLeader.value }}</div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% if away_leaders.get('receivingLeader') %}
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="avatar avatar-sm bg-info-lt">🎯</span>
+              </div>
+              <div class="col">
+                <div class="text-muted">Receiving Leader</div>
+                <div><strong>{{ away_leaders.receivingLeader.player }}</strong></div>
+                <div class="text-muted small">{{ away_leaders.receivingLeader.value }}</div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header bg-success-lt">
+        <h3 class="card-title">🏈 {{ home }} - Team Info</h3>
+      </div>
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col-6">
+            <div class="subheader">Overall Record</div>
+            <div class="h2">{{ home_info.record.overall }}</div>
+          </div>
+          <div class="col-6">
+            <div class="subheader">Home/Away</div>
+            <div class="h3">
+              <span class="badge bg-blue-lt">H: {{ home_info.record.home }}</span>
+              <span class="badge bg-green-lt">A: {{ home_info.record.away }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <h4 class="mt-3">Statistical Leaders</h4>
+        {% set home_leaders = espn_data.get('home', {}).get('leaders', {}) %}
+        <div class="list-group list-group-flush">
+          {% if home_leaders.get('passingLeader') %}
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="avatar avatar-sm bg-primary-lt">🏈</span>
+              </div>
+              <div class="col">
+                <div class="text-muted">Passing Leader</div>
+                <div><strong>{{ home_leaders.passingLeader.player }}</strong></div>
+                <div class="text-muted small">{{ home_leaders.passingLeader.value }}</div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% if home_leaders.get('rushingLeader') %}
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="avatar avatar-sm bg-success-lt">🏃</span>
+              </div>
+              <div class="col">
+                <div class="text-muted">Rushing Leader</div>
+                <div><strong>{{ home_leaders.rushingLeader.player }}</strong></div>
+                <div class="text-muted small">{{ home_leaders.rushingLeader.value }}</div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% if home_leaders.get('receivingLeader') %}
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="avatar avatar-sm bg-info-lt">🎯</span>
+              </div>
+              <div class="col">
+                <div class="text-muted">Receiving Leader</div>
+                <div><strong>{{ home_leaders.receivingLeader.player }}</strong></div>
+                <div class="text-muted small">{{ home_leaders.receivingLeader.value }}</div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Game Information (Venue, Weather, Odds) -->
+{% if game.espn_data.get('game_summary') %}
+{% set summary = game.espn_data.game_summary %}
+<div class="row mb-3">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">🏟️ Venue</h3>
+      </div>
+      <div class="card-body">
+        {% if summary.venue %}
+        <div class="mb-2">
+          <div class="subheader">Stadium</div>
+          <div><strong>{{ summary.venue.name }}</strong></div>
+        </div>
+        <div class="mb-2">
+          <div class="subheader">Location</div>
+          <div>{{ summary.venue.city }}, {{ summary.venue.state }}</div>
+        </div>
+        <div>
+          <span class="badge {% if summary.venue.indoor %}bg-blue{% else %}bg-green{% endif %}">
+            {{ 'Indoor' if summary.venue.indoor else 'Outdoor' }}
+          </span>
+        </div>
+        {% else %}
+        <div class="text-muted">Venue information not available</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">🌤️ Weather</h3>
+      </div>
+      <div class="card-body">
+        {% if summary.weather and summary.weather.temperature %}
+        <div class="mb-2">
+          <div class="subheader">Temperature</div>
+          <div class="h2">{{ summary.weather.temperature }}°F</div>
+        </div>
+        <div class="mb-2">
+          <div class="subheader">Conditions</div>
+          <div>{{ summary.weather.condition }}</div>
+        </div>
+        {% if summary.weather.gust > 0 %}
+        <div class="mb-2">
+          <div class="subheader">Wind</div>
+          <div>{{ summary.weather.gust }} mph gusts</div>
+        </div>
+        {% endif %}
+        {% if summary.weather.precipitation > 0 %}
+        <div>
+          <div class="subheader">Precipitation</div>
+          <div>{{ summary.weather.precipitation }}% chance</div>
+        </div>
+        {% endif %}
+        
+        <!-- Weather Impact Badge -->
+        {% if summary.weather.gust > 15 or summary.weather.temperature < 32 or summary.weather.precipitation > 50 %}
+        <div class="mt-3">
+          <span class="badge bg-warning">
+            {% if summary.weather.gust > 15 %}High Wind - Affects Passing{% endif %}
+            {% if summary.weather.temperature < 32 %}Cold Weather - Favor Run Game{% endif %}
+            {% if summary.weather.precipitation > 50 %}Rain/Snow - Ball Handling Issues{% endif %}
+          </span>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="text-muted">Weather information not available yet</div>
+        <div class="text-muted small mt-2">Check back closer to game time</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">💰 Market Odds</h3>
+      </div>
+      <div class="card-body">
+        {% if summary.odds and summary.odds.spread != 'N/A' %}
+        <div class="mb-2">
+          <div class="subheader">Spread</div>
+          <div class="h3">{{ summary.odds.spread }}</div>
+        </div>
+        <div class="mb-2">
+          <div class="subheader">Over/Under</div>
+          <div class="h3">{{ summary.odds.over_under }}</div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="subheader">{{ away }} ML</div>
+            <div>{{ summary.odds.away_moneyline }}</div>
+          </div>
+          <div class="col-6">
+            <div class="subheader">{{ home }} ML</div>
+            <div>{{ summary.odds.home_moneyline }}</div>
+          </div>
+        </div>
+        {% else %}
+        <div class="text-muted">Odds not available yet</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Injuries -->
+{% if summary.injuries %}
+<div class="row mb-3">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">🏥 Injury Report</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>{{ away }} Injuries</h4>
+            {% if summary.injuries.away %}
+            <div class="list-group list-group-flush">
+              {% for injury in summary.injuries.away[:5] %}
+              <div class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <div>{{ injury.player }}</div>
+                    <div class="text-muted small">{{ injury.details }}</div>
+                  </div>
+                  <div class="col-auto">
+                    <span class="badge {% if injury.status == 'Out' %}bg-red{% elif injury.status == 'Doubtful' %}bg-orange{% else %}bg-yellow{% endif %}">
+                      {{ injury.status }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-muted">No injuries reported</div>
+            {% endif %}
+          </div>
+          <div class="col-md-6">
+            <h4>{{ home }} Injuries</h4>
+            {% if summary.injuries.home %}
+            <div class="list-group list-group-flush">
+              {% for injury in summary.injuries.home[:5] %}
+              <div class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <div>{{ injury.player }}</div>
+                    <div class="text-muted small">{{ injury.details }}</div>
+                  </div>
+                  <div class="col-auto">
+                    <span class="badge {% if injury.status == 'Out' %}bg-red{% elif injury.status == 'Doubtful' %}bg-orange{% else %}bg-yellow{% endif %}">
+                      {{ injury.status }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-muted">No injuries reported</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endif %}
+
+<!-- Rest Days & Travel Distance -->
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">⏰ {{ away }} - Rest & Travel</h3>
+      </div>
+      <div class="card-body">
+        {% if game.espn_data.away.rest_days %}
+        <div class="row mb-3">
+          <div class="col-6">
+            <div class="subheader">Days of Rest</div>
+            <div class="h2">{{ game.espn_data.away.rest_days }}</div>
+            {% if game.espn_data.away.rest_days < 5 %}
+            <span class="badge bg-red">Short Rest</span>
+            {% elif game.espn_data.away.rest_days > 10 %}
+            <span class="badge bg-green">Well Rested</span>
+            {% else %}
+            <span class="badge bg-blue">Normal Rest</span>
+            {% endif %}
+          </div>
+          <div class="col-6">
+            <div class="subheader">Travel Distance</div>
+            <div class="h2">{{ game.espn_data.away.travel_distance }} mi</div>
+            {% if game.espn_data.away.travel_distance > 1500 %}
+            <span class="badge bg-red">Long Travel</span>
+            {% elif game.espn_data.away.travel_distance > 800 %}
+            <span class="badge bg-yellow">Medium Travel</span>
+            {% else %}
+            <span class="badge bg-green">Short Travel</span>
+            {% endif %}
+          </div>
+        </div>
+        
+        <!-- Fatigue Assessment -->
+        {% set fatigue_score = 0 %}
+        {% if game.espn_data.away.rest_days < 5 %}{% set fatigue_score = fatigue_score + 2 %}{% endif %}
+        {% if game.espn_data.away.travel_distance > 1500 %}{% set fatigue_score = fatigue_score + 2 %}{% endif %}
+        {% if game.espn_data.away.travel_distance > 800 and game.espn_data.away.rest_days < 6 %}{% set fatigue_score = fatigue_score + 1 %}{% endif %}
+        
+        {% if fatigue_score > 0 %}
+        <div class="alert alert-warning mb-0">
+          <strong>Fatigue Risk:</strong>
+          {% if fatigue_score >= 3 %}
+          High - Short rest + long travel = significant disadvantage
+          {% elif fatigue_score == 2 %}
+          Medium - Either short rest or long travel affecting performance
+          {% else %}
+          Low - Minor fatigue factors
+          {% endif %}
+        </div>
+        {% else %}
+        <div class="alert alert-success mb-0">
+          <strong>No Fatigue Issues</strong> - Team is well-rested with minimal travel
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="text-muted">Rest and travel data not available</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">⏰ {{ home }} - Rest & Travel</h3>
+      </div>
+      <div class="card-body">
+        {% if game.espn_data.home.rest_days %}
+        <div class="row mb-3">
+          <div class="col-6">
+            <div class="subheader">Days of Rest</div>
+            <div class="h2">{{ game.espn_data.home.rest_days }}</div>
+            {% if game.espn_data.home.rest_days < 5 %}
+            <span class="badge bg-red">Short Rest</span>
+            {% elif game.espn_data.home.rest_days > 10 %}
+            <span class="badge bg-green">Well Rested</span>
+            {% else %}
+            <span class="badge bg-blue">Normal Rest</span>
+            {% endif %}
+          </div>
+          <div class="col-6">
+            <div class="subheader">Travel Distance</div>
+            <div class="h2">0 mi</div>
+            <span class="badge bg-green">Home Game</span>
+          </div>
+        </div>
+        
+        <div class="alert alert-success mb-0">
+          <strong>Home Field Advantage</strong> - No travel, familiar environment
+        </div>
+        {% else %}
+        <div class="text-muted">Rest and travel data not available</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Performance Splits -->
+<div class="row mb-3">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">📊 Performance Splits - How Teams Perform in Different Situations</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <!-- Away Team Splits -->
+          <div class="col-md-6">
+            <h4>{{ away }} Performance Breakdown</h4>
+            {% set away_splits = game.espn_data.away.splits %}
+            {% if away_splits.overall.games > 0 %}
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Split</th>
+                    <th>Record</th>
+                    <th>PPG</th>
+                    <th>PAPG</th>
+                    <th>vs Overall</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Overall</strong></td>
+                    <td>-</td>
+                    <td>{{ away_splits.overall.ppg }}</td>
+                    <td>{{ away_splits.overall.papg }}</td>
+                    <td>-</td>
+                  </tr>
+                  <tr class="{% if away_splits.home.diff > 2 %}table-success{% elif away_splits.home.diff < -2 %}table-danger{% endif %}">
+                    <td>Home</td>
+                    <td>{{ away_splits.home.record }}</td>
+                    <td>{{ away_splits.home.ppg }}</td>
+                    <td>{{ away_splits.home.papg }}</td>
+                    <td>
+                      {% if away_splits.home.diff > 0 %}
+                      <span class="badge bg-green">+{{ away_splits.home.diff }}</span>
+                      {% elif away_splits.home.diff < 0 %}
+                      <span class="badge bg-red">{{ away_splits.home.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr class="{% if away_splits.away.diff > 2 %}table-success{% elif away_splits.away.diff < -2 %}table-danger{% endif %}">
+                    <td>Away</td>
+                    <td>{{ away_splits.away.record }}</td>
+                    <td>{{ away_splits.away.ppg }}</td>
+                    <td>{{ away_splits.away.papg }}</td>
+                    <td>
+                      {% if away_splits.away.diff > 0 %}
+                      <span class="badge bg-green">+{{ away_splits.away.diff }}</span>
+                      {% elif away_splits.away.diff < 0 %}
+                      <span class="badge bg-red">{{ away_splits.away.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Grass</td>
+                    <td>{{ away_splits.grass.record }}</td>
+                    <td>{{ away_splits.grass.ppg }}</td>
+                    <td>{{ away_splits.grass.papg }}</td>
+                    <td>
+                      {% if away_splits.grass.diff > 0 %}
+                      <span class="badge bg-green">+{{ away_splits.grass.diff }}</span>
+                      {% elif away_splits.grass.diff < 0 %}
+                      <span class="badge bg-red">{{ away_splits.grass.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Turf</td>
+                    <td>{{ away_splits.turf.record }}</td>
+                    <td>{{ away_splits.turf.ppg }}</td>
+                    <td>{{ away_splits.turf.papg }}</td>
+                    <td>
+                      {% if away_splits.turf.diff > 0 %}
+                      <span class="badge bg-green">+{{ away_splits.turf.diff }}</span>
+                      {% elif away_splits.turf.diff < 0 %}
+                      <span class="badge bg-red">{{ away_splits.turf.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Indoor</td>
+                    <td>{{ away_splits.indoor.record }}</td>
+                    <td>{{ away_splits.indoor.ppg }}</td>
+                    <td>{{ away_splits.indoor.papg }}</td>
+                    <td>
+                      {% if away_splits.indoor.diff > 0 %}
+                      <span class="badge bg-green">+{{ away_splits.indoor.diff }}</span>
+                      {% elif away_splits.indoor.diff < 0 %}
+                      <span class="badge bg-red">{{ away_splits.indoor.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Outdoor</td>
+                    <td>{{ away_splits.outdoor.record }}</td>
+                    <td>{{ away_splits.outdoor.ppg }}</td>
+                    <td>{{ away_splits.outdoor.papg }}</td>
+                    <td>
+                      {% if away_splits.outdoor.diff > 0 %}
+                      <span class="badge bg-green">+{{ away_splits.outdoor.diff }}</span>
+                      {% elif away_splits.outdoor.diff < 0 %}
+                      <span class="badge bg-red">{{ away_splits.outdoor.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            {% else %}
+            <div class="text-muted">No completed games yet</div>
+            {% endif %}
+          </div>
+          
+          <!-- Home Team Splits -->
+          <div class="col-md-6">
+            <h4>{{ home }} Performance Breakdown</h4>
+            {% set home_splits = game.espn_data.home.splits %}
+            {% if home_splits.overall.games > 0 %}
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Split</th>
+                    <th>Record</th>
+                    <th>PPG</th>
+                    <th>PAPG</th>
+                    <th>vs Overall</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Overall</strong></td>
+                    <td>-</td>
+                    <td>{{ home_splits.overall.ppg }}</td>
+                    <td>{{ home_splits.overall.papg }}</td>
+                    <td>-</td>
+                  </tr>
+                  <tr class="{% if home_splits.home.diff > 2 %}table-success{% elif home_splits.home.diff < -2 %}table-danger{% endif %}">
+                    <td>Home</td>
+                    <td>{{ home_splits.home.record }}</td>
+                    <td>{{ home_splits.home.ppg }}</td>
+                    <td>{{ home_splits.home.papg }}</td>
+                    <td>
+                      {% if home_splits.home.diff > 0 %}
+                      <span class="badge bg-green">+{{ home_splits.home.diff }}</span>
+                      {% elif home_splits.home.diff < 0 %}
+                      <span class="badge bg-red">{{ home_splits.home.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr class="{% if home_splits.away.diff > 2 %}table-success{% elif home_splits.away.diff < -2 %}table-danger{% endif %}">
+                    <td>Away</td>
+                    <td>{{ home_splits.away.record }}</td>
+                    <td>{{ home_splits.away.ppg }}</td>
+                    <td>{{ home_splits.away.papg }}</td>
+                    <td>
+                      {% if home_splits.away.diff > 0 %}
+                      <span class="badge bg-green">+{{ home_splits.away.diff }}</span>
+                      {% elif home_splits.away.diff < 0 %}
+                      <span class="badge bg-red">{{ home_splits.away.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Grass</td>
+                    <td>{{ home_splits.grass.record }}</td>
+                    <td>{{ home_splits.grass.ppg }}</td>
+                    <td>{{ home_splits.grass.papg }}</td>
+                    <td>
+                      {% if home_splits.grass.diff > 0 %}
+                      <span class="badge bg-green">+{{ home_splits.grass.diff }}</span>
+                      {% elif home_splits.grass.diff < 0 %}
+                      <span class="badge bg-red">{{ home_splits.grass.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Turf</td>
+                    <td>{{ home_splits.turf.record }}</td>
+                    <td>{{ home_splits.turf.ppg }}</td>
+                    <td>{{ home_splits.turf.papg }}</td>
+                    <td>
+                      {% if home_splits.turf.diff > 0 %}
+                      <span class="badge bg-green">+{{ home_splits.turf.diff }}</span>
+                      {% elif home_splits.turf.diff < 0 %}
+                      <span class="badge bg-red">{{ home_splits.turf.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Indoor</td>
+                    <td>{{ home_splits.indoor.record }}</td>
+                    <td>{{ home_splits.indoor.ppg }}</td>
+                    <td>{{ home_splits.indoor.papg }}</td>
+                    <td>
+                      {% if home_splits.indoor.diff > 0 %}
+                      <span class="badge bg-green">+{{ home_splits.indoor.diff }}</span>
+                      {% elif home_splits.indoor.diff < 0 %}
+                      <span class="badge bg-red">{{ home_splits.indoor.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Outdoor</td>
+                    <td>{{ home_splits.outdoor.record }}</td>
+                    <td>{{ home_splits.outdoor.ppg }}</td>
+                    <td>{{ home_splits.outdoor.papg }}</td>
+                    <td>
+                      {% if home_splits.outdoor.diff > 0 %}
+                      <span class="badge bg-green">+{{ home_splits.outdoor.diff }}</span>
+                      {% elif home_splits.outdoor.diff < 0 %}
+                      <span class="badge bg-red">{{ home_splits.outdoor.diff }}</span>
+                      {% else %}
+                      <span class="badge bg-secondary">0.0</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            {% else %}
+            <div class="text-muted">No completed games yet</div>
+            {% endif %}
+          </div>
+        </div>
+        
+        <!-- Key Insights -->
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="alert alert-info">
+              <strong>💡 Key Insights:</strong>
+              <ul class="mb-0">
+                {% if away_splits.away.diff < -3 %}
+                <li>{{ away }} struggles on the road ({{ away_splits.away.diff }} PPG vs overall)</li>
+                {% elif away_splits.away.diff > 3 %}
+                <li>{{ away }} excels on the road (+{{ away_splits.away.diff }} PPG vs overall)</li>
+                {% endif %}
+                
+                {% if home_splits.home.diff > 3 %}
+                <li>{{ home }} has strong home field advantage (+{{ home_splits.home.diff }} PPG vs overall)</li>
+                {% elif home_splits.home.diff < -3 %}
+                <li>{{ home }} surprisingly worse at home ({{ home_splits.home.diff }} PPG vs overall)</li>
+                {% endif %}
+                
+                {% if game.espn_data.get('game_summary', {}).get('venue', {}).get('grass') %}
+                  {% if away_splits.grass.diff < -2 %}
+                  <li>⚠️ {{ away }} struggles on grass ({{ away_splits.grass.diff }} PPG)</li>
+                  {% elif away_splits.grass.diff > 2 %}
+                  <li>✅ {{ away }} performs better on grass (+{{ away_splits.grass.diff }} PPG)</li>
+                  {% endif %}
+                {% else %}
+                  {% if away_splits.turf.diff < -2 %}
+                  <li>⚠️ {{ away }} struggles on turf ({{ away_splits.turf.diff }} PPG)</li>
+                  {% elif away_splits.turf.diff > 2 %}
+                  <li>✅ {{ away }} performs better on turf (+{{ away_splits.turf.diff }} PPG)</li>
+                  {% endif %}
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Last 5 Games -->
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">📈 {{ away }} - Recent Form (Last 5 Games)</h3>
+      </div>
+      <div class="card-body">
+        {% if game.espn_data.away.last_five %}
+        <div class="list-group list-group-flush">
+          {% for game_item in game.espn_data.away.last_five %}
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="avatar avatar-sm">{{ game_item.opponent }}</span>
+              </div>
+              <div class="col">
+                <div>vs {{ game_item.opponent }}</div>
+                <div class="text-muted small">{{ game_item.venue }}</div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-muted">No recent games available</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">📈 {{ home }} - Recent Form (Last 5 Games)</h3>
+      </div>
+      <div class="card-body">
+        {% if game.espn_data.home.last_five %}
+        <div class="list-group list-group-flush">
+          {% for game_item in game.espn_data.home.last_five %}
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="avatar avatar-sm">{{ game_item.opponent }}</span>
+              </div>
+              <div class="col">
+                <div>vs {{ game_item.opponent }}</div>
+                <div class="text-muted small">{{ game_item.venue }}</div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-muted">No recent games available</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
 <!-- Season Stats Comparison -->
 <div class="row mb-3">
   <div class="col-12">

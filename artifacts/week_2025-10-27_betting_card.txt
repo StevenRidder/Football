@@ -2,61 +2,57 @@
 NFL WEEKLY BETTING CARD - Ranked by Expected Value
 ================================================================================
 
-Found 13 plays with EV ≥ 2%
+Found 12 plays with EV ≥ 2%
 
-Total recommended stake: $30,382
+Total recommended stake: $30,000
 
 
 1. NO@LA - SPREAD
-   BET LA +17.0 @ 25.0% (EV: +90.7%, Prob: 99.9%)
+   BET LA +13.2 @ 25.0% (EV: +88.6%, Prob: 98.8%)
    Stake: $2,500
 
-2. CHI@CIN - SPREAD
-   BET CIN +12.3 @ 25.0% (EV: +88.2%, Prob: 98.6%)
+2. ARI@DAL - SPREAD
+   BET DAL +9.6 @ 25.0% (EV: +82.5%, Prob: 95.6%)
    Stake: $2,500
 
 3. LAC@TEN - SPREAD
-   BET LAC +12.5 @ 25.0% (EV: +88.2%, Prob: 98.6%)
+   BET LAC +9.3 @ 25.0% (EV: +81.2%, Prob: 94.9%)
    Stake: $2,500
 
-4. ARI@DAL - SPREAD
-   BET DAL +12.4 @ 25.0% (EV: +88.2%, Prob: 98.6%)
+4. CAR@GB - SPREAD
+   BET GB +9.1 @ 25.0% (EV: +81.0%, Prob: 94.8%)
    Stake: $2,500
 
-5. CAR@GB - SPREAD
-   BET GB +11.8 @ 25.0% (EV: +87.3%, Prob: 98.1%)
+5. CHI@CIN - SPREAD
+   BET CIN +9.1 @ 25.0% (EV: +80.8%, Prob: 94.7%)
    Stake: $2,500
 
-6. BAL@MIA - SPREAD
-   BET MIA +11.3 @ 25.0% (EV: +86.9%, Prob: 97.9%)
+6. MIN@DET - SPREAD
+   BET DET +8.7 @ 25.0% (EV: +79.3%, Prob: 93.9%)
    Stake: $2,500
 
-7. MIN@DET - SPREAD
-   BET DET +11.0 @ 25.0% (EV: +86.1%, Prob: 97.5%)
+7. BAL@MIA - SPREAD
+   BET MIA +8.4 @ 25.0% (EV: +78.5%, Prob: 93.5%)
    Stake: $2,500
 
 8. ATL@NE - SPREAD
-   BET NE +9.7 @ 25.0% (EV: +82.7%, Prob: 95.7%)
+   BET NE +7.9 @ 25.0% (EV: +74.9%, Prob: 91.6%)
    Stake: $2,500
 
 9. SF@NYG - SPREAD
-   BET NYG +7.0 @ 25.0% (EV: +69.5%, Prob: 88.8%)
+   BET NYG +4.7 @ 25.0% (EV: +52.5%, Prob: 79.9%)
    Stake: $2,500
 
 10. KC@BUF - SPREAD
-   BET KC +5.6 @ 25.0% (EV: +59.6%, Prob: 83.6%)
+   BET KC +4.2 @ 25.0% (EV: +48.0%, Prob: 77.5%)
    Stake: $2,500
 
 11. IND@PIT - SPREAD
-   BET IND +5.4 @ 25.0% (EV: +59.4%, Prob: 83.5%)
+   BET IND +4.2 @ 25.0% (EV: +47.6%, Prob: 77.3%)
    Stake: $2,500
 
 12. JAX@LV - SPREAD
-   BET JAX +4.5 @ 25.0% (EV: +50.4%, Prob: 78.8%)
+   BET JAX +3.9 @ 25.0% (EV: +43.6%, Prob: 75.2%)
    Stake: $2,500
-
-13. DEN@HOU - SPREAD
-   BET HOU +0.6 @ 3.8% (EV: +3.5%, Prob: 54.2%)
-   Stake: $382
 
 ================================================================================

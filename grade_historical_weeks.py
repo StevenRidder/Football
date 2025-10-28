@@ -5,7 +5,6 @@ Grade historical predictions for weeks 1-7 against actual results
 import pandas as pd
 import requests
 from pathlib import Path
-from datetime import datetime
 
 
 def fetch_espn_scores(season: int, week: int):
@@ -146,7 +145,7 @@ def main():
         predictions = pd.read_csv(pred_file)
         
         # Fetch actual scores
-        print(f"Fetching actual scores from ESPN...")
+        print("Fetching actual scores from ESPN...")
         actual_scores = fetch_espn_scores(2025, week)
         
         if not actual_scores:
@@ -179,7 +178,7 @@ def main():
             print(f"   Spread bet accuracy: {spread_bet_accuracy:.1f}% ({len(spread_bets)} bets)")
         
         # Show biggest misses
-        print(f"\n   Biggest spread misses:")
+        print("\n   Biggest spread misses:")
         worst_spread = graded.nlargest(3, 'spread_error')[['away', 'home', 'pred_score', 'actual_score', 'spread_error']]
         for _, row in worst_spread.iterrows():
             print(f"      {row['away']}@{row['home']}: Pred {row['pred_score']}, Actual {row['actual_score']} (off by {row['spread_error']:.1f})")
@@ -215,7 +214,7 @@ def main():
         if not spread_bets_all.empty:
             print(f"Overall spread bet accuracy: {spread_bets_all['spread_bet_correct'].mean() * 100:.1f}% ({len(spread_bets_all)} bets)")
         
-        print(f"\n📈 Week-by-Week Breakdown:")
+        print("\n📈 Week-by-Week Breakdown:")
         print(summary_df.to_string(index=False))
         
         # Save detailed results

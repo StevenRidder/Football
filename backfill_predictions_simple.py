@@ -3,9 +3,7 @@
 Backfill historical predictions for weeks 1-7 using the actual run_week function
 """
 from pathlib import Path
-from datetime import date, timedelta
 from nfl_edge.main import run_week
-import sys
 import requests
 
 
@@ -107,8 +105,8 @@ def main():
         print(f"   Week {week}: {error}")
     
     if successful:
-        print(f"\n📁 Files saved in artifacts/ directory")
-        print(f"   Check: ls -lh artifacts/predictions_2025_week*.csv")
+        print("\n📁 Files saved in artifacts/ directory")
+        print("   Check: ls -lh artifacts/predictions_2025_week*.csv")
 
 
 if __name__ == "__main__":

@@ -26,6 +26,120 @@ class LiveBetTracker:
         self.live_games = {}
         self.player_tracker = PlayerStatsTracker()
     
+    def get_leg_live_status(self, leg_description, team, line, live_games, bet_description=None):
+        """
+        Calculate live status for a single parlay leg.
+        This is the backend version - no frontend parsing needed.
+        """
+        if not leg_description:
+            return None
+        
+        leg_lower = leg_description.lower()
+        
+        # Find the game for this leg
+        game = None
+        if bet_description:
+            # Extract game from bet description
+            import re
+            game_match = re.search(r'FOOTBALL - NFL - (.+?) v (.+?)(?:\||$|\n)', bet_description, re.IGNORECASE)
+            if game_match:
+                team1 = game_match.group(1).strip()
+                team2 = game_match.group(2).strip()
+                
+                # Find matching game
+                for g in live_games:
+                    if (team1 in g['away_team'] or team1 in g['home_team']) and \
+                       (team2 in g['away_team'] or team2 in g['home_team']):
+                        game = g
+                        break
+        
+        if not game:
+            return None  # Game not started yet
+        
+        # Check if game is live or final
+        if not game.get('is_live') and not game.get('is_final'):
+            return None
+        
+        # Player prop
+        if 'player' in leg_lower:
+            return self.player_tracker.check_prop_bet(game['id'], leg_description)
+        
+        # Spread
+        if 'spread' in leg_lower and team:
+            spread_match = re.search(r'([-+][\d.]+)', line or '')
+            if spread_match:
+                spread = float(spread_match.group(1))
+                
+                # Determine if team is home or away
+                is_home = team.lower() in game['home_team'].lower()
+                
+                if is_home:
+                    score_diff = game['home_score'] - game['away_score']
+                else:
+                    score_diff = game['away_score'] - game['home_score']
+                
+                effective_diff = score_diff + spread
+                
+                if game.get('is_final'):
+                    return 'winning' if effective_diff > 0 else 'push' if effective_diff == 0 else 'losing'
+                else:
+                    # Live game - show current status
+                    if effective_diff > 7:
+                        return 'winning'
+                    elif effective_diff < -7:
+                        return 'losing'
+                    else:
+                        return 'neutral'
+        
+        # Total
+        if 'total' in leg_lower or 'over' in leg_lower or 'under' in leg_lower:
+            total_match = re.search(r'(over|under)\s+([\d.]+)', leg_lower)
+            if total_match:
+                over_under = total_match.group(1)
+                total_line = float(total_match.group(2))
+                
+                current_total = game['away_score'] + game['home_score']
+                
+                if game.get('is_final'):
+                    if over_under == 'over':
+                        return 'winning' if current_total > total_line else 'push' if current_total == total_line else 'losing'
+                    else:
+                        return 'winning' if current_total < total_line else 'push' if current_total == total_line else 'losing'
+                else:
+                    # Live game
+                    diff = current_total - total_line
+                    if over_under == 'over':
+                        if diff > 7:
+                            return 'winning'
+                        elif diff < -7:
+                            return 'losing'
+                        else:
+                            return 'neutral'
+                    else:  # under
+                        if diff < -7:
+                            return 'winning'
+                        elif diff > 7:
+                            return 'losing'
+                        else:
+                            return 'neutral'
+        
+        # Moneyline
+        if 'money line' in leg_lower or 'moneyline' in leg_lower:
+            if team:
+                is_home = team.lower() in game['home_team'].lower()
+                
+                if is_home:
+                    winning = game['home_score'] > game['away_score']
+                else:
+                    winning = game['away_score'] > game['home_score']
+                
+                if game.get('is_final'):
+                    return 'winning' if winning else 'losing'
+                else:
+                    return 'winning' if winning else 'losing'
+        
+        return None
+    
     def get_pending_bets(self):
         """Get all pending bets from database"""
         pending = self.db.get_pending_bets()
