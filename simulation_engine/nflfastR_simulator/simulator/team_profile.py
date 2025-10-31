@@ -504,14 +504,23 @@ class TeamProfile:
                 ]
                 
                 if len(prior_weeks) > 0:
-                    # Aggregate prior weeks
+                    # Apply regression to mean for extreme weekly values
+                    # Cap individual weeks to prevent one bad game from destroying average
+                    league_avg_ypp = 5.5  # NFL average
+                    league_avg_ypa = 6.5
+                    
+                    def shrink_extreme(values, league_avg, max_dev=1.5):
+                        """Shrink extreme values towards league average"""
+                        return values.apply(lambda x: max(league_avg - max_dev, min(league_avg + max_dev, x)))
+                    
+                    # Aggregate prior weeks with extreme value capping
                     team_data = pd.DataFrame([{
                         'posteam': self.team,
                         'season': self.season,
-                        'off_yards_per_play': prior_weeks['off_yards_per_play'].mean(),
-                        'off_yards_per_pass_attempt': prior_weeks['off_yards_per_pass_attempt'].mean(),
-                        'def_yards_per_play_allowed': prior_weeks['def_yards_per_play_allowed'].mean(),
-                        'def_yards_per_pass_allowed': prior_weeks['def_yards_per_pass_allowed'].mean(),
+                        'off_yards_per_play': shrink_extreme(prior_weeks['off_yards_per_play'], league_avg_ypp).mean(),
+                        'off_yards_per_pass_attempt': shrink_extreme(prior_weeks['off_yards_per_pass_attempt'], league_avg_ypa).mean(),
+                        'def_yards_per_play_allowed': shrink_extreme(prior_weeks['def_yards_per_play_allowed'], league_avg_ypp).mean(),
+                        'def_yards_per_pass_allowed': shrink_extreme(prior_weeks['def_yards_per_pass_allowed'], league_avg_ypa).mean(),
                     }])
                 else:
                     team_data = pd.DataFrame()
