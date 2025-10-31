@@ -44,7 +44,13 @@
     <div class="card">
       <div class="card-body">
         <div class="subheader">Predicted Score</div>
-        <div class="h2 mb-0">{{ game.get('Exp score (away-home)', 'N/A') }}</div>
+        {% if game.get('our_away_score') is not none and game.get('our_home_score') is not none %}
+        <div class="h2 mb-0">{{ "%.0f"|format(game.get('our_away_score', 0)) }}-{{ "%.0f"|format(game.get('our_home_score', 0)) }}</div>
+        {% elif game.get('Exp score (away-home)') %}
+        <div class="h2 mb-0">{{ game.get('Exp score (away-home)') }}</div>
+        {% else %}
+        <div class="h2 mb-0">N/A</div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -52,7 +58,13 @@
     <div class="card">
       <div class="card-body">
         <div class="subheader">{{ home }} Win Probability</div>
+        {% if game.get('p_home_cover') is not none %}
+        <div class="h2 mb-0">{{ "%.1f"|format(game.get('p_home_cover', 0) * 100) }}%</div>
+        {% elif game.get('Home win %') is not none %}
         <div class="h2 mb-0">{{ "%.1f"|format(game.get('Home win %', 0)) }}%</div>
+        {% else %}
+        <div class="h2 mb-0">0.0%</div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -60,7 +72,19 @@
     <div class="card">
       <div class="card-body">
         <div class="subheader">Spread</div>
+        {% if game.get('our_spread') is not none %}
+          {% if game.get('our_spread', 0) < 0 %}
+          <div class="h2 mb-0">{{ away }} {{ "%.1f"|format(game.get('our_spread', 0)) }}</div>
+          {% elif game.get('our_spread', 0) > 0 %}
+          <div class="h2 mb-0">{{ home }} {{ "%+.1f"|format(game.get('our_spread', 0)) }}</div>
+          {% else %}
+          <div class="h2 mb-0">Pick'em</div>
+          {% endif %}
+        {% elif game.get('Spread used (home-)') is not none %}
         <div class="h2 mb-0">{{ home }} {{ "%+.1f"|format(game.get('Spread used (home-)', 0)) }}</div>
+        {% else %}
+        <div class="h2 mb-0">{{ home }} +0.0</div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -68,7 +92,13 @@
     <div class="card">
       <div class="card-body">
         <div class="subheader">Total</div>
+        {% if game.get('our_total') is not none %}
+        <div class="h2 mb-0">{{ "%.1f"|format(game.get('our_total', 0)) }}</div>
+        {% elif game.get('Total used') is not none %}
         <div class="h2 mb-0">{{ "%.1f"|format(game.get('Total used', 0)) }}</div>
+        {% else %}
+        <div class="h2 mb-0">0.0</div>
+        {% endif %}
       </div>
     </div>
   </div>

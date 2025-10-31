@@ -23,6 +23,7 @@ import time
 LOW_EDGE = 0.0      # Bet everything
 MEDIUM_EDGE = 0.03  # 3% edge (was 2%)
 HIGH_EDGE = 0.06    # 6% edge (was 4%)
+MAX_EDGE_CAP = 0.25  # Cap extreme edges at 25% to prevent outlier-driven ROI
 
 BREAKEVEN = 0.524
 N_SIMS = 100
@@ -110,6 +111,10 @@ def simulate_one_game(args):
         calibrated_spread_mean = calibrated_home_mean - calibrated_away_mean
         # Use raw SD for spread too - preserves variance
         calibrated_spread_sd = spread_raw_sd  # Changed: was LINEAR_BETA * spread_raw_sd
+        
+        # Store calibrated mean scores for frontend display (NOT market-centered)
+        home_score_mean = calibrated_home_mean
+        away_score_mean = calibrated_away_mean
         
         # Calculate probabilities using normal approximation
         # Using raw SD preserves more variance → sharper probabilities → better conviction distribution
@@ -225,10 +230,10 @@ def simulate_one_game(args):
         
         if p_home_cover > BREAKEVEN:
             spread_bet = 'HOME'
-            spread_edge = p_home_cover - BREAKEVEN
+            spread_edge = min(p_home_cover - BREAKEVEN, MAX_EDGE_CAP)
         elif p_away_cover > BREAKEVEN:
             spread_bet = 'AWAY'
-            spread_edge = p_away_cover - BREAKEVEN
+            spread_edge = min(p_away_cover - BREAKEVEN, MAX_EDGE_CAP)
         
         if spread_bet:
             if spread_edge >= HIGH_EDGE:
@@ -244,10 +249,10 @@ def simulate_one_game(args):
         
         if p_over > BREAKEVEN:
             total_bet = 'OVER'
-            total_edge = p_over - BREAKEVEN
+            total_edge = min(p_over - BREAKEVEN, MAX_EDGE_CAP)
         elif p_under > BREAKEVEN:
             total_bet = 'UNDER'
-            total_edge = p_under - BREAKEVEN
+            total_edge = min(p_under - BREAKEVEN, MAX_EDGE_CAP)
         
         if total_bet:
             if total_edge >= HIGH_EDGE:
@@ -265,6 +270,9 @@ def simulate_one_game(args):
             'home_team': home,
             'spread_line': spread_line,
             'total_line': total_line,
+            # Mean scores (centered) for frontend display - THIS IS "OUR SCORE"
+            'home_score_mean': home_score_mean,
+            'away_score_mean': away_score_mean,
             'spread_mean': spreads_c.mean(),
             'total_mean': totals_c.mean(),
             'spread_sd': spreads_c.std(),
@@ -296,7 +304,9 @@ def simulate_one_game(args):
         }
     
     except Exception as e:
+        import traceback
         print(f"❌ Error on game {idx} ({away}@{home}): {e}")
+        print(f"   Full traceback: {traceback.format_exc()}")
         return None
 
 def grade_bets(df):
@@ -355,44 +365,66 @@ def print_summary(df):
     if len(spread_bets) > 0:
         print(f"\n📊 SPREAD BETS: {len(spread_bets)} total")
         
+        # Show ALL tiers, even if empty
         for conviction in ['HIGH', 'MEDIUM', 'LOW']:
             tier_bets = spread_bets[spread_bets['spread_conviction'] == conviction]
-            if len(tier_bets) == 0:
-                continue
             
             wins = (tier_bets['spread_result'] == 1.0).sum()
             losses = (tier_bets['spread_result'] == 0.0).sum()
             pushes = tier_bets['spread_result'].isna().sum()
             
-            if wins + losses > 0:
+            if len(tier_bets) > 0 and wins + losses > 0:
                 win_rate = wins / (wins + losses) * 100
                 roi = ((wins * 0.909 - losses) / len(tier_bets)) * 100
                 avg_edge = tier_bets['spread_edge'].mean() * 100
                 
                 print(f"\n   {conviction} Conviction ({len(tier_bets)} bets, avg edge: {avg_edge:.1f}%):")
                 print(f"      {wins}W-{losses}L-{pushes}P | Win Rate: {win_rate:.1f}% | ROI: {roi:+.1f}%")
+            elif len(tier_bets) == 0:
+                print(f"\n   {conviction} Conviction (0 bets)")
+        
+        # ALL spread bets summary
+        wins = (spread_bets['spread_result'] == 1.0).sum()
+        losses = (spread_bets['spread_result'] == 0.0).sum()
+        pushes = spread_bets['spread_result'].isna().sum()
+        if wins + losses > 0:
+            win_rate = wins / (wins + losses) * 100
+            roi = ((wins * 0.909 - losses) / len(spread_bets)) * 100
+            print(f"\n   ALL Spread Bets ({len(spread_bets)} total):")
+            print(f"      {wins}W-{losses}L-{pushes}P | Win Rate: {win_rate:.1f}% | ROI: {roi:+.1f}%")
     
     # Overall total performance
     total_bets = df[df['total_bet'].notna()]
     if len(total_bets) > 0:
         print(f"\n📊 TOTAL BETS: {len(total_bets)} total")
         
+        # Show ALL tiers, even if empty
         for conviction in ['HIGH', 'MEDIUM', 'LOW']:
             tier_bets = total_bets[total_bets['total_conviction'] == conviction]
-            if len(tier_bets) == 0:
-                continue
             
             wins = (tier_bets['total_result'] == 1.0).sum()
             losses = (tier_bets['total_result'] == 0.0).sum()
             pushes = tier_bets['total_result'].isna().sum()
             
-            if wins + losses > 0:
+            if len(tier_bets) > 0 and wins + losses > 0:
                 win_rate = wins / (wins + losses) * 100
                 roi = ((wins * 0.909 - losses) / len(tier_bets)) * 100
                 avg_edge = tier_bets['total_edge'].mean() * 100
                 
                 print(f"\n   {conviction} Conviction ({len(tier_bets)} bets, avg edge: {avg_edge:.1f}%):")
                 print(f"      {wins}W-{losses}L-{pushes}P | Win Rate: {win_rate:.1f}% | ROI: {roi:+.1f}%")
+            elif len(tier_bets) == 0:
+                print(f"\n   {conviction} Conviction (0 bets)")
+        
+        # ALL total bets summary
+        wins = (total_bets['total_result'] == 1.0).sum()
+        losses = (total_bets['total_result'] == 0.0).sum()
+        pushes = total_bets['total_result'].isna().sum()
+        if wins + losses > 0:
+            win_rate = wins / (wins + losses) * 100
+            roi = ((wins * 0.909 - losses) / len(total_bets)) * 100
+            print(f"\n   ALL Total Bets ({len(total_bets)} total):")
+            print(f"      {wins}W-{losses}L-{pushes}P | Win Rate: {win_rate:.1f}% | ROI: {roi:+.1f}%")
     
     print("\n" + "=" * 70)
 

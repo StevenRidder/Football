@@ -119,6 +119,47 @@
               Project Future Stress
             </button>
             <div class="text-muted mt-1 small">Generate estimated stress for upcoming weeks</div>
+            </div>
+          </div>
+         <div class="row g-3 mt-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Simulator Predictions</h3>
+              </div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-md-3">
+                    <button class="btn btn-primary w-100" onclick="runScript('sim_backtest')" id="btn-sim-backtest">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3" /><path d="M4 12c0 1.657 3.582 3 8 3s8 -1.343 8 -3" /><path d="M4 18c0 1.657 3.582 3 8 3s8 -1.343 8 -3" /></svg>
+                      Backtest Weeks 1-8
+                    </button>
+                    <div class="text-muted mt-1 small">Generate backtest for weeks 1-8 with results</div>
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn btn-primary w-100" onclick="runScript('sim_week9_10')" id="btn-sim-week9-10">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /></svg>
+                      Predict Weeks 9-10
+                    </button>
+                    <div class="text-muted mt-1 small">Generate predictions for future weeks</div>
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn btn-secondary w-100" onclick="runScript('sim_format')" id="btn-sim-format">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
+                      Format for Frontend
+                    </button>
+                    <div class="text-muted mt-1 small">Format predictions for display</div>
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn btn-success w-100" onclick="runScript('sim_all')" id="btn-sim-all">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-player-play me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 4v16l13 -8z" /></svg>
+                      Generate All
+                    </button>
+                    <div class="text-muted mt-1 small">Run all steps: backtest + predict + format</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div id="script-output" class="mt-3" style="display: none;">
@@ -280,7 +321,7 @@ function renderGames(games) {
     const marketHomeScore = game.closing_home_score ? Math.round(game.closing_home_score) : '-';
     const marketScore = `${marketAwayScore}-${marketHomeScore}`;
     
-    // Our predicted scores - CENTERED (market-adjusted, what we bet on)
+    // Our predicted scores - CALIBRATED (from isotonic/linear calibration, NOT market-centered)
     const ourAwayScore = game.our_away_score ? Math.round(game.our_away_score) : '-';
     const ourHomeScore = game.our_home_score ? Math.round(game.our_home_score) : '-';
     const ourScore = `${ourAwayScore}-${ourHomeScore}`;
@@ -291,64 +332,68 @@ function renderGames(games) {
     const rawHomeScore = (game.our_home_score_raw !== null && game.our_home_score_raw !== undefined) ? Math.round(game.our_home_score_raw) : null;
     const rawScore = (rawAwayScore !== null && rawHomeScore !== null) ? `${rawAwayScore}-${rawHomeScore}` : null;
     
-    // Format spreads with FAVORITE perspective (NO DECIMALS)
+    // Format spreads with FAVORITE perspective (WITH DECIMALS to preserve .5 values)
     // Display format: Always show FAVORITE with negative number
     // Backend spread convention: negative = away favored, positive = home favored
-    const marketSpreadRounded = Math.round(game.closing_spread);
     let marketSpread = '-';
     let marketSpreadClass = '';
-    if (game.closing_spread !== null) {
-      if (marketSpreadRounded < 0) {
-        // AWAY is favorite - show "AWAY -X"
-        marketSpread = `${game.away_team} ${marketSpreadRounded}`;
+    if (game.closing_spread !== null && game.closing_spread !== undefined) {
+      const marketSpreadValue = parseFloat(game.closing_spread);
+      if (marketSpreadValue < 0) {
+        // AWAY is favorite - show "AWAY -X" or "AWAY -X.5"
+        marketSpread = `${game.away_team} ${marketSpreadValue.toFixed(1)}`;
         marketSpreadClass = 'text-danger';
-      } else if (marketSpreadRounded > 0) {
-        // HOME is favorite - show "HOME -X"
-        marketSpread = `${game.home_team} -${marketSpreadRounded}`;
+      } else if (marketSpreadValue > 0) {
+        // HOME is favorite - show "HOME -X" or "HOME -X.5"
+        marketSpread = `${game.home_team} -${marketSpreadValue.toFixed(1)}`;
         marketSpreadClass = 'text-danger';
       } else {
         marketSpread = 'Pick\'em';
       }
     }
     
-    // Calculate spread/total from RAW simulator (what we actually think)
-    // Fall back to centered values if raw not available
-    const rawSpread = rawAwayScore !== null && rawHomeScore !== null ? 
-      (rawHomeScore - rawAwayScore) : null;
-    const rawTotal = rawAwayScore !== null && rawHomeScore !== null ? 
-      (rawAwayScore + rawHomeScore) : null;
-    const displaySpread = rawSpread !== null ? rawSpread : game.our_spread;
-    const displayTotal = rawTotal !== null ? rawTotal : game.our_total;
+    // Calculate spread/total from CALIBRATED scores (what we actually use for betting)
+    // Use calibrated scores (our_home_score, our_away_score) for display
+    const calibratedSpread = ourAwayScore !== '-' && ourHomeScore !== '-' ? 
+      (parseFloat(ourHomeScore) - parseFloat(ourAwayScore)) : null;
+    const calibratedTotal = (ourAwayScore !== '-' && ourHomeScore !== '-') ? 
+      (Number(ourHomeScore) + Number(ourAwayScore)) : null;
+    const displaySpread = calibratedSpread !== null ? calibratedSpread : game.our_spread;
+    const displayTotal = calibratedTotal !== null ? calibratedTotal : game.our_total;
     
-    const ourSpreadRounded = displaySpread !== null ? Math.round(displaySpread) : null;
+    // Use decimals for our spread (preserve .5 values)
     let ourSpread = '-';
     let ourSpreadClass = '';
-    if (displaySpread !== null) {
-      if (ourSpreadRounded < 0) {
-        // AWAY is favorite - show "AWAY -X"
-        ourSpread = `${game.away_team} ${ourSpreadRounded}`;
+    if (displaySpread !== null && displaySpread !== undefined) {
+      const ourSpreadValue = parseFloat(displaySpread);
+      if (ourSpreadValue < 0) {
+        // AWAY is favorite - show "AWAY -X" or "AWAY -X.5"
+        ourSpread = `${game.away_team} ${ourSpreadValue.toFixed(1)}`;
         ourSpreadClass = 'text-primary';
-      } else if (ourSpreadRounded > 0) {
-        // HOME is favorite - show "HOME -X"
-        ourSpread = `${game.home_team} -${ourSpreadRounded}`;
+      } else if (ourSpreadValue > 0) {
+        // HOME is favorite - show "HOME -X" or "HOME -X.5"
+        ourSpread = `${game.home_team} -${ourSpreadValue.toFixed(1)}`;
         ourSpreadClass = 'text-primary';
       } else {
         ourSpread = 'Pick\'em';
       }
     }
     
-    const marketTotal = game.closing_total !== null ? Math.round(game.closing_total) : '-';
-    const ourTotal = displayTotal !== null ? Math.round(displayTotal) : '-';
+    // Use decimals for totals (preserve .5 values)
+    const marketTotal = game.closing_total !== null && game.closing_total !== undefined ? 
+      parseFloat(game.closing_total).toFixed(1) : '-';
+    const ourTotal = displayTotal !== null && displayTotal !== undefined ? 
+      parseFloat(displayTotal).toFixed(1) : '-';
     
-    // Line movement
+    // Line movement (preserve decimals)
     const spreadMove = game.spread_movement && game.spread_movement !== 0 ? 
-      `<div class="text-muted small">Open: ${game.opening_spread} 
+      `<div class="text-muted small">Open: ${game.opening_spread !== null && game.opening_spread !== undefined ? parseFloat(game.opening_spread).toFixed(1) : '-'} 
        <span class="text-${game.spread_movement > 0 ? 'success' : 'danger'}">
          ${game.spread_movement > 0 ? '↑' : '↓'}${Math.abs(game.spread_movement).toFixed(1)}
        </span></div>` : '';
     
     const totalMove = game.total_movement && game.total_movement !== 0 ? 
-      `<div class="text-muted small">Open: ${Math.round(game.opening_total)} 
+      `<div class="text-muted small">Open: ${game.opening_total !== null && game.opening_total !== undefined ? parseFloat(game.opening_total).toFixed(1) : '-'} 
        <span class="text-${game.total_movement > 0 ? 'success' : 'danger'}">
          ${game.total_movement > 0 ? '↑' : '↓'}${Math.abs(game.total_movement).toFixed(1)}
        </span></div>` : '';
@@ -369,17 +414,15 @@ function renderGames(games) {
         <div class="text-muted" style="font-size: 0.7rem;">Market (from spread/total)</div>
       </td>
       <td>
-        ${rawScore ? 
-          `<div class="text-primary small fw-bold">${rawScore}</div>
-           <div class="text-muted" style="font-size: 0.7rem;">Simulator Prediction</div>
-           ${ourScore && ourScore !== rawScore ?
+        ${ourScore ? 
+          `<div class="text-primary small fw-bold">${ourScore}</div>
+           <div class="text-muted" style="font-size: 0.7rem;">Simulator Prediction (Calibrated)</div>
+           ${rawScore && rawScore !== ourScore ?
              `<div class="text-muted" style="font-size: 0.65rem; margin-top: 2px; opacity: 0.7;">
-               (Centered to market: ${ourScore})
+               (Raw: ${rawScore})
              </div>` : ''}
           ` :
-          `<div class="text-primary small fw-bold">${ourScore}</div>
-           <div class="text-muted" style="font-size: 0.7rem;">Simulator Prediction</div>
-          `}
+          `<div class="text-muted small">-</div>`}
         ${game.p_home_cover !== null && game.p_home_cover !== undefined ? 
           `<div class="text-muted" style="font-size: 0.7rem; margin-top: 2px;">
             <span class="badge ${game.p_away_cover > 0.524 ? 'bg-success' : 'bg-secondary'}" style="font-size: 0.65rem; padding: 2px 4px;" title="Probability ${game.away_team} covers the spread">
@@ -471,7 +514,18 @@ async function runScript(scriptName) {
   const outputDiv = document.getElementById('script-output');
   const statusEl = document.getElementById('script-status');
   const messageEl = document.getElementById('script-message');
-  const btnId = `btn-${scriptName === 'ol_continuity' ? 'ol' : scriptName === 'dl_pressure' ? 'dl' : scriptName === 'matchup_stress' ? 'stress' : scriptName === 'predictions' ? 'predictions' : 'future'}`;
+  const btnIdMap = {
+    'ol_continuity': 'ol',
+    'dl_pressure': 'dl',
+    'matchup_stress': 'stress',
+    'predictions': 'predictions',
+    'future_stress': 'future',
+    'sim_backtest': 'sim-backtest',
+    'sim_week9_10': 'sim-week9-10',
+    'sim_format': 'sim-format',
+    'sim_all': 'sim-all'
+  };
+  const btnId = `btn-${btnIdMap[scriptName] || scriptName}`;
   const btn = document.getElementById(btnId);
   
   // Show loading state
@@ -495,7 +549,7 @@ async function runScript(scriptName) {
       messageEl.textContent = data.message;
       
       // Reload games after predictions update
-      if (scriptName === 'predictions') {
+      if (scriptName === 'predictions' || scriptName.startsWith('sim_')) {
         setTimeout(() => {
           loadGames();
         }, 1000);

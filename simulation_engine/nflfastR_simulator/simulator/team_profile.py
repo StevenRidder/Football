@@ -83,15 +83,10 @@ class TeamProfile:
         team_map = {'LA': 'LAR'}
         lookup_team = team_map.get(self.team, self.team)
         
-        # Get team's EPA for this week
-        team_epa = epa_df[
-            (epa_df['team'] == lookup_team) &
-            (epa_df['season'] == self.season) &
-            (epa_df['week'] == self.week)
-        ]
-        
-        if len(team_epa) == 0:
-            # Fall back to season average
+        # CRITICAL: Use only PRIOR weeks (exclude current week to avoid look-ahead bias)
+        # For week N, aggregate weeks 1 through N-1
+        if self.week == 1:
+            # Week 1: Fall back to season average
             team_epa = epa_df[
                 (epa_df['team'] == lookup_team) &
                 (epa_df['season'] == self.season)
@@ -101,11 +96,32 @@ class TeamProfile:
                 print(f"⚠️  Warning: No EPA data for {self.team} {self.season} W{self.week}")
                 return 0.0, 0.0
             
-            off_epa = team_epa['off_epa_per_play'].mean()
-            def_epa = team_epa['def_epa_per_play'].mean()
+            off_epa = float(team_epa['off_epa_per_play'].mean())
+            def_epa = float(team_epa['def_epa_per_play'].mean())
         else:
-            off_epa = team_epa['off_epa_per_play'].iloc[0]
-            def_epa = team_epa['def_epa_per_play'].iloc[0]
+            # Aggregate prior weeks only
+            prior_weeks = epa_df[
+                (epa_df['team'] == lookup_team) &
+                (epa_df['season'] == self.season) &
+                (epa_df['week'] < self.week)  # KEY: Only prior weeks
+            ]
+            if len(prior_weeks) > 0:
+                # Aggregate prior weeks
+                off_epa = float(prior_weeks['off_epa_per_play'].mean())
+                def_epa = float(prior_weeks['def_epa_per_play'].mean())
+            else:
+                # Fall back to season average if no prior weeks
+                team_epa = epa_df[
+                    (epa_df['team'] == lookup_team) &
+                    (epa_df['season'] == self.season)
+                ]
+                
+                if len(team_epa) == 0:
+                    print(f"⚠️  Warning: No EPA data for {self.team} {self.season} W{self.week}")
+                    return 0.0, 0.0
+                
+                off_epa = float(team_epa['off_epa_per_play'].mean())
+                def_epa = float(team_epa['def_epa_per_play'].mean())
         
         return float(off_epa), float(def_epa)
     
@@ -291,15 +307,9 @@ class TeamProfile:
         
         pace_df = pd.read_csv(pace_file)
         
-        # Get team's pace for this week
-        team_pace = pace_df[
-            (pace_df['posteam'] == self.team) &
-            (pace_df['season'] == self.season) &
-            (pace_df['week'] == self.week)
-        ]
-        
-        if len(team_pace) == 0:
-            # Fall back to season average
+        # CRITICAL: Use only PRIOR weeks (exclude current week)
+        if self.week == 1:
+            # Week 1: Fall back to season average
             team_pace = pace_df[
                 (pace_df['posteam'] == self.team) &
                 (pace_df['season'] == self.season)
@@ -309,8 +319,26 @@ class TeamProfile:
                 return 6.6  # League average
             
             return float(team_pace['avg_plays_per_drive'].mean())
-        
-        return float(team_pace['avg_plays_per_drive'].iloc[0])
+        else:
+            # Aggregate prior weeks only
+            prior_weeks = pace_df[
+                (pace_df['posteam'] == self.team) &
+                (pace_df['season'] == self.season) &
+                (pace_df['week'] < self.week)  # Only prior weeks
+            ]
+            if len(prior_weeks) > 0:
+                return float(prior_weeks['avg_plays_per_drive'].mean())
+            else:
+                # Fall back to season average if no prior weeks
+                team_pace = pace_df[
+                    (pace_df['posteam'] == self.team) &
+                    (pace_df['season'] == self.season)
+                ]
+                
+                if len(team_pace) == 0:
+                    return 6.6  # League average
+                
+                return float(team_pace['avg_plays_per_drive'].mean())
     
     def get_pass_rate(self, down: int, distance_bucket: str, score_diff_bucket: str, time_bucket: str) -> float:
         """
@@ -453,11 +481,40 @@ class TeamProfile:
             ]
         else:
             ypp_df = pd.read_csv(weekly_file)
-            team_data = ypp_df[
-                (ypp_df['posteam'] == self.team) &
-                (ypp_df['season'] == self.season) &
-                (ypp_df['week'] == self.week)
-            ]
+            # CRITICAL: Use only PRIOR weeks to avoid look-ahead bias
+            # For week N, use weeks 1 through N-1 (or season average if N=1)
+            if self.week == 1:
+                # Week 1: Use season average from previous season, or aggregate weeks 1-17 from current season
+                # Fall through to season average below
+                season_file = self.data_dir / "team_yards_per_play_season.csv"
+                if season_file.exists():
+                    season_df = pd.read_csv(season_file)
+                    team_data = season_df[
+                        (season_df['posteam'] == self.team) &
+                        (season_df['season'] == self.season)
+                    ]
+                else:
+                    team_data = pd.DataFrame()
+            else:
+                # Week N: Aggregate weeks 1 through N-1 (exclude current week)
+                prior_weeks = ypp_df[
+                    (ypp_df['posteam'] == self.team) &
+                    (ypp_df['season'] == self.season) &
+                    (ypp_df['week'] < self.week)  # KEY: Only prior weeks
+                ]
+                
+                if len(prior_weeks) > 0:
+                    # Aggregate prior weeks
+                    team_data = pd.DataFrame([{
+                        'posteam': self.team,
+                        'season': self.season,
+                        'off_yards_per_play': prior_weeks['off_yards_per_play'].mean(),
+                        'off_yards_per_pass_attempt': prior_weeks['off_yards_per_pass_attempt'].mean(),
+                        'def_yards_per_play_allowed': prior_weeks['def_yards_per_play_allowed'].mean(),
+                        'def_yards_per_pass_allowed': prior_weeks['def_yards_per_pass_allowed'].mean(),
+                    }])
+                else:
+                    team_data = pd.DataFrame()
             
             if len(team_data) == 0:
                 # Fall back to season average
@@ -494,11 +551,23 @@ class TeamProfile:
             ]
         else:
             success_df = pd.read_csv(weekly_file)
-            team_data = success_df[
-                (success_df['posteam'] == self.team) &
-                (success_df['season'] == self.season) &
-                (success_df['week'] == self.week)
-            ]
+            # CRITICAL: Use only PRIOR weeks
+            if self.week == 1:
+                team_data = pd.DataFrame()
+            else:
+                prior_weeks = success_df[
+                    (success_df['posteam'] == self.team) &
+                    (success_df['season'] == self.season) &
+                    (success_df['week'] < self.week)  # Only prior weeks
+                ]
+                if len(prior_weeks) > 0:
+                    team_data = pd.DataFrame([{
+                        'posteam': self.team,
+                        'season': self.season,
+                        'early_down_success_rate': prior_weeks['early_down_success_rate'].mean(),
+                    }])
+                else:
+                    team_data = pd.DataFrame()
             
             if len(team_data) == 0:
                 season_file = self.data_dir / "early_down_success_season.csv"
@@ -532,11 +601,24 @@ class TeamProfile:
             ]
         else:
             anya_df = pd.read_csv(weekly_file)
-            team_data = anya_df[
-                (anya_df['posteam'] == self.team) &
-                (anya_df['season'] == self.season) &
-                (anya_df['week'] == self.week)
-            ]
+            # CRITICAL: Use only PRIOR weeks
+            if self.week == 1:
+                team_data = pd.DataFrame()
+            else:
+                prior_weeks = anya_df[
+                    (anya_df['posteam'] == self.team) &
+                    (anya_df['season'] == self.season) &
+                    (anya_df['week'] < self.week)  # Only prior weeks
+                ]
+                if len(prior_weeks) > 0:
+                    team_data = pd.DataFrame([{
+                        'posteam': self.team,
+                        'season': self.season,
+                        'off_anya': prior_weeks['off_anya'].mean(),
+                        'def_anya_allowed': prior_weeks['def_anya_allowed'].mean(),
+                    }])
+                else:
+                    team_data = pd.DataFrame()
             
             if len(team_data) == 0:
                 season_file = self.data_dir / "team_anya_season.csv"
@@ -563,11 +645,23 @@ class TeamProfile:
             return
         
         turnovers_df = pd.read_csv(weekly_file)
-        team_data = turnovers_df[
-            (turnovers_df['posteam'] == self.team) &
-            (turnovers_df['season'] == self.season) &
-            (turnovers_df['week'] == self.week)
-        ]
+        # CRITICAL: Use only PRIOR weeks
+        if self.week == 1:
+            team_data = pd.DataFrame()
+        else:
+            prior_weeks = turnovers_df[
+                (turnovers_df['posteam'] == self.team) &
+                (turnovers_df['season'] == self.season) &
+                (turnovers_df['week'] < self.week)  # Only prior weeks
+            ]
+            if len(prior_weeks) > 0:
+                team_data = pd.DataFrame([{
+                    'posteam': self.team,
+                    'season': self.season,
+                    'regression_factor': prior_weeks['regression_factor'].mean(),
+                }])
+            else:
+                team_data = pd.DataFrame()
         
         if len(team_data) > 0:
             self.turnover_regression_factor = float(team_data['regression_factor'].iloc[0])
@@ -592,11 +686,24 @@ class TeamProfile:
             ]
         else:
             redzone_df = pd.read_csv(weekly_file)
-            team_data = redzone_df[
-                (redzone_df['posteam'] == self.team) &
-                (redzone_df['season'] == self.season) &
-                (redzone_df['week'] == self.week)
-            ]
+            # CRITICAL: Use only PRIOR weeks
+            if self.week == 1:
+                team_data = pd.DataFrame()
+            else:
+                prior_weeks = redzone_df[
+                    (redzone_df['posteam'] == self.team) &
+                    (redzone_df['season'] == self.season) &
+                    (redzone_df['week'] < self.week)  # Only prior weeks
+                ]
+                if len(prior_weeks) > 0:
+                    team_data = pd.DataFrame([{
+                        'posteam': self.team,
+                        'season': self.season,
+                        'red_zone_trips_per_game': prior_weeks['red_zone_trips_per_game'].mean(),
+                        'red_zone_td_pct': prior_weeks['red_zone_td_pct'].mean(),
+                    }])
+                else:
+                    team_data = pd.DataFrame()
             
             if len(team_data) == 0:
                 season_file = self.data_dir / "red_zone_stats_season.csv"

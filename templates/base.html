@@ -8,6 +8,16 @@
     <!-- Official Tabler CSS -->
     <link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet"/>
+    <!-- Custom CSS: Force all badge text to be white -->
+    <style>
+      .badge {
+        color: #ffffff !important;
+      }
+      .badge.badge-outline {
+        /* Outline badges can keep their text color for contrast */
+        color: inherit !important;
+      }
+    </style>
   </head>
   <body>
     <div class="page">

@@ -10,6 +10,8 @@ from datetime import datetime
 import nfl_data_py as nfl
 
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.jinja_env.auto_reload = True
 
 # Cache for nflverse results
 _results_cache = None
@@ -548,11 +550,26 @@ def game_detail(away, home, week=None):
         return render_template('error.html',
                              message="No predictions found. Run python3 run_week.py first.")
     
+    # Normalize column names - simulator uses away_team/home_team, older format uses away/home
+    if 'away_team' in df_pred.columns:
+        away_col = 'away_team'
+        home_col = 'home_team'
+    else:
+        away_col = 'away'
+        home_col = 'home'
+    
     # Find the specific game
     if week:
-        game = df_pred[(df_pred['away'] == away) & (df_pred['home'] == home) & (df_pred['week'] == week)]
+        game = df_pred[
+            (df_pred[away_col] == away) & 
+            (df_pred[home_col] == home) & 
+            (df_pred['week'] == week)
+        ]
     else:
-        game = df_pred[(df_pred['away'] == away) & (df_pred['home'] == home)]
+        game = df_pred[
+            (df_pred[away_col] == away) & 
+            (df_pred[home_col] == home)
+        ]
     
     if game.empty:
         return render_template('error.html',
@@ -567,8 +584,17 @@ def game_detail(away, home, week=None):
         espn_data = ESPNDataFetcher.fetch_comprehensive_game_data(away, home)
         game_data['espn_data'] = espn_data
         print(f"✓ ESPN data loaded for {away} @ {home}", flush=True)
+    except ImportError as ie:
+        print(f"⚠️ Could not import ESPNDataFetcher: {ie}", flush=True)
+        game_data['espn_data'] = {
+            'away': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
+            'home': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
+            'game_summary': {}
+        }
     except Exception as e:
         print(f"⚠️ Could not fetch ESPN data: {e}", flush=True)
+        import traceback
+        print(traceback.format_exc(), flush=True)
         game_data['espn_data'] = {
             'away': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
             'home': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
@@ -580,44 +606,113 @@ def game_detail(away, home, week=None):
     away_splits = espn.get('away', {}).get('splits', {})
     home_splits = espn.get('home', {}).get('splits', {})
     
+    # Try to load team stats from nflverse/nflfastR
+    team_stats_away = {}
+    team_stats_home = {}
+    
+    try:
+        from nfl_edge.data_ingest import fetch_teamweeks_live
+        season = int(game_data.get('season', 2025))
+        teamweeks = fetch_teamweeks_live(season)
+        
+        # Get stats up to current week (prior weeks only)
+        current_week = int(game_data.get('week', 9))
+        away_stats = teamweeks[
+            (teamweeks['team'] == away) & 
+            (teamweeks['week'] < current_week)
+        ]
+        home_stats = teamweeks[
+            (teamweeks['team'] == home) & 
+            (teamweeks['week'] < current_week)
+        ]
+        
+        if len(away_stats) > 0:
+            team_stats_away = {
+                'off_epa': float(away_stats['off_epa_per_play'].mean()),
+                'def_epa': float(away_stats['def_epa_per_play'].mean()),
+                'pass_epa': float(away_stats.get('off_pass_epa', away_stats['off_epa_per_play']).mean()) if 'off_pass_epa' in away_stats.columns else 0.0,
+                'rush_epa': float(away_stats.get('off_rush_epa', away_stats['off_epa_per_play']).mean()) if 'off_rush_epa' in away_stats.columns else 0.0,
+                'def_pass_epa': float(away_stats.get('def_pass_epa', away_stats['def_epa_per_play']).mean()) if 'def_pass_epa' in away_stats.columns else 0.0,
+                'def_rush_epa': float(away_stats.get('def_rush_epa', away_stats['def_epa_per_play']).mean()) if 'def_rush_epa' in away_stats.columns else 0.0,
+                'passing_yards': float(away_stats.get('passing_yards', 0).sum() / max(len(away_stats), 1)) if 'passing_yards' in away_stats.columns else 0.0,
+                'rushing_yards': float(away_stats.get('rushing_yards', 0).sum() / max(len(away_stats), 1)) if 'rushing_yards' in away_stats.columns else 0.0,
+                'turnovers': int(away_stats['giveaways'].sum()) if 'giveaways' in away_stats.columns else 0,
+                'sacks_taken': int(away_stats.get('sacks_suffered', 0).sum()) if 'sacks_suffered' in away_stats.columns else 0,
+                'takeaways': int(away_stats['takeaways'].sum()) if 'takeaways' in away_stats.columns else 0,
+            }
+            
+            # Last 5 games stats
+            last_5_away = away_stats.tail(5)
+            if len(last_5_away) > 0:
+                team_stats_away['last_5_ppg'] = float(last_5_away['points'].mean()) if 'points' in last_5_away.columns else 0.0
+                team_stats_away['last_5_pa'] = float(last_5_away['points_allowed'].mean()) if 'points_allowed' in last_5_away.columns else 0.0
+        
+        if len(home_stats) > 0:
+            team_stats_home = {
+                'off_epa': float(home_stats['off_epa_per_play'].mean()),
+                'def_epa': float(home_stats['def_epa_per_play'].mean()),
+                'pass_epa': float(home_stats.get('off_pass_epa', home_stats['off_epa_per_play']).mean()) if 'off_pass_epa' in home_stats.columns else 0.0,
+                'rush_epa': float(home_stats.get('off_rush_epa', home_stats['off_epa_per_play']).mean()) if 'off_rush_epa' in home_stats.columns else 0.0,
+                'def_pass_epa': float(home_stats.get('def_pass_epa', home_stats['def_epa_per_play']).mean()) if 'def_pass_epa' in home_stats.columns else 0.0,
+                'def_rush_epa': float(home_stats.get('def_rush_epa', home_stats['def_epa_per_play']).mean()) if 'def_rush_epa' in home_stats.columns else 0.0,
+                'passing_yards': float(home_stats.get('passing_yards', 0).sum() / max(len(home_stats), 1)) if 'passing_yards' in home_stats.columns else 0.0,
+                'rushing_yards': float(home_stats.get('rushing_yards', 0).sum() / max(len(home_stats), 1)) if 'rushing_yards' in home_stats.columns else 0.0,
+                'turnovers': int(home_stats['giveaways'].sum()) if 'giveaways' in home_stats.columns else 0,
+                'sacks_taken': int(home_stats.get('sacks_suffered', 0).sum()) if 'sacks_suffered' in home_stats.columns else 0,
+                'takeaways': int(home_stats['takeaways'].sum()) if 'takeaways' in home_stats.columns else 0,
+            }
+            
+            # Last 5 games stats
+            last_5_home = home_stats.tail(5)
+            if len(last_5_home) > 0:
+                team_stats_home['last_5_ppg'] = float(last_5_home['points'].mean()) if 'points' in last_5_home.columns else 0.0
+                team_stats_home['last_5_pa'] = float(last_5_home['points_allowed'].mean()) if 'points_allowed' in last_5_home.columns else 0.0
+        
+        print(f"✓ Loaded nflverse stats for {away} and {home}", flush=True)
+    except Exception as e:
+        print(f"⚠️ Could not load nflverse stats: {e}", flush=True)
+        import traceback
+        traceback.print_exc()
+    
+    # Merge ESPN data (PPG, PAPG) with nflverse data (EPA, yards, etc.)
     game_data['team_stats'] = {
         'away': {
             'team': away,
             'games': away_splits.get('overall', {}).get('games', 0),
             'ppg': away_splits.get('overall', {}).get('ppg', 0),
             'pa_pg': away_splits.get('overall', {}).get('papg', 0),
-            'off_epa': 0,
-            'def_epa': 0,
-            'pass_epa': 0,
-            'rush_epa': 0,
-            'def_pass_epa': 0,
-            'def_rush_epa': 0,
-            'passing_yards': 0,
-            'rushing_yards': 0,
-            'turnovers': 0,
-            'sacks_taken': 0,
-            'takeaways': 0,
-            'last_5_ppg': 0,
-            'last_5_pa': 0,
+            'off_epa': team_stats_away.get('off_epa', 0),
+            'def_epa': team_stats_away.get('def_epa', 0),
+            'pass_epa': team_stats_away.get('pass_epa', 0),
+            'rush_epa': team_stats_away.get('rush_epa', 0),
+            'def_pass_epa': team_stats_away.get('def_pass_epa', 0),
+            'def_rush_epa': team_stats_away.get('def_rush_epa', 0),
+            'passing_yards': team_stats_away.get('passing_yards', 0),
+            'rushing_yards': team_stats_away.get('rushing_yards', 0),
+            'turnovers': team_stats_away.get('turnovers', 0),
+            'sacks_taken': team_stats_away.get('sacks_taken', 0),
+            'takeaways': team_stats_away.get('takeaways', 0),
+            'last_5_ppg': team_stats_away.get('last_5_ppg', 0),
+            'last_5_pa': team_stats_away.get('last_5_pa', 0),
         },
         'home': {
             'team': home,
             'games': home_splits.get('overall', {}).get('games', 0),
             'ppg': home_splits.get('overall', {}).get('ppg', 0),
             'pa_pg': home_splits.get('overall', {}).get('papg', 0),
-            'off_epa': 0,
-            'def_epa': 0,
-            'pass_epa': 0,
-            'rush_epa': 0,
-            'def_pass_epa': 0,
-            'def_rush_epa': 0,
-            'passing_yards': 0,
-            'rushing_yards': 0,
-            'turnovers': 0,
-            'sacks_taken': 0,
-            'takeaways': 0,
-            'last_5_ppg': 0,
-            'last_5_pa': 0,
+            'off_epa': team_stats_home.get('off_epa', 0),
+            'def_epa': team_stats_home.get('def_epa', 0),
+            'pass_epa': team_stats_home.get('pass_epa', 0),
+            'rush_epa': team_stats_home.get('rush_epa', 0),
+            'def_pass_epa': team_stats_home.get('def_pass_epa', 0),
+            'def_rush_epa': team_stats_home.get('def_rush_epa', 0),
+            'passing_yards': team_stats_home.get('passing_yards', 0),
+            'rushing_yards': team_stats_home.get('rushing_yards', 0),
+            'turnovers': team_stats_home.get('turnovers', 0),
+            'sacks_taken': team_stats_home.get('sacks_taken', 0),
+            'takeaways': team_stats_home.get('takeaways', 0),
+            'last_5_ppg': team_stats_home.get('last_5_ppg', 0),
+            'last_5_pa': team_stats_home.get('last_5_pa', 0),
         }
     }
     
@@ -625,14 +720,31 @@ def game_detail(away, home, week=None):
     away_recent = espn.get('away', {}).get('last_five', [])
     home_recent = espn.get('home', {}).get('last_five', [])
     
+    # Format for template - handle both simulator predictions and old format
+    # Simulator predictions use p_home_cover, our_spread, our_total
+    # Old format uses 'Home win %', 'Spread used (home-)', 'Total used'
+    p_home_cover_val = game_data.get('p_home_cover')
+    if 'p_home_cover' in game_data and p_home_cover_val is not None and (isinstance(p_home_cover_val, (int, float)) and not pd.isna(p_home_cover_val)):
+        # Simulator predictions format
+        home_win_pct = float(p_home_cover_val) * 100
+        away_win_pct = float(game_data.get('p_away_cover', 0.5)) * 100
+        spread_value = float(game_data.get('our_spread', 0)) if game_data.get('our_spread') is not None else 0
+        total_value = float(game_data.get('our_total', 0)) if game_data.get('our_total') is not None else 0
+    else:
+        # Old format
+        home_win_pct = float(game_data.get('Home win %', 50))
+        away_win_pct = 100 - home_win_pct
+        spread_value = float(game_data.get('Spread used (home-)', 0))
+        total_value = float(game_data.get('Total used', 0))
+    
     # Format for template
     external_predictions = {
         'your_model': {
-            'away_win': round(100 - game_data.get('Home win %', 50), 1),
-            'home_win': round(game_data.get('Home win %', 50), 1),
-            'spread': f"{home} {game_data.get('Spread used (home-)', 0):+.1f}",
-            'total': round(game_data.get('Total used', 0), 1),
-            'source': 'Your Model (Ridge + Monte Carlo)'
+            'away_win': round(away_win_pct, 1),
+            'home_win': round(home_win_pct, 1),
+            'spread': f"{home} {spread_value:+.1f}" if spread_value else f"{home} {0:+.1f}",
+            'total': round(total_value, 1) if total_value else 0,
+            'source': 'Simulator Model' if 'p_home_cover' in game_data else 'Your Model (Ridge + Monte Carlo)'
         }
     }
     
@@ -658,21 +770,66 @@ def run_script(script_name):
         'dl_pressure': 'calculate_dl_pressure.py',
         'matchup_stress': 'calculate_matchup_stress.py',
         'predictions': 'generate_alpha_predictions.py',
-        'future_stress': 'generate_future_stress_features.py'
+        'future_stress': 'generate_future_stress_features.py',
+        # Simulator prediction scripts
+        'sim_backtest': {
+            'path': 'backtest_all_games_conviction.py',
+            'cwd': 'simulation_engine/nflfastR_simulator'
+        },
+        'sim_week9_10': {
+            'path': 'scripts/generate_week9_10_predictions.py',
+            'cwd': 'simulation_engine/nflfastR_simulator'
+        },
+        'sim_format': {
+            'path': 'scripts/format_for_frontend.py',
+            'cwd': 'simulation_engine/nflfastR_simulator'
+        },
+        'sim_all': {
+            'path': 'scripts/update_frontend_predictions.sh',
+            'cwd': 'simulation_engine/nflfastR_simulator',
+            'shell': True
+        }
     }
     
     if script_name not in script_map:
         return jsonify({'success': False, 'error': 'Invalid script name'}), 400
     
-    script_file = script_map[script_name]
+    script_info = script_map[script_name]
     
     try:
+        # Handle both simple string paths and dict configs
+        if isinstance(script_info, dict):
+            script_file = script_info['path']
+            cwd_str = script_info.get('cwd', '.')
+            # Resolve relative paths from project root
+            if not Path(cwd_str).is_absolute():
+                cwd = Path(__file__).parent / cwd_str
+            else:
+                cwd = Path(cwd_str)
+            # Make script path relative to cwd or absolute
+            if not Path(script_file).is_absolute():
+                script_file = cwd / script_file
+            else:
+                script_file = Path(script_file)
+            use_shell = script_info.get('shell', False)
+        else:
+            script_file = Path(script_info) if not Path(script_info).is_absolute() else Path(script_info)
+            cwd = Path(__file__).parent
+            use_shell = False
+        
+        # Build command - handle shell scripts differently
+        if str(script_file).endswith('.sh'):
+            cmd = ['bash', str(script_file)]
+        else:
+            cmd = [sys.executable, str(script_file)]
+        
         # Run the script
         result = subprocess.run(
-            [sys.executable, script_file],
+            cmd,
+            cwd=str(cwd),
             capture_output=True,
             text=True,
-            timeout=300  # 5 minute timeout
+            timeout=600  # 10 minute timeout for simulator scripts
         )
         
         if result.returncode == 0:

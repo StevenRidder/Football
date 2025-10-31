@@ -27,12 +27,12 @@ N_SIMS = 100
 LINEAR_ALPHA = 26.45
 LINEAR_BETA = 0.571
 
-def load_games_2023_2024():
-    """Load 2023 and 2024 games with market lines."""
+def load_games_2022_2024():
+    """Load 2022, 2023, and 2024 games with market lines."""
     import nfl_data_py as nfl
     
     games = []
-    for season in [2023, 2024]:
+    for season in [2022, 2023, 2024]:
         print(f"📥 Loading {season} games...")
         
         # Load schedule
@@ -59,7 +59,7 @@ def load_games_2023_2024():
         print(f"   Found {len(schedule)} games with results")
     
     result = pd.concat(games, ignore_index=True)
-    print(f"✅ Loaded {len(result)} total games from 2023-2024")
+    print(f"✅ Loaded {len(result)} total games from 2022-2024")
     
     return result
 
@@ -148,12 +148,15 @@ def simulate_one_game(args):
         spread_edge = 0
         spread_conviction = None
         
+        # Edge capping to prevent outlier-driven ROI
+        MAX_EDGE_CAP = 0.25
+        
         if p_home_cover > BREAKEVEN:
             spread_bet = 'HOME'
-            spread_edge = p_home_cover - BREAKEVEN
+            spread_edge = min(p_home_cover - BREAKEVEN, MAX_EDGE_CAP)
         elif p_away_cover > BREAKEVEN:
             spread_bet = 'AWAY'
-            spread_edge = p_away_cover - BREAKEVEN
+            spread_edge = min(p_away_cover - BREAKEVEN, MAX_EDGE_CAP)
         
         if spread_bet:
             if spread_edge >= HIGH_EDGE:
@@ -169,10 +172,10 @@ def simulate_one_game(args):
         
         if p_over > BREAKEVEN:
             total_bet = 'OVER'
-            total_edge = p_over - BREAKEVEN
+            total_edge = min(p_over - BREAKEVEN, MAX_EDGE_CAP)
         elif p_under > BREAKEVEN:
             total_bet = 'UNDER'
-            total_edge = p_under - BREAKEVEN
+            total_edge = min(p_under - BREAKEVEN, MAX_EDGE_CAP)
         
         if total_bet:
             if total_edge >= HIGH_EDGE:
@@ -273,10 +276,10 @@ def grade_bets(df):
 
 if __name__ == "__main__":
     print("="*70)
-    print("BACKTEST 2023-2024 SEASONS")
+    print("BACKTEST 2022-2024 SEASONS")
     print("="*70)
     
-    games = load_games_2023_2024()
+    games = load_games_2022_2024()
     
     if len(games) == 0:
         print("❌ No games found")
@@ -315,7 +318,7 @@ if __name__ == "__main__":
     
     # Print results by conviction
     print("\n" + "="*70)
-    print("COMPREHENSIVE BACKTEST - 2023-2024 SEASONS")
+    print("COMPREHENSIVE BACKTEST - 2022-2024 SEASONS")
     print("="*70)
     
     print(f"\nTotal games analyzed: {len(df)}")
@@ -325,49 +328,71 @@ if __name__ == "__main__":
     if len(spread_bets) > 0:
         print(f"\n📊 SPREAD BETS: {len(spread_bets)} total")
         
+        # Show ALL tiers, even if empty
         for conviction in ['HIGH', 'MEDIUM', 'LOW']:
             tier_bets = spread_bets[spread_bets['spread_conviction'] == conviction]
-            if len(tier_bets) == 0:
-                continue
             
             wins = (tier_bets['spread_result'] == 1.0).sum()
             losses = (tier_bets['spread_result'] == 0.0).sum()
             pushes = tier_bets['spread_result'].isna().sum()
             
-            if wins + losses > 0:
+            if len(tier_bets) > 0 and wins + losses > 0:
                 win_rate = wins / (wins + losses) * 100
                 roi = ((wins * 0.909 - losses) / len(tier_bets)) * 100
                 avg_edge = tier_bets['spread_edge'].mean() * 100
                 
                 print(f"\n   {conviction} Conviction ({len(tier_bets)} bets, avg edge: {avg_edge:.1f}%):")
                 print(f"      {wins}W-{losses}L-{pushes}P | Win Rate: {win_rate:.1f}% | ROI: {roi:+.1f}%")
+            elif len(tier_bets) == 0:
+                print(f"\n   {conviction} Conviction (0 bets)")
+        
+        # ALL spread bets summary
+        wins = (spread_bets['spread_result'] == 1.0).sum()
+        losses = (spread_bets['spread_result'] == 0.0).sum()
+        pushes = spread_bets['spread_result'].isna().sum()
+        if wins + losses > 0:
+            win_rate = wins / (wins + losses) * 100
+            roi = ((wins * 0.909 - losses) / len(spread_bets)) * 100
+            print(f"\n   ALL Spread Bets ({len(spread_bets)} total):")
+            print(f"      {wins}W-{losses}L-{pushes}P | Win Rate: {win_rate:.1f}% | ROI: {roi:+.1f}%")
     
     # Total bets by conviction
     total_bets = df[df['total_bet'].notna()]
     if len(total_bets) > 0:
         print(f"\n📊 TOTAL BETS: {len(total_bets)} total")
         
+        # Show ALL tiers, even if empty
         for conviction in ['HIGH', 'MEDIUM', 'LOW']:
             tier_bets = total_bets[total_bets['total_conviction'] == conviction]
-            if len(tier_bets) == 0:
-                continue
             
             wins = (tier_bets['total_result'] == 1.0).sum()
             losses = (tier_bets['total_result'] == 0.0).sum()
             pushes = tier_bets['total_result'].isna().sum()
             
-            if wins + losses > 0:
+            if len(tier_bets) > 0 and wins + losses > 0:
                 win_rate = wins / (wins + losses) * 100
                 roi = ((wins * 0.909 - losses) / len(tier_bets)) * 100
                 avg_edge = tier_bets['total_edge'].mean() * 100
                 
                 print(f"\n   {conviction} Conviction ({len(tier_bets)} bets, avg edge: {avg_edge:.1f}%):")
                 print(f"      {wins}W-{losses}L-{pushes}P | Win Rate: {win_rate:.1f}% | ROI: {roi:+.1f}%")
+            elif len(tier_bets) == 0:
+                print(f"\n   {conviction} Conviction (0 bets)")
+        
+        # ALL total bets summary
+        wins = (total_bets['total_result'] == 1.0).sum()
+        losses = (total_bets['total_result'] == 0.0).sum()
+        pushes = total_bets['total_result'].isna().sum()
+        if wins + losses > 0:
+            win_rate = wins / (wins + losses) * 100
+            roi = ((wins * 0.909 - losses) / len(total_bets)) * 100
+            print(f"\n   ALL Total Bets ({len(total_bets)} total):")
+            print(f"      {wins}W-{losses}L-{pushes}P | Win Rate: {win_rate:.1f}% | ROI: {roi:+.1f}%")
     
     print("\n" + "="*70)
     
     # Save results
-    output_file = Path(__file__).parent / "artifacts" / "backtest_2023_2024.csv"
+    output_file = Path(__file__).parent / "artifacts" / "backtest_2022_2024.csv"
     output_file.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_file, index=False)
     print(f"\n💾 Saved to: {output_file}")
