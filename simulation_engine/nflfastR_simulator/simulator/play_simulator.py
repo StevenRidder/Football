@@ -243,6 +243,27 @@ class PlaySimulator:
         completion_adjustment = np.clip(completion_adjustment, -0.08, 0.08)  # Cap at ±8%
         completion_pct = np.clip(completion_pct + completion_adjustment, 0.30, 0.90)
         
+        # SITUATIONAL FACTOR: Weather impact on passing efficiency
+        # Strategy: Wind and precipitation reduce completion rates and explosive plays
+        if hasattr(self.offense, 'is_dome') and not self.offense.is_dome:
+            # Outdoor game - check for weather impact
+            # Assume moderate wind impact if outdoor (can enhance with actual wind data later)
+            weather_penalty = 0.02  # -2% completion in outdoor conditions (base)
+            completion_pct = np.clip(completion_pct - weather_penalty, 0.30, 0.90)
+        
+        # SITUATIONAL FACTOR: Rest days impact on team efficiency
+        # Strategy: Short week (<7 days) = fatigue, Bye week (>7 days) = rest advantage
+        if hasattr(self.offense, 'home_rest_days'):
+            rest_days = self.offense.home_rest_days  # For home team
+            if rest_days < 7:
+                # Short week penalty: -1% per day under 7
+                rest_penalty = (7 - rest_days) * 0.01
+                completion_pct = np.clip(completion_pct - rest_penalty, 0.30, 0.90)
+            elif rest_days > 7:
+                # Bye week or extra rest bonus: +0.5% per day over 7
+                rest_bonus = min((rest_days - 7) * 0.005, 0.02)  # Cap at +2%
+                completion_pct = np.clip(completion_pct + rest_bonus, 0.30, 0.90)
+        
         # Completion or incomplete
         if np.random.random() < completion_pct:
             # Completion
@@ -255,6 +276,11 @@ class PlaySimulator:
                 # Higher passing grade vs lower coverage = more explosive plays
                 explosive_advantage = (self.offense.passing_grade - self.defense.coverage_grade) / 50.0
                 explosive_rate = np.clip(0.15 + explosive_advantage * 0.05, 0.05, 0.30)
+            
+            # SITUATIONAL FACTOR: Weather reduces explosive play rate
+            if hasattr(self.offense, 'is_dome') and not self.offense.is_dome:
+                # Outdoor conditions reduce big plays
+                explosive_rate = explosive_rate * 0.85  # -15% explosive rate outdoors
             
             if not is_pressure and np.random.random() < explosive_rate:
                 # Log-normal distribution for explosive plays
@@ -270,6 +296,11 @@ class PlaySimulator:
                 # Offensive YPA advantage = more yards per completion
                 ypa_advantage = self.offense.off_yards_per_pass_attempt - self.defense.def_yards_per_pass_allowed
                 avg_yards = base_ypa + (ypa_advantage * 1.2)  # Each 1 YPA advantage = 1.2 yards per completion
+                
+                # SITUATIONAL FACTOR: Weather reduces yards per completion
+                if hasattr(self.offense, 'is_dome') and not self.offense.is_dome:
+                    avg_yards = avg_yards * 0.93  # -7% yards in outdoor conditions
+                
                 avg_yards = max(3.0, avg_yards)  # At least 3 yards on completion
                 
                 # Add variance

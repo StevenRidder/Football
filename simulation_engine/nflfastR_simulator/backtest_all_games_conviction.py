@@ -68,9 +68,16 @@ def simulate_one_game(args):
         spread_raw_sd = float(np.std(spreads_raw))
         total_raw_sd = float(np.std(totals_raw))
         
-        home_c, away_c = center_scores_to_market(
-            home_scores, away_scores, spread_line, total_line
-        )
+        # Market centering (OPTIONAL - set False to predict actual scores directly)
+        USE_MARKET_CENTERING = True  # Default True for backward compatibility
+        
+        if USE_MARKET_CENTERING:
+            home_c, away_c = center_scores_to_market(
+                home_scores, away_scores, spread_line, total_line
+            )
+        else:
+            # Use raw scores directly (pure prediction mode)
+            home_c, away_c = home_scores, away_scores
         
         spreads_c = home_c - away_c
         totals_c = home_c + away_c
@@ -121,15 +128,52 @@ def simulate_one_game(args):
         p_away_cover_linear = 1 - p_home_cover_linear
         p_under_linear = 1 - p_over_linear
         
-        # 3. Probability calibrator (isotonic/Platt) - fallback if available
-        # Initialize to linear calibration as default
+        # 3. Probability calibrator (isotonic/Platt) - PRIORITY over linear
+        # Try isotonic first (better calibration), fall back to linear
         p_home_cover = p_home_cover_linear
         p_away_cover = p_away_cover_linear
         p_over = p_over_linear
         p_under = p_under_linear
         use_calibration = 'linear'
         
-        # Try to load and use calibrators
+        # Try to load and use isotonic calibrators (from fit_isotonic_calibrators.py)
+        try:
+            import pickle
+            artifacts_dir = Path(__file__).parent / "artifacts"
+            isotonic_file = artifacts_dir / "isotonic_calibrators.pkl"
+            
+            if isotonic_file.exists():
+                with open(isotonic_file, 'rb') as f:
+                    isotonic_calibrators = pickle.load(f)
+                
+                # Use isotonic for spreads
+                if 'spread' in isotonic_calibrators:
+                    spread_cal = isotonic_calibrators['spread']
+                    if spread_cal.is_fitted:
+                        p_home_cover_isotonic = spread_cal.predict(
+                            np.array([spread_raw_mean]),
+                            np.array([spread_raw_sd]),
+                            np.array([spread_line])
+                        )[0]
+                        p_home_cover = np.clip(p_home_cover_isotonic, 0.01, 0.99)
+                        p_away_cover = 1 - p_home_cover
+                        use_calibration = 'isotonic'
+                
+                # Use isotonic for totals
+                if 'total' in isotonic_calibrators:
+                    total_cal = isotonic_calibrators['total']
+                    if total_cal.is_fitted:
+                        p_over_isotonic = total_cal.predict(
+                            np.array([total_raw_mean]),
+                            np.array([total_raw_sd]),
+                            np.array([total_line])
+                        )[0]
+                        p_over = np.clip(p_over_isotonic, 0.01, 0.99)
+                        p_under = 1 - p_over
+        except Exception as e:
+            pass  # Fall back to linear
+        
+        # Fallback to old probability calibrators if isotonic not available
         try:
             import pickle
             artifacts_dir = Path(__file__).parent / "artifacts"
