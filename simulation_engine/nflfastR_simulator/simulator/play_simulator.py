@@ -103,8 +103,8 @@ class PlaySimulator:
             ol_grade = self.offense.ol_grade
             dl_grade = self.defense.dl_grade
             mismatch = dl_grade - ol_grade  # Positive = defense advantage = more pressure
-            pressure_adjustment = mismatch * 0.002  # 10 points = 2% change
-            pressure_adjustment = np.clip(pressure_adjustment, -0.10, 0.10)  # Cap at ±10%
+            pressure_adjustment = mismatch * 0.004  # 2x boost: 10 points = 4% change (was 2%)
+            pressure_adjustment = np.clip(pressure_adjustment, -0.15, 0.15)  # Cap at ±15% (was ±10%)
             pressure_rate = np.clip(pressure_rate + pressure_adjustment, 0.05, 0.55)
         
         is_pressure = np.random.random() < pressure_rate
@@ -239,8 +239,8 @@ class PlaySimulator:
         # Each 10-point passing advantage = +2% completion rate
         # Each 10-point coverage advantage = -2% completion rate
         passing_advantage = self.offense.passing_grade - self.defense.coverage_grade
-        completion_adjustment = passing_advantage * 0.002  # 10 points = 2% change
-        completion_adjustment = np.clip(completion_adjustment, -0.08, 0.08)  # Cap at ±8%
+        completion_adjustment = passing_advantage * 0.004  # 2x boost: 10 points = 4% change (was 2%)
+        completion_adjustment = np.clip(completion_adjustment, -0.12, 0.12)  # Cap at ±12% (was ±8%)
         completion_pct = np.clip(completion_pct + completion_adjustment, 0.30, 0.90)
         
         # SITUATIONAL FACTOR: Weather impact on passing efficiency
@@ -379,7 +379,7 @@ class PlaySimulator:
         # USE MULTIPLE METRICS FOR RUN YARDS:
         # 1. EPA differential (team strength)
         epa_diff = self.offense.off_epa - self.defense.def_epa
-        yards_adjustment = epa_diff * 12  # Each 0.1 EPA = 1.2 yards
+        yards_adjustment = epa_diff * 24  # 2x boost: 0.1 EPA = 2.4 yards (was 1.2)
         
         # 2. PFF OL/DL run blocking matchup
         if not hasattr(self.offense, 'ol_run_grade') or self.offense.ol_run_grade is None:
@@ -387,13 +387,15 @@ class PlaySimulator:
         if not hasattr(self.defense, 'dl_run_grade') or self.defense.dl_run_grade is None:
             raise ValueError(f"Defense {self.defense.team} missing dl_run_grade - PFF data required")
         
-        grade_adjustment = (self.offense.ol_run_grade - self.defense.dl_run_grade) * 0.05
+        grade_adjustment = (self.offense.ol_run_grade - self.defense.dl_run_grade) * 0.10  # 2x boost (was 0.05)
         yards_adjustment += grade_adjustment
         
         # 3. USE YPP METRIC: Team yards per play vs defense allowed
         # Strategy: YPP is highly predictive - teams winning YPP win 97% of games
         ypp_advantage = self.offense.off_yards_per_play - self.defense.def_yards_per_play_allowed
-        yards_adjustment += ypp_advantage * 0.8  # Each 1 YPP advantage = 0.8 yards per run
+        ypp_adjustment = ypp_advantage * 1.6  # 2x boost: 1 YPP = 1.6 yards (was 0.8)
+        ypp_adjustment = np.clip(ypp_adjustment, -1.2, 1.2)  # Cap at ±1.2 yards
+        yards_adjustment += ypp_adjustment
         
         # Sample yards from distribution
         avg_yards = base_yards + yards_adjustment
