@@ -1,0 +1,518 @@
+{% extends "base.html" %}
+
+{% block title %}NFL Alpha Model - Week {{ current_week }}{% endblock %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">NFL Alpha Model</h2>
+        <div class="text-muted mt-1">XGBoost predictions with real-time line tracking</div>
+      </div>
+      <div class="col-auto ms-auto">
+        <select class="form-select" id="weekSelect">
+          {% for week in all_weeks %}
+          <option value="{{ week }}" {% if week == current_week %}selected{% endif %}>
+            Week {{ week }}{% if week == current_week %} (Current){% endif %}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    <!-- Performance Summary -->
+    <div class="row mb-3" id="performance-summary" style="display: none;">
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="subheader">This Week</div>
+            </div>
+            <div class="h1 mb-0" id="week-record">-</div>
+            <div class="text-muted" id="week-win-rate">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="subheader">Season Total</div>
+            </div>
+            <div class="h1 mb-0" id="season-record">-</div>
+            <div class="text-muted" id="season-win-rate">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="subheader">Week ROI</div>
+            </div>
+            <div class="h1 mb-0" id="week-roi">-</div>
+            <div class="text-muted">Return on investment</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="subheader">Season ROI</div>
+            </div>
+            <div class="h1 mb-0" id="season-roi">-</div>
+            <div class="text-muted">Return on investment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Admin Tools -->
+    <div class="card mb-3">
+      <div class="card-header">
+        <h3 class="card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tools me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
+          Data Update Tools
+        </h3>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <button class="btn btn-primary w-100" onclick="runScript('ol_continuity')" id="btn-ol">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
+              Update OL Continuity
+            </button>
+            <div class="text-muted mt-1 small">Calculate offensive line continuity stats</div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-primary w-100" onclick="runScript('dl_pressure')" id="btn-dl">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
+              Update DL Pressure
+            </button>
+            <div class="text-muted mt-1 small">Calculate defensive line pressure stats</div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-primary w-100" onclick="runScript('matchup_stress')" id="btn-stress">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
+              Update Matchup Stress
+            </button>
+            <div class="text-muted mt-1 small">Combine OL/DL into matchup stress features</div>
+          </div>
+        </div>
+        <div class="row g-3 mt-2">
+          <div class="col-md-6">
+            <button class="btn btn-success w-100" onclick="runScript('predictions')" id="btn-predictions">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brain me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></svg>
+              Regenerate Predictions
+            </button>
+            <div class="text-muted mt-1 small">Run XGBoost model to generate new predictions</div>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-info w-100" onclick="runScript('future_stress')" id="btn-future">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-stats me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" /><path d="M18 14v4h4" /><path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M15 3v4" /><path d="M7 3v4" /><path d="M3 11h16" /></svg>
+              Project Future Stress
+            </button>
+            <div class="text-muted mt-1 small">Generate estimated stress for upcoming weeks</div>
+          </div>
+        </div>
+        <div id="script-output" class="mt-3" style="display: none;">
+          <div class="alert alert-info mb-0">
+            <div class="d-flex align-items-center">
+              <div class="spinner-border spinner-border-sm me-3" role="status"></div>
+              <div>
+                <strong id="script-status">Running...</strong>
+                <div class="text-muted small" id="script-message">Please wait...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Games Table -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">All Games</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-vcenter card-table table-sm">
+          <thead>
+            <tr>
+              <th>Game</th>
+              <th>Final</th>
+              <th>Market Score</th>
+              <th>Our Score</th>
+              <th>Market Spread</th>
+              <th>Our Spread</th>
+              <th>Spread Bet</th>
+              <th class="col-result">Result</th>
+              <th>Market O/U</th>
+              <th>Our O/U</th>
+              <th>Total Bet</th>
+              <th class="col-result">Result</th>
+              <th>ML Bet</th>
+              <th class="col-result">Result</th>
+            </tr>
+          </thead>
+          <tbody id="games-tbody">
+            <tr>
+              <td colspan="14" class="text-center text-muted">
+                <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                Loading games...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+async function loadGames() {
+  const week = document.getElementById('weekSelect').value;
+  
+  try {
+    // Try simulator predictions first, fall back to regular predictions
+    let res = await fetch(`/api/simulator-predictions?week=${week}`);
+    if (!res.ok || res.status === 404) {
+      res = await fetch(`/api/games/graded?week=${week}`);
+    }
+    
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    
+    const data = await res.json();
+    renderGames(data.games);
+    await updatePerformanceStats(parseInt(week));
+  } catch (err) {
+    document.getElementById('games-tbody').innerHTML = `
+      <tr><td colspan="14" class="text-center text-danger">
+        <i class="ti ti-alert-circle me-2"></i>Error: ${err.message}
+      </td></tr>
+    `;
+  }
+}
+
+async function updatePerformanceStats(currentWeek) {
+  try {
+    // Load all weeks up to current week to calculate season stats
+    const weekPromises = [];
+    for (let w = 1; w <= currentWeek; w++) {
+      weekPromises.push(fetch(`/api/games/graded?week=${w}`).then(r => r.json()));
+    }
+    
+    const allWeeksData = await Promise.all(weekPromises);
+    
+    // Calculate current week stats
+    const currentWeekGames = allWeeksData[currentWeek - 1].games.filter(g => g.is_completed);
+    const weekStats = calculateStats(currentWeekGames);
+    
+    // Calculate season stats (all weeks)
+    const allGames = allWeeksData.flatMap(w => w.games).filter(g => g.is_completed);
+    const seasonStats = calculateStats(allGames);
+    
+    // Update UI
+    document.getElementById('week-record').textContent = `${weekStats.wins}-${weekStats.losses}`;
+    document.getElementById('week-win-rate').textContent = `${weekStats.winRate}% win rate`;
+    document.getElementById('week-roi').textContent = `${weekStats.roi > 0 ? '+' : ''}${weekStats.roi}%`;
+    
+    document.getElementById('season-record').textContent = `${seasonStats.wins}-${seasonStats.losses}`;
+    document.getElementById('season-win-rate').textContent = `${seasonStats.winRate}% win rate`;
+    document.getElementById('season-roi').textContent = `${seasonStats.roi > 0 ? '+' : ''}${seasonStats.roi}%`;
+    
+    // Show performance summary
+    document.getElementById('performance-summary').style.display = 'flex';
+  } catch (err) {
+    console.error('Error updating performance stats:', err);
+  }
+}
+
+function calculateStats(games) {
+  let wins = 0;
+  let losses = 0;
+  let pushes = 0;
+  
+  games.forEach(game => {
+    // Only count spread bets that were made
+    if (game.spread_recommendation && game.spread_recommendation !== 'Pass') {
+      if (game.spread_result === 'WIN') wins++;
+      else if (game.spread_result === 'LOSS') losses++;
+      else if (game.spread_result === 'PUSH') pushes++;
+    }
+  });
+  
+  const totalBets = wins + losses + pushes;
+  const winRate = totalBets > 0 ? ((wins / (wins + losses)) * 100).toFixed(1) : '0.0';
+  
+  // ROI calculation: (wins * 0.91 - losses) / totalBets * 100
+  // Assumes -110 odds (bet $100 to win $91)
+  const roi = totalBets > 0 ? (((wins * 0.91 - losses) / totalBets) * 100).toFixed(1) : '0.0';
+  
+  return {
+    wins,
+    losses,
+    pushes,
+    totalBets,
+    winRate,
+    roi
+  };
+}
+
+function renderGames(games) {
+  if (!games || games.length === 0) {
+    document.getElementById('games-tbody').innerHTML = `
+      <tr><td colspan="12" class="text-center text-muted">No games found</td></tr>
+    `;
+    return;
+  }
+
+  const isCompleted = games[0].is_completed;
+  
+  const html = games.map(game => {
+    // Market implied scores (NO DECIMALS)
+    const marketAwayScore = game.closing_away_score ? Math.round(game.closing_away_score) : '-';
+    const marketHomeScore = game.closing_home_score ? Math.round(game.closing_home_score) : '-';
+    const marketScore = `${marketAwayScore}-${marketHomeScore}`;
+    
+    // Our predicted scores - CENTERED (market-adjusted, what we bet on)
+    const ourAwayScore = game.our_away_score ? Math.round(game.our_away_score) : '-';
+    const ourHomeScore = game.our_home_score ? Math.round(game.our_home_score) : '-';
+    const ourScore = `${ourAwayScore}-${ourHomeScore}`;
+    
+    // Our RAW simulator scores (before market centering) - for debugging/understanding
+    // Check for null/undefined explicitly (not just truthy, since 0 could be valid)
+    const rawAwayScore = (game.our_away_score_raw !== null && game.our_away_score_raw !== undefined) ? Math.round(game.our_away_score_raw) : null;
+    const rawHomeScore = (game.our_home_score_raw !== null && game.our_home_score_raw !== undefined) ? Math.round(game.our_home_score_raw) : null;
+    const rawScore = (rawAwayScore !== null && rawHomeScore !== null) ? `${rawAwayScore}-${rawHomeScore}` : null;
+    
+    // Format spreads with FAVORITE perspective (NO DECIMALS)
+    // Display format: Always show FAVORITE with negative number
+    // Backend spread convention: negative = away favored, positive = home favored
+    const marketSpreadRounded = Math.round(game.closing_spread);
+    let marketSpread = '-';
+    let marketSpreadClass = '';
+    if (game.closing_spread !== null) {
+      if (marketSpreadRounded < 0) {
+        // AWAY is favorite - show "AWAY -X"
+        marketSpread = `${game.away_team} ${marketSpreadRounded}`;
+        marketSpreadClass = 'text-danger';
+      } else if (marketSpreadRounded > 0) {
+        // HOME is favorite - show "HOME -X"
+        marketSpread = `${game.home_team} -${marketSpreadRounded}`;
+        marketSpreadClass = 'text-danger';
+      } else {
+        marketSpread = 'Pick\'em';
+      }
+    }
+    
+    // Calculate spread/total from RAW simulator (what we actually think)
+    // Fall back to centered values if raw not available
+    const rawSpread = rawAwayScore !== null && rawHomeScore !== null ? 
+      (rawHomeScore - rawAwayScore) : null;
+    const rawTotal = rawAwayScore !== null && rawHomeScore !== null ? 
+      (rawAwayScore + rawHomeScore) : null;
+    const displaySpread = rawSpread !== null ? rawSpread : game.our_spread;
+    const displayTotal = rawTotal !== null ? rawTotal : game.our_total;
+    
+    const ourSpreadRounded = displaySpread !== null ? Math.round(displaySpread) : null;
+    let ourSpread = '-';
+    let ourSpreadClass = '';
+    if (displaySpread !== null) {
+      if (ourSpreadRounded < 0) {
+        // AWAY is favorite - show "AWAY -X"
+        ourSpread = `${game.away_team} ${ourSpreadRounded}`;
+        ourSpreadClass = 'text-primary';
+      } else if (ourSpreadRounded > 0) {
+        // HOME is favorite - show "HOME -X"
+        ourSpread = `${game.home_team} -${ourSpreadRounded}`;
+        ourSpreadClass = 'text-primary';
+      } else {
+        ourSpread = 'Pick\'em';
+      }
+    }
+    
+    const marketTotal = game.closing_total !== null ? Math.round(game.closing_total) : '-';
+    const ourTotal = displayTotal !== null ? Math.round(displayTotal) : '-';
+    
+    // Line movement
+    const spreadMove = game.spread_movement && game.spread_movement !== 0 ? 
+      `<div class="text-muted small">Open: ${game.opening_spread} 
+       <span class="text-${game.spread_movement > 0 ? 'success' : 'danger'}">
+         ${game.spread_movement > 0 ? '↑' : '↓'}${Math.abs(game.spread_movement).toFixed(1)}
+       </span></div>` : '';
+    
+    const totalMove = game.total_movement && game.total_movement !== 0 ? 
+      `<div class="text-muted small">Open: ${Math.round(game.opening_total)} 
+       <span class="text-${game.total_movement > 0 ? 'success' : 'danger'}">
+         ${game.total_movement > 0 ? '↑' : '↓'}${Math.abs(game.total_movement).toFixed(1)}
+       </span></div>` : '';
+    
+    return `
+    <tr>
+      <td>
+        <a href="/game/${game.away_team}/${game.home_team}/${game.week}" class="text-reset text-decoration-none">
+          <div class="fw-bold">${game.away_team} @ ${game.home_team}</div>
+          ${game.game_date ? `<div class="text-muted small">${game.game_date}</div>` : ''}
+        </a>
+      </td>
+      <td>
+        ${game.final_score ? `<span class="fw-bold">${game.final_score}</span>` : '<span class="text-muted">-</span>'}
+      </td>
+      <td>
+        <div class="small fw-bold">${marketScore}</div>
+        <div class="text-muted" style="font-size: 0.7rem;">Market (from spread/total)</div>
+      </td>
+      <td>
+        ${rawScore ? 
+          `<div class="text-primary small fw-bold">${rawScore}</div>
+           <div class="text-muted" style="font-size: 0.7rem;">Simulator Prediction</div>
+           ${ourScore && ourScore !== rawScore ?
+             `<div class="text-muted" style="font-size: 0.65rem; margin-top: 2px; opacity: 0.7;">
+               (Centered to market: ${ourScore})
+             </div>` : ''}
+          ` :
+          `<div class="text-primary small fw-bold">${ourScore}</div>
+           <div class="text-muted" style="font-size: 0.7rem;">Simulator Prediction</div>
+          `}
+        ${game.p_home_cover !== null && game.p_home_cover !== undefined ? 
+          `<div class="text-muted" style="font-size: 0.7rem; margin-top: 2px;">
+            <span class="badge ${game.p_away_cover > 0.524 ? 'bg-success' : 'bg-secondary'}" style="font-size: 0.65rem; padding: 2px 4px;" title="Probability ${game.away_team} covers the spread">
+              ${game.away_team}: ${(game.p_away_cover * 100).toFixed(0)}%
+            </span>
+            <span class="badge ${game.p_home_cover > 0.524 ? 'bg-success' : 'bg-secondary'}" style="font-size: 0.65rem; padding: 2px 4px; margin-left: 2px;" title="Probability ${game.home_team} covers the spread">
+              ${game.home_team}: ${(game.p_home_cover * 100).toFixed(0)}%
+            </span>
+          </div>` : ''}
+      </td>
+      <td>
+        <div class="fw-bold ${marketSpreadClass}">${marketSpread}</div>
+        ${spreadMove}
+      </td>
+      <td>
+        <div class="fw-bold ${ourSpreadClass}">${ourSpread}</div>
+      </td>
+      <td>
+        <div class="${game.spread_recommendation && game.spread_recommendation !== 'Pass' ? 'fw-bold text-success' : 'text-muted'}">
+          ${game.spread_recommendation || 'Pass'}
+        </div>
+        ${game.spread_conviction ? `<span class="badge ${game.spread_conviction_badge || 'bg-secondary'}" title="Conviction: ${game.spread_conviction} | Edge: ${game.spread_edge_pct || 0}%">${game.spread_conviction}</span>` : ''}
+        ${game.spread_rec_confidence ? `<div class="text-muted small mt-1">${(game.spread_rec_confidence * 100).toFixed(0)}%</div>` : ''}
+        ${game.spread_std !== null && game.spread_std !== undefined ? 
+          `<div class="text-muted small mt-1" title="Distribution variance (higher = more volatile)">
+            σ: ${game.spread_std.toFixed(1)}
+          </div>` : ''}
+      </td>
+      <td>${renderResult(game.spread_result, game.on_right_side_spread, isCompleted)}</td>
+      <td>
+        <div class="fw-bold">${marketTotal}</div>
+        ${totalMove}
+      </td>
+      <td>
+        <div class="text-primary fw-bold">${ourTotal}</div>
+        ${game.p_over !== null && game.p_over !== undefined ? 
+          `<div class="text-muted small mt-1">
+            <span class="badge ${game.p_over > 0.524 ? 'bg-success' : 'bg-secondary'}" style="font-size: 0.65rem; padding: 2px 4px;">
+              Over: ${(game.p_over * 100).toFixed(0)}%
+            </span>
+            <span class="badge ${game.p_under > 0.524 ? 'bg-success' : 'bg-secondary'}" style="font-size: 0.65rem; padding: 2px 4px; margin-left: 2px;">
+              Under: ${(game.p_under * 100).toFixed(0)}%
+            </span>
+          </div>` : ''}
+      </td>
+      <td>
+        <div class="${game.total_recommendation && game.total_recommendation !== 'Pass' ? 'fw-bold' : 'text-muted'}">
+          ${game.total_recommendation || 'Pass'}
+        </div>
+        ${game.total_conviction ? `<span class="badge ${game.total_conviction_badge || 'bg-secondary'}" title="Conviction: ${game.total_conviction} | Edge: ${game.total_edge_pct || 0}%">${game.total_conviction}</span>` : ''}
+        ${game.total_rec_confidence ? `<div class="text-muted small mt-1">${(game.total_rec_confidence * 100).toFixed(0)}%</div>` : ''}
+        ${game.total_std !== null && game.total_std !== undefined ? 
+          `<div class="text-muted small mt-1" title="Distribution variance (higher = more volatile)">
+            σ: ${game.total_std.toFixed(1)}
+          </div>` : ''}
+      </td>
+      <td>${renderResult(game.total_result, game.on_right_side_total, isCompleted)}</td>
+      <td>
+        <div class="${game.moneyline_recommendation && game.moneyline_recommendation !== 'Pass' ? 'fw-bold' : 'text-muted'}">
+          ${game.moneyline_recommendation || 'Pass'}
+        </div>
+        ${game.moneyline_rec_confidence ? `<div class="text-muted small">${(game.moneyline_rec_confidence * 100).toFixed(0)}%</div>` : ''}
+      </td>
+      <td>${renderResult(game.moneyline_result, null, isCompleted)}</td>
+    </tr>
+  `}).join('');
+
+  document.getElementById('games-tbody').innerHTML = html;
+}
+
+function renderResult(result, onRightSide, isCompleted) {
+  if (isCompleted && result) {
+    if (result === 'WIN') return '<span class="badge bg-success">W</span>';
+    if (result === 'LOSS') return '<span class="badge bg-danger">L</span>';
+    return '<span class="text-muted">-</span>';
+  } else if (onRightSide !== null && onRightSide !== undefined) {
+    return onRightSide ? 
+      '<span class="badge bg-success-lt">Sharp ✓</span>' : 
+      '<span class="badge bg-danger-lt">Fade ✗</span>';
+  }
+  return '<span class="text-muted">-</span>';
+}
+
+document.getElementById('weekSelect').addEventListener('change', loadGames);
+document.addEventListener('DOMContentLoaded', loadGames);
+
+// Script runner
+async function runScript(scriptName) {
+  const outputDiv = document.getElementById('script-output');
+  const statusEl = document.getElementById('script-status');
+  const messageEl = document.getElementById('script-message');
+  const btnId = `btn-${scriptName === 'ol_continuity' ? 'ol' : scriptName === 'dl_pressure' ? 'dl' : scriptName === 'matchup_stress' ? 'stress' : scriptName === 'predictions' ? 'predictions' : 'future'}`;
+  const btn = document.getElementById(btnId);
+  
+  // Show loading state
+  outputDiv.style.display = 'block';
+  outputDiv.querySelector('.alert').className = 'alert alert-info mb-0';
+  statusEl.textContent = 'Running...';
+  messageEl.textContent = 'Please wait...';
+  btn.disabled = true;
+  
+  try {
+    const res = await fetch(`/api/run-script/${scriptName}`, {
+      method: 'POST'
+    });
+    
+    const data = await res.json();
+    
+    if (data.success) {
+      outputDiv.querySelector('.alert').className = 'alert alert-success mb-0';
+      outputDiv.querySelector('.spinner-border').style.display = 'none';
+      statusEl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>Success!';
+      messageEl.textContent = data.message;
+      
+      // Reload games after predictions update
+      if (scriptName === 'predictions') {
+        setTimeout(() => {
+          loadGames();
+        }, 1000);
+      }
+    } else {
+      throw new Error(data.error || 'Unknown error');
+    }
+  } catch (err) {
+    outputDiv.querySelector('.alert').className = 'alert alert-danger mb-0';
+    outputDiv.querySelector('.spinner-border').style.display = 'none';
+    statusEl.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-circle me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>Error';
+    messageEl.textContent = err.message;
+  } finally {
+    btn.disabled = false;
+  }
+}
+</script>
+
+{% endblock %}
+

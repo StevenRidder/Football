@@ -6,65 +6,40 @@ __pycache__/
 .Python
 env/
 venv/
-.venv/
 ENV/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+.venv
 
-# Virtual environments
-.venv/
-venv/
-ENV/
-
-# IDEs
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-.DS_Store
 
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Environment variables
-.env
-.env.local
-
-# API Keys (already in config but just in case)
-*.key
-secrets.yaml
+# Data files
+*.db
+*.sqlite
+*.csv
+!artifacts/*.csv
+!data/**/*.csv
+!simulation_engine/**/*.csv
 
 # Logs
 *.log
-dashboard.log
+flask*.log
 
-# Temporary files
+# Environment
+.env
+.env.local
+
+# Archive (don't commit old files)
+archive/
+
+# Temporary
 *.tmp
 *.bak
-
-# OS files
 .DS_Store
-Thumbs.db
 
-# NFL Edge specific
-artifacts/odds_raw.json
-artifacts/odds_parse_log.txt
-*.pyc
-
-# Don't ignore artifacts CSVs (we want to keep predictions)
-!artifacts/*.csv
-
+# Specific files
+bets.db
+all_404_bets.json

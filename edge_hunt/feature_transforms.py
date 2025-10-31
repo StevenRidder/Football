@@ -3,10 +3,18 @@ Convert weather snapshots into actionable features for totals betting.
 
 Uses simple, literature-inspired priors that can be refined after collecting CLV data.
 Keeps adjustments linear and transparent so cause-and-effect is clear.
+
+Weather adjustments can be calibrated via the global calibration multiplier.
 """
 
 from dataclasses import dataclass
 from edge_hunt.weather_features import WeatherSnapshot
+import sys
+import os
+
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from adjustment_calibration import apply_calibration
 
 
 @dataclass
@@ -57,6 +65,10 @@ def weather_to_total_adjustment(ws: WeatherSnapshot) -> WeatherFeatures:
         precip_effect = -1.0
     elif ws.precip_mmph >= 1.0:
         precip_effect = -0.5
+    
+    # Apply calibration multiplier to all weather adjustments
+    wind_effect = apply_calibration(wind_effect)
+    precip_effect = apply_calibration(precip_effect)
     
     # Total adjustment
     adj = wind_effect + precip_effect

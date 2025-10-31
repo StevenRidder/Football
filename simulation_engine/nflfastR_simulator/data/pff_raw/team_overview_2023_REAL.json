@@ -1,0 +1,27 @@
+{
+    "team_overview": [
+        {
+            "abbreviation": "ARZ",
+            "franchise_id": 1,
+            "grades_coverage_defense": 55.2,
+            "grades_defense": 50.9,
+            "grades_misc_st": 84.1,
+            "grades_offense": 67.8,
+            "grades_overall": 65.5,
+            "grades_pass": 57.7,
+            "grades_pass_block": 65.3,
+            "grades_pass_route": 67.1,
+            "grades_pass_rush_defense": 62.7,
+            "grades_run": 92.3,
+            "grades_run_block": 54.0,
+            "grades_run_defense": 38.2,
+            "grades_tackle": 54.1,
+            "losses": 13,
+            "name": "Arizona Cardinals",
+            "points_allowed": 455,
+            "points_scored": 330,
+            "ties": 0,
+            "wins": 4
+        }
+    ]
+}

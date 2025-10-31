@@ -1,0 +1,9 @@
+player,team,clean_epa_per_play,pressure_epa_per_play,pressure_vulnerability,clean_completion_pct,pressure_completion_pct
+Patrick Mahomes,KC,0.25,-0.05,0.3,0.805,0.485
+Josh Allen,BUF,0.22,-0.08,0.3,0.79,0.476
+Brock Purdy,SF,0.2,-0.12,0.32,0.78,0.464
+Jalen Hurts,PHI,0.18,-0.1,0.28,0.77,0.47
+Dak Prescott,DAL,0.19,-0.15,0.33999999999999997,0.775,0.455
+Tua Tagovailoa,MIA,0.23,-0.1,0.33,0.795,0.47
+Lamar Jackson,BAL,0.24,-0.05,0.29,0.8,0.485
+Joe Burrow,CIN,0.21,-0.09,0.3,0.785,0.473

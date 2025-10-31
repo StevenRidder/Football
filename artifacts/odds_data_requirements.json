@@ -1,0 +1,23 @@
+{
+  "data_needed": "Opening and closing lines for NFL games 2020-2024",
+  "fields_required": [
+    "game_id",
+    "season",
+    "week",
+    "away_team",
+    "home_team",
+    "open_spread",
+    "open_total",
+    "open_timestamp",
+    "close_spread",
+    "close_total",
+    "close_timestamp"
+  ],
+  "estimated_games": 6000,
+  "estimated_cost": "$500-1000",
+  "alternatives": [
+    "The Odds API historical plan",
+    "Sports data vendors (SportsRadar, etc)",
+    "Manual collection over time"
+  ]
+}

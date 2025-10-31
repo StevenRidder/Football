@@ -19,6 +19,15 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 import json
 import re
+import sys
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from adjustment_calibration import apply_calibration
 
 
 @dataclass
@@ -311,6 +320,8 @@ def calculate_injury_impact(injuries: List[InjuryReport]) -> Dict[str, float]:
     """
     Calculate point impact from injuries.
     
+    Applies calibration multiplier to all injury impacts.
+    
     Args:
         injuries: List of InjuryReport objects
     
@@ -323,7 +334,7 @@ def calculate_injury_impact(injuries: List[InjuryReport]) -> Dict[str, float]:
         if injury.status not in ["out", "doubtful"]:
             continue  # Only count definite absences
         
-        # Calculate impact based on position and level
+        # Calculate BASE impact based on position and level
         impact = 0.0
         
         if injury.position == "QB":
@@ -345,6 +356,9 @@ def calculate_injury_impact(injuries: List[InjuryReport]) -> Dict[str, float]:
                 impact = -1.5  # WR2/RB2 out
             else:
                 impact = -0.5  # Depth player
+        
+        # APPLY CALIBRATION MULTIPLIER
+        impact = apply_calibration(impact)
         
         # Accumulate for team
         team = injury.team

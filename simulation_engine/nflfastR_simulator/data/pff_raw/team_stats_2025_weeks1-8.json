@@ -1,0 +1,3847 @@
+{
+  "franchise_groups": [
+    {
+      "heirarchy": [
+        1
+      ],
+      "id": 1,
+      "name": "AFC",
+      "slug": "afc"
+    },
+    {
+      "heirarchy": [
+        1,
+        2
+      ],
+      "id": 2,
+      "name": "AFC East",
+      "slug": "afc-east"
+    },
+    {
+      "heirarchy": [
+        1,
+        3
+      ],
+      "id": 3,
+      "name": "AFC North",
+      "slug": "afc-north"
+    },
+    {
+      "heirarchy": [
+        1,
+        4
+      ],
+      "id": 4,
+      "name": "AFC South",
+      "slug": "afc-south"
+    },
+    {
+      "heirarchy": [
+        1,
+        5
+      ],
+      "id": 5,
+      "name": "AFC West",
+      "slug": "afc-west"
+    },
+    {
+      "heirarchy": [
+        6
+      ],
+      "id": 6,
+      "name": "NFC",
+      "slug": "nfc"
+    },
+    {
+      "heirarchy": [
+        6,
+        7
+      ],
+      "id": 7,
+      "name": "NFC East",
+      "slug": "nfc-east"
+    },
+    {
+      "heirarchy": [
+        6,
+        8
+      ],
+      "id": 8,
+      "name": "NFC North",
+      "slug": "nfc-north"
+    },
+    {
+      "heirarchy": [
+        6,
+        9
+      ],
+      "id": 9,
+      "name": "NFC South",
+      "slug": "nfc-south"
+    },
+    {
+      "heirarchy": [
+        6,
+        10
+      ],
+      "id": 10,
+      "name": "NFC West",
+      "slug": "nfc-west"
+    }
+  ],
+  "games": [
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 11,
+      "id": 28690,
+      "start": "2025-08-01T00:00:00Z",
+      "week": -1
+    },
+    {
+      "away_franchise_id": 14,
+      "home_franchise_id": 3,
+      "id": 28691,
+      "start": "2025-08-07T23:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 7,
+      "home_franchise_id": 24,
+      "id": 28692,
+      "start": "2025-08-07T23:30:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 23,
+      "home_franchise_id": 29,
+      "id": 28706,
+      "start": "2025-08-08T02:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 8,
+      "home_franchise_id": 5,
+      "id": 28693,
+      "start": "2025-08-08T23:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 11,
+      "home_franchise_id": 2,
+      "id": 28694,
+      "start": "2025-08-08T23:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 32,
+      "home_franchise_id": 19,
+      "id": 28695,
+      "start": "2025-08-08T23:30:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 21,
+      "home_franchise_id": 4,
+      "id": 28705,
+      "start": "2025-08-09T17:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 13,
+      "home_franchise_id": 18,
+      "id": 28696,
+      "start": "2025-08-09T20:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 25,
+      "home_franchise_id": 15,
+      "id": 28698,
+      "start": "2025-08-09T23:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 9,
+      "home_franchise_id": 26,
+      "id": 28697,
+      "start": "2025-08-09T23:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 31,
+      "home_franchise_id": 30,
+      "id": 28704,
+      "start": "2025-08-09T23:30:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 16,
+      "home_franchise_id": 1,
+      "id": 28702,
+      "start": "2025-08-10T00:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 22,
+      "home_franchise_id": 12,
+      "id": 28699,
+      "start": "2025-08-10T00:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 10,
+      "home_franchise_id": 28,
+      "id": 28701,
+      "start": "2025-08-10T00:30:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 17,
+      "home_franchise_id": 6,
+      "id": 28703,
+      "start": "2025-08-10T17:00:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 20,
+      "home_franchise_id": 27,
+      "id": 28700,
+      "start": "2025-08-10T20:05:00Z",
+      "week": -2
+    },
+    {
+      "away_franchise_id": 31,
+      "home_franchise_id": 2,
+      "id": 28707,
+      "start": "2025-08-15T23:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 16,
+      "home_franchise_id": 29,
+      "id": 28718,
+      "start": "2025-08-16T02:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 5,
+      "home_franchise_id": 13,
+      "id": 28708,
+      "start": "2025-08-16T17:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 12,
+      "home_franchise_id": 14,
+      "id": 28710,
+      "start": "2025-08-16T17:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 17,
+      "home_franchise_id": 11,
+      "id": 28719,
+      "start": "2025-08-16T17:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 8,
+      "home_franchise_id": 24,
+      "id": 28709,
+      "start": "2025-08-16T17:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 19,
+      "home_franchise_id": 18,
+      "id": 28711,
+      "start": "2025-08-16T17:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 28,
+      "home_franchise_id": 23,
+      "id": 28720,
+      "start": "2025-08-16T20:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 22,
+      "home_franchise_id": 21,
+      "id": 28714,
+      "start": "2025-08-16T23:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 26,
+      "id": 28715,
+      "start": "2025-08-16T23:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 30,
+      "home_franchise_id": 25,
+      "id": 28713,
+      "start": "2025-08-16T23:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 3,
+      "home_franchise_id": 9,
+      "id": 28712,
+      "start": "2025-08-16T23:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 1,
+      "home_franchise_id": 10,
+      "id": 28717,
+      "start": "2025-08-17T01:30:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 15,
+      "home_franchise_id": 20,
+      "id": 28716,
+      "start": "2025-08-17T17:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 4,
+      "home_franchise_id": 6,
+      "id": 28721,
+      "start": "2025-08-18T00:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 7,
+      "home_franchise_id": 32,
+      "id": 28723,
+      "start": "2025-08-19T00:00:00Z",
+      "week": -3
+    },
+    {
+      "away_franchise_id": 25,
+      "home_franchise_id": 5,
+      "id": 28722,
+      "start": "2025-08-21T23:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 19,
+      "home_franchise_id": 21,
+      "id": 28724,
+      "start": "2025-08-22T00:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 24,
+      "home_franchise_id": 22,
+      "id": 28729,
+      "start": "2025-08-22T23:30:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 18,
+      "home_franchise_id": 31,
+      "id": 28731,
+      "start": "2025-08-23T00:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 2,
+      "home_franchise_id": 9,
+      "id": 28730,
+      "start": "2025-08-23T00:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 6,
+      "home_franchise_id": 16,
+      "id": 28732,
+      "start": "2025-08-23T00:20:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 3,
+      "home_franchise_id": 32,
+      "id": 28733,
+      "start": "2025-08-23T16:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 13,
+      "home_franchise_id": 11,
+      "id": 28735,
+      "start": "2025-08-23T17:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 14,
+      "home_franchise_id": 7,
+      "id": 28726,
+      "start": "2025-08-23T17:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 10,
+      "home_franchise_id": 20,
+      "id": 28725,
+      "start": "2025-08-23T17:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 26,
+      "home_franchise_id": 8,
+      "id": 28727,
+      "start": "2025-08-23T17:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 29,
+      "home_franchise_id": 12,
+      "id": 28728,
+      "start": "2025-08-23T20:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 15,
+      "home_franchise_id": 17,
+      "id": 28736,
+      "start": "2025-08-23T23:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 4,
+      "home_franchise_id": 30,
+      "id": 28734,
+      "start": "2025-08-23T23:30:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 28,
+      "id": 28737,
+      "start": "2025-08-24T00:30:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 23,
+      "home_franchise_id": 1,
+      "id": 28738,
+      "start": "2025-08-24T02:00:00Z",
+      "week": -4
+    },
+    {
+      "away_franchise_id": 9,
+      "home_franchise_id": 24,
+      "id": 28418,
+      "start": "2025-09-05T00:20:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 16,
+      "home_franchise_id": 27,
+      "id": 28419,
+      "start": "2025-09-06T00:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 25,
+      "home_franchise_id": 22,
+      "id": 28426,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 7,
+      "home_franchise_id": 8,
+      "id": 28421,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 30,
+      "home_franchise_id": 2,
+      "id": 28420,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 17,
+      "home_franchise_id": 14,
+      "id": 28422,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 5,
+      "home_franchise_id": 15,
+      "id": 28423,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 23,
+      "home_franchise_id": 19,
+      "id": 28424,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 1,
+      "home_franchise_id": 20,
+      "id": 28425,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 21,
+      "home_franchise_id": 32,
+      "id": 28427,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 31,
+      "home_franchise_id": 10,
+      "id": 28428,
+      "start": "2025-09-07T20:05:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 28,
+      "home_franchise_id": 29,
+      "id": 28429,
+      "start": "2025-09-07T20:05:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 11,
+      "home_franchise_id": 12,
+      "id": 28430,
+      "start": "2025-09-07T20:25:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 13,
+      "home_franchise_id": 26,
+      "id": 28431,
+      "start": "2025-09-07T20:25:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 3,
+      "home_franchise_id": 4,
+      "id": 28432,
+      "start": "2025-09-08T00:20:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 18,
+      "home_franchise_id": 6,
+      "id": 28433,
+      "start": "2025-09-09T00:15:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 32,
+      "home_franchise_id": 12,
+      "id": 28434,
+      "start": "2025-09-12T00:15:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 4,
+      "home_franchise_id": 22,
+      "id": 28441,
+      "start": "2025-09-14T17:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 6,
+      "home_franchise_id": 11,
+      "id": 28438,
+      "start": "2025-09-14T17:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 21,
+      "home_franchise_id": 9,
+      "id": 28437,
+      "start": "2025-09-14T17:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 26,
+      "home_franchise_id": 31,
+      "id": 28443,
+      "start": "2025-09-14T17:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 29,
+      "home_franchise_id": 25,
+      "id": 28442,
+      "start": "2025-09-14T17:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 19,
+      "home_franchise_id": 17,
+      "id": 28439,
+      "start": "2025-09-14T17:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 8,
+      "home_franchise_id": 3,
+      "id": 28435,
+      "start": "2025-09-14T17:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 15,
+      "home_franchise_id": 7,
+      "id": 28436,
+      "start": "2025-09-14T17:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 28,
+      "home_franchise_id": 20,
+      "id": 28440,
+      "start": "2025-09-14T17:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 5,
+      "home_franchise_id": 1,
+      "id": 28445,
+      "start": "2025-09-14T20:05:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 10,
+      "home_franchise_id": 14,
+      "id": 28444,
+      "start": "2025-09-14T20:05:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 24,
+      "home_franchise_id": 16,
+      "id": 28446,
+      "start": "2025-09-14T20:25:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 2,
+      "home_franchise_id": 18,
+      "id": 28447,
+      "start": "2025-09-15T00:20:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 30,
+      "home_franchise_id": 13,
+      "id": 28448,
+      "start": "2025-09-15T23:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 23,
+      "id": 28449,
+      "start": "2025-09-16T02:00:00Z",
+      "week": 2
+    },
+    {
+      "away_franchise_id": 17,
+      "home_franchise_id": 4,
+      "id": 28450,
+      "start": "2025-09-19T00:15:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 13,
+      "home_franchise_id": 15,
+      "id": 28454,
+      "start": "2025-09-21T17:00:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 12,
+      "home_franchise_id": 8,
+      "id": 28453,
+      "start": "2025-09-21T17:00:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 22,
+      "home_franchise_id": 30,
+      "id": 28458,
+      "start": "2025-09-21T17:00:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 14,
+      "home_franchise_id": 31,
+      "id": 28459,
+      "start": "2025-09-21T17:00:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 26,
+      "home_franchise_id": 24,
+      "id": 28457,
+      "start": "2025-09-21T17:00:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 25,
+      "home_franchise_id": 19,
+      "id": 28456,
+      "start": "2025-09-21T17:00:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 7,
+      "home_franchise_id": 18,
+      "id": 28455,
+      "start": "2025-09-21T17:00:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 2,
+      "home_franchise_id": 5,
+      "id": 28452,
+      "start": "2025-09-21T17:00:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 23,
+      "home_franchise_id": 32,
+      "id": 28460,
+      "start": "2025-09-21T17:00:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 10,
+      "home_franchise_id": 27,
+      "id": 28461,
+      "start": "2025-09-21T20:05:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 20,
+      "home_franchise_id": 29,
+      "id": 28462,
+      "start": "2025-09-21T20:05:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 9,
+      "home_franchise_id": 6,
+      "id": 28463,
+      "start": "2025-09-21T20:25:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 1,
+      "home_franchise_id": 28,
+      "id": 28464,
+      "start": "2025-09-21T20:25:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 16,
+      "home_franchise_id": 21,
+      "id": 28465,
+      "start": "2025-09-22T00:20:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 11,
+      "home_franchise_id": 3,
+      "id": 28451,
+      "start": "2025-09-23T00:15:00Z",
+      "week": 3
+    },
+    {
+      "away_franchise_id": 29,
+      "home_franchise_id": 1,
+      "id": 28466,
+      "start": "2025-09-26T00:15:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 18,
+      "home_franchise_id": 25,
+      "id": 28467,
+      "start": "2025-09-28T13:30:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 20,
+      "home_franchise_id": 4,
+      "id": 28469,
+      "start": "2025-09-28T17:00:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 32,
+      "home_franchise_id": 2,
+      "id": 28468,
+      "start": "2025-09-28T17:00:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 8,
+      "home_franchise_id": 11,
+      "id": 28470,
+      "start": "2025-09-28T17:00:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 21,
+      "id": 28473,
+      "start": "2025-09-28T17:00:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 5,
+      "home_franchise_id": 19,
+      "id": 28472,
+      "start": "2025-09-28T17:00:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 31,
+      "home_franchise_id": 13,
+      "id": 28471,
+      "start": "2025-09-28T17:00:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 24,
+      "home_franchise_id": 30,
+      "id": 28474,
+      "start": "2025-09-28T17:00:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 14,
+      "home_franchise_id": 26,
+      "id": 28475,
+      "start": "2025-09-28T20:05:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 15,
+      "home_franchise_id": 28,
+      "id": 28476,
+      "start": "2025-09-28T20:05:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 6,
+      "home_franchise_id": 23,
+      "id": 28477,
+      "start": "2025-09-28T20:25:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 3,
+      "home_franchise_id": 16,
+      "id": 28478,
+      "start": "2025-09-28T20:25:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 12,
+      "home_franchise_id": 9,
+      "id": 28479,
+      "start": "2025-09-29T00:20:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 22,
+      "home_franchise_id": 17,
+      "id": 28481,
+      "start": "2025-09-29T23:15:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 7,
+      "home_franchise_id": 10,
+      "id": 28480,
+      "start": "2025-09-30T00:15:00Z",
+      "week": 4
+    },
+    {
+      "away_franchise_id": 28,
+      "home_franchise_id": 26,
+      "id": 28482,
+      "start": "2025-10-03T00:15:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 18,
+      "home_franchise_id": 8,
+      "id": 28483,
+      "start": "2025-10-05T13:30:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 10,
+      "home_franchise_id": 24,
+      "id": 28489,
+      "start": "2025-10-05T17:00:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 13,
+      "home_franchise_id": 3,
+      "id": 28484,
+      "start": "2025-10-05T17:00:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 17,
+      "home_franchise_id": 5,
+      "id": 28485,
+      "start": "2025-10-05T17:00:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 23,
+      "home_franchise_id": 14,
+      "id": 28486,
+      "start": "2025-10-05T17:00:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 21,
+      "home_franchise_id": 20,
+      "id": 28487,
+      "start": "2025-10-05T17:00:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 9,
+      "home_franchise_id": 22,
+      "id": 28488,
+      "start": "2025-10-05T17:00:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 30,
+      "home_franchise_id": 29,
+      "id": 28490,
+      "start": "2025-10-05T20:05:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 31,
+      "home_franchise_id": 1,
+      "id": 28491,
+      "start": "2025-10-05T20:05:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 32,
+      "home_franchise_id": 27,
+      "id": 28493,
+      "start": "2025-10-05T20:25:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 11,
+      "home_franchise_id": 7,
+      "id": 28492,
+      "start": "2025-10-05T20:25:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 19,
+      "home_franchise_id": 4,
+      "id": 28494,
+      "start": "2025-10-06T00:20:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 16,
+      "home_franchise_id": 15,
+      "id": 28495,
+      "start": "2025-10-07T00:15:00Z",
+      "week": 5
+    },
+    {
+      "away_franchise_id": 24,
+      "home_franchise_id": 21,
+      "id": 28496,
+      "start": "2025-10-10T00:20:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 10,
+      "home_franchise_id": 22,
+      "id": 28497,
+      "start": "2025-10-12T13:30:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 29,
+      "home_franchise_id": 15,
+      "id": 28501,
+      "start": "2025-10-12T17:00:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 8,
+      "home_franchise_id": 25,
+      "id": 28503,
+      "start": "2025-10-12T17:00:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 19,
+      "home_franchise_id": 20,
+      "id": 28507,
+      "start": "2025-10-12T17:00:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 17,
+      "id": 28502,
+      "start": "2025-10-12T17:00:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 9,
+      "home_franchise_id": 5,
+      "id": 28499,
+      "start": "2025-10-12T17:00:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 26,
+      "home_franchise_id": 3,
+      "id": 28498,
+      "start": "2025-10-12T17:00:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 1,
+      "home_franchise_id": 14,
+      "id": 28500,
+      "start": "2025-10-12T17:00:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 31,
+      "home_franchise_id": 23,
+      "id": 28505,
+      "start": "2025-10-12T20:05:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 7,
+      "home_franchise_id": 12,
+      "id": 28506,
+      "start": "2025-10-12T20:25:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 28,
+      "home_franchise_id": 30,
+      "id": 28504,
+      "start": "2025-10-12T20:25:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 11,
+      "home_franchise_id": 16,
+      "id": 28508,
+      "start": "2025-10-13T00:20:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 4,
+      "home_franchise_id": 2,
+      "id": 28509,
+      "start": "2025-10-13T23:15:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 6,
+      "home_franchise_id": 32,
+      "id": 28510,
+      "start": "2025-10-14T00:15:00Z",
+      "week": 6
+    },
+    {
+      "away_franchise_id": 25,
+      "home_franchise_id": 7,
+      "id": 28511,
+      "start": "2025-10-17T00:20:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 26,
+      "home_franchise_id": 15,
+      "id": 28512,
+      "start": "2025-10-19T13:30:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 17,
+      "home_franchise_id": 8,
+      "id": 28514,
+      "start": "2025-10-19T17:00:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 23,
+      "home_franchise_id": 16,
+      "id": 28515,
+      "start": "2025-10-19T17:00:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 20,
+      "home_franchise_id": 6,
+      "id": 28513,
+      "start": "2025-10-19T17:00:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 19,
+      "home_franchise_id": 31,
+      "id": 28518,
+      "start": "2025-10-19T17:00:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 5,
+      "home_franchise_id": 22,
+      "id": 28517,
+      "start": "2025-10-19T17:00:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 24,
+      "home_franchise_id": 18,
+      "id": 28516,
+      "start": "2025-10-19T17:00:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 21,
+      "home_franchise_id": 10,
+      "id": 28519,
+      "start": "2025-10-19T20:05:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 14,
+      "home_franchise_id": 27,
+      "id": 28520,
+      "start": "2025-10-19T20:05:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 32,
+      "home_franchise_id": 9,
+      "id": 28522,
+      "start": "2025-10-19T20:25:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 12,
+      "home_franchise_id": 1,
+      "id": 28521,
+      "start": "2025-10-19T20:25:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 2,
+      "home_franchise_id": 28,
+      "id": 28523,
+      "start": "2025-10-20T00:20:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 30,
+      "home_franchise_id": 11,
+      "id": 28524,
+      "start": "2025-10-20T23:00:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 13,
+      "home_franchise_id": 29,
+      "id": 28525,
+      "start": "2025-10-21T02:00:00Z",
+      "week": 7
+    },
+    {
+      "away_franchise_id": 18,
+      "home_franchise_id": 27,
+      "id": 28526,
+      "start": "2025-10-24T00:15:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 17,
+      "home_franchise_id": 2,
+      "id": 28527,
+      "start": "2025-10-26T17:00:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 4,
+      "home_franchise_id": 5,
+      "id": 28529,
+      "start": "2025-10-26T17:00:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 22,
+      "home_franchise_id": 7,
+      "id": 28530,
+      "start": "2025-10-26T17:00:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 6,
+      "home_franchise_id": 3,
+      "id": 28528,
+      "start": "2025-10-26T17:00:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 21,
+      "home_franchise_id": 24,
+      "id": 28533,
+      "start": "2025-10-26T17:00:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 28,
+      "home_franchise_id": 13,
+      "id": 28531,
+      "start": "2025-10-26T17:00:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 8,
+      "home_franchise_id": 19,
+      "id": 28532,
+      "start": "2025-10-26T17:00:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 30,
+      "home_franchise_id": 20,
+      "id": 28534,
+      "start": "2025-10-26T20:05:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 9,
+      "home_franchise_id": 10,
+      "id": 28535,
+      "start": "2025-10-26T20:25:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 31,
+      "home_franchise_id": 14,
+      "id": 28536,
+      "start": "2025-10-26T20:25:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 12,
+      "home_franchise_id": 25,
+      "id": 28537,
+      "start": "2025-10-27T00:20:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 32,
+      "home_franchise_id": 16,
+      "id": 28538,
+      "start": "2025-10-28T00:15:00Z",
+      "week": 8
+    },
+    {
+      "away_franchise_id": 3,
+      "home_franchise_id": 17,
+      "id": 28539,
+      "start": "2025-10-31T00:15:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 28,
+      "home_franchise_id": 21,
+      "id": 28545,
+      "start": "2025-11-02T18:00:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 10,
+      "home_franchise_id": 13,
+      "id": 28543,
+      "start": "2025-11-02T18:00:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 5,
+      "home_franchise_id": 12,
+      "id": 28542,
+      "start": "2025-11-02T18:00:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 2,
+      "home_franchise_id": 19,
+      "id": 28544,
+      "start": "2025-11-02T18:00:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 14,
+      "home_franchise_id": 25,
+      "id": 28546,
+      "start": "2025-11-02T18:00:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 18,
+      "home_franchise_id": 11,
+      "id": 28541,
+      "start": "2025-11-02T18:00:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 6,
+      "home_franchise_id": 7,
+      "id": 28540,
+      "start": "2025-11-02T18:00:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 31,
+      "id": 28547,
+      "start": "2025-11-02T18:00:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 20,
+      "home_franchise_id": 26,
+      "id": 28548,
+      "start": "2025-11-02T21:05:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 15,
+      "home_franchise_id": 23,
+      "id": 28549,
+      "start": "2025-11-02T21:05:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 16,
+      "home_franchise_id": 4,
+      "id": 28550,
+      "start": "2025-11-02T21:25:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 29,
+      "home_franchise_id": 32,
+      "id": 28551,
+      "start": "2025-11-03T01:20:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 1,
+      "home_franchise_id": 9,
+      "id": 28552,
+      "start": "2025-11-04T01:15:00Z",
+      "week": 9
+    },
+    {
+      "away_franchise_id": 23,
+      "home_franchise_id": 10,
+      "id": 28553,
+      "start": "2025-11-07T01:15:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 2,
+      "home_franchise_id": 14,
+      "id": 28554,
+      "start": "2025-11-09T14:30:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 4,
+      "home_franchise_id": 17,
+      "id": 28558,
+      "start": "2025-11-09T18:00:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 3,
+      "home_franchise_id": 18,
+      "id": 28559,
+      "start": "2025-11-09T18:00:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 19,
+      "home_franchise_id": 30,
+      "id": 28561,
+      "start": "2025-11-09T18:00:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 8,
+      "home_franchise_id": 22,
+      "id": 28560,
+      "start": "2025-11-09T18:00:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 20,
+      "home_franchise_id": 5,
+      "id": 28555,
+      "start": "2025-11-09T18:00:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 21,
+      "home_franchise_id": 6,
+      "id": 28556,
+      "start": "2025-11-09T18:00:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 15,
+      "home_franchise_id": 13,
+      "id": 28557,
+      "start": "2025-11-09T18:00:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 1,
+      "home_franchise_id": 29,
+      "id": 28562,
+      "start": "2025-11-09T21:05:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 11,
+      "home_franchise_id": 32,
+      "id": 28564,
+      "start": "2025-11-09T21:25:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 26,
+      "home_franchise_id": 28,
+      "id": 28563,
+      "start": "2025-11-09T21:25:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 25,
+      "home_franchise_id": 27,
+      "id": 28565,
+      "start": "2025-11-10T01:20:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 24,
+      "home_franchise_id": 12,
+      "id": 28566,
+      "start": "2025-11-11T01:15:00Z",
+      "week": 10
+    },
+    {
+      "away_franchise_id": 22,
+      "home_franchise_id": 19,
+      "id": 28567,
+      "start": "2025-11-14T01:15:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 32,
+      "home_franchise_id": 17,
+      "id": 28568,
+      "start": "2025-11-16T14:30:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 5,
+      "home_franchise_id": 2,
+      "id": 28569,
+      "start": "2025-11-16T18:00:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 30,
+      "home_franchise_id": 4,
+      "id": 28570,
+      "start": "2025-11-16T18:00:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 15,
+      "id": 28571,
+      "start": "2025-11-16T18:00:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 6,
+      "home_franchise_id": 18,
+      "id": 28573,
+      "start": "2025-11-16T18:00:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 12,
+      "home_franchise_id": 21,
+      "id": 28574,
+      "start": "2025-11-16T18:00:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 7,
+      "home_franchise_id": 25,
+      "id": 28575,
+      "start": "2025-11-16T18:00:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 13,
+      "home_franchise_id": 31,
+      "id": 28576,
+      "start": "2025-11-16T18:00:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 29,
+      "home_franchise_id": 26,
+      "id": 28578,
+      "start": "2025-11-16T21:05:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 28,
+      "home_franchise_id": 1,
+      "id": 28577,
+      "start": "2025-11-16T21:05:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 16,
+      "home_franchise_id": 10,
+      "id": 28580,
+      "start": "2025-11-16T21:25:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 3,
+      "home_franchise_id": 8,
+      "id": 28579,
+      "start": "2025-11-16T21:25:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 11,
+      "home_franchise_id": 24,
+      "id": 28581,
+      "start": "2025-11-17T01:20:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 9,
+      "home_franchise_id": 23,
+      "id": 28572,
+      "start": "2025-11-18T01:15:00Z",
+      "week": 11
+    },
+    {
+      "away_franchise_id": 4,
+      "home_franchise_id": 13,
+      "id": 28582,
+      "start": "2025-11-21T01:15:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 25,
+      "home_franchise_id": 6,
+      "id": 28584,
+      "start": "2025-11-23T18:00:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 21,
+      "home_franchise_id": 11,
+      "id": 28586,
+      "start": "2025-11-23T18:00:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 14,
+      "home_franchise_id": 16,
+      "id": 28588,
+      "start": "2025-11-23T18:00:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 29,
+      "home_franchise_id": 31,
+      "id": 28589,
+      "start": "2025-11-23T18:00:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 19,
+      "home_franchise_id": 7,
+      "id": 28585,
+      "start": "2025-11-23T18:00:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 22,
+      "home_franchise_id": 3,
+      "id": 28583,
+      "start": "2025-11-23T18:00:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 18,
+      "home_franchise_id": 12,
+      "id": 28587,
+      "start": "2025-11-23T18:00:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 8,
+      "home_franchise_id": 23,
+      "id": 28591,
+      "start": "2025-11-23T21:05:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 15,
+      "home_franchise_id": 1,
+      "id": 28590,
+      "start": "2025-11-23T21:05:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 24,
+      "home_franchise_id": 9,
+      "id": 28592,
+      "start": "2025-11-23T21:25:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 2,
+      "home_franchise_id": 20,
+      "id": 28593,
+      "start": "2025-11-23T21:25:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 30,
+      "home_franchise_id": 26,
+      "id": 28594,
+      "start": "2025-11-24T01:20:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 5,
+      "home_franchise_id": 28,
+      "id": 28595,
+      "start": "2025-11-25T01:15:00Z",
+      "week": 12
+    },
+    {
+      "away_franchise_id": 12,
+      "home_franchise_id": 11,
+      "id": 28596,
+      "start": "2025-11-27T18:00:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 16,
+      "home_franchise_id": 9,
+      "id": 28597,
+      "start": "2025-11-27T21:30:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 7,
+      "home_franchise_id": 3,
+      "id": 28598,
+      "start": "2025-11-28T01:20:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 6,
+      "home_franchise_id": 24,
+      "id": 28599,
+      "start": "2025-11-28T20:00:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 20,
+      "home_franchise_id": 17,
+      "id": 28603,
+      "start": "2025-11-30T18:00:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 1,
+      "home_franchise_id": 30,
+      "id": 28605,
+      "start": "2025-11-30T18:00:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 2,
+      "home_franchise_id": 22,
+      "id": 28604,
+      "start": "2025-11-30T18:00:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 26,
+      "home_franchise_id": 5,
+      "id": 28600,
+      "start": "2025-11-30T18:00:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 28,
+      "home_franchise_id": 8,
+      "id": 28601,
+      "start": "2025-11-30T18:00:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 13,
+      "home_franchise_id": 14,
+      "id": 28602,
+      "start": "2025-11-30T18:00:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 15,
+      "home_franchise_id": 31,
+      "id": 28606,
+      "start": "2025-11-30T18:00:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 18,
+      "home_franchise_id": 29,
+      "id": 28608,
+      "start": "2025-11-30T21:05:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 23,
+      "home_franchise_id": 27,
+      "id": 28607,
+      "start": "2025-11-30T21:05:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 4,
+      "home_franchise_id": 25,
+      "id": 28609,
+      "start": "2025-11-30T21:25:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 10,
+      "home_franchise_id": 32,
+      "id": 28610,
+      "start": "2025-12-01T01:20:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 21,
+      "home_franchise_id": 19,
+      "id": 28611,
+      "start": "2025-12-02T01:15:00Z",
+      "week": 13
+    },
+    {
+      "away_franchise_id": 9,
+      "home_franchise_id": 11,
+      "id": 28612,
+      "start": "2025-12-05T01:15:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 31,
+      "home_franchise_id": 8,
+      "id": 28615,
+      "start": "2025-12-07T18:00:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 25,
+      "home_franchise_id": 3,
+      "id": 28614,
+      "start": "2025-12-07T18:00:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 29,
+      "home_franchise_id": 2,
+      "id": 28613,
+      "start": "2025-12-07T18:00:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 6,
+      "home_franchise_id": 12,
+      "id": 28616,
+      "start": "2025-12-07T18:00:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 14,
+      "home_franchise_id": 15,
+      "id": 28617,
+      "start": "2025-12-07T18:00:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 32,
+      "home_franchise_id": 18,
+      "id": 28618,
+      "start": "2025-12-07T18:00:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 17,
+      "home_franchise_id": 22,
+      "id": 28619,
+      "start": "2025-12-07T18:00:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 20,
+      "home_franchise_id": 30,
+      "id": 28620,
+      "start": "2025-12-07T18:00:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 10,
+      "home_franchise_id": 23,
+      "id": 28621,
+      "start": "2025-12-07T21:05:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 7,
+      "home_franchise_id": 4,
+      "id": 28623,
+      "start": "2025-12-07T21:25:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 26,
+      "home_franchise_id": 1,
+      "id": 28622,
+      "start": "2025-12-07T21:25:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 13,
+      "home_franchise_id": 16,
+      "id": 28624,
+      "start": "2025-12-08T01:20:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 24,
+      "home_franchise_id": 27,
+      "id": 28625,
+      "start": "2025-12-09T01:15:00Z",
+      "week": 14
+    },
+    {
+      "away_franchise_id": 2,
+      "home_franchise_id": 30,
+      "id": 28626,
+      "start": "2025-12-12T01:15:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 23,
+      "home_franchise_id": 24,
+      "id": 28634,
+      "start": "2025-12-14T18:00:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 8,
+      "home_franchise_id": 6,
+      "id": 28627,
+      "start": "2025-12-14T18:00:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 1,
+      "home_franchise_id": 13,
+      "id": 28629,
+      "start": "2025-12-14T18:00:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 22,
+      "home_franchise_id": 15,
+      "id": 28630,
+      "start": "2025-12-14T18:00:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 16,
+      "id": 28631,
+      "start": "2025-12-14T18:00:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 4,
+      "home_franchise_id": 19,
+      "id": 28632,
+      "start": "2025-12-14T18:00:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 32,
+      "home_franchise_id": 21,
+      "id": 28633,
+      "start": "2025-12-14T18:00:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 3,
+      "home_franchise_id": 7,
+      "id": 28628,
+      "start": "2025-12-14T18:00:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 14,
+      "home_franchise_id": 29,
+      "id": 28637,
+      "start": "2025-12-14T21:25:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 11,
+      "home_franchise_id": 26,
+      "id": 28638,
+      "start": "2025-12-14T21:25:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 12,
+      "home_franchise_id": 10,
+      "id": 28635,
+      "start": "2025-12-14T21:25:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 31,
+      "home_franchise_id": 28,
+      "id": 28639,
+      "start": "2025-12-14T21:25:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 5,
+      "home_franchise_id": 20,
+      "id": 28636,
+      "start": "2025-12-14T21:25:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 18,
+      "home_franchise_id": 9,
+      "id": 28640,
+      "start": "2025-12-15T01:20:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 17,
+      "home_franchise_id": 25,
+      "id": 28641,
+      "start": "2025-12-16T01:15:00Z",
+      "week": 15
+    },
+    {
+      "away_franchise_id": 26,
+      "home_franchise_id": 29,
+      "id": 28642,
+      "start": "2025-12-19T01:15:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 24,
+      "home_franchise_id": 32,
+      "id": 28644,
+      "start": "2025-12-20T18:00:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 12,
+      "home_franchise_id": 6,
+      "id": 28643,
+      "start": "2025-12-20T18:00:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 30,
+      "home_franchise_id": 5,
+      "id": 28646,
+      "start": "2025-12-21T18:00:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 19,
+      "home_franchise_id": 3,
+      "id": 28645,
+      "start": "2025-12-21T18:00:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 4,
+      "home_franchise_id": 8,
+      "id": 28647,
+      "start": "2025-12-21T18:00:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 22,
+      "home_franchise_id": 20,
+      "id": 28649,
+      "start": "2025-12-21T18:00:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 18,
+      "home_franchise_id": 21,
+      "id": 28650,
+      "start": "2025-12-21T18:00:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 16,
+      "home_franchise_id": 31,
+      "id": 28651,
+      "start": "2025-12-21T18:00:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 9,
+      "id": 28648,
+      "start": "2025-12-21T18:00:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 15,
+      "home_franchise_id": 10,
+      "id": 28653,
+      "start": "2025-12-21T21:05:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 2,
+      "home_franchise_id": 1,
+      "id": 28652,
+      "start": "2025-12-21T21:05:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 25,
+      "home_franchise_id": 11,
+      "id": 28654,
+      "start": "2025-12-21T21:25:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 23,
+      "home_franchise_id": 13,
+      "id": 28655,
+      "start": "2025-12-21T21:25:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 7,
+      "home_franchise_id": 17,
+      "id": 28656,
+      "start": "2025-12-22T01:20:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 28,
+      "home_franchise_id": 14,
+      "id": 28657,
+      "start": "2025-12-23T01:15:00Z",
+      "week": 16
+    },
+    {
+      "away_franchise_id": 9,
+      "home_franchise_id": 32,
+      "id": 28658,
+      "start": "2025-12-25T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 11,
+      "home_franchise_id": 18,
+      "id": 28659,
+      "start": "2025-12-25T21:30:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 10,
+      "home_franchise_id": 16,
+      "id": 28660,
+      "start": "2025-12-26T01:15:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 13,
+      "home_franchise_id": 27,
+      "id": 28664,
+      "start": "2025-12-27T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 29,
+      "home_franchise_id": 5,
+      "id": 28661,
+      "start": "2025-12-27T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 21,
+      "home_franchise_id": 23,
+      "id": 28665,
+      "start": "2025-12-27T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 3,
+      "home_franchise_id": 12,
+      "id": 28663,
+      "start": "2025-12-27T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 1,
+      "home_franchise_id": 7,
+      "id": 28662,
+      "start": "2025-12-27T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 20,
+      "home_franchise_id": 31,
+      "id": 28670,
+      "start": "2025-12-28T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 19,
+      "home_franchise_id": 22,
+      "id": 28669,
+      "start": "2025-12-28T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 30,
+      "home_franchise_id": 17,
+      "id": 28668,
+      "start": "2025-12-28T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 25,
+      "home_franchise_id": 8,
+      "id": 28666,
+      "start": "2025-12-28T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 15,
+      "home_franchise_id": 14,
+      "id": 28667,
+      "start": "2025-12-28T18:00:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 24,
+      "home_franchise_id": 4,
+      "id": 28671,
+      "start": "2025-12-28T21:25:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 6,
+      "home_franchise_id": 28,
+      "id": 28672,
+      "start": "2025-12-29T01:20:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 26,
+      "home_franchise_id": 2,
+      "id": 28673,
+      "start": "2025-12-30T01:15:00Z",
+      "week": 17
+    },
+    {
+      "away_franchise_id": 14,
+      "home_franchise_id": 13,
+      "id": 28678,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 31,
+      "home_franchise_id": 15,
+      "id": 28679,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 27,
+      "home_franchise_id": 10,
+      "id": 28677,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 20,
+      "home_franchise_id": 2,
+      "id": 28689,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 16,
+      "home_franchise_id": 23,
+      "id": 28680,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 1,
+      "home_franchise_id": 26,
+      "id": 28681,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 12,
+      "home_franchise_id": 18,
+      "id": 28682,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 8,
+      "home_franchise_id": 7,
+      "id": 28676,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 11,
+      "home_franchise_id": 6,
+      "id": 28675,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 22,
+      "home_franchise_id": 4,
+      "id": 28674,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 5,
+      "home_franchise_id": 30,
+      "id": 28688,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 29,
+      "home_franchise_id": 28,
+      "id": 28687,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 3,
+      "home_franchise_id": 25,
+      "id": 28686,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 32,
+      "home_franchise_id": 24,
+      "id": 28685,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 9,
+      "home_franchise_id": 21,
+      "id": 28684,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    },
+    {
+      "away_franchise_id": 17,
+      "home_franchise_id": 19,
+      "id": 28683,
+      "start": "2026-01-04T18:00:00Z",
+      "week": 18
+    }
+  ],
+  "teams": [
+    {
+      "abbreviation": "WAS",
+      "city": "Washington",
+      "color_metadata": {
+        "background_color_ref": "#773141",
+        "dark_color_ref": "#773141",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ffb612",
+        "jersey_color_ref": "#773141",
+        "light_color_ref": "#ffb612",
+        "primary_color": "#773141",
+        "secondary_color": "#ffb612",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "WAS",
+      "end_season": 3000,
+      "franchise_id": 32,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            7
+          ],
+          "id": 7,
+          "name": "NFC East",
+          "slug": "nfc-east"
+        }
+      ],
+      "gsis_abbreviation": "COMMAN",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Commanders",
+      "primary_color": "#773141",
+      "secondary_color": "#ffb612",
+      "slug": "washington-commanders",
+      "start_season": 2022,
+      "updated_at": "2022-02-02T14:16:28.421114"
+    },
+    {
+      "abbreviation": "LV",
+      "city": "Las Vegas",
+      "color_metadata": {
+        "background_color_ref": "#000000",
+        "dark_color_ref": "#000000",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#a5acaf",
+        "jersey_color_ref": "#000000",
+        "light_color_ref": "#a5acaf",
+        "primary_color": "#000000",
+        "secondary_color": "#a5acaf",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "LV",
+      "end_season": 3000,
+      "franchise_id": 23,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            5
+          ],
+          "id": 5,
+          "name": "AFC West",
+          "slug": "afc-west"
+        }
+      ],
+      "gsis_abbreviation": "RAIDER",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Raiders",
+      "primary_color": "#000000",
+      "secondary_color": "#a5acaf",
+      "slug": "las-vegas-raiders",
+      "start_season": 2020,
+      "updated_at": "2020-04-09T16:45:51.743263"
+    },
+    {
+      "abbreviation": "LA",
+      "city": "Los Angeles",
+      "color_metadata": {
+        "background_color_ref": "#003594",
+        "dark_color_ref": "#003594",
+        "foreground_color": "#ffd100",
+        "helmet_color_ref": "#ffd100",
+        "jersey_color_ref": "#003594",
+        "light_color_ref": "#ffd100",
+        "primary_color": "#003594",
+        "secondary_color": "#ffd100",
+        "tertiary_color": "#0c2340"
+      },
+      "display_abbreviation": "LA",
+      "end_season": 3000,
+      "franchise_id": 26,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            10
+          ],
+          "id": 10,
+          "name": "NFC West",
+          "slug": "nfc-west"
+        }
+      ],
+      "gsis_abbreviation": "RAMS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Rams",
+      "primary_color": "#003594",
+      "secondary_color": "#ffd100",
+      "slug": "los-angeles-rams",
+      "start_season": 2020,
+      "updated_at": "2020-04-08T19:48:04.557239"
+    },
+    {
+      "abbreviation": "LAC",
+      "city": "Los Angeles",
+      "color_metadata": {
+        "background_color_ref": "#002a5e",
+        "dark_color_ref": "#002a5e",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ffc20e",
+        "jersey_color_ref": "#002a5e",
+        "light_color_ref": "#ffc20e",
+        "primary_color": "#002a5e",
+        "secondary_color": "#ffc20e",
+        "tertiary_color": "#0080c6"
+      },
+      "display_abbreviation": "LAC",
+      "end_season": 3000,
+      "franchise_id": 27,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            5
+          ],
+          "id": 5,
+          "name": "AFC West",
+          "slug": "afc-west"
+        }
+      ],
+      "gsis_abbreviation": "CHARGE",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Chargers",
+      "primary_color": "#002a5e",
+      "secondary_color": "#ffc20e",
+      "slug": "los-angeles-chargers",
+      "start_season": 2017,
+      "updated_at": "2019-08-01T17:33:42.998609"
+    },
+    {
+      "abbreviation": "HST",
+      "city": "Houston",
+      "color_metadata": {
+        "background_color_ref": "#03202f",
+        "dark_color_ref": "#03202f",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#a71930",
+        "jersey_color_ref": "#03202f",
+        "light_color_ref": "#a71930",
+        "primary_color": "#03202f",
+        "secondary_color": "#a71930",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "HST",
+      "end_season": 3000,
+      "franchise_id": 13,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            4
+          ],
+          "id": 4,
+          "name": "AFC South",
+          "slug": "afc-south"
+        }
+      ],
+      "gsis_abbreviation": "TEXANS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Texans",
+      "primary_color": "#03202f",
+      "secondary_color": "#a71930",
+      "slug": "houston-texans",
+      "start_season": 2002,
+      "updated_at": "2019-08-01T17:12:24.427438"
+    },
+    {
+      "abbreviation": "TEN",
+      "city": "Tennessee",
+      "color_metadata": {
+        "background_color_ref": "#0c2340",
+        "dark_color_ref": "#0c2340",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#418fde",
+        "jersey_color_ref": "#0c2340",
+        "light_color_ref": "#418fde",
+        "primary_color": "#0c2340",
+        "secondary_color": "#418fde",
+        "tertiary_color": "#c8102e"
+      },
+      "display_abbreviation": "TEN",
+      "end_season": 3000,
+      "franchise_id": 31,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            4
+          ],
+          "id": 4,
+          "name": "AFC South",
+          "slug": "afc-south"
+        }
+      ],
+      "gsis_abbreviation": "TITANS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Titans",
+      "primary_color": "#0c2340",
+      "secondary_color": "#418fde",
+      "slug": "tennessee-titans",
+      "start_season": 1999,
+      "updated_at": "2019-08-01T17:41:14.487595"
+    },
+    {
+      "abbreviation": "JAX",
+      "city": "Jacksonville",
+      "color_metadata": {
+        "background_color_ref": "#006778",
+        "dark_color_ref": "#006778",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#d7a22a",
+        "jersey_color_ref": "#006778",
+        "light_color_ref": "#d7a22a",
+        "primary_color": "#006778",
+        "secondary_color": "#d7a22a",
+        "tertiary_color": "#000000"
+      },
+      "display_abbreviation": "JAX",
+      "end_season": 3000,
+      "franchise_id": 15,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            4
+          ],
+          "id": 4,
+          "name": "AFC South",
+          "slug": "afc-south"
+        }
+      ],
+      "gsis_abbreviation": "JAGUAR",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Jaguars",
+      "primary_color": "#006778",
+      "secondary_color": "#d7a22a",
+      "slug": "jacksonville-jaguars",
+      "start_season": 1995,
+      "updated_at": "2019-08-01T17:17:49.055958"
+    },
+    {
+      "abbreviation": "CAR",
+      "city": "Carolina",
+      "color_metadata": {
+        "background_color_ref": "#0085ca",
+        "dark_color_ref": "#000000",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#bfc0bf",
+        "jersey_color_ref": "#0085ca",
+        "light_color_ref": "#0085ca",
+        "primary_color": "#0085ca",
+        "secondary_color": "#bfc0bf",
+        "tertiary_color": "#000000"
+      },
+      "display_abbreviation": "CAR",
+      "end_season": 3000,
+      "franchise_id": 5,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            9
+          ],
+          "id": 9,
+          "name": "NFC South",
+          "slug": "nfc-south"
+        }
+      ],
+      "gsis_abbreviation": "PANTHE",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Panthers",
+      "primary_color": "#0085ca",
+      "secondary_color": "#bfc0bf",
+      "slug": "carolina-panthers",
+      "start_season": 1995,
+      "updated_at": "2019-12-10T17:05:40.428097"
+    },
+    {
+      "abbreviation": "ARZ",
+      "city": "Arizona",
+      "color_metadata": {
+        "background_color_ref": "#97233f",
+        "dark_color_ref": "#97233f",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ffffff",
+        "jersey_color_ref": "#97233f",
+        "light_color_ref": "#ffffff",
+        "primary_color": "#97233f",
+        "secondary_color": "#ffffff",
+        "tertiary_color": "#000000"
+      },
+      "display_abbreviation": "ARZ",
+      "end_season": 3000,
+      "franchise_id": 1,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            10
+          ],
+          "id": 10,
+          "name": "NFC West",
+          "slug": "nfc-west"
+        }
+      ],
+      "gsis_abbreviation": "CARDIN",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Cardinals",
+      "primary_color": "#97233f",
+      "secondary_color": "#ffffff",
+      "slug": "arizona-cardinals",
+      "start_season": 1994,
+      "updated_at": "2019-08-01T15:43:25.471801"
+    },
+    {
+      "abbreviation": "CHI",
+      "city": "Chicago",
+      "color_metadata": {
+        "background_color_ref": "#0b162a",
+        "dark_color_ref": "#0b162a",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#c83803",
+        "jersey_color_ref": "#0b162a",
+        "light_color_ref": "#c83803",
+        "primary_color": "#0b162a",
+        "secondary_color": "#c83803",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "CHI",
+      "end_season": 3000,
+      "franchise_id": 6,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            8
+          ],
+          "id": 8,
+          "name": "NFC North",
+          "slug": "nfc-north"
+        }
+      ],
+      "gsis_abbreviation": "BEARS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Bears",
+      "primary_color": "#0b162a",
+      "secondary_color": "#c83803",
+      "slug": "chicago-bears",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T16:43:47.014825"
+    },
+    {
+      "abbreviation": "CIN",
+      "city": "Cincinnati",
+      "color_metadata": {
+        "background_color_ref": "#fb4f14",
+        "dark_color_ref": "#000000",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#000000",
+        "jersey_color_ref": "#fb4f14",
+        "light_color_ref": "#fb4f14",
+        "primary_color": "#fb4f14",
+        "secondary_color": "#000000",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "CIN",
+      "end_season": 3000,
+      "franchise_id": 7,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            3
+          ],
+          "id": 3,
+          "name": "AFC North",
+          "slug": "afc-north"
+        }
+      ],
+      "gsis_abbreviation": "BENGAL",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Bengals",
+      "primary_color": "#fb4f14",
+      "secondary_color": "#000000",
+      "slug": "cincinnati-bengals",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T16:44:30.677758"
+    },
+    {
+      "abbreviation": "BUF",
+      "city": "Buffalo",
+      "color_metadata": {
+        "background_color_ref": "#00338d",
+        "dark_color_ref": "#00338d",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#c60c30",
+        "jersey_color_ref": "#00338d",
+        "light_color_ref": "#ffffff",
+        "primary_color": "#00338d",
+        "secondary_color": "#c60c30",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "BUF",
+      "end_season": 3000,
+      "franchise_id": 4,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            2
+          ],
+          "id": 2,
+          "name": "AFC East",
+          "slug": "afc-east"
+        }
+      ],
+      "gsis_abbreviation": "BILLS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Bills",
+      "primary_color": "#00338d",
+      "secondary_color": "#c60c30",
+      "slug": "buffalo-bills",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T16:42:02.151483"
+    },
+    {
+      "abbreviation": "DEN",
+      "city": "Denver",
+      "color_metadata": {
+        "background_color_ref": "#fb4f14",
+        "dark_color_ref": "#002244",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#002244",
+        "jersey_color_ref": "#fb4f14",
+        "light_color_ref": "#fb4f14",
+        "primary_color": "#fb4f14",
+        "secondary_color": "#002244",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "DEN",
+      "end_season": 3000,
+      "franchise_id": 10,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            5
+          ],
+          "id": 5,
+          "name": "AFC West",
+          "slug": "afc-west"
+        }
+      ],
+      "gsis_abbreviation": "BRONCO",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Broncos",
+      "primary_color": "#fb4f14",
+      "secondary_color": "#002244",
+      "slug": "denver-broncos",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T16:46:38.046854"
+    },
+    {
+      "abbreviation": "CLV",
+      "city": "Cleveland",
+      "color_metadata": {
+        "background_color_ref": "#311d00",
+        "dark_color_ref": "#311d00",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ff3c00",
+        "jersey_color_ref": "#311d00",
+        "light_color_ref": "#ff3c00",
+        "primary_color": "#311d00",
+        "secondary_color": "#ff3c00",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "CLV",
+      "end_season": 3000,
+      "franchise_id": 8,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            3
+          ],
+          "id": 3,
+          "name": "AFC North",
+          "slug": "afc-north"
+        }
+      ],
+      "gsis_abbreviation": "BROWNS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Browns",
+      "primary_color": "#311d00",
+      "secondary_color": "#ff3c00",
+      "slug": "cleveland-browns",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T16:45:07.381094"
+    },
+    {
+      "abbreviation": "TB",
+      "city": "Tampa Bay",
+      "color_metadata": {
+        "background_color_ref": "#d50a0a",
+        "dark_color_ref": "#34302b",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#34302b",
+        "jersey_color_ref": "#d50a0a",
+        "light_color_ref": "#d50a0a",
+        "primary_color": "#d50a0a",
+        "secondary_color": "#34302b",
+        "tertiary_color": "#ff7900"
+      },
+      "display_abbreviation": "TB",
+      "end_season": 3000,
+      "franchise_id": 30,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            9
+          ],
+          "id": 9,
+          "name": "NFC South",
+          "slug": "nfc-south"
+        }
+      ],
+      "gsis_abbreviation": "BUCCAN",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Buccaneers",
+      "primary_color": "#d50a0a",
+      "secondary_color": "#34302b",
+      "slug": "tampa-bay-buccaneers",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T17:39:07.877958"
+    },
+    {
+      "abbreviation": "KC",
+      "city": "Kansas City",
+      "color_metadata": {
+        "background_color_ref": "#e31837",
+        "dark_color_ref": "#e31837",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ffb81c",
+        "jersey_color_ref": "#e31837",
+        "light_color_ref": "#ffb81c",
+        "primary_color": "#e31837",
+        "secondary_color": "#ffb81c",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "KC",
+      "end_season": 3000,
+      "franchise_id": 16,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            5
+          ],
+          "id": 5,
+          "name": "AFC West",
+          "slug": "afc-west"
+        }
+      ],
+      "gsis_abbreviation": "CHIEFS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Chiefs",
+      "primary_color": "#e31837",
+      "secondary_color": "#ffb81c",
+      "slug": "kansas-city-chiefs",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T17:18:36.726688"
+    },
+    {
+      "abbreviation": "IND",
+      "city": "Indianapolis",
+      "color_metadata": {
+        "background_color_ref": "#002c5f",
+        "dark_color_ref": "#002c5f",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ffffff",
+        "jersey_color_ref": "#002c5f",
+        "light_color_ref": "#ffffff",
+        "primary_color": "#002c5f",
+        "secondary_color": "#ffffff",
+        "tertiary_color": "#a2aaad"
+      },
+      "display_abbreviation": "IND",
+      "end_season": 3000,
+      "franchise_id": 14,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            4
+          ],
+          "id": 4,
+          "name": "AFC South",
+          "slug": "afc-south"
+        }
+      ],
+      "gsis_abbreviation": "COLTS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Colts",
+      "primary_color": "#002c5f",
+      "secondary_color": "#ffffff",
+      "slug": "indianapolis-colts",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T17:13:02.247049"
+    },
+    {
+      "abbreviation": "DAL",
+      "city": "Dallas",
+      "color_metadata": {
+        "background_color_ref": "#002244",
+        "dark_color_ref": "#002244",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ffffff",
+        "jersey_color_ref": "#002244",
+        "light_color_ref": "#ffffff",
+        "primary_color": "#002244",
+        "secondary_color": "#ffffff",
+        "tertiary_color": "#869397"
+      },
+      "display_abbreviation": "DAL",
+      "end_season": 3000,
+      "franchise_id": 9,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            7
+          ],
+          "id": 7,
+          "name": "NFC East",
+          "slug": "nfc-east"
+        }
+      ],
+      "gsis_abbreviation": "COWBOY",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Cowboys",
+      "primary_color": "#002244",
+      "secondary_color": "#ffffff",
+      "slug": "dallas-cowboys",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T16:46:07.330583"
+    },
+    {
+      "abbreviation": "MIA",
+      "city": "Miami",
+      "color_metadata": {
+        "background_color_ref": "#008e97",
+        "dark_color_ref": "#008e97",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#fc4c02",
+        "jersey_color_ref": "#008e97",
+        "light_color_ref": "#fc4c02",
+        "primary_color": "#008e97",
+        "secondary_color": "#fc4c02",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "MIA",
+      "end_season": 3000,
+      "franchise_id": 17,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            2
+          ],
+          "id": 2,
+          "name": "AFC East",
+          "slug": "afc-east"
+        }
+      ],
+      "gsis_abbreviation": "DOLPHI",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Dolphins",
+      "primary_color": "#008e97",
+      "secondary_color": "#fc4c02",
+      "slug": "miami-dolphins",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T15:41:54.937123"
+    },
+    {
+      "abbreviation": "NYG",
+      "city": "New York",
+      "color_metadata": {
+        "background_color_ref": "#012352",
+        "dark_color_ref": "#012352",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#a30d2d",
+        "jersey_color_ref": "#012352",
+        "light_color_ref": "#9ba1a2",
+        "primary_color": "#012352",
+        "secondary_color": "#a30d2d",
+        "tertiary_color": "#9ba1a2"
+      },
+      "display_abbreviation": "NYG",
+      "end_season": 3000,
+      "franchise_id": 21,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            7
+          ],
+          "id": 7,
+          "name": "NFC East",
+          "slug": "nfc-east"
+        }
+      ],
+      "gsis_abbreviation": "GIANTS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Giants",
+      "primary_color": "#012352",
+      "secondary_color": "#a30d2d",
+      "slug": "new-york-giants",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T17:22:08.566443"
+    },
+    {
+      "abbreviation": "NYJ",
+      "city": "New York",
+      "color_metadata": {
+        "background_color_ref": "#125740",
+        "dark_color_ref": "#125740",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ffffff",
+        "jersey_color_ref": "#125740",
+        "light_color_ref": "#ffffff",
+        "primary_color": "#125740",
+        "secondary_color": "#ffffff",
+        "tertiary_color": "#000000"
+      },
+      "display_abbreviation": "NYJ",
+      "end_season": 3000,
+      "franchise_id": 22,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            2
+          ],
+          "id": 2,
+          "name": "AFC East",
+          "slug": "afc-east"
+        }
+      ],
+      "gsis_abbreviation": "JETS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Jets",
+      "primary_color": "#125740",
+      "secondary_color": "#ffffff",
+      "slug": "new-york-jets",
+      "start_season": 1990,
+      "updated_at": "2019-07-24T21:16:49.590966"
+    },
+    {
+      "abbreviation": "DET",
+      "city": "Detroit",
+      "color_metadata": {
+        "background_color_ref": "#0076b6",
+        "dark_color_ref": "#0076b6",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#b0b7bc",
+        "jersey_color_ref": "#0076b6",
+        "light_color_ref": "#b0b7bc",
+        "primary_color": "#0076b6",
+        "secondary_color": "#b0b7bc",
+        "tertiary_color": "#000000"
+      },
+      "display_abbreviation": "DET",
+      "end_season": 3000,
+      "franchise_id": 11,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            8
+          ],
+          "id": 8,
+          "name": "NFC North",
+          "slug": "nfc-north"
+        }
+      ],
+      "gsis_abbreviation": "LIONS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Lions",
+      "primary_color": "#0076b6",
+      "secondary_color": "#b0b7bc",
+      "slug": "detroit-lions",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T16:49:46.479286"
+    },
+    {
+      "abbreviation": "GB",
+      "city": "Green Bay",
+      "color_metadata": {
+        "background_color_ref": "#183028",
+        "dark_color_ref": "#183028",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ffb81c",
+        "jersey_color_ref": "#183028",
+        "light_color_ref": "#ffb81c",
+        "primary_color": "#183028",
+        "secondary_color": "#ffb81c",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "GB",
+      "end_season": 3000,
+      "franchise_id": 12,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            8
+          ],
+          "id": 8,
+          "name": "NFC North",
+          "slug": "nfc-north"
+        }
+      ],
+      "gsis_abbreviation": "PACKER",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Packers",
+      "primary_color": "#183028",
+      "secondary_color": "#ffb81c",
+      "slug": "green-bay-packers",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T16:56:09.177328"
+    },
+    {
+      "abbreviation": "NE",
+      "city": "New England",
+      "color_metadata": {
+        "background_color_ref": "#002244",
+        "dark_color_ref": "#002244",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#c60c30",
+        "jersey_color_ref": "#002244",
+        "light_color_ref": "#c60c30",
+        "primary_color": "#002244",
+        "secondary_color": "#c60c30",
+        "tertiary_color": "#b0b7bc"
+      },
+      "display_abbreviation": "NE",
+      "end_season": 3000,
+      "franchise_id": 19,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            2
+          ],
+          "id": 2,
+          "name": "AFC East",
+          "slug": "afc-east"
+        }
+      ],
+      "gsis_abbreviation": "PATRIO",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Patriots",
+      "primary_color": "#002244",
+      "secondary_color": "#c60c30",
+      "slug": "new-england-patriots",
+      "start_season": 1990,
+      "updated_at": "2019-07-25T15:09:07.626639"
+    },
+    {
+      "abbreviation": "BLT",
+      "city": "Baltimore",
+      "color_metadata": {
+        "background_color_ref": "#1a195f",
+        "dark_color_ref": "#000000",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#000000",
+        "jersey_color_ref": "#1a195f",
+        "light_color_ref": "#1a195f",
+        "primary_color": "#1a195f",
+        "secondary_color": "#000000",
+        "tertiary_color": "#9e7c0c"
+      },
+      "display_abbreviation": "BLT",
+      "end_season": 3000,
+      "franchise_id": 3,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            3
+          ],
+          "id": 3,
+          "name": "AFC North",
+          "slug": "afc-north"
+        }
+      ],
+      "gsis_abbreviation": "RAVENS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Ravens",
+      "primary_color": "#1a195f",
+      "secondary_color": "#000000",
+      "slug": "baltimore-ravens",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T16:41:31.577571"
+    },
+    {
+      "abbreviation": "NO",
+      "city": "New Orleans",
+      "color_metadata": {
+        "background_color_ref": "#d3bc8d",
+        "dark_color_ref": "#000000",
+        "foreground_color": "#000000",
+        "helmet_color_ref": "#000000",
+        "jersey_color_ref": "#d3bc8d",
+        "light_color_ref": "#d3bc8d",
+        "primary_color": "#d3bc8d",
+        "secondary_color": "#000000",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "NO",
+      "end_season": 3000,
+      "franchise_id": 20,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            9
+          ],
+          "id": 9,
+          "name": "NFC South",
+          "slug": "nfc-south"
+        }
+      ],
+      "gsis_abbreviation": "SAINTS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Saints",
+      "primary_color": "#d3bc8d",
+      "secondary_color": "#000000",
+      "slug": "new-orleans-saints",
+      "start_season": 1990,
+      "updated_at": "2019-12-10T16:51:08.207707"
+    },
+    {
+      "abbreviation": "SEA",
+      "city": "Seattle",
+      "color_metadata": {
+        "background_color_ref": "#002244",
+        "dark_color_ref": "#002244",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#69be28",
+        "jersey_color_ref": "#002244",
+        "light_color_ref": "#69be28",
+        "primary_color": "#002244",
+        "secondary_color": "#69be28",
+        "tertiary_color": "#a5acaf"
+      },
+      "display_abbreviation": "SEA",
+      "end_season": 3000,
+      "franchise_id": 29,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            10
+          ],
+          "id": 10,
+          "name": "NFC West",
+          "slug": "nfc-west"
+        }
+      ],
+      "gsis_abbreviation": "SEAHAW",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Seahawks",
+      "primary_color": "#002244",
+      "secondary_color": "#69be28",
+      "slug": "seattle-seahawks",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T17:35:46.125304"
+    },
+    {
+      "abbreviation": "PIT",
+      "city": "Pittsburgh",
+      "color_metadata": {
+        "background_color_ref": "#000000",
+        "dark_color_ref": "#000000",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ffb612",
+        "jersey_color_ref": "#000000",
+        "light_color_ref": "#ffb612",
+        "primary_color": "#000000",
+        "secondary_color": "#ffb612",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "PIT",
+      "end_season": 3000,
+      "franchise_id": 25,
+      "groups": [
+        {
+          "heirarchy": [
+            1
+          ],
+          "id": 1,
+          "name": "AFC",
+          "slug": "afc"
+        },
+        {
+          "heirarchy": [
+            1,
+            3
+          ],
+          "id": 3,
+          "name": "AFC North",
+          "slug": "afc-north"
+        }
+      ],
+      "gsis_abbreviation": "STEELE",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Steelers",
+      "primary_color": "#000000",
+      "secondary_color": "#ffb612",
+      "slug": "pittsburgh-steelers",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T17:32:09.992762"
+    },
+    {
+      "abbreviation": "MIN",
+      "city": "Minnesota",
+      "color_metadata": {
+        "background_color_ref": "#4f2683",
+        "dark_color_ref": "#4f2683",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ffc62f",
+        "jersey_color_ref": "#4f2683",
+        "light_color_ref": "#ffc62f",
+        "primary_color": "#4f2683",
+        "secondary_color": "#ffc62f",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "MIN",
+      "end_season": 3000,
+      "franchise_id": 18,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            8
+          ],
+          "id": 8,
+          "name": "NFC North",
+          "slug": "nfc-north"
+        }
+      ],
+      "gsis_abbreviation": "VIKING",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Vikings",
+      "primary_color": "#4f2683",
+      "secondary_color": "#ffc62f",
+      "slug": "minnesota-vikings",
+      "start_season": 1990,
+      "updated_at": "2019-08-01T17:19:40.922181"
+    },
+    {
+      "abbreviation": "ATL",
+      "city": "Atlanta",
+      "color_metadata": {
+        "background_color_ref": "#a71930",
+        "dark_color_ref": "#000000",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#000000",
+        "jersey_color_ref": "#a71930",
+        "light_color_ref": "#a71930",
+        "primary_color": "#a71930",
+        "secondary_color": "#000000",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "ATL",
+      "end_season": 3000,
+      "franchise_id": 2,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            9
+          ],
+          "id": 9,
+          "name": "NFC South",
+          "slug": "nfc-south"
+        }
+      ],
+      "gsis_abbreviation": "FALCON",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Falcons",
+      "primary_color": "#a71930",
+      "secondary_color": "#000000",
+      "slug": "atlanta-falcons",
+      "start_season": 1966,
+      "updated_at": "2019-07-31T01:39:29.551186"
+    },
+    {
+      "abbreviation": "SF",
+      "city": "San Francisco",
+      "color_metadata": {
+        "background_color_ref": "#aa0000",
+        "dark_color_ref": "#aa0000",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#ad995d",
+        "jersey_color_ref": "#aa0000",
+        "light_color_ref": "#ad995d",
+        "primary_color": "#aa0000",
+        "secondary_color": "#ad995d",
+        "tertiary_color": "#ffffff"
+      },
+      "display_abbreviation": "SF",
+      "end_season": 3000,
+      "franchise_id": 28,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            10
+          ],
+          "id": 10,
+          "name": "NFC West",
+          "slug": "nfc-west"
+        }
+      ],
+      "gsis_abbreviation": "NINERS",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "49ers",
+      "primary_color": "#aa0000",
+      "secondary_color": "#ad995d",
+      "slug": "san-francisco-49ers",
+      "start_season": 1950,
+      "updated_at": "2019-08-01T17:34:50.449552"
+    },
+    {
+      "abbreviation": "PHI",
+      "city": "Philadelphia",
+      "color_metadata": {
+        "background_color_ref": "#004c54",
+        "dark_color_ref": "#004c54",
+        "foreground_color": "#ffffff",
+        "helmet_color_ref": "#a5acaf",
+        "jersey_color_ref": "#004c54",
+        "light_color_ref": "#a5acaf",
+        "primary_color": "#004c54",
+        "secondary_color": "#a5acaf",
+        "tertiary_color": "#000000"
+      },
+      "display_abbreviation": "PHI",
+      "end_season": 3000,
+      "franchise_id": 24,
+      "groups": [
+        {
+          "heirarchy": [
+            6
+          ],
+          "id": 6,
+          "name": "NFC",
+          "slug": "nfc"
+        },
+        {
+          "heirarchy": [
+            6,
+            7
+          ],
+          "id": 7,
+          "name": "NFC East",
+          "slug": "nfc-east"
+        }
+      ],
+      "gsis_abbreviation": "EAGLES",
+      "league": "NFL",
+      "league_id": 1,
+      "mid_abbreviation": null,
+      "nickname": "Eagles",
+      "primary_color": "#004c54",
+      "secondary_color": "#a5acaf",
+      "slug": "philadelphia-eagles",
+      "start_season": 1944,
+      "updated_at": "2019-08-01T17:31:11.415756"
+    }
+  ]
+}

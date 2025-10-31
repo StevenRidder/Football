@@ -1,0 +1,106 @@
+{
+  "BAL_MIA": {
+    "spread_line": -11.5,
+    "total_line": 44.5
+  },
+  "ATL_NE": {
+    "spread_line": 5.5,
+    "total_line": 45.0
+  },
+  "CAR_GB": {
+    "spread_line": 13.5,
+    "total_line": 44.5
+  },
+  "CHI_CIN": {
+    "spread_line": -2.5,
+    "total_line": 51.0
+  },
+  "DEN_HOU": {
+    "spread_line": 1.5,
+    "total_line": 40.0
+  },
+  "MIN_DET": {
+    "spread_line": 8.5,
+    "total_line": 48.0
+  },
+  "IND_PIT": {
+    "spread_line": -3.0,
+    "total_line": 50.5
+  },
+  "LAC_TEN": {
+    "spread_line": -9.5,
+    "total_line": 43.5
+  },
+  "SF_NYG": {
+    "spread_line": -2.5,
+    "total_line": 48.5
+  },
+  "JAX_LV": {
+    "spread_line": -3.0,
+    "total_line": 44.5
+  },
+  "NO_LAR": {
+    "spread_line": 14.0,
+    "total_line": 44.0
+  },
+  "KC_BUF": {
+    "spread_line": -2.0,
+    "total_line": 52.5
+  },
+  "SEA_WAS": {
+    "spread_line": -3.0,
+    "total_line": 47.5
+  },
+  "ARI_DAL": {
+    "spread_line": 2.5,
+    "total_line": 53.5
+  },
+  "LV_DEN": {
+    "spread_line": 9.5,
+    "total_line": 42.5
+  },
+  "ATL_IND": {
+    "spread_line": 7.0,
+    "total_line": 48.5
+  },
+  "NO_CAR": {
+    "spread_line": 3.5,
+    "total_line": 41.0
+  },
+  "NYG_CHI": {
+    "spread_line": 3.5,
+    "total_line": 46.5
+  },
+  "CLE_NYJ": {
+    "spread_line": 2.0,
+    "total_line": 38.5
+  },
+  "JAX_HOU": {
+    "spread_line": 3.0,
+    "total_line": 41.5
+  },
+  "NE_TB": {
+    "spread_line": 2.5,
+    "total_line": 48.0
+  },
+  "ARI_SEA": {
+    "spread_line": 6.0,
+    "total_line": 44.5
+  },
+  "DET_WAS": {
+    "spread_line": -3.5,
+    "total_line": 51.5
+  },
+  "LAR_SF": {
+    "spread_line": -3.0,
+    "total_line": 48.5
+  },
+  "PIT_LAC": {
+    "spread_line": 4.5,
+    "total_line": 46.5
+  },
+  "PHI_GB": {
+    "spread_line": 3.0,
+    "total_line": 45.0
+  }
+}

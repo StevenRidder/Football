@@ -1,0 +1,660 @@
+{
+  "games": [
+    {
+      "away_franchise_id": 18,
+      "away_team": {
+        "abbreviation": "MIN",
+        "city": "Minnesota",
+        "color_metadata": null,
+        "display_abbreviation": "MIN",
+        "franchise_id": 18,
+        "mid_abbreviation": null,
+        "nickname": "Vikings",
+        "slug": "minnesota-vikings"
+      },
+      "has_stats": true,
+      "home_franchise_id": 6,
+      "home_team": {
+        "abbreviation": "CHI",
+        "city": "Chicago",
+        "color_metadata": null,
+        "display_abbreviation": "CHI",
+        "franchise_id": 6,
+        "mid_abbreviation": null,
+        "nickname": "Bears",
+        "slug": "chicago-bears"
+      },
+      "id": 28433,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 27,
+        "home_team": 24
+      },
+      "season": 2025,
+      "stadium_id": 9,
+      "start": "2025-09-09T00:15:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 1,
+      "away_team": {
+        "abbreviation": "ARZ",
+        "city": "Arizona",
+        "color_metadata": null,
+        "display_abbreviation": "ARZ",
+        "franchise_id": 1,
+        "mid_abbreviation": null,
+        "nickname": "Cardinals",
+        "slug": "arizona-cardinals"
+      },
+      "has_stats": true,
+      "home_franchise_id": 20,
+      "home_team": {
+        "abbreviation": "NO",
+        "city": "New Orleans",
+        "color_metadata": null,
+        "display_abbreviation": "NO",
+        "franchise_id": 20,
+        "mid_abbreviation": null,
+        "nickname": "Saints",
+        "slug": "new-orleans-saints"
+      },
+      "id": 28425,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 20,
+        "home_team": 13
+      },
+      "season": 2025,
+      "stadium_id": 32,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 9,
+      "away_team": {
+        "abbreviation": "DAL",
+        "city": "Dallas",
+        "color_metadata": null,
+        "display_abbreviation": "DAL",
+        "franchise_id": 9,
+        "mid_abbreviation": null,
+        "nickname": "Cowboys",
+        "slug": "dallas-cowboys"
+      },
+      "has_stats": true,
+      "home_franchise_id": 24,
+      "home_team": {
+        "abbreviation": "PHI",
+        "city": "Philadelphia",
+        "color_metadata": null,
+        "display_abbreviation": "PHI",
+        "franchise_id": 24,
+        "mid_abbreviation": null,
+        "nickname": "Eagles",
+        "slug": "philadelphia-eagles"
+      },
+      "id": 28418,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 20,
+        "home_team": 24
+      },
+      "season": 2025,
+      "stadium_id": 37,
+      "start": "2025-09-05T00:20:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 3,
+      "away_team": {
+        "abbreviation": "BLT",
+        "city": "Baltimore",
+        "color_metadata": null,
+        "display_abbreviation": "BLT",
+        "franchise_id": 3,
+        "mid_abbreviation": null,
+        "nickname": "Ravens",
+        "slug": "baltimore-ravens"
+      },
+      "has_stats": true,
+      "home_franchise_id": 4,
+      "home_team": {
+        "abbreviation": "BUF",
+        "city": "Buffalo",
+        "color_metadata": null,
+        "display_abbreviation": "BUF",
+        "franchise_id": 4,
+        "mid_abbreviation": null,
+        "nickname": "Bills",
+        "slug": "buffalo-bills"
+      },
+      "id": 28432,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 40,
+        "home_team": 41
+      },
+      "season": 2025,
+      "stadium_id": 7,
+      "start": "2025-09-08T00:20:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 21,
+      "away_team": {
+        "abbreviation": "NYG",
+        "city": "New York",
+        "color_metadata": null,
+        "display_abbreviation": "NYG",
+        "franchise_id": 21,
+        "mid_abbreviation": null,
+        "nickname": "Giants",
+        "slug": "new-york-giants"
+      },
+      "has_stats": true,
+      "home_franchise_id": 32,
+      "home_team": {
+        "abbreviation": "WAS",
+        "city": "Washington",
+        "color_metadata": null,
+        "display_abbreviation": "WAS",
+        "franchise_id": 32,
+        "mid_abbreviation": null,
+        "nickname": "Commanders",
+        "slug": "washington-commanders"
+      },
+      "id": 28427,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 6,
+        "home_team": 21
+      },
+      "season": 2025,
+      "stadium_id": 48,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 25,
+      "away_team": {
+        "abbreviation": "PIT",
+        "city": "Pittsburgh",
+        "color_metadata": null,
+        "display_abbreviation": "PIT",
+        "franchise_id": 25,
+        "mid_abbreviation": null,
+        "nickname": "Steelers",
+        "slug": "pittsburgh-steelers"
+      },
+      "has_stats": true,
+      "home_franchise_id": 22,
+      "home_team": {
+        "abbreviation": "NYJ",
+        "city": "New York",
+        "color_metadata": null,
+        "display_abbreviation": "NYJ",
+        "franchise_id": 22,
+        "mid_abbreviation": null,
+        "nickname": "Jets",
+        "slug": "new-york-jets"
+      },
+      "id": 28426,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 34,
+        "home_team": 32
+      },
+      "season": 2025,
+      "stadium_id": 53,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 17,
+      "away_team": {
+        "abbreviation": "MIA",
+        "city": "Miami",
+        "color_metadata": null,
+        "display_abbreviation": "MIA",
+        "franchise_id": 17,
+        "mid_abbreviation": null,
+        "nickname": "Dolphins",
+        "slug": "miami-dolphins"
+      },
+      "has_stats": true,
+      "home_franchise_id": 14,
+      "home_team": {
+        "abbreviation": "IND",
+        "city": "Indianapolis",
+        "color_metadata": null,
+        "display_abbreviation": "IND",
+        "franchise_id": 14,
+        "mid_abbreviation": null,
+        "nickname": "Colts",
+        "slug": "indianapolis-colts"
+      },
+      "id": 28422,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 8,
+        "home_team": 33
+      },
+      "season": 2025,
+      "stadium_id": 22,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 23,
+      "away_team": {
+        "abbreviation": "LV",
+        "city": "Las Vegas",
+        "color_metadata": null,
+        "display_abbreviation": "LV",
+        "franchise_id": 23,
+        "mid_abbreviation": null,
+        "nickname": "Raiders",
+        "slug": "las-vegas-raiders"
+      },
+      "has_stats": true,
+      "home_franchise_id": 19,
+      "home_team": {
+        "abbreviation": "NE",
+        "city": "New England",
+        "color_metadata": null,
+        "display_abbreviation": "NE",
+        "franchise_id": 19,
+        "mid_abbreviation": null,
+        "nickname": "Patriots",
+        "slug": "new-england-patriots"
+      },
+      "id": 28424,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 20,
+        "home_team": 13
+      },
+      "season": 2025,
+      "stadium_id": 30,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 28,
+      "away_team": {
+        "abbreviation": "SF",
+        "city": "San Francisco",
+        "color_metadata": null,
+        "display_abbreviation": "SF",
+        "franchise_id": 28,
+        "mid_abbreviation": null,
+        "nickname": "49ers",
+        "slug": "san-francisco-49ers"
+      },
+      "has_stats": true,
+      "home_franchise_id": 29,
+      "home_team": {
+        "abbreviation": "SEA",
+        "city": "Seattle",
+        "color_metadata": null,
+        "display_abbreviation": "SEA",
+        "franchise_id": 29,
+        "mid_abbreviation": null,
+        "nickname": "Seahawks",
+        "slug": "seattle-seahawks"
+      },
+      "id": 28429,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 17,
+        "home_team": 13
+      },
+      "season": 2025,
+      "stadium_id": 42,
+      "start": "2025-09-07T20:05:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 13,
+      "away_team": {
+        "abbreviation": "HST",
+        "city": "Houston",
+        "color_metadata": null,
+        "display_abbreviation": "HST",
+        "franchise_id": 13,
+        "mid_abbreviation": null,
+        "nickname": "Texans",
+        "slug": "houston-texans"
+      },
+      "has_stats": true,
+      "home_franchise_id": 26,
+      "home_team": {
+        "abbreviation": "LA",
+        "city": "Los Angeles",
+        "color_metadata": null,
+        "display_abbreviation": "LA",
+        "franchise_id": 26,
+        "mid_abbreviation": null,
+        "nickname": "Rams",
+        "slug": "los-angeles-rams"
+      },
+      "id": 28431,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 9,
+        "home_team": 14
+      },
+      "season": 2025,
+      "stadium_id": 56,
+      "start": "2025-09-07T20:25:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 5,
+      "away_team": {
+        "abbreviation": "CAR",
+        "city": "Carolina",
+        "color_metadata": null,
+        "display_abbreviation": "CAR",
+        "franchise_id": 5,
+        "mid_abbreviation": null,
+        "nickname": "Panthers",
+        "slug": "carolina-panthers"
+      },
+      "has_stats": true,
+      "home_franchise_id": 15,
+      "home_team": {
+        "abbreviation": "JAX",
+        "city": "Jacksonville",
+        "color_metadata": null,
+        "display_abbreviation": "JAX",
+        "franchise_id": 15,
+        "mid_abbreviation": null,
+        "nickname": "Jaguars",
+        "slug": "jacksonville-jaguars"
+      },
+      "id": 28423,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 10,
+        "home_team": 26
+      },
+      "season": 2025,
+      "stadium_id": 24,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 11,
+      "away_team": {
+        "abbreviation": "DET",
+        "city": "Detroit",
+        "color_metadata": null,
+        "display_abbreviation": "DET",
+        "franchise_id": 11,
+        "mid_abbreviation": null,
+        "nickname": "Lions",
+        "slug": "detroit-lions"
+      },
+      "has_stats": true,
+      "home_franchise_id": 12,
+      "home_team": {
+        "abbreviation": "GB",
+        "city": "Green Bay",
+        "color_metadata": null,
+        "display_abbreviation": "GB",
+        "franchise_id": 12,
+        "mid_abbreviation": null,
+        "nickname": "Packers",
+        "slug": "green-bay-packers"
+      },
+      "id": 28430,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 13,
+        "home_team": 27
+      },
+      "season": 2025,
+      "stadium_id": 20,
+      "start": "2025-09-07T20:25:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 31,
+      "away_team": {
+        "abbreviation": "TEN",
+        "city": "Tennessee",
+        "color_metadata": null,
+        "display_abbreviation": "TEN",
+        "franchise_id": 31,
+        "mid_abbreviation": null,
+        "nickname": "Titans",
+        "slug": "tennessee-titans"
+      },
+      "has_stats": true,
+      "home_franchise_id": 10,
+      "home_team": {
+        "abbreviation": "DEN",
+        "city": "Denver",
+        "color_metadata": null,
+        "display_abbreviation": "DEN",
+        "franchise_id": 10,
+        "mid_abbreviation": null,
+        "nickname": "Broncos",
+        "slug": "denver-broncos"
+      },
+      "id": 28428,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 12,
+        "home_team": 20
+      },
+      "season": 2025,
+      "stadium_id": 16,
+      "start": "2025-09-07T20:05:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 16,
+      "away_team": {
+        "abbreviation": "KC",
+        "city": "Kansas City",
+        "color_metadata": null,
+        "display_abbreviation": "KC",
+        "franchise_id": 16,
+        "mid_abbreviation": null,
+        "nickname": "Chiefs",
+        "slug": "kansas-city-chiefs"
+      },
+      "has_stats": true,
+      "home_franchise_id": 27,
+      "home_team": {
+        "abbreviation": "LAC",
+        "city": "Los Angeles",
+        "color_metadata": null,
+        "display_abbreviation": "LAC",
+        "franchise_id": 27,
+        "mid_abbreviation": null,
+        "nickname": "Chargers",
+        "slug": "los-angeles-chargers"
+      },
+      "id": 28419,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 21,
+        "home_team": 27
+      },
+      "season": 2025,
+      "stadium_id": 368,
+      "start": "2025-09-06T00:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 7,
+      "away_team": {
+        "abbreviation": "CIN",
+        "city": "Cincinnati",
+        "color_metadata": null,
+        "display_abbreviation": "CIN",
+        "franchise_id": 7,
+        "mid_abbreviation": null,
+        "nickname": "Bengals",
+        "slug": "cincinnati-bengals"
+      },
+      "has_stats": true,
+      "home_franchise_id": 8,
+      "home_team": {
+        "abbreviation": "CLV",
+        "city": "Cleveland",
+        "color_metadata": null,
+        "display_abbreviation": "CLV",
+        "franchise_id": 8,
+        "mid_abbreviation": null,
+        "nickname": "Browns",
+        "slug": "cleveland-browns"
+      },
+      "id": 28421,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 17,
+        "home_team": 16
+      },
+      "season": 2025,
+      "stadium_id": 13,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    },
+    {
+      "away_franchise_id": 30,
+      "away_team": {
+        "abbreviation": "TB",
+        "city": "Tampa Bay",
+        "color_metadata": null,
+        "display_abbreviation": "TB",
+        "franchise_id": 30,
+        "mid_abbreviation": null,
+        "nickname": "Buccaneers",
+        "slug": "tampa-bay-buccaneers"
+      },
+      "has_stats": true,
+      "home_franchise_id": 2,
+      "home_team": {
+        "abbreviation": "ATL",
+        "city": "Atlanta",
+        "color_metadata": null,
+        "display_abbreviation": "ATL",
+        "franchise_id": 2,
+        "mid_abbreviation": null,
+        "nickname": "Falcons",
+        "slug": "atlanta-falcons"
+      },
+      "id": 28420,
+      "league": {
+        "abbreviation": "NFL",
+        "id": 1,
+        "name": "NFL"
+      },
+      "league_id": 1,
+      "lock_status": "processed",
+      "score": {
+        "away_team": 23,
+        "home_team": 20
+      },
+      "season": 2025,
+      "stadium_id": 3,
+      "start": "2025-09-07T17:00:00Z",
+      "week": 1
+    }
+  ]
+}

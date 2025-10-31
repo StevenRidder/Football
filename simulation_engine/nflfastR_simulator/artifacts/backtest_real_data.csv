@@ -1,0 +1,11 @@
+game_id,season,week,away_team,home_team,market_spread,market_total,our_spread,our_total,spread_bet,spread_edge,spread_result,spread_win,total_bet,total_edge,total_result,total_win,moneyline_bet,moneyline_result,moneyline_win,actual_away_score,actual_home_score
+BUF@LA_W1,2022,1,BUF,LA,-20.0,40.0,-19.6,40.4,Away ATS,25.4,WIN,1,Under,13.7,LOSS,0,LA,LOSS,0.0,31.0,10.0
+NO@ATL_W1,2022,1,NO,ATL,-2.0,49.6,-2.0,49.6,Away ATS,3.8,WIN,1,Under,13.1,LOSS,0,Pass,,,27.0,26.0
+CLE@CAR_W1,2022,1,CLE,CAR,2.5,49.0,2.5,49.0,Home ATS,2.0,WIN,1,Under,16.8,LOSS,0,Pass,,,26.0,24.0
+SF@CHI_W1,2022,1,SF,CHI,13.6,31.9,13.2,32.3,Home ATS,2.1,WIN,1,Over,3.3,LOSS,0,SF,LOSS,0.0,10.0,19.0
+PIT@CIN_W1,2022,1,PIT,CIN,-0.3,44.8,-0.3,44.8,Away ATS,4.7,WIN,1,Under,16.0,WIN,1,Pass,,,23.0,20.0
+PHI@DET_W1,2022,1,PHI,DET,-2.1,70.0,-2.1,70.0,Away ATS,16.4,WIN,1,Under,38.2,LOSS,0,Pass,,,38.0,35.0
+IND@HOU_W1,2022,1,IND,HOU,-4.4,36.6,-4.4,36.6,Away ATS,3.0,WIN,1,Under,5.1,LOSS,0,HOU,LOSS,0.0,20.0,20.0
+NE@MIA_W1,2022,1,NE,MIA,13.1,30.0,12.8,30.3,Home ATS,9.0,WIN,1,Under,4.3,WIN,1,NE,LOSS,0.0,7.0,20.0
+BAL@NYJ_W1,2022,1,BAL,NYJ,-16.1,36.0,-15.9,36.2,Away ATS,15.9,WIN,1,Under,11.8,WIN,1,NYJ,LOSS,0.0,24.0,9.0
+JAX@WAS_W1,2022,1,JAX,WAS,0.9,47.8,0.9,47.8,Away ATS,5.1,LOSS,0,Under,20.5,LOSS,0,Pass,,,22.0,28.0

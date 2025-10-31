@@ -1,0 +1,339 @@
+{
+  "restricted": [
+    "grades_coverage_defense",
+    "grades_defense",
+    "grades_misc_st",
+    "grades_offense",
+    "grades_overall",
+    "grades_pass",
+    "grades_pass_block",
+    "grades_pass_route",
+    "grades_pass_rush_defense",
+    "grades_run",
+    "grades_run_block",
+    "grades_run_defense",
+    "grades_tackle"
+  ],
+  "team_overview": [
+    {
+      "abbreviation": "ARZ",
+      "franchise_id": 1,
+      "losses": 7,
+      "name": "Arizona Cardinals",
+      "points_allowed": 400,
+      "points_scored": 460,
+      "ties": 0,
+      "wins": 11
+    },
+    {
+      "abbreviation": "ATL",
+      "franchise_id": 2,
+      "losses": 10,
+      "name": "Atlanta Falcons",
+      "points_allowed": 459,
+      "points_scored": 313,
+      "ties": 0,
+      "wins": 7
+    },
+    {
+      "abbreviation": "BLT",
+      "franchise_id": 3,
+      "losses": 9,
+      "name": "Baltimore Ravens",
+      "points_allowed": 392,
+      "points_scored": 387,
+      "ties": 0,
+      "wins": 8
+    },
+    {
+      "abbreviation": "BUF",
+      "franchise_id": 4,
+      "losses": 7,
+      "name": "Buffalo Bills",
+      "points_allowed": 348,
+      "points_scored": 566,
+      "ties": 0,
+      "wins": 12
+    },
+    {
+      "abbreviation": "CAR",
+      "franchise_id": 5,
+      "losses": 12,
+      "name": "Carolina Panthers",
+      "points_allowed": 404,
+      "points_scored": 304,
+      "ties": 0,
+      "wins": 5
+    },
+    {
+      "abbreviation": "CHI",
+      "franchise_id": 6,
+      "losses": 11,
+      "name": "Chicago Bears",
+      "points_allowed": 407,
+      "points_scored": 311,
+      "ties": 0,
+      "wins": 6
+    },
+    {
+      "abbreviation": "CIN",
+      "franchise_id": 7,
+      "losses": 8,
+      "name": "Cincinnati Bengals",
+      "points_allowed": 458,
+      "points_scored": 552,
+      "ties": 0,
+      "wins": 13
+    },
+    {
+      "abbreviation": "CLV",
+      "franchise_id": 8,
+      "losses": 9,
+      "name": "Cleveland Browns",
+      "points_allowed": 371,
+      "points_scored": 349,
+      "ties": 0,
+      "wins": 8
+    },
+    {
+      "abbreviation": "DAL",
+      "franchise_id": 9,
+      "losses": 6,
+      "name": "Dallas Cowboys",
+      "points_allowed": 381,
+      "points_scored": 547,
+      "ties": 0,
+      "wins": 12
+    },
+    {
+      "abbreviation": "DEN",
+      "franchise_id": 10,
+      "losses": 10,
+      "name": "Denver Broncos",
+      "points_allowed": 322,
+      "points_scored": 335,
+      "ties": 0,
+      "wins": 7
+    },
+    {
+      "abbreviation": "DET",
+      "franchise_id": 11,
+      "losses": 13,
+      "name": "Detroit Lions",
+      "points_allowed": 467,
+      "points_scored": 325,
+      "ties": 1,
+      "wins": 3
+    },
+    {
+      "abbreviation": "GB",
+      "franchise_id": 12,
+      "losses": 5,
+      "name": "Green Bay Packers",
+      "points_allowed": 384,
+      "points_scored": 460,
+      "ties": 0,
+      "wins": 13
+    },
+    {
+      "abbreviation": "HST",
+      "franchise_id": 13,
+      "losses": 13,
+      "name": "Houston Texans",
+      "points_allowed": 452,
+      "points_scored": 280,
+      "ties": 0,
+      "wins": 4
+    },
+    {
+      "abbreviation": "IND",
+      "franchise_id": 14,
+      "losses": 8,
+      "name": "Indianapolis Colts",
+      "points_allowed": 365,
+      "points_scored": 451,
+      "ties": 0,
+      "wins": 9
+    },
+    {
+      "abbreviation": "JAX",
+      "franchise_id": 15,
+      "losses": 14,
+      "name": "Jacksonville Jaguars",
+      "points_allowed": 457,
+      "points_scored": 253,
+      "ties": 0,
+      "wins": 3
+    },
+    {
+      "abbreviation": "KC",
+      "franchise_id": 16,
+      "losses": 6,
+      "name": "Kansas City Chiefs",
+      "points_allowed": 448,
+      "points_scored": 588,
+      "ties": 0,
+      "wins": 14
+    },
+    {
+      "abbreviation": "MIA",
+      "franchise_id": 17,
+      "losses": 8,
+      "name": "Miami Dolphins",
+      "points_allowed": 373,
+      "points_scored": 341,
+      "ties": 0,
+      "wins": 9
+    },
+    {
+      "abbreviation": "MIN",
+      "franchise_id": 18,
+      "losses": 9,
+      "name": "Minnesota Vikings",
+      "points_allowed": 426,
+      "points_scored": 425,
+      "ties": 0,
+      "wins": 8
+    },
+    {
+      "abbreviation": "NE",
+      "franchise_id": 19,
+      "losses": 8,
+      "name": "New England Patriots",
+      "points_allowed": 350,
+      "points_scored": 479,
+      "ties": 0,
+      "wins": 10
+    },
+    {
+      "abbreviation": "NO",
+      "franchise_id": 20,
+      "losses": 8,
+      "name": "New Orleans Saints",
+      "points_allowed": 335,
+      "points_scored": 364,
+      "ties": 0,
+      "wins": 9
+    },
+    {
+      "abbreviation": "NYG",
+      "franchise_id": 21,
+      "losses": 13,
+      "name": "New York Giants",
+      "points_allowed": 416,
+      "points_scored": 258,
+      "ties": 0,
+      "wins": 4
+    },
+    {
+      "abbreviation": "NYJ",
+      "franchise_id": 22,
+      "losses": 13,
+      "name": "New York Jets",
+      "points_allowed": 504,
+      "points_scored": 310,
+      "ties": 0,
+      "wins": 4
+    },
+    {
+      "abbreviation": "LV",
+      "franchise_id": 23,
+      "losses": 8,
+      "name": "Las Vegas Raiders",
+      "points_allowed": 465,
+      "points_scored": 393,
+      "ties": 0,
+      "wins": 10
+    },
+    {
+      "abbreviation": "PHI",
+      "franchise_id": 24,
+      "losses": 9,
+      "name": "Philadelphia Eagles",
+      "points_allowed": 416,
+      "points_scored": 459,
+      "ties": 0,
+      "wins": 9
+    },
+    {
+      "abbreviation": "PIT",
+      "franchise_id": 25,
+      "losses": 8,
+      "name": "Pittsburgh Steelers",
+      "points_allowed": 440,
+      "points_scored": 364,
+      "ties": 1,
+      "wins": 9
+    },
+    {
+      "abbreviation": "LA",
+      "franchise_id": 26,
+      "losses": 5,
+      "name": "Los Angeles Rams",
+      "points_allowed": 447,
+      "points_scored": 567,
+      "ties": 0,
+      "wins": 16
+    },
+    {
+      "abbreviation": "LAC",
+      "franchise_id": 27,
+      "losses": 8,
+      "name": "Los Angeles Chargers",
+      "points_allowed": 459,
+      "points_scored": 474,
+      "ties": 0,
+      "wins": 9
+    },
+    {
+      "abbreviation": "SF",
+      "franchise_id": 28,
+      "losses": 8,
+      "name": "San Francisco 49ers",
+      "points_allowed": 412,
+      "points_scored": 480,
+      "ties": 0,
+      "wins": 12
+    },
+    {
+      "abbreviation": "SEA",
+      "franchise_id": 29,
+      "losses": 10,
+      "name": "Seattle Seahawks",
+      "points_allowed": 366,
+      "points_scored": 395,
+      "ties": 0,
+      "wins": 7
+    },
+    {
+      "abbreviation": "TB",
+      "franchise_id": 30,
+      "losses": 5,
+      "name": "Tampa Bay Buccaneers",
+      "points_allowed": 398,
+      "points_scored": 569,
+      "ties": 0,
+      "wins": 14
+    },
+    {
+      "abbreviation": "TEN",
+      "franchise_id": 31,
+      "losses": 6,
+      "name": "Tennessee Titans",
+      "points_allowed": 373,
+      "points_scored": 435,
+      "ties": 0,
+      "wins": 12
+    },
+    {
+      "abbreviation": "WAS",
+      "franchise_id": 32,
+      "losses": 10,
+      "name": "Washington Football Team",
+      "points_allowed": 434,
+      "points_scored": 335,
+      "ties": 0,
+      "wins": 7
+    }
+  ]
+}

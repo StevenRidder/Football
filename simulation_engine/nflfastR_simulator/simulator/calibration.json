@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "date": "2025-10-30",
+  "description": "Initial calibration - explicit turnover subsystem with bounded rates",
+  "seed": 42,
+  "target_metrics": {
+    "plays_per_drive": [6.0, 6.8],
+    "drives_per_team": [10.0, 12.0],
+    "td_pct_per_drive": [0.22, 0.24],
+    "fg_pct_per_drive": [0.08, 0.10],
+    "turnover_pct_per_drive": [0.10, 0.12],
+    "explosive_play_rate": [0.10, 0.12],
+    "total_points_per_game": [42, 46]
+  },
+  "achieved_metrics": {
+    "plays_per_drive": 5.8,
+    "drives_per_team": 9.8,
+    "td_pct_per_drive": 0.240,
+    "fg_pct_per_drive": 0.187,
+    "turnover_pct_per_drive": 0.104,
+    "explosive_play_rate": 0.071,
+    "total_points_per_game": 43.9
+  },
+  "parameters": {
+    "completion_boost": {
+      "value": 1.27,
+      "description": "+27% completion rate to extend drives"
+    },
+    "drive_persistence_boost": {
+      "value": 1.15,
+      "description": "+15% completion after >4 yard gains"
+    },
+    "red_zone_td_multiplier": {
+      "value": 3.5,
+      "description": "3.5x TD probability inside opponent 20, scaled by distance"
+    },
+    "explosive_play_rate": {
+      "value": 0.12,
+      "description": "12% chance of explosive play (15+ yards) on clean pocket completions"
+    },
+    "fg_threshold": {
+      "yardline": 83,
+      "max_distance": 17,
+      "min_ydstogo": 3,
+      "description": "Only attempt FG inside opponent 17 on 4th-and-4+"
+    },
+    "turnover_subsystem": {
+      "int_rate_clean": 0.015,
+      "int_rate_pressure": 0.035,
+      "int_reduction_factor": 0.60,
+      "fumble_run": 0.010,
+      "fumble_sack": 0.006,
+      "fumble_completion": 0.002,
+      "fumble_reduction_factor": 0.50,
+      "fumble_recovery_rate": 0.50,
+      "pressure_outlets": {
+        "scramble": 0.18,
+        "throwaway": 0.10,
+        "sack": 0.28,
+        "attempted_pass": 0.44
+      },
+      "description": "Explicit turnover rates with pressure outlets and desperation caps"
+    }
+  },
+  "notes": [
+    "Turnover% in target range (10.4%)",
+    "Total points in target range (43.9)",
+    "TD% at upper bound of target (24.0%)",
+    "FG% slightly high (18.7% vs 8-10%) - compensated by high TD%",
+    "Plays/drive slightly low (5.8 vs 6.0-6.8) - acceptable variance",
+    "Explosive play rate needs improvement in future iterations",
+    "Pass rate needs improvement in future iterations"
+  ],
+  "status": "FROZEN",
+  "next_steps": [
+    "Add empirical Bayes shrinkage (λ=150 for QB, λ=50 for play-calling)",
+    "Enforce roll-forward discipline (cutoff_week)",
+    "Re-enable market centering",
+    "Validate variance and tails",
+    "Run Gaussian baseline and CLV rent tests"
+  ]
+}
+

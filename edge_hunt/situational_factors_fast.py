@@ -1,8 +1,17 @@
 """
 Fast version of situational factors - uses cached data and simpler calculations.
+
+All adjustment values are ML-learned from 1,343 historical games (2020-2024).
+Apply calibration multiplier to amplify/dampen these learned values.
 """
 
 from typing import Dict, Tuple
+import sys
+import os
+
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from adjustment_calibration import apply_calibration
 
 # Pre-computed 2025 home/away records (through Week 8)
 HOME_AWAY_RECORDS_2025 = {
@@ -83,64 +92,101 @@ def calculate_distance(coord1: Tuple[float, float], coord2: Tuple[float, float])
 
 
 def get_travel_adjustment(away_team: str, home_team: str) -> Tuple[float, str]:
-    """Calculate travel fatigue adjustment."""
+    """
+    Calculate travel fatigue adjustment.
+    
+    LEARNED FROM 1,343 GAMES (2020-2024):
+    - travel_distance: +0.058 pts per 1000 miles (spread)
+    - travel_long (>2000mi): -0.019 pts (spread)
+    - travel_medium (1000-2000mi): +0.030 pts (spread)
+    
+    NOTE: Effects are VERY SMALL (~0.03-0.06 pts), market already prices this efficiently.
+    Using conservative values based on data.
+    """
     if away_team not in STADIUM_COORDS or home_team not in STADIUM_COORDS:
         return 0.0, ""
     
     distance = calculate_distance(STADIUM_COORDS[away_team], STADIUM_COORDS[home_team])
     
+    # Data-driven adjustments (much smaller than expert guesses)
+    # Apply calibration multiplier to amplify these tiny learned values
     if distance > 2000:
-        return -1.5, f"Cross-country travel ({distance:.0f} miles) → -1.5 pts to {away_team}"
-    elif distance > 1500:
-        return -1.0, f"Long distance travel ({distance:.0f} miles) → -1.0 pts to {away_team}"
+        # Long travel shows slight NEGATIVE effect (-0.019 pts)
+        adj = apply_calibration(-0.02)
+        return adj, f"Cross-country travel ({distance:.0f} miles) → {adj:+.2f} pts to {away_team}"
     elif distance > 1000:
-        return -0.5, f"Medium distance travel ({distance:.0f} miles) → -0.5 pts to {away_team}"
+        # Medium travel shows slight POSITIVE effect (+0.030 pts)
+        adj = apply_calibration(+0.03)
+        return adj, f"Medium distance travel ({distance:.0f} miles) → {adj:+.2f} pts to {away_team}"
     
     return 0.0, ""
 
 
 def get_home_away_splits(team: str, is_home: bool) -> Tuple[float, str]:
-    """Calculate home/away performance adjustment."""
-    if team not in HOME_AWAY_RECORDS_2025:
-        return 0.0, ""
+    """
+    Calculate home/away performance adjustment.
     
-    record = HOME_AWAY_RECORDS_2025[team]
+    ⚠️ DISABLED: Home/away splits were NOT in the training data (1,343 games).
+    We have NO learned values for this, so we're turning it off.
     
-    if is_home:
-        wins = record['home_wins']
-        total = record['home_total']
-        win_pct = wins / total if total > 0 else 0.5
-        expected = 0.55
-        diff = win_pct - expected
-        
-        if diff < -0.20:
-            return -1.5, f"{team} home struggles ({wins}-{total-wins}) → -1.5 pts"
-        elif diff < -0.10:
-            return -1.0, f"{team} home struggles ({wins}-{total-wins}) → -1.0 pts"
-        elif diff > 0.20:
-            return +1.0, f"{team} home dominance ({wins}-{total-wins}) → +1.0 pts"
-    else:
-        wins = record['away_wins']
-        total = record['away_total']
-        win_pct = wins / total if total > 0 else 0.45
-        expected = 0.45
-        diff = win_pct - expected
-        
-        if diff < -0.20:
-            return -1.5, f"{team} away struggles ({wins}-{total-wins}) → -1.5 pts"
-        elif diff < -0.10:
-            return -1.0, f"{team} away struggles ({wins}-{total-wins}) → -1.0 pts"
-        elif diff > 0.20:
-            return +1.0, f"{team} away dominance ({wins}-{total-wins}) → +1.0 pts"
+    The market already prices home/away performance efficiently.
+    If we want to use this, we need to:
+    1. Add home/away win% as features to the training data
+    2. Re-train the model to learn the actual impact
+    3. Use SHAP values to get data-driven adjustments
     
+    For now: RETURNING 0.0 (no adjustment)
+    """
     return 0.0, ""
+    
+    # OLD CODE (DISABLED - NOT DATA-DRIVEN):
+    # if team not in HOME_AWAY_RECORDS_2025:
+    #     return 0.0, ""
+    # 
+    # record = HOME_AWAY_RECORDS_2025[team]
+    # 
+    # if is_home:
+    #     wins = record['home_wins']
+    #     total = record['home_total']
+    #     win_pct = wins / total if total > 0 else 0.5
+    #     expected = 0.55
+    #     diff = win_pct - expected
+    #     
+    #     if diff < -0.30:
+    #         return -0.5, f"{team} home struggles ({wins}-{total-wins}) → -0.5 pts"
+    #     elif diff > 0.30:
+    #         return +0.5, f"{team} home dominance ({wins}-{total-wins}) → +0.5 pts"
+    # else:
+    #     wins = record['away_wins']
+    #     total = record['away_total']
+    #     win_pct = wins / total if total > 0 else 0.45
+    #     expected = 0.45
+    #     diff = win_pct - expected
+    #     
+    #     if diff < -0.30:
+    #         return -0.5, f"{team} away struggles ({wins}-{total-wins}) → -0.5 pts"
+    #     elif diff > 0.30:
+    #         return +0.5, f"{team} away dominance ({wins}-{total-wins}) → +0.5 pts"
+    # 
+    # return 0.0, ""
 
 
 def get_divisional_game_adjustment(away_team: str, home_team: str) -> Tuple[float, str]:
-    """Divisional games are more conservative."""
+    """
+    Divisional games adjustment.
+    
+    LEARNED FROM 1,343 GAMES (2020-2024):
+    - divisional: -0.027 pts (spread), -0.033 pts (total)
+    
+    Effect is TINY (~0.03 pts), essentially noise.
+    Keeping minimal adjustment for divisional games.
+    """
     for division, teams in DIVISIONS.items():
         if away_team in teams and home_team in teams:
-            return -2.0, f"Divisional game → -2.0 pts to total (more conservative)"
+            # Data shows ~0.03 pts lower scoring in divisional games
+            # Apply calibration multiplier
+            adj = apply_calibration(-0.03)
+            return adj, f"Divisional game → {adj:+.2f} pts to total (data-driven)"
     
     return 0.0, ""
 

@@ -1,0 +1,25 @@
+{
+  "generated_at": "2025-10-28T10:30:59.629205",
+  "sample_size": 116,
+  "features": {
+    "qb_change": {
+      "feature": "qb_change",
+      "away_metrics": {
+        "sample_size": 0,
+        "avg_adjustment": 0,
+        "clv_rate": 0,
+        "avg_clv": 0,
+        "timing_edge": 0
+      },
+      "home_metrics": {
+        "sample_size": 0,
+        "avg_adjustment": 0,
+        "clv_rate": 0,
+        "avg_clv": 0,
+        "timing_edge": 0
+      },
+      "recommendation": "remove",
+      "suggested_value": 0
+    }
+  }
+}

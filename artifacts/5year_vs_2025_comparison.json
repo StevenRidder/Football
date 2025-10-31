@@ -1,0 +1,20 @@
+{
+  "generated_at": "2025-10-28T10:34:19.790142",
+  "historical_sample": 68,
+  "current_sample": 48,
+  "adjustments_learned": {
+    "divisional": {
+      "feature": "divisional_game",
+      "sample_size": 19,
+      "avg_line_movement": 0.10526315789473684,
+      "std": 1.0485300208760655,
+      "suggested_adjustment": -0.10526315789473684,
+      "confidence": "medium"
+    }
+  },
+  "historical_performance": {
+    "divisional": {
+      "sample_size": 19,
+      "clv_rate": 0.0,
+      "avg_clv": -0.7867036011080332,
+      "meets_threshold": 

@@ -317,6 +317,61 @@ def get_edge_hunt_signals(
         for exp in situational['explanations']:
             print(f"      • {exp}")
     
+    # 4. Create comprehensive "ALL ADJUSTMENTS" summary signal
+    all_adjustment_details = []
+    total_away_adj = situational.get('away_adjustment', 0.0) + injury_impacts.get(away, 0.0)
+    total_home_adj = situational.get('home_adjustment', 0.0) + injury_impacts.get(home, 0.0)
+    
+    # Add weather details
+    if weather_snapshot:
+        wf = weather_to_total_adjustment(weather_snapshot)
+        all_adjustment_details.append(f"🌤️ WEATHER: Wind {weather_snapshot.wind_mph:.1f} mph, {weather_snapshot.precip_bin} precip → {wf.total_adjustment_pts:+.1f} pts")
+    else:
+        all_adjustment_details.append("🌤️ WEATHER: No data available")
+    
+    # Add injury details
+    if len(all_injuries) > 0:
+        all_adjustment_details.append(f"🏥 INJURIES ({len(all_injuries)} total):")
+        for inj in all_injuries:
+            impact = inj.get('estimated_impact', 0)
+            all_adjustment_details.append(f"  • {inj['team']} - {inj['player']} ({inj['position']}) {inj['status']}: {impact:+.1f} pts")
+        all_adjustment_details.append(f"  Total: {away} {injury_impacts.get(away, 0.0):+.1f} pts, {home} {injury_impacts.get(home, 0.0):+.1f} pts")
+    else:
+        all_adjustment_details.append("🏥 INJURIES: None detected")
+    
+    # Add situational details (already have them from situational['explanations'])
+    if situational['has_adjustment']:
+        all_adjustment_details.append(f"📊 SITUATIONAL ({len(situational['explanations'])} factors):")
+        for exp in situational['explanations']:
+            all_adjustment_details.append(f"  • {exp}")
+        all_adjustment_details.append(f"  Total: {away} {situational.get('away_adjustment', 0.0):+.2f} pts, {home} {situational.get('home_adjustment', 0.0):+.2f} pts")
+    else:
+        all_adjustment_details.append("📊 SITUATIONAL: No adjustments")
+    
+    # Add final summary
+    all_adjustment_details.append("")
+    all_adjustment_details.append(f"📈 TOTAL ADJUSTMENTS:")
+    all_adjustment_details.append(f"  {away}: {total_away_adj:+.2f} pts")
+    all_adjustment_details.append(f"  {home}: {total_home_adj:+.2f} pts")
+    all_adjustment_details.append(f"  Spread impact: {total_away_adj - total_home_adj:+.2f} pts")
+    all_adjustment_details.append(f"  Total impact: {total_away_adj + total_home_adj:+.2f} pts")
+    
+    # Add this comprehensive signal to the list
+    if len(all_injuries) > 0 or situational['has_adjustment'] or (weather_snapshot and abs(wf.total_adjustment_pts) > 0.1):
+        signals.append({
+            'type': 'summary',
+            'icon': '📋',
+            'badge': 'ALL ADJUSTMENTS',
+            'badge_color': 'primary',
+            'severity': 'info',
+            'bet_type': 'info',
+            'bet_side': 'N/A',
+            'edge_pts': abs(total_away_adj) + abs(total_home_adj),
+            'explanation': f"Complete breakdown: Weather + Injuries + Situational factors",
+            'details': all_adjustment_details,
+            'confidence': 'DATA-DRIVEN'
+        })
+    
     result = {
         'has_signal': len(signals) > 0,
         'signals': signals,

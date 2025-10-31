@@ -1,0 +1,13 @@
+{
+  "total_games": 1087,
+  "spread_bets": 804,
+  "spread_wins": 518,
+  "spread_wr": 64.42786069651741,
+  "spread_roi": 23.057213930348258,
+  "total_bets": 773,
+  "total_wins": 525,
+  "total_wr": 67.91720569210867,
+  "total_roi": 29.721862871927556,
+  "prediction_mae": 9.512571740510811,
+  "market_mae": 10.287948482060717
+}

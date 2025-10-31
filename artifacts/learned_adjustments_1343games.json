@@ -1,0 +1,81 @@
+{
+  "margin_impacts": {
+    "divisional": {
+      "abs_impact": 0.32437196373939514,
+      "signed_impact": -0.026897313073277473
+    },
+    "travel_distance": {
+      "abs_impact": 2.715489387512207,
+      "signed_impact": 0.05774408206343651
+    },
+    "travel_long": {
+      "abs_impact": 0.15604931116104126,
+      "signed_impact": -0.01923310197889805
+    },
+    "travel_medium": {
+      "abs_impact": 0.26832151412963867,
+      "signed_impact": 0.029847944155335426
+    },
+    "away_ol_continuity": {
+      "abs_impact": 0.0,
+      "signed_impact": 0.0
+    },
+    "home_ol_continuity": {
+      "abs_impact": 0.0,
+      "signed_impact": 0.0
+    },
+    "away_ol_penalty": {
+      "abs_impact": 0.0,
+      "signed_impact": 0.0
+    },
+    "home_ol_penalty": {
+      "abs_impact": 0.0,
+      "signed_impact": 0.0
+    }
+  },
+  "total_impacts": {
+    "divisional": {
+      "abs_impact": 0.24887175858020782,
+      "signed_impact": -0.03276316821575165
+    },
+    "travel_distance": {
+      "abs_impact": 2.7519290447235107,
+      "signed_impact": 0.03481180965900421
+    },
+    "travel_long": {
+      "abs_impact": 0.06800989806652069,
+      "signed_impact": 0.003784956643357873
+    },
+    "travel_medium": {
+      "abs_impact": 0.1379404366016388,
+      "signed_impact": 0.013810362666845322
+    },
+    "away_ol_continuity": {
+      "abs_impact": 0.0,
+      "signed_impact": 0.0
+    },
+    "home_ol_continuity": {
+      "abs_impact": 0.0,
+      "signed_impact": 0.0
+    },
+    "away_ol_penalty": {
+      "abs_impact": 0.0,
+      "signed_impact": 0.0
+    },
+    "home_ol_penalty": {
+      "abs_impact": 0.0,
+      "signed_impact": 0.0
+    }
+  },
+  "training_games": 1343,
+  "features": [
+    "divisional",
+    "travel_distance",
+    "travel_long",
+    "travel_medium",
+    "away_ol_continuity",
+    "home_ol_continuity",
+    "away_ol_penalty",
+    "home_ol_penalty"
+  ]
+}

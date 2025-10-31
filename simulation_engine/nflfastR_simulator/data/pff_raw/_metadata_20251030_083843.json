@@ -1,0 +1,41 @@
+{
+  "extraction_date": "2025-10-30T08:39:38.734674",
+  "seasons_full": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "season_2025_weeks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "positions": [
+    "QB",
+    "RB",
+    "WR",
+    "TE",
+    "T",
+    "G",
+    "C",
+    "EDGE",
+    "DI",
+    "LB",
+    "CB",
+    "S"
+  ],
+  "data_types": [
+    "team_overview",
+    "team_stats",
+    "player_grades",
+    "games"
+  ],
+  "notes": "Comprehensive PFF data extraction for NFL betting model"
+}
