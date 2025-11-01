@@ -95,22 +95,22 @@ def load_latest_aii():
 def index():
     """Main dashboard with all games."""
     df = load_latest_predictions()
-    
+
     if df is None:
         return "<h1>No predictions found. Run generate_alpha_predictions.py first.</h1>"
-    
+
     # Get all weeks available
     all_weeks = sorted(df['week'].unique())
-    
+
     # Determine current week based on today's date
     from datetime import datetime
     today = datetime.now().date()
-    
+
     # Load actual schedule to check which week is current
     import nfl_data_py as nfl
     sched = nfl.import_schedules([2025])
     sched_reg = sched[sched['game_type'] == 'REG']
-    
+
     # Find the week with games starting this week or next
     current_week = None
     for week in sorted(sched_reg['week'].unique()):
@@ -119,19 +119,71 @@ def index():
         if week_games['away_score'].isna().any():
             current_week = int(week)
             break
-    
+
     if current_week is None:
         current_week = int(df['week'].max())
-    
+
+    # Load team bias data for indicators
+    team_win_rates = get_team_win_rates()
+
     return render_template('alpha_index_v3.html',
                           current_week=current_week,
                           all_weeks=all_weeks,
-                          total_games=len(df))
+                          total_games=len(df),
+                          team_win_rates=team_win_rates)
+
+def get_team_win_rates():
+    """Get historical win rates for each team (for spread bets)"""
+    from pathlib import Path
+    import pandas as pd
+    
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    if not backtest_file.exists():
+        return {}
+    
+    df = pd.read_csv(backtest_file)
+    spread_bets = df[df['spread_bet'].notna() & (df['spread_bet'] != '')]
+    
+    team_stats = {}
+    for idx, row in spread_bets.iterrows():
+        home_team = row['home_team']
+        away_team = row['away_team']
+        spread_bet = str(row['spread_bet']).upper()
+        spread_result = row['spread_result']
+        
+        # Determine which team we bet on
+        if 'HOME' in spread_bet or home_team in spread_bet:
+            bet_team = home_team
+        elif 'AWAY' in spread_bet or away_team in spread_bet:
+            bet_team = away_team
+        else:
+            continue
+        
+        if bet_team not in team_stats:
+            team_stats[bet_team] = {'wins': 0, 'total': 0}
+        
+        team_stats[bet_team]['total'] += 1
+        if spread_result == 1.0:
+            team_stats[bet_team]['wins'] += 1
+    
+    # Calculate win rates
+    team_win_rates = {}
+    for team, stats in team_stats.items():
+        if stats['total'] >= 3:  # Only show for teams with 3+ bets
+            win_rate = (stats['wins'] / stats['total'] * 100) if stats['total'] > 0 else 0
+            team_win_rates[team] = {
+                'win_rate': round(win_rate, 1),
+                'record': f"{stats['wins']}-{stats['total'] - stats['wins']}",
+                'total': stats['total']
+            }
+    
+    return team_win_rates
 
 @app.route('/api/games')
 def api_games():
     """API endpoint for game data with Edge Hunt signals"""
     df = load_latest_predictions()
+    team_win_rates = get_team_win_rates()
     
     if df is None:
         print("❌ No predictions data found")
@@ -202,12 +254,16 @@ def api_games():
         }
         games.append(game)
     
-    return jsonify(games)
+    return jsonify({
+        'games': games,
+        'team_win_rates': team_win_rates
+    })
 
 @app.route('/api/simulator-predictions')
 def api_simulator_predictions():
     """API endpoint for simulator predictions with conviction badges."""
     df = load_simulator_predictions()
+    team_win_rates = get_team_win_rates()
     
     if df is None:
         return jsonify({'error': 'No simulator predictions found. Run backtest_all_games_conviction.py and format_for_frontend.py'}), 404
@@ -222,13 +278,15 @@ def api_simulator_predictions():
     
     return jsonify({
         'games': games,
-        'total': len(games)
+        'total': len(games),
+        'team_win_rates': team_win_rates
     })
 
 @app.route('/api/games/graded')
 def api_games_graded():
     """API endpoint for games with actual results - SERVES PRE-COMPUTED BACKEND DATA."""
     df = load_latest_predictions()
+    team_win_rates = get_team_win_rates()
     
     if df is None:
         return jsonify({'error': 'No predictions found'}), 404
@@ -243,7 +301,8 @@ def api_games_graded():
     
     return jsonify({
         'games': games,
-        'total': len(games)
+        'total': len(games),
+        'team_win_rates': team_win_rates
     })
 
 @app.route('/api/best-bets')
@@ -795,6 +854,361 @@ def line_movements():
                          movements=movements,
                          week=CURRENT_WEEK,
                          season=CURRENT_SEASON)
+
+@app.route('/model-performance')
+def model_performance():
+    """Model Performance by Conviction Level - Backend Analysis"""
+    from pathlib import Path
+    import pandas as pd
+    
+    # Load backtest results
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    
+    if not backtest_file.exists():
+        return render_template('error.html', 
+                             message="Backtest data not found. Run backtest_all_games_conviction.py first.")
+    
+    df = pd.read_csv(backtest_file)
+    
+    # Calculate stats by conviction level (backend logic)
+    def calc_spread_stats(bets_df):
+        if len(bets_df) == 0:
+            return {'count': 0, 'wins': 0, 'losses': 0, 'pushes': 0, 
+                    'win_rate': 0, 'roi': 0, 'avg_edge': 0}
+        
+        # Count wins/losses from spread_result column
+        wins = int((bets_df['spread_result'] == 1.0).sum())
+        losses = int((bets_df['spread_result'] == 0.0).sum())
+        pushes = int(len(bets_df) - wins - losses)
+        
+        win_rate = (wins / len(bets_df) * 100) if len(bets_df) > 0 else 0
+        
+        # Assuming -110 odds: win +0.91, loss -1.00
+        profit = (wins * 0.91) - losses
+        roi = (profit / len(bets_df) * 100) if len(bets_df) > 0 else 0
+        
+        # Get average edge from spread_edge column
+        avg_edge = (bets_df['spread_edge'].mean() * 100) if 'spread_edge' in bets_df.columns else 0
+        
+        return {
+            'count': int(len(bets_df)),
+            'wins': wins,
+            'losses': losses,
+            'pushes': pushes,
+            'win_rate': round(win_rate, 1),
+            'roi': round(roi, 1),
+            'avg_edge': round(avg_edge, 1)
+        }
+    
+    def calc_total_stats(bets_df):
+        if len(bets_df) == 0:
+            return {'count': 0, 'wins': 0, 'losses': 0, 'pushes': 0, 
+                    'win_rate': 0, 'roi': 0, 'avg_edge': 0}
+        
+        # Count wins/losses from total_result column
+        wins = int((bets_df['total_result'] == 1.0).sum())
+        losses = int((bets_df['total_result'] == 0.0).sum())
+        pushes = int(len(bets_df) - wins - losses)
+        
+        win_rate = (wins / len(bets_df) * 100) if len(bets_df) > 0 else 0
+        
+        # Assuming -110 odds: win +0.91, loss -1.00
+        profit = (wins * 0.91) - losses
+        roi = (profit / len(bets_df) * 100) if len(bets_df) > 0 else 0
+        
+        # Get average edge from total_edge column
+        avg_edge = (bets_df['total_edge'].mean() * 100) if 'total_edge' in bets_df.columns else 0
+        
+        return {
+            'count': int(len(bets_df)),
+            'wins': wins,
+            'losses': losses,
+            'pushes': pushes,
+            'win_rate': round(win_rate, 1),
+            'roi': round(roi, 1),
+            'avg_edge': round(avg_edge, 1)
+        }
+    
+    # Spread bets by conviction
+    spread_bets = df[df['spread_bet'].notna() & (df['spread_bet'] != '')]
+    spread_high = spread_bets[spread_bets['spread_conviction'] == 'HIGH']
+    spread_medium = spread_bets[spread_bets['spread_conviction'] == 'MEDIUM']
+    spread_low = spread_bets[spread_bets['spread_conviction'] == 'LOW']
+    
+    # Total bets by conviction
+    total_bets = df[df['total_bet'].notna() & (df['total_bet'] != '')]
+    total_high = total_bets[total_bets['total_conviction'] == 'HIGH']
+    total_medium = total_bets[total_bets['total_conviction'] == 'MEDIUM']
+    total_low = total_bets[total_bets['total_conviction'] == 'LOW']
+    
+    # Calculate all stats on backend
+    stats = {
+        'total_games': len(df),
+        'weeks': sorted(df['week'].unique().tolist()),
+        'spread': {
+            'high': calc_spread_stats(spread_high),
+            'medium': calc_spread_stats(spread_medium),
+            'low': calc_spread_stats(spread_low),
+            'all': calc_spread_stats(spread_bets)
+        },
+        'total': {
+            'high': calc_total_stats(total_high),
+            'medium': calc_total_stats(total_medium),
+            'low': calc_total_stats(total_low),
+            'all': calc_total_stats(total_bets)
+        }
+    }
+    
+    return render_template('model_performance.html', stats=stats)
+
+@app.route('/model-performance/spread/<conviction>')
+def model_performance_spread_detail(conviction):
+    """Detailed breakdown of spread bets by conviction level"""
+    from pathlib import Path
+    import pandas as pd
+    
+    conviction = conviction.upper()
+    if conviction not in ['HIGH', 'MEDIUM', 'LOW']:
+        return "Invalid conviction level", 400
+    
+    # Load backtest results
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    if not backtest_file.exists():
+        return render_template('error.html', 
+                             message="Backtest data not found.")
+    
+    df = pd.read_csv(backtest_file)
+    
+    # Filter spread bets by conviction
+    spread_bets = df[
+        (df['spread_bet'].notna()) & 
+        (df['spread_bet'] != '') & 
+        (df['spread_conviction'] == conviction)
+    ].copy()
+    
+    # Prepare bet details for display
+    bets = []
+    for idx, row in spread_bets.iterrows():
+        bets.append({
+            'week': int(row['week']),
+            'away_team': row['away_team'],
+            'home_team': row['home_team'],
+            'market_spread': row['spread_line'],
+            'our_spread': round(row['spread_mean'], 1),
+            'bet': row['spread_bet'],
+            'edge': round(row['spread_edge'] * 100, 1),
+            'result': 'WIN' if row['spread_result'] == 1.0 else 'LOSS' if row['spread_result'] == 0.0 else 'PUSH',
+            'actual_score': f"{int(row['actual_away_score'])}-{int(row['actual_home_score'])}" if pd.notna(row['actual_home_score']) else '-'
+        })
+    
+    return render_template('model_performance_detail.html',
+                         bet_type='Spread',
+                         conviction=conviction,
+                         bets=bets,
+                         total=len(bets),
+                         wins=len([b for b in bets if b['result'] == 'WIN']),
+                         losses=len([b for b in bets if b['result'] == 'LOSS']))
+
+@app.route('/model-performance/total/<conviction>')
+def model_performance_total_detail(conviction):
+    """Detailed breakdown of total bets by conviction level"""
+    from pathlib import Path
+    import pandas as pd
+    
+    conviction = conviction.upper()
+    if conviction not in ['HIGH', 'MEDIUM', 'LOW']:
+        return "Invalid conviction level", 400
+    
+    # Load backtest results
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    if not backtest_file.exists():
+        return render_template('error.html', 
+                             message="Backtest data not found.")
+    
+    df = pd.read_csv(backtest_file)
+    
+    # Filter total bets by conviction
+    total_bets = df[
+        (df['total_bet'].notna()) & 
+        (df['total_bet'] != '') & 
+        (df['total_conviction'] == conviction)
+    ].copy()
+    
+    # Prepare bet details for display
+    bets = []
+    for idx, row in total_bets.iterrows():
+        bets.append({
+            'week': int(row['week']),
+            'away_team': row['away_team'],
+            'home_team': row['home_team'],
+            'market_total': row['total_line'],
+            'our_total': round(row['total_mean'], 1),
+            'bet': row['total_bet'],
+            'edge': round(row['total_edge'] * 100, 1),
+            'result': 'WIN' if row['total_result'] == 1.0 else 'LOSS' if row['total_result'] == 0.0 else 'PUSH',
+            'actual_total': int(row['actual_away_score'] + row['actual_home_score']) if pd.notna(row['actual_home_score']) else '-'
+        })
+    
+    return render_template('model_performance_detail.html',
+                         bet_type='Total',
+                         conviction=conviction,
+                         bets=bets,
+                         total=len(bets),
+                         wins=len([b for b in bets if b['result'] == 'WIN']),
+                         losses=len([b for b in bets if b['result'] == 'LOSS']))
+
+@app.route('/model-performance/team-analysis')
+def model_performance_team_analysis():
+    """Team-by-team performance analysis - identify biases"""
+    from pathlib import Path
+    import pandas as pd
+    
+    # Load backtest results
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    if not backtest_file.exists():
+        return render_template('error.html', 
+                             message="Backtest data not found.")
+    
+    df = pd.read_csv(backtest_file)
+    
+    # Analyze spread bets by team
+    spread_bets = df[df['spread_bet'].notna() & (df['spread_bet'] != '')]
+    team_spread_stats = {}
+    
+    for idx, row in spread_bets.iterrows():
+        home_team = row['home_team']
+        away_team = row['away_team']
+        spread_bet = str(row['spread_bet']).upper()
+        spread_result = row['spread_result']
+        conviction = row['spread_conviction']
+        
+        # Determine which team we bet on
+        if 'HOME' in spread_bet or home_team in spread_bet:
+            bet_team = home_team
+        elif 'AWAY' in spread_bet or away_team in spread_bet:
+            bet_team = away_team
+        else:
+            continue
+        
+        # Initialize team stats if not exists
+        if bet_team not in team_spread_stats:
+            team_spread_stats[bet_team] = {
+                'team': bet_team,
+                'bets': 0, 'wins': 0, 'losses': 0, 'pushes': 0,
+                'high_bets': 0, 'high_wins': 0,
+                'med_bets': 0, 'med_wins': 0,
+                'low_bets': 0, 'low_wins': 0
+            }
+        
+        team_spread_stats[bet_team]['bets'] += 1
+        if spread_result == 1.0:
+            team_spread_stats[bet_team]['wins'] += 1
+        elif spread_result == 0.0:
+            team_spread_stats[bet_team]['losses'] += 1
+        else:
+            team_spread_stats[bet_team]['pushes'] += 1
+        
+        # Track by conviction
+        if conviction == 'HIGH':
+            team_spread_stats[bet_team]['high_bets'] += 1
+            if spread_result == 1.0:
+                team_spread_stats[bet_team]['high_wins'] += 1
+        elif conviction == 'MEDIUM':
+            team_spread_stats[bet_team]['med_bets'] += 1
+            if spread_result == 1.0:
+                team_spread_stats[bet_team]['med_wins'] += 1
+        elif conviction == 'LOW':
+            team_spread_stats[bet_team]['low_bets'] += 1
+            if spread_result == 1.0:
+                team_spread_stats[bet_team]['low_wins'] += 1
+    
+    # Analyze total bets by team (both teams involved in the game)
+    total_bets = df[df['total_bet'].notna() & (df['total_bet'] != '')]
+    team_total_stats = {}
+    
+    for idx, row in total_bets.iterrows():
+        home_team = row['home_team']
+        away_team = row['away_team']
+        total_result = row['total_result']
+        conviction = row['total_conviction']
+        
+        # Count both teams in the game
+        for team in [home_team, away_team]:
+            if team not in team_total_stats:
+                team_total_stats[team] = {
+                    'team': team,
+                    'bets': 0, 'wins': 0, 'losses': 0, 'pushes': 0,
+                    'high_bets': 0, 'high_wins': 0,
+                    'med_bets': 0, 'med_wins': 0,
+                    'low_bets': 0, 'low_wins': 0
+                }
+            
+            team_total_stats[team]['bets'] += 1
+            if total_result == 1.0:
+                team_total_stats[team]['wins'] += 1
+            elif total_result == 0.0:
+                team_total_stats[team]['losses'] += 1
+            else:
+                team_total_stats[team]['pushes'] += 1
+            
+            # Track by conviction
+            if conviction == 'HIGH':
+                team_total_stats[team]['high_bets'] += 1
+                if total_result == 1.0:
+                    team_total_stats[team]['high_wins'] += 1
+            elif conviction == 'MEDIUM':
+                team_total_stats[team]['med_bets'] += 1
+                if total_result == 1.0:
+                    team_total_stats[team]['med_wins'] += 1
+            elif conviction == 'LOW':
+                team_total_stats[team]['low_bets'] += 1
+                if total_result == 1.0:
+                    team_total_stats[team]['low_wins'] += 1
+    
+    # Calculate win rates and prepare for display
+    spread_teams = []
+    for team, stats in team_spread_stats.items():
+        if stats['bets'] >= 3:  # Only teams with 3+ bets
+            win_rate = (stats['wins'] / stats['bets'] * 100) if stats['bets'] > 0 else 0
+            high_wr = (stats['high_wins'] / stats['high_bets'] * 100) if stats['high_bets'] > 0 else None
+            med_wr = (stats['med_wins'] / stats['med_bets'] * 100) if stats['med_bets'] > 0 else None
+            low_wr = (stats['low_wins'] / stats['low_bets'] * 100) if stats['low_bets'] > 0 else None
+            
+            spread_teams.append({
+                'team': team,
+                'bets': stats['bets'],
+                'wins': stats['wins'],
+                'losses': stats['losses'],
+                'pushes': stats['pushes'],
+                'win_rate': round(win_rate, 1),
+                'high_wr': round(high_wr, 1) if high_wr is not None else None,
+                'med_wr': round(med_wr, 1) if med_wr is not None else None,
+                'low_wr': round(low_wr, 1) if low_wr is not None else None
+            })
+    
+    total_teams = []
+    for team, stats in team_total_stats.items():
+        if stats['bets'] >= 3:  # Only teams with 3+ bets
+            win_rate = (stats['wins'] / stats['bets'] * 100) if stats['bets'] > 0 else 0
+            high_wr = (stats['high_wins'] / stats['high_bets'] * 100) if stats['high_bets'] > 0 else None
+            med_wr = (stats['med_wins'] / stats['med_bets'] * 100) if stats['med_bets'] > 0 else None
+            low_wr = (stats['low_wins'] / stats['low_bets'] * 100) if stats['low_bets'] > 0 else None
+            
+            total_teams.append({
+                'team': team,
+                'bets': stats['bets'],
+                'wins': stats['wins'],
+                'losses': stats['losses'],
+                'pushes': stats['pushes'],
+                'win_rate': round(win_rate, 1),
+                'high_wr': round(high_wr, 1) if high_wr is not None else None,
+                'med_wr': round(med_wr, 1) if med_wr is not None else None,
+                'low_wr': round(low_wr, 1) if low_wr is not None else None
+            })
+    
+    return render_template('team_bias_analysis.html',
+                         spread_teams=spread_teams,
+                         total_teams=total_teams)
 
 @app.route('/performance')
 def performance():

@@ -1,0 +1,338 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">
+          Betting Performance
+        </h2>
+        <div class="text-muted mt-1">Season financial tracking and analytics</div>
+      </div>
+      <div class="col-auto ms-auto">
+        <div class="btn-list">
+          <span class="badge bg-primary">2025 Season</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    
+    <!-- Summary Cards -->
+    <div class="row row-deck row-cards mb-3">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="subheader">Total Profit/Loss</div>
+            </div>
+            <div class="h1 mb-3 {% if stats.total_profit >= 0 %}text-success{% else %}text-danger{% endif %}">
+              {% if stats.total_profit >= 0 %}+{% endif %}${{ "%.2f"|format(stats.total_profit) }}
+            </div>
+            <div class="d-flex mb-2">
+              <div>ROI: {{ "%.1f"|format(stats.roi) }}%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="subheader">Total Wagered</div>
+            </div>
+            <div class="h1 mb-3">${{ "%.2f"|format(stats.total_wagered) }}</div>
+            <div class="d-flex mb-2">
+              <div>{{ stats.total_bets }} bets placed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="subheader">Win Rate</div>
+            </div>
+            <div class="h1 mb-3">{{ "%.1f"|format(stats.win_rate) }}%</div>
+            <div class="d-flex mb-2">
+              <div>{{ stats.won_count }} W / {{ stats.lost_count }} L</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <div class="subheader">Pending Bets</div>
+            </div>
+            <div class="h1 mb-3">${{ "%.2f"|format(stats.pending_amount) }}</div>
+            <div class="d-flex mb-2">
+              <div>{{ stats.pending_count }} bets</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row row-deck row-cards mb-3">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Profit/Loss by Week</h3>
+          </div>
+          <div class="card-body">
+            <div id="chart-pl-by-week" class="chart-lg"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Bet Type Distribution</h3>
+          </div>
+          <div class="card-body">
+            <div id="chart-bet-types" class="chart-lg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Performance by Bet Type -->
+    <div class="row row-deck row-cards mb-3">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Performance by Bet Type</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter">
+              <thead>
+                <tr>
+                  <th>Bet Type</th>
+                  <th class="text-end">Count</th>
+                  <th class="text-end">Total Wagered</th>
+                  <th class="text-end">Won</th>
+                  <th class="text-end">Lost</th>
+                  <th class="text-end">Win Rate</th>
+                  <th class="text-end">Profit/Loss</th>
+                  <th class="text-end">ROI</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for type_name, type_stats in by_type.items() %}
+                <tr>
+                  <td>
+                    <span class="badge bg-blue-lt">{{ type_name }}</span>
+                  </td>
+                  <td class="text-end">{{ type_stats.count }}</td>
+                  <td class="text-end">${{ "%.2f"|format(type_stats.wagered) }}</td>
+                  <td class="text-end">{{ type_stats.won }}</td>
+                  <td class="text-end">{{ type_stats.lost }}</td>
+                  <td class="text-end">{{ "%.1f"|format(type_stats.win_rate) }}%</td>
+                  <td class="text-end {% if type_stats.profit >= 0 %}text-success{% else %}text-danger{% endif %}">
+                    {% if type_stats.profit >= 0 %}+{% endif %}${{ "%.2f"|format(type_stats.profit) }}
+                  </td>
+                  <td class="text-end {% if type_stats.roi >= 0 %}text-success{% else %}text-danger{% endif %}">
+                    {% if type_stats.roi >= 0 %}+{% endif %}{{ "%.1f"|format(type_stats.roi) }}%
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="row row-deck row-cards">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Recent Settled Bets</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table card-table table-vcenter">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Type</th>
+                  <th class="text-end">Amount</th>
+                  <th class="text-end">Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for bet in recent_settled %}
+                <tr>
+                  <td>{{ bet.date }}</td>
+                  <td>
+                    <div class="text-truncate" style="max-width: 400px;">
+                      {{ bet.description }}
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge bg-blue-lt">{{ bet.type }}</span>
+                  </td>
+                  <td class="text-end">${{ "%.2f"|format(bet.amount) }}</td>
+                  <td class="text-end">
+                    {% if bet.status == 'Won' %}
+                      <span class="badge bg-success">Won +${{ "%.2f"|format(bet.to_win) }}</span>
+                    {% else %}
+                      <span class="badge bg-danger">Lost -${{ "%.2f"|format(bet.amount) }}</span>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ApexCharts -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+  // Profit/Loss by Week Chart
+  document.addEventListener("DOMContentLoaded", function() {
+    const plData = {{ weekly_pl|tojson }};
+    
+    const plOptions = {
+      chart: {
+        type: "bar",
+        fontFamily: 'inherit',
+        height: 240,
+        parentHeightOffset: 0,
+        toolbar: {
+          show: false,
+        },
+        animations: {
+          enabled: false
+        },
+      },
+      plotOptions: {
+        bar: {
+          columnWidth: '50%',
+        }
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      fill: {
+        opacity: 1,
+      },
+      series: [{
+        name: "Profit/Loss",
+        data: plData.values
+      }],
+      tooltip: {
+        theme: 'dark'
+      },
+      grid: {
+        padding: {
+          top: -20,
+          right: 0,
+          left: -4,
+          bottom: -4
+        },
+        strokeDashArray: 4,
+      },
+      xaxis: {
+        labels: {
+          padding: 0,
+        },
+        tooltip: {
+          enabled: false
+        },
+        axisBorder: {
+          show: false,
+        },
+        categories: plData.weeks,
+      },
+      yaxis: {
+        labels: {
+          padding: 4,
+          formatter: function(val) {
+            return '$' + val.toFixed(0);
+          }
+        },
+      },
+      colors: [function({ value }) {
+        return value >= 0 ? '#2fb344' : '#d63939';
+      }],
+      legend: {
+        show: false,
+      },
+    };
+    
+    const plChart = new ApexCharts(document.querySelector("#chart-pl-by-week"), plOptions);
+    plChart.render();
+    
+    // Bet Type Distribution Chart
+    const typeData = {{ type_distribution|tojson }};
+    
+    const typeOptions = {
+      chart: {
+        type: "donut",
+        fontFamily: 'inherit',
+        height: 240,
+        sparkline: {
+          enabled: true
+        },
+        animations: {
+          enabled: false
+        },
+      },
+      fill: {
+        opacity: 1,
+      },
+      series: typeData.values,
+      labels: typeData.labels,
+      tooltip: {
+        theme: 'dark'
+      },
+      grid: {
+        strokeDashArray: 4,
+      },
+      colors: ["#206bc4", "#79a6dc", "#bfe399", "#f59f00", "#d63939"],
+      legend: {
+        show: true,
+        position: 'bottom',
+        offsetY: 12,
+        markers: {
+          width: 10,
+          height: 10,
+          radius: 100,
+        },
+        itemMargin: {
+          horizontal: 8,
+          vertical: 8
+        },
+      },
+      tooltip: {
+        fillSeriesColor: false
+      },
+    };
+    
+    const typeChart = new ApexCharts(document.querySelector("#chart-bet-types"), typeOptions);
+    typeChart.render();
+  });
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,429 @@
+{% extends "base.html" %}
+
+{% block title %}Team Bias Analysis{% endblock %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">
+          <i class="ti ti-users icon me-2"></i>
+          Team-by-Team Bias Analysis
+        </h2>
+        <div class="text-muted mt-1">Identify which teams our model consistently gets right or wrong</div>
+      </div>
+      <div class="col-auto">
+        <a href="/model-performance" class="btn btn-outline-primary">
+          <i class="ti ti-arrow-left icon me-1"></i>
+          Back to Performance
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    
+    <!-- SPREAD BETS BY TEAM -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="ti ti-trending-up icon me-2"></i>
+              SPREAD BETS - Team Performance
+            </h3>
+            <div class="card-subtitle">When we bet on this team to cover the spread</div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-vcenter card-table table-striped" id="spread-table">
+              <thead>
+                <tr>
+                  <th data-sort="team" class="sortable">Team <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="bets" class="sortable text-end">Bets <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="record" class="sortable">Record <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="win_rate" class="sortable text-end">Win % <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="high_wr" class="sortable text-end">HIGH % <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="med_wr" class="sortable text-end">MEDIUM % <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="low_wr" class="sortable text-end">LOW % <i class="ti ti-selector ms-1"></i></th>
+                  <th class="text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody id="spread-tbody">
+                {% for team in spread_teams %}
+                <tr data-win-rate="{{ team.win_rate }}">
+                  <td>
+                    <strong>{{ team.team }}</strong>
+                  </td>
+                  <td class="text-end">{{ team.bets }}</td>
+                  <td>{{ team.wins }}W-{{ team.losses }}L{% if team.pushes > 0 %}-{{ team.pushes }}P{% endif %}</td>
+                  <td class="text-end">
+                    <strong class="{% if team.win_rate >= 70 %}text-success{% elif team.win_rate <= 30 %}text-danger{% endif %}">
+                      {{ team.win_rate }}%
+                    </strong>
+                  </td>
+                  <td class="text-end">
+                    {% if team.high_wr is not none %}
+                      <span class="{% if team.high_wr >= 70 %}text-success{% elif team.high_wr <= 30 %}text-danger{% endif %}">
+                        {{ team.high_wr }}%
+                      </span>
+                    {% else %}
+                      <span class="text-muted">-</span>
+                    {% endif %}
+                  </td>
+                  <td class="text-end">
+                    {% if team.med_wr is not none %}
+                      <span class="{% if team.med_wr >= 70 %}text-success{% elif team.med_wr <= 30 %}text-danger{% endif %}">
+                        {{ team.med_wr }}%
+                      </span>
+                    {% else %}
+                      <span class="text-muted">-</span>
+                    {% endif %}
+                  </td>
+                  <td class="text-end">
+                    {% if team.low_wr is not none %}
+                      <span class="{% if team.low_wr >= 70 %}text-success{% elif team.low_wr <= 30 %}text-danger{% endif %}">
+                        {{ team.low_wr }}%
+                      </span>
+                    {% else %}
+                      <span class="text-muted">-</span>
+                    {% endif %}
+                  </td>
+                  <td class="text-center">
+                    {% if team.win_rate == 100.0 %}
+                      <span class="badge bg-success">🔥 PERFECT</span>
+                    {% elif team.win_rate >= 80.0 %}
+                      <span class="badge bg-success">✓ STRONG</span>
+                    {% elif team.win_rate >= 60.0 %}
+                      <span class="badge bg-blue">✓ GOOD</span>
+                    {% elif team.win_rate >= 40.0 %}
+                      <span class="badge bg-secondary">— NEUTRAL</span>
+                    {% elif team.win_rate > 0.0 %}
+                      <span class="badge bg-warning">⚠ WEAK</span>
+                    {% else %}
+                      <span class="badge bg-danger">❄️ AVOID</span>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTAL BETS BY TEAM -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="ti ti-sum icon me-2"></i>
+              TOTAL (O/U) BETS - Team Performance
+            </h3>
+            <div class="card-subtitle">When this team is involved in over/under bets</div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-vcenter card-table table-striped" id="total-table">
+              <thead>
+                <tr>
+                  <th data-sort="team" class="sortable">Team <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="bets" class="sortable text-end">Bets <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="record" class="sortable">Record <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="win_rate" class="sortable text-end">Win % <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="high_wr" class="sortable text-end">HIGH % <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="med_wr" class="sortable text-end">MEDIUM % <i class="ti ti-selector ms-1"></i></th>
+                  <th data-sort="low_wr" class="sortable text-end">LOW % <i class="ti ti-selector ms-1"></i></th>
+                  <th class="text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody id="total-tbody">
+                {% for team in total_teams %}
+                <tr data-win-rate="{{ team.win_rate }}">
+                  <td>
+                    <strong>{{ team.team }}</strong>
+                  </td>
+                  <td class="text-end">{{ team.bets }}</td>
+                  <td>{{ team.wins }}W-{{ team.losses }}L{% if team.pushes > 0 %}-{{ team.pushes }}P{% endif %}</td>
+                  <td class="text-end">
+                    <strong class="{% if team.win_rate >= 70 %}text-success{% elif team.win_rate <= 30 %}text-danger{% endif %}">
+                      {{ team.win_rate }}%
+                    </strong>
+                  </td>
+                  <td class="text-end">
+                    {% if team.high_wr is not none %}
+                      <span class="{% if team.high_wr >= 70 %}text-success{% elif team.high_wr <= 30 %}text-danger{% endif %}">
+                        {{ team.high_wr }}%
+                      </span>
+                    {% else %}
+                      <span class="text-muted">-</span>
+                    {% endif %}
+                  </td>
+                  <td class="text-end">
+                    {% if team.med_wr is not none %}
+                      <span class="{% if team.med_wr >= 70 %}text-success{% elif team.med_wr <= 30 %}text-danger{% endif %}">
+                        {{ team.med_wr }}%
+                      </span>
+                    {% else %}
+                      <span class="text-muted">-</span>
+                    {% endif %}
+                  </td>
+                  <td class="text-end">
+                    {% if team.low_wr is not none %}
+                      <span class="{% if team.low_wr >= 70 %}text-success{% elif team.low_wr <= 30 %}text-danger{% endif %}">
+                        {{ team.low_wr }}%
+                      </span>
+                    {% else %}
+                      <span class="text-muted">-</span>
+                    {% endif %}
+                  </td>
+                  <td class="text-center">
+                    {% if team.win_rate == 100.0 %}
+                      <span class="badge bg-success">🔥 PERFECT</span>
+                    {% elif team.win_rate >= 80.0 %}
+                      <span class="badge bg-success">✓ STRONG</span>
+                    {% elif team.win_rate >= 60.0 %}
+                      <span class="badge bg-blue">✓ GOOD</span>
+                    {% elif team.win_rate >= 40.0 %}
+                      <span class="badge bg-secondary">— NEUTRAL</span>
+                    {% elif team.win_rate > 0.0 %}
+                      <span class="badge bg-warning">⚠ WEAK</span>
+                    {% else %}
+                      <span class="badge bg-danger">❄️ AVOID</span>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+/* Tabler-compliant sortable header styling */
+.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sortable:hover {
+  background-color: var(--tblr-hover-bg);
+}
+
+.sortable.sort-asc .ti-selector::before {
+  content: "\ea97"; /* ti-chevron-up */
+}
+
+.sortable.sort-desc .ti-selector::before {
+  content: "\ea95"; /* ti-chevron-down */
+}
+</style>
+
+<script>
+// Spread table sorting
+let spreadSortColumn = null;
+let spreadSortDirection = 'asc';
+
+function setupSpreadTableSorting() {
+  document.querySelectorAll('#spread-table th.sortable').forEach(th => {
+    th.addEventListener('click', function() {
+      const sortKey = this.getAttribute('data-sort');
+
+      if (spreadSortColumn === sortKey) {
+        spreadSortDirection = spreadSortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        spreadSortColumn = sortKey;
+        spreadSortDirection = 'asc';
+      }
+
+      document.querySelectorAll('#spread-table th.sortable').forEach(header => {
+        header.classList.remove('sort-asc', 'sort-desc');
+      });
+      this.classList.add(`sort-${spreadSortDirection}`);
+
+      sortSpreadTable(sortKey, spreadSortDirection);
+    });
+  });
+}
+
+function sortSpreadTable(sortKey, direction) {
+  const tbody = document.querySelector('#spread-tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+
+  rows.sort((rowA, rowB) => {
+    let aVal, bVal;
+
+    switch(sortKey) {
+      case 'team':
+        aVal = rowA.querySelector('td:nth-child(1) strong')?.textContent.trim() || '';
+        bVal = rowB.querySelector('td:nth-child(1) strong')?.textContent.trim() || '';
+        break;
+      case 'bets':
+        aVal = parseInt(rowA.querySelector('td:nth-child(2)')?.textContent.trim()) || 0;
+        bVal = parseInt(rowB.querySelector('td:nth-child(2)')?.textContent.trim()) || 0;
+        break;
+      case 'record':
+        aVal = rowA.querySelector('td:nth-child(3)')?.textContent.trim() || '';
+        bVal = rowB.querySelector('td:nth-child(3)')?.textContent.trim() || '';
+        break;
+      case 'win_rate':
+        aVal = parseFloat(rowA.getAttribute('data-win-rate')) || 0;
+        bVal = parseFloat(rowB.getAttribute('data-win-rate')) || 0;
+        break;
+      case 'high_wr':
+        const highA = rowA.querySelector('td:nth-child(5)')?.textContent.trim();
+        const highB = rowB.querySelector('td:nth-child(5)')?.textContent.trim();
+        aVal = (highA && highA !== '-') ? parseFloat(highA) : -1;
+        bVal = (highB && highB !== '-') ? parseFloat(highB) : -1;
+        break;
+      case 'med_wr':
+        const medA = rowA.querySelector('td:nth-child(6)')?.textContent.trim();
+        const medB = rowB.querySelector('td:nth-child(6)')?.textContent.trim();
+        aVal = (medA && medA !== '-') ? parseFloat(medA) : -1;
+        bVal = (medB && medB !== '-') ? parseFloat(medB) : -1;
+        break;
+      case 'low_wr':
+        const lowA = rowA.querySelector('td:nth-child(7)')?.textContent.trim();
+        const lowB = rowB.querySelector('td:nth-child(7)')?.textContent.trim();
+        aVal = (lowA && lowA !== '-') ? parseFloat(lowA) : -1;
+        bVal = (lowB && lowB !== '-') ? parseFloat(lowB) : -1;
+        break;
+      default:
+        aVal = '';
+        bVal = '';
+    }
+
+    if (typeof aVal === 'number' && typeof bVal === 'number') {
+      return direction === 'asc' ? aVal - bVal : bVal - aVal;
+    } else {
+      const strA = String(aVal).toLowerCase();
+      const strB = String(bVal).toLowerCase();
+      if (direction === 'asc') {
+        return strA < strB ? -1 : strA > strB ? 1 : 0;
+      } else {
+        return strB < strA ? -1 : strB > strA ? 1 : 0;
+      }
+    }
+  });
+
+  rows.forEach(row => tbody.appendChild(row));
+}
+
+// Total table sorting
+let totalSortColumn = null;
+let totalSortDirection = 'asc';
+
+function setupTotalTableSorting() {
+  document.querySelectorAll('#total-table th.sortable').forEach(th => {
+    th.addEventListener('click', function() {
+      const sortKey = this.getAttribute('data-sort');
+
+      if (totalSortColumn === sortKey) {
+        totalSortDirection = totalSortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        totalSortColumn = sortKey;
+        totalSortDirection = 'asc';
+      }
+
+      document.querySelectorAll('#total-table th.sortable').forEach(header => {
+        header.classList.remove('sort-asc', 'sort-desc');
+      });
+      this.classList.add(`sort-${totalSortDirection}`);
+
+      sortTotalTable(sortKey, totalSortDirection);
+    });
+  });
+}
+
+function sortTotalTable(sortKey, direction) {
+  const tbody = document.querySelector('#total-tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+
+  rows.sort((rowA, rowB) => {
+    let aVal, bVal;
+
+    switch(sortKey) {
+      case 'team':
+        aVal = rowA.querySelector('td:nth-child(1) strong')?.textContent.trim() || '';
+        bVal = rowB.querySelector('td:nth-child(1) strong')?.textContent.trim() || '';
+        break;
+      case 'bets':
+        aVal = parseInt(rowA.querySelector('td:nth-child(2)')?.textContent.trim()) || 0;
+        bVal = parseInt(rowB.querySelector('td:nth-child(2)')?.textContent.trim()) || 0;
+        break;
+      case 'record':
+        aVal = rowA.querySelector('td:nth-child(3)')?.textContent.trim() || '';
+        bVal = rowB.querySelector('td:nth-child(3)')?.textContent.trim() || '';
+        break;
+      case 'win_rate':
+        aVal = parseFloat(rowA.getAttribute('data-win-rate')) || 0;
+        bVal = parseFloat(rowB.getAttribute('data-win-rate')) || 0;
+        break;
+      case 'high_wr':
+        const highA = rowA.querySelector('td:nth-child(5)')?.textContent.trim();
+        const highB = rowB.querySelector('td:nth-child(5)')?.textContent.trim();
+        aVal = (highA && highA !== '-') ? parseFloat(highA) : -1;
+        bVal = (highB && highB !== '-') ? parseFloat(highB) : -1;
+        break;
+      case 'med_wr':
+        const medA = rowA.querySelector('td:nth-child(6)')?.textContent.trim();
+        const medB = rowB.querySelector('td:nth-child(6)')?.textContent.trim();
+        aVal = (medA && medA !== '-') ? parseFloat(medA) : -1;
+        bVal = (medB && medB !== '-') ? parseFloat(medB) : -1;
+        break;
+      case 'low_wr':
+        const lowA = rowA.querySelector('td:nth-child(7)')?.textContent.trim();
+        const lowB = rowB.querySelector('td:nth-child(7)')?.textContent.trim();
+        aVal = (lowA && lowA !== '-') ? parseFloat(lowA) : -1;
+        bVal = (lowB && lowB !== '-') ? parseFloat(lowB) : -1;
+        break;
+      default:
+        aVal = '';
+        bVal = '';
+    }
+
+    if (typeof aVal === 'number' && typeof bVal === 'number') {
+      return direction === 'asc' ? aVal - bVal : bVal - aVal;
+    } else {
+      const strA = String(aVal).toLowerCase();
+      const strB = String(bVal).toLowerCase();
+      if (direction === 'asc') {
+        return strA < strB ? -1 : strA > strB ? 1 : 0;
+      } else {
+        return strB < strA ? -1 : strB > strA ? 1 : 0;
+      }
+    }
+  });
+
+  rows.forEach(row => tbody.appendChild(row));
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  setupSpreadTableSorting();
+  setupTotalTableSorting();
+  
+  // Default sort by win rate descending
+  const spreadWinRateHeader = document.querySelector('#spread-table th[data-sort="win_rate"]');
+  if (spreadWinRateHeader) {
+    spreadWinRateHeader.click();
+    spreadWinRateHeader.click(); // Click twice for descending
+  }
+  
+  const totalWinRateHeader = document.querySelector('#total-table th[data-sort="win_rate"]');
+  if (totalWinRateHeader) {
+    totalWinRateHeader.click();
+    totalWinRateHeader.click(); // Click twice for descending
+  }
+});
+</script>
+{% endblock %}
+

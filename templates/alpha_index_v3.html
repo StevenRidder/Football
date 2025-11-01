@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="card">
+        <a href="/model-performance" class="card card-link">
           <div class="card-body">
             <div class="d-flex align-items-center">
               <div class="subheader">Season Total</div>
@@ -47,7 +47,7 @@
             <div class="h1 mb-0" id="season-record">-</div>
             <div class="text-muted" id="season-win-rate">-</div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col-md-3">
         <div class="card">
@@ -196,23 +196,23 @@
         <h3 class="card-title">All Games</h3>
       </div>
       <div class="table-responsive">
-        <table class="table table-vcenter card-table table-sm">
+        <table class="table table-vcenter card-table table-sm" id="games-table">
           <thead>
             <tr>
-              <th>Game</th>
-              <th>Final</th>
-              <th>Market Score</th>
-              <th>Our Score</th>
-              <th>Market Spread</th>
-              <th>Our Spread</th>
-              <th>Spread Bet</th>
-              <th class="col-result">Result</th>
-              <th>Market O/U</th>
-              <th>Our O/U</th>
-              <th>Total Bet</th>
-              <th class="col-result">Result</th>
-              <th>ML Bet</th>
-              <th class="col-result">Result</th>
+              <th data-sort="game" class="sortable">Game <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="final" class="sortable">Final <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="market_score" class="sortable">Market Score <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="our_score" class="sortable">Our Score <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="market_spread" class="sortable">Market Spread <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="our_spread" class="sortable">Our Spread <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="spread_bet" class="sortable">Spread Bet <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="spread_result" class="col-result sortable">Result <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="market_total" class="sortable">Market O/U <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="our_total" class="sortable">Our O/U <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="total_bet" class="sortable">Total Bet <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="total_result" class="col-result sortable">Result <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="ml_bet" class="sortable">ML Bet <i class="ti ti-selector ms-1"></i></th>
+              <th data-sort="ml_result" class="col-result sortable">Result <i class="ti ti-selector ms-1"></i></th>
             </tr>
           </thead>
           <tbody id="games-tbody">
@@ -229,6 +229,32 @@
   </div>
 </div>
 
+<style>
+/* Sortable column styling using Tabler patterns only */
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+th.sortable:hover {
+  background-color: var(--tblr-table-hover-bg);
+}
+th.sortable .ti-selector {
+  opacity: 0.3;
+  transition: opacity 0.2s;
+}
+th.sortable:hover .ti-selector {
+  opacity: 0.6;
+}
+th.sortable.sort-asc .ti-selector::before {
+  content: "\ea12"; /* ti-chevron-up */
+  opacity: 1;
+}
+th.sortable.sort-desc .ti-selector::before {
+  content: "\ea13"; /* ti-chevron-down */
+  opacity: 1;
+}
+</style>
+
 <script>
 async function loadGames() {
   const week = document.getElementById('weekSelect').value;
@@ -243,7 +269,10 @@ async function loadGames() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     
     const data = await res.json();
-    renderGames(data.games);
+    currentGamesData = data.games || [];
+    teamWinRates = data.team_win_rates || {}; // Store team performance data
+    renderGames(currentGamesData);
+    setupTableSorting();
     await updatePerformanceStats(parseInt(week));
   } catch (err) {
     document.getElementById('games-tbody').innerHTML = `
@@ -317,6 +346,34 @@ function calculateStats(games) {
     winRate,
     roi
   };
+}
+
+function getTeamIndicator(team) {
+  if (!teamWinRates[team]) return '';
+  
+  const stats = teamWinRates[team];
+  const winRate = stats.win_rate;
+  let badgeClass = 'bg-secondary';
+  let icon = '—';
+  
+  if (winRate === 100.0) {
+    badgeClass = 'bg-success';
+    icon = '🔥';
+  } else if (winRate >= 80.0) {
+    badgeClass = 'bg-success';
+    icon = '✓';
+  } else if (winRate >= 60.0) {
+    badgeClass = 'bg-blue';
+    icon = '✓';
+  } else if (winRate <= 20.0) {
+    badgeClass = 'bg-warning';
+    icon = '⚠';
+  } else if (winRate === 0.0) {
+    badgeClass = 'bg-danger';
+    icon = '❄️';
+  }
+  
+  return `<span class="badge ${badgeClass} ms-1" title="${stats.record} (${stats.total} bets)">${icon} ${winRate.toFixed(0)}%</span>`;
 }
 
 function renderGames(games) {
@@ -416,7 +473,9 @@ function renderGames(games) {
     <tr>
       <td>
         <a href="/game/${game.away_team}/${game.home_team}/${game.week}" class="text-reset text-decoration-none">
-          <div class="fw-bold">${game.away_team} @ ${game.home_team}</div>
+          <div class="fw-bold">
+            ${game.away_team}${getTeamIndicator(game.away_team)} @ ${game.home_team}${getTeamIndicator(game.home_team)}
+          </div>
           ${game.game_date ? `<div class="text-muted small">${game.game_date}</div>` : ''}
         </a>
       </td>
@@ -524,6 +583,122 @@ function renderGames(games) {
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
   tooltipTriggerList.forEach(tooltipTriggerEl => {
     new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+}
+
+// Sorting state and functions (minimal client-side logic)
+let currentGamesData = [];
+let currentSortColumn = null;
+let currentSortDirection = 'asc';
+let teamWinRates = {}; // Global storage for team performance indicators
+
+function setupTableSorting() {
+  document.querySelectorAll('#games-table th.sortable').forEach(th => {
+    th.addEventListener('click', function() {
+      const sortKey = this.getAttribute('data-sort');
+      
+      // Toggle direction if clicking same column
+      if (currentSortColumn === sortKey) {
+        currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        currentSortColumn = sortKey;
+        currentSortDirection = 'asc';
+      }
+      
+      // Update header UI
+      document.querySelectorAll('#games-table th.sortable').forEach(header => {
+        header.classList.remove('sort-asc', 'sort-desc');
+      });
+      this.classList.add(`sort-${currentSortDirection}`);
+      
+      // Sort data array
+      sortGamesData(sortKey, currentSortDirection);
+      
+      // Re-render with sorted data
+      renderGames(currentGamesData);
+    });
+  });
+}
+
+function sortGamesData(sortKey, direction) {
+  currentGamesData.sort((a, b) => {
+    let aVal, bVal;
+    
+    // Extract values based on sort key
+    switch(sortKey) {
+      case 'game':
+        aVal = `${a.away_team} @ ${a.home_team}`;
+        bVal = `${b.away_team} @ ${b.home_team}`;
+        break;
+      case 'final':
+        aVal = a.final_score || '';
+        bVal = b.final_score || '';
+        break;
+      case 'market_score':
+        aVal = (a.closing_away_score || 0) + (a.closing_home_score || 0);
+        bVal = (b.closing_away_score || 0) + (b.closing_home_score || 0);
+        break;
+      case 'our_score':
+        aVal = (a.our_away_score || 0) + (a.our_home_score || 0);
+        bVal = (b.our_away_score || 0) + (b.our_home_score || 0);
+        break;
+      case 'market_spread':
+        aVal = Math.abs(a.closing_spread || 0);
+        bVal = Math.abs(b.closing_spread || 0);
+        break;
+      case 'our_spread':
+        aVal = Math.abs(a.our_spread || 0);
+        bVal = Math.abs(b.our_spread || 0);
+        break;
+      case 'spread_bet':
+        aVal = a.spread_recommendation || 'Pass';
+        bVal = b.spread_recommendation || 'Pass';
+        break;
+      case 'spread_result':
+        aVal = a.spread_result || '';
+        bVal = b.spread_result || '';
+        break;
+      case 'market_total':
+        aVal = a.closing_total || 0;
+        bVal = b.closing_total || 0;
+        break;
+      case 'our_total':
+        aVal = a.our_total || 0;
+        bVal = b.our_total || 0;
+        break;
+      case 'total_bet':
+        aVal = a.total_recommendation || 'Pass';
+        bVal = b.total_recommendation || 'Pass';
+        break;
+      case 'total_result':
+        aVal = a.total_result || '';
+        bVal = b.total_result || '';
+        break;
+      case 'ml_bet':
+        aVal = a.moneyline_recommendation || 'Pass';
+        bVal = b.moneyline_recommendation || 'Pass';
+        break;
+      case 'ml_result':
+        aVal = a.moneyline_result || '';
+        bVal = b.moneyline_result || '';
+        break;
+      default:
+        aVal = '';
+        bVal = '';
+    }
+    
+    // Compare values
+    if (typeof aVal === 'number' && typeof bVal === 'number') {
+      return direction === 'asc' ? aVal - bVal : bVal - aVal;
+    } else {
+      const strA = String(aVal).toLowerCase();
+      const strB = String(bVal).toLowerCase();
+      if (direction === 'asc') {
+        return strA < strB ? -1 : strA > strB ? 1 : 0;
+      } else {
+        return strB < strA ? -1 : strB > strA ? 1 : 0;
+      }
+    }
   });
 }
 
