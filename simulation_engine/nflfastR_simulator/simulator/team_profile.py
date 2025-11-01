@@ -127,54 +127,64 @@ class TeamProfile:
     
     def _load_qb_stats(self) -> tuple[Optional[str], dict]:
         """
-        Load QB's pressure performance splits.
+        Load QB's pressure performance splits for the ACTUAL QB playing this week.
         
         Returns:
             (qb_name, qb_stats) where qb_stats has keys:
                 - clean: {completion_pct, yards_per_att, td_rate, int_rate, sack_rate, scramble_rate, epa}
                 - pressure: {completion_pct, yards_per_att, td_rate, int_rate, sack_rate, scramble_rate, epa}
         """
-        # Try weekly data first
-        weekly_file = self.data_dir / "qb_pressure_splits_weekly.csv"
+        # Try weekly QB data (includes actual starter names, fixes backup QB issue)
+        weekly_qb_file = self.data_dir / "qb_stats_weekly.csv"
         
-        if weekly_file.exists():
-            qb_df = pd.read_csv(weekly_file)
+        if weekly_qb_file.exists():
+            qb_df = pd.read_csv(weekly_qb_file)
             
             # Find QB for this team/week
-            # Note: We'd need a team-QB mapping. For now, use season averages.
-            pass
+            qb_data = qb_df[
+                (qb_df['team'] == self.team) &
+                (qb_df['season'] == self.season) &
+                (qb_df['week'] == self.week)
+            ]
+            
+            if len(qb_data) > 0:
+                qb_row = qb_data.iloc[0]
+                qb_name = qb_row['qb_name']
+                
+                # Build qb_stats from extracted data
+                qb_stats = {
+                    'clean': {
+                        'completion_pct': float(qb_row['clean_comp_pct']),
+                        'yards_per_att': float(qb_row['clean_ypa']),
+                        'td_rate': 0.035,  # Use league average for now
+                        'int_rate': 0.023,
+                        'sack_rate': 0.0,
+                        'scramble_rate': 0.06,
+                        'epa': float(qb_row['clean_epa'])
+                    },
+                    'pressure': {
+                        'completion_pct': float(qb_row['pressure_comp_pct']),
+                        'yards_per_att': float(qb_row['pressure_ypa']),
+                        'td_rate': 0.020,
+                        'int_rate': 0.026,
+                        'sack_rate': 0.449,
+                        'scramble_rate': 0.0,
+                        'epa': float(qb_row['pressure_epa'])
+                    }
+                }
+                
+                if self.debug:
+                    print(f"   ✅ QB: {qb_name} (Week {self.week})")
+                    print(f"      Clean: {qb_stats['clean']['completion_pct']:.1%} comp, {qb_stats['clean']['epa']:+.2f} EPA")
+                    print(f"      Pressure: {qb_stats['pressure']['completion_pct']:.1%} comp, {qb_stats['pressure']['epa']:+.2f} EPA")
+                
+                return qb_name, qb_stats
         
-        # Fall back to season averages
-        season_file = self.data_dir / "qb_pressure_splits_season.csv"
+        # Fall back to league average
+        if self.debug or self.week <= 8:  # Only warn for weeks we should have data
+            print(f"⚠️  Warning: No weekly QB data for {self.team} W{self.week}, using league average")
         
-        if not season_file.exists():
-            print(f"⚠️  Warning: QB stats file not found, using league average")
-            return None, self._get_league_average_qb_stats()
-        
-        qb_df = pd.read_csv(season_file)
-        
-        # For now, use league average (would need team-QB mapping)
-        # TODO: Build team-QB mapping from nflfastR roster data
-        qb_stats = {
-            'clean': {
-                'completion_pct': 0.615,
-                'yards_per_att': 6.89,
-                'td_rate': 0.035,
-                'int_rate': 0.023,
-                'sack_rate': 0.0,
-                'scramble_rate': 0.06,
-                'epa': 0.11
-            },
-            'pressure': {
-                'completion_pct': 0.219,
-                'yards_per_att': -0.17,
-                'td_rate': 0.020,
-                'int_rate': 0.026,
-                'sack_rate': 0.449,
-                'scramble_rate': 0.0,
-                'epa': -0.98
-            }
-        }
+        qb_stats = self._get_league_average_qb_stats()
         
         return "League Average", qb_stats
     

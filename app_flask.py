@@ -31,12 +31,14 @@ def load_alpha_predictions():
     df = pd.read_csv(latest)
     return df
 
-def load_simulator_predictions():
+def load_simulator_predictions(force_reload=False):
     """Load simulator predictions from backtest_all_games_conviction.py (formatted for frontend)."""
     simulator_file = Path("artifacts") / "simulator_predictions.csv"
     
     if simulator_file.exists():
-        print(f"✅ Loading simulator predictions from {simulator_file}")
+        # Get file modification time for cache busting
+        mtime = simulator_file.stat().st_mtime
+        print(f"✅ Loading simulator predictions from {simulator_file} (modified: {mtime})")
         df = pd.read_csv(simulator_file)
         return df
     return None
@@ -861,6 +863,365 @@ def run_script(script_name):
             'success': False,
             'error': 'Script timed out (5 min limit)'
         }), 500
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/reload-data', methods=['POST'])
+def reload_data():
+    """Reload predictions data from CSV (cache bust)."""
+    try:
+        # Force reload by directly calling the load function
+        df = load_simulator_predictions(force_reload=True)
+        
+        if df is not None:
+            completed = df[df['is_completed'] == True]
+            spread_bets = completed[completed['spread_recommendation'].notna() & (completed['spread_recommendation'] != 'Pass')]
+            wins = spread_bets[spread_bets['spread_result'] == 'WIN']
+            
+            return jsonify({
+                'success': True,
+                'message': 'Data reloaded successfully',
+                'stats': {
+                    'total_games': len(df),
+                    'completed_games': len(completed),
+                    'spread_bets': len(spread_bets),
+                    'wins': len(wins),
+                    'win_rate': f"{len(wins)/len(spread_bets)*100:.1f}%" if len(spread_bets) > 0 else "0%"
+                }
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': 'No data file found'
+            }), 404
+            
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/explain-bet', methods=['POST'])
+def explain_bet():
+    """Generate an LLM explanation for a specific bet recommendation."""
+    try:
+        data = request.get_json()
+        away_team = data.get('awayTeam')
+        home_team = data.get('homeTeam')
+        week = data.get('week')
+        bet_type = data.get('betType', 'spread')
+        
+        # Load predictions data
+        predictions_file = Path("artifacts") / "simulator_predictions.csv"
+        if not predictions_file.exists():
+            return jsonify({'success': False, 'error': 'Predictions file not found'}), 404
+        
+        df = pd.read_csv(predictions_file)
+        
+        # Find the game
+        game = df[
+            (df['away_team'] == away_team) & 
+            (df['home_team'] == home_team) & 
+            (df['week'] == week)
+        ]
+        
+        if len(game) == 0:
+            return jsonify({'success': False, 'error': 'Game not found'}), 404
+        
+        game_row = game.iloc[0]
+        
+        # Generate explanation
+        explanation = generate_bet_explanation(game_row, bet_type)
+        
+        return jsonify({
+            'success': True,
+            'explanation': explanation
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+
+def generate_bet_explanation(game, bet_type='spread'):
+    """Generate a detailed natural language explanation of why we're betting this way."""
+    
+    if bet_type == 'spread':
+        recommendation = game.get('spread_recommendation', 'Pass')
+        if recommendation == 'Pass' or pd.isna(recommendation) or recommendation is None:
+            return "<p><strong>No Bet Recommended</strong></p><p>The probability is too close to 50% to have an edge over the breakeven threshold (52.4%).</p>"
+        
+        # Extract data with safe defaults
+        away = game['away_team']
+        home = game['home_team']
+        
+        # Determine which team we're betting on
+        if 'ATS' in str(recommendation):
+            # New format: "BAL ATS" or "MIA ATS"
+            bet_team = recommendation.replace(' ATS', '').strip()
+            is_home_bet = (bet_team == home)
+        else:
+            # Old format: "Home ATS" or "Away ATS"
+            is_home_bet = 'Home' in str(recommendation)
+            bet_team = home if is_home_bet else away
+        
+        # Safe numeric extraction with fallbacks
+        def safe_float(val, default=0.0):
+            if val is None or pd.isna(val):
+                return default
+            try:
+                return float(val)
+            except (ValueError, TypeError):
+                return default
+        
+        market_spread = safe_float(game.get('closing_spread'), 0)
+        our_spread = safe_float(game.get('our_spread'), safe_float(game.get('our_home_score')) - safe_float(game.get('our_away_score')))
+        
+        p_cover = safe_float(game.get('p_home_cover'), 0.5) if is_home_bet else safe_float(game.get('p_away_cover'), 0.5)
+        edge = safe_float(game.get('spread_edge_pct'), 0)
+        conviction = game.get('spread_conviction', 'MEDIUM')
+        if pd.isna(conviction):
+            conviction = 'MEDIUM'
+        
+        raw_home = safe_float(game.get('our_home_score_raw'), 0)
+        raw_away = safe_float(game.get('our_away_score_raw'), 0)
+        cal_home = safe_float(game.get('our_home_score'), 0)
+        cal_away = safe_float(game.get('our_away_score'), 0)
+        variance = safe_float(game.get('spread_std'), 11)
+        
+        # Build explanation
+        html = f"""
+        <div class="bet-explanation">
+            <h4>🎯 {bet_team} to Cover Against the Spread</h4>
+            
+            <div class="alert alert-info">
+                <strong>Bottom Line:</strong> We recommend betting <strong>{bet_team}</strong> with <strong>{conviction}</strong> conviction.
+                Our model gives this bet a <strong>{p_cover*100:.1f}% probability</strong> of winning, which is <strong>{edge:.1f}%</strong> above the breakeven threshold.
+            </div>
+            
+            <hr/>
+            
+            <h5>📊 How We Got Here</h5>
+            
+            <div class="mb-4">
+                <h6>Step 1: Run 100 Play-by-Play Simulations</h6>
+                <p>We ran 100 detailed game simulations using:</p>
+                <ul>
+                    <li>Team-specific offensive/defensive stats (YPP, EPA, red zone efficiency)</li>
+                    <li>PFF grades for OL/DL matchups and passing vs coverage</li>
+                    <li>QB pressure splits and situational tendencies</li>
+                    <li>Drive-by-drive simulation with realistic variance</li>
+                </ul>
+                <p><strong>Raw Average Result:</strong> {away} {raw_away:.0f}, {home} {raw_home:.0f}</p>
+                <p class="text-muted small">This is what the simulations predicted <em>before</em> any adjustments.</p>
+            </div>
+            
+            <div class="mb-4">
+                <h6>Step 2: Apply Linear Calibration</h6>
+                <p>Raw simulator scores tend to be extreme. We apply a calibration formula learned from historical data:</p>
+                <code>calibrated_score = 26.45 + 0.571 × raw_score</code>
+                <p><strong>Calibrated Result:</strong> {away} {cal_away:.0f}, {home} {cal_home:.0f}</p>
+                <p class="text-muted small">This brings scores closer to realistic NFL scoring levels (league avg ~23 ppg).</p>
+            </div>
+            
+            <div class="mb-4">
+                <h6>Step 3: Calculate Probability Distribution</h6>
+                <p>The KEY insight: We don't just look at the average! We use the <strong>full distribution</strong> of 100 simulations.</p>
+                <ul>
+                    <li><strong>Average Spread:</strong> {our_spread:.1f} points</li>
+                    <li><strong>Standard Deviation:</strong> {variance:.1f} points (variance matters!)</li>
+                    <li><strong>Market Line:</strong> {market_spread:.1f} points</li>
+                </ul>
+                
+                <p>Using a normal distribution with mean={our_spread:.1f} and σ={variance:.1f}, we calculate:</p>
+                <p class="text-center"><strong>P({bet_team} covers {market_spread:.1f}) = {p_cover*100:.1f}%</strong></p>
+            </div>
+            
+            <div class="mb-4">
+                <h6>Step 4: Isotonic Calibration (Historical Adjustment)</h6>
+                <p>Our model has historical biases. We apply an isotonic regression calibrator trained on past games to adjust the raw probability.</p>
+                <p class="text-muted small">This accounts for systematic over/under-confidence in certain situations.</p>
+            </div>
+            
+            <hr/>
+            
+            <h5>🎲 Why This Works</h5>
+            
+            <div class="alert alert-success">
+                <p><strong>The Distribution Tells the Story</strong></p>
+                <p>Even if our <em>average</em> prediction differs from the market, the <strong>variance</strong> means many simulations have outcomes beyond the market line.</p>
+                
+                <p>Example: If we predict {bet_team} wins by {abs(our_spread):.1f} on average (σ={variance:.1f}), then:</p>
+                <ul>
+                    <li>~16% of simulations are 1 standard deviation above the mean</li>
+                    <li>~16% are 1 standard deviation below</li>
+                    <li>This creates significant probability mass beyond any reasonable market line</li>
+                </ul>
+                
+                <p class="mb-0">Our <strong>{p_cover*100:.1f}% probability</strong> accounts for this distribution, not just the average!</p>
+            </div>
+            
+            <hr/>
+            
+            <h5>💰 The Bet</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">Market</h6>
+                            <p class="card-text">{bet_team} must cover {abs(market_spread):.1f}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h6 class="card-title">Our Edge</h6>
+                            <p class="card-text">+{edge:.1f}% over 52.4% breakeven</p>
+                            <p class="card-text"><strong>Conviction: {conviction}</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-3 alert alert-warning">
+                <strong>⚠️ Remember:</strong> This is a probabilistic edge, not a guarantee. Even at {p_cover*100:.1f}%, we'll lose ~{(1-p_cover)*100:.0f}% of the time. Bet sizing and bankroll management are critical!
+            </div>
+        </div>
+        """
+        
+        return html
+    
+    return "<p>Explanation not available for this bet type.</p>"
+
+
+@app.route('/api/fetch-live-scores', methods=['POST'])
+def fetch_live_scores():
+    """Fetch live scores from ESPN and update predictions CSV (cloud-ready endpoint)."""
+    import requests
+    from datetime import datetime
+    
+    try:
+        predictions_file = Path("artifacts") / "simulator_predictions.csv"
+        
+        if not predictions_file.exists():
+            return jsonify({
+                'success': False,
+                'error': 'Predictions file not found'
+            }), 404
+        
+        # Fetch scores for current season weeks
+        season = 2025
+        weeks_to_check = list(range(1, 11))  # Weeks 1-10
+        
+        total_updates = 0
+        games_updated = []
+        
+        for week in weeks_to_check:
+            try:
+                url = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+                params = {'seasontype': 2, 'week': week, 'year': season}
+                response = requests.get(url, params=params, timeout=10)
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    
+                    # Parse scores
+                    scores = []
+                    for event in data.get('events', []):
+                        competition = event.get('competitions', [{}])[0]
+                        competitors = competition.get('competitors', [])
+                        status = competition.get('status', {})
+                        
+                        home_team = next((c for c in competitors if c.get('homeAway') == 'home'), None)
+                        away_team = next((c for c in competitors if c.get('homeAway') == 'away'), None)
+                        
+                        if home_team and away_team:
+                            game_state = status.get('type', {}).get('state', 'pre')
+                            completed = status.get('type', {}).get('completed', False)
+                            
+                            if game_state != 'pre':  # Game has started or finished
+                                scores.append({
+                                    'week': week,
+                                    'season': season,
+                                    'home_team': home_team['team']['abbreviation'],
+                                    'away_team': away_team['team']['abbreviation'],
+                                    'home_score': int(home_team.get('score', 0)),
+                                    'away_score': int(away_team.get('score', 0)),
+                                    'completed': completed,
+                                    'game_state': game_state
+                                })
+                    
+                    # Update CSV
+                    if scores:
+                        df = pd.read_csv(predictions_file)
+                        
+                        for score in scores:
+                            mask = (
+                                (df['home_team'] == score['home_team']) & 
+                                (df['away_team'] == score['away_team']) & 
+                                (df['week'] == score['week']) &
+                                (df['season'] == score['season'])
+                            )
+                            
+                            matching_rows = df[mask]
+                            
+                            if len(matching_rows) > 0:
+                                idx = matching_rows.index[0]
+                                df.loc[idx, 'actual_home_score'] = score['home_score']
+                                df.loc[idx, 'actual_away_score'] = score['away_score']
+                                df.loc[idx, 'is_completed'] = score['completed']
+                                df.loc[idx, 'final_score'] = f"{score['away_score']}-{score['home_score']}"
+                                
+                                # Calculate results if completed
+                                if score['completed']:
+                                    actual_spread = score['home_score'] - score['away_score']
+                                    actual_total = score['home_score'] + score['away_score']
+                                    
+                                    closing_spread = df.loc[idx, 'closing_spread']
+                                    closing_total = df.loc[idx, 'closing_total']
+                                    
+                                    spread_rec = df.loc[idx, 'spread_recommendation']
+                                    if pd.notna(spread_rec) and spread_rec != 'Pass':
+                                        if 'Home' in spread_rec:
+                                            df.loc[idx, 'spread_result'] = 'WIN' if actual_spread > closing_spread else 'LOSS'
+                                        elif 'Away' in spread_rec:
+                                            df.loc[idx, 'spread_result'] = 'WIN' if actual_spread < closing_spread else 'LOSS'
+                                    
+                                    total_rec = df.loc[idx, 'total_recommendation']
+                                    if pd.notna(total_rec) and total_rec != 'Pass':
+                                        if 'Over' in total_rec:
+                                            df.loc[idx, 'total_result'] = 'WIN' if actual_total > closing_total else 'LOSS'
+                                        elif 'Under' in total_rec:
+                                            df.loc[idx, 'total_result'] = 'WIN' if actual_total < closing_total else 'LOSS'
+                                
+                                total_updates += 1
+                                games_updated.append({
+                                    'game': f"{score['away_team']}@{score['home_team']}",
+                                    'score': f"{score['away_score']}-{score['home_score']}",
+                                    'status': 'FINAL' if score['completed'] else 'LIVE'
+                                })
+                        
+                        # Save updated CSV
+                        if total_updates > 0:
+                            df.to_csv(predictions_file, index=False)
+                            
+            except Exception as e:
+                print(f"Error fetching week {week}: {e}")
+                continue
+        
+        return jsonify({
+            'success': True,
+            'message': f'Updated {total_updates} games',
+            'games_updated': games_updated,
+            'timestamp': datetime.now().isoformat()
+        })
+        
     except Exception as e:
         return jsonify({
             'success': False,

@@ -21,13 +21,17 @@ def format_conviction_badge(conviction):
         return 'bg-secondary'  # Gray badge for low conviction
     return None
 
-def format_spread_bet(bet):
-    """Format spread bet recommendation."""
+def format_spread_bet(bet, home_team=None, away_team=None):
+    """Format spread bet recommendation with actual team name."""
     if pd.isna(bet) or bet is None:
         return 'Pass'
     
     bet = str(bet).upper()
-    if bet == 'HOME':
+    if bet == 'HOME' and home_team:
+        return f'{home_team} ATS'
+    elif bet == 'AWAY' and away_team:
+        return f'{away_team} ATS'
+    elif bet == 'HOME':
         return 'Home ATS'
     elif bet == 'AWAY':
         return 'Away ATS'
@@ -201,8 +205,11 @@ def convert_backtest_to_frontend(input_file, output_file):
     )
     frontend_df['is_completed'] = has_results
     
-    # Bet recommendations
-    frontend_df['spread_recommendation'] = df['spread_bet'].apply(format_spread_bet)
+    # Bet recommendations (with team names for spread bets)
+    frontend_df['spread_recommendation'] = df.apply(
+        lambda row: format_spread_bet(row['spread_bet'], row['home_team'], row['away_team']), 
+        axis=1
+    )
     frontend_df['total_recommendation'] = df['total_bet'].apply(format_total_bet)
     
     # Conviction levels (keep original values)

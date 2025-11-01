@@ -1,0 +1,226 @@
+====================================================================================================
+TESTING 10 GAMES WITH CORRECTED ACTUAL SCORES + MARKET CALIBRATION
+====================================================================================================
+
+====================================================================================================
+Game: MIA@IND (Week 1)
+Actual: IND 33, MIA 8
+Market: IND +3.0, O/U 45.0
+====================================================================================================
+
+RAW SIMULATION:
+  IND: 36.7 pts
+  MIA: 8.5 pts
+  Spread: +28.2
+  Total: 45.3
+
+MARKET CALIBRATED:
+  IND: 27.8 pts
+  MIA: 17.3 pts
+  Spread: +10.6 (actual: +25.0, diff: 14.4)
+  Total: 45.1 (actual: 41.0, diff: 4.1)
+
+WINNER: Predicted IND, Actual IND ✅
+
+====================================================================================================
+Game: PIT@CIN (Week 5)
+Actual: CIN 33, PIT 31
+Market: CIN +7.5, O/U 47.5
+====================================================================================================
+
+RAW SIMULATION:
+  CIN: 4.2 pts
+  PIT: 24.6 pts
+  Spread: -20.4
+  Total: 28.8
+
+MARKET CALIBRATED:
+  CIN: 20.5 pts
+  PIT: 21.4 pts
+  Spread: -0.9 (actual: +2.0, diff: 2.9)
+  Total: 41.9 (actual: 64.0, diff: 22.1)
+
+WINNER: Predicted PIT, Actual CIN ❌
+
+====================================================================================================
+Game: DET@CIN (Week 6)
+Actual: CIN 24, DET 37
+Market: CIN +3.5, O/U 46.5
+====================================================================================================
+
+RAW SIMULATION:
+  CIN: 4.2 pts
+  DET: 40.3 pts
+  Spread: -36.0
+  Total: 44.5
+
+MARKET CALIBRATED:
+  CIN: 18.8 pts
+  DET: 27.1 pts
+  Spread: -8.4 (actual: -13.0, diff: 4.6)
+  Total: 45.9 (actual: 61.0, diff: 15.1)
+
+WINNER: Predicted DET, Actual DET ✅
+
+====================================================================================================
+Game: ATL@SF (Week 3)
+Actual: SF 20, ATL 10
+Market: SF +7.5, O/U 46.0
+====================================================================================================
+
+RAW SIMULATION:
+  SF: 26.8 pts
+  ATL: 18.9 pts
+  Spread: +7.8
+  Total: 45.7
+
+MARKET CALIBRATED:
+  SF: 26.8 pts
+  ATL: 19.2 pts
+  Spread: +7.6 (actual: +10.0, diff: 2.4)
+  Total: 45.9 (actual: 30.0, diff: 15.9)
+
+WINNER: Predicted SF, Actual SF ✅
+
+====================================================================================================
+Game: LAC@LV (Week 7)
+Actual: LV 20, LAC 9
+Market: LV +3.0, O/U 41.5
+====================================================================================================
+
+RAW SIMULATION:
+  LV: 8.2 pts
+  LAC: 19.3 pts
+  Spread: -11.0
+  Total: 27.5
+
+MARKET CALIBRATED:
+  LV: 18.0 pts
+  LAC: 19.3 pts
+  Spread: -1.2 (actual: +11.0, diff: 12.2)
+  Total: 37.3 (actual: 29.0, diff: 8.3)
+
+WINNER: Predicted LAC, Actual LV ❌
+
+====================================================================================================
+Game: SEA@PIT (Week 8)
+Actual: PIT 31, SEA 17
+Market: PIT +3.0, O/U 42.0
+====================================================================================================
+
+RAW SIMULATION:
+  PIT: 23.9 pts
+  SEA: 16.7 pts
+  Spread: +7.2
+  Total: 40.5
+
+MARKET CALIBRATED:
+  PIT: 22.9 pts
+  SEA: 18.6 pts
+  Spread: +4.3 (actual: +14.0, diff: 9.7)
+  Total: 41.6 (actual: 48.0, diff: 6.4)
+
+WINNER: Predicted PIT, Actual PIT ✅
+
+====================================================================================================
+Game: TEN@LV (Week 2)
+Actual: LV 10, TEN 20
+Market: LV +7.5, O/U 40.5
+====================================================================================================
+
+RAW SIMULATION:
+  LV: 17.2 pts
+  TEN: 8.6 pts
+  Spread: +8.6
+  Total: 25.8
+
+MARKET CALIBRATED:
+  LV: 22.0 pts
+  TEN: 14.1 pts
+  Spread: +7.8 (actual: -10.0, diff: 17.8)
+  Total: 36.1 (actual: 30.0, diff: 6.1)
+
+WINNER: Predicted LV, Actual TEN ❌
+
+====================================================================================================
+Game: NYJ@MIA (Week 8)
+Actual: MIA 21, NYJ 27
+Market: MIA +6.5, O/U 45.5
+====================================================================================================
+
+RAW SIMULATION:
+  MIA: 3.3 pts
+  NYJ: 4.2 pts
+  Spread: -0.9
+  Total: 7.6
+
+MARKET CALIBRATED:
+  MIA: 19.2 pts
+  NYJ: 14.9 pts
+  Spread: +4.3 (actual: -6.0, diff: 10.3)
+  Total: 34.1 (actual: 48.0, diff: 13.9)
+
+WINNER: Predicted MIA, Actual NYJ ❌
+
+====================================================================================================
+Game: WAS@GB (Week 8)
+Actual: GB 18, WAS 27
+Market: GB +3.5, O/U 47.5
+====================================================================================================
+
+RAW SIMULATION:
+  GB: 18.0 pts
+  WAS: 21.9 pts
+  Spread: -3.9
+  Total: 39.9
+
+MARKET CALIBRATED:
+  GB: 23.2 pts
+  WAS: 22.0 pts
+  Spread: +1.3 (actual: -9.0, diff: 10.3)
+  Total: 45.2 (actual: 45.0, diff: 0.2)
+
+WINNER: Predicted GB, Actual WAS ❌
+
+====================================================================================================
+Game: HOU@JAX (Week 3)
+Actual: JAX 10, HOU 17
+Market: JAX +7.5, O/U 44.0
+====================================================================================================
+
+RAW SIMULATION:
+  JAX: 21.3 pts
+  HOU: 13.7 pts
+  Spread: +7.6
+  Total: 35.0
+
+MARKET CALIBRATED:
+  JAX: 24.4 pts
+  HOU: 16.9 pts
+  Spread: +7.5 (actual: -7.0, diff: 14.5)
+  Total: 41.3 (actual: 27.0, diff: 14.3)
+
+WINNER: Predicted JAX, Actual HOU ❌
+
+====================================================================================================
+SUMMARY OF RESULTS
+====================================================================================================
+
+Game            Actual       Simulated    Winner   Spread Err  Total Err
+----------------------------------------------------------------------------------------------------
+MIA@IND         33-8         27.8-17.3    ✅        14.4        4.1
+PIT@CIN         33-31        20.5-21.4    ❌        2.9         22.1
+DET@CIN         24-37        18.8-27.1    ✅        4.6         15.1
+ATL@SF          20-10        26.8-19.2    ✅        2.4         15.9
+LAC@LV          20-9         18.0-19.3    ❌        12.2        8.3
+SEA@PIT         31-17        22.9-18.6    ✅        9.7         6.4
+TEN@LV          10-20        22.0-14.1    ❌        17.8        6.1
+NYJ@MIA         21-27        19.2-14.9    ❌        10.3        13.9
+WAS@GB          18-27        23.2-22.0    ❌        10.3        0.2
+HOU@JAX         10-17        24.4-16.9    ❌        14.5        14.3
+
+====================================================================================================
+WINNER PREDICTION: 4/10 (40.0%)
+AVG SPREAD ERROR: 9.9 points
+AVG TOTAL ERROR: 10.6 points
+====================================================================================================

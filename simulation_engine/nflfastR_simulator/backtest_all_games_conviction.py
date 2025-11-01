@@ -25,8 +25,9 @@ MEDIUM_EDGE = 0.03  # 3% edge (was 2%)
 HIGH_EDGE = 0.06    # 6% edge (was 4%)
 MAX_EDGE_CAP = 0.25  # Cap extreme edges at 25% to prevent outlier-driven ROI
 
-BREAKEVEN = 0.524
+BREAKEVEN = 0.524  # -110 vig breakeven (don't change this)
 N_SIMS = 100
+USE_MARKET_CENTERED_PROBS = False  # False = more bets (98), True = fewer bets (82) but slightly better win rate
 
 def simulate_one_game(args):
     """Simulate one game and return betting opportunities."""
