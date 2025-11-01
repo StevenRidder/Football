@@ -1222,15 +1222,15 @@ def performance():
         summary = db.get_performance_summary()
         
         stats = {
-            'total_profit': summary['total_profit'],
-            'total_wagered': summary['total_wagered'],
-            'roi': summary['roi'],
-            'win_rate': summary['win_rate'],
-            'total_bets': summary['total_bets'],
-            'won_count': summary['won_count'],
-            'lost_count': summary['lost_count'],
-            'pending_count': summary['pending_count'],
-            'pending_amount': summary['pending_amount']
+            'total_profit': float(summary['total_profit']) if summary['total_profit'] is not None else 0.0,
+            'total_wagered': float(summary['total_wagered']) if summary['total_wagered'] is not None else 0.0,
+            'roi': float(summary['roi']) if summary['roi'] is not None else 0.0,
+            'win_rate': float(summary['win_rate']) if summary['win_rate'] is not None else 0.0,
+            'total_bets': int(summary['total_bets']) if summary['total_bets'] is not None else 0,
+            'won_count': int(summary['won_count']) if summary['won_count'] is not None else 0,
+            'lost_count': int(summary['lost_count']) if summary['lost_count'] is not None else 0,
+            'pending_count': int(summary['pending_count']) if summary['pending_count'] is not None else 0,
+            'pending_amount': float(summary['pending_amount']) if summary['pending_amount'] is not None else 0.0
         }
         
         # Performance by bet type
@@ -1238,13 +1238,13 @@ def performance():
         by_type = {}
         for bt in by_type_list:
             by_type[bt['bet_type']] = {
-                'count': bt['total_bets'],
-                'wagered': bt['total_wagered'],
-                'won': bt['won_count'],
-                'lost': bt['lost_count'],
-                'profit': bt['total_profit'],
-                'win_rate': bt['win_rate_percentage'],
-                'roi': bt['roi_percentage']
+                'count': int(bt['total_bets']) if bt['total_bets'] is not None else 0,
+                'wagered': float(bt['total_wagered']) if bt['total_wagered'] is not None else 0.0,
+                'won': int(bt['won_count']) if bt['won_count'] is not None else 0,
+                'lost': int(bt['lost_count']) if bt['lost_count'] is not None else 0,
+                'profit': float(bt['total_profit']) if bt['total_profit'] is not None else 0.0,
+                'win_rate': float(bt['win_rate_percentage']) if bt['win_rate_percentage'] is not None else 0.0,
+                'roi': float(bt['roi_percentage']) if bt['roi_percentage'] is not None else 0.0
             }
         
         # Weekly P/L (from database)
@@ -1263,8 +1263,8 @@ def performance():
             weekly_data = cur.fetchall()
         
         weekly_pl = {
-            'weeks': [w['week_key'] for w in weekly_data],
-            'values': [float(w['profit']) for w in weekly_data]
+            'weeks': [str(w['week_key']) for w in weekly_data],
+            'values': [float(w['profit']) if w['profit'] is not None else 0.0 for w in weekly_data]
         }
         
         # Bet type distribution
@@ -1287,9 +1287,17 @@ def performance():
         # Format recent bets for template
         recent_settled = []
         for bet in recent_bets:
-            bet_dict = dict(bet)
-            bet_dict['date'] = bet_dict['date'].strftime('%m/%d/%Y') if bet_dict['date'] else ''
-            bet_dict['type'] = bet_dict.pop('bet_type')
+            bet_dict = {
+                'date': bet['date'].strftime('%m/%d/%Y') if bet['date'] else '',
+                'teams': bet.get('teams', ''),
+                'description': bet.get('description', ''),
+                'type': bet['bet_type'],
+                'amount': float(bet['amount']) if bet['amount'] is not None else 0.0,
+                'odds': bet.get('odds', 'N/A'),
+                'profit': float(bet['profit']) if bet['profit'] is not None else 0.0,
+                'status': bet['status'],
+                'to_win': float(bet['to_win']) if bet['to_win'] is not None else 0.0
+            }
             recent_settled.append(bet_dict)
         
     finally:
