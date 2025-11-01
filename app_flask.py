@@ -42,25 +42,45 @@ def _parse_signals(signals_data):
             return []
     return []
 
-# Load latest predictions
+# Load predictions functions
+def load_simulator_predictions(force_reload=False):
+    """Load simulator predictions from backtest_all_games_conviction.py (formatted for frontend)."""
+    simulator_file = Path("artifacts") / "simulator_predictions.csv"
+    
+    if simulator_file.exists():
+        # Get file modification time for cache busting
+        mtime = simulator_file.stat().st_mtime
+        print(f"✅ Loading simulator predictions from {simulator_file} (modified: {mtime})")
+        df = pd.read_csv(simulator_file)
+        return df
+    return None
+
 def load_latest_predictions():
-    """Load most recent week's predictions"""
+    """Load pre-computed graded results from backend"""
+    import glob
+    
+    # Priority 1: Simulator predictions (from backtest_all_games_conviction.py)
+    simulator_df = load_simulator_predictions()
+    if simulator_df is not None:
+        return simulator_df
+    
+    # Priority 2: Pre-computed graded results (from grade_predictions_simple.py)
+    graded_files = glob.glob('artifacts/graded_results/graded_bets_*.csv')
+    if graded_files:
+        latest_file = sorted(graded_files)[-1]
+        print(f"✅ Loading pre-computed results from {latest_file}")
+        df = pd.read_csv(latest_file)
+        return df
+    
+    # Priority 3: Fall back to regular predictions
     artifacts = Path("artifacts")
-    # First try new format (predictions_2025_*.csv), then fall back to old format
     csvs = sorted(artifacts.glob("predictions_2025_*.csv"))
     if not csvs:
         csvs = sorted(artifacts.glob("week_*_projections.csv"))
     if not csvs:
         return None
     
-    # Get the most recent file that doesn't have "week" in the name (current week)
-    # Files with "week1", "week2" etc are historical backfills
-    current_week_files = [f for f in csvs if '_week' not in f.name]
-    if current_week_files:
-        df = pd.read_csv(current_week_files[-1])
-    else:
-        df = pd.read_csv(csvs[-1])
-    return df
+    return pd.read_csv(csvs[-1])
 
 def load_latest_aii():
     """Load most recent AII data"""
@@ -73,39 +93,40 @@ def load_latest_aii():
 
 @app.route('/')
 def index():
-    """Main dashboard"""
+    """Main dashboard with all games."""
     df = load_latest_predictions()
     
     if df is None:
-        return render_template('error.html', 
-                             message="No predictions found. Run python3 run_week.py first.")
+        return "<h1>No predictions found. Run generate_alpha_predictions.py first.</h1>"
     
-    # Get current week from schedules.py
-    try:
-        from schedules import CURRENT_WEEK, CURRENT_SEASON
-        current_week = CURRENT_WEEK
-        current_season = CURRENT_SEASON
-    except ImportError:
-        current_week = 8
-        current_season = 2025
+    # Get all weeks available
+    all_weeks = sorted(df['week'].unique())
     
-    # Calculate summary stats
-    total_games = len(df)
-    avg_edge = df['EV_spread'].mean() * 100 if 'EV_spread' in df.columns else 0
-    total_stake = df['Stake_spread'].sum() + df['Stake_total'].sum() if 'Stake_spread' in df.columns else 0
+    # Determine current week based on today's date
+    from datetime import datetime
+    today = datetime.now().date()
     
-    # Count recommended plays
-    rec_plays = 0
-    if 'Rec_spread' in df.columns:
-        rec_plays = len(df[df['Rec_spread'] != 'NO PLAY'])
+    # Load actual schedule to check which week is current
+    import nfl_data_py as nfl
+    sched = nfl.import_schedules([2025])
+    sched_reg = sched[sched['game_type'] == 'REG']
     
-    return render_template('index.html',
-                         current_week=current_week,
-                         current_season=current_season,
-                         total_games=total_games,
-                         avg_edge=avg_edge,
-                         total_stake=total_stake,
-                         rec_plays=rec_plays)
+    # Find the week with games starting this week or next
+    current_week = None
+    for week in sorted(sched_reg['week'].unique()):
+        week_games = sched_reg[sched_reg['week'] == week]
+        # Check if any games haven't been played yet
+        if week_games['away_score'].isna().any():
+            current_week = int(week)
+            break
+    
+    if current_week is None:
+        current_week = int(df['week'].max())
+    
+    return render_template('alpha_index_v3.html',
+                          current_week=current_week,
+                          all_weeks=all_weeks,
+                          total_games=len(df))
 
 @app.route('/api/games')
 def api_games():
@@ -182,6 +203,48 @@ def api_games():
         games.append(game)
     
     return jsonify(games)
+
+@app.route('/api/simulator-predictions')
+def api_simulator_predictions():
+    """API endpoint for simulator predictions with conviction badges."""
+    df = load_simulator_predictions()
+    
+    if df is None:
+        return jsonify({'error': 'No simulator predictions found. Run backtest_all_games_conviction.py and format_for_frontend.py'}), 404
+    
+    # Filter to specific week if requested
+    week = request.args.get('week', type=int)
+    if week:
+        df = df[df['week'] == week]
+    
+    # Convert to JSON
+    games = df.replace({pd.NA: None, float('nan'): None}).to_dict('records')
+    
+    return jsonify({
+        'games': games,
+        'total': len(games)
+    })
+
+@app.route('/api/games/graded')
+def api_games_graded():
+    """API endpoint for games with actual results - SERVES PRE-COMPUTED BACKEND DATA."""
+    df = load_latest_predictions()
+    
+    if df is None:
+        return jsonify({'error': 'No predictions found'}), 404
+    
+    # Filter to specific week if requested
+    week = request.args.get('week', type=int)
+    if week:
+        df = df[df['week'] == week]
+    
+    # Convert to JSON - all calculations already done in backend
+    games = df.replace({pd.NA: None, float('nan'): None}).to_dict('records')
+    
+    return jsonify({
+        'games': games,
+        'total': len(games)
+    })
 
 @app.route('/api/best-bets')
 def api_best_bets():
@@ -2322,5 +2385,5 @@ def live_games():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9876)
+    app.run(debug=False, port=9876, host='0.0.0.0')
 

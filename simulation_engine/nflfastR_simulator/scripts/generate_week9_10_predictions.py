@@ -24,7 +24,7 @@ HIGH_EDGE = 0.06
 MAX_EDGE_CAP = 0.25
 
 BREAKEVEN = 0.524
-N_SIMS = 100
+N_SIMS = 2000  # Increased from 100 for more accurate conviction levels
 
 # Linear calibration parameters
 LINEAR_ALPHA = 26.45

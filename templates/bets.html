@@ -3,6 +3,29 @@
 {% block title %}My Bets{% endblock %}
 
 {% block content %}
+<style>
+  /* Bets page only: Fix badge text readability */
+  .page-wrapper .badge.bg-blue-lt {
+    color: #1e3a8a !important; /* Dark blue text on light blue background */
+    font-weight: 600;
+  }
+  .page-wrapper .badge.bg-yellow-lt {
+    color: #92400e !important; /* Dark yellow/brown text */
+    font-weight: 600;
+  }
+  .page-wrapper .badge.bg-success-lt {
+    color: #065f46 !important; /* Dark green text */
+    font-weight: 600;
+  }
+  .page-wrapper .badge.bg-danger-lt {
+    color: #991b1b !important; /* Dark red text */
+    font-weight: 600;
+  }
+  .page-wrapper .badge.bg-secondary-lt {
+    color: #374151 !important; /* Dark gray text */
+    font-weight: 600;
+  }
+</style>
 <div class="page-wrapper">
   <div class="page-header d-print-none">
     <div class="container-xl">
@@ -767,13 +790,12 @@ async function showBetDetails(bet) {
       
       if (!data.success || !data.legs || data.legs.length === 0) {
         descEl.innerHTML = '<div class="alert alert-warning">No leg details available. Click to paste detailed bet info.</div>';
-        return;
-      }
-      
-      let html = '<div class="list-group list-group-flush">';
-      
-      // Backend already calculated status for each leg - just display it!
-      for (const leg of data.legs) {
+        // Don't return - still show the modal with this message
+      } else {
+        let html = '<div class="list-group list-group-flush">';
+        
+        // Backend already calculated status for each leg - just display it!
+        for (const leg of data.legs) {
         let listItemClass = '';
         let badgeClass = 'bg-secondary';
         let statusIcon = '⚪';
@@ -815,10 +837,11 @@ async function showBetDetails(bet) {
         `;
       }
       
-      html += '</div>';
-      html += `<div class="mt-3"><span class="badge bg-blue-lt">${data.legs.length} legs</span> in this ${bet.type}</div>`;
-      
-      descEl.innerHTML = html;
+        html += '</div>';
+        html += `<div class="mt-3"><span class="badge bg-blue-lt">${data.legs.length} legs</span> in this ${bet.type}</div>`;
+        
+        descEl.innerHTML = html;
+      }
     } catch (error) {
       console.error('Error fetching live data:', error);
       descEl.innerHTML = parseDescription(bet.description, bet.type);
