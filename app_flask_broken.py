@@ -399,7 +399,7 @@ def game_detail(away, home, week=None):
         home_col = 'home'
     
     # Find the specific game
-    if week and 'week' in df_pred.columns:
+    if week:
         game = df_pred[
             (df_pred[away_col] == away) & 
             (df_pred[home_col] == home) & 
@@ -424,8 +424,17 @@ def game_detail(away, home, week=None):
         espn_data = ESPNDataFetcher.fetch_comprehensive_game_data(away, home)
         game_data['espn_data'] = espn_data
         print(f"✓ ESPN data loaded for {away} @ {home}", flush=True)
+    except ImportError as ie:
+        print(f"⚠️ Could not import ESPNDataFetcher: {ie}", flush=True)
+        game_data['espn_data'] = {
+            'away': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
+            'home': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
+            'game_summary': {}
+        }
     except Exception as e:
         print(f"⚠️ Could not fetch ESPN data: {e}", flush=True)
+        import traceback
+        print(traceback.format_exc(), flush=True)
         game_data['espn_data'] = {
             'away': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
             'home': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
@@ -437,44 +446,113 @@ def game_detail(away, home, week=None):
     away_splits = espn.get('away', {}).get('splits', {})
     home_splits = espn.get('home', {}).get('splits', {})
     
+    # Try to load team stats from nflverse/nflfastR
+    team_stats_away = {}
+    team_stats_home = {}
+    
+    try:
+        from nfl_edge.data_ingest import fetch_teamweeks_live
+        season = int(game_data.get('season', 2025))
+        teamweeks = fetch_teamweeks_live(season)
+        
+        # Get stats up to current week (prior weeks only)
+        current_week = int(game_data.get('week', 9))
+        away_stats = teamweeks[
+            (teamweeks['team'] == away) & 
+            (teamweeks['week'] < current_week)
+        ]
+        home_stats = teamweeks[
+            (teamweeks['team'] == home) & 
+            (teamweeks['week'] < current_week)
+        ]
+        
+        if len(away_stats) > 0:
+            team_stats_away = {
+                'off_epa': float(away_stats['off_epa_per_play'].mean()),
+                'def_epa': float(away_stats['def_epa_per_play'].mean()),
+                'pass_epa': float(away_stats['off_epa_per_play'].mean() * 0.6),  # Estimate 60% passing
+                'rush_epa': float(away_stats['off_epa_per_play'].mean() * 0.4),  # Estimate 40% rushing
+                'def_pass_epa': float(away_stats['def_epa_per_play'].mean() * 0.6),
+                'def_rush_epa': float(away_stats['def_epa_per_play'].mean() * 0.4),
+                'passing_yards': float(away_stats['points'].mean() * 17),  # Estimate ~17 yards per point
+                'rushing_yards': float(away_stats['points'].mean() * 10),  # Estimate ~10 yards per point
+                'turnovers': int(away_stats['giveaways'].sum()),
+                'sacks_taken': 0,  # Not available in this dataset
+                'takeaways': int(away_stats['takeaways'].sum()),
+            }
+            
+            # Last 5 games stats
+            last_5_away = away_stats.tail(5)
+            if len(last_5_away) > 0:
+                team_stats_away['last_5_ppg'] = float(last_5_away['points'].mean()) if 'points' in last_5_away.columns else 0.0
+                team_stats_away['last_5_pa'] = float(last_5_away['points_allowed'].mean()) if 'points_allowed' in last_5_away.columns else 0.0
+        
+        if len(home_stats) > 0:
+            team_stats_home = {
+                'off_epa': float(home_stats['off_epa_per_play'].mean()),
+                'def_epa': float(home_stats['def_epa_per_play'].mean()),
+                'pass_epa': float(home_stats['off_epa_per_play'].mean() * 0.6),  # Estimate 60% passing
+                'rush_epa': float(home_stats['off_epa_per_play'].mean() * 0.4),  # Estimate 40% rushing
+                'def_pass_epa': float(home_stats['def_epa_per_play'].mean() * 0.6),
+                'def_rush_epa': float(home_stats['def_epa_per_play'].mean() * 0.4),
+                'passing_yards': float(home_stats['points'].mean() * 17),  # Estimate ~17 yards per point
+                'rushing_yards': float(home_stats['points'].mean() * 10),  # Estimate ~10 yards per point
+                'turnovers': int(home_stats['giveaways'].sum()),
+                'sacks_taken': 0,  # Not available in this dataset
+                'takeaways': int(home_stats['takeaways'].sum()),
+            }
+            
+            # Last 5 games stats
+            last_5_home = home_stats.tail(5)
+            if len(last_5_home) > 0:
+                team_stats_home['last_5_ppg'] = float(last_5_home['points'].mean()) if 'points' in last_5_home.columns else 0.0
+                team_stats_home['last_5_pa'] = float(last_5_home['points_allowed'].mean()) if 'points_allowed' in last_5_home.columns else 0.0
+        
+        print(f"✓ Loaded nflverse stats for {away} and {home}", flush=True)
+    except Exception as e:
+        print(f"⚠️ Could not load nflverse stats: {e}", flush=True)
+        import traceback
+        traceback.print_exc()
+    
+    # Merge ESPN data (PPG, PAPG) with nflverse data (EPA, yards, etc.)
     game_data['team_stats'] = {
         'away': {
             'team': away,
             'games': away_splits.get('overall', {}).get('games', 0),
             'ppg': away_splits.get('overall', {}).get('ppg', 0),
             'pa_pg': away_splits.get('overall', {}).get('papg', 0),
-            'off_epa': 0,
-            'def_epa': 0,
-            'pass_epa': 0,
-            'rush_epa': 0,
-            'def_pass_epa': 0,
-            'def_rush_epa': 0,
-            'passing_yards': 0,
-            'rushing_yards': 0,
-            'turnovers': 0,
-            'sacks_taken': 0,
-            'takeaways': 0,
-            'last_5_ppg': 0,
-            'last_5_pa': 0,
+            'off_epa': team_stats_away.get('off_epa', 0),
+            'def_epa': team_stats_away.get('def_epa', 0),
+            'pass_epa': team_stats_away.get('pass_epa', 0),
+            'rush_epa': team_stats_away.get('rush_epa', 0),
+            'def_pass_epa': team_stats_away.get('def_pass_epa', 0),
+            'def_rush_epa': team_stats_away.get('def_rush_epa', 0),
+            'passing_yards': team_stats_away.get('passing_yards', 0),
+            'rushing_yards': team_stats_away.get('rushing_yards', 0),
+            'turnovers': team_stats_away.get('turnovers', 0),
+            'sacks_taken': team_stats_away.get('sacks_taken', 0),
+            'takeaways': team_stats_away.get('takeaways', 0),
+            'last_5_ppg': team_stats_away.get('last_5_ppg', 0),
+            'last_5_pa': team_stats_away.get('last_5_pa', 0),
         },
         'home': {
             'team': home,
             'games': home_splits.get('overall', {}).get('games', 0),
             'ppg': home_splits.get('overall', {}).get('ppg', 0),
             'pa_pg': home_splits.get('overall', {}).get('papg', 0),
-            'off_epa': 0,
-            'def_epa': 0,
-            'pass_epa': 0,
-            'rush_epa': 0,
-            'def_pass_epa': 0,
-            'def_rush_epa': 0,
-            'passing_yards': 0,
-            'rushing_yards': 0,
-            'turnovers': 0,
-            'sacks_taken': 0,
-            'takeaways': 0,
-            'last_5_ppg': 0,
-            'last_5_pa': 0,
+            'off_epa': team_stats_home.get('off_epa', 0),
+            'def_epa': team_stats_home.get('def_epa', 0),
+            'pass_epa': team_stats_home.get('pass_epa', 0),
+            'rush_epa': team_stats_home.get('rush_epa', 0),
+            'def_pass_epa': team_stats_home.get('def_pass_epa', 0),
+            'def_rush_epa': team_stats_home.get('def_rush_epa', 0),
+            'passing_yards': team_stats_home.get('passing_yards', 0),
+            'rushing_yards': team_stats_home.get('rushing_yards', 0),
+            'turnovers': team_stats_home.get('turnovers', 0),
+            'sacks_taken': team_stats_home.get('sacks_taken', 0),
+            'takeaways': team_stats_home.get('takeaways', 0),
+            'last_5_ppg': team_stats_home.get('last_5_ppg', 0),
+            'last_5_pa': team_stats_home.get('last_5_pa', 0),
         }
     }
     
@@ -482,321 +560,33 @@ def game_detail(away, home, week=None):
     away_recent = espn.get('away', {}).get('last_five', [])
     home_recent = espn.get('home', {}).get('last_five', [])
     
-    # Fetch nflverse data for stats - use RAW data with all columns
-    try:
-        import requests
-        import io
-        nflverse_url = "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2025.csv"
-        response = requests.get(nflverse_url, timeout=30)
-        df_raw = pd.read_csv(io.BytesIO(response.content))
-        
-        # Get stats for both teams
-        away_stats = df_raw[df_raw['team'] == away]
-        home_stats = df_raw[df_raw['team'] == home]
-        
-        if not away_stats.empty:
-            game_data['team_stats']['away'].update({
-                'off_epa': float(away_stats['passing_epa'].mean() + away_stats['rushing_epa'].mean()),
-                'def_epa': float(away_stats['def_epa_per_play'].mean()) if 'def_epa_per_play' in away_stats.columns else 0,
-                'pass_epa': float(away_stats['passing_epa'].mean()),
-                'rush_epa': float(away_stats['rushing_epa'].mean()),
-                'passing_yards': float(away_stats['passing_yards'].mean()),
-                'rushing_yards': float(away_stats['rushing_yards'].mean()),
-                'turnovers': int(away_stats['passing_interceptions'].sum() + away_stats['sack_fumbles_lost'].sum() + away_stats['rushing_fumbles_lost'].sum()),
-                'takeaways': int(away_stats['def_interceptions'].sum() + away_stats['fumble_recovery_opp'].sum()),
-                'sacks_taken': int(away_stats['sacks_suffered'].sum()),
-                'def_pass_epa': 0,  # Not in raw data
-                'def_rush_epa': 0,  # Not in raw data
-                'last_5_ppg': float(away_stats.head(5)['points'].mean()) if 'points' in away_stats.columns and len(away_stats) >= 5 else 0,
-                'last_5_pa': float(away_stats.head(5)['points_allowed'].mean()) if 'points_allowed' in away_stats.columns and len(away_stats) >= 5 else 0,
-            })
-        
-        if not home_stats.empty:
-            game_data['team_stats']['home'].update({
-                'off_epa': float(home_stats['passing_epa'].mean() + home_stats['rushing_epa'].mean()),
-                'def_epa': float(home_stats['def_epa_per_play'].mean()) if 'def_epa_per_play' in home_stats.columns else 0,
-                'pass_epa': float(home_stats['passing_epa'].mean()),
-                'rush_epa': float(home_stats['rushing_epa'].mean()),
-                'passing_yards': float(home_stats['passing_yards'].mean()),
-                'rushing_yards': float(home_stats['rushing_yards'].mean()),
-                'turnovers': int(home_stats['passing_interceptions'].sum() + home_stats['sack_fumbles_lost'].sum() + home_stats['rushing_fumbles_lost'].sum()),
-                'takeaways': int(home_stats['def_interceptions'].sum() + home_stats['fumble_recovery_opp'].sum()),
-                'sacks_taken': int(home_stats['sacks_suffered'].sum()),
-                'def_pass_epa': 0,  # Not in raw data
-                'def_rush_epa': 0,  # Not in raw data
-                'last_5_ppg': float(home_stats.head(5)['points'].mean()) if 'points' in home_stats.columns and len(home_stats) >= 5 else 0,
-                'last_5_pa': float(home_stats.head(5)['points_allowed'].mean()) if 'points_allowed' in home_stats.columns and len(home_stats) >= 5 else 0,
-            })
-        print(f"✅ Loaded nflverse stats for {away} and {home}")
-    except Exception as e:
-        print(f"⚠️ Warning: Could not fetch nflverse data: {e}")
-    
-    """
-    # DISABLED CODE - was making 17 ESPN API calls on every page load
-    if False:  # Disabled for performance
-        print("Fetching hybrid data: ESPN (scores) + NFLverse (stats)...")
-        
-        # 1. Get accurate scores from ESPN
-        espn_games = []
-        for week in range(1, 18):
-            try:
-                espn_url = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
-                params = {'seasontype': 2, 'week': week, 'year': 2025}
-                response = requests.get(espn_url, params=params, timeout=5)
-                
-                if response.status_code == 200:
-                    data = response.json()
-                    events = data.get('events', [])
-                    
-                    for event in events:
-                        for comp in event.get('competitions', []):
-                            competitors = comp.get('competitors', [])
-                            if len(competitors) == 2:
-                                home_team = next((c for c in competitors if c.get('homeAway') == 'home'), None)
-                                away_team = next((c for c in competitors if c.get('homeAway') == 'away'), None)
-                                
-                                if home_team and away_team:
-                                    espn_games.append({
-                                        'week': week,
-                                        'home_team': home_team['team']['abbreviation'],
-                                        'away_team': away_team['team']['abbreviation'],
-                                        'home_score': int(home_team.get('score', 0)),
-                                        'away_score': int(away_team.get('score', 0)),
-                                        'completed': comp.get('status', {}).get('type', {}).get('completed', False)
-                                    })
-            except Exception as e:
-                print(f"ESPN fetch error week {week}: {e}")
-                continue
-        
-        print(f"✅ ESPN: Fetched {len(espn_games)} games (accurate scores)")
-        df_espn = pd.DataFrame(espn_games)
-        
-        # 2. Get detailed stats from NFLverse
-        nflverse_url = "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2025.csv"
-        response = requests.get(nflverse_url, timeout=30)
-        df_nflverse = pd.read_csv(io.BytesIO(response.content))
-        
-        print(f"✅ NFLverse: Fetched {len(df_nflverse)} team-week records (detailed stats)")
-        
-        # Filter to 2025 season
-        df_nflverse = df_nflverse[df_nflverse['season'] == 2025].copy()
-        
-        if df_espn.empty:
-            raise Exception("No ESPN data available")
-        
-        # 3. Merge ESPN scores with NFLverse stats
-        # Create a function to merge data for a specific team
-        def get_team_games(team_code):
-            games = []
-            for _, espn_game in df_espn.iterrows():
-                week = espn_game['week']
-                
-                # CRITICAL FIX: Only include COMPLETED games (skip future scheduled games)
-                if not espn_game.get('completed', False):
-                    continue
-                
-                # Check if team played in this game
-                if espn_game['away_team'] == team_code:
-                    is_home = False
-                    opponent = espn_game['home_team']
-                    pts_scored = espn_game['away_score']
-                    pts_allowed = espn_game['home_score']
-                elif espn_game['home_team'] == team_code:
-                    opponent = espn_game['away_team']
-                    pts_scored = espn_game['home_score']
-                    pts_allowed = espn_game['away_score']
-                else:
-                    continue
-                
-                # Skip if scores are 0-0 (likely incomplete data)
-                if pts_scored == 0 and pts_allowed == 0:
-                    continue
-                
-                # Get detailed stats from NFLverse for this team/week
-                nfl_stats = df_nflverse[(df_nflverse['team'] == team_code) & (df_nflverse['week'] == week)]
-                
-                if not nfl_stats.empty:
-                    stats_row = nfl_stats.iloc[0]
-                    games.append({
-                        'week': week,
-                        'opponent': opponent,
-                        'points_scored': pts_scored,  # ESPN (accurate)
-                        'points_allowed': pts_allowed,  # ESPN (accurate)
-                        'result': 'W' if pts_scored > pts_allowed else ('L' if pts_scored < pts_allowed else 'T'),
-                        # NFLverse detailed stats
-                        'passing_epa': stats_row.get('passing_epa', 0),
-                        'rushing_epa': stats_row.get('rushing_epa', 0),
-                        'passing_yards': stats_row.get('passing_yards', 0),
-                        'rushing_yards': stats_row.get('rushing_yards', 0),
-                        'passing_tds': stats_row.get('passing_tds', 0),
-                        'rushing_tds': stats_row.get('rushing_tds', 0),
-                        'turnovers': stats_row.get('passing_interceptions', 0) + stats_row.get('rushing_fumbles_lost', 0),
-                        'sacks_taken': stats_row.get('sacks_suffered', 0),
-                    })
-                else:
-                    # ESPN data only (no NFLverse stats available)
-                    games.append({
-                        'week': week,
-                        'opponent': opponent,
-                        'points_scored': pts_scored,
-                        'points_allowed': pts_allowed,
-                        'result': 'W' if pts_scored > pts_allowed else ('L' if pts_scored < pts_allowed else 'T'),
-                        'passing_epa': 0,
-                        'rushing_epa': 0,
-                        'passing_yards': 0,
-                        'rushing_yards': 0,
-                        'passing_tds': 0,
-                        'rushing_tds': 0,
-                        'turnovers': 0,
-                        'sacks_taken': 0,
-                    })
-            
-            return pd.DataFrame(games).sort_values('week', ascending=False) if games else pd.DataFrame()
-        
-        away_stats = get_team_games(away)
-        home_stats = get_team_games(home)
-        
-        # Calculate season averages for away team (ESPN + NFLverse hybrid)
-        away_season = {
-            'team': away,
-            'games': len(away_stats),
-            # ESPN data (accurate scores)
-            'ppg': away_stats['points_scored'].mean() if len(away_stats) > 0 else 0,
-            'pa_pg': away_stats['points_allowed'].mean() if len(away_stats) > 0 else 0,
-            # NFLverse data (advanced analytics)
-            'off_epa': (away_stats['passing_epa'].mean() + away_stats['rushing_epa'].mean()) if len(away_stats) > 0 else 0,
-            'pass_epa': away_stats['passing_epa'].mean() if len(away_stats) > 0 else 0,
-            'rush_epa': away_stats['rushing_epa'].mean() if len(away_stats) > 0 else 0,
-            'passing_yards': away_stats['passing_yards'].mean() if len(away_stats) > 0 else 0,
-            'rushing_yards': away_stats['rushing_yards'].mean() if len(away_stats) > 0 else 0,
-            'turnovers': away_stats['turnovers'].sum() if len(away_stats) > 0 else 0,
-            'sacks_taken': away_stats['sacks_taken'].sum() if len(away_stats) > 0 else 0,
-            # Defensive stats (would need opponent data for full picture)
-            'def_epa': 0,
-            'def_pass_epa': 0,
-            'def_rush_epa': 0,
-            'takeaways': 0,
-            # Last 5 games
-            'last_5_ppg': away_stats.head(5)['points_scored'].mean() if len(away_stats) >= 5 else (away_stats['points_scored'].mean() if len(away_stats) > 0 else 0),
-            'last_5_pa': away_stats.head(5)['points_allowed'].mean() if len(away_stats) >= 5 else (away_stats['points_allowed'].mean() if len(away_stats) > 0 else 0),
-        }
-        
-        # Calculate season averages for home team (ESPN + NFLverse hybrid)
-        home_season = {
-            'team': home,
-            'games': len(home_stats),
-            # ESPN data (accurate scores)
-            'ppg': home_stats['points_scored'].mean() if len(home_stats) > 0 else 0,
-            'pa_pg': home_stats['points_allowed'].mean() if len(home_stats) > 0 else 0,
-            # NFLverse data (advanced analytics)
-            'off_epa': (home_stats['passing_epa'].mean() + home_stats['rushing_epa'].mean()) if len(home_stats) > 0 else 0,
-            'pass_epa': home_stats['passing_epa'].mean() if len(home_stats) > 0 else 0,
-            'rush_epa': home_stats['rushing_epa'].mean() if len(home_stats) > 0 else 0,
-            'passing_yards': home_stats['passing_yards'].mean() if len(home_stats) > 0 else 0,
-            'rushing_yards': home_stats['rushing_yards'].mean() if len(home_stats) > 0 else 0,
-            'turnovers': home_stats['turnovers'].sum() if len(home_stats) > 0 else 0,
-            'sacks_taken': home_stats['sacks_taken'].sum() if len(home_stats) > 0 else 0,
-            # Defensive stats
-            'def_epa': 0,
-            'def_pass_epa': 0,
-            'def_rush_epa': 0,
-            'takeaways': 0,
-            # Last 5 games
-            'last_5_ppg': home_stats.head(5)['points_scored'].mean() if len(home_stats) >= 5 else (home_stats['points_scored'].mean() if len(home_stats) > 0 else 0),
-            'last_5_pa': home_stats.head(5)['points_allowed'].mean() if len(home_stats) >= 5 else (home_stats['points_allowed'].mean() if len(home_stats) > 0 else 0),
-        }
-        
-        # Recent games are already formatted correctly from the DataFrame
-        away_recent = away_stats.to_dict('records') if not away_stats.empty else []
-        home_recent = home_stats.to_dict('records') if not home_stats.empty else []
-        
-    except Exception as e:
-        print(f"Error fetching team stats: {e}")
-        away_season = {'team': away, 'games': 0}
-        home_season = {'team': home, 'games': 0}
-        away_recent = []
-        home_recent = []
-    """
-    
-    # Fetch predictions from multiple sources (ESPN, 538, Vegas)
-    # Temporarily disabled - was causing timeouts
-    # print(f"Fetching predictions for {away} @ {home}...")
-    # all_predictions = fetch_all_predictions(away, home)
-    all_predictions = {}
+    # Format for template - handle both simulator predictions and old format
+    # Simulator predictions use p_home_cover, our_spread, our_total
+    # Old format uses 'Home win %', 'Spread used (home-)', 'Total used'
+    p_home_cover_val = game_data.get('p_home_cover')
+    if 'p_home_cover' in game_data and p_home_cover_val is not None and (isinstance(p_home_cover_val, (int, float)) and not pd.isna(p_home_cover_val)):
+        # Simulator predictions format
+        home_win_pct = float(p_home_cover_val) * 100
+        away_win_pct = float(game_data.get('p_away_cover', 0.5)) * 100
+        spread_value = float(game_data.get('our_spread', 0)) if game_data.get('our_spread') is not None else 0
+        total_value = float(game_data.get('our_total', 0)) if game_data.get('our_total') is not None else 0
+    else:
+        # Old format
+        home_win_pct = float(game_data.get('Home win %', 50))
+        away_win_pct = 100 - home_win_pct
+        spread_value = float(game_data.get('Spread used (home-)', 0))
+        total_value = float(game_data.get('Total used', 0))
     
     # Format for template
     external_predictions = {
         'your_model': {
-            'away_win': round(100 - game_data.get('Home win %', 50), 1),
-            'home_win': round(game_data.get('Home win %', 50), 1),
-            'spread': f"{home} {game_data.get('Spread used (home-)', 0):+.1f}",
-            'total': round(game_data.get('Total used', 0), 1),
-            'source': 'Your Model (Ridge + Monte Carlo)'
+            'away_win': round(away_win_pct, 1),
+            'home_win': round(home_win_pct, 1),
+            'spread': f"{home} {spread_value:+.1f}" if spread_value else f"{home} {0:+.1f}",
+            'total': round(total_value, 1) if total_value else 0,
+            'source': 'Simulator Model' if 'p_home_cover' in game_data else 'Your Model (Ridge + Monte Carlo)'
         }
     }
-    
-    # Add 538 if available
-    if all_predictions.get('fivethirtyeight'):
-        pred = all_predictions['fivethirtyeight']
-        external_predictions['fivethirtyeight'] = {
-            'away_win': pred.get('away_win_prob', 50),
-            'home_win': pred.get('home_win_prob', 50),
-            'spread': 'N/A',
-            'total': 'N/A',
-            'source': pred.get('source', '538 ELO'),
-            'confidence': pred.get('confidence', 'Medium')
-        }
-    
-    # Add Vegas consensus if available
-    if all_predictions.get('vegas'):
-        pred = all_predictions['vegas']
-        external_predictions['vegas'] = {
-            'away_win': pred.get('away_win_prob', 50),
-            'home_win': pred.get('home_win_prob', 50),
-            'spread': 'N/A',
-            'total': 'N/A',
-            'source': pred.get('source', 'Vegas Consensus'),
-            'moneyline': f"{pred.get('avg_away_ml', 0):+d} / {pred.get('avg_home_ml', 0):+d}",
-            'confidence': 'High'
-        }
-    
-    # Also get sportsbook lines for spread/total
-    try:
-        import os
-        api_key = os.environ.get('ODDS_API_KEY', '')
-        if api_key:
-            odds_url = "https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds"
-            params = {
-                'apiKey': api_key,
-                'regions': 'us',
-                'markets': 'spreads,totals',
-                'oddsFormat': 'american'
-            }
-            response = requests.get(odds_url, params=params, timeout=10)
-            if response.status_code == 200:
-                odds_data = response.json()
-                
-                for game_odds in odds_data:
-                    if away in game_odds.get('away_team', '') and home in game_odds.get('home_team', ''):
-                        spreads = []
-                        totals = []
-                        
-                        for bookmaker in game_odds.get('bookmakers', []):
-                            for market in bookmaker.get('markets', []):
-                                if market['key'] == 'spreads':
-                                    for outcome in market['outcomes']:
-                                        if home in outcome.get('name', ''):
-                                            spreads.append(outcome.get('point', 0))
-                                elif market['key'] == 'totals':
-                                    if market.get('outcomes'):
-                                        totals.append(market['outcomes'][0].get('point', 0))
-                        
-                        if spreads and totals and 'vegas' in external_predictions:
-                            external_predictions['vegas']['spread'] = f"{home} {sum(spreads)/len(spreads):+.1f}"
-                            external_predictions['vegas']['total'] = round(sum(totals)/len(totals), 1)
-                        break
-    except Exception as e:
-        print(f"Error fetching spreads/totals: {e}")
     
     return render_template('game_detail.html',
                          away=away,
@@ -807,6 +597,7 @@ def game_detail(away, home, week=None):
                          away_recent=away_recent,
                          home_recent=home_recent,
                          external_predictions=external_predictions)
+
 
 @app.route('/accuracy')
 def accuracy():
@@ -2873,45 +2664,6 @@ def live_games():
         return jsonify(result)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-@app.route('/api/generate-ai-picks', methods=['POST'])
-def generate_ai_picks_route():
-    """Generate ChatGPT picks for the week"""
-    try:
-        from edge_hunt.chatgpt_picks import generate_weekly_picks
-        
-        week = request.args.get('week', type=int)
-        result = generate_weekly_picks(current_week=week, save_to_file=True)
-        
-        if 'error' in result:
-            return jsonify(result), 400
-        
-        return jsonify(result)
-    
-    except Exception as e:
-        return jsonify({
-            'error': f'Failed to generate picks: {str(e)}'
-        }), 500
-
-
-@app.route('/api/ai-picks')
-def get_ai_picks():
-    """Get saved ChatGPT picks for a week"""
-    try:
-        from edge_hunt.chatgpt_picks import load_weekly_picks
-        
-        week = request.args.get('week', type=int)
-        result = load_weekly_picks(week=week)
-        
-        if 'error' in result:
-            return jsonify(result), 404
-        
-        return jsonify(result)
-    
-    except Exception as e:
-        return jsonify({
-            'error': f'Failed to load picks: {str(e)}'
-        }), 500
 
 if __name__ == '__main__':
     app.run(debug=False, port=9876, host='0.0.0.0')

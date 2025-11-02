@@ -381,8 +381,7 @@ def betting_guide():
 
 
 @app.route('/game/<away>/<home>')
-@app.route('/game/<away>/<home>/<int:week>')
-def game_detail(away, home, week=None):
+def game_detail(away, home):
     """Detailed game view with team stats"""
     df_pred = load_latest_predictions()
     
@@ -390,26 +389,8 @@ def game_detail(away, home, week=None):
         return render_template('error.html',
                              message="No predictions found. Run python3 run_week.py first.")
     
-    # Normalize column names - simulator uses away_team/home_team, older format uses away/home
-    if 'away_team' in df_pred.columns:
-        away_col = 'away_team'
-        home_col = 'home_team'
-    else:
-        away_col = 'away'
-        home_col = 'home'
-    
     # Find the specific game
-    if week and 'week' in df_pred.columns:
-        game = df_pred[
-            (df_pred[away_col] == away) & 
-            (df_pred[home_col] == home) & 
-            (df_pred['week'] == week)
-        ]
-    else:
-        game = df_pred[
-            (df_pred[away_col] == away) & 
-            (df_pred[home_col] == home)
-        ]
+    game = df_pred[(df_pred['away'] == away) & (df_pred['home'] == home)]
     
     if game.empty:
         return render_template('error.html',
@@ -481,55 +462,6 @@ def game_detail(away, home, week=None):
     # Get recent games from ESPN
     away_recent = espn.get('away', {}).get('last_five', [])
     home_recent = espn.get('home', {}).get('last_five', [])
-    
-    # Fetch nflverse data for stats - use RAW data with all columns
-    try:
-        import requests
-        import io
-        nflverse_url = "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2025.csv"
-        response = requests.get(nflverse_url, timeout=30)
-        df_raw = pd.read_csv(io.BytesIO(response.content))
-        
-        # Get stats for both teams
-        away_stats = df_raw[df_raw['team'] == away]
-        home_stats = df_raw[df_raw['team'] == home]
-        
-        if not away_stats.empty:
-            game_data['team_stats']['away'].update({
-                'off_epa': float(away_stats['passing_epa'].mean() + away_stats['rushing_epa'].mean()),
-                'def_epa': float(away_stats['def_epa_per_play'].mean()) if 'def_epa_per_play' in away_stats.columns else 0,
-                'pass_epa': float(away_stats['passing_epa'].mean()),
-                'rush_epa': float(away_stats['rushing_epa'].mean()),
-                'passing_yards': float(away_stats['passing_yards'].mean()),
-                'rushing_yards': float(away_stats['rushing_yards'].mean()),
-                'turnovers': int(away_stats['passing_interceptions'].sum() + away_stats['sack_fumbles_lost'].sum() + away_stats['rushing_fumbles_lost'].sum()),
-                'takeaways': int(away_stats['def_interceptions'].sum() + away_stats['fumble_recovery_opp'].sum()),
-                'sacks_taken': int(away_stats['sacks_suffered'].sum()),
-                'def_pass_epa': 0,  # Not in raw data
-                'def_rush_epa': 0,  # Not in raw data
-                'last_5_ppg': float(away_stats.head(5)['points'].mean()) if 'points' in away_stats.columns and len(away_stats) >= 5 else 0,
-                'last_5_pa': float(away_stats.head(5)['points_allowed'].mean()) if 'points_allowed' in away_stats.columns and len(away_stats) >= 5 else 0,
-            })
-        
-        if not home_stats.empty:
-            game_data['team_stats']['home'].update({
-                'off_epa': float(home_stats['passing_epa'].mean() + home_stats['rushing_epa'].mean()),
-                'def_epa': float(home_stats['def_epa_per_play'].mean()) if 'def_epa_per_play' in home_stats.columns else 0,
-                'pass_epa': float(home_stats['passing_epa'].mean()),
-                'rush_epa': float(home_stats['rushing_epa'].mean()),
-                'passing_yards': float(home_stats['passing_yards'].mean()),
-                'rushing_yards': float(home_stats['rushing_yards'].mean()),
-                'turnovers': int(home_stats['passing_interceptions'].sum() + home_stats['sack_fumbles_lost'].sum() + home_stats['rushing_fumbles_lost'].sum()),
-                'takeaways': int(home_stats['def_interceptions'].sum() + home_stats['fumble_recovery_opp'].sum()),
-                'sacks_taken': int(home_stats['sacks_suffered'].sum()),
-                'def_pass_epa': 0,  # Not in raw data
-                'def_rush_epa': 0,  # Not in raw data
-                'last_5_ppg': float(home_stats.head(5)['points'].mean()) if 'points' in home_stats.columns and len(home_stats) >= 5 else 0,
-                'last_5_pa': float(home_stats.head(5)['points_allowed'].mean()) if 'points_allowed' in home_stats.columns and len(home_stats) >= 5 else 0,
-            })
-        print(f"✅ Loaded nflverse stats for {away} and {home}")
-    except Exception as e:
-        print(f"⚠️ Warning: Could not fetch nflverse data: {e}")
     
     """
     # DISABLED CODE - was making 17 ESPN API calls on every page load
@@ -2873,45 +2805,6 @@ def live_games():
         return jsonify(result)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-@app.route('/api/generate-ai-picks', methods=['POST'])
-def generate_ai_picks_route():
-    """Generate ChatGPT picks for the week"""
-    try:
-        from edge_hunt.chatgpt_picks import generate_weekly_picks
-        
-        week = request.args.get('week', type=int)
-        result = generate_weekly_picks(current_week=week, save_to_file=True)
-        
-        if 'error' in result:
-            return jsonify(result), 400
-        
-        return jsonify(result)
-    
-    except Exception as e:
-        return jsonify({
-            'error': f'Failed to generate picks: {str(e)}'
-        }), 500
-
-
-@app.route('/api/ai-picks')
-def get_ai_picks():
-    """Get saved ChatGPT picks for a week"""
-    try:
-        from edge_hunt.chatgpt_picks import load_weekly_picks
-        
-        week = request.args.get('week', type=int)
-        result = load_weekly_picks(week=week)
-        
-        if 'error' in result:
-            return jsonify(result), 404
-        
-        return jsonify(result)
-    
-    except Exception as e:
-        return jsonify({
-            'error': f'Failed to load picks: {str(e)}'
-        }), 500
 
 if __name__ == '__main__':
     app.run(debug=False, port=9876, host='0.0.0.0')

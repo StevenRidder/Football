@@ -25,30 +25,6 @@
     color: #374151 !important; /* Dark gray text */
     font-weight: 600;
   }
-  
-  /* Sortable column styling using Tabler patterns only */
-  th.sortable {
-    cursor: pointer;
-    user-select: none;
-  }
-  th.sortable:hover {
-    background-color: var(--tblr-table-hover-bg);
-  }
-  th.sortable .ti-selector {
-    opacity: 0.3;
-    transition: opacity 0.2s;
-  }
-  th.sortable:hover .ti-selector {
-    opacity: 0.6;
-  }
-  th.sortable.sort-asc .ti-selector::before {
-    content: "\ea12"; /* ti-chevron-up */
-    opacity: 1;
-  }
-  th.sortable.sort-desc .ti-selector::before {
-    content: "\ea13"; /* ti-chevron-down */
-    opacity: 1;
-  }
 </style>
 <div class="page-wrapper">
   <div class="page-header d-print-none">
@@ -177,14 +153,14 @@
                 <table class="table table-vcenter card-table table-striped" id="betsTable">
                   <thead>
                     <tr>
-                      <th data-sort="ticket" class="w-1 sortable">Ticket # <i class="ti ti-selector ms-1"></i></th>
-                      <th data-sort="date" class="sortable">Date <i class="ti ti-selector ms-1"></i></th>
-                      <th data-sort="description" class="sortable">Description <i class="ti ti-selector ms-1"></i></th>
-                      <th data-sort="type" class="sortable">Type <i class="ti ti-selector ms-1"></i></th>
-                      <th data-sort="status" class="sortable">Status <i class="ti ti-selector ms-1"></i></th>
-                      <th data-sort="amount" class="text-end sortable">Amount <i class="ti ti-selector ms-1"></i></th>
-                      <th data-sort="towin" class="text-end sortable">To Win <i class="ti ti-selector ms-1"></i></th>
-                      <th data-sort="profit" class="text-end sortable">Profit <i class="ti ti-selector ms-1"></i></th>
+                      <th class="w-1">Ticket #</th>
+                      <th>Date</th>
+                      <th>Description</th>
+                      <th>Type</th>
+                      <th>Status</th>
+                      <th class="text-end">Amount</th>
+                      <th class="text-end">To Win</th>
+                      <th class="text-end">Profit</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -298,7 +274,7 @@ For parlays with multiple legs:
 TicketID | Date | Team1 +3.5 | Team2 ML | Over 45.5 | Parlay | Pending | 10.00 | 50.00"></textarea>
               </div>
               
-              <button class="btn btn-primary btn-lg" onclick="loadBets()">
+              <button class="btn btn-primary btn-lg" id="loadBetsBtn" onclick="loadBets()">
                 <i class="ti ti-upload icon me-2"></i>
                 Load Bets
               </button>
@@ -1310,7 +1286,7 @@ function parseBetOnlineData(text) {
   }
   
   // Extract type (handle multi-word types like "Same Game Parlay")
-  const typeMatch = text.match(/Type:\s*(.+?)(?:\n|$)/);
+  const typeMatch = text.match(/Type:\s*(.+?)(?:\n|Product:)/);
   const betType = typeMatch ? typeMatch[1].trim() : 'Unknown';
   console.log('✓ Type:', betType);
   
@@ -1328,6 +1304,11 @@ function parseBetOnlineData(text) {
   const statusMatch = text.match(/Status:\s*(\w+)/);
   const status = statusMatch ? statusMatch[1] : 'Pending';
   console.log('✓ Status:', status);
+  
+  // Extract description (EVERYTHING after "Description:" until end or next field)
+  const descMatch = text.match(/Description:\s*(.+?)(?:\n\n|$)/s);
+  const description = descMatch ? descMatch[1].trim() : '';
+  console.log('✓ Description length:', description.length);
   
   // Team name to abbreviation mapping
   const teamMap = {
@@ -1568,9 +1549,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Then update every 30 seconds
   liveStatusInterval = setInterval(updateLiveBetStatus, 30000);
-  
-  // Setup table sorting (minimal client-side logic)
-  setupBetsTableSorting();
 });
 
 // Clean up interval when leaving page
@@ -1579,105 +1557,6 @@ window.addEventListener('beforeunload', function() {
     clearInterval(liveStatusInterval);
   }
 });
-
-// Sorting state and functions for bets table
-let currentBetsSortColumn = null;
-let currentBetsSortDirection = 'asc';
-
-function setupBetsTableSorting() {
-  document.querySelectorAll('#betsTable th.sortable').forEach(th => {
-    th.addEventListener('click', function() {
-      const sortKey = this.getAttribute('data-sort');
-      
-      // Toggle direction if clicking same column
-      if (currentBetsSortColumn === sortKey) {
-        currentBetsSortDirection = currentBetsSortDirection === 'asc' ? 'desc' : 'asc';
-      } else {
-        currentBetsSortColumn = sortKey;
-        currentBetsSortDirection = 'asc';
-      }
-      
-      // Update header UI
-      document.querySelectorAll('#betsTable th.sortable').forEach(header => {
-        header.classList.remove('sort-asc', 'sort-desc');
-      });
-      this.classList.add(`sort-${currentBetsSortDirection}`);
-      
-      // Sort table rows
-      sortBetsTable(sortKey, currentBetsSortDirection);
-    });
-  });
-}
-
-function sortBetsTable(sortKey, direction) {
-  const tbody = document.querySelector('#betsTable tbody');
-  const rows = Array.from(tbody.querySelectorAll('tr'));
-  
-  rows.sort((rowA, rowB) => {
-    let aVal, bVal;
-    
-    // Extract values based on sort key and column index
-    switch(sortKey) {
-      case 'ticket':
-        aVal = rowA.querySelector('td:nth-child(1) small')?.textContent.trim() || '';
-        bVal = rowB.querySelector('td:nth-child(1) small')?.textContent.trim() || '';
-        break;
-      case 'date':
-        aVal = rowA.querySelector('td:nth-child(2)')?.textContent.trim() || '';
-        bVal = rowB.querySelector('td:nth-child(2)')?.textContent.trim() || '';
-        break;
-      case 'description':
-        aVal = rowA.querySelector('td:nth-child(3)')?.textContent.trim() || '';
-        bVal = rowB.querySelector('td:nth-child(3)')?.textContent.trim() || '';
-        break;
-      case 'type':
-        aVal = rowA.querySelector('td:nth-child(4)')?.textContent.trim() || '';
-        bVal = rowB.querySelector('td:nth-child(4)')?.textContent.trim() || '';
-        break;
-      case 'status':
-        aVal = rowA.querySelector('td:nth-child(5)')?.textContent.trim() || '';
-        bVal = rowB.querySelector('td:nth-child(5)')?.textContent.trim() || '';
-        break;
-      case 'amount':
-        const amountTextA = rowA.querySelector('td:nth-child(6)')?.textContent.trim() || '$0';
-        const amountTextB = rowB.querySelector('td:nth-child(6)')?.textContent.trim() || '$0';
-        aVal = parseFloat(amountTextA.replace(/[$,]/g, '')) || 0;
-        bVal = parseFloat(amountTextB.replace(/[$,]/g, '')) || 0;
-        break;
-      case 'towin':
-        const towinTextA = rowA.querySelector('td:nth-child(7)')?.textContent.trim() || '$0';
-        const towinTextB = rowB.querySelector('td:nth-child(7)')?.textContent.trim() || '$0';
-        aVal = parseFloat(towinTextA.replace(/[$,]/g, '')) || 0;
-        bVal = parseFloat(towinTextB.replace(/[$,]/g, '')) || 0;
-        break;
-      case 'profit':
-        const profitTextA = rowA.querySelector('td:nth-child(8)')?.textContent.trim() || '$0';
-        const profitTextB = rowB.querySelector('td:nth-child(8)')?.textContent.trim() || '$0';
-        aVal = parseFloat(profitTextA.replace(/[$,]/g, '')) || 0;
-        bVal = parseFloat(profitTextB.replace(/[$,]/g, '')) || 0;
-        break;
-      default:
-        aVal = '';
-        bVal = '';
-    }
-    
-    // Compare values
-    if (typeof aVal === 'number' && typeof bVal === 'number') {
-      return direction === 'asc' ? aVal - bVal : bVal - aVal;
-    } else {
-      const strA = String(aVal).toLowerCase();
-      const strB = String(bVal).toLowerCase();
-      if (direction === 'asc') {
-        return strA < strB ? -1 : strA > strB ? 1 : 0;
-      } else {
-        return strB < strA ? -1 : strB > strA ? 1 : 0;
-      }
-    }
-  });
-  
-  // Re-append sorted rows
-  rows.forEach(row => tbody.appendChild(row));
-}
 </script>
 
 <!-- Add Tabler badge pulse animation using official CSS custom properties -->
