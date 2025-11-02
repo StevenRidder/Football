@@ -42,6 +42,114 @@ def _parse_signals(signals_data):
             return []
     return []
 
+def generate_betting_recommendations(df_pred):
+    """Generate betting recommendations tables from predictions DataFrame."""
+    
+    # Filter for current week (incomplete games only)
+    current_week_games = df_pred[df_pred['is_completed'] == False].copy()
+    
+    if current_week_games.empty:
+        return None
+    
+    # 1. ATS (Against-the-Spread) Bets
+    ats_bets = []
+    for _, row in current_week_games.iterrows():
+        market_line = row.get('closing_spread', 0)
+        sim_line = row.get('our_spread', 0)
+        edge = abs(market_line - sim_line)
+        pick = row.get('spread_recommendation', 'N/A')
+        conviction = row.get('spread_conviction', 'LOW')
+        edge_pct = row.get('spread_edge_pct', 0)
+        
+        # Calculate confidence percentage
+        if conviction == 'HIGH':
+            confidence = min(100, 70 + edge_pct * 3)
+        elif conviction == 'MEDIUM':
+            confidence = min(70, 53 + edge_pct * 2)
+        else:
+            confidence = min(60, 50 + edge_pct)
+        
+        ats_bets.append({
+            'game': f"{row['away_team']} @ {row['home_team']}",
+            'market_line': f"{row['home_team']} {market_line:+.1f}",
+            'sim_line': f"{row['home_team']} {sim_line:+.1f}",
+            'edge': f"{edge:.1f}-pt edge",
+            'pick': pick,
+            'confidence': f"{confidence:.0f}%",
+            'conviction': conviction,
+            'edge_value': edge
+        })
+    
+    # Sort by edge (descending)
+    ats_bets = sorted(ats_bets, key=lambda x: x['edge_value'], reverse=True)[:11]
+    
+    # 2. Totals (Over/Under)
+    total_bets = []
+    for _, row in current_week_games.iterrows():
+        market_total = row.get('closing_total', 0)
+        sim_total = row.get('our_total', 0)
+        edge = abs(market_total - sim_total)
+        pick = row.get('total_recommendation', 'Pass')
+        conviction = row.get('total_conviction', 'LOW')
+        edge_pct = row.get('total_edge_pct', 0)
+        
+        if pick != 'Pass':
+            # Calculate confidence
+            if edge >= 10:
+                confidence = 87
+            elif edge >= 5:
+                confidence = 70
+            else:
+                confidence = 60
+            
+            total_bets.append({
+                'game': f"{row['away_team']} @ {row['home_team']}",
+                'market_total': f"{market_total:.1f}",
+                'sim_total': f"{sim_total:.1f}",
+                'edge': f"{market_total - sim_total:+.1f} pts",
+                'pick': pick,
+                'confidence': f"{confidence}%",
+                'edge_value': edge
+            })
+    
+    # Sort by edge (descending)
+    total_bets = sorted(total_bets, key=lambda x: x['edge_value'], reverse=True)[:7]
+    
+    # 3. Moneyline Value
+    ml_picks = []
+    for _, row in current_week_games.iterrows():
+        home_score = row.get('our_home_score', 0)
+        away_score = row.get('our_away_score', 0)
+        edge = abs(home_score - away_score)
+        
+        if edge >= 10:  # Significant edge
+            winner = row['home_team'] if home_score > away_score else row['away_team']
+            ml_picks.append({
+                'game': f"{row['away_team']} @ {row['home_team']}",
+                'market_proj': 'N/A',
+                'sim_proj': f"{int(away_score)}-{int(home_score)}",
+                'edge': 'Huge' if edge >= 15 else 'Strong' if edge >= 12 else 'Solid',
+                'pick': f"{winner} ML",
+                'edge_value': edge
+            })
+    
+    # Sort by edge (descending)
+    ml_picks = sorted(ml_picks, key=lambda x: x['edge_value'], reverse=True)[:5]
+    
+    # 4. Final Recommendations - Top 3 from each category
+    recommendations = {
+        'ats': ats_bets[:4] if len(ats_bets) >= 4 else ats_bets,
+        'totals': total_bets[:4] if len(total_bets) >= 4 else total_bets,
+        'moneyline': ml_picks[:4] if len(ml_picks) >= 4 else ml_picks
+    }
+    
+    return {
+        'ats_bets': ats_bets,
+        'total_bets': total_bets,
+        'ml_picks': ml_picks,
+        'recommendations': recommendations
+    }
+
 # Load predictions functions
 def load_simulator_predictions(force_reload=False):
     """Load simulator predictions from backtest_all_games_conviction.py (formatted for frontend)."""
@@ -125,12 +233,16 @@ def index():
 
     # Load team bias data for indicators
     team_win_rates = get_team_win_rates()
+    
+    # Generate betting recommendations from current predictions
+    betting_recommendations = generate_betting_recommendations(df)
 
     return render_template('alpha_index_v3.html',
                           current_week=current_week,
                           all_weeks=all_weeks,
                           total_games=len(df),
-                          team_win_rates=team_win_rates)
+                          team_win_rates=team_win_rates,
+                          betting_recommendations=betting_recommendations)
 
 def get_team_win_rates():
     """Get historical win rates for each team (for spread bets)"""

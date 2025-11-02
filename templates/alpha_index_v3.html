@@ -73,112 +73,169 @@
       </div>
     </div>
     
-    <!-- AI Betting Expert Section -->
-    <div class="card mb-3" id="ai-picks-section" style="display: none;">
+    <!-- Betting Recommendations Section -->
+    {% if betting_recommendations %}
+    <div class="card mb-3">
       <div class="card-header">
-        <div class="row align-items-center">
-          <div class="col">
-            <h3 class="card-title">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brain me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></svg>
-              AI Betting Expert - Week <span id="ai-week-num"></span>
-            </h3>
-            <div class="text-muted small">ChatGPT-4 analysis of model edges vs. market lines</div>
-          </div>
-          <div class="col-auto">
-            <button class="btn btn-primary" onclick="generateAIPicks()" id="btn-generate-picks">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sparkles me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6z" /></svg>
-              Generate AI Picks
-            </button>
-          </div>
-        </div>
+        <h3 class="card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-line me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="3 3 3 21 21 21" /><polyline points="7 10 12 15 17 10 21 14" /></svg>
+          This Week's Best Bets - Model vs. Market Analysis
+        </h3>
+        <div class="text-muted small">Automated edge analysis: Simulator predictions vs. closing lines</div>
       </div>
       <div class="card-body">
-        <div id="ai-picks-loading" style="display: none;">
-          <div class="alert alert-info">
-            <div class="d-flex align-items-center">
-              <div class="spinner-border spinner-border-sm me-3" role="status"></div>
-              <div>
-                <strong>Analyzing predictions...</strong>
-                <div class="text-muted small">ChatGPT-4 is evaluating betting edges (30-60 seconds)</div>
-              </div>
+        
+        <!-- ATS Bets Table -->
+        <div class="mb-4">
+          <h4 class="mb-3">🎯 Against-the-Spread (ATS) Bets</h4>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>Game</th>
+                  <th>Market Line</th>
+                  <th>Sim Line</th>
+                  <th>Edge</th>
+                  <th>Pick</th>
+                  <th>Confidence</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for bet in betting_recommendations.ats_bets %}
+                <tr class="{% if bet.conviction == 'HIGH' %}table-success{% endif %}">
+                  <td><strong>{{ bet.game }}</strong></td>
+                  <td>{{ bet.market_line }}</td>
+                  <td>{{ bet.sim_line }}</td>
+                  <td>{{ bet.edge }}</td>
+                  <td><span class="badge bg-primary">{{ bet.pick }}</span></td>
+                  <td>
+                    <span class="badge {% if bet.conviction == 'HIGH' %}bg-success{% elif bet.conviction == 'MEDIUM' %}bg-warning{% else %}bg-secondary{% endif %}">
+                      {{ bet.confidence }}
+                    </span>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="text-muted small">
+            <strong>Top ATS plays:</strong> 
+            {% for bet in betting_recommendations.recommendations.ats %}
+              {{ bet.pick }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        
+        <!-- Totals Table -->
+        {% if betting_recommendations.total_bets %}
+        <div class="mb-4">
+          <h4 class="mb-3">📊 Totals (Over/Under)</h4>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>Game</th>
+                  <th>Market Total</th>
+                  <th>Sim Total</th>
+                  <th>Edge</th>
+                  <th>Pick</th>
+                  <th>Confidence</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for bet in betting_recommendations.total_bets %}
+                <tr>
+                  <td><strong>{{ bet.game }}</strong></td>
+                  <td>{{ bet.market_total }}</td>
+                  <td>{{ bet.sim_total }}</td>
+                  <td>{{ bet.edge }}</td>
+                  <td><span class="badge bg-info">{{ bet.pick }}</span></td>
+                  <td><span class="badge bg-secondary">{{ bet.confidence }}</span></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="text-muted small">
+            <strong>Top Totals:</strong> 
+            {% for bet in betting_recommendations.recommendations.totals %}
+              {{ bet.pick }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        
+        <!-- Moneyline Table -->
+        {% if betting_recommendations.ml_picks %}
+        <div class="mb-4">
+          <h4 class="mb-3">💰 Moneyline Value</h4>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>Game</th>
+                  <th>Market Projection</th>
+                  <th>Sim Projection</th>
+                  <th>Edge</th>
+                  <th>Moneyline Pick</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for bet in betting_recommendations.ml_picks %}
+                <tr>
+                  <td><strong>{{ bet.game }}</strong></td>
+                  <td>{{ bet.market_proj }}</td>
+                  <td>{{ bet.sim_proj }}</td>
+                  <td><span class="badge bg-success">{{ bet.edge }}</span></td>
+                  <td><span class="badge bg-primary">{{ bet.pick }}</span></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="text-muted small">
+            <strong>Top Moneyline picks:</strong> 
+            {% for bet in betting_recommendations.recommendations.moneyline %}
+              {{ bet.pick }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        
+        <!-- Final Recommendations Summary -->
+        <div class="alert alert-success mb-0">
+          <h4 class="alert-title">🏆 Final Recommendations</h4>
+          <div class="row">
+            <div class="col-md-4">
+              <h5>ATS</h5>
+              <ul class="mb-0">
+                {% for bet in betting_recommendations.recommendations.ats %}
+                <li><strong>{{ bet.pick }}</strong> ({{ bet.conviction }})</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5>Totals</h5>
+              <ul class="mb-0">
+                {% for bet in betting_recommendations.recommendations.totals %}
+                <li><strong>{{ bet.pick }}</strong></li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5>Moneyline</h5>
+              <ul class="mb-0">
+                {% for bet in betting_recommendations.recommendations.moneyline %}
+                <li><strong>{{ bet.pick }}</strong></li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
         </div>
         
-        <div id="ai-picks-content">
-          <!-- ATS Bets Table -->
-          <div class="mb-4">
-            <h4 class="mb-3">🎯 Against-the-Spread (ATS) Plays</h4>
-            <div class="table-responsive">
-              <table class="table table-sm table-hover" id="ai-ats-table">
-                <thead>
-                  <tr>
-                    <th>Game</th>
-                    <th>Market Line</th>
-                    <th>Model Line</th>
-                    <th>Edge</th>
-                    <th>Pick</th>
-                    <th>Confidence</th>
-                  </tr>
-                </thead>
-                <tbody id="ai-ats-body">
-                  <tr><td colspan="6" class="text-center text-muted">Click "Generate AI Picks" to analyze</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          
-          <!-- Totals Table -->
-          <div class="mb-4">
-            <h4 class="mb-3">📊 Totals (Over/Under)</h4>
-            <div class="table-responsive">
-              <table class="table table-sm table-hover" id="ai-totals-table">
-                <thead>
-                  <tr>
-                    <th>Game</th>
-                    <th>Market Total</th>
-                    <th>Model Total</th>
-                    <th>Edge</th>
-                    <th>Pick</th>
-                    <th>Confidence</th>
-                  </tr>
-                </thead>
-                <tbody id="ai-totals-body">
-                  <tr><td colspan="6" class="text-center text-muted">Click "Generate AI Picks" to analyze</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          
-          <!-- Moneyline Table -->
-          <div class="mb-4">
-            <h4 class="mb-3">💰 Moneyline Value Plays</h4>
-            <div class="table-responsive">
-              <table class="table table-sm table-hover" id="ai-ml-table">
-                <thead>
-                  <tr>
-                    <th>Game</th>
-                    <th>Market Projection</th>
-                    <th>Model Projection</th>
-                    <th>Edge</th>
-                    <th>Pick</th>
-                  </tr>
-                </thead>
-                <tbody id="ai-ml-body">
-                  <tr><td colspan="5" class="text-center text-muted">Click "Generate AI Picks" to analyze</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          
-          <!-- Final Recommendations -->
-          <div class="alert alert-success" id="ai-final-recs" style="display: none;">
-            <h4 class="alert-title">🏆 Top Picks of the Week</h4>
-            <div id="ai-final-content"></div>
-          </div>
-        </div>
       </div>
     </div>
+    {% endif %}
     
     <!-- Admin Tools -->
     <div class="card mb-3">
