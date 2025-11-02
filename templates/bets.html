@@ -1305,11 +1305,6 @@ function parseBetOnlineData(text) {
   const status = statusMatch ? statusMatch[1] : 'Pending';
   console.log('✓ Status:', status);
   
-  // Extract description (EVERYTHING after "Description:" until end or next field)
-  const descMatch = text.match(/Description:\s*(.+?)(?:\n\n|$)/s);
-  const description = descMatch ? descMatch[1].trim() : '';
-  console.log('✓ Description length:', description.length);
-  
   // Team name to abbreviation mapping
   const teamMap = {
     'Arizona Cardinals': 'ARI', 'Atlanta Falcons': 'ATL', 'Baltimore Ravens': 'BAL',

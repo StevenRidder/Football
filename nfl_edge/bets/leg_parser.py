@@ -117,11 +117,12 @@ class ParlayLegParser:
         # Find ALL occurrences - handle BOTH formats:
         # Format 1: "| NUMBER TEAM SPREAD ODDS For Game" (e.g., "| 451 Chicago Bears -2½ -120 For Game")
         # Format 2: "| NUMBER TEAM MONEYLINE For Game" (e.g., "| 460 Green Bay Packers -900 For Game")
+        # Format 3: "| NUMBER TEAM1/TEAM2 over/under LINE ODDS For Game" (totals)
         
-        # Use the general pattern that matches both, then check for optional 2nd number
-        pattern = r'\|\s*(\d+)\s+([A-Za-z\s]+?)\s+([-+]?\d+(?:½)?)\s+([-+]?\d+)?\s*For\s+Game'
+        # Pattern for spreads and moneylines: | 451 Chicago Bears -2½ -120 For Game
+        spread_ml_pattern = r'\|\s*(\d+)\s+([A-Za-z\s]+?)\s+([-+]?\d+(?:½)?)\s+([-+]?\d+)?\s*For\s+Game'
         
-        for match in re.finditer(pattern, description, re.IGNORECASE):
+        for match in re.finditer(spread_ml_pattern, description, re.IGNORECASE):
             game_num = match.group(1)
             team_name = match.group(2).strip()
             line = match.group(3)
@@ -132,6 +133,25 @@ class ParlayLegParser:
                 'team': team_name,
                 'line': line,
                 'odds': odds if odds else line  # If no separate odds, line IS the odds (moneyline)
+            }
+            legs.append(leg)
+        
+        # Pattern for totals: | 457 Indianapolis Colts/Pittsburgh Steelers over 51½ -105 For Game
+        total_pattern = r'\|\s*(\d+)\s+([A-Za-z\s]+)/([A-Za-z\s]+)\s+(over|under)\s+([\d.½]+)\s+([-+]?\d+)\s*For\s+Game'
+        
+        for match in re.finditer(total_pattern, description, re.IGNORECASE):
+            game_num = match.group(1)
+            team1 = match.group(2).strip()
+            team2 = match.group(3).strip()
+            over_under = match.group(4)
+            line = match.group(5).replace('½', '.5')
+            odds = match.group(6)
+            
+            leg = {
+                'description': f"{team1}/{team2} {over_under} {line}",
+                'team': f"{team1}/{team2}",
+                'line': f"{over_under} {line}",
+                'odds': odds
             }
             legs.append(leg)
         
