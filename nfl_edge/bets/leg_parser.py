@@ -114,36 +114,26 @@ class ParlayLegParser:
         """Parse old BetOnline format with 'Football - NFL -' separators"""
         legs = []
         
-        # Split by "Football - NFL -" to separate each game's leg
-        # Handle both clean splits and run-together text
-        games = re.split(r'Football - NFL -', description, flags=re.IGNORECASE)
+        # Find ALL occurrences - handle BOTH formats:
+        # Format 1: "| NUMBER TEAM SPREAD ODDS For Game" (e.g., "| 451 Chicago Bears -2½ -120 For Game")
+        # Format 2: "| NUMBER TEAM MONEYLINE For Game" (e.g., "| 460 Green Bay Packers -900 For Game")
         
-        for game in games:
-            if not game.strip():
-                continue
+        # Use the general pattern that matches both, then check for optional 2nd number
+        pattern = r'\|\s*(\d+)\s+([A-Za-z\s]+?)\s+([-+]?\d+(?:½)?)\s+([-+]?\d+)?\s*For\s+Game'
+        
+        for match in re.finditer(pattern, description, re.IGNORECASE):
+            game_num = match.group(1)
+            team_name = match.group(2).strip()
+            line = match.group(3)
+            odds = match.group(4)  # May be None for moneyline bets
             
-            # Try to extract bet line: "| NUMBER TEAM SPREAD ODDS For Game | DATE | TIME | STATUS"
-            # Example: "| 451 Chicago Bears -2½ -115 For Game | 11/02/2025 | 01:00:00 PM (EST) | Pending"
-            bet_match = re.search(
-                r'\|\s*(\d+)\s+(.+?)\s+([-+]?\d+(?:½)?)\s+([-+]?\d+)\s+For\s+Game',
-                game,
-                re.IGNORECASE
-            )
-            if bet_match:
-                game_num = bet_match.group(1)
-                team_name = bet_match.group(2).strip()
-                spread = bet_match.group(3)
-                odds = bet_match.group(4)
-                
-                leg = {
-                    'description': f"{team_name} {spread}",
-                    'team_name': team_name,
-                    'bet_type': 'Spread',
-                    'line': spread,
-                    'odds': odds,
-                    'game_num': game_num
-                }
-                legs.append(leg)
+            leg = {
+                'description': f"{team_name} {line}",
+                'team': team_name,
+                'line': line,
+                'odds': odds if odds else line  # If no separate odds, line IS the odds (moneyline)
+            }
+            legs.append(leg)
         
         return legs
     
