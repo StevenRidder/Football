@@ -312,14 +312,22 @@ class ESPNDataFetcher:
             data = response.json()
             games = []
             
+            # Helper to normalize team abbreviations (ESPN uses WSH, we use WAS)
+            def normalize_abbr(abbr):
+                return 'WAS' if abbr == 'WSH' else abbr
+            
+            team_abbr_normalized = normalize_abbr(team_abbr)
+            
             for event in data.get('events', []):
                 competition = event.get('competitions', [{}])[0]
                 game_date = event.get('date', '')
                 
                 # Get opponent
                 for competitor in competition.get('competitors', []):
-                    if competitor.get('team', {}).get('abbreviation') != team_abbr:
-                        opponent = competitor.get('team', {}).get('abbreviation', '')
+                    comp_abbr = competitor.get('team', {}).get('abbreviation', '')
+                    comp_abbr = normalize_abbr(comp_abbr)
+                    if comp_abbr != team_abbr_normalized:
+                        opponent = comp_abbr
                         break
                 else:
                     opponent = 'Unknown'
@@ -327,12 +335,33 @@ class ESPNDataFetcher:
                 # Get venue
                 venue = competition.get('venue', {})
                 
+                # Get result for completed games
+                status = competition.get('status', {}).get('type', {}).get('name', '')
+                result = None
+                if status == 'STATUS_FINAL':
+                    for competitor in competition.get('competitors', []):
+                        comp_abbr = competitor.get('team', {}).get('abbreviation', '')
+                        comp_abbr = normalize_abbr(comp_abbr)
+                        score_val = competitor.get('score', 0)
+                        if isinstance(score_val, dict):
+                            score = int(score_val.get('value', 0))
+                        else:
+                            score = int(score_val) if score_val else 0
+                        
+                        if comp_abbr == team_abbr_normalized:
+                            team_score = score
+                        else:
+                            opp_score = score
+                    
+                    result = 'W' if team_score > opp_score else ('L' if team_score < opp_score else 'T')
+                
                 games.append({
                     'date': game_date,
                     'opponent': opponent,
                     'venue': venue.get('fullName', ''),
                     'city': venue.get('address', {}).get('city', ''),
-                    'state': venue.get('address', {}).get('state', '')
+                    'state': venue.get('address', {}).get('state', ''),
+                    'result': result
                 })
             
             return games
@@ -371,20 +400,11 @@ class ESPNDataFetcher:
     @classmethod
     def fetch_last_five_games(cls, team_abbr: str, season: int = 2025) -> List[Dict]:
         """Fetch last 5 games for recent form analysis"""
-        schedule = cls.fetch_team_schedule(team_abbr, season)
-        
-        # Filter to completed games only
-        completed = []
-        for game in schedule:
-            try:
-                game_dt = datetime.fromisoformat(game['date'].replace('Z', '+00:00'))
-                if game_dt < datetime.now():
-                    completed.append(game)
-            except:
-                continue
+        # Use fetch_team_historical_games which has the WSH/WAS fix and gets scores
+        all_games = cls.fetch_team_historical_games(team_abbr, season)
         
         # Return last 5
-        return completed[-5:] if len(completed) >= 5 else completed
+        return all_games[-5:] if len(all_games) >= 5 else all_games
     
     @classmethod
     def fetch_team_historical_games(cls, team_abbr: str, season: int = 2025) -> List[Dict]:
@@ -404,6 +424,13 @@ class ESPNDataFetcher:
             data = response.json()
             games = []
             
+            # Helper to normalize team abbreviations (ESPN uses WSH, we use WAS)
+            def normalize_abbr(abbr):
+                return 'WAS' if abbr == 'WSH' else abbr
+            
+            # Normalize the input team abbreviation for comparison
+            team_abbr_normalized = normalize_abbr(team_abbr)
+            
             for event in data.get('events', []):
                 competition = event.get('competitions', [{}])[0]
                 status = competition.get('status', {}).get('type', {}).get('name', '')
@@ -411,6 +438,9 @@ class ESPNDataFetcher:
                 # Only include completed games
                 if status != 'STATUS_FINAL':
                     continue
+                
+                # Get week number
+                week = event.get('week', {}).get('number', 0)
                 
                 # Get teams and scores
                 home_team = None
@@ -421,6 +451,9 @@ class ESPNDataFetcher:
                 
                 for competitor in competition.get('competitors', []):
                     team_abbr_comp = competitor.get('team', {}).get('abbreviation', '')
+                    # Normalize ESPN abbreviation
+                    team_abbr_comp = normalize_abbr(team_abbr_comp)
+                    
                     # Score might be a string, int, or dict - handle all cases
                     score_val = competitor.get('score', 0)
                     if isinstance(score_val, dict):
@@ -431,7 +464,7 @@ class ESPNDataFetcher:
                     if competitor.get('homeAway') == 'home':
                         home_team = team_abbr_comp
                         home_score = score
-                        if team_abbr_comp == team_abbr:
+                        if team_abbr_comp == team_abbr_normalized:
                             is_home = True
                     else:
                         away_team = team_abbr_comp
@@ -452,11 +485,21 @@ class ESPNDataFetcher:
                     opp_score = home_score
                     opponent = home_team
                 
+                # Calculate result
+                if team_score > opp_score:
+                    result = 'W'
+                elif team_score < opp_score:
+                    result = 'L'
+                else:
+                    result = 'T'
+                
                 games.append({
+                    'week': week,
                     'opponent': opponent,
                     'is_home': is_home,
                     'team_score': team_score,
                     'opp_score': opp_score,
+                    'result': result,
                     'is_indoor': is_indoor,
                     'is_grass': is_grass,
                     'venue_name': venue.get('fullName', ''),

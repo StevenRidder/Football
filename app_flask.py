@@ -534,13 +534,50 @@ def game_detail(away, home, week=None):
     try:
         from espn_data_fetcher import ESPNDataFetcher
         espn_data = ESPNDataFetcher.fetch_comprehensive_game_data(away, home)
+        
+        # Calculate basic rest days from schedule if not available
+        if espn_data['away'].get('rest_days') is None:
+            away_schedule = ESPNDataFetcher.fetch_team_schedule(away, 2025)
+            if away_schedule and len(away_schedule) >= 2:
+                # Use the last two games to estimate rest days
+                try:
+                    from datetime import datetime
+                    sorted_games = sorted(away_schedule, key=lambda x: x['date'])
+                    if len(sorted_games) >= 2:
+                        last_game = datetime.fromisoformat(sorted_games[-2]['date'].replace('Z', '+00:00'))
+                        current_game = datetime.fromisoformat(sorted_games[-1]['date'].replace('Z', '+00:00'))
+                        espn_data['away']['rest_days'] = (current_game - last_game).days
+                except:
+                    espn_data['away']['rest_days'] = 7
+        
+        if espn_data['home'].get('rest_days') is None:
+            home_schedule = ESPNDataFetcher.fetch_team_schedule(home, 2025)
+            if home_schedule and len(home_schedule) >= 2:
+                try:
+                    from datetime import datetime
+                    sorted_games = sorted(home_schedule, key=lambda x: x['date'])
+                    if len(sorted_games) >= 2:
+                        last_game = datetime.fromisoformat(sorted_games[-2]['date'].replace('Z', '+00:00'))
+                        current_game = datetime.fromisoformat(sorted_games[-1]['date'].replace('Z', '+00:00'))
+                        espn_data['home']['rest_days'] = (current_game - last_game).days
+                except:
+                    espn_data['home']['rest_days'] = 7
+        
+        # Set travel distance for home team to 0 (they don't travel)
+        if espn_data['home'].get('travel_distance') is None:
+            espn_data['home']['travel_distance'] = 0
+        
+        # Set a default for away team if not calculated
+        if espn_data['away'].get('travel_distance') is None:
+            espn_data['away']['travel_distance'] = 0  # Default to 0 if not calculated
+        
         game_data['espn_data'] = espn_data
         print(f"✓ ESPN data loaded for {away} @ {home}", flush=True)
     except Exception as e:
         print(f"⚠️ Could not fetch ESPN data: {e}", flush=True)
         game_data['espn_data'] = {
-            'away': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
-            'home': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
+            'away': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': [], 'rest_days': 7, 'travel_distance': 0},
+            'home': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': [], 'rest_days': 7, 'travel_distance': 0},
             'game_summary': {}
         }
     
@@ -590,9 +627,30 @@ def game_detail(away, home, week=None):
         }
     }
     
-    # Get recent games from ESPN
-    away_recent = espn.get('away', {}).get('last_five', [])
-    home_recent = espn.get('home', {}).get('last_five', [])
+    # Get recent games from ESPN and transform to expected format
+    away_last_five = espn.get('away', {}).get('last_five', [])
+    home_last_five = espn.get('home', {}).get('last_five', [])
+    
+    # Transform historical game data to template format
+    away_recent = []
+    for game in away_last_five:
+        away_recent.append({
+            'week': game.get('week', 'N/A'),
+            'opponent': game.get('opponent', 'Unknown'),
+            'points_scored': game.get('team_score', 0),
+            'points_allowed': game.get('opp_score', 0),
+            'result': game.get('result', '-')
+        })
+    
+    home_recent = []
+    for game in home_last_five:
+        home_recent.append({
+            'week': game.get('week', 'N/A'),
+            'opponent': game.get('opponent', 'Unknown'),
+            'points_scored': game.get('team_score', 0),
+            'points_allowed': game.get('opp_score', 0),
+            'result': game.get('result', '-')
+        })
     
     # Fetch nflverse data for stats - use RAW data with all columns
     try:
@@ -714,6 +772,7 @@ def game_detail(away, home, week=None):
                     pts_scored = espn_game['away_score']
                     pts_allowed = espn_game['home_score']
                 elif espn_game['home_team'] == team_code:
+                    is_home = True
                     opponent = espn_game['away_team']
                     pts_scored = espn_game['home_score']
                     pts_allowed = espn_game['away_score']
@@ -732,6 +791,7 @@ def game_detail(away, home, week=None):
                     games.append({
                         'week': week,
                         'opponent': opponent,
+                        'is_home': is_home,
                         'points_scored': pts_scored,  # ESPN (accurate)
                         'points_allowed': pts_allowed,  # ESPN (accurate)
                         'result': 'W' if pts_scored > pts_allowed else ('L' if pts_scored < pts_allowed else 'T'),
@@ -750,6 +810,7 @@ def game_detail(away, home, week=None):
                     games.append({
                         'week': week,
                         'opponent': opponent,
+                        'is_home': is_home,
                         'points_scored': pts_scored,
                         'points_allowed': pts_allowed,
                         'result': 'W' if pts_scored > pts_allowed else ('L' if pts_scored < pts_allowed else 'T'),
@@ -2758,6 +2819,49 @@ def api_generate_predictions():
             'message': f'Generation failed: {str(e)}'
         })
 
+@app.route('/api/run-script/sim_week9_10', methods=['POST'])
+def api_run_simulator_predictions():
+    """Run simulator predictions for next 2 weeks (dynamically determined)"""
+    try:
+        import subprocess
+        from pathlib import Path
+        
+        script_path = Path(__file__).parent / 'simulation_engine' / 'nflfastR_simulator' / 'scripts' / 'generate_week9_10_predictions.py'
+        
+        # Run the simulator prediction script
+        result = subprocess.run(
+            ['python3', str(script_path)],
+            cwd='/Users/steveridder/Git/Football',
+            capture_output=True,
+            text=True,
+            timeout=300  # 5 minute timeout
+        )
+        
+        if result.returncode == 0:
+            return jsonify({
+                'success': True,
+                'message': '✅ Predictions generated successfully! Reload page to see Week 10.',
+                'output': result.stdout
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'message': 'Prediction generation failed',
+                'error': result.stderr or 'Script failed to run',
+                'output': result.stdout
+            }), 500
+            
+    except subprocess.TimeoutExpired:
+        return jsonify({
+            'success': False,
+            'error': 'Script timed out after 5 minutes'
+        }), 500
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
 @app.route('/api/predictions/history', methods=['GET'])
 def api_predictions_history():
     """Get list of historical prediction files"""
@@ -2985,6 +3089,96 @@ def live_games():
         return jsonify(result)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/api/fetch-live-scores', methods=['POST'])
+def api_fetch_live_scores():
+    """Fetch live scores from ESPN and update predictions"""
+    try:
+        import subprocess
+        from pathlib import Path
+        
+        # Run the fetch_live_scores script
+        script_path = Path(__file__).parent / 'scripts' / 'fetch_live_scores.py'
+        
+        result = subprocess.run(
+            ['python3', str(script_path)],
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        
+        if result.returncode == 0:
+            # Count how many games were updated from the output
+            output_lines = result.stdout.split('\n')
+            updated_games = 0
+            for line in output_lines:
+                if 'Updated' in line and 'games' in line:
+                    # Extract number from "✅ Updated X games"
+                    import re
+                    match = re.search(r'Updated (\d+) games', line)
+                    if match:
+                        updated_games = int(match.group(1))
+            
+            return jsonify({
+                'success': True,
+                'message': f'Updated {updated_games} games with live scores',
+                'output': result.stdout
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': f'Script failed: {result.stderr}',
+                'output': result.stdout
+            })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        })
+
+@app.route('/api/run-weekly-prep', methods=['POST'])
+def api_run_weekly_prep():
+    """Run weekly data preparation script (NFLverse + calibration)"""
+    try:
+        import subprocess
+        from pathlib import Path
+        import os
+        
+        script_path = Path(__file__).parent / 'scripts' / 'weekly_data_prep.sh'
+        
+        # Make sure script is executable
+        os.chmod(script_path, 0o755)
+        
+        result = subprocess.run(
+            ['bash', str(script_path)],
+            capture_output=True,
+            text=True,
+            timeout=300  # 5 minute timeout
+        )
+        
+        if result.returncode == 0:
+            return jsonify({
+                'success': True,
+                'message': '✅ Weekly data prep complete! NFLverse stats updated and calibration re-fit.',
+                'output': result.stdout
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': result.stderr or 'Script failed',
+                'output': result.stdout
+            })
+            
+    except subprocess.TimeoutExpired:
+        return jsonify({
+            'success': False,
+            'error': 'Script timed out after 5 minutes. This is unusual - check logs.'
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        })
 
 @app.route('/api/generate-ai-picks', methods=['POST'])
 def generate_ai_picks_route():

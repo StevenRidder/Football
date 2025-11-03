@@ -237,107 +237,56 @@
     </div>
     {% endif %}
     
-    <!-- Admin Tools -->
+    <!-- Weekly Workflow -->
     <div class="card mb-3">
       <div class="card-header">
         <h3 class="card-title">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tools me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4" /><path d="M14.5 5.5l4 4" /><path d="M12 8l-5 -5l-4 4l5 5" /><path d="M7 8l-1.5 1.5" /><path d="M16 12l5 5l-4 4l-5 -5" /><path d="M16 17l-1.5 1.5" /></svg>
-          Data Update Tools
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M16 3l0 4" /><path d="M8 3l0 4" /><path d="M4 11l16 0" /><path d="M8 15h2v2h-2z" /></svg>
+          Weekly Workflow
         </h3>
+        <div class="text-muted small">Run these steps every week to generate sharp predictions</div>
       </div>
       <div class="card-body">
         <div class="row g-3">
+          <!-- Step 1: Data Prep -->
           <div class="col-md-4">
-            <button class="btn btn-primary w-100" onclick="runScript('ol_continuity')" id="btn-ol">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
-              Update OL Continuity
+            <div class="badge bg-blue text-white mb-2 w-100">STEP 1: Tuesday AM</div>
+            <button class="btn btn-primary w-100" onclick="runWeeklyDataPrep()" id="btn-weekly-prep">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-import me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 8 3" /><path d="M4 12v6a8 3 0 0 0 8 3" /><path d="M19 15v-2" /><path d="M19 21l3 -3l-3 -3" /><path d="M22 18h-9" /></svg>
+              Weekly Data Prep
             </button>
-            <div class="text-muted mt-1 small">Calculate offensive line continuity stats</div>
+            <div class="text-muted mt-1 small">Updates NFLverse stats + calibration (2-3 min)</div>
           </div>
+          
+          <!-- Step 2: Generate Predictions -->
           <div class="col-md-4">
-            <button class="btn btn-primary w-100" onclick="runScript('dl_pressure')" id="btn-dl">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
-              Update DL Pressure
+            <div class="badge bg-green text-white mb-2 w-100">STEP 2: Wednesday</div>
+            <button class="btn btn-success w-100" onclick="runScript('sim_week9_10')" id="btn-sim-week9-10">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brain me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></svg>
+              Predict Next 2 Weeks
             </button>
-            <div class="text-muted mt-1 small">Calculate defensive line pressure stats</div>
+            <div class="text-muted mt-1 small">Generates predictions for upcoming games (30 sec)</div>
           </div>
+          
+          <!-- Step 3: Live Scores -->
           <div class="col-md-4">
-            <button class="btn btn-primary w-100" onclick="runScript('matchup_stress')" id="btn-stress">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
-              Update Matchup Stress
-            </button>
-            <div class="text-muted mt-1 small">Combine OL/DL into matchup stress features</div>
-          </div>
-        </div>
-        <div class="row g-3 mt-2">
-        <div class="col-md-4">
+            <div class="badge bg-orange text-white mb-2 w-100">STEP 3: Game Day</div>
             <button class="btn btn-warning w-100" onclick="fetchLiveScores()" id="btn-fetch-scores">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-live-photo me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r=".5" fill="currentColor" /><circle cx="12" cy="12" r="7" /><path d="M8 8l-2.5 -2.5" /><path d="M16 8l2.5 -2.5" /><path d="M8 16l-2.5 2.5" /><path d="M16 16l2.5 2.5" /></svg>
               Fetch Live Scores
             </button>
-            <div class="text-muted mt-1 small">Get latest scores from ESPN API</div>
+            <div class="text-muted mt-1 small">Updates game results from ESPN (10 sec)</div>
+          </div>
         </div>
-        <div class="col-md-4">
+        
+        <!-- Utility Button -->
+        <div class="row g-3 mt-2">
+          <div class="col-md-12">
             <button class="btn btn-info w-100" onclick="reloadData()" id="btn-reload">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg>
-              Reload Data
+              Reload Predictions (Cache Bust)
             </button>
-            <div class="text-muted mt-1 small">Refresh predictions from CSV (cache bust)</div>
-        </div>
-          <div class="col-md-8">
-            <button class="btn btn-success w-100" onclick="runScript('predictions')" id="btn-predictions">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brain me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></svg>
-              Regenerate Predictions
-            </button>
-            <div class="text-muted mt-1 small">Run XGBoost model to generate new predictions</div>
-          </div>
-          <div class="col-md-6">
-            <button class="btn btn-info w-100" onclick="runScript('future_stress')" id="btn-future">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-stats me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" /><path d="M18 14v4h4" /><path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M15 3v4" /><path d="M7 3v4" /><path d="M3 11h16" /></svg>
-              Project Future Stress
-            </button>
-            <div class="text-muted mt-1 small">Generate estimated stress for upcoming weeks</div>
-            </div>
-          </div>
-         <div class="row g-3 mt-2">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Simulator Predictions</h3>
-              </div>
-              <div class="card-body">
-                <div class="row g-3">
-                  <div class="col-md-3">
-                    <button class="btn btn-primary w-100" onclick="runScript('sim_backtest')" id="btn-sim-backtest">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3" /><path d="M4 12c0 1.657 3.582 3 8 3s8 -1.343 8 -3" /><path d="M4 18c0 1.657 3.582 3 8 3s8 -1.343 8 -3" /></svg>
-                      Backtest Weeks 1-8
-                    </button>
-                    <div class="text-muted mt-1 small">Generate backtest for weeks 1-8 with results</div>
-                  </div>
-                  <div class="col-md-3">
-                    <button class="btn btn-primary w-100" onclick="runScript('sim_week9_10')" id="btn-sim-week9-10">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /></svg>
-                      Predict Next 2 Weeks
-                    </button>
-                    <div class="text-muted mt-1 small">Auto-generates predictions for current + next week</div>
-                  </div>
-                  <div class="col-md-3">
-                    <button class="btn btn-secondary w-100" onclick="runScript('sim_format')" id="btn-sim-format">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg>
-                      Format for Frontend
-                    </button>
-                    <div class="text-muted mt-1 small">Format predictions for display</div>
-                  </div>
-                  <div class="col-md-3">
-                    <button class="btn btn-success w-100" onclick="runScript('sim_all')" id="btn-sim-all">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-player-play me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 4v16l13 -8z" /></svg>
-                      Generate All
-                    </button>
-                    <div class="text-muted mt-1 small">Run all steps: backtest + predict + format</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="text-muted mt-1 small">Refresh predictions from CSV if they don't auto-update</div>
           </div>
         </div>
         <div id="script-output" class="mt-3" style="display: none;">
@@ -1030,6 +979,45 @@ async function explainBet(awayTeam, homeTeam, week, betType) {
 }
 
 // Reload data function
+        async function runWeeklyDataPrep() {
+          const btn = document.getElementById('btn-weekly-prep');
+          const output = document.getElementById('script-output');
+          const status = document.getElementById('script-status');
+          const message = document.getElementById('script-message');
+          
+          btn.disabled = true;
+          btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Updating Data...';
+          output.style.display = 'block';
+          status.textContent = 'Running weekly data prep...';
+          message.textContent = 'Updating NFLverse stats and calibration (2-3 min)';
+          
+          try {
+            const res = await fetch('/api/run-weekly-prep', {
+              method: 'POST'
+            });
+            
+            const data = await res.json();
+            
+            if (data.success) {
+              status.textContent = '✅ Complete!';
+              message.textContent = data.message;
+              btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-import me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 8 3" /><path d="M4 12v6a8 3 0 0 0 8 3" /><path d="M19 15v-2" /><path d="M19 21l3 -3l-3 -3" /><path d="M22 18h-9" /></svg>Weekly Data Prep`;
+              btn.disabled = false;
+              setTimeout(() => output.style.display = 'none', 5000);
+            } else {
+              status.textContent = '❌ Failed';
+              message.textContent = data.error;
+              btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-import me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 8 3" /><path d="M4 12v6a8 3 0 0 0 8 3" /><path d="M19 15v-2" /><path d="M19 21l3 -3l-3 -3" /><path d="M22 18h-9" /></svg>Weekly Data Prep`;
+              btn.disabled = false;
+            }
+          } catch (error) {
+            status.textContent = '❌ Error';
+            message.textContent = error.message;
+            btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-import me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 8 3" /><path d="M4 12v6a8 3 0 0 0 8 3" /><path d="M19 15v-2" /><path d="M19 21l3 -3l-3 -3" /><path d="M22 18h-9" /></svg>Weekly Data Prep`;
+            btn.disabled = false;
+          }
+        }
+
         async function fetchLiveScores() {
           const btn = document.getElementById('btn-fetch-scores');
           btn.disabled = true;
