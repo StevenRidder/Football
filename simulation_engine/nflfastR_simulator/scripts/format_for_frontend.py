@@ -21,17 +21,13 @@ def format_conviction_badge(conviction):
         return 'bg-secondary'  # Gray badge for low conviction
     return None
 
-def format_spread_bet(bet, home_team=None, away_team=None):
-    """Format spread bet recommendation with actual team name."""
+def format_spread_bet(bet):
+    """Format spread bet recommendation."""
     if pd.isna(bet) or bet is None:
         return 'Pass'
     
     bet = str(bet).upper()
-    if bet == 'HOME' and home_team:
-        return f'{home_team} ATS'
-    elif bet == 'AWAY' and away_team:
-        return f'{away_team} ATS'
-    elif bet == 'HOME':
+    if bet == 'HOME':
         return 'Home ATS'
     elif bet == 'AWAY':
         return 'Away ATS'
@@ -99,31 +95,9 @@ def convert_backtest_to_frontend(input_file, output_file):
     frontend_df['week'] = df['week']
     frontend_df['season'] = df.get('season', 2025)
     
-    # Market lines - CRITICAL: Use total_line from backtest (Odds API data)
-    # Backtest CSV uses total_line (from Odds API), not closing_total
-    # Priority: closing_total > total_line > market_total > 45.0 (fallback)
+    # Market lines
     frontend_df['closing_spread'] = df.get('spread_line', df.get('market_spread', 0.0))
-    
-    # For totals, check multiple column names in priority order
-    if 'closing_total' in df.columns:
-        frontend_df['closing_total'] = df['closing_total']
-    elif 'total_line' in df.columns:
-        # CRITICAL FIX: Backtest uses total_line (from Odds API), use that!
-        frontend_df['closing_total'] = df['total_line']
-        print(f"   ✅ Using total_line column for closing_total (Odds API data)")
-    elif 'market_total' in df.columns:
-        frontend_df['closing_total'] = df['market_total']
-    else:
-        print(f"   ⚠️  WARNING: No total column found, using 45.0 default")
-        frontend_df['closing_total'] = 45.0
-    
-    # Verify we're not using all 45.0 values
-    unique_totals = frontend_df['closing_total'].unique()
-    if len(unique_totals) == 1 and unique_totals[0] == 45.0:
-        print(f"   ⚠️  WARNING: All closing_totals are 45.0 - may be placeholder!")
-    else:
-        print(f"   ✅ Closing totals range: {frontend_df['closing_total'].min():.1f} to {frontend_df['closing_total'].max():.1f}")
-    
+    frontend_df['closing_total'] = df.get('closing_total', df.get('market_total', 45.0))
     frontend_df['opening_spread'] = df.get('opening_spread', frontend_df['closing_spread'])
     frontend_df['opening_total'] = df.get('opening_total', frontend_df['closing_total'])
     
@@ -205,11 +179,8 @@ def convert_backtest_to_frontend(input_file, output_file):
     )
     frontend_df['is_completed'] = has_results
     
-    # Bet recommendations (with team names for spread bets)
-    frontend_df['spread_recommendation'] = df.apply(
-        lambda row: format_spread_bet(row['spread_bet'], row['home_team'], row['away_team']), 
-        axis=1
-    )
+    # Bet recommendations
+    frontend_df['spread_recommendation'] = df['spread_bet'].apply(format_spread_bet)
     frontend_df['total_recommendation'] = df['total_bet'].apply(format_total_bet)
     
     # Conviction levels (keep original values)
@@ -234,18 +205,17 @@ def convert_backtest_to_frontend(input_file, output_file):
     frontend_df['spread_rec_confidence'] = (0.50 + frontend_df['spread_edge_pct'] / 100.0 * 4.0).clip(0.0, 1.0)
     frontend_df['total_rec_confidence'] = (0.50 + frontend_df['total_edge_pct'] / 100.0 * 4.0).clip(0.0, 1.0)
     
-    # Calculate market-implied scores from spread/total lines
-    # CRITICAL: Always calculate market scores when we have valid lines, even for future games
+    # Calculate market-implied scores (only for completed games or games with valid lines)
+    # For future games without valid lines, don't calculate implied scores
     has_valid_lines = frontend_df['closing_total'].notna() & (frontend_df['closing_total'] > 20) & (frontend_df['closing_total'] < 80)
     has_valid_spread = frontend_df['closing_spread'].notna() & (frontend_df['closing_spread'].abs() < 30)
     
-    # Initialize market scores (will be NaN for games without valid lines)
+    # Only calculate market scores if we have valid lines
     frontend_df['closing_away_score'] = None
     frontend_df['closing_home_score'] = None
     
     valid_idx = has_valid_lines & has_valid_spread
     if valid_idx.any():
-        # Market-implied scores: derived from closing_total and closing_spread
         frontend_df.loc[valid_idx, 'closing_away_score'] = (
             frontend_df.loc[valid_idx, 'closing_total'] / 2.0 - 
             frontend_df.loc[valid_idx, 'closing_spread'] / 2.0
@@ -254,14 +224,6 @@ def convert_backtest_to_frontend(input_file, output_file):
             frontend_df.loc[valid_idx, 'closing_total'] / 2.0 + 
             frontend_df.loc[valid_idx, 'closing_spread'] / 2.0
         )
-    
-    # Also try to get market scores from existing columns if available
-    if 'market_home_score' in frontend_df.columns:
-        missing_home = frontend_df['closing_home_score'].isna() & frontend_df['market_home_score'].notna()
-        frontend_df.loc[missing_home, 'closing_home_score'] = frontend_df.loc[missing_home, 'market_home_score']
-    if 'market_away_score' in frontend_df.columns:
-        missing_away = frontend_df['closing_away_score'].isna() & frontend_df['market_away_score'].notna()
-        frontend_df.loc[missing_away, 'closing_away_score'] = frontend_df.loc[missing_away, 'market_away_score']
     
     # Line movements
     frontend_df['spread_movement'] = frontend_df['closing_spread'] - frontend_df['opening_spread']
@@ -336,15 +298,8 @@ if __name__ == "__main__":
             df_weeks18 = pd.read_csv(backtest_file)
             dfs.append(df_weeks18)
         
-        # CRITICAL: Only load ONE source for weeks 9-10 to avoid duplicates
-        # Prefer backtest_week9_10_predictions.csv (newer, correct) over backtest_week9_predictions.csv (old, wrong)
-        week9_10_file = script_dir / "artifacts" / "backtest_week9_10_predictions.csv"
-        if week9_10_file.exists():
-            print(f"📂 Loading weeks 9-10 from: {week9_10_file}")
-            df_week9_10 = pd.read_csv(week9_10_file)
-            dfs.append(df_week9_10)
-        elif week9_file.exists():
-            print(f"⚠️  Loading week 9 from: {week9_file} (OLD FILE - prefer backtest_week9_10_predictions.csv)")
+        if week9_file.exists():
+            print(f"📂 Loading week 9 from: {week9_file}")
             df_week9 = pd.read_csv(week9_file)
             dfs.append(df_week9)
         
@@ -352,30 +307,12 @@ if __name__ == "__main__":
             print(f"❌ Error: No backtest files found")
             print(f"   Expected:")
             print(f"     - {backtest_file} (weeks 1-8)")
-            print(f"     - {week9_10_file} (weeks 9-10, preferred)")
-            print(f"   Run backtest_all_games_conviction.py and generate_week9_10_predictions.py")
+            print(f"     - {week9_file} (week 9)")
+            print(f"   Run backtest_all_games_conviction.py and generate_week9_predictions.py")
             sys.exit(1)
         
         # Combine all weeks
         df_combined = pd.concat(dfs, ignore_index=True)
-        
-        # CRITICAL: Remove duplicates - keep the most recent row for each game
-        # Deduplicate by season, week, away_team, home_team
-        print(f"\n🔍 Checking for duplicates...")
-        before_count = len(df_combined)
-        
-        # Sort by source priority (week9_10 > week9 > backtest) then drop duplicates
-        # We'll keep the last occurrence which should be from the newer files
-        df_combined = df_combined.drop_duplicates(
-            subset=['season', 'week', 'away_team', 'home_team'],
-            keep='last'  # Keep the last (newest) duplicate
-        )
-        
-        after_count = len(df_combined)
-        if before_count != after_count:
-            print(f"   ⚠️  Removed {before_count - after_count} duplicate rows")
-        else:
-            print(f"   ✅ No duplicates found")
         
         # Save temporary combined file
         temp_file = script_dir / "artifacts" / "backtest_combined_temp.csv"

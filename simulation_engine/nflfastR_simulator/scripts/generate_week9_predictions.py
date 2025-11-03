@@ -187,14 +187,6 @@ def simulate_week9_game(row):
         if total_edge > 0:
             total_conviction = get_conviction_level(total_edge)
         
-        # Calibrate scores using linear formula (NOT market-centered)
-        # Formula: calibrated = LINEAR_ALPHA/2 + LINEAR_BETA * raw_mean
-        LINEAR_ALPHA = 26.45
-        LINEAR_BETA = 0.571
-        # Calculate from raw means (before market centering)
-        calibrated_home_mean = LINEAR_ALPHA / 2.0 + LINEAR_BETA * home_raw_mean
-        calibrated_away_mean = LINEAR_ALPHA / 2.0 + LINEAR_BETA * away_raw_mean
-        
         return {
             'away_team': away,
             'home_team': home,
@@ -209,10 +201,9 @@ def simulate_week9_game(row):
             'spread_raw_sd': spread_raw_sd,
             'total_raw': total_raw_mean,
             'total_raw_sd': total_raw_sd,
-            # Calibrated scores (NOT market-centered) - CRITICAL FIX
-            # Store CALIBRATED scores using linear formula, NOT market-centered scores
-            'home_score_mean': calibrated_home_mean,
-            'away_score_mean': calibrated_away_mean,
+            # Centered (market-adjusted) scores
+            'home_score_mean': float(np.mean(home_c)),
+            'away_score_mean': float(np.mean(away_c)),
             
             # Distribution metrics (THE REAL EDGE)
             'spread_std': spread_std,
