@@ -110,7 +110,6 @@ def simulate_week9_game(row):
         # Load calibrators if available
         try:
             import pickle
-            from pathlib import Path
             artifacts_dir = Path(__file__).parent.parent / "artifacts"
             
             spread_cal_file = artifacts_dir / "spread_calibrator_isotonic.pkl"

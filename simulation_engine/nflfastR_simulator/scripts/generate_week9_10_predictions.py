@@ -332,13 +332,33 @@ def load_week_games(week):
     return schedule
 
 if __name__ == "__main__":
+    import nfl_data_py as nfl
+    from datetime import datetime
+    
+    # Auto-detect current week
+    sched = nfl.import_schedules([2025])
+    sched_reg = sched[sched['game_type'] == 'REG']
+    
+    current_week = None
+    for w in sorted(sched_reg['week'].unique()):
+        week_games = sched_reg[sched_reg['week'] == w]
+        if week_games['away_score'].isna().any():
+            current_week = int(w)
+            break
+    
+    if current_week is None:
+        current_week = 9
+    
+    next_week = current_week + 1
+    
     print("="*70)
-    print("GENERATE WEEK 9 & 10 PREDICTIONS")
+    print(f"GENERATE WEEK {current_week} & {next_week} PREDICTIONS")
     print("="*70)
+    print(f"   Auto-detected current week: {current_week}")
     
     all_games = []
     
-    for week in [9, 10]:
+    for week in [current_week, next_week]:
         print(f"\n📥 Loading Week {week} games...")
         games = load_week_games(week)
         games['week'] = week
@@ -346,11 +366,11 @@ if __name__ == "__main__":
         print(f"   Found {len(games)} games")
     
     if not all_games:
-        print("❌ No games found for weeks 9-10")
+        print(f"❌ No games found for weeks {current_week}-{next_week}")
         sys.exit(1)
     
     games_df = pd.concat(all_games, ignore_index=True)
-    print(f"\n✅ Loaded {len(games_df)} total games (weeks 9-10)")
+    print(f"\n✅ Loaded {len(games_df)} total games (weeks {current_week}-{next_week})")
     
     print(f"\n🚀 Running {len(games_df)} games × {N_SIMS} sims = {len(games_df) * N_SIMS:,} total")
     print(f"   Using 8 CPU cores\n")
@@ -376,8 +396,8 @@ if __name__ == "__main__":
         print("❌ No valid results")
         sys.exit(1)
     
-    # Save results
-    output_file = Path(__file__).parent.parent / "artifacts" / "backtest_week9_10_predictions.csv"
+    # Save results (dynamic filename)
+    output_file = Path(__file__).parent.parent / "artifacts" / f"backtest_week{current_week}_{next_week}_predictions.csv"
     output_file.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_file, index=False)
     
