@@ -42,42 +42,132 @@ def _parse_signals(signals_data):
             return []
     return []
 
-def generate_betting_recommendations(df_pred):
+def generate_betting_recommendations(df_pred, current_week=None):
     """Generate betting recommendations tables from predictions DataFrame."""
     
-    # Filter for current week (incomplete games only)
-    current_week_games = df_pred[df_pred['is_completed'] == False].copy()
+    # Determine current week if not provided
+    if current_week is None:
+        if 'week' in df_pred.columns:
+            current_week = df_pred.loc[df_pred['is_completed'] == False, 'week'].max()
+        else:
+            current_week = None
     
+    current_week_games = df_pred[df_pred['is_completed'] == False].copy()
+    if current_week is not None:
+        current_week_games = current_week_games[current_week_games['week'] == current_week]
+
     if current_week_games.empty:
         return None
     
     # 1. ATS (Against-the-Spread) Bets
+    def format_team_from_pick(row, pick):
+        if not pick:
+            return None
+        pick_upper = pick.upper()
+        if pick_upper.startswith('HOME'):
+            return row['home_team']
+        if pick_upper.startswith('AWAY'):
+            return row['away_team']
+        return pick.replace(' ATS', '').strip()
+
+    def format_line_for_team(row, line_value, team, is_closing_spread=False):
+        """
+        Convert spread line to betting team's perspective.
+        
+        closing_spread convention (special):
+        - Positive (4.5) = home favored → home -4.5, away +4.5
+        - Negative (-8.5) = away favored → home +8.5, away -8.5
+        For away: if positive, use as-is; if negative, use as-is (already correct)
+        
+        our_spread convention (home_score - away_score):
+        - Positive (4.5) = home wins by 4.5 → home -4.5, away +4.5
+        - Negative (-6.5) = away wins by 6.5 → home +6.5, away -6.5
+        For away: always negate
+        """
+        if team is None or pd.isna(line_value):
+            return None
+        
+        # Determine if betting home or away
+        is_home = (team.upper() == row['home_team'].upper())
+        is_away = (team.upper() == row['away_team'].upper())
+        
+        if is_home:
+            # Home team: convert to home betting line
+            if is_closing_spread:
+                # closing_spread: positive = home favored, so home line is negative
+                value = -line_value if line_value > 0 else abs(line_value)
+            else:
+                # our_spread: positive = home wins, so home line is negative
+                value = -line_value if line_value > 0 else abs(line_value)
+        elif is_away:
+            # Away team: convert to away betting line
+            if is_closing_spread:
+                # closing_spread: positive = away gets points (+), negative = away gives points (-)
+                value = line_value  # Already in correct format!
+            else:
+                # our_spread = home_score - away_score
+                # If negative: away wins → away gives points → away line negative (use as-is: -17.29 → BAL -17.3)
+                # If positive: home wins → away gets points → away line positive (use positive: +7.3 → NE +7.3)
+                # Key insight: our_spread sign already matches betting line sign from away perspective!
+                value = line_value
+        else:
+            return None
+        
+        return f"{team} {value:+.1f}"
+
     ats_bets = []
     for _, row in current_week_games.iterrows():
-        market_line = row.get('closing_spread', 0)
-        sim_line = row.get('our_spread', 0)
-        edge = abs(market_line - sim_line)
-        pick = row.get('spread_recommendation', 'N/A')
-        conviction = row.get('spread_conviction', 'LOW')
+        pick = row.get('spread_recommendation')
+        if not pick or pick == 'Pass':
+            continue
+
+        conviction = row.get('spread_conviction') or 'LOW'
         edge_pct = row.get('spread_edge_pct', 0)
-        
-        # Calculate confidence percentage
+        pick_team = format_team_from_pick(row, pick)
+
+        market_line_home = row.get('closing_spread')
+        sim_line_home = row.get('our_spread')
+
+        market_line_str = format_line_for_team(row, market_line_home, pick_team, is_closing_spread=True)
+        sim_line_str = format_line_for_team(row, sim_line_home, pick_team, is_closing_spread=False)
+
+        if market_line_str is None or sim_line_str is None:
+            continue
+
+        # Calculate edge using same perspective as display
+        # Market line: closing_spread has special format
+        if pick_team == row['home_team']:
+            # Home betting: convert closing_spread to home line
+            market_line_value = -market_line_home if market_line_home > 0 else abs(market_line_home)
+            # Sim line: positive = home wins, so home line is negative
+            sim_line_value = -sim_line_home if sim_line_home > 0 else abs(sim_line_home)
+        else:
+            # Away betting: closing_spread is already in away format
+            market_line_value = market_line_home
+            # Sim line: our_spread already has correct sign from away perspective
+            sim_line_value = sim_line_home if pd.notna(sim_line_home) else None
+
+        if market_line_value is None or sim_line_value is None:
+            continue
+
+        edge_value = abs(market_line_value - sim_line_value)
+
         if conviction == 'HIGH':
             confidence = min(100, 70 + edge_pct * 3)
         elif conviction == 'MEDIUM':
             confidence = min(70, 53 + edge_pct * 2)
         else:
             confidence = min(60, 50 + edge_pct)
-        
+
         ats_bets.append({
             'game': f"{row['away_team']} @ {row['home_team']}",
-            'market_line': f"{row['home_team']} {market_line:+.1f}",
-            'sim_line': f"{row['home_team']} {sim_line:+.1f}",
-            'edge': f"{edge:.1f}-pt edge",
+            'market_line': market_line_str,
+            'sim_line': sim_line_str,
+            'edge': f"{edge_value:.1f}-pt edge",
             'pick': pick,
             'confidence': f"{confidence:.0f}%",
             'conviction': conviction,
-            'edge_value': edge
+            'edge_value': edge_value
         })
     
     # Sort by edge (descending)
@@ -235,7 +325,7 @@ def index():
     team_win_rates = get_team_win_rates()
     
     # Generate betting recommendations from current predictions
-    betting_recommendations = generate_betting_recommendations(df)
+    betting_recommendations = generate_betting_recommendations(df, current_week=current_week)
 
     return render_template('alpha_index_v3.html',
                           current_week=current_week,

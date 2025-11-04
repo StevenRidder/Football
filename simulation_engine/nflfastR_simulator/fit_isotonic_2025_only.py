@@ -26,9 +26,9 @@ artifacts_dir = Path(__file__).parent.parent.parent / "artifacts"
 backtest_file = artifacts_dir / "simulator_predictions.csv"
 
 df = pd.read_csv(backtest_file)
-df_2025 = df[(df['season'] == 2025) & (df['is_completed'] == True) & (df['week'] <= 8)].copy()
+df_2025 = df[(df['season'] == 2025) & (df['is_completed'] == True) & (df['week'] <= 9)].copy()
 
-print(f"✅ Loaded {len(df_2025)} completed 2025 games (Weeks 1-8)")
+print(f"✅ Loaded {len(df_2025)} completed 2025 games (Weeks 1-9)")
 print()
 
 # Reconstruct raw simulator outputs if needed
