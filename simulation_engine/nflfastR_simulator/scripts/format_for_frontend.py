@@ -97,7 +97,8 @@ def convert_backtest_to_frontend(input_file, output_file):
     
     # Market lines
     frontend_df['closing_spread'] = df.get('spread_line', df.get('market_spread', 0.0))
-    frontend_df['closing_total'] = df.get('closing_total', df.get('market_total', 45.0))
+    # Try multiple column names for total (backtest uses total_line, frontend expects closing_total)
+    frontend_df['closing_total'] = df.get('closing_total', df.get('total_line', df.get('market_total', 45.0)))
     frontend_df['opening_spread'] = df.get('opening_spread', frontend_df['closing_spread'])
     frontend_df['opening_total'] = df.get('opening_total', frontend_df['closing_total'])
     

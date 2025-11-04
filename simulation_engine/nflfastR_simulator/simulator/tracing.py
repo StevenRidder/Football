@@ -38,13 +38,13 @@ def _convert_to_json_serializable(obj):
 @dataclass
 class SimTrace:
     """Game-wide trace for complete transparency."""
-    
+
     game_id: str
     enable: bool = True
     buffer: List[Dict[str, Any]] = field(default_factory=list)
     out_path: Optional[Path] = None
     seed: Optional[int] = None
-    
+
     def log(self, kind: str, payload: Dict[str, Any]):
         """Log an event to the trace.
         
@@ -54,30 +54,30 @@ class SimTrace:
         """
         if not self.enable:
             return
-        
+
         rec = {
             "t": time.time(),
             "kind": kind,
             "game_id": self.game_id,
             **payload
         }
-        
+
         # Convert numpy types to native Python types for JSON serialization
         rec = _convert_to_json_serializable(rec)
-        
+
         self.buffer.append(rec)
-        
+
         # Write to file if path provided (JSONL format)
         if self.out_path:
             with self.out_path.open("a") as f:
                 f.write(json.dumps(rec) + "\n")
-    
+
     def flush(self):
         """Flush buffer to disk if using file output."""
         if self.out_path and self.buffer:
             # Already written incrementally, but ensure flush
             pass
-    
+
     def get_events(self, kind: Optional[str] = None) -> List[Dict[str, Any]]:
         """Get all events, optionally filtered by kind.
         
@@ -90,11 +90,11 @@ class SimTrace:
         if kind is None:
             return self.buffer.copy()
         return [e for e in self.buffer if e.get('kind') == kind]
-    
+
     def clear(self):
         """Clear the trace buffer."""
         self.buffer.clear()
-    
+
     def save_summary(self, path: Path):
         """Save a summary of the trace to JSON.
         
@@ -108,15 +108,15 @@ class SimTrace:
             "event_types": {},
             "events": self.buffer
         }
-        
+
         # Count events by type
         for event in self.buffer:
             event_type = event.get('kind', 'unknown')
             summary["event_types"][event_type] = summary["event_types"].get(event_type, 0) + 1
-        
+
         # Convert numpy types to native Python types for JSON serialization
         summary = _convert_to_json_serializable(summary)
-        
+
         with path.open("w") as f:
             json.dump(summary, f, indent=2)
 

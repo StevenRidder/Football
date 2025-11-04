@@ -13,13 +13,13 @@ Key principles:
 
 import numpy as np
 import pandas as pd
-from typing import Dict, Tuple
+from typing import Dict
 from pathlib import Path
 
 
 class PFFZeroMeanAdjuster:
     """Applies zero-mean PFF adjustments to game simulations."""
-    
+
     def __init__(self, pff_data_dir: Path):
         """
         Initialize with PFF data directory.
@@ -29,7 +29,7 @@ class PFFZeroMeanAdjuster:
         """
         self.pff_data_dir = pff_data_dir
         self._cache = {}
-    
+
     def load_week_grades(self, season: int, week: int) -> pd.DataFrame:
         """
         Load PFF grades for all teams in a given week.
@@ -44,16 +44,16 @@ class PFFZeroMeanAdjuster:
         cache_key = (season, week)
         if cache_key in self._cache:
             return self._cache[cache_key]
-        
+
         # Load season data
         pff_file = self.pff_data_dir / f"team_grades_{season}.csv"
-        
+
         if not pff_file.exists():
             # Return empty DataFrame if no PFF data
             return pd.DataFrame()
-        
+
         df = pd.read_csv(pff_file)
-        
+
         # Rename columns to match our naming
         df = df.rename(columns={
             'abbreviation': 'team',
@@ -62,14 +62,14 @@ class PFFZeroMeanAdjuster:
             'run_block_grade': 'ol_run_block',
             'run_defense_grade': 'dl_run_defense',
         })
-        
+
         # Cache
         self._cache[cache_key] = df
-        
+
         return df
-    
-    def compute_matchup_z_scores(self, 
-                                  offense_team: str, 
+
+    def compute_matchup_z_scores(self,
+                                  offense_team: str,
                                   defense_team: str,
                                   season: int,
                                   week: int,
@@ -91,33 +91,33 @@ class PFFZeroMeanAdjuster:
         """
         # Load week grades
         week_grades = self.load_week_grades(season, week)
-        
+
         if week_grades.empty:
             # No PFF data, return zeros
             return {'pressure_z': 0.0, 'run_z': 0.0}
-        
+
         # Get team grades
         off_grades = week_grades[week_grades['team'] == offense_team]
         def_grades = week_grades[week_grades['team'] == defense_team]
-        
+
         if off_grades.empty or def_grades.empty:
             return {'pressure_z': 0.0, 'run_z': 0.0}
-        
+
         ol_pass = off_grades['ol_pass_block'].iloc[0]
         dl_pass = def_grades['dl_pass_rush'].iloc[0]
         ol_run = off_grades['ol_run_block'].iloc[0]
         dl_run = def_grades['dl_run_defense'].iloc[0]
-        
+
         # Compute mismatches (positive = defense advantage)
         pressure_mismatch = dl_pass - ol_pass
         run_mismatch = dl_run - ol_run
-        
+
         # Z-score within the slate (if provided)
         if slate_teams:
             # Compute all mismatches for the slate
             pressure_mismatches = []
             run_mismatches = []
-            
+
             for team in slate_teams:
                 team_grades = week_grades[week_grades['team'] == team]
                 if not team_grades.empty:
@@ -125,7 +125,7 @@ class PFFZeroMeanAdjuster:
                     # In practice, you'd compute all actual matchups
                     pressure_mismatches.append(70.0 - team_grades['ol_pass_block'].iloc[0])
                     run_mismatches.append(70.0 - team_grades['ol_run_block'].iloc[0])
-            
+
             if len(pressure_mismatches) > 1:
                 pressure_z = (pressure_mismatch - np.mean(pressure_mismatches)) / (np.std(pressure_mismatches) + 1e-6)
                 run_z = (run_mismatch - np.mean(run_mismatches)) / (np.std(run_mismatches) + 1e-6)
@@ -136,13 +136,13 @@ class PFFZeroMeanAdjuster:
             # Simple z-score assuming league std ~8 points
             pressure_z = pressure_mismatch / 8.0
             run_z = run_mismatch / 8.0
-        
+
         return {
             'pressure_z': float(pressure_z),
             'run_z': float(run_z),
         }
-    
-    def apply_pressure_adjustment(self, 
+
+    def apply_pressure_adjustment(self,
                                    base_pressure_rate: float,
                                    pressure_z: float,
                                    beta: float = 0.015) -> float:
@@ -160,17 +160,17 @@ class PFFZeroMeanAdjuster:
         # Multiplicative adjustment to preserve zero-mean
         # pressure_rate' = base * (1 + beta * z)
         adjustment_factor = 1.0 + beta * pressure_z
-        
+
         # Cap adjustment to ±20% (prevents extreme swings)
         adjustment_factor = np.clip(adjustment_factor, 0.80, 1.20)
-        
+
         adjusted_rate = base_pressure_rate * adjustment_factor
-        
+
         # Hard cap to realistic bounds
         adjusted_rate = np.clip(adjusted_rate, 0.05, 0.55)
-        
+
         return adjusted_rate
-    
+
     def apply_explosive_adjustment(self,
                                     base_explosive_rate: float,
                                     pressure_z: float,
@@ -190,15 +190,15 @@ class PFFZeroMeanAdjuster:
         """
         # Inverse relationship: better OL = more explosive
         adjustment_factor = 1.0 - beta * pressure_z
-        
+
         # Cap adjustment to ±15%
         adjustment_factor = np.clip(adjustment_factor, 0.85, 1.15)
-        
+
         adjusted_rate = base_explosive_rate * adjustment_factor
-        
+
         # Hard cap
         adjusted_rate = np.clip(adjusted_rate, 0.10, 0.20)
-        
+
         return adjusted_rate
 
 
@@ -219,24 +219,24 @@ def get_pff_adjuster(pff_data_dir: Path = None) -> PFFZeroMeanAdjuster:
 if __name__ == '__main__':
     # Test
     adjuster = get_pff_adjuster()
-    
+
     # Test matchup: BAL @ KC
     z_scores = adjuster.compute_matchup_z_scores('BAL', 'KC', 2024, 1)
-    
+
     print("🏈 PFF Zero-Mean Adjustment Test")
     print("=" * 60)
-    print(f"BAL @ KC - 2024 Week 1")
+    print("BAL @ KC - 2024 Week 1")
     print(f"  Pressure Z: {z_scores['pressure_z']:+.3f}")
     print(f"  Run Z:      {z_scores['run_z']:+.3f}")
-    
+
     # Test adjustments
     base_pressure = 0.212
     adjusted_pressure = adjuster.apply_pressure_adjustment(base_pressure, z_scores['pressure_z'])
-    
-    print(f"\n📊 Pressure Adjustment:")
+
+    print("\n📊 Pressure Adjustment:")
     print(f"  Base:     {base_pressure:.3f} (21.2%)")
     print(f"  Adjusted: {adjusted_pressure:.3f} ({adjusted_pressure*100:.1f}%)")
     print(f"  Delta:    {(adjusted_pressure - base_pressure)*100:+.1f}%")
-    
+
     print("\n✅ Zero-mean PFF adjustments ready for integration")
 

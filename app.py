@@ -148,8 +148,8 @@ if has_betting:
 detailed_tab = tab3 if has_betting else tab2
 with detailed_tab:
     st.subheader("Detailed Statistics")
-cols = ["away","home","Exp score (away-home)","Model spread home-","Spread used (home-)","Edge_pts",
-        "Model total","Total used","Edge_total_pts","Home win %","Home cover %","Over %","Abs Edge (pts)"]
+    cols = ["away","home","Exp score (away-home)","Model spread home-","Spread used (home-)","Edge_pts",
+            "Model total","Total used","Edge_total_pts","Home win %","Home cover %","Over %","Abs Edge (pts)"]
     st.dataframe(filt[cols].sort_values("Abs Edge (pts)", ascending=False).reset_index(drop=True),
                 use_container_width=True)
 

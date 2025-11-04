@@ -9,7 +9,6 @@ Per strategy:
 """
 
 import pandas as pd
-import numpy as np
 from typing import Dict, Tuple
 
 
@@ -46,32 +45,32 @@ def shrink_qb_block(qb_row: pd.Series, league_row: pd.Series, n_dropbacks: int) 
         Dictionary of shrunk stats
     """
     L_QB = 150  # λ for QB stats
-    
+
     out = {}
     stat_keys = [
         "completion_pct_clean", "completion_pct_pressure",
         "int_rate_clean", "int_rate_pressure",
         "sack_rate_pressure", "scramble_rate_pressure",
-        "ypp_clean", "ypp_pressure", 
+        "ypp_clean", "ypp_pressure",
         "epa_clean", "epa_pressure"
     ]
-    
+
     for k in stat_keys:
         if k in qb_row and k in league_row:
             out[k] = shrink_rate(qb_row[k], n_dropbacks, league_row[k], L_QB)
         elif k in qb_row:
             out[k] = qb_row[k]  # No prior, use raw
-    
+
     # Add metadata
     out['n_dropbacks'] = n_dropbacks
     out['shrinkage_weight'] = n_dropbacks / (n_dropbacks + L_QB)
-    
+
     return out
 
 
 class EmpiricalBayesShrinkage:
     """Apply empirical Bayes shrinkage to thin samples."""
-    
+
     # League priors (from nflfastR 2022-2024 data)
     LEAGUE_QB_CLEAN = {
         'completion_pct': 0.65,
@@ -82,7 +81,7 @@ class EmpiricalBayesShrinkage:
         'scramble_rate': 0.00,
         'epa_per_play': 0.15
     }
-    
+
     LEAGUE_QB_PRESSURE = {
         'completion_pct': 0.50,
         'yards_per_att': 5.0,
@@ -92,12 +91,12 @@ class EmpiricalBayesShrinkage:
         'scramble_rate': 0.15,
         'epa_per_play': -0.30
     }
-    
+
     LEAGUE_PLAYCALLING = {
         'pass_rate': 0.60,
         'run_rate': 0.40
     }
-    
+
     @staticmethod
     def shrink_qb_stats(
         qb_stats: Dict[str, float],
@@ -119,13 +118,13 @@ class EmpiricalBayesShrinkage:
         """
         # Calculate weight: n / (n + λ)
         weight = n_dropbacks / (n_dropbacks + lambda_threshold)
-        
+
         # Choose prior
         if is_pressure:
             prior = EmpiricalBayesShrinkage.LEAGUE_QB_PRESSURE
         else:
             prior = EmpiricalBayesShrinkage.LEAGUE_QB_CLEAN
-        
+
         # Shrink each stat
         shrunk_stats = {}
         for key in qb_stats.keys():
@@ -135,9 +134,9 @@ class EmpiricalBayesShrinkage:
             else:
                 # No prior, use raw value
                 shrunk_stats[key] = qb_stats[key]
-        
+
         return shrunk_stats, weight
-    
+
     @staticmethod
     def shrink_playcalling(
         playcalling_stats: Dict[str, float],
@@ -157,20 +156,20 @@ class EmpiricalBayesShrinkage:
         """
         # Calculate weight: n / (n + λ)
         weight = n_plays / (n_plays + lambda_threshold)
-        
+
         # Shrink toward league prior
         shrunk_stats = {}
         for key in playcalling_stats.keys():
             if key in EmpiricalBayesShrinkage.LEAGUE_PLAYCALLING:
                 shrunk_stats[key] = (
-                    weight * playcalling_stats[key] + 
+                    weight * playcalling_stats[key] +
                     (1 - weight) * EmpiricalBayesShrinkage.LEAGUE_PLAYCALLING[key]
                 )
             else:
                 shrunk_stats[key] = playcalling_stats[key]
-        
+
         return shrunk_stats, weight
-    
+
     @staticmethod
     def log_shrinkage(
         entity_name: str,
@@ -190,9 +189,9 @@ class EmpiricalBayesShrinkage:
             f"SHRINKAGE: {entity_name} - {stat_type}",
             f"  Samples: {n_samples}",
             f"  Weight: {weight:.3f}",
-            f"  Changes:"
+            "  Changes:"
         ]
-        
+
         for key in original.keys():
             if key in shrunk:
                 orig_val = original[key]
@@ -200,7 +199,7 @@ class EmpiricalBayesShrinkage:
                 delta = shrunk_val - orig_val
                 if abs(delta) > 0.001:
                     lines.append(f"    {key}: {orig_val:.3f} → {shrunk_val:.3f} (Δ {delta:+.3f})")
-        
+
         return "\n".join(lines)
 
 
@@ -230,14 +229,14 @@ def apply_rollforward_cutoff(
         )
     else:
         mask = df[date_column] < target_week
-    
+
     filtered_df = df[mask].copy()
-    
+
     # Add "as_of" timestamp
     filtered_df['as_of_season'] = target_season
     filtered_df['as_of_week'] = target_week - 1
     filtered_df['as_of_timestamp'] = pd.Timestamp.now()
-    
+
     return filtered_df
 
 
@@ -246,7 +245,7 @@ if __name__ == "__main__":
     print("="*80)
     print("EMPIRICAL BAYES SHRINKAGE - TEST")
     print("="*80)
-    
+
     # Test QB shrinkage with small sample
     small_sample_qb = {
         'completion_pct': 0.80,  # Hot start
@@ -255,28 +254,28 @@ if __name__ == "__main__":
         'int_rate': 0.01,
         'epa_per_play': 0.40
     }
-    
+
     shrunk_qb, weight = EmpiricalBayesShrinkage.shrink_qb_stats(
         small_sample_qb, n_dropbacks=50, is_pressure=False
     )
-    
+
     print("\n📊 QB Stats Shrinkage (50 dropbacks):")
     print(f"Weight: {weight:.3f}")
     for key in small_sample_qb.keys():
         if key in shrunk_qb:
             print(f"  {key}: {small_sample_qb[key]:.3f} → {shrunk_qb[key]:.3f}")
-    
+
     # Test with large sample (should be close to original)
     shrunk_qb_large, weight_large = EmpiricalBayesShrinkage.shrink_qb_stats(
         small_sample_qb, n_dropbacks=300, is_pressure=False
     )
-    
-    print(f"\n📊 QB Stats Shrinkage (300 dropbacks):")
+
+    print("\n📊 QB Stats Shrinkage (300 dropbacks):")
     print(f"Weight: {weight_large:.3f}")
     for key in small_sample_qb.keys():
         if key in shrunk_qb_large:
             print(f"  {key}: {small_sample_qb[key]:.3f} → {shrunk_qb_large[key]:.3f}")
-    
+
     print("\n✅ Shrinkage working correctly:")
     print("  - Small samples shrink toward prior")
     print("  - Large samples stay close to original")

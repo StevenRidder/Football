@@ -280,15 +280,15 @@ class GameState:
                 "reason": "heuristic_fallback"
             }
             
-            if self.score_differential < -7 and self.game_seconds_remaining < 300:
-                return False, reasoning
-            if self.yardline >= 70:
-                return False, reasoning
-            if self.yardline >= 50 and self.ydstogo <= 3:
-                return False, reasoning
-            if self.yardline >= 40 and self.ydstogo <= 1:
-                return False, reasoning
-            return True, reasoning
+        if self.score_differential < -7 and self.game_seconds_remaining < 300:
+            return False, reasoning
+        if self.yardline >= 70:
+            return False, reasoning
+        if self.yardline >= 50 and self.ydstogo <= 3:
+            return False, reasoning
+        if self.yardline >= 40 and self.ydstogo <= 1:
+            return False, reasoning
+        return True, reasoning
     
     def should_attempt_fg(self) -> Tuple[bool, Dict]:
         """

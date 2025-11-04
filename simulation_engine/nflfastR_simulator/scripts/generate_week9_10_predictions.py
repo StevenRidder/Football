@@ -32,7 +32,7 @@ HIGH_EDGE = 0.06
 MAX_EDGE_CAP = 0.25
 
 BREAKEVEN = 0.524
-N_SIMS = 2000  # Increased from 100 for more accurate conviction levels
+N_SIMS = 100  # Using 100 sims for faster testing
 
 # Linear calibration parameters
 LINEAR_ALPHA = 26.45
@@ -340,6 +340,12 @@ def load_week_games(week):
     
     schedule = nfl.import_schedules([2025])
     schedule = schedule[schedule['game_type'] == 'REG'].copy()
+    
+    # FIX: Map LA to LAR (Los Angeles Rams) - nfl_data_py uses 'LA' for Rams
+    if 'away_team' in schedule.columns:
+        schedule.loc[schedule['away_team'] == 'LA', 'away_team'] = 'LAR'
+    if 'home_team' in schedule.columns:
+        schedule.loc[schedule['home_team'] == 'LA', 'home_team'] = 'LAR'
     schedule = schedule[schedule['week'] == week].copy()
     
     # CRITICAL: Fetch odds from Odds API first (real-time market data)
@@ -449,9 +455,12 @@ if __name__ == "__main__":
         
         # Generate current week + next week
         weeks_to_generate = [current_week, current_week + 1]
-        print("="*70)
+    print("="*70)
+    if len(weeks_to_generate) == 2:
         print(f"GENERATE WEEKS {weeks_to_generate[0]} & {weeks_to_generate[1]} PREDICTIONS")
-        print("="*70)
+    else:
+        print(f"GENERATE WEEK {weeks_to_generate[0]} PREDICTIONS")
+    print("="*70)
     
     all_games = []
     

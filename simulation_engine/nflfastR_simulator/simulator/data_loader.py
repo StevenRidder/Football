@@ -34,18 +34,18 @@ def load_asof(
     """
     season_col, week_col = asof_cols
     cut_season, cut_week = season, max(1, week) - 1
-    
+
     # Filter to data before target week
     out = df[
-        (df[season_col] < cut_season) | 
+        (df[season_col] < cut_season) |
         ((df[season_col] == cut_season) & (df[week_col] <= cut_week))
     ].copy()
-    
+
     # Add as_of stamps for audit trail
     out["as_of_season"] = cut_season
     out["as_of_week"] = cut_week
     out["as_of_ts"] = datetime.utcnow().isoformat()
-    
+
     return out
 
 
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     print("="*80)
     print("ROLL-FORWARD DATA LOADER - TEST")
     print("="*80)
-    
+
     # Create test data
     test_data = pd.DataFrame({
         'season': [2023, 2023, 2023, 2024, 2024, 2024],
@@ -81,21 +81,21 @@ if __name__ == "__main__":
         'team': ['KC', 'KC', 'KC', 'KC', 'KC', 'KC'],
         'value': [10, 20, 30, 40, 50, 60]
     })
-    
+
     print("\n📊 Test data:")
     print(test_data)
-    
+
     # Load as of 2024 Week 2
     filtered = load_asof(test_data, ['team'], ('season', 'week'), 2024, 2)
-    
-    print(f"\n📊 Filtered to 2024 Week 2 (should include up to 2024 Week 1):")
+
+    print("\n📊 Filtered to 2024 Week 2 (should include up to 2024 Week 1):")
     print(filtered[['season', 'week', 'value', 'as_of_season', 'as_of_week']])
-    
+
     # Verify cutoff
     assert filtered['week'].max() == 1 or (filtered['season'] < 2024).any()
     assert filtered['as_of_season'].iloc[0] == 2024
     assert filtered['as_of_week'].iloc[0] == 1
-    
+
     print("\n✅ Roll-forward working correctly:")
     print("  - Only includes data through week-1")
     print("  - as_of stamps added")

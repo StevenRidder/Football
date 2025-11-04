@@ -196,6 +196,550 @@
   </div>
 </div>
 
+<!-- Team Metrics (PFF-style) -->
+{% if away_profile and home_profile %}
+<div class="row mb-3">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">📊 Team Metrics</h3>
+        <div class="card-subtitle">
+          <small class="text-muted">Ranks out of 32 | Data from nflfastR + PFF</small>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-vcenter">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th class="text-center">{{ away }}</th>
+                <th class="text-center">{{ home }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Power Rank: Overall</strong></td>
+                <td class="text-center">
+                  {% if away_profile.get('power_rank_overall') %}
+                    {{ away_profile.get('power_rank_overall') }}th
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if home_profile.get('power_rank_overall') %}
+                    {{ home_profile.get('power_rank_overall') }}th
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Power Rank: Defense</strong></td>
+                <td class="text-center">
+                  {% if away_profile.get('power_rank_defense') %}
+                    {{ away_profile.get('power_rank_defense') }}th
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if home_profile.get('power_rank_defense') %}
+                    {{ home_profile.get('power_rank_defense') }}th
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Power Rank: Offense</strong></td>
+                <td class="text-center">
+                  {% if away_profile.get('power_rank_offense') %}
+                    {{ away_profile.get('power_rank_offense') }}th
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if home_profile.get('power_rank_offense') %}
+                    {{ home_profile.get('power_rank_offense') }}th
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td><strong>EPA Per Run</strong></td>
+                <td class="text-center">
+                  <span class="text-muted">N/A</span>
+                  <small class="d-block text-muted">(Data not available)</small>
+                </td>
+                <td class="text-center">
+                  <span class="text-muted">N/A</span>
+                  <small class="d-block text-muted">(Data not available)</small>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>EPA Per Pass</strong></td>
+                <td class="text-center">
+                  <span class="text-muted">N/A</span>
+                  <small class="d-block text-muted">(Data not available)</small>
+                </td>
+                <td class="text-center">
+                  <span class="text-muted">N/A</span>
+                  <small class="d-block text-muted">(Data not available)</small>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Avg Offensive Snaps</strong></td>
+                <td class="text-center">
+                  <span class="text-muted">N/A</span>
+                  <small class="d-block text-muted">(Data not available)</small>
+                </td>
+                <td class="text-center">
+                  <span class="text-muted">N/A</span>
+                  <small class="d-block text-muted">(Data not available)</small>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>% Run Plays</strong></td>
+                <td class="text-center">
+                  {% if away_profile.get('pass_rate') %}
+                    {{ "%.1f"|format((1 - away_profile.get('pass_rate', 0.6)) * 100) }}%
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if home_profile.get('pass_rate') %}
+                    {{ "%.1f"|format((1 - home_profile.get('pass_rate', 0.6)) * 100) }}%
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td><strong>% Pass Plays</strong></td>
+                <td class="text-center">
+                  {% if away_profile.get('pass_rate') %}
+                    {{ "%.1f"|format(away_profile.get('pass_rate', 0.6) * 100) }}%
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if home_profile.get('pass_rate') %}
+                    {{ "%.1f"|format(home_profile.get('pass_rate', 0.6) * 100) }}%
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- QB Comparison -->
+{% if away_profile and home_profile and away_profile.get('qb_name') and home_profile.get('qb_name') %}
+<div class="row mb-3">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">🏈 QB Comparison</h3>
+        <div class="card-subtitle">
+          <small class="text-muted">Ranks out of 32 | Data from nflfastR + PFF</small>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-vcenter">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th class="text-center">{{ away }}<br><small>{{ away_profile.get('qb_name', 'N/A') }}</small></th>
+                <th class="text-center">{{ home }}<br><small>{{ home_profile.get('qb_name', 'N/A') }}</small></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>PFF Grade</strong></td>
+                <td class="text-center">
+                  {% if away_profile.get('passing_grade') %}
+                    {{ "%.1f"|format(away_profile.get('passing_grade', 50)) }}
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if home_profile.get('passing_grade') %}
+                    {{ "%.1f"|format(home_profile.get('passing_grade', 50)) }}
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Completion %</strong></td>
+                <td class="text-center">
+                  {% if away_profile.get('qb_completion_pct') %}
+                    {{ "%.1f"|format(away_profile.get('qb_completion_pct', 0) * 100) }}%
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if home_profile.get('qb_completion_pct') %}
+                    {{ "%.1f"|format(home_profile.get('qb_completion_pct', 0) * 100) }}%
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Yards Per Attempt</strong></td>
+                <td class="text-center">
+                  {% if away_profile.get('qb_ypa') %}
+                    {{ "%.1f"|format(away_profile.get('qb_ypa', 7.0)) }}
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if home_profile.get('qb_ypa') %}
+                    {{ "%.1f"|format(home_profile.get('qb_ypa', 7.0)) }}
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td><strong>ANY/A</strong></td>
+                <td class="text-center">
+                  {% if away_profile.get('qb_any_a') %}
+                    {{ "%.2f"|format(away_profile.get('qb_any_a', 6.5)) }}
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if home_profile.get('qb_any_a') %}
+                    {{ "%.2f"|format(home_profile.get('qb_any_a', 6.5)) }}
+                  {% else %}
+                    N/A
+                  {% endif %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- OLine vs DLine Matchup -->
+{% if away_profile and home_profile %}
+<div class="row mb-3">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">⚔️ OLine vs DLine Matchup</h3>
+        <div class="card-subtitle">
+          <small class="text-muted">PFF Grades | Used in Simulator</small>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <!-- Away Team Matchup -->
+          <div class="col-md-6">
+            <h4>{{ away }} Offense vs {{ home }} Defense</h4>
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Matchup</th>
+                    <th class="text-end">{{ away }} O</th>
+                    <th class="text-end">{{ home }} D</th>
+                    <th class="text-end">Advantage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Pass Block vs Pass Rush</strong></td>
+                    <td class="text-end">{{ "%.1f"|format(away_profile.get('ol_grade', 50)) }}</td>
+                    <td class="text-end">{{ "%.1f"|format(home_profile.get('dl_grade', 50)) }}</td>
+                    <td class="text-end">
+                      {% set pass_adv = away_profile.get('ol_grade', 50) - home_profile.get('dl_grade', 50) %}
+                      {% if pass_adv > 5 %}
+                        <span class="badge bg-success">{{ "%.1f"|format(pass_adv) }}</span>
+                      {% elif pass_adv < -5 %}
+                        <span class="badge bg-danger">{{ "%.1f"|format(pass_adv) }}</span>
+                      {% else %}
+                        <span class="badge bg-secondary">{{ "%.1f"|format(pass_adv) }}</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Run Block vs Run Defense</strong></td>
+                    <td class="text-end">{{ "%.1f"|format(away_profile.get('ol_run_grade', 50)) }}</td>
+                    <td class="text-end">{{ "%.1f"|format(home_profile.get('dl_run_grade', 50)) }}</td>
+                    <td class="text-end">
+                      {% set run_adv = away_profile.get('ol_run_grade', 50) - home_profile.get('dl_run_grade', 50) %}
+                      {% if run_adv > 5 %}
+                        <span class="badge bg-success">{{ "%.1f"|format(run_adv) }}</span>
+                      {% elif run_adv < -5 %}
+                        <span class="badge bg-danger">{{ "%.1f"|format(run_adv) }}</span>
+                      {% else %}
+                        <span class="badge bg-secondary">{{ "%.1f"|format(run_adv) }}</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Passing vs Coverage</strong></td>
+                    <td class="text-end">{{ "%.1f"|format(away_profile.get('passing_grade', 50)) }}</td>
+                    <td class="text-end">{{ "%.1f"|format(home_profile.get('coverage_grade', 50)) }}</td>
+                    <td class="text-end">
+                      {% set cov_adv = away_profile.get('passing_grade', 50) - home_profile.get('coverage_grade', 50) %}
+                      {% if cov_adv > 5 %}
+                        <span class="badge bg-success">{{ "%.1f"|format(cov_adv) }}</span>
+                      {% elif cov_adv < -5 %}
+                        <span class="badge bg-danger">{{ "%.1f"|format(cov_adv) }}</span>
+                      {% else %}
+                        <span class="badge bg-secondary">{{ "%.1f"|format(cov_adv) }}</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <!-- Home Team Matchup -->
+          <div class="col-md-6">
+            <h4>{{ home }} Offense vs {{ away }} Defense</h4>
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Matchup</th>
+                    <th class="text-end">{{ home }} O</th>
+                    <th class="text-end">{{ away }} D</th>
+                    <th class="text-end">Advantage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Pass Block vs Pass Rush</strong></td>
+                    <td class="text-end">{{ "%.1f"|format(home_profile.get('ol_grade', 50)) }}</td>
+                    <td class="text-end">{{ "%.1f"|format(away_profile.get('dl_grade', 50)) }}</td>
+                    <td class="text-end">
+                      {% set pass_adv = home_profile.get('ol_grade', 50) - away_profile.get('dl_grade', 50) %}
+                      {% if pass_adv > 5 %}
+                        <span class="badge bg-success">{{ "%.1f"|format(pass_adv) }}</span>
+                      {% elif pass_adv < -5 %}
+                        <span class="badge bg-danger">{{ "%.1f"|format(pass_adv) }}</span>
+                      {% else %}
+                        <span class="badge bg-secondary">{{ "%.1f"|format(pass_adv) }}</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Run Block vs Run Defense</strong></td>
+                    <td class="text-end">{{ "%.1f"|format(home_profile.get('ol_run_grade', 50)) }}</td>
+                    <td class="text-end">{{ "%.1f"|format(away_profile.get('dl_run_grade', 50)) }}</td>
+                    <td class="text-end">
+                      {% set run_adv = home_profile.get('ol_run_grade', 50) - away_profile.get('dl_run_grade', 50) %}
+                      {% if run_adv > 5 %}
+                        <span class="badge bg-success">{{ "%.1f"|format(run_adv) }}</span>
+                      {% elif run_adv < -5 %}
+                        <span class="badge bg-danger">{{ "%.1f"|format(run_adv) }}</span>
+                      {% else %}
+                        <span class="badge bg-secondary">{{ "%.1f"|format(run_adv) }}</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Passing vs Coverage</strong></td>
+                    <td class="text-end">{{ "%.1f"|format(home_profile.get('passing_grade', 50)) }}</td>
+                    <td class="text-end">{{ "%.1f"|format(away_profile.get('coverage_grade', 50)) }}</td>
+                    <td class="text-end">
+                      {% set cov_adv = home_profile.get('passing_grade', 50) - away_profile.get('coverage_grade', 50) %}
+                      {% if cov_adv > 5 %}
+                        <span class="badge bg-success">{{ "%.1f"|format(cov_adv) }}</span>
+                      {% elif cov_adv < -5 %}
+                        <span class="badge bg-danger">{{ "%.1f"|format(cov_adv) }}</span>
+                      {% else %}
+                        <span class="badge bg-secondary">{{ "%.1f"|format(cov_adv) }}</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- Impact Player Injuries -->
+{% if injury_data and (injury_data.get('away') or injury_data.get('home')) %}
+<div class="row mb-3">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">🏥 Impact Player Injuries</h3>
+        <div class="card-subtitle">
+          <small class="text-muted">Weekly Injury Multipliers Applied in Simulator</small>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>{{ away }}</h4>
+            {% if injury_data.get('away') %}
+              <div class="table-responsive">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Impact</th>
+                      <th class="text-end">Multiplier</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>QB Downgrade</td>
+                      <td class="text-end">{{ "%.2f"|format(injury_data.get('away', {}).get('qb_downgrade', 1.0)) }}</td>
+                      <td>
+                        {% if injury_data.get('away', {}).get('qb_downgrade', 1.0) < 1.0 %}
+                          <span class="badge bg-warning">⚠️</span>
+                        {% else %}
+                          <span class="badge bg-success">✓</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>WR Depth Loss</td>
+                      <td class="text-end">{{ "%.2f"|format(injury_data.get('away', {}).get('wr_depth_loss', 1.0)) }}</td>
+                      <td>
+                        {% if injury_data.get('away', {}).get('wr_depth_loss', 1.0) < 1.0 %}
+                          <span class="badge bg-warning">⚠️</span>
+                        {% else %}
+                          <span class="badge bg-success">✓</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>OL Starters Out</td>
+                      <td class="text-end">{{ injury_data.get('away', {}).get('ol_starters_out', 0) }}</td>
+                      <td>
+                        {% if injury_data.get('away', {}).get('ol_starters_out', 0) > 0 %}
+                          <span class="badge bg-danger">{{ injury_data.get('away', {}).get('ol_starters_out', 0) }} out</span>
+                        {% else %}
+                          <span class="badge bg-success">✓</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>CB Starters Out</td>
+                      <td class="text-end">{{ injury_data.get('away', {}).get('cb_starters_out', 0) }}</td>
+                      <td>
+                        {% if injury_data.get('away', {}).get('cb_starters_out', 0) > 0 %}
+                          <span class="badge bg-danger">{{ injury_data.get('away', {}).get('cb_starters_out', 0) }} out</span>
+                        {% else %}
+                          <span class="badge bg-success">✓</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            {% else %}
+              <p class="text-muted">No injury data available</p>
+            {% endif %}
+          </div>
+          
+          <div class="col-md-6">
+            <h4>{{ home }}</h4>
+            {% if injury_data.get('home') %}
+              <div class="table-responsive">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Impact</th>
+                      <th class="text-end">Multiplier</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>QB Downgrade</td>
+                      <td class="text-end">{{ "%.2f"|format(injury_data.get('home', {}).get('qb_downgrade', 1.0)) }}</td>
+                      <td>
+                        {% if injury_data.get('home', {}).get('qb_downgrade', 1.0) < 1.0 %}
+                          <span class="badge bg-warning">⚠️</span>
+                        {% else %}
+                          <span class="badge bg-success">✓</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>WR Depth Loss</td>
+                      <td class="text-end">{{ "%.2f"|format(injury_data.get('home', {}).get('wr_depth_loss', 1.0)) }}</td>
+                      <td>
+                        {% if injury_data.get('home', {}).get('wr_depth_loss', 1.0) < 1.0 %}
+                          <span class="badge bg-warning">⚠️</span>
+                        {% else %}
+                          <span class="badge bg-success">✓</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>OL Starters Out</td>
+                      <td class="text-end">{{ injury_data.get('home', {}).get('ol_starters_out', 0) }}</td>
+                      <td>
+                        {% if injury_data.get('home', {}).get('ol_starters_out', 0) > 0 %}
+                          <span class="badge bg-danger">{{ injury_data.get('home', {}).get('ol_starters_out', 0) }} out</span>
+                        {% else %}
+                          <span class="badge bg-success">✓</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>CB Starters Out</td>
+                      <td class="text-end">{{ injury_data.get('home', {}).get('cb_starters_out', 0) }}</td>
+                      <td>
+                        {% if injury_data.get('home', {}).get('cb_starters_out', 0) > 0 %}
+                          <span class="badge bg-danger">{{ injury_data.get('home', {}).get('cb_starters_out', 0) }} out</span>
+                        {% else %}
+                          <span class="badge bg-success">✓</span>
+                        {% endif %}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            {% else %}
+              <p class="text-muted">No injury data available</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
 <!-- ESPN Team Overview -->
 {% set espn_data = game.get('espn_data', {}) %}
 {% set away_info = espn_data.get('away', {}).get('team_info', {}) %}
