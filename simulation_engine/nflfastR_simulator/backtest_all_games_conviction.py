@@ -25,7 +25,7 @@ MEDIUM_EDGE = 0.03  # 3% edge (was 2%)
 HIGH_EDGE = 0.06    # 6% edge (was 4%)
 
 BREAKEVEN = 0.524
-N_SIMS = 100
+N_SIMS = 2000  # Restored from commit 1c53f6f (74% win rate)
 
 def simulate_one_game(args):
     """Simulate one game and return betting opportunities."""
@@ -97,10 +97,10 @@ def simulate_one_game(args):
         
         from scipy.stats import norm
         
-        # Calibrate totals - PRESERVE VARIANCE for better discrimination
+        # Calibrate totals - scale both mean and SD by LINEAR_BETA
         calibrated_total_mean = LINEAR_ALPHA + LINEAR_BETA * total_raw_mean
-        # Use raw SD (don't scale) to preserve variance and create sharper probabilities
-        calibrated_total_sd = total_raw_sd  # Changed: was LINEAR_BETA * total_raw_sd
+        # Scale SD by LINEAR_BETA to match calibrated mean
+        calibrated_total_sd = LINEAR_BETA * total_raw_sd  # Restored from commit 1c53f6f (74% win rate)
         
         # Calibrate spread (calibrate home/away separately, then subtract)
         raw_home_mean = (total_raw_mean + spread_raw_mean) / 2.0
@@ -108,8 +108,8 @@ def simulate_one_game(args):
         calibrated_home_mean = LINEAR_ALPHA / 2.0 + LINEAR_BETA * raw_home_mean
         calibrated_away_mean = LINEAR_ALPHA / 2.0 + LINEAR_BETA * raw_away_mean
         calibrated_spread_mean = calibrated_home_mean - calibrated_away_mean
-        # Use raw SD for spread too - preserves variance
-        calibrated_spread_sd = spread_raw_sd  # Changed: was LINEAR_BETA * spread_raw_sd
+        # Scale SD by LINEAR_BETA to match calibrated mean
+        calibrated_spread_sd = LINEAR_BETA * spread_raw_sd  # Restored from commit 1c53f6f (74% win rate)
         
         # Calculate probabilities using normal approximation
         # Using raw SD preserves more variance → sharper probabilities → better conviction distribution
@@ -397,12 +397,14 @@ def print_summary(df):
     print("\n" + "=" * 70)
 
 if __name__ == "__main__":
-    # Load 2025 weeks 1-8 data
+    # Load 2025 weeks 1-9 data (Week 9 is OUT-OF-SAMPLE test for calibrators trained on Weeks 1-8)
     from backtest_ultra_fast import load_games_2025
     
-    print("Loading 2025 weeks 1-8 games...")
+    print("Loading 2025 weeks 1-9 games...")
     games = load_games_2025()
-    print(f"✅ Loaded {len(games)} games\n")
+    print(f"✅ Loaded {len(games)} games")
+    print(f"   ⚠️  NOTE: Weeks 1-8 used to train calibrators (IN-SAMPLE)")
+    print(f"   ✅ Week 9 is OUT-OF-SAMPLE test (true predictive performance)\n")
     
     print(f"🚀 Running {len(games)} games × {N_SIMS} sims = {len(games) * N_SIMS:,} total")
     print(f"   Betting on ALL games with conviction tiers")

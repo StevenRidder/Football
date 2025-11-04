@@ -133,16 +133,16 @@ def load_games_2024() -> pd.DataFrame:
 
 
 def load_games_2025() -> pd.DataFrame:
-    """Load 2025 weeks 1-8 with market lines from NFLfastR."""
+    """Load 2025 weeks 1-9 with market lines from NFLfastR."""
     import nfl_data_py as nfl
     
     # Load schedule - NFLfastR already has spread_line and total_line
     schedule = nfl.import_schedules([2025])
     print(f"   Loaded {len(schedule)} games from nfl_data_py")
     
-    # Filter to weeks 1-8
-    schedule = schedule[(schedule['week'] >= 1) & (schedule['week'] <= 8)].copy()
-    print(f"   Filtered to {len(schedule)} games in weeks 1-8")
+    # Filter to weeks 1-9 (Week 9 is OUT-OF-SAMPLE for calibrators trained on Weeks 1-8)
+    schedule = schedule[(schedule['week'] >= 1) & (schedule['week'] <= 9)].copy()
+    print(f"   Filtered to {len(schedule)} games in weeks 1-9")
     
     # NFLfastR uses home - away convention for spread_line (positive = home favored)
     # We need to ensure consistency with our simulator convention
@@ -165,9 +165,10 @@ def load_games_2025() -> pd.DataFrame:
     # Filter to games with lines
     result = result[result['spread_line'].notna() & result['closing_total'].notna()].copy()
     
-    print(f"✅ Loaded {len(result)} games from 2025 weeks 1-8")
+    print(f"✅ Loaded {len(result)} games from 2025 weeks 1-9")
     print(f"   Weeks: {sorted(result['week'].unique())}")
     print(f"   Games with results: {(result['home_score'].notna()).sum()}/{len(result)}")
+    print(f"   ⚠️  Week 9 games (OUT-OF-SAMPLE): {len(result[result['week'] == 9])} games")
     
     return result
 
