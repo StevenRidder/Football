@@ -9,7 +9,7 @@ Per strategy doc:
 """
 
 from dataclasses import dataclass
-from typing import Literal
+from typing import Literal, Dict, Tuple
 
 
 @dataclass
@@ -199,13 +199,11 @@ class GameState:
                 self.start_new_drive()
                 return
         
-        # Advance clock (roughly 40 seconds per play, less in 2-minute drill)
-        if self.game_seconds_remaining < 120:
-            time_elapsed = 25  # Hurry-up
-        else:
-            time_elapsed = 40
-        
-        self.time_remaining = max(0, self.time_remaining - time_elapsed)
+        # FIXED: Clock advancement is now handled by GameSimulator
+        # which passes time_per_play based on pace
+        # This method is kept for backward compatibility but should not be called
+        # The actual clock advancement happens in GameSimulator._simulate_drive
+        pass
         
         # Check for end of quarter
         if self.time_remaining == 0:
@@ -246,47 +244,89 @@ class GameState:
         """Check if game is over."""
         return self.quarter > 4 or (self.quarter == 4 and self.time_remaining == 0)
     
-    def should_punt(self) -> bool:
+    def should_punt(self) -> Tuple[bool, Dict]:
         """
         Decide if team should punt on 4th down.
         
-        Strategy (modern NFL aggression):
-        - Punt if 4th-and-long outside FG range
-        - Go for it if 4th-and-short in opponent territory
-        - Go for it more aggressively near midfield
-        - Attempt FG if in range (inside opponent 30)
+        Uses fourth_down_model for data-driven decisions.
+        
+        Returns:
+            (decision: bool, reasoning: dict)
+            True = Punt, False = Go for it or FG
         """
         if self.down != 4:
-            return False
+            return False, {"reason": "not_4th_down", "down": self.down}
         
-        # Always go for it if trailing late
-        if self.score_differential < -7 and self.game_seconds_remaining < 300:
-            return False
-        
-        # FG range (inside opponent 30)
-        if self.yardline >= 70:
-            return False  # Attempt FG
-        
-        # 4th-and-short in opponent territory (more aggressive)
-        if self.yardline >= 50 and self.ydstogo <= 3:
-            return False  # Go for it
-        
-        # 4th-and-1 anywhere past own 40
-        if self.yardline >= 40 and self.ydstogo <= 1:
-            return False  # Go for it
-        
-        # Otherwise punt
-        return True
+        try:
+            from .fourth_down_model import get_fourth_down_decision
+            decision, reasoning = get_fourth_down_decision(
+                yardline=self.yardline,
+                ydstogo=self.ydstogo,
+                time_remaining=self.game_seconds_remaining,
+                score_diff=self.score_differential,
+                quarter=self.quarter
+            )
+            
+            # Convert to boolean: Punt = True, Go/FG = False
+            return decision == "Punt", reasoning
+            
+        except ImportError:
+            # Fallback to old heuristic if model not available
+            reasoning = {
+                "yardline": self.yardline,
+                "to_go": self.ydstogo,
+                "score_diff": self.score_differential,
+                "time_remaining": self.game_seconds_remaining,
+                "reason": "heuristic_fallback"
+            }
+            
+            if self.score_differential < -7 and self.game_seconds_remaining < 300:
+                return False, reasoning
+            if self.yardline >= 70:
+                return False, reasoning
+            if self.yardline >= 50 and self.ydstogo <= 3:
+                return False, reasoning
+            if self.yardline >= 40 and self.ydstogo <= 1:
+                return False, reasoning
+            return True, reasoning
     
-    def should_attempt_fg(self) -> bool:
-        """Decide if team should attempt field goal on 4th down."""
-        if self.down != 4:
-            return False
+    def should_attempt_fg(self) -> Tuple[bool, Dict]:
+        """
+        Decide if team should attempt field goal on 4th down.
         
-        # FG range (inside opponent 17, ~34 yard FG)
-        # Balanced - kick makeable FGs, go for it on 4th-and-short
-        distance_to_goal = 100 - self.yardline
-        return self.yardline >= 83 and distance_to_goal <= 17 and self.ydstogo > 3
+        Uses fourth_down_model for data-driven decisions.
+        
+        Returns:
+            (decision: bool, reasoning: dict)
+            True = Attempt FG, False = Go for it or Punt
+        """
+        if self.down != 4:
+            return False, {"reason": "not_4th_down", "down": self.down}
+        
+        try:
+            from .fourth_down_model import get_fourth_down_decision
+            decision, reasoning = get_fourth_down_decision(
+                yardline=self.yardline,
+                ydstogo=self.ydstogo,
+                time_remaining=self.game_seconds_remaining,
+                score_diff=self.score_differential,
+                quarter=self.quarter
+            )
+            
+            # Convert to boolean: FG = True, Go/Punt = False
+            return decision == "FG", reasoning
+            
+        except ImportError:
+            # Fallback to old heuristic
+            distance_to_goal = 100 - self.yardline
+            reasoning = {
+                "yardline": self.yardline,
+                "distance_to_goal": distance_to_goal,
+                "to_go": self.ydstogo,
+                "reason": "heuristic_fallback"
+            }
+            decision = self.yardline >= 83 and distance_to_goal <= 17 and self.ydstogo > 3
+            return decision, reasoning
     
     def __repr__(self):
         """String representation of game state."""

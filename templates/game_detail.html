@@ -12,6 +12,12 @@
       <i class="ti ti-arrow-left icon"></i>
       Back to All Games
     </a>
+    {% if trace_exists and week %}
+    <a href="/trace/{{ away }}/{{ home }}/{{ week }}" class="btn btn-primary ms-2">
+      <i class="ti ti-file-code icon"></i>
+      View Simulation Trace
+    </a>
+    {% endif %}
   </div>
 </div>
 

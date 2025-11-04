@@ -89,26 +89,55 @@ class PFFLoader:
         """
         df = self.load_season(season)
         
-        # Map common abbreviation variations
-        # PFF uses some different abbreviations (BLT vs BAL, ARZ vs ARI, etc.)
+        # FIXED: Expanded abbreviation mapping with comprehensive NFL team variations
+        # PFF uses some different abbreviations across years
         abbrev_map = {
-            'BAL': 'BLT',  # Baltimore
-            'ARI': 'ARZ',  # Arizona
-            'CLE': 'CLV',  # Cleveland
-            'HOU': 'HST',  # Houston
-            'LAR': 'LA',   # Los Angeles Rams
+            'BAL': ['BLT', 'BAL'],  # Baltimore
+            'ARI': ['ARZ', 'ARI'],  # Arizona
+            'CLE': ['CLV', 'CLE'],  # Cleveland
+            'HOU': ['HST', 'HOU'],  # Houston
+            'LAR': ['LA', 'LAR', 'STL'],   # Los Angeles Rams (was St. Louis)
+            'LAC': ['SD', 'LAC'],   # Los Angeles Chargers (was San Diego)
+            'LV': ['OAK', 'LV', 'RAI'],    # Las Vegas Raiders (was Oakland)
+            'WAS': ['WSH', 'WAS', 'WFT'],  # Washington (various names)
+            'TB': ['TB', 'TAM'],    # Tampa Bay
+            'KC': ['KC', 'KAN'],    # Kansas City
+            'GB': ['GB', 'GNB'],    # Green Bay
+            'NO': ['NO', 'NOR'],    # New Orleans
+            'SF': ['SF', 'SFO'],    # San Francisco
+            'NE': ['NE', 'NWE'],    # New England
+            'NYG': ['NYG', 'NYN'],   # New York Giants
+            'NYJ': ['NYJ', 'NYA'],   # New York Jets
         }
         
         # Try direct match first
         team_row = df[df['abbreviation'] == team]
         
-        # If not found, try mapped abbreviation
+        # If not found, try mapped abbreviations
         if team_row.empty and team in abbrev_map:
-            team_row = df[df['abbreviation'] == abbrev_map[team]]
+            for alt_abbrev in abbrev_map[team]:
+                team_row = df[df['abbreviation'] == alt_abbrev]
+                if not team_row.empty:
+                    break
         
+        # FIXED: Soft fallback with league averages and warning
         if team_row.empty:
-            # NO FALLBACK - data must be available
-            raise ValueError(f"PFF data not found for team {team} in season {season}. Data is required, no fallbacks.")
+            import warnings
+            warnings.warn(
+                f"PFF data not found for team {team} in season {season}. "
+                f"Using league averages with reduced confidence. "
+                f"Available teams: {df['abbreviation'].unique().tolist()}"
+            )
+            # Return league-average defaults (50th percentile grades)
+            return {
+                'ol_pass_block': 50.0,
+                'ol_run_block': 50.0,
+                'dl_pass_rush': 50.0,
+                'dl_run_defense': 50.0,
+                'secondary_coverage': 50.0,
+                'passing_offense': 50.0,
+                '_fallback_used': True,  # Flag for confidence downgrade
+            }
         
         row = team_row.iloc[0]
         

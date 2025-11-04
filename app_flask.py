@@ -1061,12 +1061,28 @@ def game_detail(away, home, week=None):
     except Exception as e:
         print(f"Error fetching spreads/totals: {e}")
     
+    # Check if trace exists for this game
+    trace_exists = False
+    trace_path = None
+    if week and 'week' in df_pred.columns:
+        from pathlib import Path
+        season = 2025  # Default season
+        trace_dir = Path("artifacts/traces")
+        trace_filename = f"{away}_{home}_{week}_{season}.jsonl"
+        trace_path_check = trace_dir / trace_filename
+        trace_exists = trace_path_check.exists()
+        if trace_exists:
+            trace_path = str(trace_path_check)
+    
     return render_template('game_detail.html',
                          away=away,
                          home=home,
+                         week=week if week else game_data.get('week'),
                          game=game_data,
                          away_season=game_data['team_stats']['away'],
                          home_season=game_data['team_stats']['home'],
+                         trace_exists=trace_exists,
+                         trace_path=trace_path,
                          away_recent=away_recent,
                          home_recent=home_recent,
                          external_predictions=external_predictions)
@@ -3308,6 +3324,38 @@ def get_ai_picks():
         return jsonify({
             'error': f'Failed to load picks: {str(e)}'
         }), 500
+
+@app.route('/api/trace/<away>/<home>/<int:week>')
+def get_trace(away, home, week):
+    """API endpoint to get trace data for a game."""
+    from pathlib import Path
+    import json
+    
+    season = 2025  # Default season
+    trace_dir = Path("artifacts/traces")
+    trace_filename = f"{away}_{home}_{week}_{season}.jsonl"
+    trace_path = trace_dir / trace_filename
+    
+    if not trace_path.exists():
+        return jsonify({'error': 'Trace not found'}), 404
+    
+    # Load trace events
+    events = []
+    with trace_path.open() as f:
+        for line in f:
+            if line.strip():
+                events.append(json.loads(line))
+    
+    return jsonify({
+        'game_id': f"{season}_{week}_{away}_{home}",
+        'events': events,
+        'total_events': len(events)
+    })
+
+@app.route('/trace/<away>/<home>/<int:week>')
+def trace_viewer(away, home, week):
+    """Trace viewer page."""
+    return render_template('trace_viewer.html', away=away, home=home, week=week)
 
 if __name__ == '__main__':
     app.run(debug=False, port=9876, host='0.0.0.0')

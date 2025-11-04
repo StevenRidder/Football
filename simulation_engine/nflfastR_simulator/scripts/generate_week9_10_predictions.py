@@ -47,14 +47,34 @@ def simulate_one_game(args):
         home_profile = TeamProfile(home, season, week, data_dir=data_dir, debug=False)
         away_profile = TeamProfile(away, season, week, data_dir=data_dir, debug=False)
         
-        # Run simulation
+        # Run simulation with trace (only for first simulation to save space)
         game_id = row.get('game_id', f"{season}_{week:02d}_{away}_{home}")
-        sim = GameSimulator(home_profile, away_profile, 
-                           game_id=game_id, season=season, week=week)
-        home_scores = []
-        away_scores = []
         
-        for sim_i in range(n_sims):
+        # Create trace for first simulation only
+        from simulator.tracing import SimTrace
+        from pathlib import Path
+        artifacts_dir = Path(__file__).parent.parent / "artifacts" / "traces"
+        artifacts_dir.mkdir(parents=True, exist_ok=True)
+        trace_path = artifacts_dir / f"{away}_{home}_{week}_{season}.jsonl"
+        
+        # Create trace for first simulation
+        trace = SimTrace(game_id=game_id, out_path=trace_path, seed=hash(f"{game_id}_0") % (2**32))
+        trace.enable = True  # Enable for first sim
+        sim = GameSimulator(home_profile, away_profile, 
+                           game_id=game_id, season=season, week=week,
+                           trace=trace, seed=hash(f"{game_id}_0") % (2**32))
+        
+        # Run first simulation with trace
+        np.random.seed(hash(f"{game_id}_0") % (2**32))
+        result_0 = sim.simulate_game()
+        home_scores = [result_0['home_score']]
+        away_scores = [result_0['away_score']]
+        
+        # Disable trace for remaining simulations
+        trace.enable = False
+        
+        # Run remaining simulations (faster, no trace)
+        for sim_i in range(1, n_sims):
             np.random.seed(hash(f"{game_id}_{sim_i}") % (2**32))
             result = sim.simulate_game()
             home_scores.append(result['home_score'])
@@ -127,6 +147,25 @@ def simulate_one_game(args):
         p_over_linear = np.clip(p_over_linear, 0.01, 0.99)
         p_away_cover_linear = 1 - p_home_cover_linear
         p_under_linear = 1 - p_over_linear
+        
+        # Log distribution_params (before/after calibration) - after all sims complete
+        trace.enable = True  # Re-enable for logging
+        trace.log("distribution_params", {
+            "spread": {
+                "raw_mean": float(spread_raw_mean),
+                "raw_sd": float(spread_raw_sd),
+                "calibrated_mean": float(calibrated_spread_mean),
+                "calibrated_sd": float(calibrated_spread_sd),
+                "market_line": float(spread_line)
+            },
+            "total": {
+                "raw_mean": float(total_raw_mean),
+                "raw_sd": float(total_raw_sd),
+                "calibrated_mean": float(calibrated_total_mean),
+                "calibrated_sd": float(calibrated_total_sd),
+                "market_line": float(total_line)
+            }
+        })
         
         # Try isotonic calibrators (priority over linear)
         p_home_cover = p_home_cover_linear
@@ -207,6 +246,32 @@ def simulate_one_game(args):
                 total_conviction = 'MEDIUM'
             else:
                 total_conviction = 'LOW'
+        
+        # Log calibration block per game (predicted probabilities, bin id, eventual hit)
+        # Bin probabilities into 0.1-width bins for reliability curves
+        spread_bin_id = int(p_home_cover * 10) if spread_bet else None
+        total_bin_id = int(p_over * 10) if total_bet else None
+        
+        trace.log("calibration", {
+            "spread": {
+                "predicted_prob": float(p_home_cover if spread_bet == 'HOME' else p_away_cover),
+                "bin_id": spread_bin_id,
+                "bet_side": spread_bet,
+                "market_line": float(spread_line),
+                "eventual_hit": None  # Will be filled when game completes
+            },
+            "total": {
+                "predicted_prob": float(p_over if total_bet == 'OVER' else p_under),
+                "bin_id": total_bin_id,
+                "bet_side": total_bet,
+                "market_line": float(total_line),
+                "eventual_hit": None  # Will be filled when game completes
+            },
+            "calibration_method": use_calibration
+        })
+        
+        # Save trace summary
+        trace.save_summary(trace_path.with_suffix('.summary.json'))
         
         return {
             'game_id': row.get('game_id', f"{season}_{week:02d}_{away}_{home}"),

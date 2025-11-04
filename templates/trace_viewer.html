@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}Simulation Trace Viewer - {{ away }} @ {{ home }} Week {{ week }}{% endblock %}
+
+{% block content %}
+<div class="page-header d-print-none">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">Simulation Trace Viewer</h2>
+                <div class="text-muted mt-1">{{ away }} @ {{ home }} - Week {{ week }}</div>
+            </div>
+            <div class="col-auto ms-auto">
+                <a href="/game/{{ away }}/{{ home }}?week={{ week }}" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>
+                    Back to Game
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-body">
+    <div class="container-xl">
+        <div id="loading" class="card">
+            <div class="card-body text-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading trace...</span>
+                </div>
+                <p class="mt-3">Loading simulation trace...</p>
+            </div>
+        </div>
+
+        <div id="error" class="alert alert-danger d-none" role="alert">
+            <h4 class="alert-title">Error Loading Trace</h4>
+            <div id="error-message"></div>
+        </div>
+
+        <div id="trace-content" class="d-none">
+            <!-- Input Audit -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="card-title">Input Audit</h3>
+                </div>
+                <div class="card-body">
+                    <div id="input-audit-content"></div>
+                </div>
+            </div>
+
+            <!-- Game Summary -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="card-title">Game Summary</h3>
+                </div>
+                <div class="card-body">
+                    <div id="game-summary-content"></div>
+                </div>
+            </div>
+
+            <!-- Drive Summary -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="card-title">Drive Summary</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-vcenter table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Drive</th>
+                                    <th>Team</th>
+                                    <th>Plays</th>
+                                    <th>Points</th>
+                                    <th>Time Used</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody id="drive-summary-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Play-by-Play -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="card-title">Play-by-Play</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-vcenter table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Quarter</th>
+                                    <th>Type</th>
+                                    <th>Yards</th>
+                                    <th>TD</th>
+                                    <th>TO</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody id="play-by-play-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Realism Guards -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3 class="card-title">Realism Guards</h3>
+                </div>
+                <div class="card-body">
+                    <div id="realism-guards-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(async function() {
+    const away = '{{ away }}';
+    const home = '{{ home }}';
+    const week = {{ week }};
+    
+    try {
+        const response = await fetch(`/api/trace/${away}/${home}/${week}`);
+        if (!response.ok) {
+            throw new Error(`Failed to load trace: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        const events = data.events || [];
+        
+        // Hide loading, show content
+        document.getElementById('loading').classList.add('d-none');
+        document.getElementById('trace-content').classList.remove('d-none');
+        
+        // Process events by type
+        const inputAudit = events.find(e => e.kind === 'inputs.audit');
+        const gameSummary = events.find(e => e.kind === 'game.summary');
+        const driveSummaries = events.filter(e => e.kind === 'drive.summary');
+        const playResults = events.filter(e => e.kind === 'play.result');
+        const violations = events.filter(e => e.kind === 'anchors.violation');
+        const pass = events.find(e => e.kind === 'anchors.pass');
+        
+        // Render input audit
+        if (inputAudit) {
+            const audit = inputAudit;
+            const html = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Home Team (${audit.home?.team || 'N/A'})</h4>
+                        <pre class="bg-light p-3"><code>${JSON.stringify(audit.home, null, 2)}</code></pre>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Away Team (${audit.away?.team || 'N/A'})</h4>
+                        <pre class="bg-light p-3"><code>${JSON.stringify(audit.away, null, 2)}</code></pre>
+                    </div>
+                </div>
+            `;
+            document.getElementById('input-audit-content').innerHTML = html;
+        }
+        
+        // Render game summary
+        if (gameSummary) {
+            const gs = gameSummary;
+            const html = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-sm">
+                            <tr><td><strong>Final Score:</strong></td><td>${gs.away_score || 'N/A'} - ${gs.home_score || 'N/A'}</td></tr>
+                            <tr><td><strong>Spread:</strong></td><td>${gs.spread || 'N/A'}</td></tr>
+                            <tr><td><strong>Total:</strong></td><td>${gs.total || 'N/A'}</td></tr>
+                            <tr><td><strong>Drives per Team:</strong></td><td>${(gs.drives_per_team || 0).toFixed(1)}</td></tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-sm">
+                            <tr><td><strong>Plays per Drive:</strong></td><td>${(gs.plays_per_drive || 0).toFixed(1)}</td></tr>
+                            <tr><td><strong>TD%:</strong></td><td>${((gs.td_pct || 0) * 100).toFixed(1)}%</td></tr>
+                            <tr><td><strong>FG%:</strong></td><td>${((gs.fg_pct || 0) * 100).toFixed(1)}%</td></tr>
+                            <tr><td><strong>TO%:</strong></td><td>${((gs.turnover_pct || 0) * 100).toFixed(1)}%</td></tr>
+                            <tr><td><strong>Pass Rate:</strong></td><td>${((gs.pass_rate || 0) * 100).toFixed(1)}%</td></tr>
+                            <tr><td><strong>Explosive Rate:</strong></td><td>${((gs.explosive_rate || 0) * 100).toFixed(1)}%</td></tr>
+                        </table>
+                    </div>
+                </div>
+            `;
+            document.getElementById('game-summary-content').innerHTML = html;
+        }
+        
+        // Render drive summaries
+        const driveTbody = document.getElementById('drive-summary-tbody');
+        driveSummaries.forEach(drive => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${drive.drive_no || 'N/A'}</td>
+                <td>${drive.team || 'N/A'}</td>
+                <td>${drive.plays || 0}</td>
+                <td>${drive.points || 0}</td>
+                <td>${drive.time_used || 0}s</td>
+                <td>${drive.result || 'N/A'}</td>
+            `;
+            driveTbody.appendChild(row);
+        });
+        
+        // Render play-by-play
+        const playTbody = document.getElementById('play-by-play-tbody');
+        playResults.forEach(play => {
+            const row = document.createElement('tr');
+            const state = play.state_after || {};
+            row.innerHTML = `
+                <td>Q${state.quarter || '?'}</td>
+                <td>${play.type || 'unknown'}</td>
+                <td>${play.yards !== undefined ? (play.yards > 0 ? '+' : '') + play.yards : 'N/A'}</td>
+                <td>${play.td ? '✓' : ''}</td>
+                <td>${play.turnover ? '✓' : ''}</td>
+                <td>${state.down || '?'} & ${state.to_go || '?'} at ${state.yardline || '?'}</td>
+            `;
+            playTbody.appendChild(row);
+        });
+        
+        // Render realism guards
+        let guardsHtml = '';
+        if (pass) {
+            guardsHtml = '<div class="alert alert-success"><strong>✓ All realism guards passed</strong></div>';
+        } else if (violations.length > 0) {
+            violations.forEach(v => {
+                const sev = v.severity === 'critical' ? 'danger' : 'warning';
+                guardsHtml += `<div class="alert alert-${sev}"><strong>Realism Guard Violations:</strong><ul>`;
+                (v.violations || []).forEach(vio => {
+                    guardsHtml += `<li>${vio.metric}: ${vio.observed.toFixed(2)} (target: ${vio.target_range[0]}-${vio.target_range[1]}) - ${vio.violation}</li>`;
+                });
+                guardsHtml += '</ul></div>';
+            });
+        }
+        document.getElementById('realism-guards-content').innerHTML = guardsHtml || '<p>No realism guard data available.</p>';
+        
+    } catch (error) {
+        document.getElementById('loading').classList.add('d-none');
+        document.getElementById('error').classList.remove('d-none');
+        document.getElementById('error-message').textContent = error.message;
+    }
+})();
+</script>
+{% endblock %}
+

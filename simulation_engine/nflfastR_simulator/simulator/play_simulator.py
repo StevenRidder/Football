@@ -14,14 +14,16 @@ Per strategy doc:
 """
 
 import numpy as np
-from typing import Dict
+from typing import Dict, Optional
 
 try:
     from .game_state import GameState
     from .team_profile import TeamProfile
+    from .tracing import SimTrace
 except ImportError:
     from game_state import GameState
     from team_profile import TeamProfile
+    from tracing import SimTrace
 
 
 class PlaySimulator:
@@ -30,16 +32,18 @@ class PlaySimulator:
     # Base pressure rate (league average)
     BASE_PRESSURE_RATE = 0.212  # 21.2% from nflfastR data
     
-    def __init__(self, offense: TeamProfile, defense: TeamProfile):
+    def __init__(self, offense: TeamProfile, defense: TeamProfile, trace: Optional[SimTrace] = None):
         """
         Initialize play simulator.
         
         Args:
             offense: Offensive team profile
             defense: Defensive team profile
+            trace: Optional SimTrace for logging
         """
         self.offense = offense
         self.defense = defense
+        self.trace = trace
     
     def decide_play_type(self, game_state: GameState) -> str:
         """
@@ -60,7 +64,48 @@ class PlaySimulator:
         )
         
         # Random decision based on pass rate
-        return 'pass' if np.random.random() < pass_rate else 'run'
+        choice = 'pass' if np.random.random() < pass_rate else 'run'
+        
+        # Log decision with reasoning
+        if self.trace:
+            self.trace.log("call.pass_run", {
+                "quarter": game_state.quarter,
+                "down": game_state.down,
+                "to_go": game_state.ydstogo,
+                "yardline": game_state.yardline,
+                "score_diff": game_state.score_differential,
+                "buckets": {
+                    "distance": game_state.distance_bucket,
+                    "score": game_state.score_diff_bucket,
+                    "time": game_state.time_bucket
+                },
+                "team_pass_rate": float(pass_rate),
+                "choice": choice
+            })
+        
+        return choice
+    
+    def _log_play_result(self, play_result: Dict, game_state: GameState):
+        """Log play result for transparency."""
+        if not self.trace:
+            return
+        
+        self.trace.log("play.result", {
+            "type": play_result.get('type', 'unknown'),
+            "yards": play_result.get('yards', 0),
+            "td": play_result.get('td', False),
+            "turnover": play_result.get('turnover', False),
+            "explosive": play_result.get('yards', 0) >= 15,
+            "state_after": {
+                "down": game_state.down,
+                "to_go": game_state.ydstogo,
+                "yardline": game_state.yardline,
+                "home": game_state.home_score,
+                "away": game_state.away_score,
+                "quarter": game_state.quarter,
+                "time_rem": game_state.time_remaining
+            }
+        })
     
     def simulate_pass_play(self, game_state: GameState) -> Dict:
         """
@@ -79,6 +124,10 @@ class PlaySimulator:
         """
         # Step 1: Determine if pressure occurs
         pressure_rate = self.BASE_PRESSURE_RATE
+        
+        # FIXED: Apply injury multipliers (OL starters out increases pressure)
+        ol_injury_mult = getattr(self.offense, 'injury_multipliers', {}).get('ol_pressure_mult', 1.0)
+        pressure_rate = pressure_rate * ol_injury_mult
         
         # Step 2: Apply PFF OL vs DL mismatch for pressure adjustment
         # Strategy: OL/DL mismatch is a key predictive factor
@@ -109,6 +158,20 @@ class PlaySimulator:
         
         is_pressure = np.random.random() < pressure_rate
         
+        # Log pressure calculation
+        if self.trace:
+            ol_grade = getattr(self.offense, 'ol_grade', None)
+            dl_grade = getattr(self.defense, 'dl_grade', None)
+            mismatch = dl_grade - ol_grade if (ol_grade and dl_grade) else None
+            self.trace.log("pass.pressure", {
+                "base": self.BASE_PRESSURE_RATE,
+                "ol_grade": float(ol_grade) if ol_grade else None,
+                "dl_grade": float(dl_grade) if dl_grade else None,
+                "mismatch": float(mismatch) if mismatch else None,
+                "final": float(pressure_rate),
+                "is_pressure": bool(is_pressure)
+            })
+        
         # Calculate ANY/A advantage once for use throughout pass play
         # USE ANY/A METRIC: Adjust QB efficiency based on team ANY/A vs defense allowed
         league_avg_anya = 6.0
@@ -130,14 +193,35 @@ class PlaySimulator:
         completion_boost = 1.40
         qb_stats['completion_pct'] = min(0.88, qb_stats['completion_pct'] * completion_boost)
         
+        # FIXED: Apply injury multipliers (QB downgrade, WR depth loss)
+        qb_comp_mult = getattr(self.offense, 'injury_multipliers', {}).get('qb_completion_mult', 1.0)
+        wr_comp_mult = getattr(self.offense, 'injury_multipliers', {}).get('wr_completion_mult', 1.0)
+        qb_stats['completion_pct'] = qb_stats['completion_pct'] * qb_comp_mult * wr_comp_mult
+        
         # Adjust yards per attempt: each 1 ANY/A advantage = +0.5 yards
         qb_stats['yards_per_att'] = qb_stats['yards_per_att'] + (anya_advantage * 0.5)
         qb_stats['yards_per_att'] = np.clip(qb_stats['yards_per_att'], 2.0, 12.0)
         
         # CALIBRATION TUNING: Drive persistence bias
         # If last play gained >4 yards, boost completion by 15%
+        persistence_boost = 1.0
         if hasattr(game_state, 'last_play_yards') and game_state.last_play_yards > 4:
-            qb_stats['completion_pct'] = min(0.85, qb_stats['completion_pct'] * 1.15)
+            persistence_boost = 1.15
+            qb_stats['completion_pct'] = min(0.85, qb_stats['completion_pct'] * persistence_boost)
+        
+        # Log completion probability calculation
+        if self.trace:
+            qb_baseline = self.offense.qb_stats['pressure' if is_pressure else 'clean']['completion_pct']
+            completion_pct_final = qb_stats['completion_pct']
+            self.trace.log("pass.completion_model", {
+                "split": "pressure" if is_pressure else "clean",
+                "qb_baseline": float(qb_baseline),
+                "anya_advantage": float(anya_advantage),
+                "after_anya": float(qb_stats['completion_pct'] / (completion_boost * persistence_boost) if persistence_boost > 1.0 else qb_stats['completion_pct'] / completion_boost),
+                "after_pff_vs_cov": float(completion_pct_final / persistence_boost if persistence_boost > 1.0 else completion_pct_final),
+                "persistence_boost": float(persistence_boost),
+                "final_completion_pct": float(completion_pct_final)
+            })
         
         # Step 3: Sample outcome type
         # CALIBRATION: Explicit turnover subsystem with bounded rates
@@ -151,21 +235,25 @@ class PlaySimulator:
                 yards = int(np.random.normal(5, 4))
                 yards = np.clip(yards, -2, 15)
                 is_td = self._check_touchdown(yards, game_state)
-                return {
+                result = {
                     'type': 'scramble',
                     'yards': yards,
                     'td': is_td,
                     'turnover': False
                 }
+                self._log_play_result(result, game_state)
+                return result
             
             # Throwaway: 10%
             elif pressure_outlet < 0.28:  # 0.18 + 0.10
-                return {
+                result = {
                     'type': 'incomplete',
                     'yards': 0,
                     'td': False,
                     'turnover': False
                 }
+                self._log_play_result(result, game_state)
+                return result
             
             # Sack: 28%
             elif pressure_outlet < 0.56:  # 0.28 + 0.28
@@ -177,13 +265,15 @@ class PlaySimulator:
                 fumble = np.random.random() < p_fumble_sack
                 if fumble:
                     fumble = np.random.random() < 0.50  # 50% recovery rate
-                return {
+                result = {
                     'type': 'sack',
                     'yards': yards,
                     'td': False,
                     'turnover': fumble,
                     'fumble': fumble
                 }
+                self._log_play_result(result, game_state)
+                return result
             
             # Else: Attempted pass under pressure (44%)
         
@@ -216,14 +306,20 @@ class PlaySimulator:
         # Factor < 1.0 = fade (reduce efficiency), Factor > 1.0 = boost (regression opportunity)
         p_int = p_int * self.offense.turnover_regression_factor
         
+        # FIXED: Apply injury multipliers (QB downgrade increases INT rate)
+        qb_int_mult = getattr(self.offense, 'injury_multipliers', {}).get('qb_int_mult', 1.0)
+        p_int = p_int * qb_int_mult
+        
         # Check for interception FIRST
         if np.random.random() < p_int:
-            return {
+            result = {
                 'type': 'interception',
                 'yards': 0,
                 'td': False,
                 'turnover': True
             }
+            self._log_play_result(result, game_state)
+            return result
         
         # Step 4: Adjust completion probability for WR vs Coverage matchup
         # Strategy: Coverage grades vs Passing grades affect completion rate
@@ -276,6 +372,10 @@ class PlaySimulator:
                 # Higher passing grade vs lower coverage = more explosive plays
                 explosive_advantage = (self.offense.passing_grade - self.defense.coverage_grade) / 50.0
                 explosive_rate = np.clip(0.15 + explosive_advantage * 0.05, 0.05, 0.30)
+            
+            # FIXED: Apply injury multipliers (WR depth loss reduces explosive plays)
+            wr_explosive_mult = getattr(self.offense, 'injury_multipliers', {}).get('wr_explosive_mult', 1.0)
+            explosive_rate = explosive_rate * wr_explosive_mult
             
             # SITUATIONAL FACTOR: Weather reduces explosive play rate
             if hasattr(self.offense, 'is_dome') and not self.offense.is_dome:
@@ -343,21 +443,25 @@ class PlaySimulator:
             if fumble:
                 fumble = np.random.random() < 0.50  # 50% recovery rate
             
-            return {
+            result = {
                 'type': 'completion',
                 'yards': yards,
                 'td': is_td,
                 'turnover': fumble,
                 'fumble': fumble
             }
+            self._log_play_result(result, game_state)
+            return result
         else:
             # Incomplete
-            return {
+            result = {
                 'type': 'incomplete',
                 'yards': 0,
                 'td': False,
                 'turnover': False
             }
+            self._log_play_result(result, game_state)
+            return result
     
     def simulate_run_play(self, game_state: GameState) -> Dict:
         """
@@ -376,26 +480,33 @@ class PlaySimulator:
         # Base yards: league average ~4.8 yards per carry
         base_yards = 4.8
         
+        # FIXED: Reduced stacked signals - EPA and YPP share credit, don't double-count
         # USE MULTIPLE METRICS FOR RUN YARDS:
-        # 1. EPA differential (team strength)
+        # 1. EPA differential (team strength) - REDUCED from 24 to 12
         epa_diff = self.offense.off_epa - self.defense.def_epa
-        yards_adjustment = epa_diff * 24  # 2x boost: 0.1 EPA = 2.4 yards (was 1.2)
+        yards_adjustment = epa_diff * 12  # Reduced: 0.1 EPA = 1.2 yards (was 2.4)
         
-        # 2. PFF OL/DL run blocking matchup
+        # 2. PFF OL/DL run blocking matchup - REDUCED from 0.10 to 0.06
         if not hasattr(self.offense, 'ol_run_grade') or self.offense.ol_run_grade is None:
             raise ValueError(f"Offense {self.offense.team} missing ol_run_grade - PFF data required")
         if not hasattr(self.defense, 'dl_run_grade') or self.defense.dl_run_grade is None:
             raise ValueError(f"Defense {self.defense.team} missing dl_run_grade - PFF data required")
         
-        grade_adjustment = (self.offense.ol_run_grade - self.defense.dl_run_grade) * 0.10  # 2x boost (was 0.05)
+        grade_adjustment = (self.offense.ol_run_grade - self.defense.dl_run_grade) * 0.06  # Reduced (was 0.10)
         yards_adjustment += grade_adjustment
         
         # 3. USE YPP METRIC: Team yards per play vs defense allowed
-        # Strategy: YPP is highly predictive - teams winning YPP win 97% of games
+        # Strategy: YPP is highly predictive (97% win rate for teams winning YPP)
+        # REDUCED: Share credit with EPA (they measure similar team strength)
         ypp_advantage = self.offense.off_yards_per_play - self.defense.def_yards_per_play_allowed
-        ypp_adjustment = ypp_advantage * 1.6  # 2x boost: 1 YPP = 1.6 yards (was 0.8)
-        ypp_adjustment = np.clip(ypp_adjustment, -1.2, 1.2)  # Cap at ±1.2 yards
+        # Use 50% of YPP adjustment to avoid double-counting with EPA
+        ypp_adjustment = ypp_advantage * 0.8  # Reduced: 1 YPP = 0.8 yards (was 1.6)
+        ypp_adjustment = np.clip(ypp_adjustment, -0.8, 0.8)  # Cap at ±0.8 yards
         yards_adjustment += ypp_adjustment
+        
+        # FIXED: Apply injury multipliers (OL starters out reduces run yards)
+        ol_run_mult = getattr(self.offense, 'injury_multipliers', {}).get('ol_run_mult', 1.0)
+        yards_adjustment = yards_adjustment * ol_run_mult
         
         # Sample yards from distribution
         avg_yards = base_yards + yards_adjustment
@@ -418,13 +529,15 @@ class PlaySimulator:
         if fumble:
             fumble = np.random.random() < 0.50  # 50% recovery rate
         
-        return {
+        result = {
             'type': 'run',
             'yards': yards,
             'td': is_td,
             'turnover': fumble,
             'fumble': fumble
         }
+        self._log_play_result(result, game_state)
+        return result
     
     def _check_touchdown(self, yards: int, game_state: GameState) -> bool:
         """Check if play results in touchdown."""

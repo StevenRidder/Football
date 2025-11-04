@@ -12,7 +12,7 @@ Per strategy doc:
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Dict
 
 try:
     from .pff_loader import get_pff_loader
@@ -65,6 +65,12 @@ class TeamProfile:
         
         # Situational factors: Rest days, weather, dome
         self._load_situational_factors()
+        
+        # FIXED: Load weekly injuries and apply multipliers
+        self._load_injury_multipliers()
+        
+        # FIXED: Schema asserts - validate all required fields exist and are floats
+        self._validate_schema()
         
         if self.debug:
             self._print_load_summary()
@@ -452,9 +458,15 @@ class TeamProfile:
     
     def _load_pff_grades(self):
         """Load PFF grades for OL/DL matchups."""
+        self.pff_fallback_used = False
         try:
             loader = get_pff_loader()
             grades = loader.get_team_grades(self.team, self.season)
+            
+            # Check if fallback was used
+            if grades.get('_fallback_used', False):
+                self.pff_fallback_used = True
+                print(f"⚠️  Warning: PFF fallback used for {self.team} - using league averages")
             
             # Store OL and DL grades
             self.ol_grade = grades['ol_pass_block']
@@ -465,14 +477,16 @@ class TeamProfile:
             self.passing_grade = grades['passing_offense']
             
         except Exception as e:
-            # Fall back to None if PFF data not available
-            print(f"⚠️  Warning: Could not load PFF data for {self.team}: {e}")
-            self.ol_grade = None
-            self.dl_grade = None
-            self.ol_run_grade = None
-            self.dl_run_grade = None
-            self.coverage_grade = None
-            self.passing_grade = None
+            # FIXED: Soft fallback with league averages and confidence flag
+            print(f"⚠️  Warning: Could not load PFF data for {self.team}: {e}. Using league averages.")
+            self.pff_fallback_used = True
+            # Use league-average defaults (50th percentile)
+            self.ol_grade = 50.0
+            self.dl_grade = 50.0
+            self.ol_run_grade = 50.0
+            self.dl_run_grade = 50.0
+            self.coverage_grade = 50.0
+            self.passing_grade = 50.0
     
     def _load_yards_per_play(self):
         """Load yards per play and yards per pass attempt - NO FALLBACKS."""
@@ -790,15 +804,85 @@ class TeamProfile:
         self.temperature = None  # Default
         self.wind = None  # Default
     
+    def _load_injury_multipliers(self):
+        """Load weekly injury multipliers and apply to team profile."""
+        try:
+            from .injuries import get_injury_loader
+            loader = get_injury_loader()
+            multipliers = loader.get_team_multipliers(self.team, self.season, self.week)
+            
+            # Store multipliers for use in PlaySimulator
+            self.injury_multipliers = multipliers
+            
+            if self.debug and any(m != 1.0 for m in multipliers.values()):
+                print(f"   ⚠️  Injuries: QB={multipliers['qb_completion_mult']:.2f}, "
+                      f"OL={multipliers['ol_pressure_mult']:.2f}, "
+                      f"CB={multipliers['cb_completion_allow_mult']:.2f}")
+        except Exception as e:
+            # No injuries: use defaults (all 1.0)
+            self.injury_multipliers = {
+                'qb_completion_mult': 1.0,
+                'qb_int_mult': 1.0,
+                'qb_sack_mult': 1.0,
+                'wr_completion_mult': 1.0,
+                'wr_explosive_mult': 1.0,
+                'ol_pressure_mult': 1.0,
+                'ol_run_mult': 1.0,
+                'cb_completion_allow_mult': 1.0,
+                'cb_int_mult': 1.0,
+            }
+            if self.debug:
+                print(f"   ℹ️  No injury data: {e}")
+    
+    def _validate_schema(self):
+        """Validate that all required fields exist and are proper types."""
+        required_fields = {
+            'off_epa': float,
+            'def_epa': float,
+            'off_anya': float,
+            'def_anya_allowed': float,
+            'off_yards_per_pass_attempt': float,
+            'def_yards_per_pass_allowed': float,
+            'off_yards_per_play': float,
+            'def_yards_per_play_allowed': float,
+            'red_zone_td_pct': float,
+            'early_down_success_rate': float,
+            'pace': float,
+            'field_goal_make_pct': float,
+            'punt_net_yards': float,
+        }
+        
+        missing = []
+        for field, field_type in required_fields.items():
+            if not hasattr(self, field):
+                missing.append(f"{field} (missing)")
+            else:
+                value = getattr(self, field)
+                if value is None:
+                    missing.append(f"{field} (None)")
+                elif not isinstance(value, field_type):
+                    missing.append(f"{field} (wrong type: {type(value).__name__}, expected {field_type.__name__})")
+        
+        if missing:
+            raise ValueError(
+                f"TeamProfile schema validation failed for {self.team} {self.season} W{self.week}. "
+                f"Missing or invalid fields: {', '.join(missing)}. "
+                f"Source files may be missing or incomplete. Check data preprocessing."
+            )
+    
     def set_situational_factors(self, home_rest: int = 7, away_rest: int = 7, 
                                is_dome: bool = False, temp: float = None, wind: float = None):
         """
         Set situational factors for a specific game.
         
         Called by GameSimulator after loading game-specific situational data.
+        
+        Args:
+            home_rest: This team's rest days (if they're home, this is home_rest_days from CSV)
+            away_rest: Opponent's rest days (for reference, not directly used)
         """
-        self.home_rest_days = home_rest
-        self.away_rest_days = away_rest
+        self.home_rest_days = home_rest  # This team's rest days
+        self.away_rest_days = away_rest  # Opponent's rest days (for reference)
         self.is_dome = is_dome
         self.temperature = temp
         self.wind = wind
@@ -850,4 +934,56 @@ class TeamProfile:
         return (f"TeamProfile({self.team} {self.season} W{self.week}: "
                 f"Off EPA={self.off_epa:.3f}, Def EPA={self.def_epa:.3f}, "
                 f"QB={self.qb_name}, Pace={self.pace:.1f}{pff_str})")
+    
+    def as_dict_for_audit(self) -> Dict:
+        """Return team inputs used in simulation for transparency/auditing.
+        
+        Returns only the fields actually used by the simulator.
+        Used for trace logging and reproducibility.
+        """
+        audit = {
+            "team": self.team,
+            "season": self.season,
+            "week": self.week,
+            # Core metrics (from nflfastR)
+            "off_epa": float(self.off_epa),
+            "def_epa": float(self.def_epa),
+            "pace": float(self.pace),
+            "early_down_success_rate": float(getattr(self, 'early_down_success_rate', 0.48)),
+            # QB stats
+            "qb_name": self.qb_name,
+            "qb_completion_pct": float(self.qb_stats.get('completion_pct', 0.65)) if self.qb_stats else None,
+            "qb_any_a": float(self.qb_stats.get('any_a', 6.5)) if self.qb_stats else None,
+            "qb_ypa": float(self.qb_stats.get('ypa', 7.0)) if self.qb_stats else None,
+            # Yards per play
+            "yards_per_pass": float(getattr(self, 'yards_per_pass', 7.0)),
+            "yards_per_run": float(getattr(self, 'yards_per_run', 4.5)),
+            # Red zone
+            "red_zone_trips_per_game": float(getattr(self, 'red_zone_trips_per_game', 3.5)),
+            "red_zone_td_pct": float(getattr(self, 'red_zone_td_pct', 0.60)),
+            # Special teams
+            "punt_net_yards": float(getattr(self, 'punt_net_yards', 40.0)),
+            "field_goal_make_pct": float(getattr(self, 'field_goal_make_pct', 0.85)),
+            # PFF grades (if available)
+            "ol_grade": float(self.ol_grade) if hasattr(self, 'ol_grade') and self.ol_grade is not None else None,
+            "dl_grade": float(self.dl_grade) if hasattr(self, 'dl_grade') and self.dl_grade is not None else None,
+            "ol_run_grade": float(self.ol_run_grade) if hasattr(self, 'ol_run_grade') and self.ol_run_grade is not None else None,
+            "dl_run_grade": float(self.dl_run_grade) if hasattr(self, 'dl_run_grade') and self.dl_run_grade is not None else None,
+            "coverage_grade": float(self.coverage_grade) if hasattr(self, 'coverage_grade') and self.coverage_grade is not None else None,
+            "passing_grade": float(self.passing_grade) if hasattr(self, 'passing_grade') and self.passing_grade is not None else None,
+            # Play-calling (summary stats)
+            "playcalling_situations": len(self.playcalling) if hasattr(self, 'playcalling') else 0,
+            # Situational factors
+            "home_rest_days": getattr(self, 'home_rest_days', 7),
+            "away_rest_days": getattr(self, 'away_rest_days', 7),
+            "is_dome": getattr(self, 'is_dome', False),
+            "temperature": getattr(self, 'temperature', None),
+            "wind": getattr(self, 'wind', None),
+        }
+        
+        # Add turnover regression if available
+        if hasattr(self, 'turnover_regression'):
+            audit["turnover_regression"] = float(self.turnover_regression)
+        
+        return audit
 
