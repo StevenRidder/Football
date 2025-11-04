@@ -274,7 +274,7 @@ For parlays with multiple legs:
 TicketID | Date | Team1 +3.5 | Team2 ML | Over 45.5 | Parlay | Pending | 10.00 | 50.00"></textarea>
               </div>
               
-              <button class="btn btn-primary btn-lg" onclick="loadBets()">
+              <button class="btn btn-primary btn-lg" id="loadBetsBtn" onclick="loadBets()">
                 <i class="ti ti-upload icon me-2"></i>
                 Load Bets
               </button>
@@ -1286,7 +1286,7 @@ function parseBetOnlineData(text) {
   }
   
   // Extract type (handle multi-word types like "Same Game Parlay")
-  const typeMatch = text.match(/Type:\s*(.+?)(?:\n|$)/);
+  const typeMatch = text.match(/Type:\s*(.+?)(?:\n|Product:)/);
   const betType = typeMatch ? typeMatch[1].trim() : 'Unknown';
   console.log('✓ Type:', betType);
   

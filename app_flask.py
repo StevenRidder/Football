@@ -42,6 +42,114 @@ def _parse_signals(signals_data):
             return []
     return []
 
+def generate_betting_recommendations(df_pred):
+    """Generate betting recommendations tables from predictions DataFrame."""
+    
+    # Filter for current week (incomplete games only)
+    current_week_games = df_pred[df_pred['is_completed'] == False].copy()
+    
+    if current_week_games.empty:
+        return None
+    
+    # 1. ATS (Against-the-Spread) Bets
+    ats_bets = []
+    for _, row in current_week_games.iterrows():
+        market_line = row.get('closing_spread', 0)
+        sim_line = row.get('our_spread', 0)
+        edge = abs(market_line - sim_line)
+        pick = row.get('spread_recommendation', 'N/A')
+        conviction = row.get('spread_conviction', 'LOW')
+        edge_pct = row.get('spread_edge_pct', 0)
+        
+        # Calculate confidence percentage
+        if conviction == 'HIGH':
+            confidence = min(100, 70 + edge_pct * 3)
+        elif conviction == 'MEDIUM':
+            confidence = min(70, 53 + edge_pct * 2)
+        else:
+            confidence = min(60, 50 + edge_pct)
+        
+        ats_bets.append({
+            'game': f"{row['away_team']} @ {row['home_team']}",
+            'market_line': f"{row['home_team']} {market_line:+.1f}",
+            'sim_line': f"{row['home_team']} {sim_line:+.1f}",
+            'edge': f"{edge:.1f}-pt edge",
+            'pick': pick,
+            'confidence': f"{confidence:.0f}%",
+            'conviction': conviction,
+            'edge_value': edge
+        })
+    
+    # Sort by edge (descending)
+    ats_bets = sorted(ats_bets, key=lambda x: x['edge_value'], reverse=True)[:11]
+    
+    # 2. Totals (Over/Under)
+    total_bets = []
+    for _, row in current_week_games.iterrows():
+        market_total = row.get('closing_total', 0)
+        sim_total = row.get('our_total', 0)
+        edge = abs(market_total - sim_total)
+        pick = row.get('total_recommendation', 'Pass')
+        conviction = row.get('total_conviction', 'LOW')
+        edge_pct = row.get('total_edge_pct', 0)
+        
+        if pick != 'Pass':
+            # Calculate confidence
+            if edge >= 10:
+                confidence = 87
+            elif edge >= 5:
+                confidence = 70
+            else:
+                confidence = 60
+            
+            total_bets.append({
+                'game': f"{row['away_team']} @ {row['home_team']}",
+                'market_total': f"{market_total:.1f}",
+                'sim_total': f"{sim_total:.1f}",
+                'edge': f"{market_total - sim_total:+.1f} pts",
+                'pick': pick,
+                'confidence': f"{confidence}%",
+                'edge_value': edge
+            })
+    
+    # Sort by edge (descending)
+    total_bets = sorted(total_bets, key=lambda x: x['edge_value'], reverse=True)[:7]
+    
+    # 3. Moneyline Value
+    ml_picks = []
+    for _, row in current_week_games.iterrows():
+        home_score = row.get('our_home_score', 0)
+        away_score = row.get('our_away_score', 0)
+        edge = abs(home_score - away_score)
+        
+        if edge >= 10:  # Significant edge
+            winner = row['home_team'] if home_score > away_score else row['away_team']
+            ml_picks.append({
+                'game': f"{row['away_team']} @ {row['home_team']}",
+                'market_proj': 'N/A',
+                'sim_proj': f"{int(away_score)}-{int(home_score)}",
+                'edge': 'Huge' if edge >= 15 else 'Strong' if edge >= 12 else 'Solid',
+                'pick': f"{winner} ML",
+                'edge_value': edge
+            })
+    
+    # Sort by edge (descending)
+    ml_picks = sorted(ml_picks, key=lambda x: x['edge_value'], reverse=True)[:5]
+    
+    # 4. Final Recommendations - Top 3 from each category
+    recommendations = {
+        'ats': ats_bets[:4] if len(ats_bets) >= 4 else ats_bets,
+        'totals': total_bets[:4] if len(total_bets) >= 4 else total_bets,
+        'moneyline': ml_picks[:4] if len(ml_picks) >= 4 else ml_picks
+    }
+    
+    return {
+        'ats_bets': ats_bets,
+        'total_bets': total_bets,
+        'ml_picks': ml_picks,
+        'recommendations': recommendations
+    }
+
 # Load predictions functions
 def load_simulator_predictions(force_reload=False):
     """Load simulator predictions from backtest_all_games_conviction.py (formatted for frontend)."""
@@ -95,22 +203,22 @@ def load_latest_aii():
 def index():
     """Main dashboard with all games."""
     df = load_latest_predictions()
-    
+
     if df is None:
         return "<h1>No predictions found. Run generate_alpha_predictions.py first.</h1>"
-    
+
     # Get all weeks available
     all_weeks = sorted(df['week'].unique())
-    
+
     # Determine current week based on today's date
     from datetime import datetime
     today = datetime.now().date()
-    
+
     # Load actual schedule to check which week is current
     import nfl_data_py as nfl
     sched = nfl.import_schedules([2025])
     sched_reg = sched[sched['game_type'] == 'REG']
-    
+
     # Find the week with games starting this week or next
     current_week = None
     for week in sorted(sched_reg['week'].unique()):
@@ -119,19 +227,75 @@ def index():
         if week_games['away_score'].isna().any():
             current_week = int(week)
             break
-    
+
     if current_week is None:
         current_week = int(df['week'].max())
+
+    # Load team bias data for indicators
+    team_win_rates = get_team_win_rates()
     
+    # Generate betting recommendations from current predictions
+    betting_recommendations = generate_betting_recommendations(df)
+
     return render_template('alpha_index_v3.html',
                           current_week=current_week,
                           all_weeks=all_weeks,
-                          total_games=len(df))
+                          total_games=len(df),
+                          team_win_rates=team_win_rates,
+                          betting_recommendations=betting_recommendations)
+
+def get_team_win_rates():
+    """Get historical win rates for each team (for spread bets)"""
+    from pathlib import Path
+    import pandas as pd
+    
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    if not backtest_file.exists():
+        return {}
+    
+    df = pd.read_csv(backtest_file)
+    spread_bets = df[df['spread_bet'].notna() & (df['spread_bet'] != '')]
+    
+    team_stats = {}
+    for idx, row in spread_bets.iterrows():
+        home_team = row['home_team']
+        away_team = row['away_team']
+        spread_bet = str(row['spread_bet']).upper()
+        spread_result = row['spread_result']
+        
+        # Determine which team we bet on
+        if 'HOME' in spread_bet or home_team in spread_bet:
+            bet_team = home_team
+        elif 'AWAY' in spread_bet or away_team in spread_bet:
+            bet_team = away_team
+        else:
+            continue
+        
+        if bet_team not in team_stats:
+            team_stats[bet_team] = {'wins': 0, 'total': 0}
+        
+        team_stats[bet_team]['total'] += 1
+        if spread_result == 1.0:
+            team_stats[bet_team]['wins'] += 1
+    
+    # Calculate win rates
+    team_win_rates = {}
+    for team, stats in team_stats.items():
+        if stats['total'] >= 3:  # Only show for teams with 3+ bets
+            win_rate = (stats['wins'] / stats['total'] * 100) if stats['total'] > 0 else 0
+            team_win_rates[team] = {
+                'win_rate': round(win_rate, 1),
+                'record': f"{stats['wins']}-{stats['total'] - stats['wins']}",
+                'total': stats['total']
+            }
+    
+    return team_win_rates
 
 @app.route('/api/games')
 def api_games():
     """API endpoint for game data with Edge Hunt signals"""
     df = load_latest_predictions()
+    team_win_rates = get_team_win_rates()
     
     if df is None:
         print("❌ No predictions data found")
@@ -202,12 +366,16 @@ def api_games():
         }
         games.append(game)
     
-    return jsonify(games)
+    return jsonify({
+        'games': games,
+        'team_win_rates': team_win_rates
+    })
 
 @app.route('/api/simulator-predictions')
 def api_simulator_predictions():
     """API endpoint for simulator predictions with conviction badges."""
     df = load_simulator_predictions()
+    team_win_rates = get_team_win_rates()
     
     if df is None:
         return jsonify({'error': 'No simulator predictions found. Run backtest_all_games_conviction.py and format_for_frontend.py'}), 404
@@ -222,13 +390,15 @@ def api_simulator_predictions():
     
     return jsonify({
         'games': games,
-        'total': len(games)
+        'total': len(games),
+        'team_win_rates': team_win_rates
     })
 
 @app.route('/api/games/graded')
 def api_games_graded():
     """API endpoint for games with actual results - SERVES PRE-COMPUTED BACKEND DATA."""
     df = load_latest_predictions()
+    team_win_rates = get_team_win_rates()
     
     if df is None:
         return jsonify({'error': 'No predictions found'}), 404
@@ -243,7 +413,8 @@ def api_games_graded():
     
     return jsonify({
         'games': games,
-        'total': len(games)
+        'total': len(games),
+        'team_win_rates': team_win_rates
     })
 
 @app.route('/api/best-bets')
@@ -322,7 +493,8 @@ def betting_guide():
 
 
 @app.route('/game/<away>/<home>')
-def game_detail(away, home):
+@app.route('/game/<away>/<home>/<int:week>')
+def game_detail(away, home, week=None):
     """Detailed game view with team stats"""
     df_pred = load_latest_predictions()
     
@@ -330,8 +502,26 @@ def game_detail(away, home):
         return render_template('error.html',
                              message="No predictions found. Run python3 run_week.py first.")
     
+    # Normalize column names - simulator uses away_team/home_team, older format uses away/home
+    if 'away_team' in df_pred.columns:
+        away_col = 'away_team'
+        home_col = 'home_team'
+    else:
+        away_col = 'away'
+        home_col = 'home'
+    
     # Find the specific game
-    game = df_pred[(df_pred['away'] == away) & (df_pred['home'] == home)]
+    if week and 'week' in df_pred.columns:
+        game = df_pred[
+            (df_pred[away_col] == away) & 
+            (df_pred[home_col] == home) & 
+            (df_pred['week'] == week)
+        ]
+    else:
+        game = df_pred[
+            (df_pred[away_col] == away) & 
+            (df_pred[home_col] == home)
+        ]
     
     if game.empty:
         return render_template('error.html',
@@ -344,13 +534,50 @@ def game_detail(away, home):
     try:
         from espn_data_fetcher import ESPNDataFetcher
         espn_data = ESPNDataFetcher.fetch_comprehensive_game_data(away, home)
+        
+        # Calculate basic rest days from schedule if not available
+        if espn_data['away'].get('rest_days') is None:
+            away_schedule = ESPNDataFetcher.fetch_team_schedule(away, 2025)
+            if away_schedule and len(away_schedule) >= 2:
+                # Use the last two games to estimate rest days
+                try:
+                    from datetime import datetime
+                    sorted_games = sorted(away_schedule, key=lambda x: x['date'])
+                    if len(sorted_games) >= 2:
+                        last_game = datetime.fromisoformat(sorted_games[-2]['date'].replace('Z', '+00:00'))
+                        current_game = datetime.fromisoformat(sorted_games[-1]['date'].replace('Z', '+00:00'))
+                        espn_data['away']['rest_days'] = (current_game - last_game).days
+                except:
+                    espn_data['away']['rest_days'] = 7
+        
+        if espn_data['home'].get('rest_days') is None:
+            home_schedule = ESPNDataFetcher.fetch_team_schedule(home, 2025)
+            if home_schedule and len(home_schedule) >= 2:
+                try:
+                    from datetime import datetime
+                    sorted_games = sorted(home_schedule, key=lambda x: x['date'])
+                    if len(sorted_games) >= 2:
+                        last_game = datetime.fromisoformat(sorted_games[-2]['date'].replace('Z', '+00:00'))
+                        current_game = datetime.fromisoformat(sorted_games[-1]['date'].replace('Z', '+00:00'))
+                        espn_data['home']['rest_days'] = (current_game - last_game).days
+                except:
+                    espn_data['home']['rest_days'] = 7
+        
+        # Set travel distance for home team to 0 (they don't travel)
+        if espn_data['home'].get('travel_distance') is None:
+            espn_data['home']['travel_distance'] = 0
+        
+        # Set a default for away team if not calculated
+        if espn_data['away'].get('travel_distance') is None:
+            espn_data['away']['travel_distance'] = 0  # Default to 0 if not calculated
+        
         game_data['espn_data'] = espn_data
         print(f"✓ ESPN data loaded for {away} @ {home}", flush=True)
     except Exception as e:
         print(f"⚠️ Could not fetch ESPN data: {e}", flush=True)
         game_data['espn_data'] = {
-            'away': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
-            'home': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': []},
+            'away': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': [], 'rest_days': 7, 'travel_distance': 0},
+            'home': {'team_info': {}, 'leaders': {}, 'splits': {'overall': {'games': 0}}, 'last_five': [], 'rest_days': 7, 'travel_distance': 0},
             'game_summary': {}
         }
     
@@ -400,9 +627,79 @@ def game_detail(away, home):
         }
     }
     
-    # Get recent games from ESPN
-    away_recent = espn.get('away', {}).get('last_five', [])
-    home_recent = espn.get('home', {}).get('last_five', [])
+    # Get recent games from ESPN and transform to expected format
+    away_last_five = espn.get('away', {}).get('last_five', [])
+    home_last_five = espn.get('home', {}).get('last_five', [])
+    
+    # Transform historical game data to template format
+    away_recent = []
+    for game in away_last_five:
+        away_recent.append({
+            'week': game.get('week', 'N/A'),
+            'opponent': game.get('opponent', 'Unknown'),
+            'points_scored': game.get('team_score', 0),
+            'points_allowed': game.get('opp_score', 0),
+            'result': game.get('result', '-')
+        })
+    
+    home_recent = []
+    for game in home_last_five:
+        home_recent.append({
+            'week': game.get('week', 'N/A'),
+            'opponent': game.get('opponent', 'Unknown'),
+            'points_scored': game.get('team_score', 0),
+            'points_allowed': game.get('opp_score', 0),
+            'result': game.get('result', '-')
+        })
+    
+    # Fetch nflverse data for stats - use RAW data with all columns
+    try:
+        import requests
+        import io
+        nflverse_url = "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2025.csv"
+        response = requests.get(nflverse_url, timeout=30)
+        df_raw = pd.read_csv(io.BytesIO(response.content))
+        
+        # Get stats for both teams
+        away_stats = df_raw[df_raw['team'] == away]
+        home_stats = df_raw[df_raw['team'] == home]
+        
+        if not away_stats.empty:
+            game_data['team_stats']['away'].update({
+                'off_epa': float(away_stats['passing_epa'].mean() + away_stats['rushing_epa'].mean()),
+                'def_epa': float(away_stats['def_epa_per_play'].mean()) if 'def_epa_per_play' in away_stats.columns else 0,
+                'pass_epa': float(away_stats['passing_epa'].mean()),
+                'rush_epa': float(away_stats['rushing_epa'].mean()),
+                'passing_yards': float(away_stats['passing_yards'].mean()),
+                'rushing_yards': float(away_stats['rushing_yards'].mean()),
+                'turnovers': int(away_stats['passing_interceptions'].sum() + away_stats['sack_fumbles_lost'].sum() + away_stats['rushing_fumbles_lost'].sum()),
+                'takeaways': int(away_stats['def_interceptions'].sum() + away_stats['fumble_recovery_opp'].sum()),
+                'sacks_taken': int(away_stats['sacks_suffered'].sum()),
+                'def_pass_epa': 0,  # Not in raw data
+                'def_rush_epa': 0,  # Not in raw data
+                'last_5_ppg': float(away_stats.head(5)['points'].mean()) if 'points' in away_stats.columns and len(away_stats) >= 5 else 0,
+                'last_5_pa': float(away_stats.head(5)['points_allowed'].mean()) if 'points_allowed' in away_stats.columns and len(away_stats) >= 5 else 0,
+            })
+        
+        if not home_stats.empty:
+            game_data['team_stats']['home'].update({
+                'off_epa': float(home_stats['passing_epa'].mean() + home_stats['rushing_epa'].mean()),
+                'def_epa': float(home_stats['def_epa_per_play'].mean()) if 'def_epa_per_play' in home_stats.columns else 0,
+                'pass_epa': float(home_stats['passing_epa'].mean()),
+                'rush_epa': float(home_stats['rushing_epa'].mean()),
+                'passing_yards': float(home_stats['passing_yards'].mean()),
+                'rushing_yards': float(home_stats['rushing_yards'].mean()),
+                'turnovers': int(home_stats['passing_interceptions'].sum() + home_stats['sack_fumbles_lost'].sum() + home_stats['rushing_fumbles_lost'].sum()),
+                'takeaways': int(home_stats['def_interceptions'].sum() + home_stats['fumble_recovery_opp'].sum()),
+                'sacks_taken': int(home_stats['sacks_suffered'].sum()),
+                'def_pass_epa': 0,  # Not in raw data
+                'def_rush_epa': 0,  # Not in raw data
+                'last_5_ppg': float(home_stats.head(5)['points'].mean()) if 'points' in home_stats.columns and len(home_stats) >= 5 else 0,
+                'last_5_pa': float(home_stats.head(5)['points_allowed'].mean()) if 'points_allowed' in home_stats.columns and len(home_stats) >= 5 else 0,
+            })
+        print(f"✅ Loaded nflverse stats for {away} and {home}")
+    except Exception as e:
+        print(f"⚠️ Warning: Could not fetch nflverse data: {e}")
     
     """
     # DISABLED CODE - was making 17 ESPN API calls on every page load
@@ -475,6 +772,7 @@ def game_detail(away, home):
                     pts_scored = espn_game['away_score']
                     pts_allowed = espn_game['home_score']
                 elif espn_game['home_team'] == team_code:
+                    is_home = True
                     opponent = espn_game['away_team']
                     pts_scored = espn_game['home_score']
                     pts_allowed = espn_game['away_score']
@@ -493,6 +791,7 @@ def game_detail(away, home):
                     games.append({
                         'week': week,
                         'opponent': opponent,
+                        'is_home': is_home,
                         'points_scored': pts_scored,  # ESPN (accurate)
                         'points_allowed': pts_allowed,  # ESPN (accurate)
                         'result': 'W' if pts_scored > pts_allowed else ('L' if pts_scored < pts_allowed else 'T'),
@@ -511,6 +810,7 @@ def game_detail(away, home):
                     games.append({
                         'week': week,
                         'opponent': opponent,
+                        'is_home': is_home,
                         'points_scored': pts_scored,
                         'points_allowed': pts_allowed,
                         'result': 'W' if pts_scored > pts_allowed else ('L' if pts_scored < pts_allowed else 'T'),
@@ -796,6 +1096,361 @@ def line_movements():
                          week=CURRENT_WEEK,
                          season=CURRENT_SEASON)
 
+@app.route('/model-performance')
+def model_performance():
+    """Model Performance by Conviction Level - Backend Analysis"""
+    from pathlib import Path
+    import pandas as pd
+    
+    # Load backtest results
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    
+    if not backtest_file.exists():
+        return render_template('error.html', 
+                             message="Backtest data not found. Run backtest_all_games_conviction.py first.")
+    
+    df = pd.read_csv(backtest_file)
+    
+    # Calculate stats by conviction level (backend logic)
+    def calc_spread_stats(bets_df):
+        if len(bets_df) == 0:
+            return {'count': 0, 'wins': 0, 'losses': 0, 'pushes': 0, 
+                    'win_rate': 0, 'roi': 0, 'avg_edge': 0}
+        
+        # Count wins/losses from spread_result column
+        wins = int((bets_df['spread_result'] == 1.0).sum())
+        losses = int((bets_df['spread_result'] == 0.0).sum())
+        pushes = int(len(bets_df) - wins - losses)
+        
+        win_rate = (wins / len(bets_df) * 100) if len(bets_df) > 0 else 0
+        
+        # Assuming -110 odds: win +0.91, loss -1.00
+        profit = (wins * 0.91) - losses
+        roi = (profit / len(bets_df) * 100) if len(bets_df) > 0 else 0
+        
+        # Get average edge from spread_edge column
+        avg_edge = (bets_df['spread_edge'].mean() * 100) if 'spread_edge' in bets_df.columns else 0
+        
+        return {
+            'count': int(len(bets_df)),
+            'wins': wins,
+            'losses': losses,
+            'pushes': pushes,
+            'win_rate': round(win_rate, 1),
+            'roi': round(roi, 1),
+            'avg_edge': round(avg_edge, 1)
+        }
+    
+    def calc_total_stats(bets_df):
+        if len(bets_df) == 0:
+            return {'count': 0, 'wins': 0, 'losses': 0, 'pushes': 0, 
+                    'win_rate': 0, 'roi': 0, 'avg_edge': 0}
+        
+        # Count wins/losses from total_result column
+        wins = int((bets_df['total_result'] == 1.0).sum())
+        losses = int((bets_df['total_result'] == 0.0).sum())
+        pushes = int(len(bets_df) - wins - losses)
+        
+        win_rate = (wins / len(bets_df) * 100) if len(bets_df) > 0 else 0
+        
+        # Assuming -110 odds: win +0.91, loss -1.00
+        profit = (wins * 0.91) - losses
+        roi = (profit / len(bets_df) * 100) if len(bets_df) > 0 else 0
+        
+        # Get average edge from total_edge column
+        avg_edge = (bets_df['total_edge'].mean() * 100) if 'total_edge' in bets_df.columns else 0
+        
+        return {
+            'count': int(len(bets_df)),
+            'wins': wins,
+            'losses': losses,
+            'pushes': pushes,
+            'win_rate': round(win_rate, 1),
+            'roi': round(roi, 1),
+            'avg_edge': round(avg_edge, 1)
+        }
+    
+    # Spread bets by conviction
+    spread_bets = df[df['spread_bet'].notna() & (df['spread_bet'] != '')]
+    spread_high = spread_bets[spread_bets['spread_conviction'] == 'HIGH']
+    spread_medium = spread_bets[spread_bets['spread_conviction'] == 'MEDIUM']
+    spread_low = spread_bets[spread_bets['spread_conviction'] == 'LOW']
+    
+    # Total bets by conviction
+    total_bets = df[df['total_bet'].notna() & (df['total_bet'] != '')]
+    total_high = total_bets[total_bets['total_conviction'] == 'HIGH']
+    total_medium = total_bets[total_bets['total_conviction'] == 'MEDIUM']
+    total_low = total_bets[total_bets['total_conviction'] == 'LOW']
+    
+    # Calculate all stats on backend
+    stats = {
+        'total_games': len(df),
+        'weeks': sorted(df['week'].unique().tolist()),
+        'spread': {
+            'high': calc_spread_stats(spread_high),
+            'medium': calc_spread_stats(spread_medium),
+            'low': calc_spread_stats(spread_low),
+            'all': calc_spread_stats(spread_bets)
+        },
+        'total': {
+            'high': calc_total_stats(total_high),
+            'medium': calc_total_stats(total_medium),
+            'low': calc_total_stats(total_low),
+            'all': calc_total_stats(total_bets)
+        }
+    }
+    
+    return render_template('model_performance.html', stats=stats)
+
+@app.route('/model-performance/spread/<conviction>')
+def model_performance_spread_detail(conviction):
+    """Detailed breakdown of spread bets by conviction level"""
+    from pathlib import Path
+    import pandas as pd
+    
+    conviction = conviction.upper()
+    if conviction not in ['HIGH', 'MEDIUM', 'LOW']:
+        return "Invalid conviction level", 400
+    
+    # Load backtest results
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    if not backtest_file.exists():
+        return render_template('error.html', 
+                             message="Backtest data not found.")
+    
+    df = pd.read_csv(backtest_file)
+    
+    # Filter spread bets by conviction
+    spread_bets = df[
+        (df['spread_bet'].notna()) & 
+        (df['spread_bet'] != '') & 
+        (df['spread_conviction'] == conviction)
+    ].copy()
+    
+    # Prepare bet details for display
+    bets = []
+    for idx, row in spread_bets.iterrows():
+        bets.append({
+            'week': int(row['week']),
+            'away_team': row['away_team'],
+            'home_team': row['home_team'],
+            'market_spread': row['spread_line'],
+            'our_spread': round(row['spread_mean'], 1),
+            'bet': row['spread_bet'],
+            'edge': round(row['spread_edge'] * 100, 1),
+            'result': 'WIN' if row['spread_result'] == 1.0 else 'LOSS' if row['spread_result'] == 0.0 else 'PUSH',
+            'actual_score': f"{int(row['actual_away_score'])}-{int(row['actual_home_score'])}" if pd.notna(row['actual_home_score']) else '-'
+        })
+    
+    return render_template('model_performance_detail.html',
+                         bet_type='Spread',
+                         conviction=conviction,
+                         bets=bets,
+                         total=len(bets),
+                         wins=len([b for b in bets if b['result'] == 'WIN']),
+                         losses=len([b for b in bets if b['result'] == 'LOSS']))
+
+@app.route('/model-performance/total/<conviction>')
+def model_performance_total_detail(conviction):
+    """Detailed breakdown of total bets by conviction level"""
+    from pathlib import Path
+    import pandas as pd
+    
+    conviction = conviction.upper()
+    if conviction not in ['HIGH', 'MEDIUM', 'LOW']:
+        return "Invalid conviction level", 400
+    
+    # Load backtest results
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    if not backtest_file.exists():
+        return render_template('error.html', 
+                             message="Backtest data not found.")
+    
+    df = pd.read_csv(backtest_file)
+    
+    # Filter total bets by conviction
+    total_bets = df[
+        (df['total_bet'].notna()) & 
+        (df['total_bet'] != '') & 
+        (df['total_conviction'] == conviction)
+    ].copy()
+    
+    # Prepare bet details for display
+    bets = []
+    for idx, row in total_bets.iterrows():
+        bets.append({
+            'week': int(row['week']),
+            'away_team': row['away_team'],
+            'home_team': row['home_team'],
+            'market_total': row['total_line'],
+            'our_total': round(row['total_mean'], 1),
+            'bet': row['total_bet'],
+            'edge': round(row['total_edge'] * 100, 1),
+            'result': 'WIN' if row['total_result'] == 1.0 else 'LOSS' if row['total_result'] == 0.0 else 'PUSH',
+            'actual_total': int(row['actual_away_score'] + row['actual_home_score']) if pd.notna(row['actual_home_score']) else '-'
+        })
+    
+    return render_template('model_performance_detail.html',
+                         bet_type='Total',
+                         conviction=conviction,
+                         bets=bets,
+                         total=len(bets),
+                         wins=len([b for b in bets if b['result'] == 'WIN']),
+                         losses=len([b for b in bets if b['result'] == 'LOSS']))
+
+@app.route('/model-performance/team-analysis')
+def model_performance_team_analysis():
+    """Team-by-team performance analysis - identify biases"""
+    from pathlib import Path
+    import pandas as pd
+    
+    # Load backtest results
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    if not backtest_file.exists():
+        return render_template('error.html', 
+                             message="Backtest data not found.")
+    
+    df = pd.read_csv(backtest_file)
+    
+    # Analyze spread bets by team
+    spread_bets = df[df['spread_bet'].notna() & (df['spread_bet'] != '')]
+    team_spread_stats = {}
+    
+    for idx, row in spread_bets.iterrows():
+        home_team = row['home_team']
+        away_team = row['away_team']
+        spread_bet = str(row['spread_bet']).upper()
+        spread_result = row['spread_result']
+        conviction = row['spread_conviction']
+        
+        # Determine which team we bet on
+        if 'HOME' in spread_bet or home_team in spread_bet:
+            bet_team = home_team
+        elif 'AWAY' in spread_bet or away_team in spread_bet:
+            bet_team = away_team
+        else:
+            continue
+        
+        # Initialize team stats if not exists
+        if bet_team not in team_spread_stats:
+            team_spread_stats[bet_team] = {
+                'team': bet_team,
+                'bets': 0, 'wins': 0, 'losses': 0, 'pushes': 0,
+                'high_bets': 0, 'high_wins': 0,
+                'med_bets': 0, 'med_wins': 0,
+                'low_bets': 0, 'low_wins': 0
+            }
+        
+        team_spread_stats[bet_team]['bets'] += 1
+        if spread_result == 1.0:
+            team_spread_stats[bet_team]['wins'] += 1
+        elif spread_result == 0.0:
+            team_spread_stats[bet_team]['losses'] += 1
+        else:
+            team_spread_stats[bet_team]['pushes'] += 1
+        
+        # Track by conviction
+        if conviction == 'HIGH':
+            team_spread_stats[bet_team]['high_bets'] += 1
+            if spread_result == 1.0:
+                team_spread_stats[bet_team]['high_wins'] += 1
+        elif conviction == 'MEDIUM':
+            team_spread_stats[bet_team]['med_bets'] += 1
+            if spread_result == 1.0:
+                team_spread_stats[bet_team]['med_wins'] += 1
+        elif conviction == 'LOW':
+            team_spread_stats[bet_team]['low_bets'] += 1
+            if spread_result == 1.0:
+                team_spread_stats[bet_team]['low_wins'] += 1
+    
+    # Analyze total bets by team (both teams involved in the game)
+    total_bets = df[df['total_bet'].notna() & (df['total_bet'] != '')]
+    team_total_stats = {}
+    
+    for idx, row in total_bets.iterrows():
+        home_team = row['home_team']
+        away_team = row['away_team']
+        total_result = row['total_result']
+        conviction = row['total_conviction']
+        
+        # Count both teams in the game
+        for team in [home_team, away_team]:
+            if team not in team_total_stats:
+                team_total_stats[team] = {
+                    'team': team,
+                    'bets': 0, 'wins': 0, 'losses': 0, 'pushes': 0,
+                    'high_bets': 0, 'high_wins': 0,
+                    'med_bets': 0, 'med_wins': 0,
+                    'low_bets': 0, 'low_wins': 0
+                }
+            
+            team_total_stats[team]['bets'] += 1
+            if total_result == 1.0:
+                team_total_stats[team]['wins'] += 1
+            elif total_result == 0.0:
+                team_total_stats[team]['losses'] += 1
+            else:
+                team_total_stats[team]['pushes'] += 1
+            
+            # Track by conviction
+            if conviction == 'HIGH':
+                team_total_stats[team]['high_bets'] += 1
+                if total_result == 1.0:
+                    team_total_stats[team]['high_wins'] += 1
+            elif conviction == 'MEDIUM':
+                team_total_stats[team]['med_bets'] += 1
+                if total_result == 1.0:
+                    team_total_stats[team]['med_wins'] += 1
+            elif conviction == 'LOW':
+                team_total_stats[team]['low_bets'] += 1
+                if total_result == 1.0:
+                    team_total_stats[team]['low_wins'] += 1
+    
+    # Calculate win rates and prepare for display
+    spread_teams = []
+    for team, stats in team_spread_stats.items():
+        if stats['bets'] >= 3:  # Only teams with 3+ bets
+            win_rate = (stats['wins'] / stats['bets'] * 100) if stats['bets'] > 0 else 0
+            high_wr = (stats['high_wins'] / stats['high_bets'] * 100) if stats['high_bets'] > 0 else None
+            med_wr = (stats['med_wins'] / stats['med_bets'] * 100) if stats['med_bets'] > 0 else None
+            low_wr = (stats['low_wins'] / stats['low_bets'] * 100) if stats['low_bets'] > 0 else None
+            
+            spread_teams.append({
+                'team': team,
+                'bets': stats['bets'],
+                'wins': stats['wins'],
+                'losses': stats['losses'],
+                'pushes': stats['pushes'],
+                'win_rate': round(win_rate, 1),
+                'high_wr': round(high_wr, 1) if high_wr is not None else None,
+                'med_wr': round(med_wr, 1) if med_wr is not None else None,
+                'low_wr': round(low_wr, 1) if low_wr is not None else None
+            })
+    
+    total_teams = []
+    for team, stats in team_total_stats.items():
+        if stats['bets'] >= 3:  # Only teams with 3+ bets
+            win_rate = (stats['wins'] / stats['bets'] * 100) if stats['bets'] > 0 else 0
+            high_wr = (stats['high_wins'] / stats['high_bets'] * 100) if stats['high_bets'] > 0 else None
+            med_wr = (stats['med_wins'] / stats['med_bets'] * 100) if stats['med_bets'] > 0 else None
+            low_wr = (stats['low_wins'] / stats['low_bets'] * 100) if stats['low_bets'] > 0 else None
+            
+            total_teams.append({
+                'team': team,
+                'bets': stats['bets'],
+                'wins': stats['wins'],
+                'losses': stats['losses'],
+                'pushes': stats['pushes'],
+                'win_rate': round(win_rate, 1),
+                'high_wr': round(high_wr, 1) if high_wr is not None else None,
+                'med_wr': round(med_wr, 1) if med_wr is not None else None,
+                'low_wr': round(low_wr, 1) if low_wr is not None else None
+            })
+    
+    return render_template('team_bias_analysis.html',
+                         spread_teams=spread_teams,
+                         total_teams=total_teams)
+
 @app.route('/performance')
 def performance():
     """Betting Performance Analytics - Database Version"""
@@ -808,15 +1463,15 @@ def performance():
         summary = db.get_performance_summary()
         
         stats = {
-            'total_profit': summary['total_profit'],
-            'total_wagered': summary['total_wagered'],
-            'roi': summary['roi'],
-            'win_rate': summary['win_rate'],
-            'total_bets': summary['total_bets'],
-            'won_count': summary['won_count'],
-            'lost_count': summary['lost_count'],
-            'pending_count': summary['pending_count'],
-            'pending_amount': summary['pending_amount']
+            'total_profit': float(summary['total_profit']) if summary['total_profit'] is not None else 0.0,
+            'total_wagered': float(summary['total_wagered']) if summary['total_wagered'] is not None else 0.0,
+            'roi': float(summary['roi']) if summary['roi'] is not None else 0.0,
+            'win_rate': float(summary['win_rate']) if summary['win_rate'] is not None else 0.0,
+            'total_bets': int(summary['total_bets']) if summary['total_bets'] is not None else 0,
+            'won_count': int(summary['won_count']) if summary['won_count'] is not None else 0,
+            'lost_count': int(summary['lost_count']) if summary['lost_count'] is not None else 0,
+            'pending_count': int(summary['pending_count']) if summary['pending_count'] is not None else 0,
+            'pending_amount': float(summary['pending_amount']) if summary['pending_amount'] is not None else 0.0
         }
         
         # Performance by bet type
@@ -824,13 +1479,13 @@ def performance():
         by_type = {}
         for bt in by_type_list:
             by_type[bt['bet_type']] = {
-                'count': bt['total_bets'],
-                'wagered': bt['total_wagered'],
-                'won': bt['won_count'],
-                'lost': bt['lost_count'],
-                'profit': bt['total_profit'],
-                'win_rate': bt['win_rate_percentage'],
-                'roi': bt['roi_percentage']
+                'count': int(bt['total_bets']) if bt['total_bets'] is not None else 0,
+                'wagered': float(bt['total_wagered']) if bt['total_wagered'] is not None else 0.0,
+                'won': int(bt['won_count']) if bt['won_count'] is not None else 0,
+                'lost': int(bt['lost_count']) if bt['lost_count'] is not None else 0,
+                'profit': float(bt['total_profit']) if bt['total_profit'] is not None else 0.0,
+                'win_rate': float(bt['win_rate_percentage']) if bt['win_rate_percentage'] is not None else 0.0,
+                'roi': float(bt['roi_percentage']) if bt['roi_percentage'] is not None else 0.0
             }
         
         # Weekly P/L (from database)
@@ -849,8 +1504,8 @@ def performance():
             weekly_data = cur.fetchall()
         
         weekly_pl = {
-            'weeks': [w['week_key'] for w in weekly_data],
-            'values': [float(w['profit']) for w in weekly_data]
+            'weeks': [str(w['week_key']) for w in weekly_data],
+            'values': [float(w['profit']) if w['profit'] is not None else 0.0 for w in weekly_data]
         }
         
         # Bet type distribution
@@ -873,9 +1528,17 @@ def performance():
         # Format recent bets for template
         recent_settled = []
         for bet in recent_bets:
-            bet_dict = dict(bet)
-            bet_dict['date'] = bet_dict['date'].strftime('%m/%d/%Y') if bet_dict['date'] else ''
-            bet_dict['type'] = bet_dict.pop('bet_type')
+            bet_dict = {
+                'date': bet['date'].strftime('%m/%d/%Y') if bet['date'] else '',
+                'teams': bet.get('teams', ''),
+                'description': bet.get('description', ''),
+                'type': bet['bet_type'],
+                'amount': float(bet['amount']) if bet['amount'] is not None else 0.0,
+                'odds': bet.get('odds', 'N/A'),
+                'profit': float(bet['profit']) if bet['profit'] is not None else 0.0,
+                'status': bet['status'],
+                'to_win': float(bet['to_win']) if bet['to_win'] is not None else 0.0
+            }
             recent_settled.append(bet_dict)
         
     finally:
@@ -2156,6 +2819,49 @@ def api_generate_predictions():
             'message': f'Generation failed: {str(e)}'
         })
 
+@app.route('/api/run-script/sim_week9_10', methods=['POST'])
+def api_run_simulator_predictions():
+    """Run simulator predictions for next 2 weeks (dynamically determined)"""
+    try:
+        import subprocess
+        from pathlib import Path
+        
+        script_path = Path(__file__).parent / 'simulation_engine' / 'nflfastR_simulator' / 'scripts' / 'generate_week9_10_predictions.py'
+        
+        # Run the simulator prediction script
+        result = subprocess.run(
+            ['python3', str(script_path)],
+            cwd='/Users/steveridder/Git/Football',
+            capture_output=True,
+            text=True,
+            timeout=300  # 5 minute timeout
+        )
+        
+        if result.returncode == 0:
+            return jsonify({
+                'success': True,
+                'message': '✅ Predictions generated successfully! Reload page to see Week 10.',
+                'output': result.stdout
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'message': 'Prediction generation failed',
+                'error': result.stderr or 'Script failed to run',
+                'output': result.stdout
+            }), 500
+            
+    except subprocess.TimeoutExpired:
+        return jsonify({
+            'success': False,
+            'error': 'Script timed out after 5 minutes'
+        }), 500
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
 @app.route('/api/predictions/history', methods=['GET'])
 def api_predictions_history():
     """Get list of historical prediction files"""
@@ -2383,6 +3089,135 @@ def live_games():
         return jsonify(result)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/api/fetch-live-scores', methods=['POST'])
+def api_fetch_live_scores():
+    """Fetch live scores from ESPN and update predictions"""
+    try:
+        import subprocess
+        from pathlib import Path
+        
+        # Run the fetch_live_scores script
+        script_path = Path(__file__).parent / 'scripts' / 'fetch_live_scores.py'
+        
+        result = subprocess.run(
+            ['python3', str(script_path)],
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        
+        if result.returncode == 0:
+            # Count how many games were updated from the output
+            output_lines = result.stdout.split('\n')
+            updated_games = 0
+            for line in output_lines:
+                if 'Updated' in line and 'games' in line:
+                    # Extract number from "✅ Updated X games"
+                    import re
+                    match = re.search(r'Updated (\d+) games', line)
+                    if match:
+                        updated_games = int(match.group(1))
+            
+            return jsonify({
+                'success': True,
+                'message': f'Updated {updated_games} games with live scores',
+                'output': result.stdout
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': f'Script failed: {result.stderr}',
+                'output': result.stdout
+            })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        })
+
+@app.route('/api/run-weekly-prep', methods=['POST'])
+def api_run_weekly_prep():
+    """Run weekly data preparation script (NFLverse + calibration)"""
+    try:
+        import subprocess
+        from pathlib import Path
+        import os
+        
+        script_path = Path(__file__).parent / 'scripts' / 'weekly_data_prep.sh'
+        
+        # Make sure script is executable
+        os.chmod(script_path, 0o755)
+        
+        result = subprocess.run(
+            ['bash', str(script_path)],
+            capture_output=True,
+            text=True,
+            timeout=300  # 5 minute timeout
+        )
+        
+        if result.returncode == 0:
+            return jsonify({
+                'success': True,
+                'message': '✅ Weekly data prep complete! NFLverse stats updated and calibration re-fit.',
+                'output': result.stdout
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'error': result.stderr or 'Script failed',
+                'output': result.stdout
+            })
+            
+    except subprocess.TimeoutExpired:
+        return jsonify({
+            'success': False,
+            'error': 'Script timed out after 5 minutes. This is unusual - check logs.'
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        })
+
+@app.route('/api/generate-ai-picks', methods=['POST'])
+def generate_ai_picks_route():
+    """Generate ChatGPT picks for the week"""
+    try:
+        from edge_hunt.chatgpt_picks import generate_weekly_picks
+        
+        week = request.args.get('week', type=int)
+        result = generate_weekly_picks(current_week=week, save_to_file=True)
+        
+        if 'error' in result:
+            return jsonify(result), 400
+        
+        return jsonify(result)
+    
+    except Exception as e:
+        return jsonify({
+            'error': f'Failed to generate picks: {str(e)}'
+        }), 500
+
+
+@app.route('/api/ai-picks')
+def get_ai_picks():
+    """Get saved ChatGPT picks for a week"""
+    try:
+        from edge_hunt.chatgpt_picks import load_weekly_picks
+        
+        week = request.args.get('week', type=int)
+        result = load_weekly_picks(week=week)
+        
+        if 'error' in result:
+            return jsonify(result), 404
+        
+        return jsonify(result)
+    
+    except Exception as e:
+        return jsonify({
+            'error': f'Failed to load picks: {str(e)}'
+        }), 500
 
 if __name__ == '__main__':
     app.run(debug=False, port=9876, host='0.0.0.0')

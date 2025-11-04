@@ -20,26 +20,24 @@ class ParlayLegParser:
         
         desc_upper = description.upper()
         
-        # Format 1: BetOnline format with "Football - NFL -" repeated for each leg
-        # Example: "Football - NFL - Team1 vs Team2 - Parlay | 451 Team1 -2½ -115 For Game | DATE | TIMEFootball - NFL - Team3 vs Team4..."
-        # Must check this FIRST before generic pipe-separated, as this format also contains pipes
-        if 'FOOTBALL - NFL -' in desc_upper and 'FOR GAME' in desc_upper:
-            return ParlayLegParser._parse_betonline_format(description)
-        
-        # Format 2: Simple pipe-separated format
+        # Format 1: Simple pipe-separated format (CURRENT FORMAT)
         # "FOOTBALL - NFL - Kansas City Chiefs v Washington Commanders | Player stats - P. Mahomes over 227.5 Passing yds (Game) | Spread - Commanders +11.5 (Game)"
         if ' | ' in description:
             return ParlayLegParser._parse_pipe_separated(description)
         
-        # Format 3: Newline-separated format
+        # Format 2: Newline-separated format
         # "FOOTBALL - NFL - Kansas City Chiefs v Washington Commanders\n\nPlayer TDs - P. Mahomes Score anytime (Game)\nSpread - Commanders +11.5 (Game)"
         if '\n' in description and ('FOOTBALL - NFL -' in desc_upper):
             return ParlayLegParser._parse_newline_separated(description)
         
-        # Format 4: Comma-separated short format
+        # Format 3: Comma-separated short format
         # "12-team parlay: CAR +7, NYG +7.5, MIA +7.5"
         if 'parlay:' in description.lower():
             return ParlayLegParser._parse_comma_separated(description)
+        
+        # Format 4: Old BetOnline format with "Football - NFL -" separators
+        if 'FOOTBALL - NFL -' in desc_upper:
+            return ParlayLegParser._parse_betonline_format(description)
         
         return []
     
@@ -113,35 +111,28 @@ class ParlayLegParser:
     def _parse_betonline_format(description: str) -> List[Dict[str, Any]]:
         """Parse old BetOnline format with 'Football - NFL -' separators"""
         legs = []
-        
-        # Split by "Football - NFL -" to separate each game's leg
-        # Handle both clean splits and run-together text
         games = re.split(r'Football - NFL -', description, flags=re.IGNORECASE)
         
         for game in games:
             if not game.strip():
                 continue
             
-            # Try to extract bet line: "| NUMBER TEAM SPREAD ODDS For Game | DATE | TIME | STATUS"
-            # Example: "| 451 Chicago Bears -2½ -115 For Game | 11/02/2025 | 01:00:00 PM (EST) | Pending"
+            # Extract bet line: "| 279 Dallas Cowboys +3½ -110 For Game"
             bet_match = re.search(
-                r'\|\s*(\d+)\s+(.+?)\s+([-+]?\d+(?:½)?)\s+([-+]?\d+)\s+For\s+Game',
+                r'\|\s*\d+\s+(.+?)\s+([-+]\d+(?:½)?|over|under)\s+([\d.]+)?\s*[-+]?\d+\s+For\s+Game',
                 game,
                 re.IGNORECASE
             )
             if bet_match:
-                game_num = bet_match.group(1)
-                team_name = bet_match.group(2).strip()
-                spread = bet_match.group(3)
-                odds = bet_match.group(4)
+                team_or_total = bet_match.group(1).strip()
+                line_type = bet_match.group(2)
+                line_value = bet_match.group(3)
                 
                 leg = {
-                    'description': f"{team_name} {spread}",
-                    'team_name': team_name,
-                    'bet_type': 'Spread',
-                    'line': spread,
-                    'odds': odds,
-                    'game_num': game_num
+                    'description': f"{team_or_total} {line_type} {line_value or ''}".strip(),
+                    'team': team_or_total,
+                    'line': f"{line_type} {line_value or ''}".strip(),
+                    'odds': None
                 }
                 legs.append(leg)
         
@@ -159,11 +150,6 @@ class ParlayLegParser:
           - "CAR +7"
         """
         leg_str = leg_str.strip()
-        
-        # Strip out status indicators (| Won, | Lost, | Pending, | Push)
-        # These are added by BetOnline and should be removed before parsing
-        leg_str = re.sub(r'\s*\|\s*(Won|Lost|Pending|Push)\s*$', '', leg_str, flags=re.IGNORECASE)
-        
         leg_upper = leg_str.upper()
         
         # Player prop: "Player stats - P. Mahomes over 227.5 Passing yds (Game)"

@@ -1,0 +1,388 @@
+{% extends "base.html" %}
+
+{% block title %}Model Performance by Conviction{% endblock %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">
+          <i class="ti ti-chart-bar icon me-2"></i>
+          Model Performance by Conviction
+        </h2>
+        <div class="text-muted mt-1">Backtest results: Weeks {{ stats.weeks|join(', ') }} • {{ stats.total_games }} games</div>
+      </div>
+      <div class="col-auto">
+        <a href="/model-performance/team-analysis" class="btn btn-primary me-2">
+          <i class="ti ti-users icon me-1"></i>
+          Team Bias Analysis
+        </a>
+        <a href="/" class="btn btn-outline-primary">
+          <i class="ti ti-arrow-left icon me-1"></i>
+          Back to Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    
+    <!-- SPREAD BETS Section -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="ti ti-trending-up icon me-2"></i>
+              SPREAD BETS
+            </h3>
+            <div class="card-subtitle">{{ stats.spread.all.count }} total bets</div>
+          </div>
+          <div class="card-body">
+            
+            <!-- HIGH Conviction -->
+            <div class="mb-4">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-red me-2">HIGH</span>
+                <h4 class="mb-0">{{ stats.spread.high.count }} bets • Avg Edge: {{ stats.spread.high.avg_edge }}%</h4>
+                <a href="/model-performance/spread/high" class="btn btn-sm btn-outline-primary ms-auto">
+                  <i class="ti ti-list icon me-1"></i>
+                  View All Bets
+                </a>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <div class="card bg-light">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Record</div>
+                      <div class="h2 mb-0">{{ stats.spread.high.wins }}W-{{ stats.spread.high.losses }}L-{{ stats.spread.high.pushes }}P</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.spread.high.win_rate >= 60 %}bg-success-lt{% else %}bg-secondary-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Win Rate</div>
+                      <div class="h2 mb-0">{{ stats.spread.high.win_rate }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.spread.high.roi >= 10 %}bg-success-lt{% elif stats.spread.high.roi >= 0 %}bg-blue-lt{% else %}bg-danger-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">ROI</div>
+                      <div class="h2 mb-0">{{ "+" if stats.spread.high.roi > 0 }}{{ stats.spread.high.roi }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card bg-info-lt">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Avg Edge</div>
+                      <div class="h2 mb-0">{{ stats.spread.high.avg_edge }}%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- MEDIUM Conviction -->
+            <div class="mb-4">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-orange me-2">MEDIUM</span>
+                <h4 class="mb-0">{{ stats.spread.medium.count }} bets • Avg Edge: {{ stats.spread.medium.avg_edge }}%</h4>
+                <a href="/model-performance/spread/medium" class="btn btn-sm btn-outline-primary ms-auto">
+                  <i class="ti ti-list icon me-1"></i>
+                  View All Bets
+                </a>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <div class="card bg-light">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Record</div>
+                      <div class="h2 mb-0">{{ stats.spread.medium.wins }}W-{{ stats.spread.medium.losses }}L-{{ stats.spread.medium.pushes }}P</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.spread.medium.win_rate >= 60 %}bg-success-lt{% else %}bg-secondary-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Win Rate</div>
+                      <div class="h2 mb-0">{{ stats.spread.medium.win_rate }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.spread.medium.roi >= 10 %}bg-success-lt{% elif stats.spread.medium.roi >= 0 %}bg-blue-lt{% else %}bg-danger-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">ROI</div>
+                      <div class="h2 mb-0">{{ "+" if stats.spread.medium.roi > 0 }}{{ stats.spread.medium.roi }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card bg-info-lt">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Avg Edge</div>
+                      <div class="h2 mb-0">{{ stats.spread.medium.avg_edge }}%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- LOW Conviction -->
+            <div class="mb-4">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-secondary me-2">LOW</span>
+                <h4 class="mb-0">{{ stats.spread.low.count }} bets • Avg Edge: {{ stats.spread.low.avg_edge }}%</h4>
+                <a href="/model-performance/spread/low" class="btn btn-sm btn-outline-primary ms-auto">
+                  <i class="ti ti-list icon me-1"></i>
+                  View All Bets
+                </a>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <div class="card bg-light">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Record</div>
+                      <div class="h2 mb-0">{{ stats.spread.low.wins }}W-{{ stats.spread.low.losses }}L-{{ stats.spread.low.pushes }}P</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.spread.low.win_rate >= 60 %}bg-success-lt{% else %}bg-secondary-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Win Rate</div>
+                      <div class="h2 mb-0">{{ stats.spread.low.win_rate }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.spread.low.roi >= 10 %}bg-success-lt{% elif stats.spread.low.roi >= 0 %}bg-blue-lt{% else %}bg-danger-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">ROI</div>
+                      <div class="h2 mb-0">{{ "+" if stats.spread.low.roi > 0 }}{{ stats.spread.low.roi }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card bg-info-lt">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Avg Edge</div>
+                      <div class="h2 mb-0">{{ stats.spread.low.avg_edge }}%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- ALL SPREADS Summary -->
+            <div class="alert alert-info">
+              <div class="d-flex align-items-center">
+                <div>
+                  <h4 class="alert-heading">ALL Spread Bets: {{ stats.spread.all.count }} total</h4>
+                  <div class="text-muted">
+                    <strong>{{ stats.spread.all.wins }}W-{{ stats.spread.all.losses }}L-{{ stats.spread.all.pushes }}P</strong>
+                    | Win Rate: <strong>{{ stats.spread.all.win_rate }}%</strong>
+                    | ROI: <strong class="{% if stats.spread.all.roi >= 0 %}text-success{% else %}text-danger{% endif %}">{{ "+" if stats.spread.all.roi > 0 }}{{ stats.spread.all.roi }}%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTAL BETS Section -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="ti ti-sum icon me-2"></i>
+              TOTAL (O/U) BETS
+            </h3>
+            <div class="card-subtitle">{{ stats.total.all.count }} total bets</div>
+          </div>
+          <div class="card-body">
+            
+            <!-- HIGH Conviction -->
+            <div class="mb-4">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-red me-2">HIGH</span>
+                <h4 class="mb-0">{{ stats.total.high.count }} bets • Avg Edge: {{ stats.total.high.avg_edge }}%</h4>
+                <a href="/model-performance/total/high" class="btn btn-sm btn-outline-primary ms-auto">
+                  <i class="ti ti-list icon me-1"></i>
+                  View All Bets
+                </a>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <div class="card bg-light">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Record</div>
+                      <div class="h2 mb-0">{{ stats.total.high.wins }}W-{{ stats.total.high.losses }}L-{{ stats.total.high.pushes }}P</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.total.high.win_rate >= 60 %}bg-success-lt{% else %}bg-secondary-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Win Rate</div>
+                      <div class="h2 mb-0">{{ stats.total.high.win_rate }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.total.high.roi >= 10 %}bg-success-lt{% elif stats.total.high.roi >= 0 %}bg-blue-lt{% else %}bg-danger-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">ROI</div>
+                      <div class="h2 mb-0">{{ "+" if stats.total.high.roi > 0 }}{{ stats.total.high.roi }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card bg-info-lt">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Avg Edge</div>
+                      <div class="h2 mb-0">{{ stats.total.high.avg_edge }}%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- MEDIUM Conviction -->
+            <div class="mb-4">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-orange me-2">MEDIUM</span>
+                <h4 class="mb-0">{{ stats.total.medium.count }} bets • Avg Edge: {{ stats.total.medium.avg_edge }}%</h4>
+                <a href="/model-performance/total/medium" class="btn btn-sm btn-outline-primary ms-auto">
+                  <i class="ti ti-list icon me-1"></i>
+                  View All Bets
+                </a>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <div class="card bg-light">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Record</div>
+                      <div class="h2 mb-0">{{ stats.total.medium.wins }}W-{{ stats.total.medium.losses }}L-{{ stats.total.medium.pushes }}P</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.total.medium.win_rate >= 60 %}bg-success-lt{% else %}bg-secondary-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Win Rate</div>
+                      <div class="h2 mb-0">{{ stats.total.medium.win_rate }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.total.medium.roi >= 10 %}bg-success-lt{% elif stats.total.medium.roi >= 0 %}bg-blue-lt{% else %}bg-danger-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">ROI</div>
+                      <div class="h2 mb-0">{{ "+" if stats.total.medium.roi > 0 }}{{ stats.total.medium.roi }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card bg-info-lt">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Avg Edge</div>
+                      <div class="h2 mb-0">{{ stats.total.medium.avg_edge }}%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- LOW Conviction -->
+            <div class="mb-4">
+              <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-secondary me-2">LOW</span>
+                <h4 class="mb-0">{{ stats.total.low.count }} bets • Avg Edge: {{ stats.total.low.avg_edge }}%</h4>
+                <a href="/model-performance/total/low" class="btn btn-sm btn-outline-primary ms-auto">
+                  <i class="ti ti-list icon me-1"></i>
+                  View All Bets
+                </a>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <div class="card bg-light">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Record</div>
+                      <div class="h2 mb-0">{{ stats.total.low.wins }}W-{{ stats.total.low.losses }}L-{{ stats.total.low.pushes }}P</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.total.low.win_rate >= 60 %}bg-success-lt{% else %}bg-secondary-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Win Rate</div>
+                      <div class="h2 mb-0">{{ stats.total.low.win_rate }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card {% if stats.total.low.roi >= 10 %}bg-success-lt{% elif stats.total.low.roi >= 0 %}bg-blue-lt{% else %}bg-danger-lt{% endif %}">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">ROI</div>
+                      <div class="h2 mb-0">{{ "+" if stats.total.low.roi > 0 }}{{ stats.total.low.roi }}%</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card bg-info-lt">
+                    <div class="card-body p-3">
+                      <div class="text-muted small">Avg Edge</div>
+                      <div class="h2 mb-0">{{ stats.total.low.avg_edge }}%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- ALL TOTALS Summary -->
+            <div class="alert alert-info">
+              <div class="d-flex align-items-center">
+                <div>
+                  <h4 class="alert-heading">ALL Total Bets: {{ stats.total.all.count }} total</h4>
+                  <div class="text-muted">
+                    <strong>{{ stats.total.all.wins }}W-{{ stats.total.all.losses }}L-{{ stats.total.all.pushes }}P</strong>
+                    | Win Rate: <strong>{{ stats.total.all.win_rate }}%</strong>
+                    | ROI: <strong class="{% if stats.total.all.roi >= 0 %}text-success{% else %}text-danger{% endif %}">{{ "+" if stats.total.all.roi > 0 }}{{ stats.total.all.roi }}%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+

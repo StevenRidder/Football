@@ -905,67 +905,6 @@
     </div>
   </div>
 </div>
-
-<!-- Last 5 Games -->
-<div class="row mb-3">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">📈 {{ away }} - Recent Form (Last 5 Games)</h3>
-      </div>
-      <div class="card-body">
-        {% if game.espn_data.away.last_five %}
-        <div class="list-group list-group-flush">
-          {% for game_item in game.espn_data.away.last_five %}
-          <div class="list-group-item">
-            <div class="row align-items-center">
-              <div class="col-auto">
-                <span class="avatar avatar-sm">{{ game_item.opponent }}</span>
-              </div>
-              <div class="col">
-                <div>vs {{ game_item.opponent }}</div>
-                <div class="text-muted small">{{ game_item.venue }}</div>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        {% else %}
-        <div class="text-muted">No recent games available</div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">📈 {{ home }} - Recent Form (Last 5 Games)</h3>
-      </div>
-      <div class="card-body">
-        {% if game.espn_data.home.last_five %}
-        <div class="list-group list-group-flush">
-          {% for game_item in game.espn_data.home.last_five %}
-          <div class="list-group-item">
-            <div class="row align-items-center">
-              <div class="col-auto">
-                <span class="avatar avatar-sm">{{ game_item.opponent }}</span>
-              </div>
-              <div class="col">
-                <div>vs {{ game_item.opponent }}</div>
-                <div class="text-muted small">{{ game_item.venue }}</div>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        {% else %}
-        <div class="text-muted">No recent games available</div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div>
 {% endif %}
 
 <!-- Season Stats Comparison -->

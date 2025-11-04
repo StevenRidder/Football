@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}{{ bet_type }} Bets - {{ conviction }} Conviction{% endblock %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="container-xl">
+    <div class="row g-2 align-items-center">
+      <div class="col">
+        <h2 class="page-title">
+          <i class="ti ti-list icon me-2"></i>
+          {{ bet_type }} Bets - <span class="badge {% if conviction == 'HIGH' %}bg-red{% elif conviction == 'MEDIUM' %}bg-orange{% else %}bg-secondary{% endif %}">{{ conviction }}</span> Conviction
+        </h2>
+        <div class="text-muted mt-1">{{ total }} total bets • {{ wins }}W-{{ losses }}L</div>
+      </div>
+      <div class="col-auto">
+        <a href="/model-performance" class="btn btn-outline-primary">
+          <i class="ti ti-arrow-left icon me-1"></i>
+          Back to Summary
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="container-xl">
+    
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">All {{ conviction }} Conviction {{ bet_type }} Bets</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-vcenter card-table table-striped">
+              <thead>
+                <tr>
+                  <th>Week</th>
+                  <th>Game</th>
+                  {% if bet_type == 'Spread' %}
+                  <th class="text-end">Market Spread</th>
+                  <th class="text-end">Our Spread</th>
+                  <th>Our Bet</th>
+                  <th class="text-end">Edge</th>
+                  <th>Final Score</th>
+                  {% else %}
+                  <th class="text-end">Market Total</th>
+                  <th class="text-end">Our Total</th>
+                  <th>Our Bet</th>
+                  <th class="text-end">Edge</th>
+                  <th class="text-end">Actual Total</th>
+                  {% endif %}
+                  <th class="text-center">Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for bet in bets %}
+                <tr>
+                  <td>
+                    <span class="badge bg-blue-lt">Week {{ bet.week }}</span>
+                  </td>
+                  <td>
+                    <div class="text-nowrap">{{ bet.away_team }} @ {{ bet.home_team }}</div>
+                  </td>
+                  {% if bet_type == 'Spread' %}
+                  <td class="text-end">
+                    <span class="text-muted">{{ bet.market_spread }}</span>
+                  </td>
+                  <td class="text-end">
+                    <strong>{{ bet.our_spread }}</strong>
+                  </td>
+                  <td>
+                    <span class="badge bg-azure-lt">{{ bet.bet }}</span>
+                  </td>
+                  <td class="text-end">
+                    <span class="text-success">+{{ bet.edge }}%</span>
+                  </td>
+                  <td>
+                    <span class="text-muted">{{ bet.actual_score }}</span>
+                  </td>
+                  {% else %}
+                  <td class="text-end">
+                    <span class="text-muted">{{ bet.market_total }}</span>
+                  </td>
+                  <td class="text-end">
+                    <strong>{{ bet.our_total }}</strong>
+                  </td>
+                  <td>
+                    <span class="badge bg-azure-lt">{{ bet.bet }}</span>
+                  </td>
+                  <td class="text-end">
+                    <span class="text-success">+{{ bet.edge }}%</span>
+                  </td>
+                  <td class="text-end">
+                    <span class="text-muted">{{ bet.actual_total }}</span>
+                  </td>
+                  {% endif %}
+                  <td class="text-center">
+                    {% if bet.result == 'WIN' %}
+                    <span class="badge bg-success">✓ WIN</span>
+                    {% elif bet.result == 'LOSS' %}
+                    <span class="badge bg-danger">✗ LOSS</span>
+                    {% else %}
+                    <span class="badge bg-secondary">— PUSH</span>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="{% if bet_type == 'Spread' %}6{% else %}6{% endif %}" class="text-end">TOTALS:</th>
+                  <th class="text-center">
+                    <span class="badge {% if wins > losses %}bg-success{% else %}bg-secondary{% endif %}">
+                      {{ wins }}W-{{ losses }}L
+                    </span>
+                  </th>
+                  <th></th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
