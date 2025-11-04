@@ -1074,6 +1074,55 @@ def game_detail(away, home, week=None):
         if trace_exists:
             trace_path = str(trace_path_check)
     
+    # Load TeamProfile data for PFF/nflfastR metrics display
+    away_profile = None
+    home_profile = None
+    try:
+        from pathlib import Path
+        import sys
+        sys.path.insert(0, str(Path(__file__).parent / "simulation_engine" / "nflfastR_simulator"))
+        from simulator.team_profile import TeamProfile
+        
+        season = 2025
+        game_week = week if week else game_data.get('week', 10)
+        data_dir = Path(__file__).parent / "simulation_engine" / "nflfastR_simulator" / "data"
+        
+        away_profile = TeamProfile(away, season, game_week, data_dir, debug=False)
+        home_profile = TeamProfile(home, season, game_week, data_dir, debug=False)
+        
+        # Convert to dicts for template
+        away_profile_dict = away_profile.as_dict_for_audit()
+        home_profile_dict = home_profile.as_dict_for_audit()
+        
+    except Exception as e:
+        print(f"⚠️  Could not load TeamProfile data: {e}")
+        away_profile_dict = None
+        home_profile_dict = None
+    
+    # Load injury data for impact players
+    injury_data = {}
+    try:
+        from pathlib import Path
+        injury_file = Path(__file__).parent / "simulation_engine" / "nflfastR_simulator" / "data" / "nflfastR" / "weekly_injuries.csv"
+        if injury_file.exists():
+            import pandas as pd
+            season = 2025
+            game_week = week if week else game_data.get('week', 10)
+            df_inj = pd.read_csv(injury_file)
+            week_inj = df_inj[(df_inj['season'] == season) & (df_inj['week'] == game_week)]
+            
+            # Get injury details for both teams
+            away_inj = week_inj[week_inj['team'] == away].to_dict('records')
+            home_inj = week_inj[week_inj['team'] == home].to_dict('records')
+            
+            injury_data = {
+                'away': away_inj[0] if away_inj else None,
+                'home': home_inj[0] if home_inj else None
+            }
+    except Exception as e:
+        print(f"⚠️  Could not load injury data: {e}")
+        injury_data = {'away': None, 'home': None}
+    
     return render_template('game_detail.html',
                          away=away,
                          home=home,
@@ -1085,7 +1134,10 @@ def game_detail(away, home, week=None):
                          trace_path=trace_path,
                          away_recent=away_recent,
                          home_recent=home_recent,
-                         external_predictions=external_predictions)
+                         external_predictions=external_predictions,
+                         away_profile=away_profile_dict,
+                         home_profile=home_profile_dict,
+                         injury_data=injury_data)
 
 @app.route('/accuracy')
 def accuracy():
