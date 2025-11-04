@@ -192,8 +192,15 @@ def convert_backtest_to_frontend(input_file, output_file):
     frontend_df['total_conviction_badge'] = frontend_df['total_conviction'].apply(format_conviction_badge)
     
     # Results (WIN/LOSS/None)
-    frontend_df['spread_result'] = df.get('spread_result', None).apply(format_result)
-    frontend_df['total_result'] = df.get('total_result', None).apply(format_result)
+    if 'spread_result' in df.columns:
+        frontend_df['spread_result'] = df['spread_result'].apply(format_result)
+    else:
+        frontend_df['spread_result'] = None
+    
+    if 'total_result' in df.columns:
+        frontend_df['total_result'] = df['total_result'].apply(format_result)
+    else:
+        frontend_df['total_result'] = None
     
     # Edge percentages
     frontend_df['spread_edge_pct'] = (df.get('spread_edge', 0.0) * 100).round(1)
@@ -282,15 +289,16 @@ if __name__ == "__main__":
     script_dir = Path(__file__).parent.parent
     base_output_file = Path(__file__).parent.parent.parent.parent / "artifacts" / "simulator_predictions.csv"
     
-    # Look for backtest files (weeks 1-8)
+    # Look for backtest files (weeks 1-8, week 9, week 10+)
     backtest_file = script_dir / "artifacts" / "backtest_all_games_conviction.csv"
     week9_file = script_dir / "artifacts" / "backtest_week9_predictions.csv"
+    week10_file = script_dir / "artifacts" / "backtest_week9_10_predictions.csv"
     
     if len(sys.argv) > 1:
         input_file = Path(sys.argv[1])
         convert_backtest_to_frontend(input_file, base_output_file)
     else:
-        # Combine weeks 1-8 and week 9 if available
+        # Combine weeks 1-8, week 9, and week 10+ if available
         dfs = []
         
         if backtest_file.exists():
@@ -303,12 +311,19 @@ if __name__ == "__main__":
             df_week9 = pd.read_csv(week9_file)
             dfs.append(df_week9)
         
+        # FIXED: Also include week 10+ predictions
+        if week10_file.exists():
+            print(f"📂 Loading week 10+ from: {week10_file}")
+            df_week10 = pd.read_csv(week10_file)
+            dfs.append(df_week10)
+        
         if not dfs:
             print(f"❌ Error: No backtest files found")
             print(f"   Expected:")
             print(f"     - {backtest_file} (weeks 1-8)")
             print(f"     - {week9_file} (week 9)")
-            print(f"   Run backtest_all_games_conviction.py and generate_week9_predictions.py")
+            print(f"     - {week10_file} (week 10+)")
+            print(f"   Run backtest_all_games_conviction.py and generate_week9_10_predictions.py")
             sys.exit(1)
         
         # Combine all weeks

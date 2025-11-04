@@ -2931,12 +2931,24 @@ def api_run_simulator_predictions():
     try:
         import subprocess
         from pathlib import Path
+        import json
+        
+        # Check if request specifies a specific week
+        week = None
+        if request.is_json:
+            data = request.get_json()
+            week = data.get('week')
         
         script_path = Path(__file__).parent / 'simulation_engine' / 'nflfastR_simulator' / 'scripts' / 'generate_week9_10_predictions.py'
         
+        # Build command with optional week argument
+        cmd = ['python3', str(script_path)]
+        if week:
+            cmd.append(str(week))
+        
         # Run the simulator prediction script
         result = subprocess.run(
-            ['python3', str(script_path)],
+            cmd,
             cwd='/Users/steveridder/Git/Football',
             capture_output=True,
             text=True,

@@ -14,6 +14,25 @@ from typing import Any, Dict, List, Optional
 import json
 import time
 from pathlib import Path
+import numpy as np
+
+
+def _convert_to_json_serializable(obj):
+    """Recursively convert numpy types to native Python types for JSON serialization."""
+    if isinstance(obj, (np.integer, np.int64, np.int32, np.int16, np.int8)):
+        return int(obj)
+    elif isinstance(obj, (np.floating, np.float64, np.float32, np.float16)):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, np.bool_):
+        return bool(obj)
+    elif isinstance(obj, dict):
+        return {k: _convert_to_json_serializable(v) for k, v in obj.items()}
+    elif isinstance(obj, (list, tuple)):
+        return [_convert_to_json_serializable(item) for item in obj]
+    else:
+        return obj
 
 
 @dataclass
@@ -42,6 +61,9 @@ class SimTrace:
             "game_id": self.game_id,
             **payload
         }
+        
+        # Convert numpy types to native Python types for JSON serialization
+        rec = _convert_to_json_serializable(rec)
         
         self.buffer.append(rec)
         
@@ -91,6 +113,9 @@ class SimTrace:
         for event in self.buffer:
             event_type = event.get('kind', 'unknown')
             summary["event_types"][event_type] = summary["event_types"].get(event_type, 0) + 1
+        
+        # Convert numpy types to native Python types for JSON serialization
+        summary = _convert_to_json_serializable(summary)
         
         with path.open("w") as f:
             json.dump(summary, f, indent=2)

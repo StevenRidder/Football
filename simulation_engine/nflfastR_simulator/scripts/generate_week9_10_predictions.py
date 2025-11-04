@@ -16,6 +16,14 @@ from simulator.market_centering import center_scores_to_market
 from concurrent.futures import ProcessPoolExecutor
 import time
 from scipy.stats import norm
+import os
+
+# Define paths at module level for multiprocessing safety
+# This script is in: simulation_engine/nflfastR_simulator/scripts/
+SCRIPT_DIR = Path(__file__).parent
+BASE_DIR = SCRIPT_DIR.parent  # Goes to nflfastR_simulator/
+DATA_DIR = BASE_DIR / "data" / "nflfastR"
+ARTIFACTS_DIR = BASE_DIR / "artifacts" / "traces"
 
 # Conviction tiers (same as backtest_all_games_conviction.py)
 LOW_EDGE = 0.0
@@ -42,27 +50,33 @@ def simulate_one_game(args):
         spread_line = float(row.get('spread_line', 0.0))
         total_line = float(row.get('closing_total', row.get('total_line', 45.0)))
         
-        # Load team profiles
-        data_dir = Path(__file__).parent.parent / "data" / "nflfastR"
-        home_profile = TeamProfile(home, season, week, data_dir=data_dir, debug=False)
-        away_profile = TeamProfile(away, season, week, data_dir=data_dir, debug=False)
+        # Load team profiles (use module-level paths for multiprocessing safety)
+        home_profile = TeamProfile(home, season, week, data_dir=DATA_DIR, debug=False)
+        away_profile = TeamProfile(away, season, week, data_dir=DATA_DIR, debug=False)
         
         # Run simulation with trace (only for first simulation to save space)
         game_id = row.get('game_id', f"{season}_{week:02d}_{away}_{home}")
         
-        # Create trace for first simulation only
-        from simulator.tracing import SimTrace
-        from pathlib import Path
-        artifacts_dir = Path(__file__).parent.parent / "artifacts" / "traces"
-        artifacts_dir.mkdir(parents=True, exist_ok=True)
-        trace_path = artifacts_dir / f"{away}_{home}_{week}_{season}.jsonl"
+        # Create trace for first simulation only (use module-level paths)
+        try:
+            from simulator.tracing import SimTrace
+            ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
+            trace_path = ARTIFACTS_DIR / f"{away}_{home}_{week}_{season}.jsonl"
+        except Exception as e:
+            # If tracing fails, continue without it (shouldn't break predictions)
+            trace_path = None
+            SimTrace = None
         
-        # Create trace for first simulation
-        trace = SimTrace(game_id=game_id, out_path=trace_path, seed=hash(f"{game_id}_0") % (2**32))
-        trace.enable = True  # Enable for first sim
+        # Create trace for first simulation (if tracing is available)
+        if SimTrace is not None and trace_path is not None:
+            trace = SimTrace(game_id=game_id, out_path=trace_path, seed=hash(f"{game_id}_0") % (2**32))
+            trace.enable = True  # Enable for first sim
+        else:
+            trace = None
+        
         sim = GameSimulator(home_profile, away_profile, 
                            game_id=game_id, season=season, week=week,
-                           trace=trace, seed=hash(f"{game_id}_0") % (2**32))
+                           trace=trace, seed=hash(f"{game_id}_0") % (2**32) if trace else None)
         
         # Run first simulation with trace
         np.random.seed(hash(f"{game_id}_0") % (2**32))
@@ -70,8 +84,9 @@ def simulate_one_game(args):
         home_scores = [result_0['home_score']]
         away_scores = [result_0['away_score']]
         
-        # Disable trace for remaining simulations
-        trace.enable = False
+        # Disable trace for remaining simulations (if tracing enabled)
+        if trace is not None:
+            trace.enable = False
         
         # Run remaining simulations (faster, no trace)
         for sim_i in range(1, n_sims):
@@ -149,8 +164,9 @@ def simulate_one_game(args):
         p_under_linear = 1 - p_over_linear
         
         # Log distribution_params (before/after calibration) - after all sims complete
-        trace.enable = True  # Re-enable for logging
-        trace.log("distribution_params", {
+        if trace is not None:
+            trace.enable = True  # Re-enable for logging
+            trace.log("distribution_params", {
             "spread": {
                 "raw_mean": float(spread_raw_mean),
                 "raw_sd": float(spread_raw_sd),
@@ -248,30 +264,31 @@ def simulate_one_game(args):
                 total_conviction = 'LOW'
         
         # Log calibration block per game (predicted probabilities, bin id, eventual hit)
-        # Bin probabilities into 0.1-width bins for reliability curves
-        spread_bin_id = int(p_home_cover * 10) if spread_bet else None
-        total_bin_id = int(p_over * 10) if total_bet else None
-        
-        trace.log("calibration", {
-            "spread": {
-                "predicted_prob": float(p_home_cover if spread_bet == 'HOME' else p_away_cover),
-                "bin_id": spread_bin_id,
-                "bet_side": spread_bet,
-                "market_line": float(spread_line),
-                "eventual_hit": None  # Will be filled when game completes
-            },
-            "total": {
-                "predicted_prob": float(p_over if total_bet == 'OVER' else p_under),
-                "bin_id": total_bin_id,
-                "bet_side": total_bet,
-                "market_line": float(total_line),
-                "eventual_hit": None  # Will be filled when game completes
-            },
-            "calibration_method": use_calibration
-        })
-        
-        # Save trace summary
-        trace.save_summary(trace_path.with_suffix('.summary.json'))
+        if trace is not None and trace_path is not None:
+            # Bin probabilities into 0.1-width bins for reliability curves
+            spread_bin_id = int(p_home_cover * 10) if spread_bet else None
+            total_bin_id = int(p_over * 10) if total_bet else None
+            
+            trace.log("calibration", {
+                "spread": {
+                    "predicted_prob": float(p_home_cover if spread_bet == 'HOME' else p_away_cover),
+                    "bin_id": spread_bin_id,
+                    "bet_side": spread_bet,
+                    "market_line": float(spread_line),
+                    "eventual_hit": None  # Will be filled when game completes
+                },
+                "total": {
+                    "predicted_prob": float(p_over if total_bet == 'OVER' else p_under),
+                    "bin_id": total_bin_id,
+                    "bet_side": total_bet,
+                    "market_line": float(total_line),
+                    "eventual_hit": None  # Will be filled when game completes
+                },
+                "calibration_method": use_calibration
+            })
+            
+            # Save trace summary
+            trace.save_summary(trace_path.with_suffix('.summary.json'))
         
         return {
             'game_id': row.get('game_id', f"{season}_{week:02d}_{away}_{home}"),
@@ -397,13 +414,48 @@ def load_week_games(week):
     return schedule
 
 if __name__ == "__main__":
-    print("="*70)
-    print("GENERATE WEEK 9 & 10 PREDICTIONS")
-    print("="*70)
+    import sys
+    
+    # Allow command-line argument to specify which week(s) to generate
+    # Usage: python3 generate_week9_10_predictions.py [week_number]
+    # If no argument, generates current week + next week
+    if len(sys.argv) > 1:
+        try:
+            weeks_to_generate = [int(sys.argv[1])]
+            print("="*70)
+            print(f"GENERATE WEEK {weeks_to_generate[0]} PREDICTIONS")
+            print("="*70)
+        except ValueError:
+            print(f"❌ Invalid week number: {sys.argv[1]}")
+            sys.exit(1)
+    else:
+        # Default: generate current week + next week (determined dynamically)
+        import nfl_data_py as nfl
+        from datetime import datetime
+        today = datetime.now().date()
+        sched = nfl.import_schedules([2025])
+        sched_reg = sched[sched['game_type'] == 'REG']
+        
+        # Find current week (first week with games not yet played)
+        current_week = None
+        for week in sorted(sched_reg['week'].unique()):
+            week_games = sched_reg[sched_reg['week'] == week]
+            if week_games['away_score'].isna().any():
+                current_week = int(week)
+                break
+        
+        if current_week is None:
+            current_week = int(sched_reg['week'].max())
+        
+        # Generate current week + next week
+        weeks_to_generate = [current_week, current_week + 1]
+        print("="*70)
+        print(f"GENERATE WEEKS {weeks_to_generate[0]} & {weeks_to_generate[1]} PREDICTIONS")
+        print("="*70)
     
     all_games = []
     
-    for week in [9, 10]:
+    for week in weeks_to_generate:
         print(f"\n📥 Loading Week {week} games...")
         games = load_week_games(week)
         games['week'] = week
@@ -411,11 +463,12 @@ if __name__ == "__main__":
         print(f"   Found {len(games)} games")
     
     if not all_games:
-        print("❌ No games found for weeks 9-10")
+        print(f"❌ No games found for week(s) {weeks_to_generate}")
         sys.exit(1)
     
     games_df = pd.concat(all_games, ignore_index=True)
-    print(f"\n✅ Loaded {len(games_df)} total games (weeks 9-10)")
+    weeks_str = f"week {weeks_to_generate[0]}" if len(weeks_to_generate) == 1 else f"weeks {weeks_to_generate[0]} & {weeks_to_generate[1]}"
+    print(f"\n✅ Loaded {len(games_df)} total games ({weeks_str})")
     
     print(f"\n🚀 Running {len(games_df)} games × {N_SIMS} sims = {len(games_df) * N_SIMS:,} total")
     print(f"   Using 8 CPU cores\n")
@@ -447,6 +500,18 @@ if __name__ == "__main__":
     df.to_csv(output_file, index=False)
     
     print(f"\n💾 Saved to: {output_file}")
+    
+    # FIXED: Automatically format for frontend and save to simulator_predictions.csv
+    print(f"\n🔄 Formatting for frontend...")
+    try:
+        from scripts.format_for_frontend import convert_backtest_to_frontend
+        frontend_output = Path(__file__).parent.parent.parent.parent / "artifacts" / "simulator_predictions.csv"
+        convert_backtest_to_frontend(output_file, frontend_output)
+        print(f"✅ Frontend predictions saved to: {frontend_output}")
+    except Exception as e:
+        print(f"⚠️  Warning: Could not format for frontend: {e}")
+        print(f"   You can manually run: python3 scripts/format_for_frontend.py {output_file}")
+    
     print(f"\n📊 Summary:")
     print(f"   Spread bets: {(df['spread_bet'].notna()).sum()}")
     print(f"   Total bets: {(df['total_bet'].notna()).sum()}")

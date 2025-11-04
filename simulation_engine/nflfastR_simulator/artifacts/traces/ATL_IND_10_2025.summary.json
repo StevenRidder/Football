@@ -1,0 +1,6906 @@
+{
+  "game_id": "2025_10_ATL_IND",
+  "seed": 2251508276,
+  "total_events": 416,
+  "event_types": {
+    "inputs.audit": 1,
+    "call.pass_run": 120,
+    "play.result": 120,
+    "pass.pressure": 64,
+    "pass.completion_model": 64,
+    "policy_decision": 9,
+    "drive.summary": 17,
+    "anchor_slice": 17,
+    "game.summary": 1,
+    "anchors.violation": 1,
+    "distribution_params": 1,
+    "calibration": 1
+  },
+  "events": [
+    {
+      "t": 1762286546.530508,
+      "kind": "inputs.audit",
+      "game_id": "2025_10_ATL_IND",
+      "home": {
+        "team": "IND",
+        "season": 2025,
+        "week": 10,
+        "off_epa": 0.16998927336600086,
+        "def_epa": -0.027790636238124597,
+        "pace": 6.852268217893219,
+        "early_down_success_rate": 0.5778223945784345,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "yards_per_pass": 7.0,
+        "yards_per_run": 4.5,
+        "red_zone_trips_per_game": 5.0,
+        "red_zone_td_pct": 0.7592592592592593,
+        "punt_net_yards": 47.221428,
+        "field_goal_make_pct": 0.9583333333333334,
+        "ol_grade": 70.6,
+        "dl_grade": 73.7,
+        "ol_run_grade": 76.8,
+        "dl_run_grade": 63.9,
+        "coverage_grade": 53.0,
+        "passing_grade": 75.4,
+        "playcalling_situations": 52,
+        "home_rest_days": 7,
+        "away_rest_days": 7,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "away": {
+        "team": "ATL",
+        "season": 2025,
+        "week": 10,
+        "off_epa": -0.025747611187398448,
+        "def_epa": -0.01021963549363942,
+        "pace": 6.7346320346320345,
+        "early_down_success_rate": 0.520981990248206,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "yards_per_pass": 7.0,
+        "yards_per_run": 4.5,
+        "red_zone_trips_per_game": 3.857142857142857,
+        "red_zone_td_pct": 0.5547619047619048,
+        "punt_net_yards": 40.966667,
+        "field_goal_make_pct": 0.7708333333333333,
+        "ol_grade": 67.1,
+        "dl_grade": 73.6,
+        "ol_run_grade": 65.4,
+        "dl_run_grade": 56.1,
+        "coverage_grade": 58.3,
+        "passing_grade": 60.7,
+        "playcalling_situations": 65,
+        "home_rest_days": 7,
+        "away_rest_days": 7,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "situational": {
+        "is_dome": false,
+        "temp": null,
+        "wind": null,
+        "home_rest_days": 7,
+        "away_rest_days": 7
+      },
+      "seed": 2251508276
+    },
+    {
+      "t": 1762286546.534451,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.2962962962962963,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.5348532,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762286546.536854,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 28,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.537138,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.5373409,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.537534,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 18,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 28,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 865
+      }
+    },
+    {
+      "t": 1762286546.538136,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 46,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.2962962962962963,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.538242,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 46,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 830
+      }
+    },
+    {
+      "t": 1762286546.5387368,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 52,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.538827,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.538902,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.22389985867166665,
+      "after_pff_vs_cov": 0.3134598021403333,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36047877246138327
+    },
+    {
+      "t": 1762286546.538977,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "sack",
+      "yards": -5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 52,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762286546.539531,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 9,
+      "yardline": 47,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.53969,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.539859,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.539978,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 9,
+        "yardline": 47,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762286546.5400808,
+      "kind": "policy_decision",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "time_remaining": 795,
+      "yardline": 47,
+      "to_go": 9,
+      "score_diff": 0,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 47,
+        "distance_to_goal": 53,
+        "fg_distance": 70,
+        "ydstogo": 9,
+        "time_remaining": 3495,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 47,
+        "distance_to_goal": 53,
+        "fg_distance": 70,
+        "ydstogo": 9,
+        "time_remaining": 3495,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762286546.540253,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 2,
+      "team": "away",
+      "plays": 5,
+      "points": 0,
+      "time_used": 105,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 2,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 795
+      }
+    },
+    {
+      "t": 1762286546.540399,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 2,
+      "team": "away",
+      "pace": 5,
+      "success_rate": 0.2,
+      "explosive_rate": 0.2,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762286546.5413098,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.5414422,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762286546.543245,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.45,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.543385,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 760
+      }
+    },
+    {
+      "t": 1762286546.5439181,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 41,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.544224,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.544377,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.5447328,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 59,
+      "td": true,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 41,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762286546.544883,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 3,
+      "team": "home",
+      "plays": 3,
+      "points": 7,
+      "time_used": 105,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 3,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 795
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 690
+      }
+    },
+    {
+      "t": 1762286546.544982,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 3,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.6666666666666666,
+      "explosive_rate": 0.3333333333333333,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762286546.546911,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.547198,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 690
+      }
+    },
+    {
+      "t": 1762286546.548588,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.549133,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.5492449,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.549359,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 655
+      }
+    },
+    {
+      "t": 1762286546.550584,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.550922,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 620
+      }
+    },
+    {
+      "t": 1762286546.551601,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 41,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.5517209,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.552096,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.22389985867166667,
+      "after_pff_vs_cov": 0.3134598021403333,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.3134598021403333
+    },
+    {
+      "t": 1762286546.55223,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 41,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 585
+      }
+    },
+    {
+      "t": 1762286546.553451,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 41,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.553618,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.5538728,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.554448,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 41,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 585
+      }
+    },
+    {
+      "t": 1762286546.555856,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 56,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.556173,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.556299,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.22389985867166665,
+      "after_pff_vs_cov": 0.3134598021403333,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36047877246138327
+    },
+    {
+      "t": 1762286546.556747,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "scramble",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 56,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 550
+      }
+    },
+    {
+      "t": 1762286546.557877,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 63,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.7222222222222222,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.558159,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.5584571,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.558582,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 63,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 515
+      }
+    },
+    {
+      "t": 1762286546.559453,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 63,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.559623,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.5598888,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.560016,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 63,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 515
+      }
+    },
+    {
+      "t": 1762286546.560139,
+      "kind": "policy_decision",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "time_remaining": 480,
+      "yardline": 65,
+      "to_go": 1,
+      "score_diff": -7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 65,
+        "distance_to_goal": 35,
+        "fg_distance": 52,
+        "ydstogo": 1,
+        "time_remaining": 3180,
+        "score_diff": -7,
+        "quarter": 1,
+        "reason": "4th_short_opp_territory"
+      },
+      "punt_reasoning": {
+        "yardline": 65,
+        "distance_to_goal": 35,
+        "fg_distance": 52,
+        "ydstogo": 1,
+        "time_remaining": 3180,
+        "score_diff": -7,
+        "quarter": 1,
+        "reason": "4th_short_opp_territory"
+      }
+    },
+    {
+      "t": 1762286546.5618591,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 65,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.56198,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.562059,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.22389985867166667,
+      "after_pff_vs_cov": 0.3134598021403333,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.3134598021403333
+    },
+    {
+      "t": 1762286546.562356,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "sack",
+      "yards": -8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 65,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 480
+      }
+    },
+    {
+      "t": 1762286546.562757,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 4,
+      "team": "away",
+      "plays": 9,
+      "points": 0,
+      "time_used": 210,
+      "result": "Turnover_on_Downs",
+      "start_state": {
+        "drive_num": 4,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 690
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 480
+      }
+    },
+    {
+      "t": 1762286546.562849,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 4,
+      "team": "away",
+      "pace": 9,
+      "success_rate": 0.3333333333333333,
+      "explosive_rate": 0.1111111111111111,
+      "explosive_count": 1,
+      "result": "Turnover_on_Downs"
+    },
+    {
+      "t": 1762286546.565311,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6555555555555556,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.565492,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.565599,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.565716,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 480
+      }
+    },
+    {
+      "t": 1762286546.567895,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.568158,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 445
+      }
+    },
+    {
+      "t": 1762286546.569199,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6555555555555556,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.5693572,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.569602,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.2309061057007667,
+      "after_pff_vs_cov": 0.32326854798107335,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.32326854798107335
+    },
+    {
+      "t": 1762286546.569705,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "scramble",
+      "yards": -1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 410
+      }
+    },
+    {
+      "t": 1762286546.571597,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 11,
+      "yardline": 34,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.571866,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 11,
+        "yardline": 34,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 375
+      }
+    },
+    {
+      "t": 1762286546.5731342,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 40,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.573515,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 40,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 340
+      }
+    },
+    {
+      "t": 1762286546.574344,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 45,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6555555555555556,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.574662,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 45,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 305
+      }
+    },
+    {
+      "t": 1762286546.577048,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 54,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.577398,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 54,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 270
+      }
+    },
+    {
+      "t": 1762286546.579581,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 60,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6555555555555556,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.579835,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 60,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 235
+      }
+    },
+    {
+      "t": 1762286546.5807638,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 63,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.581095,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 63,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 200
+      }
+    },
+    {
+      "t": 1762286546.582437,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 73,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6555555555555556,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.5826402,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 73,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 165
+      }
+    },
+    {
+      "t": 1762286546.583529,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 81,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.583649,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 81,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 130
+      }
+    },
+    {
+      "t": 1762286546.584519,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 88,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6555555555555556,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.584621,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.584704,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.584855,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 12,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 88,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 95
+      }
+    },
+    {
+      "t": 1762286546.584984,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 5,
+      "team": "home",
+      "plays": 12,
+      "points": 7,
+      "time_used": 420,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 5,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 480
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 60
+      }
+    },
+    {
+      "t": 1762286546.58533,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 5,
+      "team": "home",
+      "pace": 12,
+      "success_rate": 0.5,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "TD"
+    },
+    {
+      "t": 1762286546.586284,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.49242424242424243,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.586394,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.5870998,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.22389985867166665,
+      "after_pff_vs_cov": 0.3134598021403333,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36047877246138327
+    },
+    {
+      "t": 1762286546.587801,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "sack",
+      "yards": -8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 60
+      }
+    },
+    {
+      "t": 1762286546.589897,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 18,
+      "yardline": 17,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.59023,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.590341,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.590451,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 18,
+        "yardline": 17,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 60
+      }
+    },
+    {
+      "t": 1762286546.5915961,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 30,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.591729,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.5918741,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.592034,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 30,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 25
+      }
+    },
+    {
+      "t": 1762286546.594908,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.49242424242424243,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.5950289,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762286546.596123,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 43,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.596213,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 43,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 865
+      }
+    },
+    {
+      "t": 1762286546.5983648,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 47,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.49242424242424243,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.598549,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 47,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 830
+      }
+    },
+    {
+      "t": 1762286546.59995,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 54,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.6001039,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.6001852,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.22389985867166665,
+      "after_pff_vs_cov": 0.3134598021403333,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36047877246138327
+    },
+    {
+      "t": 1762286546.600281,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "scramble",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 54,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762286546.601109,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 61,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.49242424242424243,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.601205,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 61,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 760
+      }
+    },
+    {
+      "t": 1762286546.6019928,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 64,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.602078,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.602144,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.602526,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 64,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762286546.6036532,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 66,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.603786,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 66,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 690
+      }
+    },
+    {
+      "t": 1762286546.6045911,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 71,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.49242424242424243,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.604691,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 71,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 655
+      }
+    },
+    {
+      "t": 1762286546.6054778,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 77,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.6055691,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.605685,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.606078,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 77,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 620
+      }
+    },
+    {
+      "t": 1762286546.608768,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 8,
+      "yardline": 92,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.49242424242424243,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.6091251,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.609312,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.609472,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 8,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 8,
+        "yardline": 92,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 585
+      }
+    },
+    {
+      "t": 1762286546.609571,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 6,
+      "team": "away",
+      "plays": 12,
+      "points": 7,
+      "time_used": -490,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 6,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 60
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 550
+      }
+    },
+    {
+      "t": 1762286546.609653,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 6,
+      "team": "away",
+      "pace": 12,
+      "success_rate": 0.4166666666666667,
+      "explosive_rate": 0.08333333333333333,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762286546.610256,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.9,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.6105149,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.610624,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.610879,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 550
+      }
+    },
+    {
+      "t": 1762286546.611594,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 40,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.9,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.611701,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.611775,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.23090610570076667,
+      "after_pff_vs_cov": 0.32326854798107335,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3717588301782343
+    },
+    {
+      "t": 1762286546.612055,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 40,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 515
+      }
+    },
+    {
+      "t": 1762286546.612839,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 40,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.6129642,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 40,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 515
+      }
+    },
+    {
+      "t": 1762286546.614166,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.9,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.614437,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.614604,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.6148758,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 480
+      }
+    },
+    {
+      "t": 1762286546.616229,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 55,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.61638,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 55,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 445
+      }
+    },
+    {
+      "t": 1762286546.6173282,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 64,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.9,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.6174998,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.6175911,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.617706,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 64,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 410
+      }
+    },
+    {
+      "t": 1762286546.6196392,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 72,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.6201138,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": -1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 72,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 375
+      }
+    },
+    {
+      "t": 1762286546.620878,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 71,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.621015,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 71,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 340
+      }
+    },
+    {
+      "t": 1762286546.621118,
+      "kind": "policy_decision",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "time_remaining": 305,
+      "yardline": 72,
+      "to_go": 2,
+      "score_diff": 7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 72,
+        "distance_to_goal": 28,
+        "fg_distance": 45,
+        "ydstogo": 2,
+        "time_remaining": 2105,
+        "score_diff": 7,
+        "quarter": 2,
+        "reason": "4th_short_opp_territory"
+      },
+      "punt_reasoning": {
+        "yardline": 72,
+        "distance_to_goal": 28,
+        "fg_distance": 45,
+        "ydstogo": 2,
+        "time_remaining": 2105,
+        "score_diff": 7,
+        "quarter": 2,
+        "reason": "4th_short_opp_territory"
+      }
+    },
+    {
+      "t": 1762286546.624297,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 4,
+      "to_go": 2,
+      "yardline": 72,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.624769,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 2,
+        "yardline": 72,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 305
+      }
+    },
+    {
+      "t": 1762286546.626359,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 83,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.9,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.626842,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.627137,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.627394,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 83,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 270
+      }
+    },
+    {
+      "t": 1762286546.628625,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 89,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.628735,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 89,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 235
+      }
+    },
+    {
+      "t": 1762286546.629805,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 3,
+      "yardline": 97,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6555555555555556,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.629921,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.629996,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.6300821,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 3,
+        "yardline": 97,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 200
+      }
+    },
+    {
+      "t": 1762286546.630938,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 97,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.631031,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 3,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 97,
+        "home": 14,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 200
+      }
+    },
+    {
+      "t": 1762286546.6313221,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 7,
+      "team": "home",
+      "plays": 13,
+      "points": 7,
+      "time_used": 385,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 7,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 550
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 165
+      }
+    },
+    {
+      "t": 1762286546.63184,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 7,
+      "team": "home",
+      "pace": 13,
+      "success_rate": 0.46153846153846156,
+      "explosive_rate": 0.07692307692307693,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762286546.633131,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.49242424242424243,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.6333382,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 165
+      }
+    },
+    {
+      "t": 1762286546.634217,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.634379,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.63461,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.22389985867166667,
+      "after_pff_vs_cov": 0.3134598021403333,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.3134598021403333
+    },
+    {
+      "t": 1762286546.634818,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "scramble",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 130
+      }
+    },
+    {
+      "t": 1762286546.63601,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 7,
+      "yardline": 28,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.6361332,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 7,
+        "yardline": 28,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 95
+      }
+    },
+    {
+      "t": 1762286546.636267,
+      "kind": "policy_decision",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "time_remaining": 60,
+      "yardline": 28,
+      "to_go": 7,
+      "score_diff": -14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 28,
+        "distance_to_goal": 72,
+        "fg_distance": 89,
+        "ydstogo": 7,
+        "time_remaining": 1860,
+        "score_diff": -14,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 28,
+        "distance_to_goal": 72,
+        "fg_distance": 89,
+        "ydstogo": 7,
+        "time_remaining": 1860,
+        "score_diff": -14,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762286546.636582,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 8,
+      "team": "away",
+      "plays": 3,
+      "points": 0,
+      "time_used": 105,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 8,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 165
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 60
+      }
+    },
+    {
+      "t": 1762286546.636699,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 8,
+      "team": "away",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762286546.637291,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6363636363636364,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.637415,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.637492,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.637593,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 60
+      }
+    },
+    {
+      "t": 1762286546.638135,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.63823,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 25
+      }
+    },
+    {
+      "t": 1762286546.6383302,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 9,
+      "team": "home",
+      "plays": 1,
+      "points": 0,
+      "time_used": -840,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 9,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 60
+      },
+      "end_state": {
+        "yardline": 59,
+        "quarter": 3,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762286546.638636,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 9,
+      "team": "home",
+      "pace": 1,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762286546.640946,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 59,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.49242424242424243,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.641325,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.641553,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.641707,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 59,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762286546.642313,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 70,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.642412,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.642529,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.642869,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 70,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 865
+      }
+    },
+    {
+      "t": 1762286546.644188,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 70,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.644458,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.6457841,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.646433,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 70,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 865
+      }
+    },
+    {
+      "t": 1762286546.64776,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 7,
+      "yardline": 73,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.648122,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.64834,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.648557,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 7,
+        "yardline": 73,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 830
+      }
+    },
+    {
+      "t": 1762286546.649594,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 88,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.649733,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.650292,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.22389985867166665,
+      "after_pff_vs_cov": 0.3134598021403333,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36047877246138327
+    },
+    {
+      "t": 1762286546.6505961,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "sack",
+      "yards": -10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 88,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762286546.651315,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 20,
+      "yardline": 78,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.651438,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.651555,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.652329,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 20,
+        "yardline": 78,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762286546.653009,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 13,
+      "yardline": 85,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.653134,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 13,
+        "yardline": 85,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 760
+      }
+    },
+    {
+      "t": 1762286546.653269,
+      "kind": "policy_decision",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "time_remaining": 725,
+      "yardline": 85,
+      "to_go": 13,
+      "score_diff": -14,
+      "fg_epa": 2.55,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "FG",
+      "fg_reasoning": {
+        "yardline": 85,
+        "distance_to_goal": 15,
+        "fg_distance": 32,
+        "ydstogo": 13,
+        "time_remaining": 1625,
+        "score_diff": -14,
+        "quarter": 3,
+        "reason": "in_fg_range"
+      },
+      "punt_reasoning": {
+        "yardline": 85,
+        "distance_to_goal": 15,
+        "fg_distance": 32,
+        "ydstogo": 13,
+        "time_remaining": 1625,
+        "score_diff": -14,
+        "quarter": 3,
+        "reason": "in_fg_range"
+      }
+    },
+    {
+      "t": 1762286546.654224,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 9,
+      "team": "away",
+      "plays": 7,
+      "points": 3,
+      "time_used": 175,
+      "result": "FG",
+      "start_state": {
+        "drive_num": 9,
+        "team": "away",
+        "start_yardline": 59,
+        "start_quarter": 3,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 725
+      }
+    },
+    {
+      "t": 1762286546.654422,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 9,
+      "team": "away",
+      "pace": 7,
+      "success_rate": 0.2857142857142857,
+      "explosive_rate": 0.14285714285714285,
+      "explosive_count": 1,
+      "result": "FG"
+    },
+    {
+      "t": 1762286546.656183,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.656852,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.657068,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.6572092,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "interception",
+      "yards": 0,
+      "td": false,
+      "turnover": true,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762286546.657304,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 10,
+      "team": "home",
+      "plays": 1,
+      "points": 0,
+      "time_used": 0,
+      "result": "Turnover",
+      "start_state": {
+        "drive_num": 10,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 725
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 725
+      }
+    },
+    {
+      "t": 1762286546.657388,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 10,
+      "team": "home",
+      "pace": 1,
+      "success_rate": 1.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Turnover"
+    },
+    {
+      "t": 1762286546.6580281,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.6581619,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762286546.686659,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.6869,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 690
+      }
+    },
+    {
+      "t": 1762286546.688064,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 30,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.688174,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.688256,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.688498,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 30,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 655
+      }
+    },
+    {
+      "t": 1762286546.6889448,
+      "kind": "policy_decision",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "time_remaining": 620,
+      "yardline": 33,
+      "to_go": 2,
+      "score_diff": -11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 33,
+        "distance_to_goal": 67,
+        "fg_distance": 84,
+        "ydstogo": 2,
+        "time_remaining": 1520,
+        "score_diff": -11,
+        "quarter": 3,
+        "reason": "4th_short_trailing"
+      },
+      "punt_reasoning": {
+        "yardline": 33,
+        "distance_to_goal": 67,
+        "fg_distance": 84,
+        "ydstogo": 2,
+        "time_remaining": 1520,
+        "score_diff": -11,
+        "quarter": 3,
+        "reason": "4th_short_trailing"
+      }
+    },
+    {
+      "t": 1762286546.690444,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 4,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.6905699,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.690654,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.690764,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 620
+      }
+    },
+    {
+      "t": 1762286546.6912608,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 43,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.691375,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.691448,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.6915462,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 43,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 585
+      }
+    },
+    {
+      "t": 1762286546.692381,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 49,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.6924758,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 49,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 550
+      }
+    },
+    {
+      "t": 1762286546.692947,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 60,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.693522,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 60,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 515
+      }
+    },
+    {
+      "t": 1762286546.696224,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 69,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.7222222222222222,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.6965709,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 69,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 480
+      }
+    },
+    {
+      "t": 1762286546.697265,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 75,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.697393,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 75,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 445
+      }
+    },
+    {
+      "t": 1762286546.699017,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 80,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.699261,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.6993558,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.22389985867166665,
+      "after_pff_vs_cov": 0.3134598021403333,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36047877246138327
+    },
+    {
+      "t": 1762286546.699446,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "sack",
+      "yards": -3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 80,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 410
+      }
+    },
+    {
+      "t": 1762286546.700576,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 8,
+      "yardline": 77,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.700692,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.701797,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.70221,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 8,
+        "yardline": 77,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 410
+      }
+    },
+    {
+      "t": 1762286546.703147,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 9,
+      "yardline": 91,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.703305,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 9,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 9,
+        "yardline": 91,
+        "home": 21,
+        "away": 10,
+        "quarter": 3,
+        "time_rem": 375
+      }
+    },
+    {
+      "t": 1762286546.703402,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 11,
+      "team": "away",
+      "plays": 12,
+      "points": 7,
+      "time_used": 385,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 11,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 725
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 340
+      }
+    },
+    {
+      "t": 1762286546.7034822,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 11,
+      "team": "away",
+      "pace": 12,
+      "success_rate": 0.4166666666666667,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "TD"
+    },
+    {
+      "t": 1762286546.705292,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5416666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.705444,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 340
+      }
+    },
+    {
+      "t": 1762286546.7065542,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "short",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8148148148148149,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.706663,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.7067468,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.23090610570076667,
+      "after_pff_vs_cov": 0.32326854798107335,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3717588301782343
+    },
+    {
+      "t": 1762286546.706867,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "sack",
+      "yards": -5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 305
+      }
+    },
+    {
+      "t": 1762286546.70811,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 7,
+      "yardline": 28,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.708282,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 7,
+        "yardline": 28,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 305
+      }
+    },
+    {
+      "t": 1762286546.710634,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5416666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.7110221,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 270
+      }
+    },
+    {
+      "t": 1762286546.7125561,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 48,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5416666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.7127218,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 48,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 235
+      }
+    },
+    {
+      "t": 1762286546.7135339,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 54,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.7139142,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.7140522,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.714155,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 54,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 200
+      }
+    },
+    {
+      "t": 1762286546.715764,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 54,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.715967,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 54,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 200
+      }
+    },
+    {
+      "t": 1762286546.719219,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 61,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5416666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.719532,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.719656,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.719767,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 61,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 165
+      }
+    },
+    {
+      "t": 1762286546.720882,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 69,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "short",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8148148148148149,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.720981,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.721055,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.23090610570076667,
+      "after_pff_vs_cov": 0.32326854798107335,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3717588301782343
+    },
+    {
+      "t": 1762286546.721266,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "scramble",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 69,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 130
+      }
+    },
+    {
+      "t": 1762286546.72234,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 70,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "short",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.722482,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.72258,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.2309061057007667,
+      "after_pff_vs_cov": 0.32326854798107335,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.32326854798107335
+    },
+    {
+      "t": 1762286546.722656,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "scramble",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 70,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 95
+      }
+    },
+    {
+      "t": 1762286546.723459,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 82,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5416666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.723553,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.7236228,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.7238028,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 82,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 60
+      }
+    },
+    {
+      "t": 1762286546.72488,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 87,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_1-6",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.725004,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.725079,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.725301,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 13,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 87,
+        "home": 21,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 25
+      }
+    },
+    {
+      "t": 1762286546.725597,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 12,
+      "team": "home",
+      "plays": 11,
+      "points": 0,
+      "time_used": -560,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 12,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 340
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762286546.725717,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 12,
+      "team": "home",
+      "pace": 11,
+      "success_rate": 0.36363636363636365,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762286546.727307,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.727604,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.727713,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.22389985867166665,
+      "after_pff_vs_cov": 0.3134598021403333,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36047877246138327
+    },
+    {
+      "t": 1762286546.727798,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "sack",
+      "yards": -7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762286546.728404,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 17,
+      "yardline": 18,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.728501,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.728596,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.728849,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 17,
+        "yardline": 18,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762286546.730081,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 12,
+      "yardline": 23,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.730197,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.7302852,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.730391,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 12,
+        "yardline": 23,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 865
+      }
+    },
+    {
+      "t": 1762286546.730512,
+      "kind": "policy_decision",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "time_remaining": 830,
+      "yardline": 27,
+      "to_go": 8,
+      "score_diff": -11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 27,
+        "distance_to_goal": 73,
+        "fg_distance": 90,
+        "ydstogo": 8,
+        "time_remaining": 830,
+        "score_diff": -11,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 27,
+        "distance_to_goal": 73,
+        "fg_distance": 90,
+        "ydstogo": 8,
+        "time_remaining": 830,
+        "score_diff": -11,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762286546.730815,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 13,
+      "team": "away",
+      "plays": 3,
+      "points": 0,
+      "time_used": 70,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 13,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 830
+      }
+    },
+    {
+      "t": 1762286546.7309198,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 13,
+      "team": "away",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762286546.7319639,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.732116,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 830
+      }
+    },
+    {
+      "t": 1762286546.732983,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 30,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.733085,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.7331579,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.23090610570076667,
+      "after_pff_vs_cov": 0.32326854798107335,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3717588301782343
+    },
+    {
+      "t": 1762286546.733265,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "scramble",
+      "yards": -2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 30,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762286546.735368,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 7,
+      "yardline": 28,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.735499,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 7,
+        "yardline": 28,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 760
+      }
+    },
+    {
+      "t": 1762286546.736716,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.7369988,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762286546.7376761,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 48,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.737799,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.737885,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.737992,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 48,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 690
+      }
+    },
+    {
+      "t": 1762286546.738535,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 58,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.738633,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 58,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 655
+      }
+    },
+    {
+      "t": 1762286546.739155,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 68,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.739248,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 68,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 620
+      }
+    },
+    {
+      "t": 1762286546.7397702,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 77,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.7398741,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 77,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 585
+      }
+    },
+    {
+      "t": 1762286546.740387,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 88,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.7404811,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 88,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 550
+      }
+    },
+    {
+      "t": 1762286546.741309,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 92,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.7414012,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 8,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 92,
+        "home": 28,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 515
+      }
+    },
+    {
+      "t": 1762286546.741484,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 14,
+      "team": "home",
+      "plays": 10,
+      "points": 7,
+      "time_used": 350,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 14,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 830
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 480
+      }
+    },
+    {
+      "t": 1762286546.741555,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 14,
+      "team": "home",
+      "pace": 10,
+      "success_rate": 0.6,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "TD"
+    },
+    {
+      "t": 1762286546.74364,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -18,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.7272727272727273,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.743781,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 35,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 480
+      }
+    },
+    {
+      "t": 1762286546.744287,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 28,
+      "score_diff": -18,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.74438,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.7444532,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.7445471,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 28,
+        "home": 35,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 445
+      }
+    },
+    {
+      "t": 1762286546.745787,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 39,
+      "score_diff": -18,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.7272727272727273,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.746109,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 39,
+        "home": 35,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 410
+      }
+    },
+    {
+      "t": 1762286546.746766,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 43,
+      "score_diff": -18,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.7472682,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.747402,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.7475169,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 40,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 43,
+        "home": 35,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 375
+      }
+    },
+    {
+      "t": 1762286546.7486231,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 83,
+      "score_diff": -18,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.7272727272727273,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.748791,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 83,
+        "home": 35,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 340
+      }
+    },
+    {
+      "t": 1762286546.749364,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 9,
+      "yardline": 84,
+      "score_diff": -18,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.7494662,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.749544,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.749728,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 9,
+        "yardline": 84,
+        "home": 35,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 305
+      }
+    },
+    {
+      "t": 1762286546.751138,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 6,
+      "yardline": 94,
+      "score_diff": -18,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.49242424242424243,
+      "choice": "run"
+    },
+    {
+      "t": 1762286546.751276,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 6,
+        "yardline": 94,
+        "home": 35,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 270
+      }
+    },
+    {
+      "t": 1762286546.75248,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 96,
+      "score_diff": -18,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.7527192,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.7528992,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.753057,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 4,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 96,
+        "home": 35,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 235
+      }
+    },
+    {
+      "t": 1762286546.753155,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 15,
+      "team": "away",
+      "plays": 8,
+      "points": 7,
+      "time_used": 280,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 15,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 480
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 200
+      }
+    },
+    {
+      "t": 1762286546.7532349,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 15,
+      "team": "away",
+      "pace": 8,
+      "success_rate": 0.5,
+      "explosive_rate": 0.125,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762286546.755182,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.755472,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286546.7556689,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.2309061057007667,
+      "after_pff_vs_cov": 0.32326854798107335,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.32326854798107335
+    },
+    {
+      "t": 1762286546.755792,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 35,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 200
+      }
+    },
+    {
+      "t": 1762286546.756973,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.7572749,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.757448,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.7576609,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 35,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 200
+      }
+    },
+    {
+      "t": 1762286546.7587042,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 32,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.758819,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 70.6,
+      "dl_grade": 73.6,
+      "mismatch": 3.0,
+      "final": 0.224,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.758901,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.7182889727777777,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286546.759006,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 32,
+        "home": 35,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 165
+      }
+    },
+    {
+      "t": 1762286546.7595038,
+      "kind": "policy_decision",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "time_remaining": 130,
+      "yardline": 34,
+      "to_go": 1,
+      "score_diff": 11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 34,
+        "distance_to_goal": 66,
+        "fg_distance": 83,
+        "ydstogo": 1,
+        "time_remaining": 130,
+        "score_diff": 11,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 34,
+        "distance_to_goal": 66,
+        "fg_distance": 83,
+        "ydstogo": 1,
+        "time_remaining": 130,
+        "score_diff": 11,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762286546.7598689,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 16,
+      "team": "home",
+      "plays": 3,
+      "points": 0,
+      "time_used": 70,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 16,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 200
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 130
+      }
+    },
+    {
+      "t": 1762286546.759982,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 16,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762286546.761174,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.7614322,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.7615519,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.761664,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 35,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 130
+      }
+    },
+    {
+      "t": 1762286546.762655,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.8333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.7627578,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.762856,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.7634518,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 35,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 95
+      }
+    },
+    {
+      "t": 1762286546.7656178,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.76585,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.765933,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.76612,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 35,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 60
+      }
+    },
+    {
+      "t": 1762286546.7664452,
+      "kind": "policy_decision",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "time_remaining": 25,
+      "yardline": 33,
+      "to_go": 2,
+      "score_diff": -11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 33,
+        "distance_to_goal": 67,
+        "fg_distance": 84,
+        "ydstogo": 2,
+        "time_remaining": 25,
+        "score_diff": -11,
+        "quarter": 4,
+        "reason": "desperation_mode"
+      },
+      "punt_reasoning": {
+        "yardline": 33,
+        "distance_to_goal": 67,
+        "fg_distance": 84,
+        "ydstogo": 2,
+        "time_remaining": 25,
+        "score_diff": -11,
+        "quarter": 4,
+        "reason": "desperation_mode"
+      }
+    },
+    {
+      "t": 1762286546.767684,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_ATL_IND",
+      "quarter": 4,
+      "down": 4,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286546.7678232,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_ATL_IND",
+      "base": 0.212,
+      "ol_grade": 67.1,
+      "dl_grade": 73.7,
+      "mismatch": 6.6000000000000085,
+      "final": 0.23840000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286546.7678962,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_ATL_IND",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.1186891944444453,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762286546.767992,
+      "kind": "play.result",
+      "game_id": "2025_10_ATL_IND",
+      "type": "completion",
+      "yards": 16,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 4,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 35,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 25
+      }
+    },
+    {
+      "t": 1762286546.7680671,
+      "kind": "drive.summary",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 17,
+      "team": "away",
+      "plays": 4,
+      "points": 0,
+      "time_used": 130,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 17,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 130
+      },
+      "end_state": {
+        "yardline": 49,
+        "quarter": 4,
+        "time_remaining": 0
+      }
+    },
+    {
+      "t": 1762286546.7681348,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_ATL_IND",
+      "drive_no": 17,
+      "team": "away",
+      "pace": 4,
+      "success_rate": 0.25,
+      "explosive_rate": 0.25,
+      "explosive_count": 1,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762286546.768536,
+      "kind": "game.summary",
+      "game_id": "2025_10_ATL_IND",
+      "home_score": 35,
+      "away_score": 24,
+      "spread": -11,
+      "total": 59,
+      "drives_per_team": 8.5,
+      "plays_per_drive": 6.882352941176471,
+      "td_pct": 0.4117647058823529,
+      "fg_pct": 0.058823529411764705,
+      "turnover_pct": 0.11764705882352941,
+      "explosive_rate": 0.06837606837606838,
+      "pass_rate": 0.5333333333333333
+    },
+    {
+      "t": 1762286546.768787,
+      "kind": "anchors.violation",
+      "game_id": "2025_10_ATL_IND",
+      "violations": [
+        {
+          "metric": "drives_per_team",
+          "observed": 8.5,
+          "target_range": [
+            9.5,
+            12.5
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "td_pct",
+          "observed": 0.4117647058823529,
+          "target_range": [
+            0.18,
+            0.26
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "fg_pct",
+          "observed": 0.058823529411764705,
+          "target_range": [
+            0.08,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "explosive_rate",
+          "observed": 0.06837606837606838,
+          "target_range": [
+            0.1,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "pass_rate",
+          "observed": 0.5333333333333333,
+          "target_range": [
+            0.58,
+            0.62
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "total_points",
+          "observed": 59,
+          "target_range": [
+            42,
+            46
+          ],
+          "violation": "too_high"
+        }
+      ],
+      "severity": "critical"
+    },
+    {
+      "t": 1762286741.407041,
+      "kind": "distribution_params",
+      "game_id": "2025_10_ATL_IND",
+      "spread": {
+        "raw_mean": 19.778,
+        "raw_sd": 14.167205652491955,
+        "calibrated_mean": 11.293238000000002,
+        "calibrated_sd": 14.167205652491955,
+        "market_line": 6.0
+      },
+      "total": {
+        "raw_mean": 60.259,
+        "raw_sd": 11.266850447219046,
+        "calibrated_mean": 60.857889,
+        "calibrated_sd": 11.266850447219046,
+        "market_line": 48.5
+      }
+    },
+    {
+      "t": 1762286741.4097202,
+      "kind": "calibration",
+      "game_id": "2025_10_ATL_IND",
+      "spread": {
+        "predicted_prob": 0.539568345323741,
+        "bin_id": 5,
+        "bet_side": "HOME",
+        "market_line": 6.0,
+        "eventual_hit": null
+      },
+      "total": {
+        "predicted_prob": 0.5496688741721855,
+        "bin_id": 5,
+        "bet_side": "OVER",
+        "market_line": 48.5,
+        "eventual_hit": null
+      },
+      "calibration_method": "isotonic"
+    }
+  ]
+}

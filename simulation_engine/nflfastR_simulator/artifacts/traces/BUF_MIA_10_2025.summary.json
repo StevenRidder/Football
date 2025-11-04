@@ -1,0 +1,6403 @@
+{
+  "game_id": "2025_10_BUF_MIA",
+  "seed": 642119754,
+  "total_events": 374,
+  "event_types": {
+    "inputs.audit": 1,
+    "call.pass_run": 118,
+    "pass.pressure": 46,
+    "pass.completion_model": 46,
+    "play.result": 118,
+    "drive.summary": 16,
+    "anchor_slice": 16,
+    "policy_decision": 9,
+    "game.summary": 1,
+    "anchors.violation": 1,
+    "distribution_params": 1,
+    "calibration": 1
+  },
+  "events": [
+    {
+      "t": 1762286776.785536,
+      "kind": "inputs.audit",
+      "game_id": "2025_10_BUF_MIA",
+      "home": {
+        "team": "MIA",
+        "season": 2025,
+        "week": 10,
+        "off_epa": 0.000762273505744003,
+        "def_epa": 0.15899424637771312,
+        "pace": 6.5023448773448775,
+        "early_down_success_rate": 0.46461329611481283,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "yards_per_pass": 7.0,
+        "yards_per_run": 4.5,
+        "red_zone_trips_per_game": 3.3333333333333335,
+        "red_zone_td_pct": 0.6203703703703703,
+        "punt_net_yards": 38.796295,
+        "field_goal_make_pct": 0.9047619047619048,
+        "ol_grade": 43.2,
+        "dl_grade": 59.7,
+        "ol_run_grade": 48.4,
+        "dl_run_grade": 63.0,
+        "coverage_grade": 50.0,
+        "passing_grade": 61.1,
+        "playcalling_situations": 72,
+        "home_rest_days": 10,
+        "away_rest_days": 7,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "away": {
+        "team": "BUF",
+        "season": 2025,
+        "week": 10,
+        "off_epa": 0.1604754659864637,
+        "def_epa": 0.08556082148829265,
+        "pace": 6.461760461760462,
+        "early_down_success_rate": 0.5991104196405412,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "yards_per_pass": 7.0,
+        "yards_per_run": 4.5,
+        "red_zone_trips_per_game": 4.875,
+        "red_zone_td_pct": 0.7392857142857143,
+        "punt_net_yards": 40.08631,
+        "field_goal_make_pct": 0.7857142857142857,
+        "ol_grade": 67.2,
+        "dl_grade": 81.3,
+        "ol_run_grade": 78.0,
+        "dl_run_grade": 51.9,
+        "coverage_grade": 45.8,
+        "passing_grade": 81.2,
+        "playcalling_situations": 71,
+        "home_rest_days": 7,
+        "away_rest_days": 10,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "situational": {
+        "is_dome": false,
+        "temp": null,
+        "wind": null,
+        "home_rest_days": 10,
+        "away_rest_days": 10
+      },
+      "seed": 642119754
+    },
+    {
+      "t": 1762286776.786808,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.55,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.787005,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.787103,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.614982996603,
+      "after_pff_vs_cov": 0.8609761952442,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8609761952442
+    },
+    {
+      "t": 1762286776.787283,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "interception",
+      "yards": 0,
+      "td": false,
+      "turnover": true,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762286776.787612,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 2,
+      "team": "home",
+      "plays": 1,
+      "points": 0,
+      "time_used": 0,
+      "result": "Turnover",
+      "start_state": {
+        "drive_num": 2,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762286776.7878652,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 2,
+      "team": "home",
+      "pace": 1,
+      "success_rate": 1.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Turnover"
+    },
+    {
+      "t": 1762286776.788695,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3214285714285714,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.788835,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762286776.789435,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 28,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.789556,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.789633,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.78971,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "interception",
+      "yards": 0,
+      "td": false,
+      "turnover": true,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 28,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762286776.789803,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 3,
+      "team": "away",
+      "plays": 2,
+      "points": 0,
+      "time_used": 37,
+      "result": "Turnover",
+      "start_state": {
+        "drive_num": 3,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 863
+      }
+    },
+    {
+      "t": 1762286776.789875,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 3,
+      "team": "away",
+      "pace": 2,
+      "success_rate": 0.5,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Turnover"
+    },
+    {
+      "t": 1762286776.791094,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.55,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.791428,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762286776.793757,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.7949948,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.795309,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.2189939451318,
+      "after_pff_vs_cov": 0.30659152318452,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.30659152318452
+    },
+    {
+      "t": 1762286776.795593,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "scramble",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 827
+      }
+    },
+    {
+      "t": 1762286776.796384,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.55,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.796496,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.796577,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.7967339,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 791
+      }
+    },
+    {
+      "t": 1762286776.7991722,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.799417,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.800253,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.614982996603,
+      "after_pff_vs_cov": 0.8609761952442,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8609761952442
+    },
+    {
+      "t": 1762286776.801214,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 791
+      }
+    },
+    {
+      "t": 1762286776.801991,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 48,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.55,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8021371,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.8022258,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.8023381,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 48,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 755
+      }
+    },
+    {
+      "t": 1762286776.803616,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 53,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.803956,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 53,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 719
+      }
+    },
+    {
+      "t": 1762286776.8046541,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 58,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.55,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8051589,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 58,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 683
+      }
+    },
+    {
+      "t": 1762286776.805952,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 62,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8060749,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 62,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 647
+      }
+    },
+    {
+      "t": 1762286776.807891,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 63,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.808225,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.808417,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.614982996603,
+      "after_pff_vs_cov": 0.8609761952442,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8609761952442
+    },
+    {
+      "t": 1762286776.8085918,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 37,
+      "td": true,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 63,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 611
+      }
+    },
+    {
+      "t": 1762286776.808693,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 4,
+      "team": "home",
+      "plays": 9,
+      "points": 7,
+      "time_used": 288,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 4,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 863
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 575
+      }
+    },
+    {
+      "t": 1762286776.808791,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 4,
+      "team": "home",
+      "pace": 9,
+      "success_rate": 0.4444444444444444,
+      "explosive_rate": 0.1111111111111111,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762286776.809432,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8095381,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 575
+      }
+    },
+    {
+      "t": 1762286776.8104498,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 34,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8106182,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 34,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 538
+      }
+    },
+    {
+      "t": 1762286776.811137,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.811233,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 501
+      }
+    },
+    {
+      "t": 1762286776.813498,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 42,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.813676,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 42,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 464
+      }
+    },
+    {
+      "t": 1762286776.8147662,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 42,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8148632,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.814977,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.815299,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 42,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 427
+      }
+    },
+    {
+      "t": 1762286776.815497,
+      "kind": "policy_decision",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "time_remaining": 427,
+      "yardline": 42,
+      "to_go": 3,
+      "score_diff": -7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 42,
+        "distance_to_goal": 58,
+        "fg_distance": 75,
+        "ydstogo": 3,
+        "time_remaining": 3127,
+        "score_diff": -7,
+        "quarter": 1,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 42,
+        "distance_to_goal": 58,
+        "fg_distance": 75,
+        "ydstogo": 3,
+        "time_remaining": 3127,
+        "score_diff": -7,
+        "quarter": 1,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762286776.815661,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 5,
+      "team": "away",
+      "plays": 5,
+      "points": 0,
+      "time_used": 148,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 5,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 575
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 427
+      }
+    },
+    {
+      "t": 1762286776.8157508,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 5,
+      "team": "away",
+      "pace": 5,
+      "success_rate": 0.2,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762286776.819048,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8193731,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.819656,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.614982996603,
+      "after_pff_vs_cov": 0.8609761952442,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8609761952442
+    },
+    {
+      "t": 1762286776.819788,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 427
+      }
+    },
+    {
+      "t": 1762286776.820768,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8208902,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": -1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 427
+      }
+    },
+    {
+      "t": 1762286776.821982,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 11,
+      "yardline": 24,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.82208,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.822166,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.614982996603,
+      "after_pff_vs_cov": 0.8609761952442,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8609761952442
+    },
+    {
+      "t": 1762286776.8222709,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 41,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 11,
+        "yardline": 24,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 391
+      }
+    },
+    {
+      "t": 1762286776.823115,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 65,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8232079,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.8232908,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.823391,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 65,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 355
+      }
+    },
+    {
+      "t": 1762286776.824251,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 69,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8243468,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 69,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 319
+      }
+    },
+    {
+      "t": 1762286776.828257,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 75,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8286872,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 75,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 283
+      }
+    },
+    {
+      "t": 1762286776.830335,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 83,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.125,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.830506,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 83,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 247
+      }
+    },
+    {
+      "t": 1762286776.831485,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 87,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.831668,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 87,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 211
+      }
+    },
+    {
+      "t": 1762286776.833975,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 89,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.834313,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.83475,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.2189939451318,
+      "after_pff_vs_cov": 0.30659152318452,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.30659152318452
+    },
+    {
+      "t": 1762286776.834887,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "sack",
+      "yards": -8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 89,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 175
+      }
+    },
+    {
+      "t": 1762286776.836231,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 16,
+      "yardline": 81,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8363452,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.83644,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.614982996603,
+      "after_pff_vs_cov": 0.8609761952442,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8609761952442
+    },
+    {
+      "t": 1762286776.8365371,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 16,
+        "yardline": 81,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 175
+      }
+    },
+    {
+      "t": 1762286776.8366332,
+      "kind": "policy_decision",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "time_remaining": 175,
+      "yardline": 81,
+      "to_go": 16,
+      "score_diff": 7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 81,
+        "distance_to_goal": 19,
+        "fg_distance": 36,
+        "ydstogo": 16,
+        "time_remaining": 2875,
+        "score_diff": 7,
+        "quarter": 1,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 81,
+        "distance_to_goal": 19,
+        "fg_distance": 36,
+        "ydstogo": 16,
+        "time_remaining": 2875,
+        "score_diff": 7,
+        "quarter": 1,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762286776.837539,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 6,
+      "team": "home",
+      "plays": 10,
+      "points": 0,
+      "time_used": 252,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 6,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 427
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 175
+      }
+    },
+    {
+      "t": 1762286776.837929,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 6,
+      "team": "home",
+      "pace": 10,
+      "success_rate": 0.3,
+      "explosive_rate": 0.1,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762286776.8386502,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.838777,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 175
+      }
+    },
+    {
+      "t": 1762286776.839395,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 39,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8395038,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 39,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 138
+      }
+    },
+    {
+      "t": 1762286776.840082,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 45,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8401868,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 45,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 101
+      }
+    },
+    {
+      "t": 1762286776.840755,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 49,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8408582,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 49,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 64
+      }
+    },
+    {
+      "t": 1762286776.8413901,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 9,
+      "yardline": 50,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8414998,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.8415701,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.841665,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 18,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 9,
+        "yardline": 50,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 27
+      }
+    },
+    {
+      "t": 1762286776.842165,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 68,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.842252,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 68,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762286776.8443022,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 74,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.844616,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 74,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762286776.845972,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 87,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8461351,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.846256,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.8463519,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 87,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 826
+      }
+    },
+    {
+      "t": 1762286776.847002,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 87,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8471382,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.8472588,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.847578,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 87,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 826
+      }
+    },
+    {
+      "t": 1762286776.850278,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 93,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.850507,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.850629,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.850743,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 7,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 93,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 789
+      }
+    },
+    {
+      "t": 1762286776.850827,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 7,
+      "team": "away",
+      "plays": 9,
+      "points": 7,
+      "time_used": -577,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 7,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 175
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 752
+      }
+    },
+    {
+      "t": 1762286776.850903,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 7,
+      "team": "away",
+      "pace": 9,
+      "success_rate": 0.4444444444444444,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "TD"
+    },
+    {
+      "t": 1762286776.85219,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8525062,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 752
+      }
+    },
+    {
+      "t": 1762286776.853704,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.853981,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 716
+      }
+    },
+    {
+      "t": 1762286776.855215,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.855349,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.8554711,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.2189939451318,
+      "after_pff_vs_cov": 0.30659152318452,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.352580251662198
+    },
+    {
+      "t": 1762286776.8557801,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 680
+      }
+    },
+    {
+      "t": 1762286776.85598,
+      "kind": "policy_decision",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "time_remaining": 644,
+      "yardline": 34,
+      "to_go": 1,
+      "score_diff": 0,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 34,
+        "distance_to_goal": 66,
+        "fg_distance": 83,
+        "ydstogo": 1,
+        "time_remaining": 2444,
+        "score_diff": 0,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 34,
+        "distance_to_goal": 66,
+        "fg_distance": 83,
+        "ydstogo": 1,
+        "time_remaining": 2444,
+        "score_diff": 0,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762286776.8561542,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 8,
+      "team": "home",
+      "plays": 3,
+      "points": 0,
+      "time_used": 108,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 8,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 752
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 644
+      }
+    },
+    {
+      "t": 1762286776.8562438,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 8,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762286776.856982,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.857103,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.8571908,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.857427,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 644
+      }
+    },
+    {
+      "t": 1762286776.8586612,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 34,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8588018,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 34,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 607
+      }
+    },
+    {
+      "t": 1762286776.859395,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.859502,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 570
+      }
+    },
+    {
+      "t": 1762286776.860446,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 41,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5833333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.860574,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 41,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 533
+      }
+    },
+    {
+      "t": 1762286776.861144,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 45,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.861242,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 45,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 496
+      }
+    },
+    {
+      "t": 1762286776.86251,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 49,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.862711,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 49,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 459
+      }
+    },
+    {
+      "t": 1762286776.8663082,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 57,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8664691,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 57,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 422
+      }
+    },
+    {
+      "t": 1762286776.867081,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 58,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.867199,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.867282,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.867439,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 58,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 385
+      }
+    },
+    {
+      "t": 1762286776.867527,
+      "kind": "policy_decision",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "time_remaining": 385,
+      "yardline": 58,
+      "to_go": 1,
+      "score_diff": 0,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 58,
+        "distance_to_goal": 42,
+        "fg_distance": 59,
+        "ydstogo": 1,
+        "time_remaining": 2185,
+        "score_diff": 0,
+        "quarter": 2,
+        "reason": "4th_short_opp_territory"
+      },
+      "punt_reasoning": {
+        "yardline": 58,
+        "distance_to_goal": 42,
+        "fg_distance": 59,
+        "ydstogo": 1,
+        "time_remaining": 2185,
+        "score_diff": 0,
+        "quarter": 2,
+        "reason": "4th_short_opp_territory"
+      }
+    },
+    {
+      "t": 1762286776.870314,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 58,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.7,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.87066,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 58,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 385
+      }
+    },
+    {
+      "t": 1762286776.8714108,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 64,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.871551,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 64,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 348
+      }
+    },
+    {
+      "t": 1762286776.872458,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 68,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5833333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.872559,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.872635,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.21788061750116666,
+      "after_pff_vs_cov": 0.3050328645016333,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.3050328645016333
+    },
+    {
+      "t": 1762286776.872798,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "scramble",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 68,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 311
+      }
+    },
+    {
+      "t": 1762286776.8741949,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 73,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8744588,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.874583,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.874699,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 73,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 274
+      }
+    },
+    {
+      "t": 1762286776.8754299,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 79,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.875597,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 79,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 237
+      }
+    },
+    {
+      "t": 1762286776.876682,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 86,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.876802,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 86,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 200
+      }
+    },
+    {
+      "t": 1762286776.877965,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 86,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8782961,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 86,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 163
+      }
+    },
+    {
+      "t": 1762286776.879989,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 9,
+      "yardline": 91,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.880203,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 9,
+        "yardline": 91,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 126
+      }
+    },
+    {
+      "t": 1762286776.8820758,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 96,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5833333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.882348,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.882462,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.8825579,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 96,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 89
+      }
+    },
+    {
+      "t": 1762286776.8837519,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 96,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.883855,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.883928,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.884029,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 4,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 96,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 89
+      }
+    },
+    {
+      "t": 1762286776.884192,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 9,
+      "team": "away",
+      "plays": 18,
+      "points": 7,
+      "time_used": 592,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 9,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 644
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 52
+      }
+    },
+    {
+      "t": 1762286776.884267,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 9,
+      "team": "away",
+      "pace": 18,
+      "success_rate": 0.3333333333333333,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "TD"
+    },
+    {
+      "t": 1762286776.884793,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5454545454545454,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8848839,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.884953,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.614982996603,
+      "after_pff_vs_cov": 0.8609761952442,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8609761952442
+    },
+    {
+      "t": 1762286776.885049,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 63,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 52
+      }
+    },
+    {
+      "t": 1762286776.885565,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 88,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5454545454545454,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.885665,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 88,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 16
+      }
+    },
+    {
+      "t": 1762286776.885737,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 10,
+      "team": "home",
+      "plays": 1,
+      "points": 0,
+      "time_used": -848,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 10,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 52
+      },
+      "end_state": {
+        "yardline": 10,
+        "quarter": 3,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762286776.885806,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 10,
+      "team": "home",
+      "pace": 1,
+      "success_rate": 1.0,
+      "explosive_rate": 1.0,
+      "explosive_count": 1,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762286776.887923,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 10,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.8882391,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.888355,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.888466,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 10,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762286776.8894248,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 18,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.889569,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 18,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762286776.890433,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 9,
+      "yardline": 19,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.890529,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.890646,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.8910139,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 9,
+        "yardline": 19,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 826
+      }
+    },
+    {
+      "t": 1762286776.89211,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 34,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8922932,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 34,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 789
+      }
+    },
+    {
+      "t": 1762286776.893397,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 41,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.893544,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 41,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 752
+      }
+    },
+    {
+      "t": 1762286776.8945012,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 47,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.894613,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.8947,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.895017,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 47,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 715
+      }
+    },
+    {
+      "t": 1762286776.897294,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 47,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.8975239,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 47,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 715
+      }
+    },
+    {
+      "t": 1762286776.9001899,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 55,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8636363636363636,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.901164,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 55,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 678
+      }
+    },
+    {
+      "t": 1762286776.902391,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 60,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.902536,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.902633,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.902755,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 60,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 641
+      }
+    },
+    {
+      "t": 1762286776.903979,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 67,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.904196,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 67,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 604
+      }
+    },
+    {
+      "t": 1762286776.905498,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 77,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.905656,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 77,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 567
+      }
+    },
+    {
+      "t": 1762286776.906568,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 88,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.906676,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 88,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 530
+      }
+    },
+    {
+      "t": 1762286776.907746,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 95,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.9078588,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.907937,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.21788061750116663,
+      "after_pff_vs_cov": 0.3050328645016333,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3507877941768783
+    },
+    {
+      "t": 1762286776.908097,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "sack",
+      "yards": -10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 95,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 493
+      }
+    },
+    {
+      "t": 1762286776.912388,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 13,
+      "yardline": 85,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8636363636363636,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.9125729,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.912679,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.912789,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 13,
+        "yardline": 85,
+        "home": 7,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 493
+      }
+    },
+    {
+      "t": 1762286776.912885,
+      "kind": "policy_decision",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "time_remaining": 456,
+      "yardline": 86,
+      "to_go": 12,
+      "score_diff": 7,
+      "fg_epa": 2.55,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "FG",
+      "fg_reasoning": {
+        "yardline": 86,
+        "distance_to_goal": 14,
+        "fg_distance": 31,
+        "ydstogo": 12,
+        "time_remaining": 1356,
+        "score_diff": 7,
+        "quarter": 3,
+        "reason": "in_fg_range"
+      },
+      "punt_reasoning": {
+        "yardline": 86,
+        "distance_to_goal": 14,
+        "fg_distance": 31,
+        "ydstogo": 12,
+        "time_remaining": 1356,
+        "score_diff": 7,
+        "quarter": 3,
+        "reason": "in_fg_range"
+      }
+    },
+    {
+      "t": 1762286776.912985,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 10,
+      "team": "away",
+      "plays": 14,
+      "points": 3,
+      "time_used": 444,
+      "result": "FG",
+      "start_state": {
+        "drive_num": 10,
+        "team": "away",
+        "start_yardline": 10,
+        "start_quarter": 3,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 456
+      }
+    },
+    {
+      "t": 1762286776.913057,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 10,
+      "team": "away",
+      "pace": 14,
+      "success_rate": 0.42857142857142855,
+      "explosive_rate": 0.07142857142857142,
+      "explosive_count": 1,
+      "result": "FG"
+    },
+    {
+      "t": 1762286776.9136589,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -10,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.913766,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 456
+      }
+    },
+    {
+      "t": 1762286776.914647,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": -10,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.65,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.914761,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 420
+      }
+    },
+    {
+      "t": 1762286776.9152708,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 40,
+      "score_diff": -10,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.915359,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.915429,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.915702,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 40,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 384
+      }
+    },
+    {
+      "t": 1762286776.9168708,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 47,
+      "score_diff": -10,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.917016,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.917137,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.2189939451318,
+      "after_pff_vs_cov": 0.30659152318452,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.352580251662198
+    },
+    {
+      "t": 1762286776.917356,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "sack",
+      "yards": -3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 47,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 348
+      }
+    },
+    {
+      "t": 1762286776.91856,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 44,
+      "score_diff": -10,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8333333333333334,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.918675,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.918794,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.2189939451318,
+      "after_pff_vs_cov": 0.30659152318452,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.30659152318452
+    },
+    {
+      "t": 1762286776.919071,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "sack",
+      "yards": -9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 44,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 348
+      }
+    },
+    {
+      "t": 1762286776.919206,
+      "kind": "policy_decision",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "time_remaining": 348,
+      "yardline": 35,
+      "to_go": 15,
+      "score_diff": -10,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 35,
+        "distance_to_goal": 65,
+        "fg_distance": 82,
+        "ydstogo": 15,
+        "time_remaining": 1248,
+        "score_diff": -10,
+        "quarter": 3,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 35,
+        "distance_to_goal": 65,
+        "fg_distance": 82,
+        "ydstogo": 15,
+        "time_remaining": 1248,
+        "score_diff": -10,
+        "quarter": 3,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762286776.919362,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 11,
+      "team": "home",
+      "plays": 5,
+      "points": 0,
+      "time_used": 108,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 11,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 456
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 348
+      }
+    },
+    {
+      "t": 1762286776.919586,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 11,
+      "team": "home",
+      "pace": 5,
+      "success_rate": 0.2,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762286776.920654,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 10,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.9207768,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 348
+      }
+    },
+    {
+      "t": 1762286776.9218729,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 32,
+      "score_diff": 10,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.921974,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.922051,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.922154,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 32,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 311
+      }
+    },
+    {
+      "t": 1762286776.924165,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": 10,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.9244878,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 274
+      }
+    },
+    {
+      "t": 1762286776.926262,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 44,
+      "score_diff": 10,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.9264882,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.9265962,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.926741,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 44,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 237
+      }
+    },
+    {
+      "t": 1762286776.929132,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 44,
+      "score_diff": 10,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8636363636363636,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.929545,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.9296918,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.929812,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 17,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 44,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 237
+      }
+    },
+    {
+      "t": 1762286776.930818,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 61,
+      "score_diff": 10,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.931083,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 61,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 200
+      }
+    },
+    {
+      "t": 1762286776.9335182,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 68,
+      "score_diff": 10,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.93382,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.9339478,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.21788061750116663,
+      "after_pff_vs_cov": 0.3050328645016333,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3507877941768783
+    },
+    {
+      "t": 1762286776.934526,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 68,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 163
+      }
+    },
+    {
+      "t": 1762286776.935714,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 73,
+      "score_diff": 10,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.935863,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.93595,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762286776.936057,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 73,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 126
+      }
+    },
+    {
+      "t": 1762286776.938284,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 79,
+      "score_diff": 10,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.938616,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 79,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 89
+      }
+    },
+    {
+      "t": 1762286776.9399931,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 81,
+      "score_diff": 10,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8636363636363636,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.9401119,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.940195,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.9403,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 19,
+      "td": true,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 81,
+        "home": 7,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 52
+      }
+    },
+    {
+      "t": 1762286776.940487,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 12,
+      "team": "away",
+      "plays": 10,
+      "points": 7,
+      "time_used": 333,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 12,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 348
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 15
+      }
+    },
+    {
+      "t": 1762286776.9408052,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 12,
+      "team": "away",
+      "pace": 10,
+      "success_rate": 0.4,
+      "explosive_rate": 0.2,
+      "explosive_count": 2,
+      "result": "TD"
+    },
+    {
+      "t": 1762286776.941431,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -17,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.9415529,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": -1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 24,
+        "quarter": 3,
+        "time_rem": 15
+      }
+    },
+    {
+      "t": 1762286776.9420888,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 11,
+      "yardline": 24,
+      "score_diff": -17,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.942198,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 11,
+        "yardline": 24,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762286776.943297,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": -17,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.7291666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.943392,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.943488,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.2189939451318,
+      "after_pff_vs_cov": 0.30659152318452,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.352580251662198
+    },
+    {
+      "t": 1762286776.94374,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "sack",
+      "yards": -8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 864
+      }
+    },
+    {
+      "t": 1762286776.943868,
+      "kind": "policy_decision",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "time_remaining": 864,
+      "yardline": 21,
+      "to_go": 14,
+      "score_diff": -17,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 21,
+        "distance_to_goal": 79,
+        "fg_distance": 96,
+        "ydstogo": 14,
+        "time_remaining": 864,
+        "score_diff": -17,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 21,
+        "distance_to_goal": 79,
+        "fg_distance": 96,
+        "ydstogo": 14,
+        "time_remaining": 864,
+        "score_diff": -17,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762286776.943983,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 13,
+      "team": "home",
+      "plays": 2,
+      "points": 0,
+      "time_used": -849,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 13,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 15
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 864
+      }
+    },
+    {
+      "t": 1762286776.9440598,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 13,
+      "team": "home",
+      "pace": 2,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762286776.944652,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.94489,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 864
+      }
+    },
+    {
+      "t": 1762286776.946475,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.2857142857142857,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.946669,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 827
+      }
+    },
+    {
+      "t": 1762286776.94728,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.947413,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 790
+      }
+    },
+    {
+      "t": 1762286776.9486878,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 43,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.9488719,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 43,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 753
+      }
+    },
+    {
+      "t": 1762286776.949507,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 49,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.949622,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 49,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 716
+      }
+    },
+    {
+      "t": 1762286776.951797,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 52,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.2857142857142857,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.952123,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 52,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 679
+      }
+    },
+    {
+      "t": 1762286776.953235,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 58,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.953353,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.95344,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.21788061750116663,
+      "after_pff_vs_cov": 0.3050328645016333,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3507877941768783
+    },
+    {
+      "t": 1762286776.953536,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 58,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 642
+      }
+    },
+    {
+      "t": 1762286776.953632,
+      "kind": "policy_decision",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "time_remaining": 642,
+      "yardline": 58,
+      "to_go": 1,
+      "score_diff": 17,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 58,
+        "distance_to_goal": 42,
+        "fg_distance": 59,
+        "ydstogo": 1,
+        "time_remaining": 642,
+        "score_diff": 17,
+        "quarter": 4,
+        "reason": "4th_short_opp_territory"
+      },
+      "punt_reasoning": {
+        "yardline": 58,
+        "distance_to_goal": 42,
+        "fg_distance": 59,
+        "ydstogo": 1,
+        "time_remaining": 642,
+        "score_diff": 17,
+        "quarter": 4,
+        "reason": "4th_short_opp_territory"
+      }
+    },
+    {
+      "t": 1762286776.9549282,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 58,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.7,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.9553769,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.955658,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.955819,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 58,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 642
+      }
+    },
+    {
+      "t": 1762286776.956487,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 73,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.9566,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 73,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 605
+      }
+    },
+    {
+      "t": 1762286776.9575949,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 80,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.9577239,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 80,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 568
+      }
+    },
+    {
+      "t": 1762286776.958299,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 9,
+      "yardline": 91,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.958389,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 9,
+        "yardline": 91,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 531
+      }
+    },
+    {
+      "t": 1762286776.9613068,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 99,
+      "score_diff": 17,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.9616299,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 1,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 99,
+        "home": 7,
+        "away": 24,
+        "quarter": 4,
+        "time_rem": 494
+      }
+    },
+    {
+      "t": 1762286776.9617941,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 14,
+      "team": "away",
+      "plays": 12,
+      "points": 7,
+      "time_used": 407,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 14,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 864
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 457
+      }
+    },
+    {
+      "t": 1762286776.9620721,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 14,
+      "team": "away",
+      "pace": 12,
+      "success_rate": 0.4166666666666667,
+      "explosive_rate": 0.08333333333333333,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762286776.9629738,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -24,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5555555555555556,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.9630861,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.9640288,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.2189939451318,
+      "after_pff_vs_cov": 0.30659152318452,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.30659152318452
+    },
+    {
+      "t": 1762286776.9641469,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "scramble",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 457
+      }
+    },
+    {
+      "t": 1762286776.9647639,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": -24,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.9648662,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 43.2,
+      "dl_grade": 81.3,
+      "mismatch": 38.099999999999994,
+      "final": 0.362,
+      "is_pressure": true
+    },
+    {
+      "t": 1762286776.964942,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -0.0013823899999989564,
+      "after_anya": 0.2189939451318,
+      "after_pff_vs_cov": 0.30659152318452,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.30659152318452
+    },
+    {
+      "t": 1762286776.965019,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "sack",
+      "yards": -8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 421
+      }
+    },
+    {
+      "t": 1762286776.965899,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 16,
+      "yardline": 19,
+      "score_diff": -24,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.966016,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 16,
+        "yardline": 19,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 421
+      }
+    },
+    {
+      "t": 1762286776.966107,
+      "kind": "policy_decision",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "time_remaining": 385,
+      "yardline": 19,
+      "to_go": 16,
+      "score_diff": -24,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 19,
+        "distance_to_goal": 81,
+        "fg_distance": 98,
+        "ydstogo": 16,
+        "time_remaining": 385,
+        "score_diff": -24,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 19,
+        "distance_to_goal": 81,
+        "fg_distance": 98,
+        "ydstogo": 16,
+        "time_remaining": 385,
+        "score_diff": -24,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762286776.9662101,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 15,
+      "team": "home",
+      "plays": 3,
+      "points": 0,
+      "time_used": 72,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 15,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 457
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 385
+      }
+    },
+    {
+      "t": 1762286776.966281,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 15,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762286776.966816,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.966908,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 385
+      }
+    },
+    {
+      "t": 1762286776.967778,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.2857142857142857,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.967979,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 348
+      }
+    },
+    {
+      "t": 1762286776.96878,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.9689112,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 311
+      }
+    },
+    {
+      "t": 1762286776.9698071,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 44,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.969907,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 44,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 274
+      }
+    },
+    {
+      "t": 1762286776.9704268,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 48,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.97052,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 48,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 237
+      }
+    },
+    {
+      "t": 1762286776.9726532,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 53,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.2857142857142857,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.9729888,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 53,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 200
+      }
+    },
+    {
+      "t": 1762286776.973713,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 62,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.973856,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 62,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 163
+      }
+    },
+    {
+      "t": 1762286776.9747462,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 70,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.974872,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 70,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 126
+      }
+    },
+    {
+      "t": 1762286776.975721,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 73,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.2962962962962963,
+      "choice": "pass"
+    },
+    {
+      "t": 1762286776.975817,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_BUF_MIA",
+      "base": 0.212,
+      "ol_grade": 67.2,
+      "dl_grade": 59.7,
+      "mismatch": -7.5,
+      "final": 0.182,
+      "is_pressure": false
+    },
+    {
+      "t": 1762286776.976181,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_BUF_MIA",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -0.25556678055555615,
+      "after_anya": 0.6118565285991666,
+      "after_pff_vs_cov": 0.8565991400388332,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8565991400388332
+    },
+    {
+      "t": 1762286776.9767702,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 73,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 89
+      }
+    },
+    {
+      "t": 1762286776.977899,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 81,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.2962962962962963,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.978036,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 81,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 52
+      }
+    },
+    {
+      "t": 1762286776.979666,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_BUF_MIA",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 86,
+      "score_diff": 24,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.2857142857142857,
+      "choice": "run"
+    },
+    {
+      "t": 1762286776.9799821,
+      "kind": "play.result",
+      "game_id": "2025_10_BUF_MIA",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 86,
+        "home": 7,
+        "away": 31,
+        "quarter": 4,
+        "time_rem": 15
+      }
+    },
+    {
+      "t": 1762286776.9800892,
+      "kind": "drive.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 16,
+      "team": "away",
+      "plays": 11,
+      "points": 0,
+      "time_used": 385,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 16,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 385
+      },
+      "end_state": {
+        "yardline": 93,
+        "quarter": 4,
+        "time_remaining": 0
+      }
+    },
+    {
+      "t": 1762286776.980169,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_BUF_MIA",
+      "drive_no": 16,
+      "team": "away",
+      "pace": 11,
+      "success_rate": 0.45454545454545453,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762286776.980358,
+      "kind": "game.summary",
+      "game_id": "2025_10_BUF_MIA",
+      "home_score": 7,
+      "away_score": 31,
+      "spread": 24,
+      "total": 38,
+      "drives_per_team": 8.0,
+      "plays_per_drive": 7.1875,
+      "td_pct": 0.3125,
+      "fg_pct": 0.0625,
+      "turnover_pct": 0.125,
+      "explosive_rate": 0.06086956521739131,
+      "pass_rate": 0.3898305084745763
+    },
+    {
+      "t": 1762286776.980431,
+      "kind": "anchors.violation",
+      "game_id": "2025_10_BUF_MIA",
+      "violations": [
+        {
+          "metric": "plays_per_drive",
+          "observed": 7.1875,
+          "target_range": [
+            5.5,
+            7.0
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "drives_per_team",
+          "observed": 8.0,
+          "target_range": [
+            9.5,
+            12.5
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "td_pct",
+          "observed": 0.3125,
+          "target_range": [
+            0.18,
+            0.26
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "fg_pct",
+          "observed": 0.0625,
+          "target_range": [
+            0.08,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "turnover_pct",
+          "observed": 0.125,
+          "target_range": [
+            0.09,
+            0.12
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "explosive_rate",
+          "observed": 0.06086956521739131,
+          "target_range": [
+            0.1,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "pass_rate",
+          "observed": 0.3898305084745763,
+          "target_range": [
+            0.58,
+            0.62
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "total_points",
+          "observed": 38,
+          "target_range": [
+            42,
+            46
+          ],
+          "violation": "too_low"
+        }
+      ],
+      "severity": "critical"
+    },
+    {
+      "t": 1762286957.892483,
+      "kind": "distribution_params",
+      "game_id": "2025_10_BUF_MIA",
+      "spread": {
+        "raw_mean": -16.9685,
+        "raw_sd": 12.370711691329648,
+        "calibrated_mean": -9.689013499999998,
+        "calibrated_sd": 12.370711691329648,
+        "market_line": -9.5
+      },
+      "total": {
+        "raw_mean": 38.4465,
+        "raw_sd": 10.373000421768044,
+        "calibrated_mean": 48.4029515,
+        "calibrated_sd": 10.373000421768044,
+        "market_line": 50.0
+      }
+    },
+    {
+      "t": 1762286957.902206,
+      "kind": "calibration",
+      "game_id": "2025_10_BUF_MIA",
+      "spread": {
+        "predicted_prob": 0.5305164319248826,
+        "bin_id": 4,
+        "bet_side": "AWAY",
+        "market_line": -9.5,
+        "eventual_hit": null
+      },
+      "total": {
+        "predicted_prob": 0.5132450331125828,
+        "bin_id": null,
+        "bet_side": null,
+        "market_line": 50.0,
+        "eventual_hit": null
+      },
+      "calibration_method": "isotonic"
+    }
+  ]
+}
