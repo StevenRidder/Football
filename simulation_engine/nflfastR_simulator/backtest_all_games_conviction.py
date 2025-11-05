@@ -117,6 +117,31 @@ def simulate_one_game(args):
         home_score_mean = calibrated_home_mean
         away_score_mean = calibrated_away_mean
         
+        # Apply bias correction: MARGIN-ONLY to help spreads without hurting totals
+        # This adjusts the margin prediction while keeping total unchanged
+        from bias_calibration import get_score_adjustment
+        
+        # Step 1: Compute raw total and margin
+        total_raw = home_score_mean + away_score_mean
+        margin_raw = home_score_mean - away_score_mean
+        
+        # Step 2: Get net bias for each team (venue-aware, shorter memory, smaller cap)
+        home_net = get_score_adjustment(home, season, week, mode='net', 
+                                       span_ewm=2, clip_points=1.0, venue='home')
+        away_net = get_score_adjustment(away, season, week, mode='net', 
+                                       span_ewm=2, clip_points=1.0, venue='away')
+        
+        # Step 3: Adjust MARGIN only (small, clamped to ±1.0, then halved)
+        bias_margin = np.clip((home_net - away_net), -1.0, 1.0) * 0.5
+        margin_adj = margin_raw + bias_margin
+        
+        # Step 4: Rebuild means from margin + original total (totals stay stable)
+        home_score_mean = (total_raw + margin_adj) / 2.0
+        away_score_mean = (total_raw - margin_adj) / 2.0
+        
+        # Update calibrated spread mean to reflect bias-adjusted margin
+        calibrated_spread_mean = margin_adj
+        
         # Calculate probabilities using normal approximation
         # Using raw SD preserves more variance → sharper probabilities → better conviction distribution
         p_home_cover_linear = 1 - norm.cdf(
@@ -458,6 +483,17 @@ if __name__ == "__main__":
     results = [r for r in results if r is not None]
     df = pd.DataFrame(results)
     df = grade_bets(df)
+    
+    # --- Bias pipeline: residuals, calibration curves, weekly ROI ---
+    from bias_calibration import run_bias_pipeline
+    artifacts = run_bias_pipeline(df, team_for_curve="PIT", save_artifacts=True)
+    
+    print("\n📈 Bias history and calibration artifacts written to ./artifacts")
+    print("   - bias_history.csv")
+    print("   - weekly_roi.csv")
+    print("   - calibration_spread_all.png")
+    print("   - calibration_spread_PIT.png")
+    print("   - calibration_total_all.png")
     
     # Print summary
     print_summary(df)

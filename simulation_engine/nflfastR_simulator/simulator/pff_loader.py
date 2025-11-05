@@ -113,12 +113,25 @@ class PFFLoader:
         # Try direct match first
         team_row = df[df['abbreviation'] == team]
 
-        # If not found, try mapped abbreviations
-        if team_row.empty and team in abbrev_map:
-            for alt_abbrev in abbrev_map[team]:
-                team_row = df[df['abbreviation'] == alt_abbrev]
-                if not team_row.empty:
+        # If not found, try mapped abbreviations (check if team is a mapped value)
+        if team_row.empty:
+            # First, check if team is a mapped value (e.g., "LA" -> "LAR")
+            mapped_team = None
+            for key, values in abbrev_map.items():
+                if team in values:
+                    mapped_team = key
                     break
+            
+            # If we found a mapping, try the mapped team
+            if mapped_team:
+                team_row = df[df['abbreviation'] == mapped_team]
+            
+            # Also try if team is a key in abbrev_map (e.g., "LAR" -> check for "LA", "LAR", "STL")
+            if team_row.empty and team in abbrev_map:
+                for alt_abbrev in abbrev_map[team]:
+                    team_row = df[df['abbreviation'] == alt_abbrev]
+                    if not team_row.empty:
+                        break
 
         # FIXED: Soft fallback with league averages and warning
         if team_row.empty:
