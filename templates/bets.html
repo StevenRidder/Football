@@ -672,11 +672,88 @@ async function getLegLiveStatus(leg, liveGames, betDescription) {
 
 // Parse bet description into structured HTML
 function parseDescription(description, betType) {
-  // Check if it's a parlay with multiple legs (contains pipe separator)
-  // BUT: Don't treat single bets with metadata pipes as parlays
-  // Single bet format: "... | 281 Team -145 For Game | 10/26/2025 | 08:20:00 PM (EST) | Pending"
-  // Parlay format: "Leg 1 description | Leg 2 description | Leg 3 description"
+  // Check if it's a parlay with multiple legs
+  // Handle BetOnline format: "Football - NFL - [Teams] - Parlay | [Number] [Bet Line] | [Date] | [Time] | [Status]Football - NFL - ..."
   
+  // Check for BetOnline format (has "Football - NFL -" repeated multiple times)
+  const betonlineMatches = description.match(/Football - NFL -/gi);
+  if (betonlineMatches && betonlineMatches.length > 1) {
+    // This is BetOnline format - parse each game section
+    const gameSections = description.split(/(?=Football - NFL -)/i);
+    const legs = [];
+    
+    gameSections.forEach(section => {
+      if (!section.trim()) return;
+      
+      // Extract bet line - handle multiple formats:
+      // "| 110 Denver Broncos -485 For Game |" (moneyline with odds)
+      // "| 252 Indianapolis Colts -285 For Game |" (moneyline with odds)
+      // "| 254 New York Jets +125 For Game |" (moneyline with odds)
+      // "| 268 Seattle Seahawks -6½ -110 For Game |" (spread with odds)
+      
+      // Try spread format first: "| 268 Seattle Seahawks -6½ -110 For Game |"
+      let betLineMatch = section.match(/\|\s*(\d+)\s+(.+?)\s+([-+]\d+(?:½)?)\s+([-+]\d+)\s+For\s+Game/i);
+      if (betLineMatch) {
+        const betNumber = betLineMatch[1];
+        const teamOrBet = betLineMatch[2].trim();
+        const line = betLineMatch[3];
+        const oddsValue = betLineMatch[4];
+        
+        // Build display string
+        let displayLeg = `${teamOrBet} ${line}`;
+        let odds = `<span class="badge bg-success-lt ms-2">${oddsValue}</span>`;
+        
+        legs.push({ displayLeg, odds });
+      } else {
+        // Try moneyline format: "| 110 Denver Broncos -485 For Game |"
+        betLineMatch = section.match(/\|\s*(\d+)\s+(.+?)\s+([-+]\d+)\s+For\s+Game/i);
+        if (betLineMatch) {
+          const betNumber = betLineMatch[1];
+          const teamOrBet = betLineMatch[2].trim();
+          const oddsValue = betLineMatch[3];
+          
+          // Build display string (moneyline - no spread)
+          let displayLeg = `${teamOrBet} (ML)`;
+          let odds = `<span class="badge bg-success-lt ms-2">${oddsValue}</span>`;
+          
+          legs.push({ displayLeg, odds });
+        } else {
+          // Try to extract any bet line as fallback
+          const genericMatch = section.match(/\|\s*(\d+)\s+(.+?)\s+For\s+Game/i);
+          if (genericMatch) {
+            const teamOrBet = genericMatch[2].trim();
+            legs.push({ displayLeg: teamOrBet, odds: '' });
+          }
+        }
+      }
+    });
+    
+    if (legs.length > 0) {
+      let html = '<div class="list-group list-group-flush">';
+      legs.forEach((leg, index) => {
+        html += `
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <span class="badge bg-blue text-white">${index + 1}</span>
+              </div>
+              <div class="col">
+                <div class="d-flex align-items-center justify-content-between">
+                  <span><strong>${leg.displayLeg}</strong></span>
+                  ${leg.odds}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      html += '</div>';
+      html += `<div class="mt-3"><span class="badge bg-blue-lt">${legs.length} legs</span> in this ${betType}</div>`;
+      return html;
+    }
+  }
+  
+  // Regular pipe-separated format
   if (description.includes(' | ')) {
     // Split by " | " to get parts
     const parts = description.split(' | ').map(leg => leg.trim()).filter(leg => leg.length > 0);
@@ -780,17 +857,19 @@ async function showBetDetails(bet) {
     html += '</div>';
     
     descEl.innerHTML = html;
-  } else if (bet.type.toLowerCase().includes('parlay') && bet.status === 'Pending') {
-    // For parlays, fetch legs from backend API (no frontend parsing!)
-    descEl.innerHTML = '<div class="text-center"><div class="spinner-border spinner-border-sm" role="status"></div> Loading legs...</div>';
+  } else if (bet.type.toLowerCase().includes('parlay')) {
+    // For parlays, try to fetch legs from backend API first
+    if (bet.status === 'Pending') {
+      descEl.innerHTML = '<div class="text-center"><div class="spinner-border spinner-border-sm" role="status"></div> Loading legs...</div>';
+    }
     
     try {
       const response = await fetch(`/api/bet-legs/${bet.ticket_id}`);
       const data = await response.json();
       
       if (!data.success || !data.legs || data.legs.length === 0) {
-        descEl.innerHTML = '<div class="alert alert-warning">No leg details available. Click to paste detailed bet info.</div>';
-        // Don't return - still show the modal with this message
+        // Fallback: parse description directly to show legs
+        descEl.innerHTML = parseDescription(bet.description, bet.type);
       } else {
         let html = '<div class="list-group list-group-flush">';
         
