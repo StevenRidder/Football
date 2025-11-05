@@ -163,7 +163,7 @@ def generate_betting_recommendations(df_pred, current_week=None):
             'market_line': market_line_str,
             'sim_line': sim_line_str,
             'edge': f"{edge_value:.1f}-pt edge",
-            'pick': pick,
+            'pick': market_line_str,  # Use actual bet line instead of recommendation type
             'confidence': f"{confidence:.0f}%",
             'conviction': conviction,
             'edge_value': edge_value
@@ -196,7 +196,7 @@ def generate_betting_recommendations(df_pred, current_week=None):
                 'market_total': f"{market_total:.1f}",
                 'sim_total': f"{sim_total:.1f}",
                 'edge': f"{market_total - sim_total:+.1f} pts",
-                'pick': pick,
+                'pick': f"{pick} {market_total:.1f}",  # Include total number, e.g., "Over 45.5"
                 'confidence': f"{confidence}%",
                 'edge_value': edge
             })
