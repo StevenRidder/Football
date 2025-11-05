@@ -32,7 +32,7 @@ HIGH_EDGE = 0.06
 MAX_EDGE_CAP = 0.25
 
 BREAKEVEN = 0.524
-N_SIMS = 100  # Using 100 sims for faster testing
+N_SIMS = 1500  # Using 1500 sims per game for accurate predictions
 
 # Linear calibration parameters
 LINEAR_ALPHA = 26.45

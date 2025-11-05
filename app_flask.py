@@ -253,12 +253,26 @@ def load_simulator_predictions(force_reload=False):
     return None
 
 def load_latest_predictions():
-    """Load pre-computed graded results from backend"""
+    """Load pre-computed graded results from backend - combines all weeks for historical data"""
     import glob
 
     # Priority 1: Simulator predictions (from backtest_all_games_conviction.py)
     simulator_df = load_simulator_predictions()
     if simulator_df is not None:
+        # Check if simulator file has all weeks, otherwise combine with individual week files
+        if 'week' in simulator_df.columns:
+            weeks_in_sim = set(simulator_df['week'].unique())
+            # If simulator only has current week, combine with historical week files
+            if len(weeks_in_sim) == 1:
+                print(f"⚠️  Simulator file only has week {list(weeks_in_sim)[0]}, combining with historical weeks...")
+                historical_df = load_all_historical_weeks()
+                if historical_df is not None and len(historical_df) > 0:
+                    # Combine, keeping simulator data for overlapping weeks
+                    combined = pd.concat([historical_df, simulator_df], ignore_index=True)
+                    # Remove duplicates (keep simulator version for overlapping weeks)
+                    combined = combined.drop_duplicates(subset=['away_team', 'home_team', 'week', 'season'], keep='last')
+                    print(f"✅ Combined {len(historical_df)} historical games with {len(simulator_df)} simulator games")
+                    return combined
         return simulator_df
 
     # Priority 2: Pre-computed graded results (from grade_predictions_simple.py)
@@ -267,17 +281,97 @@ def load_latest_predictions():
         latest_file = sorted(graded_files)[-1]
         print(f"✅ Loading pre-computed results from {latest_file}")
         df = pd.read_csv(latest_file)
+        # Check if this has all weeks, otherwise combine
+        if 'week' in df.columns and len(df['week'].unique()) == 1:
+            historical_df = load_all_historical_weeks()
+            if historical_df is not None and len(historical_df) > 0:
+                combined = pd.concat([historical_df, df], ignore_index=True)
+                combined = combined.drop_duplicates(subset=['away_team', 'home_team', 'week', 'season'], keep='last')
+                print(f"✅ Combined {len(historical_df)} historical games with graded results")
+                return combined
         return df
 
-    # Priority 3: Fall back to regular predictions
-    artifacts = Path("artifacts")
-    csvs = sorted(artifacts.glob("predictions_2025_*.csv"))
-    if not csvs:
-        csvs = sorted(artifacts.glob("week_*_projections.csv"))
-    if not csvs:
-        return None
+    # Priority 3: Load all historical week files and combine
+    return load_all_historical_weeks()
 
-    return pd.read_csv(csvs[-1])
+def load_all_historical_weeks():
+    """Load and combine all individual week prediction files"""
+    import re
+    
+    artifacts = Path("artifacts")
+    
+    # Find all week-specific files (predictions_2025_weekN_*.csv)
+    week_files = sorted(artifacts.glob("predictions_2025_week*.csv"))
+    
+    if not week_files:
+        # Fall back to generic predictions files
+        csvs = sorted(artifacts.glob("predictions_2025_*.csv"))
+        if not csvs:
+            csvs = sorted(artifacts.glob("week_*_projections.csv"))
+        if not csvs:
+            return None
+        # If only one file, return it
+        if len(csvs) == 1:
+            return pd.read_csv(csvs[0])
+    
+    # Combine all week files
+    dfs = []
+    for week_file in week_files:
+        try:
+            # Extract week number from filename (e.g., "predictions_2025_week1_*.csv" -> 1)
+            week_match = re.search(r'week(\d+)', week_file.name)
+            if not week_match:
+                continue
+            
+            week_num = int(week_match.group(1))
+            df = pd.read_csv(week_file)
+            
+            # Add week column if it doesn't exist
+            if 'week' not in df.columns:
+                df['week'] = week_num
+            
+            # Add season column if it doesn't exist
+            if 'season' not in df.columns:
+                df['season'] = 2025
+            
+            # Normalize team column names (some files use 'away'/'home', others use 'away_team'/'home_team')
+            if 'away' in df.columns and 'away_team' not in df.columns:
+                df['away_team'] = df['away']
+            if 'home' in df.columns and 'home_team' not in df.columns:
+                df['home_team'] = df['home']
+            
+            # Add is_completed column if missing (default to False for historical weeks)
+            if 'is_completed' not in df.columns:
+                # Check if game is completed by looking for actual scores
+                if 'away_score' in df.columns and 'home_score' in df.columns:
+                    df['is_completed'] = df['away_score'].notna() & df['home_score'].notna()
+                else:
+                    df['is_completed'] = False  # Historical weeks without scores are treated as incomplete
+            
+            # Ensure is_completed is boolean
+            df['is_completed'] = df['is_completed'].astype(bool)
+            
+            dfs.append(df)
+        except Exception as e:
+            print(f"⚠️  Error loading {week_file}: {e}")
+            continue
+    
+    if not dfs:
+        return None
+    
+    # Combine all dataframes
+    combined = pd.concat(dfs, ignore_index=True)
+    
+    # Remove duplicates (keep latest if same game appears in multiple files)
+    if 'away_team' in combined.columns and 'home_team' in combined.columns and 'week' in combined.columns:
+        combined = combined.drop_duplicates(subset=['away_team', 'home_team', 'week', 'season'], keep='last')
+    elif 'away' in combined.columns and 'home' in combined.columns and 'week' in combined.columns:
+        combined = combined.drop_duplicates(subset=['away', 'home', 'week', 'season'], keep='last')
+    
+    weeks_loaded = sorted(combined['week'].unique()) if 'week' in combined.columns else []
+    print(f"✅ Loaded {len(combined)} games from {len(dfs)} week files (weeks: {weeks_loaded})")
+    
+    return combined
 
 def load_latest_aii():
     """Load most recent AII data"""
