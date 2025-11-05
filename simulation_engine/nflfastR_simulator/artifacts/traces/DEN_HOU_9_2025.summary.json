@@ -1,0 +1,7714 @@
+{
+  "game_id": "2025_09_DEN_HOU",
+  "seed": 3342661824,
+  "total_events": 468,
+  "event_types": {
+    "inputs.audit": 1,
+    "call.pass_run": 129,
+    "play.result": 129,
+    "pass.pressure": 80,
+    "pass.completion_model": 80,
+    "policy_decision": 13,
+    "drive.summary": 16,
+    "anchor_slice": 16,
+    "game.summary": 1,
+    "anchors.violation": 1,
+    "distribution_params": 1,
+    "calibration": 1
+  },
+  "events": [
+    {
+      "t": 1762309548.962621,
+      "kind": "inputs.audit",
+      "game_id": "2025_09_DEN_HOU",
+      "home": {
+        "team": "HOU",
+        "season": 2025,
+        "week": 9,
+        "off_epa": -0.05089178646448998,
+        "def_epa": -0.09482806245796378,
+        "pace": 6.795124716553287,
+        "early_down_success_rate": 0.5046073474319124,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "off_yards_per_play": 5.3597057,
+        "off_yards_per_pass_attempt": 6.437923500000001,
+        "yards_per_pass": null,
+        "yards_per_run": null,
+        "pass_rate": 0.584375,
+        "red_zone_trips_per_game": 3.7142857142857144,
+        "red_zone_td_pct": 0.4829931972789116,
+        "punt_net_yards": 44.75,
+        "field_goal_make_pct": 0.8333333333333334,
+        "ol_grade": 63.0,
+        "dl_grade": 87.0,
+        "ol_run_grade": 56.4,
+        "dl_run_grade": 68.9,
+        "coverage_grade": 67.1,
+        "passing_grade": 61.2,
+        "playcalling_situations": 68,
+        "home_rest_days": 7,
+        "away_rest_days": 7,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "away": {
+        "team": "DEN",
+        "season": 2025,
+        "week": 9,
+        "off_epa": 0.005292142275720802,
+        "def_epa": -0.06900748517364258,
+        "pace": 6.467035742035742,
+        "early_down_success_rate": 0.4985508255288841,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "off_yards_per_play": 5.611031275,
+        "off_yards_per_pass_attempt": 6.27581805,
+        "yards_per_pass": null,
+        "yards_per_run": null,
+        "pass_rate": 0.5534246575342465,
+        "red_zone_trips_per_game": 4.125,
+        "red_zone_td_pct": 0.7238095238095238,
+        "punt_net_yards": 49.75,
+        "field_goal_make_pct": 0.5,
+        "ol_grade": 77.3,
+        "dl_grade": 75.2,
+        "ol_run_grade": 65.7,
+        "dl_run_grade": 77.3,
+        "coverage_grade": 57.8,
+        "passing_grade": 70.2,
+        "playcalling_situations": 83,
+        "home_rest_days": 7,
+        "away_rest_days": 7,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "situational": {
+        "is_dome": false,
+        "temp": null,
+        "wind": null,
+        "home_rest_days": 7,
+        "away_rest_days": 7
+      },
+      "seed": 3342661824
+    },
+    {
+      "t": 1762309548.964756,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762309548.964991,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309548.965704,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 34,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309548.965835,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 34,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 865
+      }
+    },
+    {
+      "t": 1762309548.966503,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.966655,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.96675,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309548.966856,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 830
+      }
+    },
+    {
+      "t": 1762309548.96846,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.7272727272727273,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.968801,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.968983,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309548.969296,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 830
+      }
+    },
+    {
+      "t": 1762309548.970675,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 49,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.9709928,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.971402,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309548.9717052,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 49,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762309548.972594,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 64,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.972766,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.9728792,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309548.973017,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 64,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 760
+      }
+    },
+    {
+      "t": 1762309548.9737191,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 69,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.9738429,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.973941,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309548.974064,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 69,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762309548.9747279,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 69,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.974852,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.974956,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309548.975065,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 69,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762309548.975202,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "time_remaining": 725,
+      "yardline": 69,
+      "to_go": 5,
+      "score_diff": 0,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 69,
+        "distance_to_goal": 31,
+        "fg_distance": 48,
+        "ydstogo": 5,
+        "time_remaining": 3425,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 69,
+        "distance_to_goal": 31,
+        "fg_distance": 48,
+        "ydstogo": 5,
+        "time_remaining": 3425,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309548.975327,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 2,
+      "team": "home",
+      "plays": 8,
+      "points": 0,
+      "time_used": 175,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 2,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 725
+      }
+    },
+    {
+      "t": 1762309548.9754581,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 2,
+      "team": "home",
+      "pace": 8,
+      "success_rate": 0.375,
+      "explosive_rate": 0.125,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309548.978076,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4666666666666667,
+      "choice": "run"
+    },
+    {
+      "t": 1762309548.9782531,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762309548.980931,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 32,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5785714285714285,
+      "choice": "run"
+    },
+    {
+      "t": 1762309548.981209,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 32,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 688
+      }
+    },
+    {
+      "t": 1762309548.982344,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309548.9824882,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 651
+      }
+    },
+    {
+      "t": 1762309548.9831429,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4666666666666667,
+      "choice": "run"
+    },
+    {
+      "t": 1762309548.983288,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 614
+      }
+    },
+    {
+      "t": 1762309548.983944,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 39,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.984064,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.984164,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309548.9843042,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 39,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 577
+      }
+    },
+    {
+      "t": 1762309548.9853928,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 42,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.9855092,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309548.985603,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.22947311188060712,
+      "after_pff_vs_cov": 0.32126235663284997,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.32126235663284997
+    },
+    {
+      "t": 1762309548.9857368,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 42,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 540
+      }
+    },
+    {
+      "t": 1762309548.985848,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "time_remaining": 540,
+      "yardline": 42,
+      "to_go": 3,
+      "score_diff": 0,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 42,
+        "distance_to_goal": 58,
+        "fg_distance": 75,
+        "ydstogo": 3,
+        "time_remaining": 3240,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 42,
+        "distance_to_goal": 58,
+        "fg_distance": 75,
+        "ydstogo": 3,
+        "time_remaining": 3240,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309548.985983,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 3,
+      "team": "away",
+      "plays": 6,
+      "points": 0,
+      "time_used": 185,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 3,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 725
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 540
+      }
+    },
+    {
+      "t": 1762309548.9860768,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 3,
+      "team": "away",
+      "pace": 6,
+      "success_rate": 0.16666666666666666,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309548.986749,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.98686,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.9869509,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309548.9870899,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 540
+      }
+    },
+    {
+      "t": 1762309548.987743,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 40,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.988001,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.988309,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309548.988551,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 40,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 505
+      }
+    },
+    {
+      "t": 1762309548.990405,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 48,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309548.990586,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 48,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 470
+      }
+    },
+    {
+      "t": 1762309548.9912891,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.991415,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.991574,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309548.992067,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 435
+      }
+    },
+    {
+      "t": 1762309548.993713,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 59,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309548.994028,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 59,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 400
+      }
+    },
+    {
+      "t": 1762309548.9952781,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 62,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.9960792,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.996185,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309548.996341,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 62,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 365
+      }
+    },
+    {
+      "t": 1762309548.997662,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 64,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.7272727272727273,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309548.997983,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309548.998157,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309548.998378,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 64,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 330
+      }
+    },
+    {
+      "t": 1762309549.000718,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 72,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.0010638,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 72,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 295
+      }
+    },
+    {
+      "t": 1762309549.002181,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 77,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.002391,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.002511,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.0026581,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 77,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 260
+      }
+    },
+    {
+      "t": 1762309549.006219,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 85,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.006519,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.006645,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.22556859865810713,
+      "after_pff_vs_cov": 0.31579603812135,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36316544383955246
+    },
+    {
+      "t": 1762309549.0067892,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "sack",
+      "yards": -5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 85,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 225
+      }
+    },
+    {
+      "t": 1762309549.007522,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 15,
+      "yardline": 80,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.7272727272727273,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.0076602,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.00777,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.22556859865810716,
+      "after_pff_vs_cov": 0.31579603812135,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31579603812135
+    },
+    {
+      "t": 1762309549.0078652,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "sack",
+      "yards": -5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 15,
+        "yardline": 80,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 225
+      }
+    },
+    {
+      "t": 1762309549.009278,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 20,
+      "yardline": 75,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5833333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.009481,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.009781,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.009994,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 20,
+        "yardline": 75,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 225
+      }
+    },
+    {
+      "t": 1762309549.010199,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "time_remaining": 225,
+      "yardline": 75,
+      "to_go": 20,
+      "score_diff": 0,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 75,
+        "distance_to_goal": 25,
+        "fg_distance": 42,
+        "ydstogo": 20,
+        "time_remaining": 2925,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 75,
+        "distance_to_goal": 25,
+        "fg_distance": 42,
+        "ydstogo": 20,
+        "time_remaining": 2925,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309549.010418,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 4,
+      "team": "home",
+      "plays": 12,
+      "points": 0,
+      "time_used": 315,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 4,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 540
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 225
+      }
+    },
+    {
+      "t": 1762309549.010587,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 4,
+      "team": "home",
+      "pace": 12,
+      "success_rate": 0.4166666666666667,
+      "explosive_rate": 0.08333333333333333,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309549.011443,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4666666666666667,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.011627,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.011729,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.22947311188060712,
+      "after_pff_vs_cov": 0.32126235663284997,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.32126235663284997
+    },
+    {
+      "t": 1762309549.011853,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 225
+      }
+    },
+    {
+      "t": 1762309549.0131872,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 30,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.013469,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 30,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 188
+      }
+    },
+    {
+      "t": 1762309549.014282,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4666666666666667,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.014802,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 151
+      }
+    },
+    {
+      "t": 1762309549.016681,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 47,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4666666666666667,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.017055,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 47,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 114
+      }
+    },
+    {
+      "t": 1762309549.025132,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 54,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5785714285714285,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.025339,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.025686,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.026071,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 16,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 54,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 77
+      }
+    },
+    {
+      "t": 1762309549.027415,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 70,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4666666666666667,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.0278258,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 70,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 40
+      }
+    },
+    {
+      "t": 1762309549.029902,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 9,
+      "yardline": 71,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.030381,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.0305479,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.22947311188060712,
+      "after_pff_vs_cov": 0.32126235663284997,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.32126235663284997
+    },
+    {
+      "t": 1762309549.030684,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 9,
+        "yardline": 71,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 3
+      }
+    },
+    {
+      "t": 1762309549.031691,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 9,
+      "yardline": 71,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.031832,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.031928,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.032054,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 9,
+        "yardline": 71,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 3
+      }
+    },
+    {
+      "t": 1762309549.032174,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "time_remaining": 900,
+      "yardline": 76,
+      "to_go": 4,
+      "score_diff": 0,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 76,
+        "distance_to_goal": 24,
+        "fg_distance": 41,
+        "ydstogo": 4,
+        "time_remaining": 2700,
+        "score_diff": 0,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 76,
+        "distance_to_goal": 24,
+        "fg_distance": 41,
+        "ydstogo": 4,
+        "time_remaining": 2700,
+        "score_diff": 0,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309549.032293,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 5,
+      "team": "away",
+      "plays": 7,
+      "points": 0,
+      "time_used": -675,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 5,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 225
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762309549.0323808,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 5,
+      "team": "away",
+      "pace": 7,
+      "success_rate": 0.42857142857142855,
+      "explosive_rate": 0.14285714285714285,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309549.033068,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.0331972,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309549.034299,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.9,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.034411,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.0345101,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.034629,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 0,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 865
+      }
+    },
+    {
+      "t": 1762309549.0357141,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.2,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.036031,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 0,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 830
+      }
+    },
+    {
+      "t": 1762309549.039315,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 40,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.9,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.039854,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.0400581,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.040395,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 37,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 40,
+        "home": 0,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762309549.04225,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 77,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.2,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.042583,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 77,
+        "home": 0,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 760
+      }
+    },
+    {
+      "t": 1762309549.0445518,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 82,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.9,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.044829,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.044993,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.0452101,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 82,
+        "home": 0,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762309549.047582,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 85,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.047803,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 85,
+        "home": 0,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 690
+      }
+    },
+    {
+      "t": 1762309549.0489159,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 89,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.2,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.0490592,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.049155,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.0492811,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 89,
+        "home": 0,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 655
+      }
+    },
+    {
+      "t": 1762309549.0506291,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 1,
+      "yardline": 99,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.2,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.050753,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": -1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 1,
+        "yardline": 99,
+        "home": 0,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 620
+      }
+    },
+    {
+      "t": 1762309549.051806,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 98,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.0519161,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.052007,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.052122,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 2,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 98,
+        "home": 0,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 585
+      }
+    },
+    {
+      "t": 1762309549.0522292,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 6,
+      "team": "home",
+      "plays": 10,
+      "points": 7,
+      "time_used": 350,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 6,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 550
+      }
+    },
+    {
+      "t": 1762309549.052317,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 6,
+      "team": "home",
+      "pace": 10,
+      "success_rate": 0.5,
+      "explosive_rate": 0.1,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309549.052984,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.9090909090909091,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.053165,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.053299,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.058048,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 26,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 550
+      }
+    },
+    {
+      "t": 1762309549.059725,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.9090909090909091,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.0600388,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.06027,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.22947311188060712,
+      "after_pff_vs_cov": 0.32126235663284997,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36945171012777744
+    },
+    {
+      "t": 1762309549.060471,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "sack",
+      "yards": -7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 513
+      }
+    },
+    {
+      "t": 1762309549.06185,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 17,
+      "yardline": 44,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.062609,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.0628211,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.062974,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 17,
+        "yardline": 44,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 513
+      }
+    },
+    {
+      "t": 1762309549.063879,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 17,
+      "yardline": 44,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.0640268,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.064123,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.064231,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 17,
+        "yardline": 44,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 513
+      }
+    },
+    {
+      "t": 1762309549.064341,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "time_remaining": 513,
+      "yardline": 44,
+      "to_go": 17,
+      "score_diff": -7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 44,
+        "distance_to_goal": 56,
+        "fg_distance": 73,
+        "ydstogo": 17,
+        "time_remaining": 2313,
+        "score_diff": -7,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 44,
+        "distance_to_goal": 56,
+        "fg_distance": 73,
+        "ydstogo": 17,
+        "time_remaining": 2313,
+        "score_diff": -7,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309549.064485,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 7,
+      "team": "away",
+      "plays": 4,
+      "points": 0,
+      "time_used": 37,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 7,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 550
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 513
+      }
+    },
+    {
+      "t": 1762309549.064575,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 7,
+      "team": "away",
+      "pace": 4,
+      "success_rate": 0.25,
+      "explosive_rate": 0.25,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309549.0652642,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6363636363636364,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.065376,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.065462,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.065581,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 513
+      }
+    },
+    {
+      "t": 1762309549.0662541,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 39,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6363636363636364,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.066365,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.0664508,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.067044,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 39,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 478
+      }
+    },
+    {
+      "t": 1762309549.06847,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 39,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.068753,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.068915,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.069197,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 22,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 39,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 478
+      }
+    },
+    {
+      "t": 1762309549.070796,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 61,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6363636363636364,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.0711539,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.071425,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.22556859865810713,
+      "after_pff_vs_cov": 0.31579603812135,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36316544383955246
+    },
+    {
+      "t": 1762309549.071676,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 61,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 443
+      }
+    },
+    {
+      "t": 1762309549.0725582,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 61,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.0727081,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.0728052,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.072932,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 61,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 443
+      }
+    },
+    {
+      "t": 1762309549.074361,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 70,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.07449,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.074579,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.0747,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 70,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 408
+      }
+    },
+    {
+      "t": 1762309549.0748138,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "time_remaining": 373,
+      "yardline": 70,
+      "to_go": 1,
+      "score_diff": 7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 70,
+        "distance_to_goal": 30,
+        "fg_distance": 47,
+        "ydstogo": 1,
+        "time_remaining": 2173,
+        "score_diff": 7,
+        "quarter": 2,
+        "reason": "4th_short_opp_territory"
+      },
+      "punt_reasoning": {
+        "yardline": 70,
+        "distance_to_goal": 30,
+        "fg_distance": 47,
+        "ydstogo": 1,
+        "time_remaining": 2173,
+        "score_diff": 7,
+        "quarter": 2,
+        "reason": "4th_short_opp_territory"
+      }
+    },
+    {
+      "t": 1762309549.076332,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 70,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.077124,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.077423,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.077713,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 70,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 373
+      }
+    },
+    {
+      "t": 1762309549.080006,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 71,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6363636363636364,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.080371,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 71,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 338
+      }
+    },
+    {
+      "t": 1762309549.081202,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 73,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.081345,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.081447,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.22556859865810716,
+      "after_pff_vs_cov": 0.31579603812135,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31579603812135
+    },
+    {
+      "t": 1762309549.081556,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 73,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 303
+      }
+    },
+    {
+      "t": 1762309549.082979,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 8,
+      "yardline": 73,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.083107,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.083211,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.083335,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 8,
+        "yardline": 73,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 303
+      }
+    },
+    {
+      "t": 1762309549.0839958,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 84,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6363636363636364,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.084107,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.084204,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.0843039,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 84,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 268
+      }
+    },
+    {
+      "t": 1762309549.084942,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 84,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.085056,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 84,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 268
+      }
+    },
+    {
+      "t": 1762309549.086418,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 6,
+      "yardline": 94,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.30735930735930733,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.086536,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 6,
+        "yardline": 94,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 233
+      }
+    },
+    {
+      "t": 1762309549.087594,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 95,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.087709,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.087797,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.0879161,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 95,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 198
+      }
+    },
+    {
+      "t": 1762309549.089273,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 99,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.089383,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.089469,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.089568,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 99,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 163
+      }
+    },
+    {
+      "t": 1762309549.089681,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "time_remaining": 163,
+      "yardline": 99,
+      "to_go": 1,
+      "score_diff": 7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 99,
+        "distance_to_goal": 1,
+        "fg_distance": 18,
+        "ydstogo": 1,
+        "time_remaining": 1963,
+        "score_diff": 7,
+        "quarter": 2,
+        "reason": "4th_and_1_in_fg_range"
+      },
+      "punt_reasoning": {
+        "yardline": 99,
+        "distance_to_goal": 1,
+        "fg_distance": 18,
+        "ydstogo": 1,
+        "time_remaining": 1963,
+        "score_diff": 7,
+        "quarter": 2,
+        "reason": "4th_and_1_in_fg_range"
+      }
+    },
+    {
+      "t": 1762309549.091168,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 99,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.091278,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.0914612,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.091855,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 1,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 99,
+        "home": 7,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 163
+      }
+    },
+    {
+      "t": 1762309549.092057,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 8,
+      "team": "home",
+      "plays": 16,
+      "points": 7,
+      "time_used": 385,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 8,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 513
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 128
+      }
+    },
+    {
+      "t": 1762309549.092227,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 8,
+      "team": "home",
+      "pace": 16,
+      "success_rate": 0.375,
+      "explosive_rate": 0.0625,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309549.0952818,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.45238095238095233,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.095864,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.096098,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.0962749,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 22,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 128
+      }
+    },
+    {
+      "t": 1762309549.09776,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 47,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.45238095238095233,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.097933,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 47,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 91
+      }
+    },
+    {
+      "t": 1762309549.099055,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 56,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.099181,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.099285,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.0994089,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 56,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 54
+      }
+    },
+    {
+      "t": 1762309549.100493,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 69,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.45238095238095233,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.100616,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 69,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 17
+      }
+    },
+    {
+      "t": 1762309549.1007109,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 9,
+      "team": "away",
+      "plays": 3,
+      "points": 0,
+      "time_used": -772,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 9,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 128
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762309549.100868,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 9,
+      "team": "away",
+      "pace": 3,
+      "success_rate": 0.6666666666666666,
+      "explosive_rate": 0.3333333333333333,
+      "explosive_count": 1,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762309549.101953,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 25,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.1028118,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.102995,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.22556859865810713,
+      "after_pff_vs_cov": 0.31579603812135,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36316544383955246
+    },
+    {
+      "t": 1762309549.10318,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 25,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309549.1045802,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 25,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.1069372,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.107113,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.10868,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 25,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309549.109521,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 29,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.109664,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 29,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 865
+      }
+    },
+    {
+      "t": 1762309549.11379,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 31,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.114054,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.1141691,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.114306,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 31,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 830
+      }
+    },
+    {
+      "t": 1762309549.1154351,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 35,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.115566,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.115665,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.1157918,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 23,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 35,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762309549.1164732,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 58,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.116596,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 58,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 760
+      }
+    },
+    {
+      "t": 1762309549.117246,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 64,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.1173592,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.117461,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.117583,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 64,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762309549.118381,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 75,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.1185532,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 75,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 690
+      }
+    },
+    {
+      "t": 1762309549.120228,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 81,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.1205812,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.120765,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.120963,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 81,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 655
+      }
+    },
+    {
+      "t": 1762309549.124258,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 81,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.124481,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.12496,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.125493,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 81,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 655
+      }
+    },
+    {
+      "t": 1762309549.125859,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "time_remaining": 620,
+      "yardline": 82,
+      "to_go": 3,
+      "score_diff": 14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 82,
+        "distance_to_goal": 18,
+        "fg_distance": 35,
+        "ydstogo": 3,
+        "time_remaining": 1520,
+        "score_diff": 14,
+        "quarter": 3,
+        "reason": "4th_medium_opp_territory"
+      },
+      "punt_reasoning": {
+        "yardline": 82,
+        "distance_to_goal": 18,
+        "fg_distance": 35,
+        "ydstogo": 3,
+        "time_remaining": 1520,
+        "score_diff": 14,
+        "quarter": 3,
+        "reason": "4th_medium_opp_territory"
+      }
+    },
+    {
+      "t": 1762309549.129499,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 4,
+      "to_go": 3,
+      "yardline": 82,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.129784,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.129904,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.1300511,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 3,
+        "yardline": 82,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 620
+      }
+    },
+    {
+      "t": 1762309549.130841,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 87,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.130975,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 87,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 585
+      }
+    },
+    {
+      "t": 1762309549.1323571,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 94,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8333333333333334,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.132489,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 94,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 550
+      }
+    },
+    {
+      "t": 1762309549.133821,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 2,
+      "yardline": 98,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.21428571428571427,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.1339421,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.134042,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.134176,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 2,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 2,
+        "yardline": 98,
+        "home": 14,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 515
+      }
+    },
+    {
+      "t": 1762309549.134274,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 9,
+      "team": "home",
+      "plays": 14,
+      "points": 7,
+      "time_used": 420,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 9,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 480
+      }
+    },
+    {
+      "t": 1762309549.134364,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 9,
+      "team": "home",
+      "pace": 14,
+      "success_rate": 0.42857142857142855,
+      "explosive_rate": 0.07142857142857142,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309549.135019,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.135144,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.135231,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.135347,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 480
+      }
+    },
+    {
+      "t": 1762309549.136002,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.136172,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 21,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 443
+      }
+    },
+    {
+      "t": 1762309549.1401432,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 44,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.1403499,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 44,
+        "home": 21,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 406
+      }
+    },
+    {
+      "t": 1762309549.1410718,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.1412108,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 21,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 369
+      }
+    },
+    {
+      "t": 1762309549.141898,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 58,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.142018,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 58,
+        "home": 21,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 332
+      }
+    },
+    {
+      "t": 1762309549.142664,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 69,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.142982,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 69,
+        "home": 21,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 295
+      }
+    },
+    {
+      "t": 1762309549.144483,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 78,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.144795,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 78,
+        "home": 21,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 258
+      }
+    },
+    {
+      "t": 1762309549.146216,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 85,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.1468291,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 85,
+        "home": 21,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 221
+      }
+    },
+    {
+      "t": 1762309549.153667,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 89,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.1538591,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 89,
+        "home": 21,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 184
+      }
+    },
+    {
+      "t": 1762309549.155285,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 3,
+      "yardline": 97,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.45238095238095233,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.1554189,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 3,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 3,
+        "yardline": 97,
+        "home": 21,
+        "away": 0,
+        "quarter": 3,
+        "time_rem": 147
+      }
+    },
+    {
+      "t": 1762309549.1555269,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 10,
+      "team": "away",
+      "plays": 10,
+      "points": 7,
+      "time_used": 370,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 10,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 480
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 110
+      }
+    },
+    {
+      "t": 1762309549.155621,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 10,
+      "team": "away",
+      "pace": 10,
+      "success_rate": 0.6,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "TD"
+    },
+    {
+      "t": 1762309549.156291,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.156422,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.156514,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.157034,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 110
+      }
+    },
+    {
+      "t": 1762309549.159018,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 40,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.1593359,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.15951,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.22556859865810713,
+      "after_pff_vs_cov": 0.31579603812135,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36316544383955246
+    },
+    {
+      "t": 1762309549.15968,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "scramble",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 40,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 75
+      }
+    },
+    {
+      "t": 1762309549.162653,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 47,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8333333333333334,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.162941,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.163071,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.163208,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 47,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 40
+      }
+    },
+    {
+      "t": 1762309549.164829,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.166056,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.1661692,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.1662989,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 49,
+      "td": true,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 5
+      }
+    },
+    {
+      "t": 1762309549.168072,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 11,
+      "team": "home",
+      "plays": 3,
+      "points": 0,
+      "time_used": -790,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 11,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 110
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762309549.168255,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 11,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.6666666666666666,
+      "explosive_rate": 0.3333333333333333,
+      "explosive_count": 1,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762309549.169153,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.169297,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309549.1699798,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.1701021,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.170208,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.22947311188060712,
+      "after_pff_vs_cov": 0.32126235663284997,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.32126235663284997
+    },
+    {
+      "t": 1762309549.170316,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762309549.171712,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.171835,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762309549.171953,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "time_remaining": 826,
+      "yardline": 31,
+      "to_go": 4,
+      "score_diff": -21,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 31,
+        "distance_to_goal": 69,
+        "fg_distance": 86,
+        "ydstogo": 4,
+        "time_remaining": 826,
+        "score_diff": -21,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 31,
+        "distance_to_goal": 69,
+        "fg_distance": 86,
+        "ydstogo": 4,
+        "time_remaining": 826,
+        "score_diff": -21,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309549.17213,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 12,
+      "team": "away",
+      "plays": 3,
+      "points": 0,
+      "time_used": 74,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 12,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 826
+      }
+    },
+    {
+      "t": 1762309549.1724522,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 12,
+      "team": "away",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309549.1746979,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.17523,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 826
+      }
+    },
+    {
+      "t": 1762309549.176563,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 28,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.176833,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.177002,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.178466,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 28,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 791
+      }
+    },
+    {
+      "t": 1762309549.181273,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 34,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.18153,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.181649,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.18177,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 34,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 756
+      }
+    },
+    {
+      "t": 1762309549.181901,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "time_remaining": 756,
+      "yardline": 34,
+      "to_go": 1,
+      "score_diff": 21,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 34,
+        "distance_to_goal": 66,
+        "fg_distance": 83,
+        "ydstogo": 1,
+        "time_remaining": 756,
+        "score_diff": 21,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 34,
+        "distance_to_goal": 66,
+        "fg_distance": 83,
+        "ydstogo": 1,
+        "time_remaining": 756,
+        "score_diff": 21,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309549.182047,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 13,
+      "team": "home",
+      "plays": 3,
+      "points": 0,
+      "time_used": 70,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 13,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 826
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 756
+      }
+    },
+    {
+      "t": 1762309549.1821399,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 13,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309549.182842,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.18296,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.18306,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.183182,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 756
+      }
+    },
+    {
+      "t": 1762309549.183851,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.183964,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.1840608,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.184164,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 719
+      }
+    },
+    {
+      "t": 1762309549.184813,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.184921,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.1850162,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.185131,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 21,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 719
+      }
+    },
+    {
+      "t": 1762309549.185786,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 59,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.185895,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.185979,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.186076,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 59,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 682
+      }
+    },
+    {
+      "t": 1762309549.186722,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 59,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.186832,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.186917,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.22947311188060712,
+      "after_pff_vs_cov": 0.32126235663284997,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.32126235663284997
+    },
+    {
+      "t": 1762309549.187944,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "sack",
+      "yards": -8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 59,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 682
+      }
+    },
+    {
+      "t": 1762309549.1978712,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 18,
+      "yardline": 51,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.198163,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.198318,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.198546,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 18,
+        "yardline": 51,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 682
+      }
+    },
+    {
+      "t": 1762309549.198705,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "time_remaining": 645,
+      "yardline": 63,
+      "to_go": 6,
+      "score_diff": -21,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 63,
+        "distance_to_goal": 37,
+        "fg_distance": 54,
+        "ydstogo": 6,
+        "time_remaining": 645,
+        "score_diff": -21,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 63,
+        "distance_to_goal": 37,
+        "fg_distance": 54,
+        "ydstogo": 6,
+        "time_remaining": 645,
+        "score_diff": -21,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309549.1988711,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 14,
+      "team": "away",
+      "plays": 6,
+      "points": 0,
+      "time_used": 111,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 14,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 756
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 645
+      }
+    },
+    {
+      "t": 1762309549.1989849,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 14,
+      "team": "away",
+      "pace": 6,
+      "success_rate": 0.3333333333333333,
+      "explosive_rate": 0.16666666666666666,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309549.1999092,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.200057,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 645
+      }
+    },
+    {
+      "t": 1762309549.200858,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 30,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.200991,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.201097,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.2012422,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 30,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 610
+      }
+    },
+    {
+      "t": 1762309549.202841,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 32,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.203032,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.203331,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.203563,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 24,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 32,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 575
+      }
+    },
+    {
+      "t": 1762309549.2049081,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 56,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.205257,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 56,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 540
+      }
+    },
+    {
+      "t": 1762309549.207079,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 61,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.21174,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.211924,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.212225,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 61,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 505
+      }
+    },
+    {
+      "t": 1762309549.213932,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 68,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.214195,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 68,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 470
+      }
+    },
+    {
+      "t": 1762309549.217241,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 76,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.8333333333333334,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.2175841,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.217759,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.21798,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 76,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 435
+      }
+    },
+    {
+      "t": 1762309549.2214022,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 77,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.221822,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309549.222046,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.22556859865810716,
+      "after_pff_vs_cov": 0.31579603812135,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31579603812135
+    },
+    {
+      "t": 1762309549.2222779,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 77,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 400
+      }
+    },
+    {
+      "t": 1762309549.222452,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "time_remaining": 400,
+      "yardline": 77,
+      "to_go": 1,
+      "score_diff": 21,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 77,
+        "distance_to_goal": 23,
+        "fg_distance": 40,
+        "ydstogo": 1,
+        "time_remaining": 400,
+        "score_diff": 21,
+        "quarter": 4,
+        "reason": "4th_short_opp_territory"
+      },
+      "punt_reasoning": {
+        "yardline": 77,
+        "distance_to_goal": 23,
+        "fg_distance": 40,
+        "ydstogo": 1,
+        "time_remaining": 400,
+        "score_diff": 21,
+        "quarter": 4,
+        "reason": "4th_short_opp_territory"
+      }
+    },
+    {
+      "t": 1762309549.2249758,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 77,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.225188,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.225306,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.225454,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 77,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 400
+      }
+    },
+    {
+      "t": 1762309549.2262242,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 82,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.2263732,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 82,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 365
+      }
+    },
+    {
+      "t": 1762309549.2271209,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 86,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.227247,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.2273479,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.2275,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 86,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 330
+      }
+    },
+    {
+      "t": 1762309549.228242,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 87,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.228364,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.228461,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.2288241,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 87,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 295
+      }
+    },
+    {
+      "t": 1762309549.229258,
+      "kind": "policy_decision",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "time_remaining": 260,
+      "yardline": 91,
+      "to_go": 1,
+      "score_diff": 21,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 91,
+        "distance_to_goal": 9,
+        "fg_distance": 26,
+        "ydstogo": 1,
+        "time_remaining": 260,
+        "score_diff": 21,
+        "quarter": 4,
+        "reason": "4th_and_1_in_fg_range"
+      },
+      "punt_reasoning": {
+        "yardline": 91,
+        "distance_to_goal": 9,
+        "fg_distance": 26,
+        "ydstogo": 1,
+        "time_remaining": 260,
+        "score_diff": 21,
+        "quarter": 4,
+        "reason": "4th_and_1_in_fg_range"
+      }
+    },
+    {
+      "t": 1762309549.232691,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 91,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.233058,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.233236,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.2334661,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 91,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 260
+      }
+    },
+    {
+      "t": 1762309549.23475,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 8,
+      "yardline": 92,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.2350771,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 8,
+        "yardline": 92,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 225
+      }
+    },
+    {
+      "t": 1762309549.2364001,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 96,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.2367208,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 63.0,
+      "dl_grade": 75.2,
+      "mismatch": 12.200000000000003,
+      "final": 0.26080000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.236892,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.499680058928571,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.2371168,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 4,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 96,
+        "home": 28,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 190
+      }
+    },
+    {
+      "t": 1762309549.237304,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 15,
+      "team": "home",
+      "plays": 15,
+      "points": 7,
+      "time_used": 490,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 15,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 645
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 155
+      }
+    },
+    {
+      "t": 1762309549.237464,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 15,
+      "team": "home",
+      "pace": 15,
+      "success_rate": 0.3333333333333333,
+      "explosive_rate": 0.06666666666666667,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309549.23958,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -28,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.239996,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 35,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 155
+      }
+    },
+    {
+      "t": 1762309549.241599,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": -28,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.45238095238095233,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.2418041,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 35,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 118
+      }
+    },
+    {
+      "t": 1762309549.2430878,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 41,
+      "score_diff": -28,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.25,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.2432342,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 41,
+        "home": 35,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 81
+      }
+    },
+    {
+      "t": 1762309549.2444758,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 44,
+      "score_diff": -28,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309549.2446132,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 44,
+        "home": 35,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 44
+      }
+    },
+    {
+      "t": 1762309549.2468,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": -28,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.45238095238095233,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.247086,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.247227,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309549.247361,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 35,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 7
+      }
+    },
+    {
+      "t": 1762309549.250077,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_DEN_HOU",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": -28,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.8333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309549.250328,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_DEN_HOU",
+      "base": 0.212,
+      "ol_grade": 77.3,
+      "dl_grade": 87.0,
+      "mismatch": 9.700000000000003,
+      "final": 0.2508,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309549.250458,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_DEN_HOU",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 2.3911214339285713,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309549.250632,
+      "kind": "play.result",
+      "game_id": "2025_09_DEN_HOU",
+      "type": "completion",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 35,
+        "away": 7,
+        "quarter": 4,
+        "time_rem": 7
+      }
+    },
+    {
+      "t": 1762309549.2507572,
+      "kind": "drive.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 16,
+      "team": "away",
+      "plays": 6,
+      "points": 0,
+      "time_used": 155,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 16,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 155
+      },
+      "end_state": {
+        "yardline": 61,
+        "quarter": 4,
+        "time_remaining": 0
+      }
+    },
+    {
+      "t": 1762309549.250871,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_DEN_HOU",
+      "drive_no": 16,
+      "team": "away",
+      "pace": 6,
+      "success_rate": 0.5,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762309549.2511759,
+      "kind": "game.summary",
+      "game_id": "2025_09_DEN_HOU",
+      "home_score": 35,
+      "away_score": 7,
+      "spread": -28,
+      "total": 42,
+      "drives_per_team": 8.0,
+      "plays_per_drive": 7.875,
+      "td_pct": 0.3125,
+      "fg_pct": 0.0,
+      "turnover_pct": 0.0,
+      "explosive_rate": 0.0873015873015873,
+      "pass_rate": 0.6201550387596899
+    },
+    {
+      "t": 1762309549.2512808,
+      "kind": "anchors.violation",
+      "game_id": "2025_09_DEN_HOU",
+      "violations": [
+        {
+          "metric": "plays_per_drive",
+          "observed": 7.875,
+          "target_range": [
+            5.5,
+            7.0
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "drives_per_team",
+          "observed": 8.0,
+          "target_range": [
+            9.5,
+            12.5
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "td_pct",
+          "observed": 0.3125,
+          "target_range": [
+            0.18,
+            0.26
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "fg_pct",
+          "observed": 0.0,
+          "target_range": [
+            0.08,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "turnover_pct",
+          "observed": 0.0,
+          "target_range": [
+            0.09,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "explosive_rate",
+          "observed": 0.0873015873015873,
+          "target_range": [
+            0.1,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "pass_rate",
+          "observed": 0.6201550387596899,
+          "target_range": [
+            0.58,
+            0.62
+          ],
+          "violation": "too_high"
+        }
+      ],
+      "severity": "critical"
+    },
+    {
+      "t": 1762309569.391886,
+      "kind": "distribution_params",
+      "game_id": "2025_09_DEN_HOU",
+      "spread": {
+        "raw_mean": -7.83,
+        "raw_sd": 13.390336067477916,
+        "calibrated_mean": -4.470930000000003,
+        "calibrated_sd": 13.390336067477916,
+        "market_line": 1.5
+      },
+      "total": {
+        "raw_mean": 45.59,
+        "raw_sd": 10.303489700096758,
+        "calibrated_mean": 52.48189,
+        "calibrated_sd": 10.303489700096758,
+        "market_line": 40.5
+      }
+    },
+    {
+      "t": 1762309569.393697,
+      "kind": "calibration",
+      "game_id": "2025_09_DEN_HOU",
+      "spread": {
+        "predicted_prob": 0.5305164319248826,
+        "bin_id": 4,
+        "bet_side": "AWAY",
+        "market_line": 1.5,
+        "eventual_hit": null
+      },
+      "total": {
+        "predicted_prob": 0.5496688741721855,
+        "bin_id": 5,
+        "bet_side": "OVER",
+        "market_line": 40.5,
+        "eventual_hit": null
+      },
+      "calibration_method": "isotonic"
+    }
+  ]
+}

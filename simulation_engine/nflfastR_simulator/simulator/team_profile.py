@@ -219,6 +219,17 @@ class TeamProfile:
             }
         }
 
+    def _get_lookup_team(self) -> str:
+        """
+        Get the team abbreviation to use for data lookup.
+        Maps LAR -> LA for data files that use 'LA' instead of 'LAR'.
+        """
+        team_mapping = {
+            'LAR': 'LA',  # Los Angeles Rams - data uses LA
+            'LAC': 'LAC',  # Los Angeles Chargers - stays as LAC
+        }
+        return team_mapping.get(self.team, self.team)
+
     def _load_playcalling(self) -> pd.DataFrame:
         """Load team's play-calling tendencies - NO FALLBACKS."""
         # Try season averages first
@@ -228,10 +239,16 @@ class TeamProfile:
             raise ValueError(f"Play-calling file not found: {season_file}. Run preprocessing/extract_playcalling.py first.")
 
         playcalling_df = pd.read_csv(season_file)
+        
+        # Store full dataframe for fallback lookups (used in get_pass_rate)
+        self._playcalling_df = playcalling_df
+
+        # Map team abbreviations (LAR -> LA for data lookup)
+        lookup_team = self._get_lookup_team()
 
         # Get team's tendencies for this season
         team_playcalling = playcalling_df[
-            (playcalling_df['posteam'] == self.team) &
+            (playcalling_df['posteam'] == lookup_team) &
             (playcalling_df['season'] == self.season)
         ]
 
@@ -241,7 +258,7 @@ class TeamProfile:
         if weekly_file.exists():
             weekly_df = pd.read_csv(weekly_file)
             weekly_team = weekly_df[
-                (weekly_df['posteam'] == self.team) &
+                (weekly_df['posteam'] == lookup_team) &
                 (weekly_df['season'] == self.season)
             ]
             if len(weekly_team) > 0:
@@ -271,13 +288,28 @@ class TeamProfile:
                     team_playcalling = weekly_agg
 
         if len(team_playcalling) == 0:
-            raise ValueError(f"No play-calling data for {self.team} {self.season}. Run preprocessing/extract_playcalling.py for this season.")
+            # Fallback: try previous season's data if current season not available
+            prev_season = self.season - 1
+            team_playcalling = playcalling_df[
+                (playcalling_df['posteam'] == lookup_team) &
+                (playcalling_df['season'] == prev_season)
+            ]
+            
+            if len(team_playcalling) > 0:
+                # Update season to current for consistency
+                team_playcalling = team_playcalling.copy()
+                team_playcalling['season'] = self.season
+                if self.debug:
+                    print(f"⚠️  Using {prev_season} play-calling data for {self.team} (no {self.season} data available)")
+            else:
+                raise ValueError(f"No play-calling data for {self.team} {self.season} (or {prev_season}). Run preprocessing/extract_playcalling.py for this season.")
 
         return team_playcalling
 
 
     def _load_drive_probs(self) -> pd.DataFrame:
         """Load team's drive outcome probabilities by field position."""
+        lookup_team = self._get_lookup_team()
         # Try season averages
         season_file = self.data_dir / "drive_probabilities_season.csv"
 
@@ -289,13 +321,22 @@ class TeamProfile:
 
         # Get team's drive probs
         team_drives = drive_df[
-            (drive_df['posteam'] == self.team) &
+            (drive_df['posteam'] == lookup_team) &
             (drive_df['season'] == self.season)
         ]
-
+        
+        # Fallback to previous season
         if len(team_drives) == 0:
-            print(f"⚠️  Warning: No drive data for {self.team} {self.season}")
-            return self._get_league_average_drive_probs()
+            prev_season = self.season - 1
+            team_drives = drive_df[
+                (drive_df['posteam'] == lookup_team) &
+                (drive_df['season'] == prev_season)
+            ]
+            if len(team_drives) > 0:
+                print(f"⚠️  Warning: No drive data for {self.team} {self.season}, using {prev_season}")
+            else:
+                print(f"⚠️  Warning: No drive data for {self.team} {self.season} (or {prev_season})")
+                return self._get_league_average_drive_probs()
 
         return team_drives
 
@@ -318,6 +359,7 @@ class TeamProfile:
 
     def _load_pace(self) -> float:
         """Load team's pace (plays per drive)."""
+        lookup_team = self._get_lookup_team()
         pace_file = self.data_dir / "team_pace.csv"
 
         if not pace_file.exists():
@@ -329,9 +371,17 @@ class TeamProfile:
         if self.week == 1:
             # Week 1: Fall back to season average
             team_pace = pace_df[
-                (pace_df['posteam'] == self.team) &
+                (pace_df['posteam'] == lookup_team) &
                 (pace_df['season'] == self.season)
             ]
+            
+            # Fallback to previous season
+            if len(team_pace) == 0:
+                prev_season = self.season - 1
+                team_pace = pace_df[
+                    (pace_df['posteam'] == lookup_team) &
+                    (pace_df['season'] == prev_season)
+                ]
 
             if len(team_pace) == 0:
                 return 6.6  # League average
@@ -340,18 +390,35 @@ class TeamProfile:
         else:
             # Aggregate prior weeks only
             prior_weeks = pace_df[
-                (pace_df['posteam'] == self.team) &
+                (pace_df['posteam'] == lookup_team) &
                 (pace_df['season'] == self.season) &
                 (pace_df['week'] < self.week)  # Only prior weeks
             ]
+            # Fallback to previous season
+            if len(prior_weeks) == 0:
+                prev_season = self.season - 1
+                prior_weeks = pace_df[
+                    (pace_df['posteam'] == lookup_team) &
+                    (pace_df['season'] == prev_season) &
+                    (pace_df['week'] < self.week)
+                ]
+            
             if len(prior_weeks) > 0:
                 return float(prior_weeks['avg_plays_per_drive'].mean())
             else:
                 # Fall back to season average if no prior weeks
                 team_pace = pace_df[
-                    (pace_df['posteam'] == self.team) &
+                    (pace_df['posteam'] == lookup_team) &
                     (pace_df['season'] == self.season)
                 ]
+                
+                # Fallback to previous season
+                if len(team_pace) == 0:
+                    prev_season = self.season - 1
+                    team_pace = pace_df[
+                        (pace_df['posteam'] == lookup_team) &
+                        (pace_df['season'] == prev_season)
+                    ]
 
                 if len(team_pace) == 0:
                     return 6.6  # League average
@@ -388,6 +455,7 @@ class TeamProfile:
         Returns:
             Pass rate (0-1)
         """
+        lookup_team = self._get_lookup_team()
         # Look up in team's playcalling data - try most specific first
         situation = self.playcalling[
             (self.playcalling['down'] == down) &
@@ -431,7 +499,7 @@ class TeamProfile:
             prev_season = self.season - 1
             if hasattr(self, '_playcalling_df'):
                 prev_season_data = self._playcalling_df[
-                    (self._playcalling_df['posteam'] == self.team) &
+                    (self._playcalling_df['posteam'] == lookup_team) &
                     (self._playcalling_df['season'] == prev_season)
                 ]
                 if len(prev_season_data) > 0:
@@ -509,6 +577,9 @@ class TeamProfile:
 
     def _load_yards_per_play(self):
         """Load yards per play and yards per pass attempt - NO FALLBACKS."""
+        # Map team abbreviations (LAR -> LA for data lookup)
+        lookup_team = self._get_lookup_team()
+        
         weekly_file = self.data_dir / "team_yards_per_play_weekly.csv"
 
         if not weekly_file.exists():
@@ -519,9 +590,19 @@ class TeamProfile:
 
             ypp_df = pd.read_csv(season_file)
             team_data = ypp_df[
-                (ypp_df['posteam'] == self.team) &
+                (ypp_df['posteam'] == lookup_team) &
                 (ypp_df['season'] == self.season)
             ]
+            
+            # Fallback to previous season if current season not available
+            if len(team_data) == 0:
+                prev_season = self.season - 1
+                team_data = ypp_df[
+                    (ypp_df['posteam'] == lookup_team) &
+                    (ypp_df['season'] == prev_season)
+                ]
+                if len(team_data) > 0 and self.debug:
+                    print(f"⚠️  Using {prev_season} YPP data for {self.team} (no {self.season} data available)")
         else:
             ypp_df = pd.read_csv(weekly_file)
             # CRITICAL: Use only PRIOR weeks to avoid look-ahead bias
@@ -533,18 +614,38 @@ class TeamProfile:
                 if season_file.exists():
                     season_df = pd.read_csv(season_file)
                     team_data = season_df[
-                        (season_df['posteam'] == self.team) &
+                        (season_df['posteam'] == lookup_team) &
                         (season_df['season'] == self.season)
                     ]
+                    # Fallback to previous season
+                    if len(team_data) == 0:
+                        prev_season = self.season - 1
+                        team_data = season_df[
+                            (season_df['posteam'] == lookup_team) &
+                            (season_df['season'] == prev_season)
+                        ]
+                        if len(team_data) > 0 and self.debug:
+                            print(f"⚠️  Using {prev_season} YPP season data for {self.team} (no {self.season} data available)")
                 else:
                     team_data = pd.DataFrame()
             else:
                 # Week N: Aggregate weeks 1 through N-1 (exclude current week)
                 prior_weeks = ypp_df[
-                    (ypp_df['posteam'] == self.team) &
+                    (ypp_df['posteam'] == lookup_team) &
                     (ypp_df['season'] == self.season) &
                     (ypp_df['week'] < self.week)  # KEY: Only prior weeks
                 ]
+                
+                # Fallback: try previous season if no current season data
+                if len(prior_weeks) == 0:
+                    prev_season = self.season - 1
+                    prior_weeks = ypp_df[
+                        (ypp_df['posteam'] == lookup_team) &
+                        (ypp_df['season'] == prev_season) &
+                        (ypp_df['week'] < self.week)
+                    ]
+                    if len(prior_weeks) > 0 and self.debug:
+                        print(f"⚠️  Using {prev_season} YPP weekly data for {self.team} (no {self.season} data available)")
 
                 if len(prior_weeks) > 0:
                     # Apply regression to mean for extreme weekly values
@@ -574,9 +675,18 @@ class TeamProfile:
                 if season_file.exists():
                     season_df = pd.read_csv(season_file)
                     team_data = season_df[
-                        (season_df['posteam'] == self.team) &
+                        (season_df['posteam'] == lookup_team) &
                         (season_df['season'] == self.season)
                     ]
+                    # Fallback to previous season
+                    if len(team_data) == 0:
+                        prev_season = self.season - 1
+                        team_data = season_df[
+                            (season_df['posteam'] == lookup_team) &
+                            (season_df['season'] == prev_season)
+                        ]
+                        if len(team_data) > 0 and self.debug:
+                            print(f"⚠️  Using {prev_season} YPP season fallback for {self.team} (no {self.season} data available)")
 
         if len(team_data) > 0:
             self.off_yards_per_play = float(team_data['off_yards_per_play'].iloc[0])
@@ -584,10 +694,11 @@ class TeamProfile:
             self.def_yards_per_play_allowed = float(team_data['def_yards_per_play_allowed'].iloc[0])
             self.def_yards_per_pass_allowed = float(team_data['def_yards_per_pass_allowed'].iloc[0])
         else:
-            raise ValueError(f"No YPP data for {self.team} {self.season} W{self.week}. Run preprocessing/extract_yards_per_play.py.")
+            raise ValueError(f"No YPP data for {self.team} {self.season} W{self.week} (looked up as {lookup_team}). Run preprocessing/extract_yards_per_play.py.")
 
     def _load_early_down_success(self):
         """Load early-down success rates."""
+        lookup_team = self._get_lookup_team()
         weekly_file = self.data_dir / "early_down_success_weekly.csv"
 
         if not weekly_file.exists():
@@ -598,9 +709,16 @@ class TeamProfile:
 
             success_df = pd.read_csv(season_file)
             team_data = success_df[
-                (success_df['posteam'] == self.team) &
+                (success_df['posteam'] == lookup_team) &
                 (success_df['season'] == self.season)
             ]
+            # Fallback to previous season
+            if len(team_data) == 0:
+                prev_season = self.season - 1
+                team_data = success_df[
+                    (success_df['posteam'] == lookup_team) &
+                    (success_df['season'] == prev_season)
+                ]
         else:
             success_df = pd.read_csv(weekly_file)
             # CRITICAL: Use only PRIOR weeks
@@ -608,10 +726,18 @@ class TeamProfile:
                 team_data = pd.DataFrame()
             else:
                 prior_weeks = success_df[
-                    (success_df['posteam'] == self.team) &
+                    (success_df['posteam'] == lookup_team) &
                     (success_df['season'] == self.season) &
                     (success_df['week'] < self.week)  # Only prior weeks
                 ]
+                # Fallback to previous season
+                if len(prior_weeks) == 0:
+                    prev_season = self.season - 1
+                    prior_weeks = success_df[
+                        (success_df['posteam'] == lookup_team) &
+                        (success_df['season'] == prev_season) &
+                        (success_df['week'] < self.week)
+                    ]
                 if len(prior_weeks) > 0:
                     team_data = pd.DataFrame([{
                         'posteam': self.team,
@@ -626,9 +752,16 @@ class TeamProfile:
                 if season_file.exists():
                     season_df = pd.read_csv(season_file)
                     team_data = season_df[
-                        (season_df['posteam'] == self.team) &
+                        (season_df['posteam'] == lookup_team) &
                         (season_df['season'] == self.season)
                     ]
+                    # Fallback to previous season
+                    if len(team_data) == 0:
+                        prev_season = self.season - 1
+                        team_data = season_df[
+                            (season_df['posteam'] == lookup_team) &
+                            (season_df['season'] == prev_season)
+                        ]
 
         if len(team_data) > 0:
             self.early_down_success_rate = float(team_data['early_down_success_rate'].iloc[0])
@@ -637,6 +770,7 @@ class TeamProfile:
 
     def _load_anya(self):
         """Load Adjusted Net Yards per Attempt."""
+        lookup_team = self._get_lookup_team()
         weekly_file = self.data_dir / "team_anya_weekly.csv"
 
         if not weekly_file.exists():
@@ -648,9 +782,16 @@ class TeamProfile:
 
             anya_df = pd.read_csv(season_file)
             team_data = anya_df[
-                (anya_df['posteam'] == self.team) &
+                (anya_df['posteam'] == lookup_team) &
                 (anya_df['season'] == self.season)
             ]
+            # Fallback to previous season
+            if len(team_data) == 0:
+                prev_season = self.season - 1
+                team_data = anya_df[
+                    (anya_df['posteam'] == lookup_team) &
+                    (anya_df['season'] == prev_season)
+                ]
         else:
             anya_df = pd.read_csv(weekly_file)
             # CRITICAL: Use only PRIOR weeks
@@ -658,10 +799,18 @@ class TeamProfile:
                 team_data = pd.DataFrame()
             else:
                 prior_weeks = anya_df[
-                    (anya_df['posteam'] == self.team) &
+                    (anya_df['posteam'] == lookup_team) &
                     (anya_df['season'] == self.season) &
                     (anya_df['week'] < self.week)  # Only prior weeks
                 ]
+                # Fallback to previous season
+                if len(prior_weeks) == 0:
+                    prev_season = self.season - 1
+                    prior_weeks = anya_df[
+                        (anya_df['posteam'] == lookup_team) &
+                        (anya_df['season'] == prev_season) &
+                        (anya_df['week'] < self.week)
+                    ]
                 if len(prior_weeks) > 0:
                     team_data = pd.DataFrame([{
                         'posteam': self.team,
@@ -677,9 +826,16 @@ class TeamProfile:
                 if season_file.exists():
                     season_df = pd.read_csv(season_file)
                     team_data = season_df[
-                        (season_df['posteam'] == self.team) &
+                        (season_df['posteam'] == lookup_team) &
                         (season_df['season'] == self.season)
                     ]
+                    # Fallback to previous season
+                    if len(team_data) == 0:
+                        prev_season = self.season - 1
+                        team_data = season_df[
+                            (season_df['posteam'] == lookup_team) &
+                            (season_df['season'] == prev_season)
+                        ]
 
         if len(team_data) > 0:
             self.off_anya = float(team_data['off_anya'].iloc[0])
@@ -690,6 +846,7 @@ class TeamProfile:
 
     def _load_turnover_regression(self):
         """Load turnover regression factors."""
+        lookup_team = self._get_lookup_team()
         weekly_file = self.data_dir / "turnover_regression_weekly.csv"
 
         if not weekly_file.exists():
@@ -702,10 +859,18 @@ class TeamProfile:
             team_data = pd.DataFrame()
         else:
             prior_weeks = turnovers_df[
-                (turnovers_df['posteam'] == self.team) &
+                (turnovers_df['posteam'] == lookup_team) &
                 (turnovers_df['season'] == self.season) &
                 (turnovers_df['week'] < self.week)  # Only prior weeks
             ]
+            # Fallback to previous season
+            if len(prior_weeks) == 0:
+                prev_season = self.season - 1
+                prior_weeks = turnovers_df[
+                    (turnovers_df['posteam'] == lookup_team) &
+                    (turnovers_df['season'] == prev_season) &
+                    (turnovers_df['week'] < self.week)
+                ]
             if len(prior_weeks) > 0:
                 team_data = pd.DataFrame([{
                     'posteam': self.team,
@@ -722,6 +887,7 @@ class TeamProfile:
 
     def _load_red_zone(self):
         """Load red zone statistics."""
+        lookup_team = self._get_lookup_team()
         weekly_file = self.data_dir / "red_zone_stats_weekly.csv"
 
         if not weekly_file.exists():
@@ -733,9 +899,16 @@ class TeamProfile:
 
             redzone_df = pd.read_csv(season_file)
             team_data = redzone_df[
-                (redzone_df['posteam'] == self.team) &
+                (redzone_df['posteam'] == lookup_team) &
                 (redzone_df['season'] == self.season)
             ]
+            # Fallback to previous season
+            if len(team_data) == 0:
+                prev_season = self.season - 1
+                team_data = redzone_df[
+                    (redzone_df['posteam'] == lookup_team) &
+                    (redzone_df['season'] == prev_season)
+                ]
         else:
             redzone_df = pd.read_csv(weekly_file)
             # CRITICAL: Use only PRIOR weeks
@@ -743,10 +916,18 @@ class TeamProfile:
                 team_data = pd.DataFrame()
             else:
                 prior_weeks = redzone_df[
-                    (redzone_df['posteam'] == self.team) &
+                    (redzone_df['posteam'] == lookup_team) &
                     (redzone_df['season'] == self.season) &
                     (redzone_df['week'] < self.week)  # Only prior weeks
                 ]
+                # Fallback to previous season
+                if len(prior_weeks) == 0:
+                    prev_season = self.season - 1
+                    prior_weeks = redzone_df[
+                        (redzone_df['posteam'] == lookup_team) &
+                        (redzone_df['season'] == prev_season) &
+                        (redzone_df['week'] < self.week)
+                    ]
                 if len(prior_weeks) > 0:
                     team_data = pd.DataFrame([{
                         'posteam': self.team,
@@ -762,9 +943,16 @@ class TeamProfile:
                 if season_file.exists():
                     season_df = pd.read_csv(season_file)
                     team_data = season_df[
-                        (season_df['posteam'] == self.team) &
+                        (season_df['posteam'] == lookup_team) &
                         (season_df['season'] == self.season)
                     ]
+                    # Fallback to previous season
+                    if len(team_data) == 0:
+                        prev_season = self.season - 1
+                        team_data = season_df[
+                            (season_df['posteam'] == lookup_team) &
+                            (season_df['season'] == prev_season)
+                        ]
 
         if len(team_data) > 0:
             self.red_zone_trips_per_game = float(team_data['red_zone_trips_per_game'].iloc[0])
@@ -775,6 +963,7 @@ class TeamProfile:
 
     def _load_special_teams(self):
         """Load special teams statistics."""
+        lookup_team = self._get_lookup_team()
         weekly_file = self.data_dir / "special_teams_weekly.csv"
 
         if not weekly_file.exists():
@@ -786,25 +975,47 @@ class TeamProfile:
 
             st_df = pd.read_csv(season_file)
             team_data = st_df[
-                (st_df['posteam'] == self.team) &
+                (st_df['posteam'] == lookup_team) &
                 (st_df['season'] == self.season)
             ]
+            # Fallback to previous season
+            if len(team_data) == 0:
+                prev_season = self.season - 1
+                team_data = st_df[
+                    (st_df['posteam'] == lookup_team) &
+                    (st_df['season'] == prev_season)
+                ]
         else:
             st_df = pd.read_csv(weekly_file)
             team_data = st_df[
-                (st_df['posteam'] == self.team) &
+                (st_df['posteam'] == lookup_team) &
                 (st_df['season'] == self.season) &
                 (st_df['week'] == self.week)
             ]
+            # Fallback: try previous season if current week not available
+            if len(team_data) == 0:
+                prev_season = self.season - 1
+                team_data = st_df[
+                    (st_df['posteam'] == lookup_team) &
+                    (st_df['season'] == prev_season) &
+                    (st_df['week'] == self.week)
+                ]
 
             if len(team_data) == 0:
                 season_file = self.data_dir / "special_teams_season.csv"
                 if season_file.exists():
                     season_df = pd.read_csv(season_file)
                     team_data = season_df[
-                        (season_df['posteam'] == self.team) &
+                        (season_df['posteam'] == lookup_team) &
                         (season_df['season'] == self.season)
                     ]
+                    # Fallback to previous season
+                    if len(team_data) == 0:
+                        prev_season = self.season - 1
+                        team_data = season_df[
+                            (season_df['posteam'] == lookup_team) &
+                            (season_df['season'] == prev_season)
+                        ]
 
         if len(team_data) > 0:
             self.punt_net_yards = float(team_data['punt_net_yards'].iloc[0]) if 'punt_net_yards' in team_data.columns else 40.0

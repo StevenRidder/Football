@@ -1,0 +1,6563 @@
+{
+  "game_id": "2025_09_SEA_WAS",
+  "seed": 1507462676,
+  "total_events": 391,
+  "event_types": {
+    "inputs.audit": 1,
+    "call.pass_run": 111,
+    "play.result": 111,
+    "pass.pressure": 60,
+    "pass.completion_model": 60,
+    "policy_decision": 12,
+    "drive.summary": 16,
+    "anchor_slice": 16,
+    "game.summary": 1,
+    "anchors.violation": 1,
+    "distribution_params": 1,
+    "calibration": 1
+  },
+  "events": [
+    {
+      "t": 1762309503.687681,
+      "kind": "inputs.audit",
+      "game_id": "2025_09_SEA_WAS",
+      "home": {
+        "team": "WAS",
+        "season": 2025,
+        "week": 9,
+        "off_epa": 0.07770173031167357,
+        "def_epa": -0.003159933490678661,
+        "pace": 6.4519255050505055,
+        "early_down_success_rate": 0.5505097872594946,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "off_yards_per_play": 5.8426114625,
+        "off_yards_per_pass_attempt": 6.5943412125,
+        "yards_per_pass": null,
+        "yards_per_run": null,
+        "pass_rate": 0.5248447204968945,
+        "red_zone_trips_per_game": 3.25,
+        "red_zone_td_pct": 0.83125,
+        "punt_net_yards": 50.5,
+        "field_goal_make_pct": 1.0,
+        "ol_grade": 65.1,
+        "dl_grade": 68.8,
+        "ol_run_grade": 57.0,
+        "dl_run_grade": 73.8,
+        "coverage_grade": 40.2,
+        "passing_grade": 81.5,
+        "playcalling_situations": 63,
+        "home_rest_days": 6,
+        "away_rest_days": 13,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "away": {
+        "team": "SEA",
+        "season": 2025,
+        "week": 9,
+        "off_epa": 0.021155251073651,
+        "def_epa": -0.06197500729467717,
+        "pace": 5.765512265512265,
+        "early_down_success_rate": 0.5017730738649105,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "off_yards_per_play": 5.953915685714286,
+        "off_yards_per_pass_attempt": 7.4253401142857145,
+        "yards_per_pass": null,
+        "yards_per_run": null,
+        "pass_rate": 0.49640287769784175,
+        "red_zone_trips_per_game": 4.142857142857143,
+        "red_zone_td_pct": 0.6642857142857144,
+        "punt_net_yards": 45.285713,
+        "field_goal_make_pct": 0.8541666666666666,
+        "ol_grade": 62.2,
+        "dl_grade": 74.4,
+        "ol_run_grade": 64.1,
+        "dl_run_grade": 74.9,
+        "coverage_grade": 65.0,
+        "passing_grade": 91.9,
+        "playcalling_situations": 59,
+        "home_rest_days": 13,
+        "away_rest_days": 6,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "situational": {
+        "is_dome": false,
+        "temp": null,
+        "wind": null,
+        "home_rest_days": 6,
+        "away_rest_days": 6
+      },
+      "seed": 1507462676
+    },
+    {
+      "t": 1762309503.689653,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.6898181,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309503.690366,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 40,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.690478,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.6905558,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.690652,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 40,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762309503.692363,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 40,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.692514,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 40,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762309503.6937149,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 9,
+      "yardline": 41,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.693932,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 9,
+        "yardline": 41,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 826
+      }
+    },
+    {
+      "t": 1762309503.6942542,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "time_remaining": 789,
+      "yardline": 46,
+      "to_go": 4,
+      "score_diff": 0,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 46,
+        "distance_to_goal": 54,
+        "fg_distance": 71,
+        "ydstogo": 4,
+        "time_remaining": 3489,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 46,
+        "distance_to_goal": 54,
+        "fg_distance": 71,
+        "ydstogo": 4,
+        "time_remaining": 3489,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309503.694423,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 2,
+      "team": "home",
+      "plays": 4,
+      "points": 0,
+      "time_used": 111,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 2,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 789
+      }
+    },
+    {
+      "t": 1762309503.694549,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 2,
+      "team": "home",
+      "pace": 4,
+      "success_rate": 0.25,
+      "explosive_rate": 0.25,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309503.695822,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.2631578947368421,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.6962318,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 789
+      }
+    },
+    {
+      "t": 1762309503.698101,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.2631578947368421,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.698242,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 748
+      }
+    },
+    {
+      "t": 1762309503.699729,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 42,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.700064,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.700393,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.700554,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 23,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 42,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 707
+      }
+    },
+    {
+      "t": 1762309503.702275,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 65,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.2631578947368421,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.7024,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 65,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 666
+      }
+    },
+    {
+      "t": 1762309503.70313,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 69,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.7033322,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.703425,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.7035332,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 69,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 625
+      }
+    },
+    {
+      "t": 1762309503.704105,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 75,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.2631578947368421,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.704206,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 75,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 584
+      }
+    },
+    {
+      "t": 1762309503.7047439,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 77,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.704834,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 77,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 543
+      }
+    },
+    {
+      "t": 1762309503.705921,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 84,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.706013,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.706086,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328574,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36008463122979
+    },
+    {
+      "t": 1762309503.7062001,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "sack",
+      "yards": -8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 84,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 502
+      }
+    },
+    {
+      "t": 1762309503.706283,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "time_remaining": 502,
+      "yardline": 76,
+      "to_go": 9,
+      "score_diff": 0,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 76,
+        "distance_to_goal": 24,
+        "fg_distance": 41,
+        "ydstogo": 9,
+        "time_remaining": 3202,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 76,
+        "distance_to_goal": 24,
+        "fg_distance": 41,
+        "ydstogo": 9,
+        "time_remaining": 3202,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309503.706509,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 3,
+      "team": "away",
+      "plays": 8,
+      "points": 0,
+      "time_used": 287,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 3,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 789
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 502
+      }
+    },
+    {
+      "t": 1762309503.7065978,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 3,
+      "team": "away",
+      "pace": 8,
+      "success_rate": 0.375,
+      "explosive_rate": 0.125,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309503.707315,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.707435,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.707509,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.22467415378982145,
+      "after_pff_vs_cov": 0.31454381530575,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31454381530575
+    },
+    {
+      "t": 1762309503.707596,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 502
+      }
+    },
+    {
+      "t": 1762309503.7092018,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.709321,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.709499,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.709665,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 502
+      }
+    },
+    {
+      "t": 1762309503.7105541,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 39,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.710814,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 39,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 465
+      }
+    },
+    {
+      "t": 1762309503.711925,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 45,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.712348,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 45,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 428
+      }
+    },
+    {
+      "t": 1762309503.714777,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 47,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.714915,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.714995,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.715102,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 47,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 391
+      }
+    },
+    {
+      "t": 1762309503.7166479,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 59,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.71681,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 59,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 354
+      }
+    },
+    {
+      "t": 1762309503.7178082,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 65,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.718084,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 65,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 317
+      }
+    },
+    {
+      "t": 1762309503.719197,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 71,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.71935,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.71944,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.7195451,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 71,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 280
+      }
+    },
+    {
+      "t": 1762309503.7201312,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 76,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.720235,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.7203069,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.720414,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 76,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 243
+      }
+    },
+    {
+      "t": 1762309503.721217,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 85,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.7215161,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 85,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 206
+      }
+    },
+    {
+      "t": 1762309503.7221482,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 92,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.722262,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 92,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 169
+      }
+    },
+    {
+      "t": 1762309503.7228181,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 94,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.722924,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 94,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 132
+      }
+    },
+    {
+      "t": 1762309503.725294,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 4,
+      "yardline": 96,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5708333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.72695,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.7270699,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.22467415378982145,
+      "after_pff_vs_cov": 0.31454381530575,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31454381530575
+    },
+    {
+      "t": 1762309503.727185,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 4,
+        "yardline": 96,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 95
+      }
+    },
+    {
+      "t": 1762309503.734405,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 97,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.7347531,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.735018,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.735275,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 97,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 58
+      }
+    },
+    {
+      "t": 1762309503.736158,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 99,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.7362921,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.736369,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.22467415378982145,
+      "after_pff_vs_cov": 0.31454381530575,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31454381530575
+    },
+    {
+      "t": 1762309503.7364469,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "sack",
+      "yards": -5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 99,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 21
+      }
+    },
+    {
+      "t": 1762309503.736532,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "time_remaining": 21,
+      "yardline": 94,
+      "to_go": 6,
+      "score_diff": 0,
+      "fg_epa": 2.55,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "FG",
+      "fg_reasoning": {
+        "yardline": 94,
+        "distance_to_goal": 6,
+        "fg_distance": 23,
+        "ydstogo": 6,
+        "time_remaining": 2721,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "in_fg_range"
+      },
+      "punt_reasoning": {
+        "yardline": 94,
+        "distance_to_goal": 6,
+        "fg_distance": 23,
+        "ydstogo": 6,
+        "time_remaining": 2721,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "in_fg_range"
+      }
+    },
+    {
+      "t": 1762309503.736644,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 4,
+      "team": "home",
+      "plays": 15,
+      "points": 3,
+      "time_used": 481,
+      "result": "FG",
+      "start_state": {
+        "drive_num": 4,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 502
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 21
+      }
+    },
+    {
+      "t": 1762309503.736712,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 4,
+      "team": "home",
+      "pace": 15,
+      "success_rate": 0.3333333333333333,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "FG"
+    },
+    {
+      "t": 1762309503.7373781,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.737487,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.737563,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.737658,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 21
+      }
+    },
+    {
+      "t": 1762309503.738535,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 28,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_1-6",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.7386339,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 28,
+        "home": 3,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309503.7391622,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.739549,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.739758,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328574,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36008463122979
+    },
+    {
+      "t": 1762309503.740148,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 3,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 859
+      }
+    },
+    {
+      "t": 1762309503.744268,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 38,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.744411,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.744512,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.74462,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 38,
+        "home": 3,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 818
+      }
+    },
+    {
+      "t": 1762309503.748833,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 42,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.7272727272727273,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.7492712,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.7494621,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.749604,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 42,
+        "home": 3,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 777
+      }
+    },
+    {
+      "t": 1762309503.750379,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 57,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.7506151,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 57,
+        "home": 3,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 736
+      }
+    },
+    {
+      "t": 1762309503.7518148,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 62,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.751977,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 62,
+        "home": 3,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 695
+      }
+    },
+    {
+      "t": 1762309503.7535841,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 70,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.754039,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.754139,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.754244,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 70,
+        "home": 3,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 654
+      }
+    },
+    {
+      "t": 1762309503.755167,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 84,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.755306,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.75538,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.7555652,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 16,
+      "td": true,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 84,
+        "home": 3,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 613
+      }
+    },
+    {
+      "t": 1762309503.755689,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 5,
+      "team": "away",
+      "plays": 8,
+      "points": 7,
+      "time_used": -551,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 5,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 21
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 572
+      }
+    },
+    {
+      "t": 1762309503.75601,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 5,
+      "team": "away",
+      "pace": 8,
+      "success_rate": 0.625,
+      "explosive_rate": 0.25,
+      "explosive_count": 2,
+      "result": "TD"
+    },
+    {
+      "t": 1762309503.7567518,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.7142857142857143,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.756855,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.756951,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.7570481,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 572
+      }
+    },
+    {
+      "t": 1762309503.758325,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.758482,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.758592,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.22467415378982145,
+      "after_pff_vs_cov": 0.31454381530575,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31454381530575
+    },
+    {
+      "t": 1762309503.7588851,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "sack",
+      "yards": -7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 535
+      }
+    },
+    {
+      "t": 1762309503.759666,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 13,
+      "yardline": 22,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.759802,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.759878,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.759979,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 13,
+        "yardline": 22,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 535
+      }
+    },
+    {
+      "t": 1762309503.760191,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "time_remaining": 498,
+      "yardline": 23,
+      "to_go": 12,
+      "score_diff": -4,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 23,
+        "distance_to_goal": 77,
+        "fg_distance": 94,
+        "ydstogo": 12,
+        "time_remaining": 2298,
+        "score_diff": -4,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 23,
+        "distance_to_goal": 77,
+        "fg_distance": 94,
+        "ydstogo": 12,
+        "time_remaining": 2298,
+        "score_diff": -4,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309503.7603729,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 6,
+      "team": "home",
+      "plays": 3,
+      "points": 0,
+      "time_used": 74,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 6,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 572
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 498
+      }
+    },
+    {
+      "t": 1762309503.760489,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 6,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309503.761389,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.36363636363636365,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.761493,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.7615738,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.7618,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 498
+      }
+    },
+    {
+      "t": 1762309503.763856,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "short",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.764383,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": -3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 457
+      }
+    },
+    {
+      "t": 1762309503.766152,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 30,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.766262,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.766334,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328576,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31311707063460004
+    },
+    {
+      "t": 1762309503.766646,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 30,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 416
+      }
+    },
+    {
+      "t": 1762309503.767782,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.36363636363636365,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.7678971,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 375
+      }
+    },
+    {
+      "t": 1762309503.768619,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 43,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.768917,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 43,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 334
+      }
+    },
+    {
+      "t": 1762309503.7695649,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.36363636363636365,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.769662,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 293
+      }
+    },
+    {
+      "t": 1762309503.770294,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 53,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.770505,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.770577,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328576,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31311707063460004
+    },
+    {
+      "t": 1762309503.7706602,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 53,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 252
+      }
+    },
+    {
+      "t": 1762309503.771389,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 8,
+      "yardline": 53,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.77158,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.771654,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.772206,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 8,
+        "yardline": 53,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 252
+      }
+    },
+    {
+      "t": 1762309503.773621,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 63,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.36363636363636365,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.773943,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 63,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 211
+      }
+    },
+    {
+      "t": 1762309503.7753391,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 63,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.7756531,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.775754,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.775856,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 37,
+      "td": true,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 63,
+        "home": 3,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 170
+      }
+    },
+    {
+      "t": 1762309503.775936,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 7,
+      "team": "away",
+      "plays": 10,
+      "points": 7,
+      "time_used": 369,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 7,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 498
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 129
+      }
+    },
+    {
+      "t": 1762309503.776005,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 7,
+      "team": "away",
+      "pace": 10,
+      "success_rate": 0.4,
+      "explosive_rate": 0.1,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309503.7767859,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.3928571428571428,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.776891,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.7771142,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.777303,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 129
+      }
+    },
+    {
+      "t": 1762309503.778079,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.778177,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.7782478,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.778348,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 129
+      }
+    },
+    {
+      "t": 1762309503.7791622,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.7794812,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.779998,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.22467415378982145,
+      "after_pff_vs_cov": 0.31454381530575,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31454381530575
+    },
+    {
+      "t": 1762309503.7803679,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 3,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 92
+      }
+    },
+    {
+      "t": 1762309503.780471,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "time_remaining": 92,
+      "yardline": 27,
+      "to_go": 8,
+      "score_diff": -11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 27,
+        "distance_to_goal": 73,
+        "fg_distance": 90,
+        "ydstogo": 8,
+        "time_remaining": 1892,
+        "score_diff": -11,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 27,
+        "distance_to_goal": 73,
+        "fg_distance": 90,
+        "ydstogo": 8,
+        "time_remaining": 1892,
+        "score_diff": -11,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309503.780606,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 8,
+      "team": "home",
+      "plays": 3,
+      "points": 0,
+      "time_used": 37,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 8,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 129
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 92
+      }
+    },
+    {
+      "t": 1762309503.780737,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 8,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309503.782113,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.782238,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.782314,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328576,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31311707063460004
+    },
+    {
+      "t": 1762309503.782388,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 92
+      }
+    },
+    {
+      "t": 1762309503.782936,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.783023,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.783097,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328576,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31311707063460004
+    },
+    {
+      "t": 1762309503.783189,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "sack",
+      "yards": -6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 92
+      }
+    },
+    {
+      "t": 1762309503.783762,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 16,
+      "yardline": 19,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.783961,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.784037,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.7841358,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 16,
+        "yardline": 19,
+        "home": 3,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 92
+      }
+    },
+    {
+      "t": 1762309503.7842538,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "time_remaining": 51,
+      "yardline": 23,
+      "to_go": 12,
+      "score_diff": 11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 23,
+        "distance_to_goal": 77,
+        "fg_distance": 94,
+        "ydstogo": 12,
+        "time_remaining": 1851,
+        "score_diff": 11,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 23,
+        "distance_to_goal": 77,
+        "fg_distance": 94,
+        "ydstogo": 12,
+        "time_remaining": 1851,
+        "score_diff": 11,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309503.784447,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 9,
+      "team": "away",
+      "plays": 3,
+      "points": 0,
+      "time_used": 41,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 9,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 92
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 51
+      }
+    },
+    {
+      "t": 1762309503.784522,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 9,
+      "team": "away",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309503.785065,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.3928571428571428,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.785181,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 51
+      }
+    },
+    {
+      "t": 1762309503.785847,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.7859972,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 3,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 14
+      }
+    },
+    {
+      "t": 1762309503.786288,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 10,
+      "team": "home",
+      "plays": 1,
+      "points": 0,
+      "time_used": -849,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 10,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 51
+      },
+      "end_state": {
+        "yardline": 63,
+        "quarter": 3,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762309503.786579,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 10,
+      "team": "home",
+      "pace": 1,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762309503.787657,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 63,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.7879,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 63,
+        "home": 3,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309503.789263,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 69,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.7893848,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.789462,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.7895832,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 69,
+        "home": 3,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 859
+      }
+    },
+    {
+      "t": 1762309503.790796,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 72,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.790935,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 72,
+        "home": 3,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 818
+      }
+    },
+    {
+      "t": 1762309503.7917702,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 76,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4166666666666667,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.791903,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 76,
+        "home": 3,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 777
+      }
+    },
+    {
+      "t": 1762309503.792543,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 9,
+      "yardline": 77,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.792696,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 9,
+        "yardline": 77,
+        "home": 3,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 736
+      }
+    },
+    {
+      "t": 1762309503.793324,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 85,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.793426,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 85,
+        "home": 3,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 695
+      }
+    },
+    {
+      "t": 1762309503.795019,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 7,
+      "yardline": 93,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5092592592592592,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.7951202,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.795192,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.7953348,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 7,
+        "yardline": 93,
+        "home": 3,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 654
+      }
+    },
+    {
+      "t": 1762309503.7965639,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 93,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.796725,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.796874,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328576,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31311707063460004
+    },
+    {
+      "t": 1762309503.797159,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 93,
+        "home": 3,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 654
+      }
+    },
+    {
+      "t": 1762309503.8006332,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 7,
+      "yardline": 93,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.800798,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 7,
+        "yardline": 93,
+        "home": 3,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 654
+      }
+    },
+    {
+      "t": 1762309503.8009338,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "time_remaining": 613,
+      "yardline": 95,
+      "to_go": 5,
+      "score_diff": 11,
+      "fg_epa": 2.55,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "FG",
+      "fg_reasoning": {
+        "yardline": 95,
+        "distance_to_goal": 5,
+        "fg_distance": 22,
+        "ydstogo": 5,
+        "time_remaining": 1513,
+        "score_diff": 11,
+        "quarter": 3,
+        "reason": "in_fg_range"
+      },
+      "punt_reasoning": {
+        "yardline": 95,
+        "distance_to_goal": 5,
+        "fg_distance": 22,
+        "ydstogo": 5,
+        "time_remaining": 1513,
+        "score_diff": 11,
+        "quarter": 3,
+        "reason": "in_fg_range"
+      }
+    },
+    {
+      "t": 1762309503.801067,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 10,
+      "team": "away",
+      "plays": 9,
+      "points": 3,
+      "time_used": 287,
+      "result": "FG",
+      "start_state": {
+        "drive_num": 10,
+        "team": "away",
+        "start_yardline": 63,
+        "start_quarter": 3,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 613
+      }
+    },
+    {
+      "t": 1762309503.801152,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 10,
+      "team": "away",
+      "pace": 9,
+      "success_rate": 0.2222222222222222,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "FG"
+    },
+    {
+      "t": 1762309503.80397,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5454545454545454,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.804127,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 613
+      }
+    },
+    {
+      "t": 1762309503.805026,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5454545454545454,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.8053691,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 576
+      }
+    },
+    {
+      "t": 1762309503.807276,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 41,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8076851,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.8079302,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.22467415378982145,
+      "after_pff_vs_cov": 0.31454381530575,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31454381530575
+    },
+    {
+      "t": 1762309503.8083682,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "sack",
+      "yards": -4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 41,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 539
+      }
+    },
+    {
+      "t": 1762309503.810175,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 11,
+      "yardline": 37,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.810365,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.8104498,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.8105621,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 11,
+        "yardline": 37,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 539
+      }
+    },
+    {
+      "t": 1762309503.810645,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "time_remaining": 502,
+      "yardline": 41,
+      "to_go": 7,
+      "score_diff": -14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 41,
+        "distance_to_goal": 59,
+        "fg_distance": 76,
+        "ydstogo": 7,
+        "time_remaining": 1402,
+        "score_diff": -14,
+        "quarter": 3,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 41,
+        "distance_to_goal": 59,
+        "fg_distance": 76,
+        "ydstogo": 7,
+        "time_remaining": 1402,
+        "score_diff": -14,
+        "quarter": 3,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309503.810753,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 11,
+      "team": "home",
+      "plays": 4,
+      "points": 0,
+      "time_used": 111,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 11,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 613
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 502
+      }
+    },
+    {
+      "t": 1762309503.81083,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 11,
+      "team": "home",
+      "pace": 4,
+      "success_rate": 0.25,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309503.812083,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.812247,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 502
+      }
+    },
+    {
+      "t": 1762309503.8155022,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.815853,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 461
+      }
+    },
+    {
+      "t": 1762309503.819017,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 40,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.819369,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 40,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 420
+      }
+    },
+    {
+      "t": 1762309503.821873,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 43,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8220139,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.822089,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.8222232,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 43,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 379
+      }
+    },
+    {
+      "t": 1762309503.822502,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "time_remaining": 338,
+      "yardline": 45,
+      "to_go": 2,
+      "score_diff": 14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 45,
+        "distance_to_goal": 55,
+        "fg_distance": 72,
+        "ydstogo": 2,
+        "time_remaining": 1238,
+        "score_diff": 14,
+        "quarter": 3,
+        "reason": "4th_short_past_40"
+      },
+      "punt_reasoning": {
+        "yardline": 45,
+        "distance_to_goal": 55,
+        "fg_distance": 72,
+        "ydstogo": 2,
+        "time_remaining": 1238,
+        "score_diff": 14,
+        "quarter": 3,
+        "reason": "4th_short_past_40"
+      }
+    },
+    {
+      "t": 1762309503.824366,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 4,
+      "to_go": 2,
+      "yardline": 45,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.824491,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.824569,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328576,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31311707063460004
+    },
+    {
+      "t": 1762309503.824693,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 2,
+        "yardline": 45,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 338
+      }
+    },
+    {
+      "t": 1762309503.8253691,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 52,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8254762,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.82555,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.8256881,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 52,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 297
+      }
+    },
+    {
+      "t": 1762309503.8262131,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 54,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.826358,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": -3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 54,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 256
+      }
+    },
+    {
+      "t": 1762309503.827391,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 11,
+      "yardline": 51,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.827507,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 11,
+        "yardline": 51,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 215
+      }
+    },
+    {
+      "t": 1762309503.827591,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "time_remaining": 174,
+      "yardline": 54,
+      "to_go": 8,
+      "score_diff": 14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 54,
+        "distance_to_goal": 46,
+        "fg_distance": 63,
+        "ydstogo": 8,
+        "time_remaining": 1074,
+        "score_diff": 14,
+        "quarter": 3,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 54,
+        "distance_to_goal": 46,
+        "fg_distance": 63,
+        "ydstogo": 8,
+        "time_remaining": 1074,
+        "score_diff": 14,
+        "quarter": 3,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309503.8276842,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 12,
+      "team": "away",
+      "plays": 8,
+      "points": 0,
+      "time_used": 328,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 12,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 502
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 174
+      }
+    },
+    {
+      "t": 1762309503.8277571,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 12,
+      "team": "away",
+      "pace": 8,
+      "success_rate": 0.25,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309503.828768,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5454545454545454,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8289049,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.829078,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.829251,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 174
+      }
+    },
+    {
+      "t": 1762309503.8309371,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 30,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8310559,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.831132,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.831233,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 30,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 137
+      }
+    },
+    {
+      "t": 1762309503.832224,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 34,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.832387,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.832475,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.832578,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 34,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 100
+      }
+    },
+    {
+      "t": 1762309503.833559,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 42,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5454545454545454,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.833667,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.833788,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.8341792,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 42,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 63
+      }
+    },
+    {
+      "t": 1762309503.8360379,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 46,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8361459,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.836312,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.836494,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 46,
+        "home": 3,
+        "away": 17,
+        "quarter": 3,
+        "time_rem": 26
+      }
+    },
+    {
+      "t": 1762309503.838455,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 46,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.838592,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.838679,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.8387892,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 46,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309503.8388999,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "time_remaining": 863,
+      "yardline": 48,
+      "to_go": 4,
+      "score_diff": -14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 48,
+        "distance_to_goal": 52,
+        "fg_distance": 69,
+        "ydstogo": 4,
+        "time_remaining": 863,
+        "score_diff": -14,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 48,
+        "distance_to_goal": 52,
+        "fg_distance": 69,
+        "ydstogo": 4,
+        "time_remaining": 863,
+        "score_diff": -14,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309503.839052,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 13,
+      "team": "home",
+      "plays": 5,
+      "points": 0,
+      "time_used": -689,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 13,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 174
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 863
+      }
+    },
+    {
+      "t": 1762309503.839169,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 13,
+      "team": "home",
+      "pace": 5,
+      "success_rate": 0.2,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309503.840033,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.840152,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.840229,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.840346,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762309503.841127,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.841331,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 822
+      }
+    },
+    {
+      "t": 1762309503.842292,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.8425002,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 781
+      }
+    },
+    {
+      "t": 1762309503.843301,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 42,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.84341,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 42,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 740
+      }
+    },
+    {
+      "t": 1762309503.8439429,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 50,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.844091,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 50,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 699
+      }
+    },
+    {
+      "t": 1762309503.8448918,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 54,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.845024,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 54,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 658
+      }
+    },
+    {
+      "t": 1762309503.845876,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 61,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.846115,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.846326,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328574,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36008463122979
+    },
+    {
+      "t": 1762309503.846447,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "sack",
+      "yards": -8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 61,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 617
+      }
+    },
+    {
+      "t": 1762309503.8471549,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 18,
+      "yardline": 53,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.8473191,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": -2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 18,
+        "yardline": 53,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 617
+      }
+    },
+    {
+      "t": 1762309503.847883,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 20,
+      "yardline": 51,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8479948,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.8480709,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328576,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31311707063460004
+    },
+    {
+      "t": 1762309503.848153,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 20,
+        "yardline": 51,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 576
+      }
+    },
+    {
+      "t": 1762309503.8482502,
+      "kind": "policy_decision",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "time_remaining": 576,
+      "yardline": 51,
+      "to_go": 20,
+      "score_diff": 14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 51,
+        "distance_to_goal": 49,
+        "fg_distance": 66,
+        "ydstogo": 20,
+        "time_remaining": 576,
+        "score_diff": 14,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 51,
+        "distance_to_goal": 49,
+        "fg_distance": 66,
+        "ydstogo": 20,
+        "time_remaining": 576,
+        "score_diff": 14,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309503.848354,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 14,
+      "team": "away",
+      "plays": 9,
+      "points": 0,
+      "time_used": 287,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 14,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 863
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 576
+      }
+    },
+    {
+      "t": 1762309503.848952,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 14,
+      "team": "away",
+      "pace": 9,
+      "success_rate": 0.3333333333333333,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309503.8495831,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.849749,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.85007,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.8503401,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 20,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 576
+      }
+    },
+    {
+      "t": 1762309503.8516438,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 45,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.851795,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 45,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 539
+      }
+    },
+    {
+      "t": 1762309503.852351,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 56,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.852461,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.852533,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.22467415378982142,
+      "after_pff_vs_cov": 0.31454381530575,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36172538760161244
+    },
+    {
+      "t": 1762309503.852593,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 56,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 502
+      }
+    },
+    {
+      "t": 1762309503.853481,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 56,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.7777777777777778,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.853612,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.8536909,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.22467415378982145,
+      "after_pff_vs_cov": 0.31454381530575,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31454381530575
+    },
+    {
+      "t": 1762309503.8537889,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 56,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 502
+      }
+    },
+    {
+      "t": 1762309503.8545291,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 10,
+      "yardline": 56,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.854641,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 10,
+        "yardline": 56,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 502
+      }
+    },
+    {
+      "t": 1762309503.855177,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 69,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8552802,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.855358,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.22467415378982142,
+      "after_pff_vs_cov": 0.31454381530575,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36172538760161244
+    },
+    {
+      "t": 1762309503.855444,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "sack",
+      "yards": -5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 69,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 465
+      }
+    },
+    {
+      "t": 1762309503.8563142,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 15,
+      "yardline": 64,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.7777777777777778,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8564212,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.8564968,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.8566,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 15,
+        "yardline": 64,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 465
+      }
+    },
+    {
+      "t": 1762309503.8572469,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 11,
+      "yardline": 68,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8573508,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.857428,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309503.85753,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 11,
+        "yardline": 68,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 428
+      }
+    },
+    {
+      "t": 1762309503.858149,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 83,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.858269,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 83,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 391
+      }
+    },
+    {
+      "t": 1762309503.8607,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 90,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.8592592592592593,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8608088,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 65.1,
+      "dl_grade": 74.4,
+      "mismatch": 9.300000000000011,
+      "final": 0.24920000000000003,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.8608892,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.295468901785715,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.861004,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 10,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 90,
+        "home": 3,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 354
+      }
+    },
+    {
+      "t": 1762309503.861112,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 15,
+      "team": "home",
+      "plays": 10,
+      "points": 7,
+      "time_used": 259,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 15,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 576
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 317
+      }
+    },
+    {
+      "t": 1762309503.861346,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 15,
+      "team": "home",
+      "pace": 10,
+      "success_rate": 0.5,
+      "explosive_rate": 0.2,
+      "explosive_count": 2,
+      "result": "TD"
+    },
+    {
+      "t": 1762309503.8621461,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.862247,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.8623202,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.862449,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 10,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 317
+      }
+    },
+    {
+      "t": 1762309503.863623,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.863821,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 10,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 276
+      }
+    },
+    {
+      "t": 1762309503.865153,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.865461,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.8656452,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309503.86577,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 10,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 235
+      }
+    },
+    {
+      "t": 1762309503.866508,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 37,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.8667572,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 37,
+        "home": 10,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 194
+      }
+    },
+    {
+      "t": 1762309503.867376,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 46,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.867693,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 46,
+        "home": 10,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 153
+      }
+    },
+    {
+      "t": 1762309503.868665,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 50,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309503.868768,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 50,
+        "home": 10,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 112
+      }
+    },
+    {
+      "t": 1762309503.870126,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 56,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.5092592592592592,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.8702452,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309503.870324,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.22365505045328574,
+      "after_pff_vs_cov": 0.31311707063460004,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36008463122979
+    },
+    {
+      "t": 1762309503.870502,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 56,
+        "home": 10,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 71
+      }
+    },
+    {
+      "t": 1762309503.872252,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_SEA_WAS",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 60,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309503.872378,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_SEA_WAS",
+      "base": 0.212,
+      "ol_grade": 62.2,
+      "dl_grade": 68.8,
+      "mismatch": 6.599999999999994,
+      "final": 0.23839999999999997,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309503.8724601,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_SEA_WAS",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.0627969071428565,
+      "after_anya": 0.6280724019578572,
+      "after_pff_vs_cov": 0.879301362741,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.879301362741
+    },
+    {
+      "t": 1762309503.872566,
+      "kind": "play.result",
+      "game_id": "2025_09_SEA_WAS",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 60,
+        "home": 10,
+        "away": 17,
+        "quarter": 4,
+        "time_rem": 30
+      }
+    },
+    {
+      "t": 1762309503.8726652,
+      "kind": "drive.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 16,
+      "team": "away",
+      "plays": 8,
+      "points": 0,
+      "time_used": 317,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 16,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 317
+      },
+      "end_state": {
+        "yardline": 72,
+        "quarter": 4,
+        "time_remaining": 0
+      }
+    },
+    {
+      "t": 1762309503.872737,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_SEA_WAS",
+      "drive_no": 16,
+      "team": "away",
+      "pace": 8,
+      "success_rate": 0.5,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762309503.872916,
+      "kind": "game.summary",
+      "game_id": "2025_09_SEA_WAS",
+      "home_score": 10,
+      "away_score": 17,
+      "spread": 7,
+      "total": 27,
+      "drives_per_team": 8.0,
+      "plays_per_drive": 6.75,
+      "td_pct": 0.1875,
+      "fg_pct": 0.125,
+      "turnover_pct": 0.0,
+      "explosive_rate": 0.06481481481481481,
+      "pass_rate": 0.5405405405405406
+    },
+    {
+      "t": 1762309503.8729868,
+      "kind": "anchors.violation",
+      "game_id": "2025_09_SEA_WAS",
+      "violations": [
+        {
+          "metric": "drives_per_team",
+          "observed": 8.0,
+          "target_range": [
+            9.5,
+            12.5
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "fg_pct",
+          "observed": 0.125,
+          "target_range": [
+            0.08,
+            0.12
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "turnover_pct",
+          "observed": 0.0,
+          "target_range": [
+            0.09,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "explosive_rate",
+          "observed": 0.06481481481481481,
+          "target_range": [
+            0.1,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "pass_rate",
+          "observed": 0.5405405405405406,
+          "target_range": [
+            0.58,
+            0.62
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "total_points",
+          "observed": 27,
+          "target_range": [
+            42,
+            46
+          ],
+          "violation": "too_low"
+        }
+      ],
+      "severity": "critical"
+    },
+    {
+      "t": 1762309543.650452,
+      "kind": "distribution_params",
+      "game_id": "2025_09_SEA_WAS",
+      "spread": {
+        "raw_mean": 4.38,
+        "raw_sd": 12.494622843447496,
+        "calibrated_mean": 2.500980000000002,
+        "calibrated_sd": 12.494622843447496,
+        "market_line": -2.5
+      },
+      "total": {
+        "raw_mean": 41.44,
+        "raw_sd": 11.351933755973032,
+        "calibrated_mean": 50.11224,
+        "calibrated_sd": 11.351933755973032,
+        "market_line": 47.5
+      }
+    },
+    {
+      "t": 1762309543.777758,
+      "kind": "calibration",
+      "game_id": "2025_09_SEA_WAS",
+      "spread": {
+        "predicted_prob": 0.5026737967914439,
+        "bin_id": null,
+        "bet_side": null,
+        "market_line": -2.5,
+        "eventual_hit": null
+      },
+      "total": {
+        "predicted_prob": 0.5132450331125828,
+        "bin_id": null,
+        "bet_side": null,
+        "market_line": 47.5,
+        "eventual_hit": null
+      },
+      "calibration_method": "isotonic"
+    }
+  ]
+}

@@ -139,6 +139,31 @@ def simulate_one_game(args):
         home_score_mean = calibrated_home_mean  # This is: LINEAR_ALPHA/2 + LINEAR_BETA * raw_home_mean
         away_score_mean = calibrated_away_mean  # This is: LINEAR_ALPHA/2 + LINEAR_BETA * raw_away_mean
         
+        # Apply bias correction: MARGIN-ONLY to help spreads without hurting totals
+        # This adjusts the margin prediction while keeping total unchanged
+        from bias_calibration import get_score_adjustment
+        
+        # Step 1: Compute raw total and margin
+        total_raw = home_score_mean + away_score_mean
+        margin_raw = home_score_mean - away_score_mean
+        
+        # Step 2: Get net bias for each team (venue-aware, shorter memory, smaller cap)
+        home_net = get_score_adjustment(home, season, week, mode='net', 
+                                       span_ewm=2, clip_points=1.0, venue='home')
+        away_net = get_score_adjustment(away, season, week, mode='net', 
+                                       span_ewm=2, clip_points=1.0, venue='away')
+        
+        # Step 3: Adjust MARGIN only (small, clamped to ±1.0, then halved)
+        bias_margin = np.clip((home_net - away_net), -1.0, 1.0) * 0.5
+        margin_adj = margin_raw + bias_margin
+        
+        # Step 4: Rebuild means from margin + original total (totals stay stable)
+        home_score_mean = (total_raw + margin_adj) / 2.0
+        away_score_mean = (total_raw - margin_adj) / 2.0
+        
+        # Update calibrated spread mean to reflect bias-adjusted margin
+        calibrated_spread_mean = margin_adj
+        
         # DEBUG: Verify calibration was applied
         if abs(home_score_mean - np.mean(home_c)) < 0.1:
             # This would mean calibrated = market-centered, which is wrong

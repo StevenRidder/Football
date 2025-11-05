@@ -1,0 +1,7355 @@
+{
+  "game_id": "2025_10_LAR_SF",
+  "seed": 4081332385,
+  "total_events": 456,
+  "event_types": {
+    "inputs.audit": 1,
+    "call.pass_run": 127,
+    "pass.pressure": 82,
+    "pass.completion_model": 82,
+    "play.result": 127,
+    "drive.summary": 14,
+    "anchor_slice": 14,
+    "policy_decision": 5,
+    "game.summary": 1,
+    "anchors.violation": 1,
+    "distribution_params": 1,
+    "calibration": 1
+  },
+  "events": [
+    {
+      "t": 1762309680.152134,
+      "kind": "inputs.audit",
+      "game_id": "2025_10_LAR_SF",
+      "home": {
+        "team": "SF",
+        "season": 2025,
+        "week": 10,
+        "off_epa": 0.010978721599611921,
+        "def_epa": -0.023095195983640023,
+        "pace": 7.204671717171717,
+        "early_down_success_rate": 0.5498240763619756,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "off_yards_per_play": 5.5019374,
+        "off_yards_per_pass_attempt": 6.768835644444445,
+        "yards_per_pass": null,
+        "yards_per_run": null,
+        "pass_rate": 0.5893333333333334,
+        "red_zone_trips_per_game": 3.5555555555555554,
+        "red_zone_td_pct": 0.6499999999999999,
+        "punt_net_yards": 29.0,
+        "field_goal_make_pct": 0.5,
+        "ol_grade": 62.1,
+        "dl_grade": 64.4,
+        "ol_run_grade": 78.4,
+        "dl_run_grade": 64.3,
+        "coverage_grade": 49.9,
+        "passing_grade": 73.9,
+        "playcalling_situations": 77,
+        "home_rest_days": 7,
+        "away_rest_days": 7,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "away": {
+        "team": "LAR",
+        "season": 2025,
+        "week": 10,
+        "off_epa": 0.01411927475904421,
+        "def_epa": -0.05512938689854406,
+        "pace": 6.283441558441559,
+        "early_down_success_rate": 0.6060202749948458,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "off_yards_per_play": 5.9469794125,
+        "off_yards_per_pass_attempt": 6.9864350375,
+        "yards_per_pass": null,
+        "yards_per_run": null,
+        "pass_rate": 0.6116838487972509,
+        "red_zone_trips_per_game": 5.0,
+        "red_zone_td_pct": 0.6526785714285714,
+        "punt_net_yards": 49.333332,
+        "field_goal_make_pct": 0.8333333333333334,
+        "ol_grade": 53.0,
+        "dl_grade": 78.5,
+        "ol_run_grade": 85.5,
+        "dl_run_grade": 78.9,
+        "coverage_grade": 75.4,
+        "passing_grade": 91.7,
+        "playcalling_situations": 60,
+        "home_rest_days": 7,
+        "away_rest_days": 7,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "situational": {
+        "is_dome": false,
+        "temp": null,
+        "wind": null,
+        "home_rest_days": 7,
+        "away_rest_days": 7
+      },
+      "seed": 4081332385
+    },
+    {
+      "t": 1762309680.163554,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3888888888888889,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.1647239,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.164926,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.165214,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 23,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309680.1667058,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 48,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3888888888888889,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.166931,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 48,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 862
+      }
+    },
+    {
+      "t": 1762309680.168659,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 52,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.8333333333333334,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.169197,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.169518,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.169987,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 52,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 824
+      }
+    },
+    {
+      "t": 1762309680.171818,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 60,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3888888888888889,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.172291,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 60,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 786
+      }
+    },
+    {
+      "t": 1762309680.1746051,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 65,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.8333333333333334,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.175112,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.1753721,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.2226210940865833,
+      "after_pff_vs_cov": 0.31166953172121664,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3584199614793991
+    },
+    {
+      "t": 1762309680.175605,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 65,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 748
+      }
+    },
+    {
+      "t": 1762309680.177685,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 67,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.178543,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.179442,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.179704,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 67,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 710
+      }
+    },
+    {
+      "t": 1762309680.1810281,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 73,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3888888888888889,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.1812549,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 73,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 672
+      }
+    },
+    {
+      "t": 1762309680.1826692,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 77,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.8333333333333334,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.183012,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 77,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 634
+      }
+    },
+    {
+      "t": 1762309680.185065,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 83,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3888888888888889,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.185379,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 83,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 596
+      }
+    },
+    {
+      "t": 1762309680.187826,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 91,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.188212,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 9,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 91,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 558
+      }
+    },
+    {
+      "t": 1762309680.188443,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 2,
+      "team": "away",
+      "plays": 10,
+      "points": 7,
+      "time_used": 380,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 2,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 520
+      }
+    },
+    {
+      "t": 1762309680.188683,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 2,
+      "team": "away",
+      "pace": 10,
+      "success_rate": 0.5,
+      "explosive_rate": 0.1,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309680.191473,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.191894,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 520
+      }
+    },
+    {
+      "t": 1762309680.198223,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 32,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.7333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.200004,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 32,
+        "home": 0,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 487
+      }
+    },
+    {
+      "t": 1762309680.201921,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.20248,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.20272,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.203018,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 19,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 0,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 454
+      }
+    },
+    {
+      "t": 1762309680.2048671,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 57,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.205576,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 57,
+        "home": 0,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 421
+      }
+    },
+    {
+      "t": 1762309680.209023,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 57,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.7222222222222222,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.209732,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.209985,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183334,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31526258113256667
+    },
+    {
+      "t": 1762309680.210492,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "scramble",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 57,
+        "home": 0,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 388
+      }
+    },
+    {
+      "t": 1762309680.216424,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 7,
+      "yardline": 60,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.2168949,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.217783,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.219386,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 20,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 7,
+        "yardline": 60,
+        "home": 0,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 355
+      }
+    },
+    {
+      "t": 1762309680.221822,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 80,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.222305,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.2227142,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183332,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3625519683024516
+    },
+    {
+      "t": 1762309680.2240572,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "sack",
+      "yards": -9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 80,
+        "home": 0,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 322
+      }
+    },
+    {
+      "t": 1762309680.238972,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 19,
+      "yardline": 71,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.7222222222222222,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.239491,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.239764,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.240887,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 19,
+        "yardline": 71,
+        "home": 0,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 322
+      }
+    },
+    {
+      "t": 1762309680.246515,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 86,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.246946,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.2471402,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.24737,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 86,
+        "home": 0,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 289
+      }
+    },
+    {
+      "t": 1762309680.248696,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 9,
+      "yardline": 91,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.248917,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 9,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 9,
+        "yardline": 91,
+        "home": 0,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 256
+      }
+    },
+    {
+      "t": 1762309680.249111,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 3,
+      "team": "home",
+      "plays": 10,
+      "points": 7,
+      "time_used": 297,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 3,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 520
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 223
+      }
+    },
+    {
+      "t": 1762309680.249541,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 3,
+      "team": "home",
+      "pace": 10,
+      "success_rate": 0.5,
+      "explosive_rate": 0.3,
+      "explosive_count": 3,
+      "result": "TD"
+    },
+    {
+      "t": 1762309680.251832,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3888888888888889,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.252239,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 223
+      }
+    },
+    {
+      "t": 1762309680.255442,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 32,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.256011,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 32,
+        "home": 7,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 185
+      }
+    },
+    {
+      "t": 1762309680.258409,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3888888888888889,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.258898,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 7,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 147
+      }
+    },
+    {
+      "t": 1762309680.2606878,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 44,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.8333333333333334,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.26208,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.262343,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.262602,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 44,
+        "home": 7,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 109
+      }
+    },
+    {
+      "t": 1762309680.265939,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3888888888888889,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.266179,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.266516,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.266977,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 22,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 7,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 71
+      }
+    },
+    {
+      "t": 1762309680.268526,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 73,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3888888888888889,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.2689831,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.269192,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.2694452,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 73,
+        "home": 7,
+        "away": 7,
+        "quarter": 1,
+        "time_rem": 33
+      }
+    },
+    {
+      "t": 1762309680.271439,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 87,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3888888888888889,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.2718542,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 87,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309680.2750158,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 94,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.275358,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 6,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 94,
+        "home": 7,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 862
+      }
+    },
+    {
+      "t": 1762309680.27558,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 4,
+      "team": "away",
+      "plays": 7,
+      "points": 7,
+      "time_used": -601,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 4,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 223
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 824
+      }
+    },
+    {
+      "t": 1762309680.2760162,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 4,
+      "team": "away",
+      "pace": 7,
+      "success_rate": 0.5714285714285714,
+      "explosive_rate": 0.14285714285714285,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309680.277934,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.27849,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.278717,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.2793322,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 824
+      }
+    },
+    {
+      "t": 1762309680.281014,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.281318,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.2814772,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183334,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31526258113256667
+    },
+    {
+      "t": 1762309680.281661,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 824
+      }
+    },
+    {
+      "t": 1762309680.2846332,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.28503,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.285225,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.2854779,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 824
+      }
+    },
+    {
+      "t": 1762309680.287078,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.287422,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.287756,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183332,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3625519683024516
+    },
+    {
+      "t": 1762309680.2884722,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 791
+      }
+    },
+    {
+      "t": 1762309680.2905679,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.29093,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 791
+      }
+    },
+    {
+      "t": 1762309680.292406,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 49,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.2940311,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.29468,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183332,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3625519683024516
+    },
+    {
+      "t": 1762309680.2971148,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 49,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 758
+      }
+    },
+    {
+      "t": 1762309680.2987862,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 51,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.2991402,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 51,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762309680.302242,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 54,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.302732,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.302937,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.303191,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 54,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 692
+      }
+    },
+    {
+      "t": 1762309680.3045828,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 64,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.3049521,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.305357,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.306051,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 64,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 659
+      }
+    },
+    {
+      "t": 1762309680.308429,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 64,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.308759,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.308933,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.3091562,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 64,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 659
+      }
+    },
+    {
+      "t": 1762309680.312564,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 68,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.31293,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.313441,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.313828,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 68,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 626
+      }
+    },
+    {
+      "t": 1762309680.316006,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 75,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.3176892,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.318013,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.31899,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 75,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 593
+      }
+    },
+    {
+      "t": 1762309680.324942,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 80,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.325517,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.3277361,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183332,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3625519683024516
+    },
+    {
+      "t": 1762309680.329105,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "sack",
+      "yards": -9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 80,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 560
+      }
+    },
+    {
+      "t": 1762309680.337257,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 14,
+      "yardline": 71,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.338992,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.339778,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183334,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31526258113256667
+    },
+    {
+      "t": 1762309680.340182,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "sack",
+      "yards": -9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 14,
+        "yardline": 71,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 560
+      }
+    },
+    {
+      "t": 1762309680.34054,
+      "kind": "policy_decision",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "time_remaining": 560,
+      "yardline": 62,
+      "to_go": 23,
+      "score_diff": -7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 62,
+        "distance_to_goal": 38,
+        "fg_distance": 55,
+        "ydstogo": 23,
+        "time_remaining": 2360,
+        "score_diff": -7,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 62,
+        "distance_to_goal": 38,
+        "fg_distance": 55,
+        "ydstogo": 23,
+        "time_remaining": 2360,
+        "score_diff": -7,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309680.345056,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 5,
+      "team": "home",
+      "plays": 14,
+      "points": 0,
+      "time_used": 264,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 5,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 824
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 560
+      }
+    },
+    {
+      "t": 1762309680.3452952,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 5,
+      "team": "home",
+      "pace": 14,
+      "success_rate": 0.2857142857142857,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309680.3472059,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.347765,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.3480608,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.22262109408658334,
+      "after_pff_vs_cov": 0.31166953172121664,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31166953172121664
+    },
+    {
+      "t": 1762309680.348491,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "sack",
+      "yards": -3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 560
+      }
+    },
+    {
+      "t": 1762309680.352437,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 13,
+      "yardline": 22,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.35375,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 13,
+        "yardline": 22,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 560
+      }
+    },
+    {
+      "t": 1762309680.3574998,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 30,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8392857142857143,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.357932,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 30,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 522
+      }
+    },
+    {
+      "t": 1762309680.361731,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.362392,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.3628318,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.3631601,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 484
+      }
+    },
+    {
+      "t": 1762309680.3691,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.369899,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 484
+      }
+    },
+    {
+      "t": 1762309680.373757,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 43,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8392857142857143,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.375059,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 43,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 446
+      }
+    },
+    {
+      "t": 1762309680.377385,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 56,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.378047,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.378287,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.378527,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 56,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 408
+      }
+    },
+    {
+      "t": 1762309680.381071,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 58,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.38154,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 58,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 370
+      }
+    },
+    {
+      "t": 1762309680.385341,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 66,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.385793,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.386235,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.2226210940865833,
+      "after_pff_vs_cov": 0.31166953172121664,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3584199614793991
+    },
+    {
+      "t": 1762309680.386652,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "sack",
+      "yards": -2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 66,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 332
+      }
+    },
+    {
+      "t": 1762309680.3896499,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 12,
+      "yardline": 64,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.390081,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 12,
+        "yardline": 64,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 332
+      }
+    },
+    {
+      "t": 1762309680.3934531,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 10,
+      "yardline": 66,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8392857142857143,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.394142,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.394551,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.22262109408658334,
+      "after_pff_vs_cov": 0.31166953172121664,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31166953172121664
+    },
+    {
+      "t": 1762309680.395157,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 10,
+        "yardline": 66,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 294
+      }
+    },
+    {
+      "t": 1762309680.399223,
+      "kind": "policy_decision",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "time_remaining": 294,
+      "yardline": 66,
+      "to_go": 10,
+      "score_diff": 7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 66,
+        "distance_to_goal": 34,
+        "fg_distance": 51,
+        "ydstogo": 10,
+        "time_remaining": 2094,
+        "score_diff": 7,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 66,
+        "distance_to_goal": 34,
+        "fg_distance": 51,
+        "ydstogo": 10,
+        "time_remaining": 2094,
+        "score_diff": 7,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309680.399637,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 6,
+      "team": "away",
+      "plays": 11,
+      "points": 0,
+      "time_used": 266,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 6,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 560
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 294
+      }
+    },
+    {
+      "t": 1762309680.40027,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 6,
+      "team": "away",
+      "pace": 11,
+      "success_rate": 0.2727272727272727,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309680.402646,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.403102,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.403302,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.40353,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 294
+      }
+    },
+    {
+      "t": 1762309680.4064782,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.406902,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.40717,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183334,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31526258113256667
+    },
+    {
+      "t": 1762309680.407649,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "scramble",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 261
+      }
+    },
+    {
+      "t": 1762309680.41199,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.412452,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.412628,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.413574,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 228
+      }
+    },
+    {
+      "t": 1762309680.415874,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 50,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.416265,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.4167628,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.4173398,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 50,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 195
+      }
+    },
+    {
+      "t": 1762309680.418686,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 55,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.418923,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.419384,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183332,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3625519683024516
+    },
+    {
+      "t": 1762309680.4197812,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "scramble",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 55,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 162
+      }
+    },
+    {
+      "t": 1762309680.421793,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 63,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.4221828,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.422355,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.423311,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 63,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 129
+      }
+    },
+    {
+      "t": 1762309680.424711,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 77,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.424982,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.425353,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.4255989,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 77,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 96
+      }
+    },
+    {
+      "t": 1762309680.427436,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 9,
+      "yardline": 91,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.4280362,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.428233,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.428639,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 9,
+        "yardline": 91,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 63
+      }
+    },
+    {
+      "t": 1762309680.431869,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 97,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.7333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.4321768,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.432491,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183332,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3625519683024516
+    },
+    {
+      "t": 1762309680.4328651,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 97,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 30
+      }
+    },
+    {
+      "t": 1762309680.43626,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 97,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.436865,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.4375832,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.438129,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 3,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 97,
+        "home": 7,
+        "away": 14,
+        "quarter": 2,
+        "time_rem": 30
+      }
+    },
+    {
+      "t": 1762309680.4400508,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 75,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8181818181818182,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.440372,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.441642,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183334,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31526258113256667
+    },
+    {
+      "t": 1762309680.441986,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "scramble",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 75,
+        "home": 14,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309680.444287,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 77,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.524074074074074,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.446646,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.4469361,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.447356,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 77,
+        "home": 14,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 867
+      }
+    },
+    {
+      "t": 1762309680.449939,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 79,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8333333333333334,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.453302,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.453831,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.454339,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 21,
+      "td": true,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 79,
+        "home": 14,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 834
+      }
+    },
+    {
+      "t": 1762309680.454807,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 7,
+      "team": "home",
+      "plays": 12,
+      "points": 7,
+      "time_used": -507,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 7,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 294
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 801
+      }
+    },
+    {
+      "t": 1762309680.455177,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 7,
+      "team": "home",
+      "pace": 12,
+      "success_rate": 0.5,
+      "explosive_rate": 0.16666666666666666,
+      "explosive_count": 2,
+      "result": "TD"
+    },
+    {
+      "t": 1762309680.457066,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.457412,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.4576309,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.457935,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 801
+      }
+    },
+    {
+      "t": 1762309680.459622,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.459969,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 763
+      }
+    },
+    {
+      "t": 1762309680.462591,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 41,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.462972,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.463361,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.22262109408658334,
+      "after_pff_vs_cov": 0.31166953172121664,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31166953172121664
+    },
+    {
+      "t": 1762309680.463609,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 41,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762309680.466579,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 7,
+      "yardline": 41,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.466967,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.467947,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.468294,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 21,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 7,
+        "yardline": 41,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 725
+      }
+    },
+    {
+      "t": 1762309680.469904,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 62,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.47038,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": -4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 62,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 687
+      }
+    },
+    {
+      "t": 1762309680.4720662,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 14,
+      "yardline": 58,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.472435,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.4726799,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.22262109408658334,
+      "after_pff_vs_cov": 0.31166953172121664,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31166953172121664
+    },
+    {
+      "t": 1762309680.4728692,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "scramble",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 14,
+        "yardline": 58,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 649
+      }
+    },
+    {
+      "t": 1762309680.4759412,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 10,
+      "yardline": 62,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.476305,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.476476,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.4768262,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 10,
+        "yardline": 62,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 611
+      }
+    },
+    {
+      "t": 1762309680.4774458,
+      "kind": "policy_decision",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "time_remaining": 611,
+      "yardline": 62,
+      "to_go": 10,
+      "score_diff": -7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 62,
+        "distance_to_goal": 38,
+        "fg_distance": 55,
+        "ydstogo": 10,
+        "time_remaining": 1511,
+        "score_diff": -7,
+        "quarter": 3,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 62,
+        "distance_to_goal": 38,
+        "fg_distance": 55,
+        "ydstogo": 10,
+        "time_remaining": 1511,
+        "score_diff": -7,
+        "quarter": 3,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309680.477854,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 9,
+      "team": "away",
+      "plays": 7,
+      "points": 0,
+      "time_used": 190,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 9,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 801
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 611
+      }
+    },
+    {
+      "t": 1762309680.4781709,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 9,
+      "team": "away",
+      "pace": 7,
+      "success_rate": 0.2857142857142857,
+      "explosive_rate": 0.14285714285714285,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309680.484641,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.485101,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 611
+      }
+    },
+    {
+      "t": 1762309680.4890392,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 34,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.489616,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 34,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 578
+      }
+    },
+    {
+      "t": 1762309680.491929,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 44,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.4923651,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.492704,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.493323,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 44,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 545
+      }
+    },
+    {
+      "t": 1762309680.495305,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 44,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.495741,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 44,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 545
+      }
+    },
+    {
+      "t": 1762309680.4987772,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 50,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.49922,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.499433,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.22518755795183332,
+      "after_pff_vs_cov": 0.31526258113256667,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3625519683024516
+    },
+    {
+      "t": 1762309680.499893,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 50,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 512
+      }
+    },
+    {
+      "t": 1762309680.500643,
+      "kind": "policy_decision",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "time_remaining": 512,
+      "yardline": 50,
+      "to_go": 4,
+      "score_diff": 7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 50,
+        "distance_to_goal": 50,
+        "fg_distance": 67,
+        "ydstogo": 4,
+        "time_remaining": 1412,
+        "score_diff": 7,
+        "quarter": 3,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 50,
+        "distance_to_goal": 50,
+        "fg_distance": 67,
+        "ydstogo": 4,
+        "time_remaining": 1412,
+        "score_diff": 7,
+        "quarter": 3,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309680.500973,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 10,
+      "team": "home",
+      "plays": 5,
+      "points": 0,
+      "time_used": 99,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 10,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 611
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 512
+      }
+    },
+    {
+      "t": 1762309680.501185,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 10,
+      "team": "home",
+      "pace": 5,
+      "success_rate": 0.2,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309680.503406,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.50381,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.504694,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.505106,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 512
+      }
+    },
+    {
+      "t": 1762309680.508511,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 30,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.508907,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.509139,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.510432,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 21,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 30,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 474
+      }
+    },
+    {
+      "t": 1762309680.512735,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.51313,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.513464,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.5138571,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 436
+      }
+    },
+    {
+      "t": 1762309680.515414,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 54,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.5158038,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.5160089,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.516246,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 54,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 398
+      }
+    },
+    {
+      "t": 1762309680.5180428,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 64,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.518379,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.51924,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.520635,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 64,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 360
+      }
+    },
+    {
+      "t": 1762309680.52385,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 72,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.9,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.524622,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.52645,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.2226210940865833,
+      "after_pff_vs_cov": 0.31166953172121664,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3584199614793991
+    },
+    {
+      "t": 1762309680.526935,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "scramble",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 72,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 322
+      }
+    },
+    {
+      "t": 1762309680.529494,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 79,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.53141,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 79,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 284
+      }
+    },
+    {
+      "t": 1762309680.5364962,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 88,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.9,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.537534,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.537833,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.53816,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 88,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 246
+      }
+    },
+    {
+      "t": 1762309680.541188,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 2,
+      "yardline": 98,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5125,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.541545,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.541725,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.541905,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "interception",
+      "yards": 0,
+      "td": false,
+      "turnover": true,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 2,
+        "yardline": 98,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 208
+      }
+    },
+    {
+      "t": 1762309680.5420642,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 11,
+      "team": "away",
+      "plays": 9,
+      "points": 0,
+      "time_used": 304,
+      "result": "Turnover",
+      "start_state": {
+        "drive_num": 11,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 512
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 208
+      }
+    },
+    {
+      "t": 1762309680.542214,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 11,
+      "team": "away",
+      "pace": 9,
+      "success_rate": 0.5555555555555556,
+      "explosive_rate": 0.1111111111111111,
+      "explosive_count": 1,
+      "result": "Turnover"
+    },
+    {
+      "t": 1762309680.545334,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.54578,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.545965,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.546299,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 17,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 208
+      }
+    },
+    {
+      "t": 1762309680.5476868,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 42,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.5480168,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 42,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 175
+      }
+    },
+    {
+      "t": 1762309680.552545,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 48,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.552962,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.5535328,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.553868,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 48,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 142
+      }
+    },
+    {
+      "t": 1762309680.555987,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 51,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.556397,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.556583,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.556811,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 51,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 109
+      }
+    },
+    {
+      "t": 1762309680.5581498,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 63,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.558469,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 63,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 76
+      }
+    },
+    {
+      "t": 1762309680.562361,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 70,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.562879,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 70,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 43
+      }
+    },
+    {
+      "t": 1762309680.5643,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 73,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.564765,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 73,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 10
+      }
+    },
+    {
+      "t": 1762309680.5661619,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 83,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.566478,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 83,
+        "home": 21,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309680.569468,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 91,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.570028,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.5703769,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.57065,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 91,
+        "home": 21,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 867
+      }
+    },
+    {
+      "t": 1762309680.574412,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 6,
+      "yardline": 94,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.17777777777777778,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.57507,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 6,
+        "yardline": 94,
+        "home": 21,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 834
+      }
+    },
+    {
+      "t": 1762309680.583339,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 96,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.5840251,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.5843148,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.584518,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 96,
+        "home": 21,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 801
+      }
+    },
+    {
+      "t": 1762309680.587609,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 96,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.588139,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.588476,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.5888782,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 4,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 96,
+        "home": 21,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 801
+      }
+    },
+    {
+      "t": 1762309680.589097,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 12,
+      "team": "home",
+      "plays": 11,
+      "points": 7,
+      "time_used": -560,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 12,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 208
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 768
+      }
+    },
+    {
+      "t": 1762309680.589453,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 12,
+      "team": "home",
+      "pace": 11,
+      "success_rate": 0.45454545454545453,
+      "explosive_rate": 0.09090909090909091,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309680.5920892,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.592491,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.592737,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.593457,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 768
+      }
+    },
+    {
+      "t": 1762309680.5960698,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.596443,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.596643,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.2226210940865833,
+      "after_pff_vs_cov": 0.31166953172121664,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3584199614793991
+    },
+    {
+      "t": 1762309680.596791,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 730
+      }
+    },
+    {
+      "t": 1762309680.6023061,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.603316,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 730
+      }
+    },
+    {
+      "t": 1762309680.606712,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 49,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.60748,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 49,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 692
+      }
+    },
+    {
+      "t": 1762309680.6119838,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 58,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.6124642,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 58,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 654
+      }
+    },
+    {
+      "t": 1762309680.614913,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 64,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.615368,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 64,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 616
+      }
+    },
+    {
+      "t": 1762309680.619427,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 66,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.621723,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.622069,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.622411,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 25,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 66,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 578
+      }
+    },
+    {
+      "t": 1762309680.627437,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 9,
+      "yardline": 91,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.627882,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.628591,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.6290402,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 9,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 9,
+        "yardline": 91,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 540
+      }
+    },
+    {
+      "t": 1762309680.6293418,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 13,
+      "team": "away",
+      "plays": 8,
+      "points": 7,
+      "time_used": 266,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 13,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 768
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 502
+      }
+    },
+    {
+      "t": 1762309680.629754,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 13,
+      "team": "away",
+      "pace": 8,
+      "success_rate": 0.625,
+      "explosive_rate": 0.125,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309680.632502,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.17777777777777778,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.633,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 502
+      }
+    },
+    {
+      "t": 1762309680.6381829,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.638725,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 28,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 469
+      }
+    },
+    {
+      "t": 1762309680.643589,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.644053,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.6443572,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.644983,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 69,
+      "td": true,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 28,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 436
+      }
+    },
+    {
+      "t": 1762309680.645248,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 14,
+      "team": "home",
+      "plays": 3,
+      "points": 7,
+      "time_used": 99,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 14,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 502
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 403
+      }
+    },
+    {
+      "t": 1762309680.6455748,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 14,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.3333333333333333,
+      "explosive_rate": 0.3333333333333333,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309680.648406,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.648758,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.6489348,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.649167,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 403
+      }
+    },
+    {
+      "t": 1762309680.6586502,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.659174,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.660565,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.66291,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 365
+      }
+    },
+    {
+      "t": 1762309680.666141,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.666969,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.6672,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.66759,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 17,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 365
+      }
+    },
+    {
+      "t": 1762309680.6699111,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 53,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.6702778,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.670472,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.670702,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 53,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 327
+      }
+    },
+    {
+      "t": 1762309680.6733801,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 68,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.6738691,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.674119,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.2226210940865833,
+      "after_pff_vs_cov": 0.31166953172121664,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3584199614793991
+    },
+    {
+      "t": 1762309680.674289,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 68,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 289
+      }
+    },
+    {
+      "t": 1762309680.6779652,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 68,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.680445,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.680686,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.680922,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 68,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 289
+      }
+    },
+    {
+      "t": 1762309680.6872509,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 83,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.6876411,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309680.687836,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.2226210940865833,
+      "after_pff_vs_cov": 0.31166953172121664,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.3584199614793991
+    },
+    {
+      "t": 1762309680.688016,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "sack",
+      "yards": -4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 83,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 251
+      }
+    },
+    {
+      "t": 1762309680.691124,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 14,
+      "yardline": 79,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.692065,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.6923158,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.692637,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 14,
+        "yardline": 79,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 251
+      }
+    },
+    {
+      "t": 1762309680.6984751,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 88,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.6992419,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.6995,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309680.699745,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 88,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 213
+      }
+    },
+    {
+      "t": 1762309680.700007,
+      "kind": "policy_decision",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "time_remaining": 175,
+      "yardline": 90,
+      "to_go": 3,
+      "score_diff": -14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 90,
+        "distance_to_goal": 10,
+        "fg_distance": 27,
+        "ydstogo": 3,
+        "time_remaining": 175,
+        "score_diff": -14,
+        "quarter": 4,
+        "reason": "4th_and_short_very_close"
+      },
+      "punt_reasoning": {
+        "yardline": 90,
+        "distance_to_goal": 10,
+        "fg_distance": 27,
+        "ydstogo": 3,
+        "time_remaining": 175,
+        "score_diff": -14,
+        "quarter": 4,
+        "reason": "4th_and_short_very_close"
+      }
+    },
+    {
+      "t": 1762309680.706678,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 4,
+      "to_go": 3,
+      "yardline": 90,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.7,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.7072089,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 53.0,
+      "dl_grade": 64.4,
+      "mismatch": 11.400000000000006,
+      "final": 0.2576,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.707532,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 0.8267338097222225,
+      "after_anya": 0.6251688258595833,
+      "after_pff_vs_cov": 0.8752363562034166,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.8752363562034166
+    },
+    {
+      "t": 1762309680.707744,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 3,
+        "yardline": 90,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 175
+      }
+    },
+    {
+      "t": 1762309680.70794,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 15,
+      "team": "away",
+      "plays": 10,
+      "points": 0,
+      "time_used": 228,
+      "result": "Turnover_on_Downs",
+      "start_state": {
+        "drive_num": 15,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 403
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 175
+      }
+    },
+    {
+      "t": 1762309680.70811,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 15,
+      "team": "away",
+      "pace": 10,
+      "success_rate": 0.5,
+      "explosive_rate": 0.3,
+      "explosive_count": 3,
+      "result": "Turnover_on_Downs"
+    },
+    {
+      "t": 1762309680.711869,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.579905749174677,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.712322,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 175
+      }
+    },
+    {
+      "t": 1762309680.715306,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5561568061568061,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.7157178,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.715965,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.7162108,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 142
+      }
+    },
+    {
+      "t": 1762309680.719852,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 34,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.7476190476190476,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.7202508,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 34,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 109
+      }
+    },
+    {
+      "t": 1762309680.724307,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 41,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.579905749174677,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.724747,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 41,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 76
+      }
+    },
+    {
+      "t": 1762309680.729134,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 45,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.5561568061568061,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.7295702,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.729833,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.7300851,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 45,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 43
+      }
+    },
+    {
+      "t": 1762309680.734238,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 45,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.7476190476190476,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309680.734686,
+      "kind": "pass.pressure",
+      "game_id": "2025_10_LAR_SF",
+      "base": 0.212,
+      "ol_grade": 62.1,
+      "dl_grade": 78.5,
+      "mismatch": 16.4,
+      "final": 0.27759999999999996,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309680.734878,
+      "kind": "pass.completion_model",
+      "game_id": "2025_10_LAR_SF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.4126844638888887,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309680.735117,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "completion",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 45,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 43
+      }
+    },
+    {
+      "t": 1762309680.739533,
+      "kind": "call.pass_run",
+      "game_id": "2025_10_LAR_SF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 59,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.579905749174677,
+      "choice": "run"
+    },
+    {
+      "t": 1762309680.739994,
+      "kind": "play.result",
+      "game_id": "2025_10_LAR_SF",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 59,
+        "home": 35,
+        "away": 21,
+        "quarter": 4,
+        "time_rem": 10
+      }
+    },
+    {
+      "t": 1762309680.740269,
+      "kind": "drive.summary",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 16,
+      "team": "home",
+      "plays": 7,
+      "points": 0,
+      "time_used": 175,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 16,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 175
+      },
+      "end_state": {
+        "yardline": 68,
+        "quarter": 4,
+        "time_remaining": 0
+      }
+    },
+    {
+      "t": 1762309680.740582,
+      "kind": "anchor_slice",
+      "game_id": "2025_10_LAR_SF",
+      "drive_no": 16,
+      "team": "home",
+      "pace": 7,
+      "success_rate": 0.2857142857142857,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762309680.7414799,
+      "kind": "game.summary",
+      "game_id": "2025_10_LAR_SF",
+      "home_score": 35,
+      "away_score": 21,
+      "spread": -14,
+      "total": 56,
+      "drives_per_team": 7.0,
+      "plays_per_drive": 8.857142857142858,
+      "td_pct": 0.5,
+      "fg_pct": 0.0,
+      "turnover_pct": 0.14285714285714285,
+      "explosive_rate": 0.12096774193548387,
+      "pass_rate": 0.6456692913385826
+    },
+    {
+      "t": 1762309680.74218,
+      "kind": "anchors.violation",
+      "game_id": "2025_10_LAR_SF",
+      "violations": [
+        {
+          "metric": "plays_per_drive",
+          "observed": 8.857142857142858,
+          "target_range": [
+            5.5,
+            7.0
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "drives_per_team",
+          "observed": 7.0,
+          "target_range": [
+            9.5,
+            12.5
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "td_pct",
+          "observed": 0.5,
+          "target_range": [
+            0.18,
+            0.26
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "fg_pct",
+          "observed": 0.0,
+          "target_range": [
+            0.08,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "turnover_pct",
+          "observed": 0.14285714285714285,
+          "target_range": [
+            0.09,
+            0.12
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "explosive_rate",
+          "observed": 0.12096774193548387,
+          "target_range": [
+            0.1,
+            0.12
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "pass_rate",
+          "observed": 0.6456692913385826,
+          "target_range": [
+            0.58,
+            0.62
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "total_points",
+          "observed": 56,
+          "target_range": [
+            42,
+            46
+          ],
+          "violation": "too_high"
+        }
+      ],
+      "severity": "critical"
+    },
+    {
+      "t": 1762309731.996812,
+      "kind": "distribution_params",
+      "game_id": "2025_10_LAR_SF",
+      "spread": {
+        "raw_mean": -5.53,
+        "raw_sd": 14.840117924059768,
+        "calibrated_mean": -2.657630000000001,
+        "calibrated_sd": 14.840117924059768,
+        "market_line": -3.5
+      },
+      "total": {
+        "raw_mean": 52.47,
+        "raw_sd": 10.952127647174315,
+        "calibrated_mean": 56.41037,
+        "calibrated_sd": 10.952127647174315,
+        "market_line": 49.5
+      }
+    },
+    {
+      "t": 1762309732.013151,
+      "kind": "calibration",
+      "game_id": "2025_10_LAR_SF",
+      "spread": {
+        "predicted_prob": 0.5305164319248826,
+        "bin_id": 4,
+        "bet_side": "AWAY",
+        "market_line": -3.5,
+        "eventual_hit": null
+      },
+      "total": {
+        "predicted_prob": 0.5496688741721855,
+        "bin_id": 5,
+        "bet_side": "OVER",
+        "market_line": 49.5,
+        "eventual_hit": null
+      },
+      "calibration_method": "isotonic"
+    }
+  ]
+}

@@ -1,0 +1,6635 @@
+{
+  "game_id": "2025_09_KC_BUF",
+  "seed": 2920521215,
+  "total_events": 394,
+  "event_types": {
+    "inputs.audit": 1,
+    "call.pass_run": 123,
+    "play.result": 123,
+    "pass.pressure": 54,
+    "pass.completion_model": 54,
+    "drive.summary": 14,
+    "anchor_slice": 14,
+    "policy_decision": 7,
+    "game.summary": 1,
+    "anchors.violation": 1,
+    "distribution_params": 1,
+    "calibration": 1
+  },
+  "events": [
+    {
+      "t": 1762309566.965902,
+      "kind": "inputs.audit",
+      "game_id": "2025_09_KC_BUF",
+      "home": {
+        "team": "BUF",
+        "season": 2025,
+        "week": 9,
+        "off_epa": 0.16298084706068033,
+        "def_epa": 0.09397446233197113,
+        "pace": 6.461760461760462,
+        "early_down_success_rate": 0.5989833367320472,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "off_yards_per_play": 6.2472982,
+        "off_yards_per_pass_attempt": 7.181016942857143,
+        "yards_per_pass": null,
+        "yards_per_run": null,
+        "pass_rate": 0.47651006711409394,
+        "red_zone_trips_per_game": 5.0,
+        "red_zone_td_pct": 0.7020408163265307,
+        "punt_net_yards": 37.333332,
+        "field_goal_make_pct": 0.0,
+        "ol_grade": 70.2,
+        "dl_grade": 80.8,
+        "ol_run_grade": 74.7,
+        "dl_run_grade": 51.6,
+        "coverage_grade": 50.5,
+        "passing_grade": 82.9,
+        "playcalling_situations": 71,
+        "home_rest_days": 7,
+        "away_rest_days": 6,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "away": {
+        "team": "KC",
+        "season": 2025,
+        "week": 9,
+        "off_epa": 0.09343568887561554,
+        "def_epa": 0.06524390616687012,
+        "pace": 7.7988591269841265,
+        "early_down_success_rate": 0.5759786426231329,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "off_yards_per_play": 5.908621025,
+        "off_yards_per_pass_attempt": 6.9155426250000005,
+        "yards_per_pass": null,
+        "yards_per_run": null,
+        "pass_rate": 0.5609756097560976,
+        "red_zone_trips_per_game": 4.875,
+        "red_zone_td_pct": 0.6964285714285714,
+        "punt_net_yards": 47.0,
+        "field_goal_make_pct": 1.0,
+        "ol_grade": 73.1,
+        "dl_grade": 68.1,
+        "ol_run_grade": 68.0,
+        "dl_run_grade": 67.5,
+        "coverage_grade": 80.5,
+        "passing_grade": 70.9,
+        "playcalling_situations": 79,
+        "home_rest_days": 6,
+        "away_rest_days": 7,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "situational": {
+        "is_dome": false,
+        "temp": null,
+        "wind": null,
+        "home_rest_days": 7,
+        "away_rest_days": 7
+      },
+      "seed": 2920521215
+    },
+    {
+      "t": 1762309566.968537,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3214285714285714,
+      "choice": "run"
+    },
+    {
+      "t": 1762309566.968818,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309566.969773,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3214285714285714,
+      "choice": "run"
+    },
+    {
+      "t": 1762309566.9699562,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762309566.9708538,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 45,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309566.971041,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 45,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 826
+      }
+    },
+    {
+      "t": 1762309566.971905,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 50,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3214285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309566.9720619,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309566.9723141,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.22647185894121427,
+      "after_pff_vs_cov": 0.31706060251769996,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36461969289535495
+    },
+    {
+      "t": 1762309566.972689,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 50,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 789
+      }
+    },
+    {
+      "t": 1762309566.974498,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 50,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309566.974779,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309566.974944,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309566.975167,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 50,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 789
+      }
+    },
+    {
+      "t": 1762309566.976335,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 9,
+      "yardline": 51,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309566.976597,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309566.9767559,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309566.976976,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 26,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 9,
+        "yardline": 51,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 752
+      }
+    },
+    {
+      "t": 1762309566.978125,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 77,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3214285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309566.9786031,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309566.979002,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309566.979337,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 17,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 77,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 715
+      }
+    },
+    {
+      "t": 1762309566.982303,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 6,
+      "yardline": 94,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.33095238095238094,
+      "choice": "run"
+    },
+    {
+      "t": 1762309566.98267,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 6,
+        "yardline": 94,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 678
+      }
+    },
+    {
+      "t": 1762309566.983897,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 97,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309566.984221,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 3,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 97,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 641
+      }
+    },
+    {
+      "t": 1762309566.984402,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 2,
+      "team": "home",
+      "plays": 9,
+      "points": 7,
+      "time_used": 296,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 2,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 604
+      }
+    },
+    {
+      "t": 1762309566.9845629,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 2,
+      "team": "home",
+      "pace": 9,
+      "success_rate": 0.5555555555555556,
+      "explosive_rate": 0.2222222222222222,
+      "explosive_count": 2,
+      "result": "TD"
+    },
+    {
+      "t": 1762309566.987036,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.42857142857142855,
+      "choice": "run"
+    },
+    {
+      "t": 1762309566.9873269,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 604
+      }
+    },
+    {
+      "t": 1762309566.988765,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309566.989367,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309566.989588,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309566.9901462,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 574
+      }
+    },
+    {
+      "t": 1762309566.991698,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 30,
+      "score_diff": -7,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309566.991882,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309566.9920058,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309566.9921432,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 30,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 544
+      }
+    },
+    {
+      "t": 1762309566.992286,
+      "kind": "policy_decision",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "time_remaining": 544,
+      "yardline": 30,
+      "to_go": 5,
+      "score_diff": -7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 30,
+        "distance_to_goal": 70,
+        "fg_distance": 87,
+        "ydstogo": 5,
+        "time_remaining": 3244,
+        "score_diff": -7,
+        "quarter": 1,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 30,
+        "distance_to_goal": 70,
+        "fg_distance": 87,
+        "ydstogo": 5,
+        "time_remaining": 3244,
+        "score_diff": -7,
+        "quarter": 1,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309566.992436,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 3,
+      "team": "away",
+      "plays": 3,
+      "points": 0,
+      "time_used": 60,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 3,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 604
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 544
+      }
+    },
+    {
+      "t": 1762309566.992543,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 3,
+      "team": "away",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309566.9933288,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309566.9934862,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 544
+      }
+    },
+    {
+      "t": 1762309566.99425,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309566.994386,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 507
+      }
+    },
+    {
+      "t": 1762309566.995671,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309566.996119,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 470
+      }
+    },
+    {
+      "t": 1762309566.998056,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 47,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309566.998286,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309566.998419,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309566.9985971,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 17,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 47,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 433
+      }
+    },
+    {
+      "t": 1762309566.9995258,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 64,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309566.999682,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309566.999805,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309566.999966,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 64,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 396
+      }
+    },
+    {
+      "t": 1762309567.00143,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 64,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.008493,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.0090292,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.009674,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 64,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 396
+      }
+    },
+    {
+      "t": 1762309567.0134451,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 70,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.8636363636363636,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.013772,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.013942,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.22647185894121427,
+      "after_pff_vs_cov": 0.31706060251769996,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36461969289535495
+    },
+    {
+      "t": 1762309567.014125,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 70,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 359
+      }
+    },
+    {
+      "t": 1762309567.0142798,
+      "kind": "policy_decision",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "time_remaining": 322,
+      "yardline": 73,
+      "to_go": 1,
+      "score_diff": 7,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 73,
+        "distance_to_goal": 27,
+        "fg_distance": 44,
+        "ydstogo": 1,
+        "time_remaining": 3022,
+        "score_diff": 7,
+        "quarter": 1,
+        "reason": "4th_short_opp_territory"
+      },
+      "punt_reasoning": {
+        "yardline": 73,
+        "distance_to_goal": 27,
+        "fg_distance": 44,
+        "ydstogo": 1,
+        "time_remaining": 3022,
+        "score_diff": 7,
+        "quarter": 1,
+        "reason": "4th_short_opp_territory"
+      }
+    },
+    {
+      "t": 1762309567.017225,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 73,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.7,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.017401,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 73,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 322
+      }
+    },
+    {
+      "t": 1762309567.0182788,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 86,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.0187361,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 86,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 285
+      }
+    },
+    {
+      "t": 1762309567.021327,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 4,
+      "yardline": 96,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.021645,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 4,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 4,
+        "yardline": 96,
+        "home": 7,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 248
+      }
+    },
+    {
+      "t": 1762309567.022084,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 4,
+      "team": "home",
+      "plays": 10,
+      "points": 7,
+      "time_used": 333,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 4,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 544
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 211
+      }
+    },
+    {
+      "t": 1762309567.0223858,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 4,
+      "team": "home",
+      "pace": 10,
+      "success_rate": 0.5,
+      "explosive_rate": 0.1,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309567.025274,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.025537,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 211
+      }
+    },
+    {
+      "t": 1762309567.0273511,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.027526,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.0276449,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.0278,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 22,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 181
+      }
+    },
+    {
+      "t": 1762309567.030244,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 53,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.031735,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 53,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 151
+      }
+    },
+    {
+      "t": 1762309567.040786,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 55,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.041266,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 55,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 121
+      }
+    },
+    {
+      "t": 1762309567.044136,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 61,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.622549019607843,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.0445151,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 61,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 91
+      }
+    },
+    {
+      "t": 1762309567.047863,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 67,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.0481799,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.0483332,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36653994455204997
+    },
+    {
+      "t": 1762309567.048501,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "sack",
+      "yards": -2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 67,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 61
+      }
+    },
+    {
+      "t": 1762309567.0505679,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 12,
+      "yardline": 65,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.0507379,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.050879,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.0510569,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 12,
+        "yardline": 65,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 61
+      }
+    },
+    {
+      "t": 1762309567.053066,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 73,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.622549019607843,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.0532448,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.053368,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36653994455204997
+    },
+    {
+      "t": 1762309567.053495,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "scramble",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 73,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 31
+      }
+    },
+    {
+      "t": 1762309567.053636,
+      "kind": "policy_decision",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "time_remaining": 1,
+      "yardline": 73,
+      "to_go": 4,
+      "score_diff": -14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 73,
+        "distance_to_goal": 27,
+        "fg_distance": 44,
+        "ydstogo": 4,
+        "time_remaining": 2701,
+        "score_diff": -14,
+        "quarter": 1,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 73,
+        "distance_to_goal": 27,
+        "fg_distance": 44,
+        "ydstogo": 4,
+        "time_remaining": 2701,
+        "score_diff": -14,
+        "quarter": 1,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309567.053807,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 5,
+      "team": "away",
+      "plays": 8,
+      "points": 0,
+      "time_used": 210,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 5,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 211
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 1
+      }
+    },
+    {
+      "t": 1762309567.0539289,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 5,
+      "team": "away",
+      "pace": 8,
+      "success_rate": 0.25,
+      "explosive_rate": 0.125,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309567.0553799,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.2962962962962963,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.055561,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 1
+      }
+    },
+    {
+      "t": 1762309567.056968,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 39,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.2962962962962963,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.0571241,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 39,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309567.0579789,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 52,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.058125,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.0582452,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.05841,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 21,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 52,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 863
+      }
+    },
+    {
+      "t": 1762309567.0592792,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 73,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.059438,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 73,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 826
+      }
+    },
+    {
+      "t": 1762309567.06074,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 79,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.2857142857142857,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.060884,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 79,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 789
+      }
+    },
+    {
+      "t": 1762309567.063207,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 88,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.063713,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.063961,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.0641558,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 12,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 88,
+        "home": 14,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 752
+      }
+    },
+    {
+      "t": 1762309567.064318,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 6,
+      "team": "home",
+      "plays": 5,
+      "points": 7,
+      "time_used": -714,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 6,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 1
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 715
+      }
+    },
+    {
+      "t": 1762309567.0644329,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 6,
+      "team": "home",
+      "pace": 5,
+      "success_rate": 0.8,
+      "explosive_rate": 0.2,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309567.0663822,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.0665479,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 715
+      }
+    },
+    {
+      "t": 1762309567.068274,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 40,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.068415,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 40,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 685
+      }
+    },
+    {
+      "t": 1762309567.070119,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 45,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.070271,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.070383,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.070529,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 45,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 655
+      }
+    },
+    {
+      "t": 1762309567.072321,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 54,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.072597,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.072913,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36653994455204997
+    },
+    {
+      "t": 1762309567.0731049,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "sack",
+      "yards": -2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 54,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 625
+      }
+    },
+    {
+      "t": 1762309567.0760279,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 12,
+      "yardline": 52,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.076436,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.0766358,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.076875,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 12,
+        "yardline": 52,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 625
+      }
+    },
+    {
+      "t": 1762309567.080513,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 63,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.622549019607843,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.080949,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.081123,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.081575,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 63,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 595
+      }
+    },
+    {
+      "t": 1762309567.086368,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 69,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.086686,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.086842,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36653994455204997
+    },
+    {
+      "t": 1762309567.0872881,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "scramble",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 69,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 565
+      }
+    },
+    {
+      "t": 1762309567.090979,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 73,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.09134,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 73,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 535
+      }
+    },
+    {
+      "t": 1762309567.0941591,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 81,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.094511,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 81,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 505
+      }
+    },
+    {
+      "t": 1762309567.097621,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 8,
+      "yardline": 92,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.0980558,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.09824,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.0984719,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 8,
+        "yardline": 92,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 475
+      }
+    },
+    {
+      "t": 1762309567.1015968,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 93,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.1020732,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 7,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 93,
+        "home": 21,
+        "away": 0,
+        "quarter": 2,
+        "time_rem": 445
+      }
+    },
+    {
+      "t": 1762309567.1023622,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 7,
+      "team": "away",
+      "plays": 11,
+      "points": 7,
+      "time_used": 300,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 7,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 715
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 415
+      }
+    },
+    {
+      "t": 1762309567.1026309,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 7,
+      "team": "away",
+      "pace": 11,
+      "success_rate": 0.5454545454545454,
+      "explosive_rate": 0.09090909090909091,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309567.104054,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.104417,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 415
+      }
+    },
+    {
+      "t": 1762309567.1076689,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 28,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.2857142857142857,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.108041,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 28,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 378
+      }
+    },
+    {
+      "t": 1762309567.109139,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 39,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.109324,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 39,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 341
+      }
+    },
+    {
+      "t": 1762309567.1102521,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 49,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.1104178,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 49,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 304
+      }
+    },
+    {
+      "t": 1762309567.112331,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 56,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.113219,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 56,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 267
+      }
+    },
+    {
+      "t": 1762309567.115082,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 57,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.115315,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 57,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 230
+      }
+    },
+    {
+      "t": 1762309567.116224,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 61,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.11639,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.116521,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.116707,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 61,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 193
+      }
+    },
+    {
+      "t": 1762309567.117588,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 9,
+      "yardline": 62,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.117742,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 9,
+        "yardline": 62,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 156
+      }
+    },
+    {
+      "t": 1762309567.1213691,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 69,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.121611,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.121747,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.122011,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 69,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 119
+      }
+    },
+    {
+      "t": 1762309567.1238642,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 71,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.1241658,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.124563,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.124792,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 71,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 82
+      }
+    },
+    {
+      "t": 1762309567.126413,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 71,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.126784,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.126991,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.127189,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 71,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 82
+      }
+    },
+    {
+      "t": 1762309567.129623,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 75,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.130003,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.130424,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.1308281,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 75,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 45
+      }
+    },
+    {
+      "t": 1762309567.132273,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 81,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.132575,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.132752,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.132993,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 81,
+        "home": 21,
+        "away": 7,
+        "quarter": 2,
+        "time_rem": 8
+      }
+    },
+    {
+      "t": 1762309567.133194,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 8,
+      "team": "home",
+      "plays": 12,
+      "points": 0,
+      "time_used": -485,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 8,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 415
+      },
+      "end_state": {
+        "yardline": 4,
+        "quarter": 3,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762309567.1333718,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 8,
+      "team": "home",
+      "pace": 12,
+      "success_rate": 0.4166666666666667,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762309567.1383948,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 4,
+      "yardline": 4,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.1386821,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.138815,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.138981,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 4,
+        "yardline": 4,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309567.141684,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 7,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.142067,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.142857,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.143098,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 7,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 870
+      }
+    },
+    {
+      "t": 1762309567.147451,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 7,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.622549019607843,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.1479099,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 7,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 870
+      }
+    },
+    {
+      "t": 1762309567.148134,
+      "kind": "policy_decision",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "time_remaining": 840,
+      "yardline": 7,
+      "to_go": 1,
+      "score_diff": -14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 7,
+        "distance_to_goal": 93,
+        "fg_distance": 110,
+        "ydstogo": 1,
+        "time_remaining": 1740,
+        "score_diff": -14,
+        "quarter": 3,
+        "reason": "4th_short_trailing"
+      },
+      "punt_reasoning": {
+        "yardline": 7,
+        "distance_to_goal": 93,
+        "fg_distance": 110,
+        "ydstogo": 1,
+        "time_remaining": 1740,
+        "score_diff": -14,
+        "quarter": 3,
+        "reason": "4th_short_trailing"
+      }
+    },
+    {
+      "t": 1762309567.151511,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 7,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.151857,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 7,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 840
+      }
+    },
+    {
+      "t": 1762309567.153856,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 13,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.154051,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 13,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 810
+      }
+    },
+    {
+      "t": 1762309567.155931,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 13,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.156102,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.1562188,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.318730386567
+    },
+    {
+      "t": 1762309567.1563551,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "scramble",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 13,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 780
+      }
+    },
+    {
+      "t": 1762309567.1581929,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.158335,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.158444,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.158606,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 750
+      }
+    },
+    {
+      "t": 1762309567.16031,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.1604428,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.160563,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36653994455204997
+    },
+    {
+      "t": 1762309567.160672,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "sack",
+      "yards": -4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 720
+      }
+    },
+    {
+      "t": 1762309567.1635551,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.622549019607843,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.163866,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 720
+      }
+    },
+    {
+      "t": 1762309567.166655,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.1668549,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.1670852,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36653994455204997
+    },
+    {
+      "t": 1762309567.167485,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 690
+      }
+    },
+    {
+      "t": 1762309567.170657,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 43,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.171019,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.171214,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.171465,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 43,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 660
+      }
+    },
+    {
+      "t": 1762309567.174932,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 54,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.175336,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 54,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 630
+      }
+    },
+    {
+      "t": 1762309567.179441,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 59,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.179796,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.1799529,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36653994455204997
+    },
+    {
+      "t": 1762309567.1800802,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 59,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 600
+      }
+    },
+    {
+      "t": 1762309567.1822221,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 59,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.622549019607843,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.182432,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 59,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 600
+      }
+    },
+    {
+      "t": 1762309567.184441,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 67,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.1846132,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 67,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 570
+      }
+    },
+    {
+      "t": 1762309567.186615,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 79,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.186794,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 79,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 540
+      }
+    },
+    {
+      "t": 1762309567.189941,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 9,
+      "yardline": 80,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.190264,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 9,
+        "yardline": 80,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 510
+      }
+    },
+    {
+      "t": 1762309567.192327,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 9,
+      "yardline": 80,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.622549019607843,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.1924942,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 9,
+        "yardline": 80,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 480
+      }
+    },
+    {
+      "t": 1762309567.1938932,
+      "kind": "policy_decision",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "time_remaining": 450,
+      "yardline": 88,
+      "to_go": 1,
+      "score_diff": -14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 88,
+        "distance_to_goal": 12,
+        "fg_distance": 29,
+        "ydstogo": 1,
+        "time_remaining": 1350,
+        "score_diff": -14,
+        "quarter": 3,
+        "reason": "4th_and_1_in_fg_range"
+      },
+      "punt_reasoning": {
+        "yardline": 88,
+        "distance_to_goal": 12,
+        "fg_distance": 29,
+        "ydstogo": 1,
+        "time_remaining": 1350,
+        "score_diff": -14,
+        "quarter": 3,
+        "reason": "4th_and_1_in_fg_range"
+      }
+    },
+    {
+      "t": 1762309567.1968331,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 88,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "short",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.1971462,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.197283,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.19745,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 88,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 450
+      }
+    },
+    {
+      "t": 1762309567.199265,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 6,
+      "yardline": 94,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.199529,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 6,
+        "yardline": 94,
+        "home": 21,
+        "away": 7,
+        "quarter": 3,
+        "time_rem": 420
+      }
+    },
+    {
+      "t": 1762309567.200972,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 8,
+      "team": "away",
+      "plays": 20,
+      "points": 7,
+      "time_used": 510,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 8,
+        "team": "away",
+        "start_yardline": 4,
+        "start_quarter": 3,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 390
+      }
+    },
+    {
+      "t": 1762309567.201173,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 8,
+      "team": "away",
+      "pace": 20,
+      "success_rate": 0.4,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "TD"
+    },
+    {
+      "t": 1762309567.202692,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.202891,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 390
+      }
+    },
+    {
+      "t": 1762309567.204503,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.2046568,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 353
+      }
+    },
+    {
+      "t": 1762309567.205983,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 39,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.2061498,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.206285,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.206466,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 39,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 316
+      }
+    },
+    {
+      "t": 1762309567.207971,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 52,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.208132,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 52,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 279
+      }
+    },
+    {
+      "t": 1762309567.209582,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 56,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.2097468,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.209888,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.210054,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 56,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 242
+      }
+    },
+    {
+      "t": 1762309567.212826,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 61,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8636363636363636,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.213147,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.213433,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.2137501,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 61,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 205
+      }
+    },
+    {
+      "t": 1762309567.2159119,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 76,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.2162602,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 76,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 168
+      }
+    },
+    {
+      "t": 1762309567.221538,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 83,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.221869,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 83,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 131
+      }
+    },
+    {
+      "t": 1762309567.227882,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 9,
+      "yardline": 91,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.38888888888888884,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.2282722,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 9,
+        "yardline": 91,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 94
+      }
+    },
+    {
+      "t": 1762309567.231884,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 97,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.232179,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.2323148,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.2324522,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 97,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 57
+      }
+    },
+    {
+      "t": 1762309567.2346392,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 97,
+      "score_diff": 7,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.8636363636363636,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.2349398,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 3,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 97,
+        "home": 21,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 57
+      }
+    },
+    {
+      "t": 1762309567.235086,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 9,
+      "team": "home",
+      "plays": 11,
+      "points": 7,
+      "time_used": 370,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 9,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 390
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 20
+      }
+    },
+    {
+      "t": 1762309567.235211,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 9,
+      "team": "home",
+      "pace": 11,
+      "success_rate": 0.45454545454545453,
+      "explosive_rate": 0.09090909090909091,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309567.23711,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.237275,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 14,
+        "quarter": 3,
+        "time_rem": 20
+      }
+    },
+    {
+      "t": 1762309567.24063,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.2408729,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.241008,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36653994455204997
+    },
+    {
+      "t": 1762309567.2411149,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309567.245074,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": -14,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_14+",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.622549019607843,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.2455292,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309567.245703,
+      "kind": "policy_decision",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "time_remaining": 870,
+      "yardline": 32,
+      "to_go": 3,
+      "score_diff": -14,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 32,
+        "distance_to_goal": 68,
+        "fg_distance": 85,
+        "ydstogo": 3,
+        "time_remaining": 870,
+        "score_diff": -14,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 32,
+        "distance_to_goal": 68,
+        "fg_distance": 85,
+        "ydstogo": 3,
+        "time_remaining": 870,
+        "score_diff": -14,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309567.245891,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 10,
+      "team": "away",
+      "plays": 2,
+      "points": 0,
+      "time_used": -850,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 10,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 20
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 870
+      }
+    },
+    {
+      "t": 1762309567.2460039,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 10,
+      "team": "away",
+      "pace": 2,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309567.2475321,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.247757,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 870
+      }
+    },
+    {
+      "t": 1762309567.249345,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.2497149,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 833
+      }
+    },
+    {
+      "t": 1762309567.251955,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 45,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.2521951,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": -2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 45,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 796
+      }
+    },
+    {
+      "t": 1762309567.253737,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 43,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.253991,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.254122,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.254292,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 43,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 759
+      }
+    },
+    {
+      "t": 1762309567.255127,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 49,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.255278,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 49,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 722
+      }
+    },
+    {
+      "t": 1762309567.2561622,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 49,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.2,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.256311,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 49,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 685
+      }
+    },
+    {
+      "t": 1762309567.259081,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 1,
+      "yardline": 58,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.259517,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.259695,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.259926,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 17,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 1,
+        "yardline": 58,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 648
+      }
+    },
+    {
+      "t": 1762309567.2627351,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 75,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.2630558,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 75,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 611
+      }
+    },
+    {
+      "t": 1762309567.2654002,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 82,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.265589,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 82,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 574
+      }
+    },
+    {
+      "t": 1762309567.268031,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 87,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.26839,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 87,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 537
+      }
+    },
+    {
+      "t": 1762309567.271119,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 89,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.2,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.2715158,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": -2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 89,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 500
+      }
+    },
+    {
+      "t": 1762309567.2734132,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 10,
+      "yardline": 87,
+      "score_diff": 14,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.273803,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.273986,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.274219,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 13,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 10,
+        "yardline": 87,
+        "home": 28,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 463
+      }
+    },
+    {
+      "t": 1762309567.2743979,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 11,
+      "team": "home",
+      "plays": 12,
+      "points": 7,
+      "time_used": 444,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 11,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 870
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 426
+      }
+    },
+    {
+      "t": 1762309567.274564,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 11,
+      "team": "home",
+      "pace": 12,
+      "success_rate": 0.4166666666666667,
+      "explosive_rate": 0.08333333333333333,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309567.280886,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.281226,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.2813811,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36653994455204997
+    },
+    {
+      "t": 1762309567.281568,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 426
+      }
+    },
+    {
+      "t": 1762309567.2836668,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6743243243243244,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.283851,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.283993,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.318730386567
+    },
+    {
+      "t": 1762309567.284124,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "sack",
+      "yards": -4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 426
+      }
+    },
+    {
+      "t": 1762309567.286121,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 14,
+      "yardline": 21,
+      "score_diff": -21,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.622549019607843,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.286282,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.286401,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.22766456183357142,
+      "after_pff_vs_cov": 0.318730386567,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.318730386567
+    },
+    {
+      "t": 1762309567.286508,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 14,
+        "yardline": 21,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 426
+      }
+    },
+    {
+      "t": 1762309567.2866628,
+      "kind": "policy_decision",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "time_remaining": 426,
+      "yardline": 21,
+      "to_go": 14,
+      "score_diff": -21,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 21,
+        "distance_to_goal": 79,
+        "fg_distance": 96,
+        "ydstogo": 14,
+        "time_remaining": 426,
+        "score_diff": -21,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 21,
+        "distance_to_goal": 79,
+        "fg_distance": 96,
+        "ydstogo": 14,
+        "time_remaining": 426,
+        "score_diff": -21,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309567.28684,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 12,
+      "team": "away",
+      "plays": 3,
+      "points": 0,
+      "time_used": 0,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 12,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 426
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 426
+      }
+    },
+    {
+      "t": 1762309567.286957,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 12,
+      "team": "away",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309567.2878358,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.2879941,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 426
+      }
+    },
+    {
+      "t": 1762309567.2912881,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.2857142857142857,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.291553,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 389
+      }
+    },
+    {
+      "t": 1762309567.294081,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 38,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.294463,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 38,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 352
+      }
+    },
+    {
+      "t": 1762309567.296979,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 47,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "short",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.297316,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 47,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 315
+      }
+    },
+    {
+      "t": 1762309567.298344,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 54,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.298524,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 54,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 278
+      }
+    },
+    {
+      "t": 1762309567.3000069,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 59,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.2857142857142857,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.3001852,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.3003252,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.22647185894121427,
+      "after_pff_vs_cov": 0.31706060251769996,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36461969289535495
+    },
+    {
+      "t": 1762309567.30044,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 59,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 241
+      }
+    },
+    {
+      "t": 1762309567.302376,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 59,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.302717,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.302896,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.3031209,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 59,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 241
+      }
+    },
+    {
+      "t": 1762309567.304658,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 66,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.304885,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 66,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 204
+      }
+    },
+    {
+      "t": 1762309567.3057852,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 68,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.2,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.306138,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 68,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 167
+      }
+    },
+    {
+      "t": 1762309567.307575,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 72,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.3078542,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.3080199,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309567.308392,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 72,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 130
+      }
+    },
+    {
+      "t": 1762309567.310486,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 80,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.2962962962962963,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.310816,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309567.3109918,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.22647185894121427,
+      "after_pff_vs_cov": 0.31706060251769996,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36461969289535495
+    },
+    {
+      "t": 1762309567.31116,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "sack",
+      "yards": -4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 80,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 93
+      }
+    },
+    {
+      "t": 1762309567.3132522,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 14,
+      "yardline": 76,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "long",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.5666666666666667,
+      "choice": "run"
+    },
+    {
+      "t": 1762309567.3135848,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 14,
+        "yardline": 76,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 93
+      }
+    },
+    {
+      "t": 1762309567.315048,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 84,
+      "score_diff": 21,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.3152251,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 70.2,
+      "dl_grade": 68.1,
+      "mismatch": -2.1000000000000085,
+      "final": 0.20359999999999995,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.315409,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.7059038678571428,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.315798,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 16,
+      "td": true,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 84,
+        "home": 35,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 56
+      }
+    },
+    {
+      "t": 1762309567.3159869,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 13,
+      "team": "home",
+      "plays": 13,
+      "points": 7,
+      "time_used": 407,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 13,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 426
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 19
+      }
+    },
+    {
+      "t": 1762309567.316153,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 13,
+      "team": "home",
+      "pace": 13,
+      "success_rate": 0.38461538461538464,
+      "explosive_rate": 0.07692307692307693,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309567.3189278,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_KC_BUF",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -28,
+      "buckets": {
+        "distance": "long",
+        "score": "down_14+",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.4697356973092267,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309567.321079,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_KC_BUF",
+      "base": 0.212,
+      "ol_grade": 73.1,
+      "dl_grade": 80.8,
+      "mismatch": 7.700000000000003,
+      "final": 0.24280000000000002,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309567.321392,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_KC_BUF",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.9782104642857155,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309567.321677,
+      "kind": "play.result",
+      "game_id": "2025_09_KC_BUF",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 42,
+        "away": 14,
+        "quarter": 4,
+        "time_rem": 19
+      }
+    },
+    {
+      "t": 1762309567.321881,
+      "kind": "drive.summary",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 14,
+      "team": "away",
+      "plays": 1,
+      "points": 0,
+      "time_used": 19,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 14,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 19
+      },
+      "end_state": {
+        "yardline": 31,
+        "quarter": 4,
+        "time_remaining": 0
+      }
+    },
+    {
+      "t": 1762309567.322112,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_KC_BUF",
+      "drive_no": 14,
+      "team": "away",
+      "pace": 1,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762309567.322722,
+      "kind": "game.summary",
+      "game_id": "2025_09_KC_BUF",
+      "home_score": 42,
+      "away_score": 14,
+      "spread": -28,
+      "total": 56,
+      "drives_per_team": 7.0,
+      "plays_per_drive": 8.571428571428571,
+      "td_pct": 0.5714285714285714,
+      "fg_pct": 0.0,
+      "turnover_pct": 0.0,
+      "explosive_rate": 0.075,
+      "pass_rate": 0.43902439024390244
+    },
+    {
+      "t": 1762309567.322963,
+      "kind": "anchors.violation",
+      "game_id": "2025_09_KC_BUF",
+      "violations": [
+        {
+          "metric": "plays_per_drive",
+          "observed": 8.571428571428571,
+          "target_range": [
+            5.5,
+            7.0
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "drives_per_team",
+          "observed": 7.0,
+          "target_range": [
+            9.5,
+            12.5
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "td_pct",
+          "observed": 0.5714285714285714,
+          "target_range": [
+            0.18,
+            0.26
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "fg_pct",
+          "observed": 0.0,
+          "target_range": [
+            0.08,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "turnover_pct",
+          "observed": 0.0,
+          "target_range": [
+            0.09,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "explosive_rate",
+          "observed": 0.075,
+          "target_range": [
+            0.1,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "pass_rate",
+          "observed": 0.43902439024390244,
+          "target_range": [
+            0.58,
+            0.62
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "total_points",
+          "observed": 56,
+          "target_range": [
+            42,
+            46
+          ],
+          "violation": "too_high"
+        }
+      ],
+      "severity": "critical"
+    },
+    {
+      "t": 1762309610.1870668,
+      "kind": "distribution_params",
+      "game_id": "2025_09_KC_BUF",
+      "spread": {
+        "raw_mean": 1.95,
+        "raw_sd": 16.93421093526356,
+        "calibrated_mean": 1.1134500000000074,
+        "calibrated_sd": 16.93421093526356,
+        "market_line": -2.5
+      },
+      "total": {
+        "raw_mean": 59.31,
+        "raw_sd": 11.96552965814719,
+        "calibrated_mean": 60.31600999999999,
+        "calibrated_sd": 11.96552965814719,
+        "market_line": 53.5
+      }
+    },
+    {
+      "t": 1762309610.1986701,
+      "kind": "calibration",
+      "game_id": "2025_09_KC_BUF",
+      "spread": {
+        "predicted_prob": 0.5026737967914439,
+        "bin_id": null,
+        "bet_side": null,
+        "market_line": -2.5,
+        "eventual_hit": null
+      },
+      "total": {
+        "predicted_prob": 0.5496688741721855,
+        "bin_id": 5,
+        "bet_side": "OVER",
+        "market_line": 53.5,
+        "eventual_hit": null
+      },
+      "calibration_method": "isotonic"
+    }
+  ]
+}

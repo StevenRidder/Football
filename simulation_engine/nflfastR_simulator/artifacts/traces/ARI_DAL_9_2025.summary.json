@@ -1,0 +1,7566 @@
+{
+  "game_id": "2025_09_ARI_DAL",
+  "seed": 2469026459,
+  "total_events": 455,
+  "event_types": {
+    "inputs.audit": 1,
+    "call.pass_run": 126,
+    "pass.pressure": 73,
+    "pass.completion_model": 73,
+    "play.result": 126,
+    "drive.summary": 19,
+    "anchor_slice": 19,
+    "policy_decision": 14,
+    "game.summary": 1,
+    "anchors.violation": 1,
+    "distribution_params": 1,
+    "calibration": 1
+  },
+  "events": [
+    {
+      "t": 1762309544.043069,
+      "kind": "inputs.audit",
+      "game_id": "2025_09_ARI_DAL",
+      "home": {
+        "team": "DAL",
+        "season": 2025,
+        "week": 9,
+        "off_epa": 0.11397251347079869,
+        "def_epa": 0.155383167322725,
+        "pace": 6.657954545454546,
+        "early_down_success_rate": 0.5561375761107363,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "off_yards_per_play": 6.0193125875,
+        "off_yards_per_pass_attempt": 6.9211276625,
+        "yards_per_pass": null,
+        "yards_per_run": null,
+        "pass_rate": 0.5813953488372093,
+        "red_zone_trips_per_game": 4.75,
+        "red_zone_td_pct": 0.6979166666666666,
+        "punt_net_yards": 38.93333,
+        "field_goal_make_pct": 1.0,
+        "ol_grade": 52.9,
+        "dl_grade": 70.5,
+        "ol_run_grade": 67.2,
+        "dl_run_grade": 41.5,
+        "coverage_grade": 36.9,
+        "passing_grade": 87.1,
+        "playcalling_situations": 80,
+        "home_rest_days": 8,
+        "away_rest_days": 15,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "away": {
+        "team": "ARI",
+        "season": 2025,
+        "week": 9,
+        "off_epa": 0.020820745325181588,
+        "def_epa": -0.01663802389521151,
+        "pace": 7.134827870542155,
+        "early_down_success_rate": 0.4669872241680752,
+        "qb_name": "League Average",
+        "qb_completion_pct": 0.65,
+        "qb_any_a": 6.5,
+        "qb_ypa": 7.0,
+        "off_yards_per_play": 4.988179657142857,
+        "off_yards_per_pass_attempt": 5.877197928571428,
+        "yards_per_pass": null,
+        "yards_per_run": null,
+        "pass_rate": 0.6006493506493507,
+        "red_zone_trips_per_game": 4.0,
+        "red_zone_td_pct": 0.5476190476190476,
+        "punt_net_yards": 30.5,
+        "field_goal_make_pct": 1.0,
+        "ol_grade": 58.5,
+        "dl_grade": 63.2,
+        "ol_run_grade": 52.5,
+        "dl_run_grade": 58.1,
+        "coverage_grade": 67.3,
+        "passing_grade": 73.2,
+        "playcalling_situations": 70,
+        "home_rest_days": 15,
+        "away_rest_days": 8,
+        "is_dome": false,
+        "temperature": null,
+        "wind": null
+      },
+      "situational": {
+        "is_dome": false,
+        "temp": null,
+        "wind": null,
+        "home_rest_days": 8,
+        "away_rest_days": 8
+      },
+      "seed": 2469026459
+    },
+    {
+      "t": 1762309544.044724,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.044939,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.045077,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.045249,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309544.046836,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 32,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.047093,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.0472121,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.047374,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 32,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 864
+      }
+    },
+    {
+      "t": 1762309544.048177,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 46,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.048331,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.048438,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.048584,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 46,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 828
+      }
+    },
+    {
+      "t": 1762309544.0493472,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 9,
+      "yardline": 47,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.049498,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 9,
+        "yardline": 47,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 792
+      }
+    },
+    {
+      "t": 1762309544.050246,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 57,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.050397,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 57,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 756
+      }
+    },
+    {
+      "t": 1762309544.051136,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 63,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.051271,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 63,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 720
+      }
+    },
+    {
+      "t": 1762309544.052,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 70,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.052147,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 70,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 684
+      }
+    },
+    {
+      "t": 1762309544.0541508,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 75,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.05454,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.054742,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.22481944158096426,
+      "after_pff_vs_cov": 0.31474721821335,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36195930094535245
+    },
+    {
+      "t": 1762309544.054997,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "sack",
+      "yards": -6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 75,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 648
+      }
+    },
+    {
+      "t": 1762309544.0572338,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 11,
+      "yardline": 69,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.057518,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 11,
+        "yardline": 69,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 648
+      }
+    },
+    {
+      "t": 1762309544.05833,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 81,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.058491,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 81,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 612
+      }
+    },
+    {
+      "t": 1762309544.059278,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 88,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.0594199,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.059537,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.22481944158096426,
+      "after_pff_vs_cov": 0.31474721821335,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36195930094535245
+    },
+    {
+      "t": 1762309544.059676,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 88,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 576
+      }
+    },
+    {
+      "t": 1762309544.0604532,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 88,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.060582,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.060684,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.060787,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "interception",
+      "yards": 0,
+      "td": false,
+      "turnover": true,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 88,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 576
+      }
+    },
+    {
+      "t": 1762309544.060915,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 2,
+      "team": "home",
+      "plays": 12,
+      "points": 0,
+      "time_used": 324,
+      "result": "Turnover",
+      "start_state": {
+        "drive_num": 2,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 576
+      }
+    },
+    {
+      "t": 1762309544.061017,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 2,
+      "team": "home",
+      "pace": 12,
+      "success_rate": 0.4166666666666667,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Turnover"
+    },
+    {
+      "t": 1762309544.062832,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6153846153846154,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.063128,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 576
+      }
+    },
+    {
+      "t": 1762309544.063958,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.064113,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 543
+      }
+    },
+    {
+      "t": 1762309544.064894,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6153846153846154,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.066035,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.066761,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.0669498,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 21,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 510
+      }
+    },
+    {
+      "t": 1762309544.0678,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 57,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6153846153846154,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.06795,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 57,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 477
+      }
+    },
+    {
+      "t": 1762309544.068919,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 60,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.069173,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.069315,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.06948,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 60,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 444
+      }
+    },
+    {
+      "t": 1762309544.070862,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 4,
+      "yardline": 63,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.071006,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.0711129,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.071275,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 19,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 4,
+        "yardline": 63,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 411
+      }
+    },
+    {
+      "t": 1762309544.072032,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 82,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6153846153846154,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.072159,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.0722718,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.0724149,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 82,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 378
+      }
+    },
+    {
+      "t": 1762309544.0731678,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 84,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "long",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6428571428571429,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.073399,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.0737112,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.0739589,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 84,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 345
+      }
+    },
+    {
+      "t": 1762309544.0755851,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 90,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.0759401,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 90,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 312
+      }
+    },
+    {
+      "t": 1762309544.076213,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "time_remaining": 279,
+      "yardline": 90,
+      "to_go": 2,
+      "score_diff": 0,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 90,
+        "distance_to_goal": 10,
+        "fg_distance": 27,
+        "ydstogo": 2,
+        "time_remaining": 2979,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "4th_and_short_very_close"
+      },
+      "punt_reasoning": {
+        "yardline": 90,
+        "distance_to_goal": 10,
+        "fg_distance": 27,
+        "ydstogo": 2,
+        "time_remaining": 2979,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "4th_and_short_very_close"
+      }
+    },
+    {
+      "t": 1762309544.080031,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 4,
+      "to_go": 2,
+      "yardline": 90,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "short",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.7,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.080321,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 2,
+        "yardline": 90,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 279
+      }
+    },
+    {
+      "t": 1762309544.0818949,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 6,
+      "yardline": 94,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5538461538461539,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.082061,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": -1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 6,
+        "yardline": 94,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 246
+      }
+    },
+    {
+      "t": 1762309544.082826,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 93,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.083282,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.0836449,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.20602181672228573,
+      "after_pff_vs_cov": 0.2884305434112,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.2884305434112
+    },
+    {
+      "t": 1762309544.0844219,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 93,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 213
+      }
+    },
+    {
+      "t": 1762309544.0867982,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 3,
+      "to_go": 7,
+      "yardline": 93,
+      "score_diff": 0,
+      "buckets": {
+        "distance": "medium",
+        "score": "tied",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.087142,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.087318,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.087552,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 7,
+        "yardline": 93,
+        "home": 0,
+        "away": 0,
+        "quarter": 1,
+        "time_rem": 213
+      }
+    },
+    {
+      "t": 1762309544.087745,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "time_remaining": 180,
+      "yardline": 96,
+      "to_go": 4,
+      "score_diff": 0,
+      "fg_epa": 2.55,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "FG",
+      "fg_reasoning": {
+        "yardline": 96,
+        "distance_to_goal": 4,
+        "fg_distance": 21,
+        "ydstogo": 4,
+        "time_remaining": 2880,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "in_fg_range"
+      },
+      "punt_reasoning": {
+        "yardline": 96,
+        "distance_to_goal": 4,
+        "fg_distance": 21,
+        "ydstogo": 4,
+        "time_remaining": 2880,
+        "score_diff": 0,
+        "quarter": 1,
+        "reason": "in_fg_range"
+      }
+    },
+    {
+      "t": 1762309544.0879529,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 3,
+      "team": "away",
+      "plays": 13,
+      "points": 3,
+      "time_used": 396,
+      "result": "FG",
+      "start_state": {
+        "drive_num": 3,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 576
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 1,
+        "time_remaining": 180
+      }
+    },
+    {
+      "t": 1762309544.08811,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 3,
+      "team": "away",
+      "pace": 13,
+      "success_rate": 0.3076923076923077,
+      "explosive_rate": 0.15384615384615385,
+      "explosive_count": 2,
+      "result": "FG"
+    },
+    {
+      "t": 1762309544.090375,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.090815,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.0910149,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.2248194415809643,
+      "after_pff_vs_cov": 0.31474721821335,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31474721821335
+    },
+    {
+      "t": 1762309544.09377,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "scramble",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 0,
+        "away": 3,
+        "quarter": 1,
+        "time_rem": 180
+      }
+    },
+    {
+      "t": 1762309544.0954828,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 34,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "short",
+        "score": "down_1-6",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.0958998,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 34,
+        "home": 0,
+        "away": 3,
+        "quarter": 1,
+        "time_rem": 144
+      }
+    },
+    {
+      "t": 1762309544.097627,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.098325,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.098598,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.0989199,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 0,
+        "away": 3,
+        "quarter": 1,
+        "time_rem": 108
+      }
+    },
+    {
+      "t": 1762309544.100353,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 39,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_1-6",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.1006541,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.100821,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.1010408,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 29,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 39,
+        "home": 0,
+        "away": 3,
+        "quarter": 1,
+        "time_rem": 72
+      }
+    },
+    {
+      "t": 1762309544.102201,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 1,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 68,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.102478,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 68,
+        "home": 0,
+        "away": 3,
+        "quarter": 1,
+        "time_rem": 36
+      }
+    },
+    {
+      "t": 1762309544.1036658,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 74,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_1-6",
+        "time": "Q1-Q2"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.1039748,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.1041431,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.104367,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 23,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 74,
+        "home": 0,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309544.107446,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 3,
+      "yardline": 97,
+      "score_diff": -3,
+      "buckets": {
+        "distance": "short",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.536081679048431,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.10767,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 3,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 3,
+        "yardline": 97,
+        "home": 0,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 864
+      }
+    },
+    {
+      "t": 1762309544.107818,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 4,
+      "team": "home",
+      "plays": 6,
+      "points": 7,
+      "time_used": -648,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 4,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 1,
+        "start_time": 180
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 828
+      }
+    },
+    {
+      "t": 1762309544.1079319,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 4,
+      "team": "home",
+      "pace": 6,
+      "success_rate": 0.6666666666666666,
+      "explosive_rate": 0.3333333333333333,
+      "explosive_count": 2,
+      "result": "TD"
+    },
+    {
+      "t": 1762309544.108712,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.7,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.108853,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 828
+      }
+    },
+    {
+      "t": 1762309544.109615,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 4,
+      "yardline": 31,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.109747,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.109851,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.1100101,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 4,
+        "yardline": 31,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762309544.110759,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.7,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.1108842,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.1109881,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.111128,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 762
+      }
+    },
+    {
+      "t": 1762309544.1133802,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 42,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "short",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.1138408,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": -3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 42,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 729
+      }
+    },
+    {
+      "t": 1762309544.116197,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 39,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.1164532,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.1166,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.1167638,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 39,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 696
+      }
+    },
+    {
+      "t": 1762309544.1169019,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "time_remaining": 663,
+      "yardline": 41,
+      "to_go": 4,
+      "score_diff": -4,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 41,
+        "distance_to_goal": 59,
+        "fg_distance": 76,
+        "ydstogo": 4,
+        "time_remaining": 2463,
+        "score_diff": -4,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 41,
+        "distance_to_goal": 59,
+        "fg_distance": 76,
+        "ydstogo": 4,
+        "time_remaining": 2463,
+        "score_diff": -4,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309544.1170502,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 5,
+      "team": "away",
+      "plays": 5,
+      "points": 0,
+      "time_used": 165,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 5,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 828
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 663
+      }
+    },
+    {
+      "t": 1762309544.117155,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 5,
+      "team": "away",
+      "pace": 5,
+      "success_rate": 0.2,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309544.1204119,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.120638,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.120768,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.2248194415809643,
+      "after_pff_vs_cov": 0.31474721821335,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31474721821335
+    },
+    {
+      "t": 1762309544.120908,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "sack",
+      "yards": -10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 663
+      }
+    },
+    {
+      "t": 1762309544.121703,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 20,
+      "yardline": 15,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.1218472,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 20,
+        "yardline": 15,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 663
+      }
+    },
+    {
+      "t": 1762309544.123629,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 15,
+      "yardline": 20,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8228070175438597,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.123787,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.1238961,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.124022,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 15,
+        "yardline": 20,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 627
+      }
+    },
+    {
+      "t": 1762309544.1241422,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "time_remaining": 627,
+      "yardline": 20,
+      "to_go": 15,
+      "score_diff": 4,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 20,
+        "distance_to_goal": 80,
+        "fg_distance": 97,
+        "ydstogo": 15,
+        "time_remaining": 2427,
+        "score_diff": 4,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 20,
+        "distance_to_goal": 80,
+        "fg_distance": 97,
+        "ydstogo": 15,
+        "time_remaining": 2427,
+        "score_diff": 4,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309544.124298,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 6,
+      "team": "home",
+      "plays": 3,
+      "points": 0,
+      "time_used": 36,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 6,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 663
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 627
+      }
+    },
+    {
+      "t": 1762309544.1244001,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 6,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309544.12514,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "long",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.7,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.125272,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 627
+      }
+    },
+    {
+      "t": 1762309544.126009,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 28,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.126134,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 28,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 594
+      }
+    },
+    {
+      "t": 1762309544.127341,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": -4,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.127469,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.12757,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.127721,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 561
+      }
+    },
+    {
+      "t": 1762309544.128112,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "time_remaining": 528,
+      "yardline": 30,
+      "to_go": 5,
+      "score_diff": -4,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 30,
+        "distance_to_goal": 70,
+        "fg_distance": 87,
+        "ydstogo": 5,
+        "time_remaining": 2328,
+        "score_diff": -4,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 30,
+        "distance_to_goal": 70,
+        "fg_distance": 87,
+        "ydstogo": 5,
+        "time_remaining": 2328,
+        "score_diff": -4,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309544.128524,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 7,
+      "team": "away",
+      "plays": 3,
+      "points": 0,
+      "time_used": 99,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 7,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 627
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 528
+      }
+    },
+    {
+      "t": 1762309544.128853,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 7,
+      "team": "away",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309544.131217,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.1316469,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 528
+      }
+    },
+    {
+      "t": 1762309544.14153,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.1419609,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.1421561,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.22481944158096426,
+      "after_pff_vs_cov": 0.31474721821335,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36195930094535245
+    },
+    {
+      "t": 1762309544.1423192,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 492
+      }
+    },
+    {
+      "t": 1762309544.1435251,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 35,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.143907,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.14411,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.144394,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 35,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 492
+      }
+    },
+    {
+      "t": 1762309544.147357,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 42,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "short",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.8228070175438597,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.14766,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 42,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 456
+      }
+    },
+    {
+      "t": 1762309544.148455,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 46,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.1486201,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.148733,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.148882,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 46,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 420
+      }
+    },
+    {
+      "t": 1762309544.149635,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 58,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.1497622,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.149865,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.150006,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 58,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 384
+      }
+    },
+    {
+      "t": 1762309544.1515882,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 70,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5714285714285714,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.151736,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.1518579,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.152003,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 70,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 348
+      }
+    },
+    {
+      "t": 1762309544.153579,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 78,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "short",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.1537201,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.1538382,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.153984,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 78,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 312
+      }
+    },
+    {
+      "t": 1762309544.1555278,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 7,
+      "yardline": 93,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_1-6",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.5238095238095238,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.155676,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 7,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 7,
+        "yardline": 93,
+        "home": 7,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 276
+      }
+    },
+    {
+      "t": 1762309544.155803,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 8,
+      "team": "home",
+      "plays": 9,
+      "points": 7,
+      "time_used": 288,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 8,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 528
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 240
+      }
+    },
+    {
+      "t": 1762309544.1559072,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 8,
+      "team": "home",
+      "pace": 9,
+      "success_rate": 0.6666666666666666,
+      "explosive_rate": 0.1111111111111111,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309544.1566432,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.156768,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.15688,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.20602181672228573,
+      "after_pff_vs_cov": 0.2884305434112,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.33169512492288
+    },
+    {
+      "t": 1762309544.157004,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 240
+      }
+    },
+    {
+      "t": 1762309544.157739,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.1578612,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.157969,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.20602181672228573,
+      "after_pff_vs_cov": 0.2884305434112,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.2884305434112
+    },
+    {
+      "t": 1762309544.158071,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "sack",
+      "yards": -9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 240
+      }
+    },
+    {
+      "t": 1762309544.1587899,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 3,
+      "to_go": 19,
+      "yardline": 16,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.1589189,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.159028,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.159165,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 19,
+        "yardline": 16,
+        "home": 14,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 240
+      }
+    },
+    {
+      "t": 1762309544.159285,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "time_remaining": 207,
+      "yardline": 20,
+      "to_go": 15,
+      "score_diff": -11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 20,
+        "distance_to_goal": 80,
+        "fg_distance": 97,
+        "ydstogo": 15,
+        "time_remaining": 2007,
+        "score_diff": -11,
+        "quarter": 2,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 20,
+        "distance_to_goal": 80,
+        "fg_distance": 97,
+        "ydstogo": 15,
+        "time_remaining": 2007,
+        "score_diff": -11,
+        "quarter": 2,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309544.1594229,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 9,
+      "team": "away",
+      "plays": 3,
+      "points": 0,
+      "time_used": 33,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 9,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 240
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 2,
+        "time_remaining": 207
+      }
+    },
+    {
+      "t": 1762309544.1595368,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 9,
+      "team": "away",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309544.1602829,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.160411,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 207
+      }
+    },
+    {
+      "t": 1762309544.161449,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.163054,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 14,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 171
+      }
+    },
+    {
+      "t": 1762309544.1644979,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 46,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.164955,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 46,
+        "home": 14,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 135
+      }
+    },
+    {
+      "t": 1762309544.167593,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 51,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.167888,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.168054,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.168277,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 16,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 51,
+        "home": 14,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 99
+      }
+    },
+    {
+      "t": 1762309544.1696372,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 67,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.1699789,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 67,
+        "home": 14,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 63
+      }
+    },
+    {
+      "t": 1762309544.172898,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 2,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 72,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.17329,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.1734788,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.173771,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 72,
+        "home": 14,
+        "away": 3,
+        "quarter": 2,
+        "time_rem": 27
+      }
+    },
+    {
+      "t": 1762309544.1739829,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 10,
+      "team": "home",
+      "plays": 5,
+      "points": 0,
+      "time_used": -693,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 10,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 2,
+        "start_time": 207
+      },
+      "end_state": {
+        "yardline": 23,
+        "quarter": 3,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762309544.1741629,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 10,
+      "team": "home",
+      "pace": 5,
+      "success_rate": 0.6,
+      "explosive_rate": 0.2,
+      "explosive_count": 1,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762309544.1804612,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 23,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q2-Q3"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.1809468,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 23,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309544.183121,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 9,
+      "yardline": 24,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.183468,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 9,
+        "yardline": 24,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 867
+      }
+    },
+    {
+      "t": 1762309544.190906,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 8,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.191196,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.1917062,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.192116,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 8,
+        "yardline": 25,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 834
+      }
+    },
+    {
+      "t": 1762309544.1923358,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "time_remaining": 801,
+      "yardline": 26,
+      "to_go": 7,
+      "score_diff": -11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 26,
+        "distance_to_goal": 74,
+        "fg_distance": 91,
+        "ydstogo": 7,
+        "time_remaining": 1701,
+        "score_diff": -11,
+        "quarter": 3,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 26,
+        "distance_to_goal": 74,
+        "fg_distance": 91,
+        "ydstogo": 7,
+        "time_remaining": 1701,
+        "score_diff": -11,
+        "quarter": 3,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309544.192571,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 10,
+      "team": "away",
+      "plays": 3,
+      "points": 0,
+      "time_used": 99,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 10,
+        "team": "away",
+        "start_yardline": 23,
+        "start_quarter": 3,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 801
+      }
+    },
+    {
+      "t": 1762309544.196112,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 10,
+      "team": "away",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309544.19749,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.197712,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.197836,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.197994,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 801
+      }
+    },
+    {
+      "t": 1762309544.198796,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 40,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.1990001,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 40,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 765
+      }
+    },
+    {
+      "t": 1762309544.200572,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 52,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.2009091,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 9,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 52,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 729
+      }
+    },
+    {
+      "t": 1762309544.2042649,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 1,
+      "yardline": 61,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.204627,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.204809,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.22481944158096426,
+      "after_pff_vs_cov": 0.31474721821335,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36195930094535245
+    },
+    {
+      "t": 1762309544.204982,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "sack",
+      "yards": -5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 1,
+        "yardline": 61,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 693
+      }
+    },
+    {
+      "t": 1762309544.206423,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 56,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.2071629,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.20736,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.2075021,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 56,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 693
+      }
+    },
+    {
+      "t": 1762309544.207647,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "time_remaining": 693,
+      "yardline": 56,
+      "to_go": 6,
+      "score_diff": 11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 56,
+        "distance_to_goal": 44,
+        "fg_distance": 61,
+        "ydstogo": 6,
+        "time_remaining": 1593,
+        "score_diff": 11,
+        "quarter": 3,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 56,
+        "distance_to_goal": 44,
+        "fg_distance": 61,
+        "ydstogo": 6,
+        "time_remaining": 1593,
+        "score_diff": 11,
+        "quarter": 3,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309544.207786,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 11,
+      "team": "home",
+      "plays": 5,
+      "points": 0,
+      "time_used": 108,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 11,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 801
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 693
+      }
+    },
+    {
+      "t": 1762309544.207894,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 11,
+      "team": "home",
+      "pace": 5,
+      "success_rate": 0.4,
+      "explosive_rate": 0.2,
+      "explosive_count": 1,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309544.2093031,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.2094998,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.209832,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.210067,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 693
+      }
+    },
+    {
+      "t": 1762309544.211811,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 32,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.85,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.21212,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.212542,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.2127502,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 32,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 660
+      }
+    },
+    {
+      "t": 1762309544.215936,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 32,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.216424,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 32,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 660
+      }
+    },
+    {
+      "t": 1762309544.2189288,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.223586,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.223781,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.20602181672228573,
+      "after_pff_vs_cov": 0.2884305434112,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.2884305434112
+    },
+    {
+      "t": 1762309544.223934,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 627
+      }
+    },
+    {
+      "t": 1762309544.225437,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.225597,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 627
+      }
+    },
+    {
+      "t": 1762309544.226861,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 8,
+      "yardline": 38,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.226998,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.227108,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.20602181672228573,
+      "after_pff_vs_cov": 0.2884305434112,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.2884305434112
+    },
+    {
+      "t": 1762309544.22722,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "scramble",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 8,
+        "yardline": 38,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 594
+      }
+    },
+    {
+      "t": 1762309544.228471,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 49,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.228657,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.2293692,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.229585,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 49,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 561
+      }
+    },
+    {
+      "t": 1762309544.231599,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 51,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.231987,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.232158,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.2323918,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 6,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 51,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 528
+      }
+    },
+    {
+      "t": 1762309544.234905,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 2,
+      "yardline": 57,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.0,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.2356539,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 2,
+        "yardline": 57,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 495
+      }
+    },
+    {
+      "t": 1762309544.238747,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 62,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.239116,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.2394938,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.20602181672228573,
+      "after_pff_vs_cov": 0.2884305434112,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.33169512492288
+    },
+    {
+      "t": 1762309544.2396579,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "sack",
+      "yards": -8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 62,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 462
+      }
+    },
+    {
+      "t": 1762309544.241198,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 18,
+      "yardline": 54,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.241782,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.242042,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.242306,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 18,
+        "yardline": 54,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 462
+      }
+    },
+    {
+      "t": 1762309544.2446542,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 11,
+      "yardline": 61,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.245017,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.245196,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.20602181672228573,
+      "after_pff_vs_cov": 0.2884305434112,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.33169512492288
+    },
+    {
+      "t": 1762309544.245783,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 11,
+        "yardline": 61,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 429
+      }
+    },
+    {
+      "t": 1762309544.246305,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "time_remaining": 396,
+      "yardline": 65,
+      "to_go": 7,
+      "score_diff": -11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 65,
+        "distance_to_goal": 35,
+        "fg_distance": 52,
+        "ydstogo": 7,
+        "time_remaining": 1296,
+        "score_diff": -11,
+        "quarter": 3,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 65,
+        "distance_to_goal": 35,
+        "fg_distance": 52,
+        "ydstogo": 7,
+        "time_remaining": 1296,
+        "score_diff": -11,
+        "quarter": 3,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309544.246681,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 12,
+      "team": "away",
+      "plays": 12,
+      "points": 0,
+      "time_used": 297,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 12,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 693
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 396
+      }
+    },
+    {
+      "t": 1762309544.2470038,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 12,
+      "team": "away",
+      "pace": 12,
+      "success_rate": 0.25,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309544.2485151,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.2488399,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 396
+      }
+    },
+    {
+      "t": 1762309544.2507079,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.25153,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": -1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 360
+      }
+    },
+    {
+      "t": 1762309544.2532742,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 11,
+      "yardline": 36,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.253637,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.253818,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.254059,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 11,
+        "yardline": 36,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 324
+      }
+    },
+    {
+      "t": 1762309544.255487,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 48,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.255818,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.256015,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.256263,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 19,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 48,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 288
+      }
+    },
+    {
+      "t": 1762309544.258837,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 67,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.259089,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 11,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 67,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 252
+      }
+    },
+    {
+      "t": 1762309544.2598898,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 78,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.260054,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 78,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 216
+      }
+    },
+    {
+      "t": 1762309544.2616389,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 85,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.261798,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.261908,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.22481944158096426,
+      "after_pff_vs_cov": 0.31474721821335,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36195930094535245
+    },
+    {
+      "t": 1762309544.262325,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 85,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 180
+      }
+    },
+    {
+      "t": 1762309544.264457,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 85,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.2647,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.264828,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.2248194415809643,
+      "after_pff_vs_cov": 0.31474721821335,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31474721821335
+    },
+    {
+      "t": 1762309544.264948,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "scramble",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 85,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 180
+      }
+    },
+    {
+      "t": 1762309544.265078,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "time_remaining": 144,
+      "yardline": 87,
+      "to_go": 1,
+      "score_diff": 11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 87,
+        "distance_to_goal": 13,
+        "fg_distance": 30,
+        "ydstogo": 1,
+        "time_remaining": 1044,
+        "score_diff": 11,
+        "quarter": 3,
+        "reason": "4th_and_1_in_fg_range"
+      },
+      "punt_reasoning": {
+        "yardline": 87,
+        "distance_to_goal": 13,
+        "fg_distance": 30,
+        "ydstogo": 1,
+        "time_remaining": 1044,
+        "score_diff": 11,
+        "quarter": 3,
+        "reason": "4th_and_1_in_fg_range"
+      }
+    },
+    {
+      "t": 1762309544.2668731,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 4,
+      "to_go": 1,
+      "yardline": 87,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.26701,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.267114,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.267232,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "interception",
+      "yards": 0,
+      "td": false,
+      "turnover": true,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 1,
+        "yardline": 87,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 144
+      }
+    },
+    {
+      "t": 1762309544.267338,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 13,
+      "team": "home",
+      "plays": 9,
+      "points": 0,
+      "time_used": 252,
+      "result": "Turnover",
+      "start_state": {
+        "drive_num": 13,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 396
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 3,
+        "time_remaining": 144
+      }
+    },
+    {
+      "t": 1762309544.267442,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 13,
+      "team": "home",
+      "pace": 9,
+      "success_rate": 0.5555555555555556,
+      "explosive_rate": 0.1111111111111111,
+      "explosive_count": 1,
+      "result": "Turnover"
+    },
+    {
+      "t": 1762309544.268678,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.268825,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.268925,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.269068,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 14,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 144
+      }
+    },
+    {
+      "t": 1762309544.2703009,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 39,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.270444,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.270545,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.270685,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 39,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 111
+      }
+    },
+    {
+      "t": 1762309544.2718961,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 51,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.4444444444444444,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.272039,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.272139,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.272279,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 51,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 78
+      }
+    },
+    {
+      "t": 1762309544.2737548,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 53,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.2742221,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.2744582,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.2748091,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 53,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 45
+      }
+    },
+    {
+      "t": 1762309544.277708,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 3,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 56,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.2780428,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.278234,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.2785192,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 56,
+        "home": 14,
+        "away": 3,
+        "quarter": 3,
+        "time_rem": 12
+      }
+    },
+    {
+      "t": 1762309544.27898,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "time_remaining": 900,
+      "yardline": 56,
+      "to_go": 5,
+      "score_diff": -11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 56,
+        "distance_to_goal": 44,
+        "fg_distance": 61,
+        "ydstogo": 5,
+        "time_remaining": 900,
+        "score_diff": -11,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 56,
+        "distance_to_goal": 44,
+        "fg_distance": 61,
+        "ydstogo": 5,
+        "time_remaining": 900,
+        "score_diff": -11,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309544.279391,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 14,
+      "team": "away",
+      "plays": 4,
+      "points": 0,
+      "time_used": -756,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 14,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 3,
+        "start_time": 144
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 900
+      }
+    },
+    {
+      "t": 1762309544.2795641,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 14,
+      "team": "away",
+      "pace": 4,
+      "success_rate": 0.5,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309544.280791,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q3-Q4"
+      },
+      "team_pass_rate": 0.3333333333333333,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.281149,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 900
+      }
+    },
+    {
+      "t": 1762309544.2835011,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.283861,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.284031,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.2248194415809643,
+      "after_pff_vs_cov": 0.31474721821335,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.31474721821335
+    },
+    {
+      "t": 1762309544.28418,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 864
+      }
+    },
+    {
+      "t": 1762309544.286502,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.287607,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.287918,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.288207,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 864
+      }
+    },
+    {
+      "t": 1762309544.288426,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "time_remaining": 828,
+      "yardline": 30,
+      "to_go": 5,
+      "score_diff": 11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Punt",
+      "fg_reasoning": {
+        "yardline": 30,
+        "distance_to_goal": 70,
+        "fg_distance": 87,
+        "ydstogo": 5,
+        "time_remaining": 828,
+        "score_diff": 11,
+        "quarter": 4,
+        "reason": "default_punt"
+      },
+      "punt_reasoning": {
+        "yardline": 30,
+        "distance_to_goal": 70,
+        "fg_distance": 87,
+        "ydstogo": 5,
+        "time_remaining": 828,
+        "score_diff": 11,
+        "quarter": 4,
+        "reason": "default_punt"
+      }
+    },
+    {
+      "t": 1762309544.288661,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 15,
+      "team": "home",
+      "plays": 3,
+      "points": 0,
+      "time_used": 72,
+      "result": "Punt",
+      "start_state": {
+        "drive_num": 15,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 900
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 828
+      }
+    },
+    {
+      "t": 1762309544.2888262,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 15,
+      "team": "home",
+      "pace": 3,
+      "success_rate": 0.0,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Punt"
+    },
+    {
+      "t": 1762309544.291239,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.2916758,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 828
+      }
+    },
+    {
+      "t": 1762309544.2933362,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.293544,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.293684,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.293822,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762309544.295936,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.29625,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 12,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 795
+      }
+    },
+    {
+      "t": 1762309544.297207,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 41,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.297377,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.297538,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.20602181672228573,
+      "after_pff_vs_cov": 0.2884305434112,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.33169512492288
+    },
+    {
+      "t": 1762309544.297916,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "scramble",
+      "yards": 7,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 41,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 762
+      }
+    },
+    {
+      "t": 1762309544.3006442,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 3,
+      "yardline": 48,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.85,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.300969,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.301148,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.301381,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 3,
+        "yardline": 48,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 729
+      }
+    },
+    {
+      "t": 1762309544.3026502,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 52,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.303029,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.303294,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.303544,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 13,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 52,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 696
+      }
+    },
+    {
+      "t": 1762309544.3049548,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 65,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.3052769,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 65,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 663
+      }
+    },
+    {
+      "t": 1762309544.30832,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 67,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.308803,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.30899,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.309226,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 67,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 630
+      }
+    },
+    {
+      "t": 1762309544.311862,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 70,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.312236,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 70,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 597
+      }
+    },
+    {
+      "t": 1762309544.312695,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "time_remaining": 564,
+      "yardline": 73,
+      "to_go": 2,
+      "score_diff": -11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": 2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 73,
+        "distance_to_goal": 27,
+        "fg_distance": 44,
+        "ydstogo": 2,
+        "time_remaining": 564,
+        "score_diff": -11,
+        "quarter": 4,
+        "reason": "4th_short_opp_territory"
+      },
+      "punt_reasoning": {
+        "yardline": 73,
+        "distance_to_goal": 27,
+        "fg_distance": 44,
+        "ydstogo": 2,
+        "time_remaining": 564,
+        "score_diff": -11,
+        "quarter": 4,
+        "reason": "4th_short_opp_territory"
+      }
+    },
+    {
+      "t": 1762309544.3172941,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 4,
+      "to_go": 2,
+      "yardline": 73,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.7,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.3176682,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.3178508,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.318082,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 4,
+        "to_go": 2,
+        "yardline": 73,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 564
+      }
+    },
+    {
+      "t": 1762309544.320169,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 88,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.3204448,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 88,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 531
+      }
+    },
+    {
+      "t": 1762309544.322546,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 7,
+      "yardline": 91,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.322809,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.322965,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.3231318,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 9,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 7,
+        "yardline": 91,
+        "home": 14,
+        "away": 3,
+        "quarter": 4,
+        "time_rem": 498
+      }
+    },
+    {
+      "t": 1762309544.323284,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 16,
+      "team": "away",
+      "plays": 12,
+      "points": 7,
+      "time_used": 363,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 16,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 828
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 465
+      }
+    },
+    {
+      "t": 1762309544.3234549,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 16,
+      "team": "away",
+      "pace": 12,
+      "success_rate": 0.4166666666666667,
+      "explosive_rate": 0.08333333333333333,
+      "explosive_count": 1,
+      "result": "TD"
+    },
+    {
+      "t": 1762309544.324932,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5238095238095238,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.3251169,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 14,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 465
+      }
+    },
+    {
+      "t": 1762309544.3293,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.32992,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 10,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 14,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 429
+      }
+    },
+    {
+      "t": 1762309544.331483,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 37,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5238095238095238,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.331661,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 8,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 37,
+        "home": 14,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 393
+      }
+    },
+    {
+      "t": 1762309544.3344269,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 2,
+      "yardline": 45,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "short",
+        "score": "up_1-6",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.3347461,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.3349261,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.3351629,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 15,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 2,
+        "to_go": 2,
+        "yardline": 45,
+        "home": 14,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 357
+      }
+    },
+    {
+      "t": 1762309544.33804,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 60,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5238095238095238,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.339384,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 60,
+        "home": 14,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 321
+      }
+    },
+    {
+      "t": 1762309544.343648,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 5,
+      "yardline": 65,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_1-6",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.6666666666666666,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.3455229,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": true
+    },
+    {
+      "t": 1762309544.345796,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "pressure",
+      "qb_baseline": 0.219,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.22481944158096426,
+      "after_pff_vs_cov": 0.31474721821335,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.36195930094535245
+    },
+    {
+      "t": 1762309544.34609,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "scramble",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 5,
+        "yardline": 65,
+        "home": 14,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 285
+      }
+    },
+    {
+      "t": 1762309544.350094,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 5,
+      "yardline": 65,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "medium",
+        "score": "up_1-6",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.8228070175438597,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.350453,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.350624,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.3508532,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 24,
+      "td": false,
+      "turnover": false,
+      "explosive": true,
+      "state_after": {
+        "down": 3,
+        "to_go": 5,
+        "yardline": 65,
+        "home": 14,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 249
+      }
+    },
+    {
+      "t": 1762309544.3528872,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 89,
+      "score_diff": 4,
+      "buckets": {
+        "distance": "long",
+        "score": "up_1-6",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5238095238095238,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.353297,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.3534741,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.3536499,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 11,
+      "td": true,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 89,
+        "home": 14,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 213
+      }
+    },
+    {
+      "t": 1762309544.3537972,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 17,
+      "team": "home",
+      "plays": 8,
+      "points": 7,
+      "time_used": 288,
+      "result": "TD",
+      "start_state": {
+        "drive_num": 17,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 465
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 177
+      }
+    },
+    {
+      "t": 1762309544.35391,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 17,
+      "team": "home",
+      "pace": 8,
+      "success_rate": 0.5,
+      "explosive_rate": 0.25,
+      "explosive_count": 2,
+      "result": "TD"
+    },
+    {
+      "t": 1762309544.3548381,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.354976,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.355082,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5279503105590062,
+      "after_pff_vs_cov": 0.7391304347826088,
+      "persistence_boost": 1.15,
+      "final_completion_pct": 0.85
+    },
+    {
+      "t": 1762309544.355208,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "incomplete",
+      "yards": 0,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 177
+      }
+    },
+    {
+      "t": 1762309544.3580391,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "long",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.625,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.35841,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 58.5,
+      "dl_grade": 70.5,
+      "mismatch": 12.0,
+      "final": 0.26,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.358596,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": -2.963055542857142,
+      "after_anya": 0.5785544168228571,
+      "after_pff_vs_cov": 0.809976183552,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.809976183552
+    },
+    {
+      "t": 1762309544.358835,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 177
+      }
+    },
+    {
+      "t": 1762309544.3614342,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 6,
+      "yardline": 29,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "medium",
+        "score": "down_7-13",
+        "time": "Q4_late"
+      },
+      "team_pass_rate": 0.5,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.3633249,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 6,
+        "yardline": 29,
+        "home": 21,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 144
+      }
+    },
+    {
+      "t": 1762309544.363523,
+      "kind": "policy_decision",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "time_remaining": 111,
+      "yardline": 33,
+      "to_go": 2,
+      "score_diff": -11,
+      "fg_epa": -3.0,
+      "punt_epa": -0.5,
+      "go_epa": -2.0,
+      "decision": "Go",
+      "fg_reasoning": {
+        "yardline": 33,
+        "distance_to_goal": 67,
+        "fg_distance": 84,
+        "ydstogo": 2,
+        "time_remaining": 111,
+        "score_diff": -11,
+        "quarter": 4,
+        "reason": "desperation_mode"
+      },
+      "punt_reasoning": {
+        "yardline": 33,
+        "distance_to_goal": 67,
+        "fg_distance": 84,
+        "ydstogo": 2,
+        "time_remaining": 111,
+        "score_diff": -11,
+        "quarter": 4,
+        "reason": "desperation_mode"
+      }
+    },
+    {
+      "t": 1762309544.366348,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 4,
+      "to_go": 2,
+      "yardline": 33,
+      "score_diff": -11,
+      "buckets": {
+        "distance": "short",
+        "score": "down_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.7,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.36655,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": -1,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 4,
+        "to_go": 2,
+        "yardline": 33,
+        "home": 21,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 111
+      }
+    },
+    {
+      "t": 1762309544.366675,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 18,
+      "team": "away",
+      "plays": 4,
+      "points": 0,
+      "time_used": 99,
+      "result": "Turnover_on_Downs",
+      "start_state": {
+        "drive_num": 18,
+        "team": "away",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 177
+      },
+      "end_state": {
+        "yardline": 25,
+        "quarter": 4,
+        "time_remaining": 78
+      }
+    },
+    {
+      "t": 1762309544.3668659,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 18,
+      "team": "away",
+      "pace": 4,
+      "success_rate": 0.25,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Turnover_on_Downs"
+    },
+    {
+      "t": 1762309544.36817,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 25,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.1111111111111111,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.3683221,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 2,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 25,
+        "home": 21,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 78
+      }
+    },
+    {
+      "t": 1762309544.370955,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 2,
+      "to_go": 8,
+      "yardline": 27,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 1.0,
+      "choice": "pass"
+    },
+    {
+      "t": 1762309544.371169,
+      "kind": "pass.pressure",
+      "game_id": "2025_09_ARI_DAL",
+      "base": 0.212,
+      "ol_grade": 52.9,
+      "dl_grade": 63.2,
+      "mismatch": 10.300000000000004,
+      "final": 0.25320000000000004,
+      "is_pressure": false
+    },
+    {
+      "t": 1762309544.3712928,
+      "kind": "pass.completion_model",
+      "game_id": "2025_09_ARI_DAL",
+      "split": "clean",
+      "qb_baseline": 0.615,
+      "anya_advantage": 1.3286396303571424,
+      "after_anya": 0.6285714285714287,
+      "after_pff_vs_cov": 0.88,
+      "persistence_boost": 1.0,
+      "final_completion_pct": 0.88
+    },
+    {
+      "t": 1762309544.37147,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "completion",
+      "yards": 5,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 2,
+        "to_go": 8,
+        "yardline": 27,
+        "home": 21,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 53
+      }
+    },
+    {
+      "t": 1762309544.373195,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 3,
+      "to_go": 3,
+      "yardline": 32,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "short",
+        "score": "up_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.75,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.373613,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 4,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 3,
+        "to_go": 3,
+        "yardline": 32,
+        "home": 21,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 28
+      }
+    },
+    {
+      "t": 1762309544.3804932,
+      "kind": "call.pass_run",
+      "game_id": "2025_09_ARI_DAL",
+      "quarter": 4,
+      "down": 1,
+      "to_go": 10,
+      "yardline": 36,
+      "score_diff": 11,
+      "buckets": {
+        "distance": "long",
+        "score": "up_7-13",
+        "time": "2min"
+      },
+      "team_pass_rate": 0.1111111111111111,
+      "choice": "run"
+    },
+    {
+      "t": 1762309544.381075,
+      "kind": "play.result",
+      "game_id": "2025_09_ARI_DAL",
+      "type": "run",
+      "yards": 3,
+      "td": false,
+      "turnover": false,
+      "explosive": false,
+      "state_after": {
+        "down": 1,
+        "to_go": 10,
+        "yardline": 36,
+        "home": 21,
+        "away": 10,
+        "quarter": 4,
+        "time_rem": 3
+      }
+    },
+    {
+      "t": 1762309544.381288,
+      "kind": "drive.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 19,
+      "team": "home",
+      "plays": 4,
+      "points": 0,
+      "time_used": 78,
+      "result": "Unknown",
+      "start_state": {
+        "drive_num": 19,
+        "team": "home",
+        "start_yardline": 25,
+        "start_quarter": 4,
+        "start_time": 78
+      },
+      "end_state": {
+        "yardline": 39,
+        "quarter": 4,
+        "time_remaining": 0
+      }
+    },
+    {
+      "t": 1762309544.381454,
+      "kind": "anchor_slice",
+      "game_id": "2025_09_ARI_DAL",
+      "drive_no": 19,
+      "team": "home",
+      "pace": 4,
+      "success_rate": 0.25,
+      "explosive_rate": 0.0,
+      "explosive_count": 0,
+      "result": "Unknown"
+    },
+    {
+      "t": 1762309544.381971,
+      "kind": "game.summary",
+      "game_id": "2025_09_ARI_DAL",
+      "home_score": 21,
+      "away_score": 10,
+      "spread": -11,
+      "total": 31,
+      "drives_per_team": 9.5,
+      "plays_per_drive": 6.473684210526316,
+      "td_pct": 0.21052631578947367,
+      "fg_pct": 0.05263157894736842,
+      "turnover_pct": 0.15789473684210525,
+      "explosive_rate": 0.08943089430894309,
+      "pass_rate": 0.5793650793650794
+    },
+    {
+      "t": 1762309544.382158,
+      "kind": "anchors.violation",
+      "game_id": "2025_09_ARI_DAL",
+      "violations": [
+        {
+          "metric": "fg_pct",
+          "observed": 0.05263157894736842,
+          "target_range": [
+            0.08,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "turnover_pct",
+          "observed": 0.15789473684210525,
+          "target_range": [
+            0.09,
+            0.12
+          ],
+          "violation": "too_high"
+        },
+        {
+          "metric": "explosive_rate",
+          "observed": 0.08943089430894309,
+          "target_range": [
+            0.1,
+            0.12
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "pass_rate",
+          "observed": 0.5793650793650794,
+          "target_range": [
+            0.58,
+            0.62
+          ],
+          "violation": "too_low"
+        },
+        {
+          "metric": "total_points",
+          "observed": 31,
+          "target_range": [
+            42,
+            46
+          ],
+          "violation": "too_low"
+        }
+      ],
+      "severity": "critical"
+    },
+    {
+      "t": 1762309566.158247,
+      "kind": "distribution_params",
+      "game_id": "2025_09_ARI_DAL",
+      "spread": {
+        "raw_mean": 27.54,
+        "raw_sd": 12.801890485393162,
+        "calibrated_mean": 15.725340000000003,
+        "calibrated_sd": 12.801890485393162,
+        "market_line": 3.5
+      },
+      "total": {
+        "raw_mean": 46.08,
+        "raw_sd": 10.338936115481129,
+        "calibrated_mean": 52.76168,
+        "calibrated_sd": 10.338936115481129,
+        "market_line": 53.5
+      }
+    },
+    {
+      "t": 1762309566.1602829,
+      "kind": "calibration",
+      "game_id": "2025_09_ARI_DAL",
+      "spread": {
+        "predicted_prob": 0.6785714285714286,
+        "bin_id": 6,
+        "bet_side": "HOME",
+        "market_line": 3.5,
+        "eventual_hit": null
+      },
+      "total": {
+        "predicted_prob": 0.5132450331125828,
+        "bin_id": null,
+        "bet_side": null,
+        "market_line": 53.5,
+        "eventual_hit": null
+      },
+      "calibration_method": "isotonic"
+    }
+  ]
+}
