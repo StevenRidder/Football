@@ -249,7 +249,58 @@ def load_simulator_predictions(force_reload=False):
         mtime = simulator_file.stat().st_mtime
         print(f"✅ Loading simulator predictions from {simulator_file} (modified: {mtime})")
         df = pd.read_csv(simulator_file)
+        
+        # Ensure spread_result is in the correct format (WIN/LOSS/None)
+        if 'spread_result' in df.columns:
+            # Convert numeric to string if needed
+            if df['spread_result'].dtype in ['float64', 'int64']:
+                df['spread_result'] = df['spread_result'].apply(
+                    lambda x: 'WIN' if x == 1.0 else ('LOSS' if x == 0.0 else None) if pd.notna(x) else None
+                )
+        
         return df
+    
+    # If formatted file doesn't exist, try to load and format backtest files directly
+    print("⚠️  simulator_predictions.csv not found, trying to load backtest files directly...")
+    backtest_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_all_games_conviction.csv")
+    week9_file = Path("simulation_engine/nflfastR_simulator/artifacts/backtest_week9_predictions.csv")
+    
+    dfs = []
+    if backtest_file.exists():
+        print(f"   Loading weeks 1-8 from: {backtest_file}")
+        df_backtest = pd.read_csv(backtest_file)
+        dfs.append(df_backtest)
+    
+    if week9_file.exists():
+        print(f"   Loading week 9 from: {week9_file}")
+        df_week9 = pd.read_csv(week9_file)
+        dfs.append(df_week9)
+    
+    if dfs:
+        df_combined = pd.concat(dfs, ignore_index=True)
+        # Convert spread_result to WIN/LOSS format
+        if 'spread_result' in df_combined.columns:
+            df_combined['spread_result'] = df_combined['spread_result'].apply(
+                lambda x: 'WIN' if x == 1.0 else ('LOSS' if x == 0.0 else None) if pd.notna(x) else None
+            )
+        # Ensure is_completed exists
+        if 'is_completed' not in df_combined.columns:
+            df_combined['is_completed'] = df_combined.get('home_score', pd.Series()).notna() & df_combined.get('away_score', pd.Series()).notna()
+        # Ensure spread_recommendation exists (convert from spread_bet if needed)
+        if 'spread_recommendation' not in df_combined.columns and 'spread_bet' in df_combined.columns:
+            def format_spread_bet(bet):
+                if pd.isna(bet) or bet == 'Pass' or bet == '':
+                    return 'Pass'
+                if bet == 'HOME':
+                    return 'Home ATS'
+                if bet == 'AWAY':
+                    return 'Away ATS'
+                return str(bet)
+            df_combined['spread_recommendation'] = df_combined['spread_bet'].apply(format_spread_bet)
+        
+        print(f"✅ Loaded {len(df_combined)} games from backtest files (weeks: {sorted(df_combined['week'].unique()) if 'week' in df_combined.columns else 'N/A'})")
+        return df_combined
+    
     return None
 
 def load_latest_predictions():
