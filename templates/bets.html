@@ -127,7 +127,7 @@
                   <div class="col-md-3">
                     <select class="form-select" id="filterStatus" onchange="filterTable()">
                       <option value="">All Status</option>
-                      <option value="Pending">Pending</option>
+                      <option value="Pending" selected>Pending</option>
                       <option value="Won">Won</option>
                       <option value="Lost">Lost</option>
                     </select>
@@ -410,7 +410,12 @@ TicketID | Date | Team1 +3.5 | Team2 ML | Over 45.5 | Parlay | Pending | 10.00 |
               <i class="ti ti-clock icon"></i> Mark as Pending
             </button>
           </div>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <div>
+            <button type="button" class="btn btn-outline-danger me-2" onclick="deleteBet()">
+              <i class="ti ti-trash icon"></i> Delete Bet
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1042,6 +1047,46 @@ async function updateBetStatus(newStatus) {
   }
 }
 
+// Delete bet
+async function deleteBet() {
+  if (!currentBetTicketId) {
+    alert('Error: No bet selected');
+    return;
+  }
+  
+  if (!confirm('Are you sure you want to delete this bet? This action cannot be undone.')) {
+    return;
+  }
+  
+  try {
+    const response = await fetch('/api/bets/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ticket_id: currentBetTicketId
+      })
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      // Close modal
+      const modal = bootstrap.Modal.getInstance(document.getElementById('betDetailsModal'));
+      modal.hide();
+      
+      // Reload page to show updated list
+      location.reload();
+    } else {
+      alert('Error deleting bet: ' + result.message);
+    }
+  } catch (error) {
+    console.error('Error deleting bet:', error);
+    alert('Failed to delete bet');
+  }
+}
+
 // Auto-grade all pending bets based on live scores
 async function autoGradeAllBets() {
   const btn = document.getElementById('autoGradeBtn');
@@ -1289,12 +1334,14 @@ function parseTableFormat(text) {
       // Same Game Parlay or detailed bet - keep full description
       formattedDesc = description;
     } else if (description.match(/FOOTBALL - \d+/)) {
-      // Simple bet like "FOOTBALL - 278 Indianapolis Colts -15 -110"
-      // Try to extract team and line
-      const match = description.match(/FOOTBALL - \d+\s+(.+?)\s+([-+]?\d+(?:\.5)?)\s+[-+]?\d+/);
+      // Simple bet like "FOOTBALL - 278 Indianapolis Colts -15 -110" or "FOOTBALL - 268 Seattle Seahawks -6½ -115"
+      // Try to extract team and line (handle both .5 and ½)
+      const match = description.match(/FOOTBALL - \d+\s+(.+?)\s+([-+]?\d+(?:\.5|½)?)\s+[-+]?\d+/);
       if (match) {
         const team = match[1].trim();
-        const line = match[2];
+        let line = match[2];
+        // Convert ½ to .5 for consistency
+        line = line.replace('½', '.5');
         formattedDesc = `${team} ${line}`;
       }
     }
@@ -1322,6 +1369,43 @@ function parseBetOnlineData(text) {
     return parseTableFormat(text);
   }
   
+  // Check if it's table format without headers (multiple bets, each 7 lines)
+  const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  
+  // Check if this looks like table format: multiple groups of 7 lines
+  // Each group should start with a ticket number pattern (digits-digits) and have a date on line 2
+  if (lines.length >= 14) { // At least 2 bets worth of data
+    let looksLikeTable = true;
+    let validGroups = 0;
+    
+    // Check first few groups to see if they match the pattern
+    for (let i = 0; i < Math.min(lines.length, 21); i += 7) {
+      if (i + 6 < lines.length) {
+        const ticketLine = lines[i];
+        const dateLine = lines[i + 1];
+        
+        // Check if ticket line matches pattern (digits-digits, possibly with leading spaces)
+        const ticketMatch = ticketLine.match(/^\s*\d{9}-\d+\s*$/);
+        // Check if date line matches pattern (MM/DD/YYYY)
+        const dateMatch = dateLine.match(/^\d{2}\/\d{2}\/\d{4}$/);
+        
+        if (ticketMatch && dateMatch) {
+          validGroups++;
+        } else if (i === 0) {
+          // First group must match for it to be table format
+          looksLikeTable = false;
+          break;
+        }
+      }
+    }
+    
+    // If we found at least one valid group and it looks like table format, use table parser
+    if (looksLikeTable && validGroups > 0) {
+      console.log('✓ Detected table format without headers');
+      return parseTableFormat(text);
+    }
+  }
+  
   // Otherwise, parse detailed format
   // Try to extract ticket number (handle both "Ticket Number: XXX" and "XXX" on first line)
   let ticketMatch = text.match(/Ticket Number:\s*(\S+)/);
@@ -1331,9 +1415,8 @@ function parseBetOnlineData(text) {
     ticketNumber = ticketMatch[1];
   } else {
     // Try first line format: "906833943-1" followed by date on next line
-    const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-    if (lines.length >= 2 && lines[0].match(/^\d{9}-\d+$/) && lines[1].match(/^\d{2}\/\d{2}\/\d{4}$/)) {
-      ticketNumber = lines[0];
+    if (lines.length >= 2 && lines[0].match(/^\s*\d{9}-\d+\s*$/) && lines[1].match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+      ticketNumber = lines[0].trim();
       console.log('✓ Ticket from first line:', ticketNumber);
     }
   }

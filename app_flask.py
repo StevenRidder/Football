@@ -2581,6 +2581,57 @@ def api_update_bet_status():
             'message': f'Update failed: {str(e)}'
         })
 
+@app.route('/api/bets/delete', methods=['POST'])
+def api_delete_bet():
+    """API endpoint to delete a bet"""
+    try:
+        data = request.get_json()
+        ticket_id = data.get('ticket_id')
+
+        if not ticket_id:
+            return jsonify({
+                'success': False,
+                'message': 'Missing ticket_id'
+            })
+
+        from nfl_edge.bets.db import BettingDB
+        db = BettingDB()
+        conn = db.connect()
+
+        with conn.cursor() as cur:
+            # Check if bet exists
+            cur.execute('SELECT ticket_id FROM bets WHERE ticket_id = %s', (ticket_id,))
+            bet = cur.fetchone()
+
+            if not bet:
+                return jsonify({
+                    'success': False,
+                    'message': f'Bet {ticket_id} not found'
+                })
+
+            # Delete parlay legs first (if any)
+            cur.execute(
+                'DELETE FROM parlay_legs WHERE bet_id = (SELECT id FROM bets WHERE ticket_id = %s)',
+                (ticket_id,)
+            )
+
+            # Delete the bet
+            cur.execute('DELETE FROM bets WHERE ticket_id = %s', (ticket_id,))
+
+        conn.commit()
+        db.close()
+
+        return jsonify({
+            'success': True,
+            'message': f'Bet {ticket_id} deleted successfully'
+        })
+
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': str(e)
+        })
+
 @app.route('/api/bets/auto-grade', methods=['POST'])
 def api_auto_grade_bets():
     """Auto-grade all pending bets based on completed games"""
