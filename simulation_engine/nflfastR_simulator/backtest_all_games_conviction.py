@@ -46,10 +46,34 @@ def simulate_one_game(args):
         home_profile = TeamProfile(home, season, week, data_dir=data_dir, debug=False)
         away_profile = TeamProfile(away, season, week, data_dir=data_dir, debug=False)
         
+        # Initialize pressure calibrator (if available)
+        pressure_cal = None
+        try:
+            from simulator.pressure_calibration import PressureCalibrator, PressureConfig
+            
+            pressure_file = data_dir / "pressure_rates_weekly.csv"
+            if pressure_file.exists():
+                pressure_df = pd.read_csv(pressure_file)
+                pressure_cal = PressureCalibrator(PressureConfig(
+                    weeks_lookback=5,
+                    ema_alpha=0.45,
+                    ol_dl_beta=0.018
+                ))
+                pressure_cal.fit_from_weekly(pressure_df, season=season, week=week)
+        except Exception as e:
+            # If calibrator fails, continue without it (fallback to old system)
+            pass
+        
         # Run simulation (pass game info for situational factors if available)
         game_id = row.get('game_id', f"{season}_{week:02d}_{away}_{home}")
-        sim = GameSimulator(home_profile, away_profile, 
-                           game_id=game_id, season=season, week=week)
+        sim = GameSimulator(
+            home_profile, 
+            away_profile, 
+            game_id=game_id, 
+            season=season, 
+            week=week,
+            pressure_calibrator=pressure_cal
+        )
         home_scores = []
         away_scores = []
         

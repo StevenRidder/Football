@@ -33,7 +33,8 @@ class GameSimulator:
 
     def __init__(self, home_team: TeamProfile, away_team: TeamProfile,
                  game_id: str = None, season: int = None, week: int = None,
-                 trace: Optional[SimTrace] = None, seed: Optional[int] = None):
+                 trace: Optional[SimTrace] = None, seed: Optional[int] = None,
+                 pressure_calibrator = None):
         """
         Initialize game simulator.
         
@@ -45,9 +46,11 @@ class GameSimulator:
             week: Optional week for situational factors
             trace: Optional SimTrace for logging (creates new one if None)
             seed: Optional random seed for reproducibility
+            pressure_calibrator: Optional PressureCalibrator for team-specific pressure rates
         """
         self.home_team = home_team
         self.away_team = away_team
+        self.pressure_calibrator = pressure_calibrator
 
         # Initialize trace
         if trace is None:
@@ -211,7 +214,12 @@ class GameSimulator:
             offense: Offensive team profile
             defense: Defensive team profile
         """
-        play_sim = PlaySimulator(offense, defense, trace=self.trace)
+        play_sim = PlaySimulator(
+            offense, 
+            defense, 
+            trace=self.trace,
+            pressure_calibrator=self.pressure_calibrator
+        )
 
         # Track drive metrics for anchor_slice logging
         drive_start_state = {

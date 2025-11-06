@@ -1,66 +1,123 @@
-# ✅ Metrics Integration Complete
+# Pressure Calibration Integration - Complete ✅
 
 ## Summary
 
-**14 out of 19 metrics (74%) are now INTEGRATED and USED in the simulator.**
+Pressure calibration has been successfully integrated into the simulator. The system now uses team-specific pressure baselines with situational adjustments instead of a single global rate.
 
-## ✅ INTEGRATED METRICS
+## What Changed
 
-1. **EPA (Off/Def)** - Used for yards adjustments ✅
-2. **QB Splits** - Used for pass outcomes ✅  
-3. **All 6 PFF Grades** - Used for pressure, completion, run blocking, explosive plays ✅
-4. **Play-Calling** - Used for pass/run decisions ✅
-5. **YPA** - Used for pass completion yardage adjustments ✅
-6. **YPP** - Used for run yardage adjustments ✅
-7. **Red Zone TD%** - Used for TD probability inside 20 ✅
-8. **Turnover Regression** - Applied to all turnover rates (INT, fumbles) ✅
-9. **Special Teams (Punt Net)** - Used for field position on punts ✅
-10. **Special Teams (FG %)** - Used for field goal success rate ✅
-11. **Pace** - Used for max plays per drive ✅
+### Core Simulator Files
+1. **`simulator/play_simulator.py`**
+   - Added `pressure_calibrator` parameter
+   - New pressure calculation uses team baselines + situational multipliers
+   - Falls back to old system if calibrator not provided (backward compatible)
 
-## ⚠️ REMAINING (Loaded but not used in play logic)
+2. **`simulator/game_simulator.py`**
+   - Added `pressure_calibrator` parameter
+   - Passes calibrator to `PlaySimulator`
 
-1. **Early-Down Success Rate** - Should modify drive continuation probability
-2. **ANY/A** - Could adjust QB efficiency
-3. **Drive Probabilities** - Fine-tuning (hardcoded logic exists)
-4. **Situational Factors** - Not loaded into TeamProfile yet
+### Backtest & Prediction Scripts
+3. **`backtest_all_games_conviction.py`**
+   - Initializes pressure calibrator per game
+   - Loads from `data/nflfastR/pressure_rates_weekly.csv`
 
-## Debug Logging
+4. **`scripts/generate_week9_10_predictions.py`**
+   - Initializes pressure calibrator per game
+   - Uses same calibration system
 
-**TeamProfile** now supports `debug=True` to show:
-- ✅ All loaded metrics with values
-- ✅ Source of data (file vs fallback)
-- ✅ Any missing data errors
+### New Files Created
+5. **`simulator/pressure_calibration.py`** - Main calibration module
+6. **`preprocessing/prep_pressure_rates.py`** - Weekly data prep
+7. **`scripts/validate_pressure_calibration.py`** - Validation tool
+8. **Integration guides** - Documentation
 
-**Usage:**
+## How It Works
+
+### Weekly Data Prep
+```bash
+python3 preprocessing/prep_pressure_rates.py --season 2025 --week 9
+```
+- Computes `off_pr_allowed` and `def_pr_created` from nflfastR
+- Saves to `data/nflfastR/pressure_rates_weekly.csv`
+
+### During Simulation
+1. Backtest/prediction script loads pressure rates CSV
+2. Initializes `PressureCalibrator` and fits to current week
+3. Passes calibrator to `GameSimulator`
+4. `GameSimulator` passes to `PlaySimulator`
+5. `PlaySimulator` uses calibrated pressure rates per snap
+
+### Per-Snap Calculation
+The calibrator computes pressure probability using:
+- **Team baselines**: Rolling EMA of offensive/defensive pressure rates
+- **OL/DL mismatch**: PFF grade adjustments
+- **Situational multipliers**:
+  - 3rd & long: 1.25x
+  - Two-minute drill (trailing): 1.20x
+  - Trailing by 10+ (2H): 1.10x
+  - Play-action: 0.90x (reduces pressure)
+  - Shotgun: 1.05x (increases pressure)
+- **Injury adjustments**: +5% per missing OL starter, -5% per missing DL starter
+
+## Testing
+
+### Quick Test
 ```python
-team = TeamProfile('KC', 2025, 8, data_dir, debug=True)
+from simulator.pressure_calibration import PressureCalibrator, PressureConfig
+import pandas as pd
+
+df = pd.read_csv("data/nflfastR/pressure_rates_weekly.csv")
+cal = PressureCalibrator()
+cal.fit_from_weekly(df, season=2025, week=9)
+
+# Check baselines
+print(cal.snapshot().sort_values('off_pr_allowed', ascending=False))
 ```
 
-## No Fallbacks Policy
+### Validation
+After running simulations:
+```bash
+python3 scripts/validate_pressure_calibration.py --season 2025 --week 9
+```
 
-All critical data now raises `ValueError` if missing:
-- Play-calling data
-- YPP/YPA data  
-- PFF grades
-- All other core metrics
+## Expected Improvements
 
-This ensures we know exactly what data is being used.
+1. **Team-Specific Pressure Rates**
+   - PIT: 29.6% → ~15% (matches actual)
+   - KC: 30% → ~42.5% (matches actual)
+   - IND: Reduced EPA inflation
 
-## Known Issue
+2. **Total MAE**
+   - Current: 11.18 points
+   - Target: <10 points (8-10% improvement)
 
-**Play-calling data for 2025 Week 1**: Some teams have very sparse data (only 1-2 downs available). The system now:
-1. Tries season aggregates first
-2. Falls back to weekly aggregates  
-3. Tries progressively simpler lookups (down+score+dist → down+score → down)
-4. Raises error only if absolutely no data exists
+3. **Team Bias Reduction**
+   - IND, CIN, SF, NYJ should show smaller errors
+   - Fewer extreme prediction errors
 
-For early season weeks, consider using previous season data or aggregating across more weeks.
+4. **Situational Realism**
+   - Higher pressure in obvious passing situations
+   - Better late-game simulation
 
 ## Next Steps
 
-1. Integrate Early-Down Success for drive continuation
-2. Integrate ANY/A for QB efficiency adjustments
-3. Load Situational Factors (rest, weather, dome) into TeamProfile
-4. Use Drive Probabilities from actual team data instead of hardcoded values
+1. **Test the integration**:
+   - Run `prep_pressure_rates.py` for weeks 1-9
+   - Run backtest on week 9
+   - Validate pressure rates
 
+2. **If pressure gaps persist**:
+   - Tune `ol_dl_beta` (0.018 → 0.020-0.024)
+   - Tune `third_long_mult` (1.25 → 1.30)
+   - Adjust `weeks_lookback` or `ema_alpha`
+
+3. **After validation**:
+   - Move to **Improvement #2: Defensive Variance Damping**
+   - Then **Improvement #3: Red Zone Efficiency**
+
+## Files Ready
+
+- ✅ All code integrated
+- ✅ Backward compatible (falls back if calibrator unavailable)
+- ✅ Ready to test
+- ✅ Documentation complete

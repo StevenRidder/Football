@@ -20,19 +20,26 @@ try:
     from .game_state import GameState
     from .team_profile import TeamProfile
     from .tracing import SimTrace
+    from .pressure_calibration import PressureCalibrator
 except ImportError:
     from game_state import GameState
     from team_profile import TeamProfile
     from tracing import SimTrace
+    try:
+        from pressure_calibration import PressureCalibrator
+    except ImportError:
+        PressureCalibrator = None
 
 
 class PlaySimulator:
     """Simulates individual plays based on team profiles and game state."""
 
-    # Base pressure rate (league average)
+    # Base pressure rate (league average) - fallback if calibrator not available
     BASE_PRESSURE_RATE = 0.212  # 21.2% from nflfastR data
 
-    def __init__(self, offense: TeamProfile, defense: TeamProfile, trace: Optional[SimTrace] = None):
+    def __init__(self, offense: TeamProfile, defense: TeamProfile, 
+                 trace: Optional[SimTrace] = None,
+                 pressure_calibrator: Optional[PressureCalibrator] = None):
         """
         Initialize play simulator.
         
@@ -40,10 +47,12 @@ class PlaySimulator:
             offense: Offensive team profile
             defense: Defensive team profile
             trace: Optional SimTrace for logging
+            pressure_calibrator: Optional PressureCalibrator for team-specific pressure rates
         """
         self.offense = offense
         self.defense = defense
         self.trace = trace
+        self.pressure_calibrator = pressure_calibrator
 
     def decide_play_type(self, game_state: GameState) -> str:
         """
@@ -123,54 +132,123 @@ class PlaySimulator:
             Dict with keys: type, yards, td, turnover
         """
         # Step 1: Determine if pressure occurs
-        pressure_rate = self.BASE_PRESSURE_RATE
-
-        # FIXED: Apply injury multipliers (OL starters out increases pressure)
-        ol_injury_mult = getattr(self.offense, 'injury_multipliers', {}).get('ol_pressure_mult', 1.0)
-        pressure_rate = pressure_rate * ol_injury_mult
-
-        # Step 2: Apply PFF OL vs DL mismatch for pressure adjustment
-        # Strategy: OL/DL mismatch is a key predictive factor
-        # NO FALLBACKS - all PFF data must be loaded
-        if not hasattr(self.offense, 'ol_grade') or self.offense.ol_grade is None:
-            raise ValueError(f"Offense {self.offense.team} missing ol_grade - PFF data required")
-        if not hasattr(self.defense, 'dl_grade') or self.defense.dl_grade is None:
-            raise ValueError(f"Defense {self.defense.team} missing dl_grade - PFF data required")
-
-        # Apply zero-mean PFF adjustments if available (preferred method)
-        if hasattr(self.offense, 'pff_pressure_z') and self.offense.pff_pressure_z is not None:
-            # Use pre-computed zero-mean z-score
-            # Beta = 0.015 means 1 SD mismatch → ±1.5% pressure change
-            beta = 0.015
-            adjustment_factor = 1.0 + beta * self.offense.pff_pressure_z
-            adjustment_factor = np.clip(adjustment_factor, 0.80, 1.20)
-            pressure_rate = np.clip(pressure_rate * adjustment_factor, 0.05, 0.55)
+        if self.pressure_calibrator:
+            # Use new pressure calibration system (team-specific baselines + situational adjustments)
+            # Calculate offense trailing by (from offense perspective)
+            if game_state.possession == 'home':
+                offense_trailing_by = game_state.away_score - game_state.home_score
+            else:
+                offense_trailing_by = game_state.home_score - game_state.away_score
+            
+            # Calculate seconds left in current quarter
+            sec_left_in_quarter = game_state.time_remaining % 900
+            if sec_left_in_quarter == 0 and game_state.quarter < 4:
+                sec_left_in_quarter = 900
+            
+            # Determine half
+            half = 1 if game_state.quarter <= 2 else 2
+            
+            # Get injury info
+            injuries = {
+                'OL': {'starters_out': getattr(self.offense, 'ol_starters_out', 0)},
+                'DL': {'starters_out': getattr(self.defense, 'dl_starters_out', 0)}
+            }
+            
+            # Get PFF ranks if available (optional, for mismatch adjustment)
+            ol_rank = getattr(self.offense, 'ol_rank', None)
+            dl_rank = getattr(self.defense, 'dl_rank', None)
+            
+            # TODO: Track play_action and shotgun from play-calling logic
+            # For now, use defaults (can enhance later)
+            play_action = False
+            shotgun = True  # Most modern NFL passes are from shotgun
+            
+            pressure_rate = self.pressure_calibrator.pressure_prob(
+                offense_team=self.offense.team,
+                defense_team=self.defense.team,
+                down=game_state.down,
+                ydstogo=game_state.ydstogo,
+                quarter=game_state.quarter,
+                sec_left_in_quarter=sec_left_in_quarter,
+                offense_trailing_by=offense_trailing_by,
+                half=half,
+                play_action=play_action,
+                shotgun=shotgun,
+                injuries=injuries,
+                ol_rank=ol_rank,
+                dl_rank=dl_rank
+            )
+            
+            is_pressure = np.random.random() < pressure_rate
+            
+            # Log pressure calculation with new system
+            if self.trace:
+                self.trace.log("pass.pressure", {
+                    "method": "calibrated",
+                    "offense_team": self.offense.team,
+                    "defense_team": self.defense.team,
+                    "down": game_state.down,
+                    "ydstogo": game_state.ydstogo,
+                    "situation": {
+                        "quarter": game_state.quarter,
+                        "sec_left": sec_left_in_quarter,
+                        "trailing_by": offense_trailing_by,
+                        "half": half
+                    },
+                    "final": float(pressure_rate),
+                    "is_pressure": bool(is_pressure)
+                })
         else:
-            # Use raw PFF grades directly for OL vs DL mismatch
-            # Each 10-point DL advantage = +2% pressure rate
-            # Each 10-point OL advantage = -2% pressure rate
-            ol_grade = self.offense.ol_grade
-            dl_grade = self.defense.dl_grade
-            mismatch = dl_grade - ol_grade  # Positive = defense advantage = more pressure
-            pressure_adjustment = mismatch * 0.004  # 2x boost: 10 points = 4% change (was 2%)
-            pressure_adjustment = np.clip(pressure_adjustment, -0.15, 0.15)  # Cap at ±15% (was ±10%)
-            pressure_rate = np.clip(pressure_rate + pressure_adjustment, 0.05, 0.55)
+            # Fallback to old system (for backward compatibility)
+            pressure_rate = self.BASE_PRESSURE_RATE
 
-        is_pressure = np.random.random() < pressure_rate
+            # FIXED: Apply injury multipliers (OL starters out increases pressure)
+            ol_injury_mult = getattr(self.offense, 'injury_multipliers', {}).get('ol_pressure_mult', 1.0)
+            pressure_rate = pressure_rate * ol_injury_mult
 
-        # Log pressure calculation
-        if self.trace:
-            ol_grade = getattr(self.offense, 'ol_grade', None)
-            dl_grade = getattr(self.defense, 'dl_grade', None)
-            mismatch = dl_grade - ol_grade if (ol_grade and dl_grade) else None
-            self.trace.log("pass.pressure", {
-                "base": self.BASE_PRESSURE_RATE,
-                "ol_grade": float(ol_grade) if ol_grade else None,
-                "dl_grade": float(dl_grade) if dl_grade else None,
-                "mismatch": float(mismatch) if mismatch else None,
-                "final": float(pressure_rate),
-                "is_pressure": bool(is_pressure)
-            })
+            # Step 2: Apply PFF OL vs DL mismatch for pressure adjustment
+            # Strategy: OL/DL mismatch is a key predictive factor
+            # NO FALLBACKS - all PFF data must be loaded
+            if not hasattr(self.offense, 'ol_grade') or self.offense.ol_grade is None:
+                raise ValueError(f"Offense {self.offense.team} missing ol_grade - PFF data required")
+            if not hasattr(self.defense, 'dl_grade') or self.defense.dl_grade is None:
+                raise ValueError(f"Defense {self.defense.team} missing dl_grade - PFF data required")
+
+            # Apply zero-mean PFF adjustments if available (preferred method)
+            if hasattr(self.offense, 'pff_pressure_z') and self.offense.pff_pressure_z is not None:
+                # Use pre-computed zero-mean z-score
+                # Beta = 0.015 means 1 SD mismatch → ±1.5% pressure change
+                beta = 0.015
+                adjustment_factor = 1.0 + beta * self.offense.pff_pressure_z
+                adjustment_factor = np.clip(adjustment_factor, 0.80, 1.20)
+                pressure_rate = np.clip(pressure_rate * adjustment_factor, 0.05, 0.55)
+            else:
+                # Use raw PFF grades directly for OL vs DL mismatch
+                # Each 10-point DL advantage = +2% pressure rate
+                # Each 10-point OL advantage = -2% pressure rate
+                ol_grade = self.offense.ol_grade
+                dl_grade = self.defense.dl_grade
+                mismatch = dl_grade - ol_grade  # Positive = defense advantage = more pressure
+                pressure_adjustment = mismatch * 0.004  # 2x boost: 10 points = 4% change (was 2%)
+                pressure_adjustment = np.clip(pressure_adjustment, -0.15, 0.15)  # Cap at ±15% (was ±10%)
+                pressure_rate = np.clip(pressure_rate + pressure_adjustment, 0.05, 0.55)
+
+            is_pressure = np.random.random() < pressure_rate
+
+            # Log pressure calculation
+            if self.trace:
+                ol_grade = getattr(self.offense, 'ol_grade', None)
+                dl_grade = getattr(self.defense, 'dl_grade', None)
+                mismatch = dl_grade - ol_grade if (ol_grade and dl_grade) else None
+                self.trace.log("pass.pressure", {
+                    "method": "legacy",
+                    "base": self.BASE_PRESSURE_RATE,
+                    "ol_grade": float(ol_grade) if ol_grade else None,
+                    "dl_grade": float(dl_grade) if dl_grade else None,
+                    "mismatch": float(mismatch) if mismatch else None,
+                    "final": float(pressure_rate),
+                    "is_pressure": bool(is_pressure)
+                })
 
         # Calculate ANY/A advantage once for use throughout pass play
         # USE ANY/A METRIC: Adjust QB efficiency based on team ANY/A vs defense allowed
