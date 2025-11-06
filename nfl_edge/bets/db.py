@@ -146,7 +146,7 @@ class BettingDB:
             return bet_dict
     
     def get_performance_summary(self) -> Dict[str, Any]:
-        """Get overall betting performance summary"""
+        """Get overall betting performance summary - includes ALL bets (regular + round robin)"""
         conn = self.connect()
         with conn.cursor() as cur:
             cur.execute("""
@@ -170,7 +170,6 @@ class BettingDB:
                         ELSE 0
                     END as win_rate
                 FROM bets
-                WHERE is_round_robin = FALSE OR round_robin_parent IS NULL
             """)
             return cur.fetchone()
     

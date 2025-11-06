@@ -1530,17 +1530,70 @@ def accuracy():
 
     return render_template('accuracy.html', report=report, season=2025)
 
+@app.route('/api/bets/test-data')
+def test_bets_data():
+    """Test endpoint to verify bets data"""
+    from nfl_edge.bets.db import BettingDB
+    from flask import jsonify
+    
+    db = BettingDB()
+    conn = db.connect()
+    
+    with conn.cursor() as cur:
+        cur.execute("""
+            SELECT DISTINCT round_robin_parent, MIN(date) as date,
+                   SUM(amount) as total_amount, COUNT(*) as child_count
+            FROM bets 
+            WHERE is_round_robin = TRUE AND round_robin_parent IS NOT NULL
+            GROUP BY round_robin_parent
+        """)
+        groups = list(cur.fetchall())
+        
+        cur.execute("""
+            SELECT COUNT(*) as count FROM bets 
+            WHERE (is_round_robin = FALSE OR round_robin_parent IS NULL)
+        """)
+        regular_count = cur.fetchone()['count']
+    
+    db.close()
+    
+    return jsonify({
+        'round_robin_groups': len(groups),
+        'regular_bets': regular_count,
+        'total_should_be': len(groups) + regular_count,
+        'groups': [{'parent': g['round_robin_parent'], 'children': g['child_count']} for g in groups]
+    })
+
 @app.route('/bets')
 def bets():
     """My Bets Dashboard - Database Version"""
+    import sys
+    print("DEBUG: /bets route called", file=sys.stderr, flush=True)
+    
     from nfl_edge.bets.db import BettingDB
 
     db = BettingDB()
 
     try:
         # Get all bets (will show pending and settled)
+        # Include round robin bets - group them by parent or show individually
         conn = db.connect()
+        print("DEBUG: Connected to database", file=sys.stderr, flush=True)
         with conn.cursor() as cur:
+            # First, get unique round robin parent groups and create virtual parent bets
+            cur.execute("""
+                SELECT DISTINCT round_robin_parent, 
+                       MIN(date) as date,
+                       SUM(amount) as total_amount,
+                       SUM(to_win) as total_to_win,
+                       COUNT(*) as child_count
+                FROM bets 
+                WHERE is_round_robin = TRUE AND round_robin_parent IS NOT NULL
+                GROUP BY round_robin_parent
+            """)
+            round_robin_groups = cur.fetchall()
+            
+            # Get ALL bets (regular bets AND individual round robin bets)
             cur.execute("""
                 SELECT 
                     b.*,
@@ -1549,32 +1602,106 @@ def bets():
                         0
                     ) as round_robin_count
                 FROM bets b
-                WHERE is_round_robin = FALSE OR round_robin_parent IS NULL
                 ORDER BY date DESC, ticket_id
             """)
-            all_bets = cur.fetchall()
+            all_bets = list(cur.fetchall())
+            
+            # Add round robin groups as parent bets
+            for group in round_robin_groups:
+                parent_id = group['round_robin_parent']
+                # Create a virtual parent bet entry
+                parent_bet = {
+                    'id': None,
+                    'ticket_id': parent_id,
+                    'date': group['date'],
+                    'description': f"Round Robin Group: {group['child_count']} bets",
+                    'bet_type': 'Round Robin',
+                    'status': 'Pending',
+                    'amount': float(group['total_amount']),
+                    'to_win': float(group['total_to_win']),
+                    'profit': 0.0,
+                    'is_round_robin': False,
+                    'round_robin_parent': None,
+                    'round_robin_count': group['child_count']
+                }
+                all_bets.append(parent_bet)
+            
+            # Re-sort all bets by date DESC, then ticket_id
+            def sort_key(bet):
+                bet_dict = dict(bet) if not isinstance(bet, dict) else bet
+                date = bet_dict.get('date')
+                ticket = bet_dict.get('ticket_id', '')
+                # Convert date to comparable format
+                if hasattr(date, 'strftime'):
+                    date_str = date.strftime('%Y-%m-%d')
+                elif isinstance(date, str):
+                    # Assume MM/DD/YYYY format, convert to YYYY-MM-DD
+                    try:
+                        parts = date.split('/')
+                        if len(parts) == 3:
+                            date_str = f"{parts[2]}-{parts[0]}-{parts[1]}"
+                        else:
+                            date_str = date
+                    except:
+                        date_str = date
+                else:
+                    date_str = ''
+                return (date_str, ticket)
+            
+            all_bets.sort(key=sort_key, reverse=True)
 
         # Format for template
         bets_data = []
+        import sys
+        print(f"DEBUG: Processing {len(all_bets)} bets for template", file=sys.stderr, flush=True)
         for bet in all_bets:
-            bet_dict = dict(bet)
-            # Convert date to string for template
-            bet_dict['date'] = bet_dict['date'].strftime('%m/%d/%Y') if bet_dict['date'] else ''
-            # Rename bet_type to type for template compatibility
-            bet_dict['type'] = bet_dict.pop('bet_type')
-
-            # Add sub_bets if it's a round robin parent
-            if bet_dict.get('round_robin_count', 0) > 0:
-                with conn.cursor() as cur:
-                    cur.execute("""
-                        SELECT * FROM bets 
-                        WHERE round_robin_parent = %s 
-                        ORDER BY ticket_id
-                    """, (bet_dict['ticket_id'],))
-                    sub_bets = cur.fetchall()
-                bet_dict['sub_bets'] = [dict(sb) for sb in sub_bets]
-
-            bets_data.append(bet_dict)
+            try:
+                # Handle both dict and database row objects
+                if isinstance(bet, dict):
+                    bet_dict = bet.copy()  # Make a copy to avoid modifying original
+                else:
+                    bet_dict = dict(bet)
+                
+                ticket_id = bet_dict.get('ticket_id', 'UNKNOWN')
+                
+                # Convert date to string for template
+                if bet_dict.get('date'):
+                    if hasattr(bet_dict['date'], 'strftime'):
+                        bet_dict['date'] = bet_dict['date'].strftime('%m/%d/%Y')
+                    elif isinstance(bet_dict['date'], str):
+                        # Already a string, keep it
+                        pass
+                else:
+                    bet_dict['date'] = ''
+                
+                # Rename bet_type to type for template compatibility
+                if 'bet_type' in bet_dict:
+                    bet_dict['type'] = bet_dict.pop('bet_type')
+                elif 'type' not in bet_dict:
+                    bet_dict['type'] = 'Unknown'
+                
+                # Ensure id is set (use 0 for virtual parent bets)
+                if bet_dict.get('id') is None:
+                    bet_dict['id'] = 0
+                
+                # Don't load sub_bets here - too large for JSON serialization
+                # Just mark that it has children - they can be loaded via API on click
+                if bet_dict.get('round_robin_count', 0) > 0:
+                    print(f"DEBUG: Round robin parent {ticket_id} has {bet_dict.get('round_robin_count')} children (not loading inline)", file=sys.stderr, flush=True)
+                    # Set a flag so template knows this is expandable
+                    bet_dict['has_sub_bets'] = True
+                
+                bets_data.append(bet_dict)
+                if 'round_robin' in ticket_id.lower():
+                    print(f"DEBUG: Added round robin bet to bets_data: {ticket_id}", file=sys.stderr, flush=True)
+            except Exception as e:
+                print(f"ERROR processing bet {ticket_id}: {e}", file=sys.stderr, flush=True)
+                import traceback
+                traceback.print_exc()
+        
+        print(f"DEBUG: Total bets_data length: {len(bets_data)}")
+        round_robin_count = sum(1 for b in bets_data if 'round_robin' in b.get('ticket_id', '').lower())
+        print(f"DEBUG: Round robin bets in bets_data: {round_robin_count}")
 
         # Get summary
         summary = db.get_performance_summary()
@@ -1612,6 +1739,15 @@ def bets():
 
     finally:
         db.close()
+
+    # Debug: Check if round robin is in bets_data before rendering
+    import sys
+    rr_in_data = any('round_robin' in str(b.get('ticket_id', '')).lower() for b in bets_data)
+    print(f"DEBUG BEFORE RENDER: bets_data length={len(bets_data)}, round_robin present={rr_in_data}", file=sys.stderr, flush=True)
+    if rr_in_data:
+        rr_bet = next((b for b in bets_data if 'round_robin' in str(b.get('ticket_id', '')).lower()), None)
+        if rr_bet:
+            print(f"DEBUG: Round robin bet ticket_id={rr_bet.get('ticket_id')}, type={rr_bet.get('type')}", file=sys.stderr, flush=True)
 
     return render_template('bets.html',
                          bets=bets_data,
