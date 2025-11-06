@@ -121,6 +121,10 @@
                       <option value="Spread">Spread</option>
                       <option value="Parlay">Parlay</option>
                       <option value="Same Game Parlay">Same Game Parlay</option>
+                      <option value="Round Robin">Round Robin</option>
+                      <option value="Total">Total</option>
+                      <option value="Money Line">Money Line</option>
+                      <option value="Teaser">Teaser</option>
                       <option value="Live">Live</option>
                     </select>
                   </div>
@@ -1155,8 +1159,13 @@ function filterTable() {
     }
     
     // Type filter
-    if (filterType && type !== filterType) {
-      show = false;
+    if (filterType) {
+      // Special handling for Round Robin to match all Round Robin X-Leg types
+      if (filterType === 'Round Robin' && !type.includes('Round Robin')) {
+        show = false;
+      } else if (filterType !== 'Round Robin' && type !== filterType) {
+        show = false;
+      }
     }
     
     // Status filter
