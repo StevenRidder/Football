@@ -388,6 +388,15 @@ th.sortable.sort-desc .ti-selector::before {
   content: "\ea13"; /* ti-chevron-down */
   opacity: 1;
 }
+/* Clickable bet selection buttons */
+.bet-select-btn {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.bet-select-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 </style>
 
 <script>
@@ -409,6 +418,7 @@ async function loadGames() {
     renderGames(currentGamesData);
     setupTableSorting();
     await updatePerformanceStats(parseInt(week));
+    updateMyPerformanceStats(); // Update "My Picks" performance
   } catch (err) {
     document.getElementById('games-tbody').innerHTML = `
       <tr><td colspan="14" class="text-center text-danger">
@@ -810,13 +820,30 @@ function renderGamesCards(games) {
                           <div class="text-primary small">
                             Our Line: ${ourSpread}
                           </div>
-                          ${game.spread_recommendation && game.spread_recommendation !== 'Pass' ? 
-                            `<div class="mt-2">
-                              <span class="badge bg-success">${game.spread_recommendation}</span>
-                              ${game.spread_conviction ? `<span class="badge ${game.spread_conviction_badge || 'bg-secondary'} ms-1">${game.spread_conviction}</span>` : ''}
-                              ${spreadResultBadge ? `<span class="ms-1">${spreadResultBadge}</span>` : ''}
-                            </div>` : 
-                            `<div class="text-muted small mt-2">Pass</div>`}
+                          <div class="mt-2">
+                            <div class="mb-2">
+                              ${isCompleted ? 
+                                `<div class="btn-group btn-group-sm w-100" role="group">
+                                  <button class="btn ${getSpreadSelectionClass(game, 'away')} bet-select-btn" 
+                                          onclick="toggleBetSelection('${game.away_team}_${game.home_team}_${game.week}', 'spread', 'away')"
+                                          data-bs-toggle="tooltip" title="${game.away_team} spread result">
+                                    ${game.away_team}
+                                  </button>
+                                  <button class="btn ${getSpreadSelectionClass(game, 'home')} bet-select-btn" 
+                                          onclick="toggleBetSelection('${game.away_team}_${game.home_team}_${game.week}', 'spread', 'home')"
+                                          data-bs-toggle="tooltip" title="${game.home_team} spread result">
+                                    ${game.home_team}
+                                  </button>
+                                </div>
+                                <div class="text-muted small mt-1">
+                                  Model: ${game.spread_recommendation || 'Pass'}
+                                  ${spreadResultBadge ? `<span class="ms-1">${spreadResultBadge}</span>` : ''}
+                                </div>` :
+                                `<span class="badge bg-success">${game.spread_recommendation || 'Pass'}</span>
+                                 ${game.spread_conviction ? `<span class="badge ${game.spread_conviction_badge || 'bg-secondary'} ms-1">${game.spread_conviction}</span>` : ''}`
+                              }
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -841,13 +868,30 @@ function renderGamesCards(games) {
                           <div class="text-primary small">
                             Our Projection: ${ourTotal}
                           </div>
-                          ${game.total_recommendation && game.total_recommendation !== 'Pass' ? 
-                            `<div class="mt-2">
-                              <span class="badge bg-info">${game.total_recommendation}</span>
-                              ${game.total_conviction ? `<span class="badge ${game.total_conviction_badge || 'bg-secondary'} ms-1">${game.total_conviction}</span>` : ''}
-                              ${totalResultBadge ? `<span class="ms-1">${totalResultBadge}</span>` : ''}
-                            </div>` : 
-                            `<div class="text-muted small mt-2">Pass</div>`}
+                          <div class="mt-2">
+                            <div class="mb-2">
+                              ${isCompleted ? 
+                                `<div class="btn-group btn-group-sm w-100" role="group">
+                                  <button class="btn ${getTotalSelectionClass(game, 'over')} bet-select-btn" 
+                                          onclick="toggleBetSelection('${game.away_team}_${game.home_team}_${game.week}', 'total', 'over')"
+                                          data-bs-toggle="tooltip" title="Over result">
+                                    Over
+                                  </button>
+                                  <button class="btn ${getTotalSelectionClass(game, 'under')} bet-select-btn" 
+                                          onclick="toggleBetSelection('${game.away_team}_${game.home_team}_${game.week}', 'total', 'under')"
+                                          data-bs-toggle="tooltip" title="Under result">
+                                    Under
+                                  </button>
+                                </div>
+                                <div class="text-muted small mt-1">
+                                  Model: ${game.total_recommendation || 'Pass'}
+                                  ${totalResultBadge ? `<span class="ms-1">${totalResultBadge}</span>` : ''}
+                                </div>` :
+                                `<span class="badge bg-info">${game.total_recommendation || 'Pass'}</span>
+                                 ${game.total_conviction ? `<span class="badge ${game.total_conviction_badge || 'bg-secondary'} ms-1">${game.total_conviction}</span>` : ''}`
+                              }
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -872,12 +916,29 @@ function renderGamesCards(games) {
                           <div class="text-primary small">
                             Our Projection: ${ourAwayScore}-${ourHomeScore}
                           </div>
-                          ${game.moneyline_recommendation && game.moneyline_recommendation !== 'Pass' ? 
-                            `<div class="mt-2">
-                              <span class="badge bg-primary">${game.moneyline_recommendation}</span>
-                              ${mlResultBadge ? `<span class="ms-1">${mlResultBadge}</span>` : ''}
-                            </div>` : 
-                            `<div class="text-muted small mt-2">Pass</div>`}
+                          <div class="mt-2">
+                            <div class="mb-2">
+                              ${isCompleted ? 
+                                `<div class="btn-group btn-group-sm w-100" role="group">
+                                  <button class="btn ${getMLSelectionClass(game, 'away')} bet-select-btn" 
+                                          onclick="toggleBetSelection('${game.away_team}_${game.home_team}_${game.week}', 'ml', 'away')"
+                                          data-bs-toggle="tooltip" title="${game.away_team} moneyline">
+                                    ${game.away_team}
+                                  </button>
+                                  <button class="btn ${getMLSelectionClass(game, 'home')} bet-select-btn" 
+                                          onclick="toggleBetSelection('${game.away_team}_${game.home_team}_${game.week}', 'ml', 'home')"
+                                          data-bs-toggle="tooltip" title="${game.home_team} moneyline">
+                                    ${game.home_team}
+                                  </button>
+                                </div>
+                                <div class="text-muted small mt-1">
+                                  Model: ${game.moneyline_recommendation || 'Pass'}
+                                  ${mlResultBadge ? `<span class="ms-1">${mlResultBadge}</span>` : ''}
+                                </div>` :
+                                `<span class="badge bg-primary">${game.moneyline_recommendation || 'Pass'}</span>`
+                              }
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -894,8 +955,184 @@ function renderGamesCards(games) {
   document.getElementById('games-cards').innerHTML = html;
 }
 
+// Bet selection tracking (localStorage)
+let userBetSelections = {};
+
+function loadBetSelections() {
+  const saved = localStorage.getItem('nfl_bet_selections');
+  if (saved) {
+    try {
+      userBetSelections = JSON.parse(saved);
+    } catch (e) {
+      userBetSelections = {};
+    }
+  }
+}
+
+function saveBetSelections() {
+  localStorage.setItem('nfl_bet_selections', JSON.stringify(userBetSelections));
+}
+
+function toggleBetSelection(gameId, betType, side) {
+  const key = `${gameId}_${betType}`;
+  
+  // Toggle: if already selected, deselect; otherwise select
+  if (userBetSelections[key] === side) {
+    delete userBetSelections[key];
+  } else {
+    userBetSelections[key] = side;
+  }
+  
+  saveBetSelections();
+  renderGamesCards(currentGamesData); // Re-render to update button states
+  updateMyPerformanceStats(); // Update performance summary
+}
+
+function getSpreadSelectionClass(game, side) {
+  const gameId = `${game.away_team}_${game.home_team}_${game.week}`;
+  const key = `${gameId}_spread`;
+  const selected = userBetSelections[key] === side;
+  
+  // Determine if this side won based on spread_result and which team covered
+  let won = false;
+  if (game.spread_result === 'WIN') {
+    // Check who the model recommended
+    const modelPick = game.spread_recommendation;
+    if (modelPick && modelPick.includes(side === 'away' ? game.away_team : game.home_team)) {
+      won = true;
+    }
+  }
+  
+  // Button classes: selected and won = success, selected and lost = danger, not selected = outline
+  if (selected) {
+    return won ? 'btn-success' : 'btn-danger';
+  }
+  return 'btn-outline-secondary';
+}
+
+function getTotalSelectionClass(game, side) {
+  const gameId = `${game.away_team}_${game.home_team}_${game.week}`;
+  const key = `${gameId}_total`;
+  const selected = userBetSelections[key] === side;
+  
+  // Determine if this side won
+  let won = false;
+  if (game.total_result === 'WIN') {
+    const modelPick = game.total_recommendation;
+    if (modelPick && modelPick.toLowerCase().includes(side)) {
+      won = true;
+    }
+  }
+  
+  if (selected) {
+    return won ? 'btn-success' : 'btn-danger';
+  }
+  return 'btn-outline-secondary';
+}
+
+function getMLSelectionClass(game, side) {
+  const gameId = `${game.away_team}_${game.home_team}_${game.week}`;
+  const key = `${gameId}_ml`;
+  const selected = userBetSelections[key] === side;
+  
+  // Determine if this side won based on final score
+  let won = false;
+  if (game.final_score && game.moneyline_result) {
+    const modelPick = game.moneyline_recommendation;
+    if (modelPick && modelPick.includes(side === 'away' ? game.away_team : game.home_team)) {
+      won = game.moneyline_result === 'WIN';
+    }
+  }
+  
+  if (selected) {
+    return won ? 'btn-success' : 'btn-danger';
+  }
+  return 'btn-outline-secondary';
+}
+
+function updateMyPerformanceStats() {
+  if (!currentGamesData || currentGamesData.length === 0) return;
+  
+  const completedGames = currentGamesData.filter(g => g.is_completed);
+  let myWins = 0;
+  let myLosses = 0;
+  let myTotal = 0;
+  
+  completedGames.forEach(game => {
+    const gameId = `${game.away_team}_${game.home_team}_${game.week}`;
+    
+    // Check spread
+    const spreadKey = `${gameId}_spread`;
+    if (userBetSelections[spreadKey]) {
+      myTotal++;
+      const side = userBetSelections[spreadKey];
+      // Determine if won based on spread_result and model recommendation
+      if (game.spread_result === 'WIN') {
+        const modelPick = game.spread_recommendation;
+        if (modelPick && modelPick.includes(side === 'away' ? game.away_team : game.home_team)) {
+          myWins++;
+        } else {
+          myLosses++;
+        }
+      } else if (game.spread_result === 'LOSS') {
+        myLosses++;
+      }
+    }
+    
+    // Check total
+    const totalKey = `${gameId}_total`;
+    if (userBetSelections[totalKey]) {
+      myTotal++;
+      const side = userBetSelections[totalKey];
+      if (game.total_result === 'WIN') {
+        const modelPick = game.total_recommendation;
+        if (modelPick && modelPick.toLowerCase().includes(side)) {
+          myWins++;
+        } else {
+          myLosses++;
+        }
+      } else if (game.total_result === 'LOSS') {
+        myLosses++;
+      }
+    }
+    
+    // Check moneyline
+    const mlKey = `${gameId}_ml`;
+    if (userBetSelections[mlKey]) {
+      myTotal++;
+      if (game.moneyline_result === 'WIN') {
+        const modelPick = game.moneyline_recommendation;
+        const side = userBetSelections[mlKey];
+        if (modelPick && modelPick.includes(side === 'away' ? game.away_team : game.home_team)) {
+          myWins++;
+        } else {
+          myLosses++;
+        }
+      } else if (game.moneyline_result === 'LOSS') {
+        myLosses++;
+      }
+    }
+  });
+  
+  // Update performance summary with "My Picks" row
+  const weekRecord = document.getElementById('week-record');
+  const weekWinRate = document.getElementById('week-win-rate');
+  const weekRoi = document.getElementById('week-roi');
+  
+  if (myTotal > 0) {
+    const winRate = ((myWins / myTotal) * 100).toFixed(1);
+    const roi = ((myWins - myLosses) / myTotal * 100).toFixed(1);
+    
+    weekRecord.innerHTML = `${myWins}-${myLosses} <span class="text-muted small">(My Picks)</span>`;
+    weekWinRate.innerHTML = `${winRate}% win rate <span class="text-muted small">(${myTotal} bets)</span>`;
+    weekRoi.textContent = `${roi > 0 ? '+' : ''}${roi}%`;
+  }
+}
+
 // View toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
+  loadBetSelections(); // Load saved selections on page load
+  
   const viewCardsRadio = document.getElementById('view-cards');
   const viewTableRadio = document.getElementById('view-table');
   
