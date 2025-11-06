@@ -303,12 +303,34 @@
       </div>
     </div>
     
-    <!-- Games Table -->
+    <!-- Games List - Clean Card Layout -->
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">All Games</h3>
+        <div class="card-actions">
+          <div class="btn-group" role="group">
+            <input type="radio" class="btn-check" name="view-mode" id="view-cards" autocomplete="off" checked>
+            <label class="btn btn-sm" for="view-cards">
+              <i class="ti ti-layout-grid me-1"></i>Cards
+            </label>
+            <input type="radio" class="btn-check" name="view-mode" id="view-table" autocomplete="off">
+            <label class="btn btn-sm" for="view-table">
+              <i class="ti ti-table me-1"></i>Table
+            </label>
+          </div>
+        </div>
       </div>
-      <div class="table-responsive">
+      
+      <!-- Card View (Default) -->
+      <div class="card-body" id="games-cards">
+        <div class="text-center text-muted py-4">
+          <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+          Loading games...
+        </div>
+      </div>
+      
+      <!-- Table View (Hidden by default) -->
+      <div class="table-responsive d-none" id="games-table-view">
         <table class="table table-vcenter card-table table-sm" id="games-table">
           <thead>
             <tr>
@@ -692,12 +714,209 @@ function renderGames(games) {
 
   document.getElementById('games-tbody').innerHTML = html;
   
+  // Also render card view
+  renderGamesCards(games);
+  
   // Initialize Bootstrap tooltips after rendering
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
   tooltipTriggerList.forEach(tooltipTriggerEl => {
     new bootstrap.Tooltip(tooltipTriggerEl);
   });
 }
+
+function renderGamesCards(games) {
+  if (!games || games.length === 0) {
+    document.getElementById('games-cards').innerHTML = `
+      <div class="text-center text-muted py-4">No games found</div>
+    `;
+    return;
+  }
+
+  const html = games.map(game => {
+    const isCompleted = game.is_completed;
+    
+    // Market data
+    const marketAwayScore = game.closing_away_score ? Math.round(game.closing_away_score) : '-';
+    const marketHomeScore = game.closing_home_score ? Math.round(game.closing_home_score) : '-';
+    const ourAwayScore = game.our_away_score ? Math.round(game.our_away_score) : '-';
+    const ourHomeScore = game.our_home_score ? Math.round(game.our_home_score) : '-';
+    
+    // Calculate spreads and totals
+    const calibratedSpread = ourAwayScore !== '-' && ourHomeScore !== '-' ? 
+      (parseFloat(ourHomeScore) - parseFloat(ourAwayScore)) : null;
+    const calibratedTotal = (ourAwayScore !== '-' && ourHomeScore !== '-') ? 
+      (Number(ourHomeScore) + Number(ourAwayScore)) : null;
+    const displaySpread = calibratedSpread !== null ? calibratedSpread : game.our_spread;
+    const displayTotal = calibratedTotal !== null ? calibratedTotal : game.our_total;
+    
+    // Format spreads
+    let marketSpread = '-';
+    if (game.closing_spread !== null && game.closing_spread !== undefined) {
+      const val = parseFloat(game.closing_spread);
+      if (val < 0) marketSpread = `${game.away_team} ${val.toFixed(1)}`;
+      else if (val > 0) marketSpread = `${game.home_team} -${val.toFixed(1)}`;
+      else marketSpread = 'Pick\'em';
+    }
+    
+    let ourSpread = '-';
+    if (displaySpread !== null && displaySpread !== undefined) {
+      const val = parseFloat(displaySpread);
+      if (val < 0) ourSpread = `${game.away_team} ${val.toFixed(1)}`;
+      else if (val > 0) ourSpread = `${game.home_team} -${val.toFixed(1)}`;
+      else ourSpread = 'Pick\'em';
+    }
+    
+    const marketTotal = game.closing_total !== null && game.closing_total !== undefined ? 
+      parseFloat(game.closing_total).toFixed(1) : '-';
+    const ourTotal = displayTotal !== null && displayTotal !== undefined ? 
+      parseFloat(displayTotal).toFixed(1) : '-';
+    
+    // Result badges
+    const spreadResultBadge = isCompleted && game.spread_result ? 
+      `<span class="badge ${game.spread_result === 'WIN' ? 'bg-success' : game.spread_result === 'LOSS' ? 'bg-danger' : 'bg-secondary'}">${game.spread_result}</span>` : '';
+    const totalResultBadge = isCompleted && game.total_result ? 
+      `<span class="badge ${game.total_result === 'WIN' ? 'bg-success' : game.total_result === 'LOSS' ? 'bg-danger' : 'bg-secondary'}">${game.total_result}</span>` : '';
+    const mlResultBadge = isCompleted && game.moneyline_result ? 
+      `<span class="badge ${game.moneyline_result === 'WIN' ? 'bg-success' : game.moneyline_result === 'LOSS' ? 'bg-danger' : 'bg-secondary'}">${game.moneyline_result}</span>` : '';
+    
+    return `
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-md-3">
+              <a href="/game/${game.away_team}/${game.home_team}/${game.week}" class="text-reset text-decoration-none">
+                <h3 class="mb-1">${game.away_team}${getTeamIndicator(game.away_team)} @ ${game.home_team}${getTeamIndicator(game.home_team)}</h3>
+                <div class="text-muted">${game.game_date || ''}</div>
+                ${game.final_score ? `<div class="h4 mb-0 mt-2">Final: ${game.final_score}</div>` : ''}
+              </a>
+            </div>
+            <div class="col-md-9">
+              <div class="row g-2">
+                <!-- Spread -->
+                <div class="col-md-4">
+                  <div class="card card-sm">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+                          <span class="bg-primary text-white avatar">
+                            <i class="ti ti-trending-up"></i>
+                          </span>
+                        </div>
+                        <div class="col">
+                          <div class="font-weight-medium">Spread</div>
+                          <div class="text-muted small">
+                            Market: ${marketSpread}
+                          </div>
+                          <div class="text-primary small">
+                            Our Line: ${ourSpread}
+                          </div>
+                          ${game.spread_recommendation && game.spread_recommendation !== 'Pass' ? 
+                            `<div class="mt-2">
+                              <span class="badge bg-success">${game.spread_recommendation}</span>
+                              ${game.spread_conviction ? `<span class="badge ${game.spread_conviction_badge || 'bg-secondary'} ms-1">${game.spread_conviction}</span>` : ''}
+                              ${spreadResultBadge ? `<span class="ms-1">${spreadResultBadge}</span>` : ''}
+                            </div>` : 
+                            `<div class="text-muted small mt-2">Pass</div>`}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Total -->
+                <div class="col-md-4">
+                  <div class="card card-sm">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+                          <span class="bg-info text-white avatar">
+                            <i class="ti ti-chart-line"></i>
+                          </span>
+                        </div>
+                        <div class="col">
+                          <div class="font-weight-medium">Total</div>
+                          <div class="text-muted small">
+                            Market: ${marketTotal}
+                          </div>
+                          <div class="text-primary small">
+                            Our Projection: ${ourTotal}
+                          </div>
+                          ${game.total_recommendation && game.total_recommendation !== 'Pass' ? 
+                            `<div class="mt-2">
+                              <span class="badge bg-info">${game.total_recommendation}</span>
+                              ${game.total_conviction ? `<span class="badge ${game.total_conviction_badge || 'bg-secondary'} ms-1">${game.total_conviction}</span>` : ''}
+                              ${totalResultBadge ? `<span class="ms-1">${totalResultBadge}</span>` : ''}
+                            </div>` : 
+                            `<div class="text-muted small mt-2">Pass</div>`}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Moneyline -->
+                <div class="col-md-4">
+                  <div class="card card-sm">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+                          <span class="bg-success text-white avatar">
+                            <i class="ti ti-currency-dollar"></i>
+                          </span>
+                        </div>
+                        <div class="col">
+                          <div class="font-weight-medium">Moneyline</div>
+                          <div class="text-muted small">
+                            Market: ${marketAwayScore}-${marketHomeScore}
+                          </div>
+                          <div class="text-primary small">
+                            Our Projection: ${ourAwayScore}-${ourHomeScore}
+                          </div>
+                          ${game.moneyline_recommendation && game.moneyline_recommendation !== 'Pass' ? 
+                            `<div class="mt-2">
+                              <span class="badge bg-primary">${game.moneyline_recommendation}</span>
+                              ${mlResultBadge ? `<span class="ms-1">${mlResultBadge}</span>` : ''}
+                            </div>` : 
+                            `<div class="text-muted small mt-2">Pass</div>`}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('games-cards').innerHTML = html;
+}
+
+// View toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const viewCardsRadio = document.getElementById('view-cards');
+  const viewTableRadio = document.getElementById('view-table');
+  
+  if (viewCardsRadio) {
+    viewCardsRadio.addEventListener('change', function() {
+      if (this.checked) {
+        document.getElementById('games-cards').classList.remove('d-none');
+        document.getElementById('games-table-view').classList.add('d-none');
+      }
+    });
+  }
+  
+  if (viewTableRadio) {
+    viewTableRadio.addEventListener('change', function() {
+      if (this.checked) {
+        document.getElementById('games-cards').classList.add('d-none');
+        document.getElementById('games-table-view').classList.remove('d-none');
+      }
+    });
+  }
+});
 
 // Sorting state and functions (minimal client-side logic)
 let currentGamesData = [];
