@@ -2,7 +2,7 @@
 NFL Edge - Tabler Dashboard
 Flask application serving NFL predictions with official Tabler UI
 """
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, redirect
 from pathlib import Path
 import pandas as pd
 from datetime import datetime
@@ -446,7 +446,7 @@ def index():
 
     # Determine current week based on today's date
     from datetime import datetime
-    today = datetime.now().date()
+    datetime.now().date()
 
     # Load actual schedule to check which week is current
     import nfl_data_py as nfl
@@ -781,7 +781,7 @@ def game_detail(away, home, week=None):
                         last_game = datetime.fromisoformat(sorted_games[-2]['date'].replace('Z', '+00:00'))
                         current_game = datetime.fromisoformat(sorted_games[-1]['date'].replace('Z', '+00:00'))
                         espn_data['away']['rest_days'] = (current_game - last_game).days
-                except:
+                except Exception:
                     espn_data['away']['rest_days'] = 7
 
         if espn_data['home'].get('rest_days') is None:
@@ -794,7 +794,7 @@ def game_detail(away, home, week=None):
                         last_game = datetime.fromisoformat(sorted_games[-2]['date'].replace('Z', '+00:00'))
                         current_game = datetime.fromisoformat(sorted_games[-1]['date'].replace('Z', '+00:00'))
                         espn_data['home']['rest_days'] = (current_game - last_game).days
-                except:
+                except Exception:
                     espn_data['home']['rest_days'] = 7
 
         # Set travel distance for home team to 0 (they don't travel)
@@ -902,11 +902,11 @@ def game_detail(away, home, week=None):
         if not away_stats.empty:
             # Calculate points from TDs, FGs, etc. (nflverse doesn't have direct points column)
             td_cols = ['passing_tds', 'rushing_tds', 'receiving_tds', 'def_tds', 'special_teams_tds']
-            away_tds = sum(away_stats.get(col, pd.Series([0])).sum() if col in away_stats.columns else 0 for col in td_cols)
-            away_fgs = away_stats.get('fg_made', pd.Series([0])).sum() if 'fg_made' in away_stats.columns else 0
-            away_pats = away_stats.get('pat_made', pd.Series([0])).sum() if 'pat_made' in away_stats.columns else 0
-            away_safeties = away_stats.get('def_safeties', pd.Series([0])).sum() if 'def_safeties' in away_stats.columns else 0
-            away_2pt = (away_stats.get('passing_2pt_conversions', pd.Series([0])).sum() if 'passing_2pt_conversions' in away_stats.columns else 0) + \
+            sum(away_stats.get(col, pd.Series([0])).sum() if col in away_stats.columns else 0 for col in td_cols)
+            away_stats.get('fg_made', pd.Series([0])).sum() if 'fg_made' in away_stats.columns else 0
+            away_stats.get('pat_made', pd.Series([0])).sum() if 'pat_made' in away_stats.columns else 0
+            away_stats.get('def_safeties', pd.Series([0])).sum() if 'def_safeties' in away_stats.columns else 0
+            (away_stats.get('passing_2pt_conversions', pd.Series([0])).sum() if 'passing_2pt_conversions' in away_stats.columns else 0) + \
                       (away_stats.get('rushing_2pt_conversions', pd.Series([0])).sum() if 'rushing_2pt_conversions' in away_stats.columns else 0) + \
                       (away_stats.get('receiving_2pt_conversions', pd.Series([0])).sum() if 'receiving_2pt_conversions' in away_stats.columns else 0)
             # Calculate points per game from recent games
@@ -1518,17 +1518,8 @@ def game_detail(away, home, week=None):
 
 @app.route('/accuracy')
 def accuracy():
-    """Model accuracy tracking page"""
-    tracker = create_tracker()
-
-    # Get accuracy report for 2025 season
-    report = tracker.get_accuracy_report(season=2025, min_games=1)
-
-    # Get game-by-game breakdown
-    game_breakdown = tracker.get_game_breakdown(season=2025, min_games=1)
-    report['game_breakdown'] = game_breakdown
-
-    return render_template('accuracy.html', report=report, season=2025)
+    """Model accuracy tracking page - redirect to model-performance"""
+    return redirect('/model-performance')
 
 @app.route('/api/bets/test-data')
 def test_bets_data():
@@ -1642,7 +1633,7 @@ def bets():
                             date_str = f"{parts[2]}-{parts[0]}-{parts[1]}"
                         else:
                             date_str = date
-                    except:
+                    except Exception:
                         date_str = date
                 else:
                     date_str = ''
@@ -1762,7 +1753,8 @@ def line_movements():
     tracker = LineTracker()
     movements = tracker.get_week_movements(CURRENT_SEASON, CURRENT_WEEK)
 
-    return render_template('line_movements.html',
+    # Template doesn't exist yet, return error page for now
+    return render_template('error.html',
                          movements=movements,
                          week=CURRENT_WEEK,
                          season=CURRENT_SEASON)
@@ -2124,103 +2116,8 @@ def model_performance_team_analysis():
 
 @app.route('/performance')
 def performance():
-    """Betting Performance Analytics - Database Version"""
-    from nfl_edge.bets.db import BettingDB
-
-    db = BettingDB()
-
-    try:
-        # Get overall stats
-        summary = db.get_performance_summary()
-
-        stats = {
-            'total_profit': float(summary['total_profit']) if summary['total_profit'] is not None else 0.0,
-            'total_wagered': float(summary['total_wagered']) if summary['total_wagered'] is not None else 0.0,
-            'roi': float(summary['roi']) if summary['roi'] is not None else 0.0,
-            'win_rate': float(summary['win_rate']) if summary['win_rate'] is not None else 0.0,
-            'total_bets': int(summary['total_bets']) if summary['total_bets'] is not None else 0,
-            'won_count': int(summary['won_count']) if summary['won_count'] is not None else 0,
-            'lost_count': int(summary['lost_count']) if summary['lost_count'] is not None else 0,
-            'pending_count': int(summary['pending_count']) if summary['pending_count'] is not None else 0,
-            'pending_amount': float(summary['pending_amount']) if summary['pending_amount'] is not None else 0.0
-        }
-
-        # Performance by bet type
-        by_type_list = db.get_performance_by_type()
-        by_type = {}
-        for bt in by_type_list:
-            by_type[bt['bet_type']] = {
-                'count': int(bt['total_bets']) if bt['total_bets'] is not None else 0,
-                'wagered': float(bt['total_wagered']) if bt['total_wagered'] is not None else 0.0,
-                'won': int(bt['won_count']) if bt['won_count'] is not None else 0,
-                'lost': int(bt['lost_count']) if bt['lost_count'] is not None else 0,
-                'profit': float(bt['total_profit']) if bt['total_profit'] is not None else 0.0,
-                'win_rate': float(bt['win_rate_percentage']) if bt['win_rate_percentage'] is not None else 0.0,
-                'roi': float(bt['roi_percentage']) if bt['roi_percentage'] is not None else 0.0
-            }
-
-        # Weekly P/L (from database)
-        conn = db.connect()
-        with conn.cursor() as cur:
-            cur.execute("""
-                SELECT 
-                    TO_CHAR(date, 'MM/DD') as week_key,
-                    SUM(profit) as profit
-                FROM bets
-                WHERE status IN ('Won', 'Lost')
-                AND (is_round_robin = FALSE OR round_robin_parent IS NULL)
-                GROUP BY week_key
-                ORDER BY MIN(date)
-            """)
-            weekly_data = cur.fetchall()
-
-        weekly_pl = {
-            'weeks': [str(w['week_key']) for w in weekly_data],
-            'values': [float(w['profit']) if w['profit'] is not None else 0.0 for w in weekly_data]
-        }
-
-        # Bet type distribution
-        type_distribution = {
-            'labels': list(by_type.keys()),
-            'values': [by_type[k]['count'] for k in by_type.keys()]
-        }
-
-        # Recent settled bets
-        with conn.cursor() as cur:
-            cur.execute("""
-                SELECT * FROM bets 
-                WHERE status IN ('Won', 'Lost')
-                AND (is_round_robin = FALSE OR round_robin_parent IS NULL)
-                ORDER BY date DESC, updated_at DESC
-                LIMIT 10
-            """)
-            recent_bets = cur.fetchall()
-
-        # Format recent bets for template
-        recent_settled = []
-        for bet in recent_bets:
-            bet_dict = {
-                'date': bet['date'].strftime('%m/%d/%Y') if bet['date'] else '',
-                'teams': bet.get('teams', ''),
-                'description': bet.get('description', ''),
-                'type': bet['bet_type'],
-                'amount': float(bet['amount']) if bet['amount'] is not None else 0.0,
-                'odds': bet.get('odds', 'N/A'),
-                'profit': float(bet['profit']) if bet['profit'] is not None else 0.0,
-                'status': bet['status'],
-                'to_win': float(bet['to_win']) if bet['to_win'] is not None else 0.0
-            }
-            recent_settled.append(bet_dict)
-
-    finally:
-        db.close()
-
-    return render_template('performance.html',
-                         stats=stats,
-                         by_type=by_type,
-                         weekly_pl=weekly_pl,
-                         type_distribution=type_distribution,
-                         recent_settled=recent_settled)
+    """Betting Performance Analytics - redirect to bets page"""
+    return redirect('/bets')
 
 @app.route('/api/bets/paste', methods=['POST'])
 def api_paste_bets():
